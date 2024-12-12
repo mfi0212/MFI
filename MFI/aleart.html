@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alert</title>
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/9172/9172373.png">
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace; /* Classic vintage font */
+            background-image: url("https://images.unsplash.com/photo-1637516408720-c7d7fd09a16e?q=80&w=2160&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+            background-size: 113%;
+            color: #f5f5f5; /* Light gray text for contrast */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        a{
+            text-decoration: none;
+        }
+        .offer{
+            position: fixed;
+    right: 13px;
+    font-size: 15px;
+    top: 72%;
+    background: #464646;
+    padding: 10px;
+    border-radius: 11px;
+
+        }
+        .offers{
+            position: fixed;
+    left: 13px;
+    font-size: 16px;
+    top: 72%;
+    background: #464646;
+    padding: 10px;
+    border-radius: 13px;
+
+        }
+        h2, h6 {
+            color: #cccccc; /* Light gray text for headings */
+            margin-bottom: 20px;
+            font-size: 29px;
+        }
+
+        .days-count {
+            font-size: 18px;
+            color: #e0e0e0;
+            margin-top: 20px;
+        }
+        .quote{
+            background: #151515;
+    padding: 21px 0px;
+    bottom: 0px;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    position: fixed;
+    font-weight: 600;
+        }
+        @media(max-width:480px){
+            .container {
+            width: 70%;
+    margin: 16% auto;
+    padding: 55px;
+    position: fixed;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        Welcome to<br><br><img src="https://cdn-icons-png.flaticon.com/512/9172/9172373.png" alt="" width="40%"><h2>Alert</h2><hr>
+        A place where you can take money for low interest.
+        <div class="days-count" id="days-count"></div> <!-- Added div for displaying days count -->
+    </div>
+
+    <div class="offer">
+        <a href="javascript:void(0)" onclick="checkPassword()" style="color: white;">All Offer</a><br>
+    </div>
+    <script>
+        function checkPassword() {
+            alert("\nOffers available\n\nNOTE: All the offers in the MFI will only seen in MFI aleart.")
+                        // alert("\nABOVE 5K OFFERS\n\n\n986 - Get 10,000 @2\mon .\n\n896 - Get 9,000 @2\mon .\n\n780 - Get 8,000 @2\mon .\n\n671 - Get 7,000 @2\mon .\n\n584 - Get 6,000 @2\mon .")
+                        // alert("\nBELOW 5K OFFERS\n\n\n483 - Get 5,000 @2\mon \n\n442 - Get 4,000 @2\mon .\n\n410 - Get 3,000 @2\mon .\n\n389 - Get 2,000 @2\mon .\n\n320 - Get 1,000 @1\mon.")
+                        alert("200 rs of 5000 for 30days\n\n168 rs of 5000 for 25days\n\n149 rs of 5000 for 20days\n\n100 rs of 5000 for 15 days.")
+        }
+    </script>
+
+    <div class="offers">
+        <a href="javascript:void(0)" onclick="checkPasswords()" style="color: white;">Aleart me</a>
+    </div>
+    <script>
+        function checkPasswords() {
+        var userInput = prompt("\nEnter your alert pin");
+
+        if (accounts[userInput]) {
+            showAlert(accounts[userInput]);
+        }else if (userInput === "1789"){
+            alert("\nAccount Owner: Chinna.")
+            alert("\nYou have 2 active offers.");
+            alert("\nTaken offer : 125\n\nTaken in : Intrest helper\n\nTaken on : 08-09-2024.\n\nAmount taken : 8000rs.");
+            alert("\nTaken pardha for 5 months\n\nDon't forgot to pay monthly charge of 4000rs.");
+            alert("\nThanks for using MFI    aleart.")
+        }
+         else {
+            alert("\nIncorrect code.");}}
+        function addDaysToDate(date, days) {
+            const result = new Date(date);
+            result.setDate(result.getDate() + days);
+            return formatDate(result); // Format date in desired format
+        }
+
+        function formatDate(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based in JS
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`; // Format date as dd/mm/yyyy
+        }
+
+        function calculateDaysBetweenDates(startDate, endDate) {
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+            const differenceInTime = end - start;
+            return Math.floor(differenceInTime / (1000 * 3600 * 24)); // Convert milliseconds to days
+        }
+
+        function showAlert(account) {
+            const today = new Date();
+            const takenDate = new Date(account.takenDate.split('-').reverse().join('-'));
+            const daysSinceTaken = calculateDaysBetweenDates(takenDate, today);
+            const returnDate = addDaysToDate(takenDate, account.daysToAdd); // Update this line to use takenDate
+            const interest = account.amount + (daysSinceTaken * account.additionalInterest);
+            
+            alert("\nWelcome to EFI alert");
+            alert(`\nTaken amount = ${account.amount}\n\nTaken on - ${formatDate(takenDate)}\n--------------------------\nYour returning date was - ${returnDate}\n\nTill today interest = ${interest}`);
+            alert("\nThank you");
+
+            // Update the days count in the HTML
+            document.getElementById('days-count').innerText = `Days since amount was taken: ${daysSinceTaken}`;
+        }
+
+        const accounts = {
+            // "1789": { amount: 7000, takenDate: "26-09-2024", daysToAdd: 2, additionalInterest: 40 },
+            // "1789": { amount: 9000, takenDate: "21-08-2024", daysToAdd: 10, additionalInterest: 50 },
+            // Add more accounts as needed
+        };
+    </script>
+    <div class="quote">
+        Make sure, Don't delay it more
+    </div>
+</body>
+</html>

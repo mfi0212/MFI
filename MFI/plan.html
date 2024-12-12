@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plans</title>
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/84x2Bk3/BS.png">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;letter-spacing: 0.2px;
+    }
+
+       body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: white;
+        }
+        .header {
+            background-color: #1a1a1a;
+    color: white;
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 12px;
+    border-bottom: solid 1px #cdcdcd;
+        }
+        .plans-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 50px;
+            font-size: 13px;
+        }
+        .plan {
+            background-color: #1f1f1f3d;
+    padding: 30px;
+    border-radius: 15px;
+    width: 340px;
+    text-align: center;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+    border: solid 1px #3f3f3f;
+        }
+        .plan h2 {
+            font-size: 30px;
+    color: #ffffff;
+    border-bottom: solid 1px #ffffff;
+    font-weight: 500;
+}
+        .plan p {
+            font-size: 16px;
+            color: #e2e2e2;
+        }
+        .plan .price {
+            font-size: 24px;
+            color: rgb(0 255 202);
+            margin: 20px 0;
+        }
+        .plan .features {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            color: #ffffff;
+        }
+        .plan .features li {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .plan .btn:hover {
+            background-color: #45a049;
+        }
+        .current-plan {
+            background-color: #44444475;
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    width: 98%;
+        }
+        .btn{
+            background-color: #161616;
+            padding: 10px;
+            color: white;
+            border: none;
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+        .current-plan button:hover{
+            background-color: #444;
+        }
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.76);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #282828;
+    margin: 55% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    color: white;
+    line-height: 50px;
+        }
+        .modal-content p{
+            font-size: 14px;
+            line-height: 25px;
+        }
+        .close {
+            color: #aaa;
+            font-size: 30px;
+            font-weight: 100;
+            float: right;
+            cursor: pointer;
+            top: -22px;
+    position: relative;
+    left: 10px;
+        }
+        button{
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: white;
+            text-decoration: none;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .plans-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script src="noright.js"></script>
+    <div class="header">
+        <h1>Upgrade Your Plan</h1>
+        <p>Choose the plan that fits your needs</p>
+    </div>
+
+    <div class="plans-container">
+        <!-- Free Plan -->
+        <div class="plan">
+            <h2>Free</h2>
+            <p></p>
+            <div class="price">0/rs</div>
+            <ul class="features">
+                <li>Finance amount : 1000₹ - 3000₹</li>
+                <li>Interest for amount : 4%</li>
+                <li>Fine : 50₹ per day</li>
+                <li>Delay : Not allowed</li>
+                <li>Minimum balance : 300₹</li>
+                <li>Processing fee : 150(For 10,000)</li>
+                <li>Account maintenance fee : 100₹</li>
+                <li>Fine for delay : 200₹</li>
+            </ul>
+            <div class="current-plan">Your current plan</div>
+        </div>
+
+        <!-- Paid Plan -->
+        <div class="plan">
+            <h2>Gold</h2>
+            <p></p>
+            <div class="price">119/rs</div>
+            <ul class="features">
+                <li>Finance amount : 3000₹ - 6000₹</li>
+                <li>Interest for amount : 3.5%</li>
+                <li>Fine : 30₹ per day</li>
+                <li>Delay : Allowed</li>
+                <li>Minimum balance : 150₹</li>
+                <li>Processing fee : 100(For 10,000)</li>
+                <li>Account maintenance fee : 50₹</li>
+                <li>Fine for delay : 150₹</li>
+            </ul>
+            <button class="current-plan" onclick="openModal()" style="    background-color: #ffffff;
+            color: black;
+        ">Get this plan</button>
+        </div>
+        <div class="plan">
+            <h2>Silver <span style="font-size: 13px;
+                display: flow;
+                color: green;"> (POPULAR)</span></h2>
+            <p></p>
+            <div class="price">359/rs</div>
+            <ul class="features">
+                <li>Finance amount : 6000₹ - 9000₹</li>
+                <li>Interest for amount : 2.2%</li>
+                <li>Fine : 20₹ per day</li>
+                <li>Delay : Allowed</li>
+                <li>Minimum balance : 50₹</li>
+                <li>Processing fee : 50(For 10,000)</li>
+                <li>Account maintenance fee : 50₹</li>
+                <li>Fine for delay : 100₹</li>
+            </ul>
+            <button class="current-plan" onclick="openModal()" style="    background-color: #ffffff;
+            color: black;
+        ">Get this plan</button>
+        </div>
+        <div class="plan" style="background: #004cff;">
+            <h2>Platinum</h2>
+            <p></p>
+            <div class="price">1199/rs</div>
+            <ul class="features">
+                <li>Finance amount : 1000₹ - 9000₹</li>
+                <li>Interest for amount : 1.5%</li>
+                <li>Fine : 0₹</li>
+                <li>Delay : Allowed</li>
+                <li>Minimum balance : 0₹</li>
+                <li>Processing fee : 0₹</li>
+                <li>Account maintenance fee : 0₹</li>
+                <li>Fine for delay : 0₹</li>
+            </ul>
+            <button class="current-plan" onclick="openModal()" style="background-color: #ffffff;color: rgb(0, 0, 0);">Get this plan</button>
+        </div>
+    </div>
+
+    <!-- Modal for Free Plan Upgrade -->
+    <div id="upgradeModal" class="modal">
+        <div class="modal-content"><script src="noright.js"></script>
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 style="color: rgb(255, 255, 255);">In Paid</h2>
+            <p>Contact your specific coordinator to apply for this plan.</p>
+            <a href="" onclick="closeModal()" ><button style="cursor: pointer;background-color: #3c3c3c;
+    color: #ffffff;" class="btn">Ok, I will</button></a>
+        </div>
+    </div>
+
+    <script>
+        // Function to open modal
+        function openModal() {
+            document.getElementById('upgradeModal').style.display = "block";
+        }
+
+        // Function to close modal
+        function closeModal() {
+            document.getElementById('upgradeModal').style.display = "none";
+        }
+
+        // Close modal if clicked outside of it
+        window.onclick = function(event) {
+            var modal = document.getElementById('upgradeModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>

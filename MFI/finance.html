@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance</title>
+    <link rel="icon" type="image/x-icon" href="flogo.png">
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+* {
+    font-family: "Red Hat Display", sans-serif;
+    color: #1f1f1f;
+}
+
+body {
+    background: linear-gradient(to left, rgb(0, 0, 0), #003282);
+    padding: 6px;
+    line-height: 1.6;
+    display: none;
+    text-align: center;
+}
+h1 {
+    font-weight: 700;
+    color: #014dff; /* Dark Blue */
+    text-align: center;
+    margin: 54px 0;
+    font-size: 2rem;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    background: #e0e0e0;
+    border-radius: 12px;
+    margin: 18px 0;
+    padding: 10px;
+    border: solid 1px #cccccc;
+}
+
+p {
+    margin: 20px 0;
+    padding: 0 15px;
+    font-size: 1rem;
+    text-align: center;
+    color: #ffffff;
+}
+
+.graph {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    background: #004d99; /* Dark Blue */
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+}
+
+.graph a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.graph:hover {
+    background: #003366; /* Darker Blue */
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    border: solid 1px #cccccc;
+    background-color: #ffffff;
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        display: block;
+        padding: 6px;
+        position: relative;
+        top: 15px;
+    }
+
+    .graph {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+        bottom: -1em;
+        right: 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    li {
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .account {
+        text-align: center;
+        position: relative;
+        top: 0.5em;
+    }
+
+    p {
+        font-size: 20px;
+        padding: 0 10px;
+    }
+
+    button {
+        position: relative;
+        padding: 11px 20px;
+        background: #014dff; /* Dark Blue */
+        outline: none;
+        border: none;
+        color: #ffffff;
+        border-radius: 8px;
+        top: 4em;
+    }
+
+    .container {
+        position: relative;
+        top: 5em;
+        padding-bottom: 100px;
+    }
+
+    .note {
+        position: fixed;
+        bottom: 0em;
+        padding: 15px 20px;
+        width: 89%;
+        font-size: 12px;
+        background: #242424;
+        left: 0;
+        line-height: 24px;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+        color: white;
+    }
+
+    video {
+        width: 20%;
+        position: fixed;
+        z-index: 1;
+        border-radius: 16px;
+        bottom: 18px;
+        left: 24px;
+    }
+}
+
+    </style>
+    
+</head>
+<body>
+    <div class="membershop">
+        <a href="ih.html"><img style="width: 10%;
+        position: fixed;
+        top: 5px;
+        left: 5px;
+        border-radius: 3px;" src="https://cdn-icons-png.flaticon.com/512/6080/6080057.png" alt=""></a>
+    </div>
+    <div class="membershop">
+        <a href="financal.html"><img style="width: 10%;
+        position: fixed;
+        top: 5px;
+        right: 5px;
+        border-radius: 3px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUb_noSAXV9Y3zBPOKb8AEpvDZb5bdwEZiG6r-Y1FS5ZAenehLJzBiT8NwGJrfYoAT28c&usqp=CAU" alt=""></a>
+    </div>
+    <img src="flogo.png" alt="Logo">
+    <div class="account">
+        <a href="" onclick="checkPassword()"><button>My Account</button></a>
+    </div>
+    <div class="container">
+        <h1>Interest Rates for Different Amounts</h1>
+        <ul>
+            <li>For ₹1000: Interest is ₹10 per day</li>
+            <li>For ₹2000: Interest is ₹15 per day</li>
+            <li>For ₹3000: Interest is ₹20 per day</li>
+            <li>For ₹4000: Interest is ₹25 per day</li>
+            <li>For ₹5000: Interest is ₹30 per day</li>
+            <li>For ₹6000: Interest is ₹35 per day</li>
+            <li>For ₹7000: Interest is ₹40 per day</li>
+            <li>For ₹8000: Interest is ₹45 per day</li>
+            <li>For ₹9000: Interest is ₹50 per day</li>
+        </ul>
+        <p>
+            If the amount falls between the listed values, the interest rate will be interpolated accordingly. For example:
+        </p>
+        <ul>
+            <li>For an amount between ₹1000 and ₹2000, the interest rate will be between ₹10 and ₹15.</li>
+            <li>For an amount between ₹2000 and ₹3000, the interest rate will be between ₹15 and ₹20.</li>
+            <li>For an amount between ₹3000 and ₹4000, the interest rate will be between ₹20 and ₹25.</li>
+            <li>For an amount between ₹4000 and ₹5000, the interest rate will be between ₹25 and ₹30.</li>
+            <li>For an amount between ₹5000 and ₹6000, the interest rate will be between ₹30 and ₹35.</li>
+            <li>For an amount between ₹6000 and ₹7000, the interest rate will be between ₹35 and ₹40.</li>
+            <li>For an amount between ₹7000 and ₹8000, the interest rate will be between ₹40 and ₹45.</li>
+            <li>For an amount between ₹8000 and ₹9000, the interest rate will be between ₹45 and ₹50.</li>
+        </ul>
+    </div>
+    <div class="note">
+        NOTE: Don't forget to pay on the return date. If any delay's inform us before the date. If delay has taken place extra charges will be added to your interest.
+    </div>
+    
+    <script>
+        const accounts = {
+            // "1789": { name: "Chinna", amount: 5000, takenDate: "29-08-2024", daysToAdd: 2, additionalInterest: 40 },
+            // Add more accounts with names and details as needed
+        };
+
+        function addDaysToDate(date, days) {
+            const result = new Date(date);
+            result.setDate(result.getDate() + days);
+            return formatDate(result); // Format date in desired format
+        }
+
+        function formatDate(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based in JS
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`; // Format date as dd/mm/yyyy
+        }
+
+        function calculateDaysBetweenDates(startDate, endDate) {
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+            const differenceInTime = end - start;
+            return Math.floor(differenceInTime / (1000 * 3600 * 24)); // Convert milliseconds to days
+        }
+
+        function showAlert(account) {
+            const today = new Date();
+            const takenDate = new Date(account.takenDate.split('-').reverse().join('-'));
+            const daysSinceTaken = calculateDaysBetweenDates(takenDate, today);
+            const returnDate = addDaysToDate(takenDate, account.daysToAdd); // Calculate return date
+            const interestPerDay = account.additionalInterest;
+            const totalInterest = daysSinceTaken * interestPerDay;
+            const totalAmount = account.amount + totalInterest;
+
+            alert(`\n\nAccount Owner: ${account.name}`);
+            alert(`\n${account.name.toUpperCase()} AMOUNT DETAILS \n\n\nTaken amount : ₹${account.amount}\n\nTaken amount on : ${formatDate(takenDate)}\n\nAmount return on : ${returnDate}\n\nInterest per day : ₹${interestPerDay}\n\nTill today with interest : ₹${totalAmount}\n\n________________________\nNOTE: Don't forget to pay on the return date. If any delay's inform us before the date. If delay has taken place extra charges will be added to your interest.`);
+            // Update the days count in the HTML
+            document.getElementById('days-count').innerText = `Days since amount was taken: ${daysSinceTaken}`;
+        }
+
+        function checkPassword() {
+            const password = prompt("\nEnter your code");
+            const account = accounts[password];
+            if (account) {
+                showAlert(account);
+            } else if(password === "1789"){
+                alert("\nAccount Owner: Chinna(Plus member).")
+                alert("\nReturn amount : sucessful")
+                alert("\nThank you for using finance.")
+            }
+            else if(password === "1389"){
+                alert("\nAccount Owner: Phani(Plus member).")
+                alert("\nReturn amount : sucessful")
+                alert("\nThank you for using finance.")
+            }
+            else {
+                alert("\nInvalid code..!");
+            }
+        }
+    </script>
+</body>
+</html>

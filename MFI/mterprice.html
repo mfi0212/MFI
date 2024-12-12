@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mterprice</title>
+    <link rel="icon" type="image/x-ico" href="https://s3.amazonaws.com/static.graphemica.com/glyphs/i500s/000/010/218/original/004D-500x500.png?1275328225">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+
+        * {
+            font-family: "Red Hat Display", sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            padding: 40px;
+            top: 49%;
+            left: -1em;
+            position: fixed;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 500;
+            position: fixed;
+            left: 0;
+            width: 100%;
+            padding: 9px 35px;
+        }
+
+        h2 {
+            font-size: 3em;
+            margin: -27px 0 32px 0;
+            line-height: 1.1em;
+            font-weight: 400;
+        }
+
+        p {
+            font-size: 1em;
+            line-height: 0px;
+            margin: 36px 0px;
+            font-weight: 500;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            font-size: 1em;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            letter-spacing: 1.5px;
+        }
+
+        .link {
+            font-size: 0.9em;
+            position: fixed;
+            left: 52%;
+            text-decoration: none;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        .container img {
+            width: 89%;
+    position: fixed;
+    top: 115px;
+    left: 20px;
+    border-radius: 15px;
+    border: solid 2px #272727;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .modal-content {
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .close {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal button {
+            margin-top: 0px;
+            padding: 10px 19px;
+            border: none;
+            font-size: 1em;
+            border-radius: 5px;
+        }
+
+        .finance {
+            position: fixed;
+            top: 13px;
+            right: 22px;
+        }
+
+        /* Dark and Light Mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #ffffff;
+            }
+
+            a {
+                color: #004cff;
+            }
+
+            h1 {
+                background: #004cff;
+                color: #ffffff;
+            }
+
+            .button {
+                background-color: #004cff;
+                color: #ffffff;
+            }
+
+            .modal-content {
+                background-color: #2b2b2b;
+                color: #ffffff;
+            }
+
+            .close {
+                color: #aaa;
+            }
+
+            .modal button {
+                background-color: #004cff;
+                color: #ffffff;
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: #ffffff;
+                color: #000000;
+            }
+
+            a {
+                color: #004cff;
+            }
+
+            h1 {
+                background: #004cff;
+                color: #ffffff;
+            }
+
+            .button {
+                background-color: #004cff;
+                color: #ffffff;
+            }
+
+            .modal-content {
+                background-color: #ffffff;
+                color: #000000;
+            }
+
+            .close {
+                color: #000000;
+            }
+
+            .modal button {
+                background-color: #004cff;
+                color: #ffffff;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">
+        <h1>M<span style="color: #000000; position: fixed; left: 55px; font-weight: 500;">terprice</span></h1>
+    </div>
+    <div class="container">
+        <img src="https://images.unsplash.com/photo-1701690775017-c293a303bede?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+        <h2>Use<br>us for<br> business.</h2>
+        <a href="https://forms.gle/sWLdKxv2Aa6cTtoaA" class="button">Apply now</a><br><br>
+        <a href="indigo.html" style="text-decoration: none;padding: 4px;">Use of MFI business?</a><br>
+        <!-- <p>Interest Helper? <a href="ih.html" style="color: #004cff;text-decoration: none;">Visit now</a>.</p><br><br> -->
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>Enter your wallet pin:</p>
+            <input type="password" id="userInput" placeholder="Enter the pin" style="color: #000000;text-align: center;width: 100%; padding: 10px; margin-top: 10px; outline: none;">
+            <p id="modal-message" style="color: #ff0000;
+    margin-top: 22px;"></p>
+            <button onclick="checkPassword()">Open wallet</button>
+        </div>
+    </div>
+    <div class="finance">
+        <a href="javascript:void(0)" onclick="openModal()"><i class="fa-solid fa-user" style="color: white;"></i></a>
+    </div>
+    <script>
+        // Function to open the modal
+        function openModal() {
+            document.getElementById("myModal").style.display = "flex";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        // Function to check the password
+        function checkPassword() {
+            var userInput = document.getElementById("userInput").value;
+            var message = document.getElementById("modal-message");
+
+            if (userInput === "9919") {
+                window.location.href = "acc1.html";
+            } else if (userInput === "") {
+                message.textContent = "Enter something.";
+            } else {
+                message.textContent = "Wrong code / Account not exists";
+            }
+        }
+    </script>
+    <div class="interest" style="    position: fixed;
+    bottom: -15px;
+    right: 13px;
+color: rgb(199, 199, 199);">
+        <p><a href="https://forms.gle/G7k59TdmwQ75nKQ7A" style="color: #6c6c6c;">Return amount</a></p>
+    </div>
+</body>
+
+</html>

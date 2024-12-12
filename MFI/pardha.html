@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance</title>
+    <link rel="icon" type="image/x-icon" href="flogo.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+        * {
+            font-family: "Red Hat Display", sans-serif;
+            color: #f0f0f0;
+        }
+
+        body {
+            color: #e0e0e0;
+            background:#282828;
+            padding: 20px;
+            line-height: 1.6;
+            display: none;
+            text-align: center;
+        }
+        a{
+            text-decoration: none;
+        }
+        h1 {
+            font-weight: 700;
+            color: #57e0ff;
+            text-align: center;
+            margin: 54px 0px;
+            font-size: 2rem;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background: #1a1a1a;
+            border-radius: 12px;
+            margin: 10px 0;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            font-size: 1rem;
+        }
+
+        p {
+            margin: 20px 0;
+            padding: 0 15px;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .graph {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            background: #004080;
+            color: #f0f0f0;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: background 0.3s ease;
+        }
+
+        .graph a {
+            color: #f0f0f0;
+            text-decoration: none;
+        }
+
+        .graph:hover {
+            background: #00264d;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+            z-index: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    opacity: 61%;
+    box-shadow: 0 4px 8px rgb(0, 0, 0);
+        }
+
+        @media screen and (max-width: 480px) {
+            body {
+                display: block;
+                padding: 15px;
+                height: 40em;
+            }
+
+            .graph {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+                bottom: -1em;
+                right: 10px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            li {
+                font-size: 0.9rem;
+                font-weight: 500;
+            }
+
+            .account {
+                position: absolute;
+        bottom: 16em;
+        width: 23%;
+        background: black;
+        padding: 10px 0px;
+        border-radius: 44px;
+        left: 39%;
+            }
+
+            p {
+                font-size: 20px;
+                padding: 0 10px;
+            }
+
+            button {
+                position: relative;
+                padding: 11px 20px;
+                background: #000000;
+                outline: none;
+                border: none;
+                color: #f0f0f0;
+                border-radius: 8px;
+                top: 4em;
+            }
+            .container {
+                position: relative;
+                top: 5em;
+            }
+            .note {
+                position: fixed;
+        bottom: 0em;
+        padding: 15px 20px;
+        width: 95%;
+        font-size: 13px;
+        left: -10px;
+        line-height: 24px;
+        letter-spacing: 0.5px;
+        background: #0000003b;
+
+            }
+            video {
+                width: 20%;
+                position: fixed;
+                z-index: 1;
+                border-radius: 16px;
+                bottom: 18px;
+                left: 24px;
+            }
+            .social {
+                font-size: 18px;
+        color: #000000;
+        position: fixed;
+        bottom: 10.5em;
+        text-align: center;
+        width: 89%;
+        }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        
+function setBackgroundBasedOnTime() {
+    const body = document.body;
+    const timeDisplay = document.getElementById('time-display');
+
+    // Get the current IST time
+    const now = new Date();
+    const istHours = now.getHours();
+    const istMinutes = now.getMinutes();
+
+    // Determine background color based on the time of day
+    let color = '';
+    let timeOfDay = '';
+
+    if (istHours >= 5 && istHours < 7) {
+        // Dawn (5 AM to 7 AM)
+        color = '#6A5ACD'; // Slate Blue, darker morning color
+        timeOfDay = 'Dawn';
+    } else if (istHours >= 7 && istHours < 10) {
+        // Morning (7 AM to 10 AM)
+        color = '#4682B4'; // Steel Blue, darker blue for morning
+        timeOfDay = 'Morning';
+    } else if (istHours >= 10 && istHours < 14) {
+        // Midday (10 AM to 2 PM)
+        color = '#4169E1'; // Royal Blue, still bright but darker than noon
+        timeOfDay = 'Midday';
+    } else if (istHours >= 14 && istHours < 17) {
+        // Afternoon (2 PM to 5 PM)
+        color = '#1E90FF'; // Dodger Blue, darker afternoon sky
+        timeOfDay = 'Afternoon';
+    } else if (istHours >= 17 && istHours < 19) {
+        // Evening (5 PM to 7 PM)
+        color = '#FF6347'; // Tomato, darker sunset color
+        timeOfDay = 'Evening';
+    } else if (istHours >= 19 && istHours < 21) {
+        // Dusk (7 PM to 9 PM)
+        color = '#B22222'; // Firebrick, deeper dusk color
+        timeOfDay = 'Dusk';
+    } else {
+        // Night (9 PM to 5 AM)
+        color = 'rgb(0 0 0)'; // Midnight Blue, very dark night sky
+        timeOfDay = 'Night';
+    }
+
+    // Set the background color and display the current time of day
+    body.style.backgroundColor = color;
+    timeDisplay.textContent = `Time of Day: ${timeOfDay} (Color: ${color}, IST: ${istHours}:${istMinutes < 10 ? '0' + istMinutes : istMinutes})`;
+}
+
+
+        window.onload = setBackgroundBasedOnTime; // Call function on page load
+    </script>
+    <img src="pardha.png" alt="Logo">
+    <div class="account">
+        <a href="#" onclick="checkPassword()"><i class="fa-solid fa-list-check"></i></a>
+    </div>
+    <div class="social">
+        <a href="https://forms.gle/aYxf3wpv2WkyU3RCA">Apply For Pardha</a>
+    </div>
+    
+    <div class="note">
+        With Pardha, you can manage your interest payments easily. With only small charges, use Pardha. When it's time to pay your interest or the amount, we help you pay off your interest faster and with less stress.
+    </div>
+    
+    <script>
+        function checkPassword() {
+            var userInput = prompt("Enter the password");
+            if (userInput === "1789") {
+                alert("\nWelcome +91******1789.");
+                alert("\nTaken amount 20,000 cleared successfully.");
+                alert("\nThank you for using pardha.");
+            }else{
+                alert("\nNote:\n\nDon't try to login to another accounts.");
+            }
+        }
+        
+        // function applyOffer() {
+        //     const password = prompt("\nTo apply for the offer, enter the pin of your account.");
+        //     if (password === "1789") {
+        //         alert("\nAccount Owner: Chinna.");
+        //         alert("\nWe are applying for the 5000 rs offer.\n\nBy applying for this offer, you can return the money after 45 days");
+        //         alert("\nTo apply for this, you have to pay 568 rs.");
+        //         alert("\nWe hope we helped you.");
+        //         alert("\nThanks for applying for this offer.");
+        //     } else if (password === "1389") {
+        //         alert("\nAccount Owner: Phani.");
+        //         alert("\nThanks for applying for this offer.");
+        //     } else {
+        //         alert("\nInvalid code.");
+        //     }
+        // }
+     </script>
+</body>
+</html>

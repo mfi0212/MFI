@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+        
+        * {
+            font-family: "Red Hat Display", sans-serif;
+        }
+        a{
+            text-decoration: none;
+        }
+        body {
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 125vh; 
+            margin: 0; 
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        @media (max-width: 600px) {
+            img {
+                position: fixed;
+                width: 71%;
+                bottom: 65%;
+                z-index: -1;
+            }
+            a {
+                color: white;
+            }
+            .menu{
+                display: flex
+;
+        position: fixed;
+        top: 660px;
+        gap: 45px;
+        font-size: 20px;
+        border: solid 1px rgb(99 99 99);
+        padding: 10px;
+        border-radius: 10px;
+
+            }
+        }
+        /* Light Theme */
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: #f4f4f9; /* Light background */
+                color: #003366; /* Dark blue text */
+            }
+            ul a {
+                background-color: #004cff;
+                color: #ffffff;
+                border: solid 1px #004cff;
+            }
+            ul p{
+                color: black;
+            }
+            ul a:hover, ul a:active {
+                background-color: #003bbf;
+                color: #ffffff;
+            }
+            ul a:active {
+                color: #ffffff;
+            }
+            .menu a{
+                color: black;
+            }
+        }
+
+        /* Dark Theme */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212; /* Dark background */
+                color: #ffffff; /* Light text */
+            }
+            ul a {
+                background-color: #004cff;
+                color: #ffffff;
+                border: solid 1px #004cff;
+            }
+            ul a:hover, ul a:active {
+                background-color: #003bbf;
+                color: #ffffff;
+            }
+            ul a:active {
+                color: #1f1f1f;
+            }
+        }
+
+        ul {
+            list-style-type: none; 
+            padding: 0; 
+            margin: 0; 
+            position: fixed;
+            top: 14em;
+
+        }
+        
+        li {
+            margin: 21px 0px;
+            width: 290px;
+        }
+
+        ul a {
+            display: block; 
+            text-decoration: none; 
+            font-size: 15px; 
+            padding: 10px 30px; 
+            border-radius: 12px; 
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, border-color 0.3s ease; 
+        }
+
+        ul a:hover {
+            transform: scale(1.05); 
+        }
+
+        .p img {
+            width: 12%;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            border: solid 2px gray;
+            border-radius: 8px;
+        }
+
+    
+
+        #passwordContainer {
+            display: none;
+    text-align: center;
+    margin-top: 50px;
+    z-index: 1;
+    background: black;
+    padding: 132px;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+        }
+
+        #userPassword {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        #userPassword:focus {
+            border-color: #007bff;
+        }
+
+        #submitBtn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #submitBtn:hover {
+            background-color: #0056b3;
+        }
+
+        #error-message {
+            color: red;
+            margin-top: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="Bs.html"><i class="fa-solid fa-house"></i></a>
+        <a href="fine.html"><i class="fa-solid fa-fire"></i></a>
+        <a href="news.html"><i class="fa-solid fa-newspaper"></i></a>
+        <a href="plan.html"><i class="fa-brands fa-slack"></i></a>
+        <a href="chatbot.html"><i class="fa-solid fa-comment"></i></a>
+    </div>
+    
+    <div id="passwordContainer">
+        <div class="check" style="position: fixed;
+        top: 10px;
+        left: 10px;
+        font-size: 19px;">
+            <a href="checkin.html"><i class="fa-solid fa-user-check"></i></a>
+        </div>
+        <img style="position: relative;
+        left: 0px;
+        top: 0px;
+        width: 40%;" src="intoBS.png" alt="">
+        <h1>Welcome..!</h1>
+        <div style="position: relative; display: inline;">
+            <input type="password" id="userPassword" placeholder="Enter password" style="background: #282828;
+            border: none;
+            padding: 12px 18px;color: white;
+            ">
+            <button id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);color: #c0c0c0; background: none; border: none; cursor: pointer; font-size: 16px;">
+                <i id="toggleIcon" class="fa-solid fa-eye"></i>
+            </button>
+        </div style>
+        <br>
+        <button id="submitBtn" style="margin-top: 21px;background: #484747;">Submit</button>
+        <div class="plan" style="position: fixed;
+        bottom: 10px;
+        display: flex;
+        width: 100%;
+        gap: 110px;
+        align-items: center;
+        justify-content: center;">
+            <a href="plan.html"><i class="fa-brands fa-slack" style="padding: 6px;
+                background: #282828;
+                font-size: 16px;
+                border-radius: 100px;
+                border: solid 1px #5a5858;"></i> Upgrade plan</a>
+                <a href="news.html"><i class="fa-regular fa-newspaper"  style="padding: 6px;
+                    background: #282828;
+                    font-size: 16px;
+                    border-radius: 100px;
+                    border: solid 1px #5a5858;"></i> News</a>
+        </div>
+    </div>
+    
+
+    <!-- Error message -->
+    <p id="error-message"></p>
+
+    <!-- Logout button -->
+    <button id="logoutBtn" style="position: fixed;
+    top: 10px;
+    right: 10px;
+    display: block;
+    background: #4a4a4a59;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 18px;
+    border-radius: 9px;"><i class="fa-solid fa-right-from-bracket"></i></button>
+
+    <!-- Services List -->
+    <img src="intoBS.png" alt="">
+    <ul>
+        <p>Our services</p><br><br>
+        <li><a href="home.html">MFI</a></li>
+        <li><a href="mterprice.html">Mterprice</a></li>
+        <li><a href="reminder.html">Reminder</a></li><br>
+        <div class="check" style="display: flex; gap: 32px; position: fixed;">
+            <buton><a href="preinterest.html" style="font-size: 12px; text-align: center; background: #282828; border: solid 1px #313131;width: 63%;">Calculator</a></buton>
+            <buton><a href="emigraph.html" style="font-size: 12px; text-align: center; background: #282828; border: solid 1px #313131;width: 58%;">My score</a></buton>
+        </div>
+        <a href="takemoney.html" style="padding: 11px;font-size: 12px; text-align: center; background: #28282853; border: solid 1px #313131; position: relative; top: 42px;">Return money form</a>
+    </ul>
+
+    <script>
+        // Check login status on page load
+        window.onload = function () {
+            const isLoggedIn = localStorage.getItem("isLoggedIn");
+            const passwordContainer = document.getElementById("passwordContainer");
+            const logoutBtn = document.getElementById("logoutBtn");
+
+            if (isLoggedIn === "true") {
+                passwordContainer.style.display = "none"; // Hide password input
+                logoutBtn.style.display = "block"; // Show logout button
+            } else {
+                passwordContainer.style.display = "block"; // Show password input
+                logoutBtn.style.display = "none"; // Hide logout button
+            }
+        };
+// Show/Hide Password Functionality
+document.getElementById("togglePassword").onclick = function () {
+    const passwordInput = document.getElementById("userPassword");
+    const toggleIcon = document.getElementById("toggleIcon");
+    
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text"; // Show the password
+        toggleIcon.classList.remove("fa-eye");
+        toggleIcon.classList.add("fa-eye-slash");
+    } else {
+        passwordInput.type = "password"; // Hide the password
+        toggleIcon.classList.remove("fa-eye-slash");
+        toggleIcon.classList.add("fa-eye");
+    }
+};
+
+        // Submit button functionality
+        document.getElementById("submitBtn").onclick = function () {
+            const userInput = document.getElementById("userPassword").value;
+            const errorMessage = document.getElementById("error-message");
+
+            if (userInput === "@1789"){
+                localStorage.setItem("isLoggedIn", "true");
+                alert("Welcome Chinna, You are using our free subcription plan.")
+                window.location.href = "https://blackswan19.github.io/bsmy/Bs";
+            }else if (userInput === "@1389"){
+                alert("Welcome Phani, You are using our free subcription plan.")
+                localStorage.setItem("isLoggedIn", "true");
+                window.location.href = "https://blackswan19.github.io/bsmy/Bs";
+            }
+             else {
+                errorMessage.textContent = "Incorrect password..!";
+            }
+        };
+
+        // Logout functionality
+        document.getElementById("logoutBtn").onclick = function () {
+            // Clear login status in localStorage
+            localStorage.removeItem("isLoggedIn");
+            alert("You have been logged out.");
+            window.location.reload();
+        };
+    </script>
+</body>
+</html>
