@@ -264,16 +264,20 @@
     </ul>
 
     <script>
-        // Force password re-entry on every page load
-window.onload = function () {
-    localStorage.removeItem("isLoggedIn"); // Clear any previous login state
-    const passwordContainer = document.getElementById("passwordContainer");
-    const logoutBtn = document.getElementById("logoutBtn");
+        // Check login status on page load
+        window.onload = function () {
+            const isLoggedIn = localStorage.getItem("isLoggedIn");
+            const passwordContainer = document.getElementById("passwordContainer");
+            const logoutBtn = document.getElementById("logoutBtn");
 
-    passwordContainer.style.display = "block"; // Always show password input
-    logoutBtn.style.display = "none"; // Hide logout button
-};
-
+            if (isLoggedIn === "true") {
+                passwordContainer.style.display = "none"; // Hide password input
+                logoutBtn.style.display = "block"; // Show logout button
+            } else {
+                passwordContainer.style.display = "block"; // Show password input
+                logoutBtn.style.display = "none"; // Hide logout button
+            }
+        };
 // Show/Hide Password Functionality
 document.getElementById("togglePassword").onclick = function () {
     const passwordInput = document.getElementById("userPassword");
