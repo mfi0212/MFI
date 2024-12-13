@@ -290,36 +290,24 @@ document.getElementById("togglePassword").onclick = function () {
     }
 };
 
-       // Submit button functionality
-document.getElementById("submitBtn").onclick = function () {
-    const userInput = document.getElementById("userPassword").value;
-    const errorMessage = document.getElementById("error-message");
-    const passwordContainer = document.getElementById("passwordContainer");
+        // Submit button functionality
+        document.getElementById("submitBtn").onclick = function () {
+            const userInput = document.getElementById("userPassword").value;
+            const errorMessage = document.getElementById("error-message");
 
-    if (userInput === "@1789" || userInput === "@1389") {
-        // Store login status
-        localStorage.setItem("isLoggedIn", "true");
-
-        // Hide the password container and display the main content
-        passwordContainer.style.display = "none";
-
-        // Welcome message
-        if (userInput === "@1789") {
-            alert("Welcome Chinna, Please renew your subscription to regain access.");
-            localStorage.setItem("isLoggedIn", "true");
-        // window.location.href = "https://mfi0212.github.io/MFI/MFI/Bs";
-        } else if (userInput === "@1389") {
-            alert("Welcome Phani, Please renew your subscription to regain access.");
-            localStorage.setItem("isLoggedIn", "true");
+            if (userInput === "@1789"){
+                localStorage.setItem("isLoggedIn", "true");
+                alert("Welcome Chinna, Please renew your subscription to regain access.");
+                // window.location.href = "https://mfi0212.github.io/MFI/MFI/Bs";
+            }else if (userInput === "@1389"){
+                alert("Welcome Phani.")
+                localStorage.setItem("isLoggedIn", "true");
                 window.location.href = "https://mfi0212.github.io/MFI/MFI/Bs";
-        }
-
-    } else {
-        // Display error message for incorrect password
-        errorMessage.textContent = "Incorrect password..!";
-    }
-};
-
+            }
+             else {
+                errorMessage.textContent = "Incorrect password..!";
+            }
+        };
 
         // Logout functionality
         document.getElementById("logoutBtn").onclick = function () {
