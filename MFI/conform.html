@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Form</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+        
+        * {
+            font-family: "Red Hat Display", sans-serif;
+        }
+        *{
+            color: white;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212; /* Dark theme background */
+            background-image: url('https://i.pinimg.com/564x/de/2a/1a/de2a1a0a722967dd83c87d36df473481.jpg'); /* Background image */
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            background-attachment: fixed; /* Make the background image fixed when scrolling */
+            color: #ffffff; /* Light text for dark theme */
+            margin: 0;
+        }
+        .subscription-form {
+            background: #0000004a;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    position: fixed;
+    top: 20%;
+        }
+        .subscription-form h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .subscription-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .subscription-form input, .subscription-form select, .subscription-form button {
+            padding: 10px 35px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 11px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    outline: none;
+    background-color: #3c3c3c;
+        }
+        option{
+            text-align: justify;
+            border: none;
+            outline: none;
+        }
+        .subscription-form button {
+            background-color: #0051ff;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        .subscription-form button:hover {
+            background-color: #001f74;
+        }
+        .message {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <form class="subscription-form" id="subscriptionForm">
+        <h2>Confirm Subscription</h2>
+        
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+        <label for="plan">Subscription Plan</label>
+        <select id="plan" name="plan" required>
+            <option value="free">Free</option>
+            <option value="gold">Gold</option>
+            <option value="silver">Silver</option>
+            <option value="platinum">Platinum</option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('subscriptionForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            alert('Form submitted! Please contact your coordinator to get the subscription plans. Thank you!');
+        });
+    </script>
+</body>
+</html>
