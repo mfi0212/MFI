@@ -269,7 +269,8 @@
             const isLoggedIn = localStorage.getItem("isLoggedIn");
             const passwordContainer = document.getElementById("passwordContainer");
             const logoutBtn = document.getElementById("logoutBtn");
-
+    
+            // Check login status
             if (isLoggedIn === "true") {
                 passwordContainer.style.display = "none"; // Hide password input
                 logoutBtn.style.display = "block"; // Show logout button
@@ -278,48 +279,49 @@
                 logoutBtn.style.display = "none"; // Hide logout button
             }
         };
-// Show/Hide Password Functionality
-document.getElementById("togglePassword").onclick = function () {
-    const passwordInput = document.getElementById("userPassword");
-    const toggleIcon = document.getElementById("toggleIcon");
     
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text"; // Show the password
-        toggleIcon.classList.remove("fa-eye");
-        toggleIcon.classList.add("fa-eye-slash");
-    } else {
-        passwordInput.type = "password"; // Hide the password
-        toggleIcon.classList.remove("fa-eye-slash");
-        toggleIcon.classList.add("fa-eye");
-    }
-};
-
+        // Show/Hide Password Functionality
+        document.getElementById("togglePassword").onclick = function () {
+            const passwordInput = document.getElementById("userPassword");
+            const toggleIcon = document.getElementById("toggleIcon");
+            
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text"; // Show the password
+                toggleIcon.classList.remove("fa-eye");
+                toggleIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password"; // Hide the password
+                toggleIcon.classList.remove("fa-eye-slash");
+                toggleIcon.classList.add("fa-eye");
+            }
+        };
+    
         // Submit button functionality
         document.getElementById("submitBtn").onclick = function () {
             const userInput = document.getElementById("userPassword").value;
             const errorMessage = document.getElementById("error-message");
-
-            if (userInput === "@1789"){
+    
+            if (userInput === "@1789") {
                 localStorage.setItem("isLoggedIn", "true");
                 alert("Welcome Chinna, Please renew your subscription to regain access.");
-                // window.location.href = "https://mfi0212.github.io/MFI/MFI/Bs";
-            }else if (userInput === "@1389"){
-                alert("Welcome Phani.")
+                location.reload(); // Reload the page to apply login state
+            } else if (userInput === "@1389") {
                 localStorage.setItem("isLoggedIn", "true");
-                window.location.href = "https://mfi0212.github.io/MFI/MFI/Bs";
-            }
-             else {
+                alert("Welcome Phani.");
+                location.reload(); // Reload the page to apply login state
+            } else {
                 errorMessage.textContent = "Incorrect password..!";
             }
         };
-
+    
         // Logout functionality
         document.getElementById("logoutBtn").onclick = function () {
             // Clear login status in localStorage
             localStorage.removeItem("isLoggedIn");
             alert("You have been logged out.");
-            window.location.reload();
+            location.reload(); // Reload the page to prompt for login
         };
     </script>
+    
 </body>
 </html>
