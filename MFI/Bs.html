@@ -264,18 +264,20 @@
     </ul>
 
     <script>
-       // Check login status on page load
-window.onload = function () {
-    // Clear login status to force password entry
-    localStorage.removeItem("isLoggedIn"); 
+        // Check login status on page load
+        window.onload = function () {
+            const isLoggedIn = localStorage.getItem("isLoggedIn");
+            const passwordContainer = document.getElementById("passwordContainer");
+            const logoutBtn = document.getElementById("logoutBtn");
 
-    const passwordContainer = document.getElementById("passwordContainer");
-    const logoutBtn = document.getElementById("logoutBtn");
-
-    passwordContainer.style.display = "block"; // Show password input
-    logoutBtn.style.display = "none"; // Hide logout button
-};
-
+            if (isLoggedIn === "true") {
+                passwordContainer.style.display = "none"; // Hide password input
+                logoutBtn.style.display = "block"; // Show logout button
+            } else {
+                passwordContainer.style.display = "block"; // Show password input
+                logoutBtn.style.display = "none"; // Hide logout button
+            }
+        };
 // Show/Hide Password Functionality
 document.getElementById("togglePassword").onclick = function () {
     const passwordInput = document.getElementById("userPassword");
@@ -292,32 +294,32 @@ document.getElementById("togglePassword").onclick = function () {
     }
 };
 
-// Submit button functionality
-document.getElementById("submitBtn").onclick = function () {
-    const userInput = document.getElementById("userPassword").value;
-    const errorMessage = document.getElementById("error-message");
+        // Submit button functionality
+        document.getElementById("submitBtn").onclick = function () {
+            const userInput = document.getElementById("userPassword").value;
+            const errorMessage = document.getElementById("error-message");
 
-    if (userInput === "@1789") {
-        localStorage.setItem("isLoggedIn", "true");
-        alert("Welcome Chinna, Please renew your subscription to regain access.");
-        // window.location.href = "https://mfi0212.github.io/MFI/MFI/Bs";
-    } else if (userInput === "@1389") {
-        alert("Welcome Phani.");
-        localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "https://mfi0212.github.io/MFI/MFI/Bs";
-    } else {
-        errorMessage.textContent = "Incorrect password..!";
-    }
-};
+            if (userInput === "@1789"){
+                localStorage.setItem("isLoggedIn", "true");
+                alert("Welcome Chinna, Please renew your subscription to regain access.");
+                // window.location.href = "https://mfi0212.github.io/MFI/MFI/Bs";
+            }else if (userInput === "@1389"){
+                alert("Welcome Phani.")
+                localStorage.setItem("isLoggedIn", "true");
+                window.location.href = "https://mfi0212.github.io/MFI/MFI/Bs";
+            }
+             else {
+                errorMessage.textContent = "Incorrect password..!";
+            }
+        };
 
-// Logout functionality
-document.getElementById("logoutBtn").onclick = function () {
-    // Clear login status in localStorage
-    localStorage.removeItem("isLoggedIn");
-    alert("You have been logged out.");
-    window.location.reload();
-};
-
+        // Logout functionality
+        document.getElementById("logoutBtn").onclick = function () {
+            // Clear login status in localStorage
+            localStorage.removeItem("isLoggedIn");
+            alert("You have been logged out.");
+            window.location.reload();
+        };
     </script>
 </body>
 </html>
