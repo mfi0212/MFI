@@ -90,8 +90,7 @@
         }
 
         .top-bar {
-            display: flex
-;
+            display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 50px;
@@ -210,7 +209,14 @@
             .container {
                 flex-direction: column;
             }
-
+            .finance a{
+                position: relative;
+        color: #ffffff;
+        right: 0px;
+        background: #6e6e6e;
+        padding: 6px 10px;
+        border-radius: 7px;
+            }
             .left-screen, .right-screen {
                 width: 100%;
                 padding: 20px;
@@ -228,15 +234,21 @@
         "1789": { 
             holderName: "Chinna",
             amountTaken: "15,000",
-            takenOn: "2024-12-10",
-            returningDate: "--"
+            planSelected: "1000/mon",
+            interestPaid: "2,300",
+            totalInterest: "4,700",
+            totalPaid: "120rs",
+            password: "1789"
         },
         
         "9892": { 
             holderName: "Rama krishna yerra",
             amountTaken: "18,000",
-            takenOn: "2024-12-12",
-            returningDate: "--"
+            planSelected: "1000/mon",
+            interestPaid: "2,000",
+            totalInterest: "8,000",
+            totalPaid: "120rs",
+            password: "9892"
         }
     };
 
@@ -267,13 +279,16 @@
         const enteredPassword = inputField.value.trim();
 
         if (passwordMessages[enteredPassword]) {
-            const { holderName, amountTaken, takenOn, returningDate } = passwordMessages[enteredPassword];
+            const { holderName, amountTaken, planSelected, interestPaid, totalInterest, totalPaid, password } = passwordMessages[enteredPassword];
             feedback.innerHTML = `
                 <div>
                     <p><strong>Holder Name:</strong> ${holderName}</p>
+                    <p><strong>Password:</strong> ${password}</p>
                     <p><strong>Amount Taken:</strong> ${amountTaken}</p>
-                    <p><strong>Taken On:</strong> ${takenOn}</p>
-                    <p><strong>Returning Date:</strong> ${returningDate}</p>
+                    <p><strong>Plan Selected:</strong> ${planSelected}</p>
+                    <p><strong>Interest Paid:</strong> ${interestPaid}</p>
+                    <p><strong>Total Interest:</strong> ${totalInterest}</p>
+                    <p><strong>Interest for plan:</strong> ${totalPaid}</p>
                 </div>
             `;
             feedback.classList.remove('error');
@@ -296,13 +311,9 @@
         <div class="right-screen" id="2">
             <div class="top-bar">
                 <h1>Plus.</h1>
-                <div class="finance" style="position: fixed;
-                color: black;
-                right: 20px;
-                background: #000000;
-                padding: 6px 10px;
-                border-radius: 7px;">
+                <div class="finance">
                     <a href="ih.html">Finance</a>
+                    <a href="plans.html">Plans</a>
                 </div>
             </div>
             <section class="content active">
