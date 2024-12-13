@@ -264,9 +264,8 @@
     </ul>
 
     <script>
-        // Force password re-entry on every page load
-window.onload = function () {
-    localStorage.removeItem("isLoggedIn"); // Clear any previous login state
+        window.onload = function () {
+    localStorage.removeItem("isLoggedIn"); // Ensure clearing of any previous login state
     const passwordContainer = document.getElementById("passwordContainer");
     const logoutBtn = document.getElementById("logoutBtn");
 
@@ -274,7 +273,6 @@ window.onload = function () {
     logoutBtn.style.display = "none"; // Hide logout button
 };
 
-// Show/Hide Password Functionality
 document.getElementById("togglePassword").onclick = function () {
     const passwordInput = document.getElementById("userPassword");
     const toggleIcon = document.getElementById("toggleIcon");
@@ -290,32 +288,29 @@ document.getElementById("togglePassword").onclick = function () {
     }
 };
 
-        // Submit button functionality
-        document.getElementById("submitBtn").onclick = function () {
-            const userInput = document.getElementById("userPassword").value;
-            const errorMessage = document.getElementById("error-message");
+document.getElementById("submitBtn").onclick = function () {
+    const userInput = document.getElementById("userPassword").value;
+    const errorMessage = document.getElementById("error-message");
 
-            if (userInput === "@1789"){
-                localStorage.setItem("isLoggedIn", "true");
-                alert("Welcome Chinna, Please renew your subscription to regain access.");
-                // window.location.href = "https://mfi0212.github.io/MFI/MFI/Bs";
-            }else if (userInput === "@1389"){
-                alert("Welcome Phani. Please renew your subscription to regain access.")
-                localStorage.setItem("isLoggedIn", "true");
-                // window.location.href = "https://mfi0212.github.io/MFI/MFI/Bs";
-            }
-             else {
-                errorMessage.textContent = "Incorrect password..!";
-            }
-        };
+    // Correct password checks
+    if (userInput === "@1789") {
+        localStorage.setItem("isLoggedIn", "true");
+        alert("Welcome Chinna, Please renew your subscription to regain access.");
+    } else if (userInput === "@1389") {
+        alert("Welcome Phani.");
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = "https://mfi0212.github.io/MFI/MFI/Bs";
+    } else {
+        errorMessage.textContent = "Incorrect password..!";
+    }
+};
 
-        // Logout functionality
-        document.getElementById("logoutBtn").onclick = function () {
-            // Clear login status in localStorage
-            localStorage.removeItem("isLoggedIn");
-            alert("You have been logged out.");
-            window.location.reload();
-        };
+document.getElementById("logoutBtn").onclick = function () {
+    localStorage.removeItem("isLoggedIn"); // Clear login status
+    alert("You have been logged out.");
+    window.location.reload(); // Reload the page to force login again
+};
+
     </script>
 </body>
 </html>
