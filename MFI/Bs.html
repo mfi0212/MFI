@@ -248,7 +248,7 @@
         document.getElementById("togglePassword").onclick = function () {
             const passwordInput = document.getElementById("userPassword");
             const toggleIcon = document.getElementById("toggleIcon");
-
+    
             if (passwordInput.type === "password") {
                 passwordInput.type = "text"; // Show the password
                 toggleIcon.classList.remove("fa-eye");
@@ -259,24 +259,28 @@
                 toggleIcon.classList.add("fa-eye");
             }
         };
-
+    
         document.getElementById("submitBtn").onclick = function () {
             const userInput = document.getElementById("userPassword").value;
             const errorMessage = document.getElementById("error-message");
-            const menu = document.querySelector('.menu');
-            const contentList = document.querySelector('ul');
-
-            // Correct password check
+            const today = new Date();
+    
             if (userInput === "@1789") {
-                alert("Welcome Chinna.");
-                window.location.href = "https://mfi0212.github.io/MFI/MFI/services";
+                const subscriptionEndDate = new Date('2024-12-31');
+                const daysRemaining = Math.ceil((subscriptionEndDate - today) / (1000 * 60 * 60 * 24));
+                alert("Welcome Chinna, Please renew your subscription to regain access.");
+                // alert(`Welcome Chinna. Today is ${today.toDateString()}. You have ${daysRemaining} days left for your subscription.`);
+                // window.location.href = "https://mfi0212.github.io/MFI/MFI/services";
             } else if (userInput === "@1389") {
-                alert("Welcome Phani.");
+                const subscriptionEndDate = new Date('2025-1-13');
+                const daysRemaining = Math.ceil((subscriptionEndDate - today) / (1000 * 60 * 60 * 24));
+                alert(`Welcome Phani. Today is ${today.toDateString()}. You have ${daysRemaining} days left for your subscription.`);
                 window.location.href = "https://mfi0212.github.io/MFI/MFI/services";
-            } else {
+            }else {
                 errorMessage.textContent = "Incorrect password..!";
             }
         };
     </script>
+    
 </body>
 </html>
