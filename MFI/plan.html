@@ -8,24 +8,33 @@
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;letter-spacing: 0.2px;
-    }
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Poppins', sans-serif; 
+            letter-spacing: 0.2px;
+        }
 
-       body {
+        /* Default theme based on system preference */
+        body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #1a1a1a;
             color: white;
         }
+
         .header {
             background-color: #1a1a1a;
-    color: white;
-    text-align: center;
-    padding: 15px 20px;
-    font-size: 12px;
-    border-bottom: solid 1px #cdcdcd;
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 12px;
+            border-bottom: solid 1px #cdcdcd;
         }
+
         .plans-container {
             display: flex;
             justify-content: center;
@@ -33,30 +42,35 @@
             margin: 50px;
             font-size: 13px;
         }
+
         .plan {
             background-color: #1f1f1f3d;
-    padding: 30px;
-    border-radius: 15px;
-    width: 340px;
-    text-align: center;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
-    border: solid 1px #3f3f3f;
+            padding: 30px;
+            border-radius: 15px;
+            width: 340px;
+            text-align: center;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+            border: solid 1px #3f3f3f;
         }
+
         .plan h2 {
             font-size: 30px;
-    color: #ffffff;
-    border-bottom: solid 1px #ffffff;
-    font-weight: 500;
-}
+            color: #ffffff;
+            border-bottom: solid 1px #ffffff;
+            font-weight: 500;
+        }
+
         .plan p {
             font-size: 16px;
             color: #e2e2e2;
         }
+
         .plan .price {
             font-size: 24px;
             color: rgb(0 255 202);
             margin: 20px 0;
         }
+
         .plan .features {
             list-style-type: none;
             padding: 0;
@@ -64,24 +78,28 @@
             text-align: left;
             color: #ffffff;
         }
+
         .plan .features li {
             margin: 10px 0;
             font-size: 14px;
         }
+
         .plan .btn:hover {
             background-color: #45a049;
         }
+
         .current-plan {
             background-color: #44444475;
-    padding: 10px 20px;
-    margin-top: 10px;
-    font-size: 14px;
-    border-radius: 5px;
-    color: white;
-    border: none;
-    width: 98%;
+            padding: 10px 20px;
+            margin-top: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            color: white;
+            border: none;
+            width: 98%;
         }
-        .btn{
+
+        .btn {
             background-color: #161616;
             padding: 10px;
             color: white;
@@ -89,9 +107,11 @@
             margin-top: 10px;
             border-radius: 10px;
         }
-        .current-plan button:hover{
+
+        .current-plan button:hover {
             background-color: #444;
         }
+
         /* Modal Styling */
         .modal {
             display: none;
@@ -104,20 +124,23 @@
             background-color: rgba(0, 0, 0, 0.76);
             padding-top: 60px;
         }
+
         .modal-content {
             background-color: #282828;
-    margin: 55% auto;
-    padding: 30px;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 600px;
-    color: white;
-    line-height: 50px;
+            margin: 55% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            color: white;
+            line-height: 50px;
         }
-        .modal-content p{
+
+        .modal-content p {
             font-size: 14px;
             line-height: 25px;
         }
+
         .close {
             color: #aaa;
             font-size: 30px;
@@ -125,17 +148,68 @@
             float: right;
             cursor: pointer;
             top: -22px;
-    position: relative;
-    left: 10px;
+            position: relative;
+            left: 10px;
         }
-        button{
+
+        button {
             cursor: pointer;
         }
+
         .close:hover,
         .close:focus {
             color: white;
             text-decoration: none;
         }
+
+        /* Dark theme styles */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1a1a;
+                color: white;
+            }
+            .header {
+                background-color: #1a1a1a;
+                color: white;
+            }
+            .plan {
+                background-color: #1f1f1f3d;
+                border: solid 1px #3f3f3f;
+            }
+            .modal-content {
+                background-color: #282828;
+            }
+        }
+
+        /* Light theme styles */
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: #ffffff;
+                color: black;
+            }
+            .header {
+                background-color: #f9f9f9;
+                color: black;
+            }
+            .plan {
+                background-color: #f5f5f5;
+                border: solid 1px #dddddd;
+            }
+            .modal-content {
+                background-color: #f0f0f0;
+            }
+            .plan .features {
+    
+    color: #000000;}
+    .plan h2 {
+    color: #000000;}
+    .plan .price {
+    font-size: 24px;
+    color: rgb(0 176 53);
+    margin: 20px 0;
+}
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .plans-container {
@@ -153,10 +227,8 @@
     </div>
 
     <div class="plans-container">
-        
         <div class="plan">
             <h2>Gold</h2>
-            <p></p>
             <div class="price">119/rs</div>
             <ul class="features">
                 <li>Amount : 10,000₹</li>
@@ -164,7 +236,7 @@
                 <li>Interest for amount : 4%</li>
                 <li>Fine : 50₹ per day</li>
                 <li>Delay : Not allowed</li>
-                <li>Processing fee : 150(For 10,000)</li>
+                <li>Processing fee : 150₹</li>
                 <li>Account maintenance fee : 150₹</li>
             </ul>
             <div class="current-plan">Your current plan</div>
@@ -173,7 +245,6 @@
         <!-- Paid Plan -->
         <div class="plan">
             <h2>Silver</h2>
-            <p></p>
             <div class="price">329/rs</div>
             <ul class="features">
                 <li>Amount : 25,000₹</li>
@@ -181,22 +252,13 @@
                 <li>Interest for amount : 3%</li>
                 <li>Fine : 10₹ per day</li>
                 <li>Delay : Allowed</li>
-                <li>Processing tax : 50(For 10,000)</li>
+                <li>Processing tax : 50₹</li>
                 <li>Account maintenance fee : 100₹</li>
             </ul>
-            <button class="current-plan" onclick="openModal()" style="    background-color: #ffffff;
-            color: black;
-        ">Get this plan</button>
+            <button class="current-plan" onclick="openModal()">Get this plan</button>
         </div>
         <div class="plan" style="background: #004cff;">
-            <h2>Platinum <span style="    font-size: 12px;
-                color: #ffffff;
-                background: #ffffff57;
-                padding: 5px 11px;
-                border-radius: 44px;
-                margin: 5px;
-                display: block;">(MFI Plus)</span></h2>
-            <p></p>
+            <h2>Platinum <span style="font-size: 12px; color: #ffffff; background: #ffffff57; padding: 5px 11px; border-radius: 44px; margin: 5px;">(MFI Plus)</span></h2>
             <div class="price">799/rs</div>
             <ul class="features">
                 <li>Amount : 40,000₹</li>
@@ -207,21 +269,18 @@
                 <li>Processing fee : 0₹</li>
                 <li>Account maintenance fee : 0₹</li>
             </ul>
-            <button class="current-plan" onclick="openModal()" style="background-color: #ffffff;color: rgb(0, 0, 0);">Get this plan</button>
+            <button class="current-plan" onclick="openModal()">Get this plan</button>
         </div>
-        <a href="conform.html"><button style="padding: 10px 25px;
-            border: none;
-            border-radius: 10px;">Confirm</button></a>
+        <a href="conform.html"><button style="padding: 10px 25px; border: none; border-radius: 10px;">Confirm</button></a>
     </div>
 
     <!-- Modal for Free Plan Upgrade -->
     <div id="upgradeModal" class="modal">
-        <div class="modal-content"><script src="noright.js"></script>
+        <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h2 style="color: rgb(255, 255, 255);">In Paid</h2>
+            <h2>In Paid</h2>
             <p>Contact your specific coordinator to apply for this plan.</p>
-            <a href="" onclick="closeModal()" ><button style="cursor: pointer;background-color: #3c3c3c;
-    color: #ffffff;" class="btn">Ok, I will</button></a>
+            <a href="" onclick="closeModal()"><button class="btn">Ok, I will</button></a>
         </div>
     </div>
 
@@ -244,6 +303,5 @@
             }
         }
     </script>
-
 </body>
 </html>
