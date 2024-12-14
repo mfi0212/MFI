@@ -45,49 +45,7 @@
                 border-radius: 10px;
             }
         }
-        /* Light Theme */
-        @media (prefers-color-scheme: light) {
-            body {
-                background-color: #f4f4f9;
-                color: #003366;
-            }
-            ul a {
-                background-color: #004cff;
-                color: #ffffff;
-                border: solid 1px #004cff;
-            }
-            ul p{
-                color: black;
-            }
-            ul a:hover, ul a:active {
-                background-color: #003bbf;
-                color: #ffffff;
-            }
-            .menu a{
-                color: black;
-            }
-        }
-
-        /* Dark Theme */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #121212;
-                color: #ffffff;
-            }
-            ul a {
-                background-color: #004cff;
-                color: #ffffff;
-                border: solid 1px #004cff;
-            }
-            ul a:hover, ul a:active {
-                background-color: #003bbf;
-                color: #ffffff;
-            }
-            ul a:active {
-                color: #1f1f1f;
-            }
-        }
-
+        
         ul {
             list-style-type: none;
             padding: 0;
@@ -175,6 +133,58 @@
             font-size: 14px;
             text-align: center;
         }
+        /* Light Theme */
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: #f4f4f9;
+                color: #003366;
+            }
+            ul a {
+                background-color: #004cff;
+                color: #ffffff;
+                border: solid 1px #004cff;
+            }
+            a {
+        color: #b5b5b5;
+    }
+            ul p{
+                color: black;
+            }
+            ul a:hover, ul a:active {
+                background-color: #003bbf;
+                color: #ffffff;
+            }
+            .menu a{
+                color: black;
+            }
+            #passwordContainer {
+                background: #ffffff;
+            }
+        }
+
+        /* Dark Theme */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #ffffff;
+            }
+            ul a {
+                background-color: #004cff;
+                color: #ffffff;
+                border: solid 1px #004cff;
+            }
+            ul a:hover, ul a:active {
+                background-color: #003bbf;
+                color: #ffffff;
+            }
+            ul a:active {
+                color: #1f1f1f;
+            }
+            #passwordContainer {
+                background: #000000;
+            }
+        }
+
     </style>
 </head>
 <body>
