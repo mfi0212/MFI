@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
     <style>
-         @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+
         * {
             font-family: "Red Hat Display", sans-serif;
         }
@@ -91,10 +91,10 @@
 
         .top-bar {
             display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 50px;
-    border-bottom: solid 1px black;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            border-bottom: solid 1px black;
         }
 
         .top-bar h1 {
@@ -142,9 +142,9 @@
         }
 
         .content p {
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
+            font-size: 16px;
+    line-height: 25px;
+    margin-bottom: 15px;
         }
 
         .form-group {
@@ -186,8 +186,10 @@
             color: #000000;
     background: #b8b8b838;
     text-align: unset;
-    padding: 18px;
+    padding: 15px 25px;
     border-radius: 12px;
+    max-height: 22em;
+    overflow-y: scroll;
         }
 
         button {
@@ -211,11 +213,11 @@
             }
             .finance a{
                 position: relative;
-        color: #ffffff;
-        right: 0px;
-        background: #6e6e6e;
-        padding: 6px 10px;
-        border-radius: 7px;
+                color: #ffffff;
+                right: 0px;
+                background: #6e6e6e;
+                padding: 6px 10px;
+                border-radius: 7px;
             }
             .left-screen, .right-screen {
                 width: 100%;
@@ -230,78 +232,94 @@
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-    const passwordMessages = {
-        "1789": { 
-            holderName: "Chinna",
-            amountTaken: "15,000",
-            planSelected: "1000/mon",
-            interestPaid: "2,300",
-            totalInterest: "4,700",
-            totalPaid: "120rs",
-            password: "1789"
-        },
-        
-        "9892": { 
-            holderName: "Rama krishna yerra",
-            amountTaken: "18,000",
-            planSelected: "1000/mon",
-            interestPaid: "2,000",
-            totalInterest: "8,000",
-            totalPaid: "120rs",
-            password: "9892"
-        }
-    };
-
-    const feedback = document.querySelector('.feedback');
-    const sections = document.querySelectorAll('.content');
-    const navButtons = document.querySelectorAll('.nav-bar button');
-
-    // Transition to the right screen
-    setTimeout(function () {
-        document.querySelector('.left-screen').style.display = 'none';
-        document.querySelector('.right-screen').classList.add('active');
-        document.querySelector('.content').classList.add('active');
-    }, 2500);
-
-    // Navigation
-    navButtons.forEach((btn, index) => {
-        btn.addEventListener('click', () => {
-            sections.forEach(section => section.classList.remove('active'));
-            sections[index].classList.add('active');
+            const passwordMessages = {
+                "1789": { 
+                    holderName: "Chinna",
+                    amountTaken: 15000,
+                    planSelected: "1000/mon",
+                    interestPaid: "2,300",
+                    totalInterest: "4,700",
+                    totalPaid: "120rs",
+                    password: "1789",
+                    startDate: "2024-12-10" // User's start date
+                },
+    
+                "9892": { 
+                    holderName: "Rama krishna yerra",
+                    amountTaken: 18000,
+                    planSelected: "1000/mon",
+                    interestPaid: "2,000",
+                    totalInterest: "8,000",
+                    totalPaid: "120rs",
+                    password: "9892",
+                    startDate: "2024-12-9" // User's start date
+                }
+            };
+    
+            function calculateClearedAmount(amountTaken, startDate) {
+                const today = new Date();
+                const start = new Date(startDate);
+                const monthsElapsed = 
+                    (today.getFullYear() - start.getFullYear()) * 12 +
+                    (today.getMonth() - start.getMonth());
+                const clearedAmount = monthsElapsed * 1000; // Assuming 1000 is the monthly repayment
+                return Math.max(amountTaken - clearedAmount, 0);
+            }
+    
+            const feedback = document.querySelector('.feedback');
+            const sections = document.querySelectorAll('.content');
+            const navButtons = document.querySelectorAll('.nav-bar button');
+    
+            // Transition to the right screen
+            setTimeout(function () {
+                document.querySelector('.left-screen').style.display = 'none';
+                document.querySelector('.right-screen').classList.add('active');
+                document.querySelector('.content').classList.add('active');
+            }, 2500);
+    
+            // Navigation
+            navButtons.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                    sections.forEach(section => section.classList.remove('active'));
+                    sections[index].classList.add('active');
+                });
+            });
+    
+            // Handle password submission
+            const submitButton = document.querySelector('.content.active button');
+            const inputField = document.querySelector('.content input[type="password"]');
+    
+            submitButton.addEventListener('click', function () {
+                const enteredPassword = inputField.value.trim();
+    
+                if (passwordMessages[enteredPassword]) {
+                    const { holderName, amountTaken, planSelected, interestPaid, totalInterest, totalPaid, password, startDate } = passwordMessages[enteredPassword];
+                    const remainingAmount = calculateClearedAmount(amountTaken, startDate);
+    
+                    feedback.innerHTML = `
+                        <div>
+                            <p><strong>Holder Name:</strong> ${holderName}</p>
+                            <p><strong>Password:</strong> ${password}</p>
+                            <p><strong>Amount Taken:</strong> ${amountTaken}</p>
+                            <p><strong>Amount Cleared For Plus:</strong> ${amountTaken - remainingAmount}</p>
+                            <p><strong>Remaining Amount:</strong> ${remainingAmount}</p>
+                            <p><strong>Plan Selected:</strong> ${planSelected}</p>
+                            <p><strong>Interest Paid:</strong> ${interestPaid}</p>
+                            <p><strong>Total Interest:</strong> ${totalInterest}</p>
+                            <p><strong>Interest for plan:</strong> ${totalPaid}</p>
+                        </div>
+                    `;
+                    feedback.classList.remove('error');
+                    feedback.classList.add('success');
+                } else {
+                    feedback.textContent = "Incorrect Password. Please try again.";
+                    feedback.classList.remove('success');
+                    feedback.classList.add('error');
+                }
+            });
         });
-    });
-
-    // Handle password submission
-    const submitButton = document.querySelector('.content.active button');
-    const inputField = document.querySelector('.content input[type="password"]');
-
-    submitButton.addEventListener('click', function () {
-        const enteredPassword = inputField.value.trim();
-
-        if (passwordMessages[enteredPassword]) {
-            const { holderName, amountTaken, planSelected, interestPaid, totalInterest, totalPaid, password } = passwordMessages[enteredPassword];
-            feedback.innerHTML = `
-                <div>
-                    <p><strong>Holder Name:</strong> ${holderName}</p>
-                    <p><strong>Password:</strong> ${password}</p>
-                    <p><strong>Amount Taken:</strong> ${amountTaken}</p>
-                    <p><strong>Plan Selected:</strong> ${planSelected}</p>
-                    <p><strong>Interest Paid:</strong> ${interestPaid}</p>
-                    <p><strong>Total Interest:</strong> ${totalInterest}</p>
-                    <p><strong>Interest for plan:</strong> ${totalPaid}</p>
-                </div>
-            `;
-            feedback.classList.remove('error');
-            feedback.classList.add('success');
-        } else {
-            feedback.textContent = "Incorrect Password. Please try again.";
-            feedback.classList.remove('success');
-            feedback.classList.add('error');
-        }
-    });
-});
-
     </script>
+    
 </head>
 <body>
     <div class="container">
