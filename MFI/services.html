@@ -12,7 +12,7 @@
         * {
             font-family: "Red Hat Display", sans-serif;
         }
-        a{
+        a {
             text-decoration: none;
         }
         body {
@@ -27,14 +27,15 @@
         @media (max-width: 600px) {
             img {
                 position: fixed;
-        width: 60%;
-        z-index: 0;
-        top: 10px;
+                width: 60%;
+                z-index: 0;
+                top: 10px;
             }
+           
             a {
                 color: white;
             }
-            .menu{
+            .menu {
                 display: flex;
                 position: fixed;
                 top: 660px;
@@ -45,6 +46,46 @@
                 border-radius: 10px;
             }
         }
+
+        /* Popup Styling */
+        #popup {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            bottom: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 12px;
+            padding: 10px;
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            height: 100%;
+    width: 100%;
+        }
+
+        #popup img {
+            width: 250px;
+    height: auto;
+    border-radius: 10px;
+    position: relative;
+        }
+
+        #popup button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 18px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        #popup button:hover {
+            color: #ff4d4d;
+        }
+
         /* Light Theme */
         @media (prefers-color-scheme: light) {
             body {
@@ -56,14 +97,14 @@
                 color: #ffffff;
                 border: solid 1px #004cff;
             }
-            ul p{
+            ul p {
                 color: black;
             }
             ul a:hover, ul a:active {
                 background-color: #003bbf;
                 color: #ffffff;
             }
-            .menu a{
+            .menu a {
                 color: black;
             }
         }
@@ -115,7 +156,7 @@
         }
 
         .p img {
-            width: 12%;
+            width: 20%;
             position: fixed;
             bottom: 10px;
             right: 10px;
@@ -134,7 +175,7 @@
             height: 100%;
             width: 100%;
         }
-        button{
+        button {
             background-color: transparent;
             border: none;
         }
@@ -177,18 +218,17 @@
     </style>
 </head>
 <body>
-    <div class="option" style="position: fixed;
-    top: 10px;
-    right: 10px;
-    font-size: 16px;">
+    <div id="popup">
+        <a href="daypay.html"><img src="daypay.png" alt="Daypay"></a>
+        <button id="closePopup">Close</button>
+    </div>
+
+    <div class="option" style="position: fixed; top: 10px; right: 10px; font-size: 16px;">
         <a style="color: rgb(146, 146, 146);" href="mfiog.html"><i class="fa-brands fa-squarespace"></i> Plus</a>
     </div>
-    <div class="check" style="position: fixed;
-        top: 10px;
-        left: 10px;
-        font-size: 16px;    color: rgb(146, 146, 146);">
-            <a href="rules.html" style="    color: rgb(146, 146, 146);">MFI <i class="fa-solid fa-hand-holding-dollar"></i></a>
-        </div>
+    <div class="check" style="position: fixed; top: 10px; left: 10px; font-size: 16px; color: rgb(146, 146, 146);">
+        <a href="rules.html" style="color: rgb(146, 146, 146);">MFI <i class="fa-solid fa-hand-holding-dollar"></i></a>
+    </div>
     <div class="menu">
         <a href="https://mfi0212.github.io/personal/guardian/countday"><i class="fa-solid fa-calendar-check"></i></a>
         <a href="fine.html"><i class="fa-solid fa-fire"></i></a>
@@ -198,7 +238,6 @@
     </div>
     <img src="intoBS.png" alt="">
     <ul>
-        
         <p>Our services</p><br><br>
         <li><a href="home.html">LIA</a></li>
         <li><a href="mterprice.html">Mterprice</a></li>
@@ -211,19 +250,9 @@
     </ul>
 
     <script>
-        document.getElementById("togglePassword").onclick = function () {
-            const passwordInput = document.getElementById("userPassword");
-            const toggleIcon = document.getElementById("toggleIcon");
-
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text"; // Show the password
-                toggleIcon.classList.remove("fa-eye");
-                toggleIcon.classList.add("fa-eye-slash");
-            } else {
-                passwordInput.type = "password"; // Hide the password
-                toggleIcon.classList.remove("fa-eye-slash");
-                toggleIcon.classList.add("fa-eye");
-            }
+        // Close popup functionality
+        document.getElementById("closePopup").onclick = function() {
+            document.getElementById("popup").style.display = "none";
         };
 
         document.getElementById("submitBtn").onclick = function () {
