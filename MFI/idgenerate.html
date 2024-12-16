@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction ID Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .transaction-id {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        .copy-success {
+            color: green;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Transaction ID Generator</h2>
+    <form id="transactionForm">
+        <input type="text" id="name" placeholder="Enter your name" required>
+        <input type="password" id="pin" placeholder="Enter your PIN" required>
+        <button type="button" onclick="generateTransactionId()">Verify</button>
+        <p>After clicking on Verify, Please wait for few seconds.</p>
+    </form>
+    <div class="transaction-id" id="transactionId"></div>
+    <button id="copyButton" style="display:none;
+    margin-top: 10px;" onclick="copyTransactionId()">Copy Transaction ID</button>
+    <button id="confirmButton" style="display:none;
+    margin-top: 10px;" onclick="confirmTransactionId()">Confirm Transaction ID</button>
+    <div class="copy-success" id="copySuccess">Transaction ID copied to clipboard!</div>
+</div>
+
+<script>
+    function generateTransactionId() {
+        const name = document.getElementById('name').value;
+        const pin = document.getElementById('pin').value;
+
+        if (name && pin) {
+            // Generate a random transaction ID
+            const transactionId = 'TXN-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+
+            // Add a delay before displaying the transaction ID and copy button
+            setTimeout(() => {
+                // Display the transaction ID
+                document.getElementById('transactionId').innerText = `Transaction ID: ${transactionId}`;
+
+                // Show the copy button and confirm button
+                document.getElementById('copyButton').style.display = 'inline-block';
+                document.getElementById('confirmButton').style.display = 'inline-block';
+
+                // Hide the copy success message (if shown previously)
+                document.getElementById('copySuccess').style.display = 'none';
+            }, 4000); // 1-second delay
+        } else {
+            alert('Please fill in both fields!');
+        }
+    }
+
+    function copyTransactionId() {
+        const transactionId = document.getElementById('transactionId').innerText.replace('Transaction ID: ', '');
+
+        if (transactionId) {
+            navigator.clipboard.writeText(transactionId).then(() => {
+                const successMessage = document.getElementById('copySuccess');
+                successMessage.style.display = 'block';
+
+                // Hide the success message after 2 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 2000);
+            }).catch(err => {
+                alert('Failed to copy transaction ID: ' + err);
+            });
+        }
+    }
+
+    function confirmTransactionId() {
+        const name = document.getElementById('name').value;
+        const pin = document.getElementById('pin').value;
+        const transactionId = document.getElementById('transactionId').innerText.replace('Transaction ID: ', '');
+
+        if (name && pin && transactionId) {
+            alert(`Name: ${name}\nPIN: ${pin}\nTransaction ID: ${transactionId}\n\nhas been saved successfully!`);
+        } else {
+            alert('Error: Missing details. Please generate a transaction ID first.');
+        }
+    }
+</script>
+
+</body>
+</html>
