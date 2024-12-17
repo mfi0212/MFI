@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streamline Your Credit Life</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    
+   <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Strait&display=swap');
+*{
+    color: white;
+    font-family: "Red Hat Display", sans-serif;
+    list-style: none;
+}
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #001180, #000000);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        /* Container for alignment */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Image container */
+        .image-container img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Text styles */
+        .text-container h2 {
+            font-size: 28px;
+            margin: 10px 0;
+        }
+
+        .text-container p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #ddd;
+        }
+
+        /* Input bar */
+        .input-container input {
+            width: 250px;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 42px;
+    margin-bottom: 20px;
+    text-align: center;
+    background: transparent;
+    border: solid 1px #ffffff;
+    outline: none;
+    color: white;
+        }
+
+        /* Button styling */
+        .button-container {
+            background-color: #0022ff;
+            color: white;
+            font-size: 18px;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-container:hover {
+            background-color: #0022ff;
+        }
+
+        /* Icon styling */
+        .button-container i {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .button-container:hover i {
+            transform: translateX(5px);
+        }
+    </style>
+    <!-- FontAwesome for the arrow icon -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Image Section -->
+        <!-- <div class="image-container">
+            <img src="credit-card-placeholder.png" alt="Credit Card Image">
+        </div> -->
+
+        <!-- Text Section -->
+        <div class="text-container">
+            <h1 style="font-size: 65px;">Wallet</h1>
+            <p>Monitor your balances, stay on budget, and improve your financial health with the trust.</p>
+        </div>
+
+        <!-- Input Section -->
+        <div class="input-container">
+            <input type="text" id="codeInput" placeholder="Enter your code" autocomplete="off">
+        </div>
+
+        <!-- Button Section -->
+        <button class="button-container" onclick="checkCode()">
+            Get Started
+            <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <script>
+        function checkCode() {
+            const input = document.getElementById('codeInput').value;
+            if (input === "1789") {
+                window.location.href = "https://mfi0212.github.io/MFI/MFI/wallet/user/chinna"; // Redirect to main.html
+            } else {
+                alert("Incorrect code. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>

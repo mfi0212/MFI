@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Graph with Balance Adjustment</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Strait&display=swap');
+*{
+    color: white;
+    font-family: "Red Hat Display", sans-serif;
+    list-style: none;
+}
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #001180, #000000);
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 90%;
+    max-width: 600px;
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 50px;
+    text-align: center;
+    position: fixed;
+    top: 65px;
+        }
+        h1 {
+            position: fixed;
+    top: 10px;
+    left: 30px;
+    z-index: 100;
+            color: #a2a2a2;
+        }
+        .balance {
+            font-size: 20px;
+    color: #afafaf;
+    overflow: hidden;
+    text-overflow: ellipsis;
+        }
+        .extra{
+            position: fixed;
+    left: 30px;
+    display: grid
+; gap: 40px;
+        }
+        canvas {
+            margin-top: 10px;
+            height: 300px;
+        }
+        .balancebox {
+            border: none;
+    display: flex
+;
+    width: 100%;
+    gap: 25px;
+    align-items: baseline;
+    padding: 15px;
+    background: #3c3c3c;
+    border-radius: 10px;
+}
+.fa-solid, .fas {
+    font-weight: 900;
+    color: #afafaf;
+}
+    </style>
+</head>
+<body>
+    <h1>Chinna</h1>
+    <div class="extra">
+        <div class="balancebox">
+            <i class="fa-solid fa-money-bill-trend-up"></i>
+            <div id="balanceDisplay" class="balance">
+                Balance: 0rs
+            </div>
+        </div>
+        <div class="balancebox">
+            <i class="fa-solid fa-calendar-check"></i>
+            <div class="balance">
+               Taken plan : 0 months 
+            </div>
+        </div>
+    </div>
+    <div class="menu" style="position: fixed;
+    bottom: 20px;
+    display: flex
+;
+    gap: 43px;
+    font-size: 20px;
+    background: #242424;
+    padding: 8px 30px;
+    border-radius: 300px;
+">
+        <a href="https://mfi0212.github.io/MFI/MFI/wallet/home"><i class="fa-solid fa-house"></i></a>
+        <a href="https://mfi0212.github.io/MFI/MFI/wallet/plan"><i class="fa-solid fa-arrow-up-wide-short"></i></a>
+    </div>
+</body>
+</html>
