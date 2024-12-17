@@ -98,7 +98,7 @@
         }
 
         .top-bar h1 {
-            font-size: 1.75rem;
+            font-size: 50px;
             font-weight: bold;
             color: #333;
         }
@@ -188,7 +188,7 @@
     text-align: unset;
     padding: 15px 25px;
     border-radius: 12px;
-    max-height: 22em;
+    max-height: 18em;
     overflow-y: scroll;
         }
 
@@ -206,7 +206,19 @@
         button:hover {
             background-color: #1d1d1d;
         }
-
+        .more{
+            display: flex
+;
+    gap: 40px;
+    background: black;
+    padding: 20px 10px;
+    color: white;
+    border-radius: 100px;
+    justify-content: center;
+    filter: drop-shadow(2px 4px 6px #0000009e);
+    position: relative;
+    bottom: 20px;
+        }
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -329,10 +341,10 @@
         <div class="right-screen" id="2">
             <div class="top-bar">
                 <h1>Plus.</h1>
-                <div class="finance">
+                <!-- <div class="finance">
                     <a href="ih.html">Finance</a>
                     <a href="plans.html">Plans</a>
-                </div>
+                </div> -->
             </div>
             <section class="content active">
                 <h2>Account</h2>
@@ -342,20 +354,13 @@
                 <button>Submit</button>
                 <div class="feedback"></div>
             </section>
-            <div class="more" style="position: absolute;
-            display: grid;
-            gap: 10px;
-            width: 100%;
-            background: black;
-            left: 0px;
-            padding: 14px 35px;
-            color: white;
-            bottom: 0px;
-            white-space: nowrap;
-            text-align: center;">
-            <a href="https://forms.gle/6ZAf45pUL1fE4mXt8">Take money</a>
-            <a href="https://forms.gle/UK6txag3fSpwHWw88">Return money</a>
-        </div>
+            <div class="more">
+                <a href="https://forms.gle/6ZAf45pUL1fE4mXt8"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+                <a href="https://forms.gle/UK6txag3fSpwHWw88"><i class="fa-solid fa-arrow-rotate-right"></i></a>
+                <a href="ih.html"><i class="fa-solid fa-coins"></i></a>
+                <a href="plans.html"><i class="fa-solid fa-arrow-up-wide-short"></i></a>
+                <a href="fine.html"><i class="fa-solid fa-fire"></i></a>
+            </div>
         </div>
         
     </div>
