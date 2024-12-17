@@ -13,18 +13,16 @@
 }
 
 body {
-    background: linear-gradient(to left, rgb(0, 0, 0), #003282);
+    background: linear-gradient(to left, rgb(0, 0, 0), #050075);
     padding: 6px;
     line-height: 1.6;
     display: none;
     text-align: center;
 }
 h1 {
-    font-weight: 700;
-    color: #014dff; /* Dark Blue */
+    color: #006eff;
     text-align: center;
     margin: 54px 0;
-    font-size: 2rem;
 }
 
 ul {
@@ -46,7 +44,7 @@ p {
     padding: 0 15px;
     font-size: 1rem;
     text-align: center;
-    color: #ffffff;
+    color: #006eff;
 }
 
 .graph {
@@ -101,12 +99,13 @@ img {
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 24px;
+        font-weight: 500;
     }
 
     li {
-        font-size: 0.9rem;
-        font-weight: 500;
+        font-size: 15px;
+        font-weight: 700;
     }
 
     .account {
@@ -123,9 +122,9 @@ img {
     button {
         position: relative;
         padding: 11px 20px;
-        background: #014dff; /* Dark Blue */
+        background: #33333300;
         outline: none;
-        border: none;
+        border: solid 1px gray;
         color: #ffffff;
         border-radius: 8px;
         top: 4em;
@@ -141,14 +140,15 @@ img {
         position: fixed;
         bottom: 0em;
         padding: 15px 20px;
-        width: 89%;
         font-size: 12px;
-        background: #242424;
+        background: #0b0b0bf0;
         left: 0;
         line-height: 24px;
-        letter-spacing: 0.5px;
-        font-weight: 600;
+        letter-spacing: 0.3px;
+        font-weight: 100;
         color: white;
+        border-radius: 15px 15px 0px 0px;
+        border-top: solid 1px gray;
     }
 
     video {
@@ -166,25 +166,18 @@ img {
 </head>
 <body>
     <div class="membershop">
-        <a href="ih.html"><img style="width: 10%;
-        position: fixed;
-        top: 5px;
-        left: 5px;
-        border-radius: 3px;" src="https://cdn-icons-png.flaticon.com/512/6080/6080057.png" alt=""></a>
-    </div>
-    <div class="membershop">
         <a href="financal.html"><img style="width: 10%;
-        position: fixed;
-        top: 5px;
-        right: 5px;
-        border-radius: 3px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUb_noSAXV9Y3zBPOKb8AEpvDZb5bdwEZiG6r-Y1FS5ZAenehLJzBiT8NwGJrfYoAT28c&usqp=CAU" alt=""></a>
+            position: fixed;
+            bottom: 7em;
+            right: 5px;
+            border-radius: 3px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUb_noSAXV9Y3zBPOKb8AEpvDZb5bdwEZiG6r-Y1FS5ZAenehLJzBiT8NwGJrfYoAT28c&usqp=CAU" alt=""></a>
     </div>
     <img src="flogo.png" alt="Logo">
     <div class="account">
         <a href="" onclick="checkPassword()"><button>My Account</button></a>
     </div>
     <div class="container">
-        <h1>Interest Rates for Different Amounts</h1>
+        <h1>Interest rates for different amounts</h1>
         <ul>
             <li>For ₹1000: Interest is ₹10 per day</li>
             <li>For ₹2000: Interest is ₹15 per day</li>
