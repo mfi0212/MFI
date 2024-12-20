@@ -105,6 +105,18 @@
             .menu a {
                 color: black;
             }
+            .check a{
+                font-size: 12px;
+    text-align: center;
+    background: #dde3e9;
+    border: solid 1px #313131;
+    width: 58%;
+    color: black;
+            }
+            .return a{
+                background: #edf2fa; 
+                color: black;
+            }
         }
 
         /* Dark Theme */
@@ -124,6 +136,17 @@
             }
             ul a:active {
                 color: #1f1f1f;
+            }
+            .check a{
+                font-size: 12px;
+    text-align: center;
+    background: #282828; 
+    border: solid 1px #313131;
+    width: 58%;
+    color: rgb(255, 255, 255);
+            }
+            .return a{
+                background: transparent;
             }
         }
 
@@ -242,10 +265,12 @@
         <li><a href="mterprice.html">Mterprice</a></li>
         <li><a href="reminder.html">Reminder</a></li><br>
         <div class="check" style="display: flex; gap: 25px; position: fixed;">
-            <button><a href="preinterest.html" style="font-size: 12px; text-align: center; background: #282828; border: solid 1px #313131;width: 63%;">Calculator</a></button>
-            <button><a href="emigraph.html" style="font-size: 12px; text-align: center; background: #282828; border: solid 1px #313131;width: 58%;">My score</a></button>
+            <button><a href="preinterest.html" style="font-size: 12px; text-align: center;border: solid 1px #313131;width: 63%;">Calculator</a></button>
+            <button><a href="emigraph.html" style="font-size: 12px; text-align: center;border: solid 1px #313131;width: 58%;">My score</a></button>
         </div>
-        <a href="takemoney.html" style="padding: 11px;font-size: 12px; text-align: center; background: #28282853; border: solid 1px #313131; position: relative; top: 42px;">Return money form</a>
+        <div class="return">
+            <a href="takemoney.html" style="padding: 11px;font-size: 12px; text-align: center;border: solid 1px #313131; position: relative; top: 42px;">Return money form</a>
+        </div>
     </ul>
 
     <script>
