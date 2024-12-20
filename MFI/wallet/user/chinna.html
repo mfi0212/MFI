@@ -51,9 +51,11 @@
         }
         .extra{
             position: fixed;
-    left: 30px;
-    display: grid
-; gap: 40px;
+    display: flex
+;
+    gap: 10px;
+    width: 90%;
+
         }
         canvas {
             margin-top: 10px;
@@ -61,14 +63,13 @@
         }
         .balancebox {
             border: solid 1px #ffffff47;
-    display: flex
+    display: grid
 ;
     width: 100%;
     gap: 10px;
-    padding: 10px 30px;
+    padding: 10px;
     background: #24242400;
     border-radius: 10px;
-    align-items: center;
     justify-content: flex-start;
 }
 .fa-solid, .fas {
@@ -83,13 +84,13 @@
         <div class="balancebox">
             <i class="fa-solid fa-money-bill-trend-up"></i>
             <div id="balanceDisplay" class="balance">
-                Plan : -
+                Amount:-
             </div>
         </div>
         <div class="balancebox">
             <i class="fa-solid fa-calendar-check"></i>
             <div class="balance">
-               Taken plan : -
+                Plan:-
             </div>
         </div>
     </div>
