@@ -114,7 +114,7 @@
 
         #submitBtn {
             padding: 10px 20px;
-            background-color: #007bff;
+            background: #515151;
             color: white;
             border: none;
             border-radius: 50px;
@@ -124,7 +124,7 @@
         }
 
         #submitBtn:hover {
-            background-color: #0056b3;
+            background: #1e1e1e;
         }
 
         #error-message {
@@ -144,8 +144,13 @@
                 color: #ffffff;
                 border: solid 1px #004cff;
             }
-            a {
-        color: #b5b5b5;
+            a{    
+                background: #ffffff00;
+                color: black;
+            }
+
+    h1{
+        color: black;
     }
             ul p{
                 color: black;
@@ -159,6 +164,13 @@
             }
             #passwordContainer {
                 background: #ffffff;
+            }
+            input{
+                background-color: #edf2fa;
+            }
+            .submitBtn{
+                
+                background-color: #616161;
             }
         }
 
@@ -177,11 +189,20 @@
                 background-color: #003bbf;
                 color: #ffffff;
             }
+            h1{
+                color: white;
+            }
             ul a:active {
                 color: #1f1f1f;
             }
             #passwordContainer {
                 background: #000000;
+            }
+            input{
+                background: #282828;
+            }
+            .submitBtn button{
+                background: #484747;
             }
         }
 
@@ -194,7 +215,7 @@
         left: 10px;
         font-size: 16px;">
             <a href="fine.html"><i class="fa-solid fa-fire"style="padding: 6px;
-                background: #282828;
+                
                 font-size: 16px;
                 border-radius: 100px;
                 border: solid 1px #5a5858;"></i> Check my fine</a>
@@ -205,13 +226,13 @@
         width: 40%;" src="intoBS.png" alt="">
         <h1>Welcome..!</h1>
         <div style="position: relative; display: inline;">
-            <input type="password" id="userPassword" placeholder="Enter password" style="background: #282828; border: none; padding: 12px 18px;color: white;">
+            <input type="password" id="userPassword" placeholder="Enter password" style=" border: none; padding: 12px 18px;color: white;">
             <button id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);color: #c0c0c0; background: none; border: none; cursor: pointer; font-size: 16px;">
                 <i id="toggleIcon" class="fa-solid fa-eye"></i>
             </button>
         </div>
         <br>
-        <button id="submitBtn" style="margin-top: 21px;background: #484747;">Continue <i class="fas fa-arrow-right"></i></button>
+        <button id="submitBtn" style="margin-top: 21px;">Continue <i class="fas fa-arrow-right"></i></button>
         <p id="error-message"></p>
         <div class="plan" style="position: fixed;
         bottom: 10px;
@@ -221,12 +242,11 @@
         align-items: center;
         justify-content: center;">
             <a href="plan.html"><i class="fa-brands fa-slack" style="padding: 6px;
-                background: #282828;
                 font-size: 16px;
                 border-radius: 100px;
                 border: solid 1px #5a5858;"></i> Upgrade plan</a>
                 <a href="news.html"><i class="fa-regular fa-newspaper"  style="padding: 6px;
-                    background: #282828;
+                    
                     font-size: 16px;
                     border-radius: 100px;
                     border: solid 1px #5a5858;"></i> News</a>
