@@ -1,100 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leadlink</title>
-  <link rel="icon" type="image/x-icon" href="linklogo.png">
-  
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-    </style>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #ffffff;
-    }
-*{
-  font-family: "Roboto", serif;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+        
+        * {
+            font-family: "Red Hat Display", sans-serif;
+        }
+        a{
+            text-decoration: none;
+        }
+        body {
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 125vh; 
+            margin: 0; 
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        @media (max-width: 600px) {
+            img {
+                position: fixed;
+                width: 71%;
+                bottom: 65%;
+                z-index: -1;
+            }
+            a {
+                color: white;
+            }
+            .menu{
+                display: flex;
+                position: fixed;
+                top: 660px;
+                gap: 45px;
+                font-size: 20px;
+                border: solid 1px rgb(99 99 99);
+                padding: 10px;
+                border-radius: 10px;
+            }
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            position: fixed;
+            top: 14em;
+            display: none; /* Initially hide the menu */
+        }
+
+        li {
+            margin: 21px 0px;
+            width: 290px;
+        }
+
+        ul a {
+            display: block;
+            text-decoration: none;
+            font-size: 15px;
+            padding: 10px 30px;
+            border-radius: 12px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        ul a:hover {
+            transform: scale(1.05);
+        }
+
+        .p img {
+            width: 12%;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            border: solid 2px gray;
+            border-radius: 8px;
+        }
+
+        #passwordContainer {
+            display: block;
+            text-align: center;
+            margin-top: 50px;
+            z-index: 1;
+            background: black;
+            padding: 132px;
+            position: fixed;
+            height: 100%;
+            width: 100%;
+        }
+        button{
+            background-color: transparent;
+            border: none;
+        }
+        #userPassword {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        #userPassword:focus {
+            border-color: #007bff;
+        }
+        button {
+            border: none;
+    color: white;
+    background: #3c3c3c;
+    padding: 14px;
+    border-radius: 30px;
+    padding: 11px 25px;
+    font-size: 14px;
 }
-    .logo img {
-      width: 80%;
-      position: fixed;
-      top: 12%;
-      left: 10%;
+
+        #error-message {
+            color: red;
+            margin-top: 70px;
+            font-size: 14px;
+            text-align: center;
+        }
+        /* Light Theme */
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: #f4f4f9;
+                color: #003366;
+            }
+            ul a {
+                background-color: #004cff;
+                color: #ffffff;
+                border: solid 1px #004cff;
+            }
+            a{    
+                background: #ffffff00;
+                color: black;
+            }
+
+    h1{
+        color: black;
     }
-    header p {
-      position: fixed;
-      top: 48%;
-      text-align: center;
-      font-size: 12px;
-      width: 50%;
-      left: 25%;
-      color: blue;
-    }
-    footer p {
-      position: fixed;
-      text-align: justify;
-      font-size: 13px;
-      width: 80%;
-      top: 75%;
-      left: 30px;
-    }
-    button {
-      position: fixed;
-      width: 100%;
-      display: block;
-      padding: 40px;
-      bottom: 0px;
-      border-radius: 25px 25px 0px 0px;
-      border: solid 1px #252525;
-      background: #252525;
-      color: white;
-      font-size: 16px;
-      cursor: not-allowed;
-    }
-    button.enabled {
-      cursor: pointer;
-      background: #0048ff;
-      border-color: #0048ff;
-    }
-  </style>
+            ul p{
+                color: black;
+            }
+            ul a:hover, ul a:active {
+                background-color: #003bbf;
+                color: #ffffff;
+            }
+            .menu a{
+                color: black;
+            }
+            #passwordContainer {
+                background: #ffffff;
+            }
+            input{
+                background-color: #edf2fa;
+                color: rgb(0, 0, 0);
+            }
+            .submitBtn{
+                
+                background-color: #616161;
+            }
+        }
+
+        /* Dark Theme */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #ffffff;
+            }
+            ul a {
+                background-color: #004cff;
+                color: #ffffff;
+                border: solid 1px #004cff;
+            }
+            ul a:hover, ul a:active {
+                background-color: #003bbf;
+                color: #ffffff;
+            }
+            h1{
+                color: white;
+            }
+            ul a:active {
+                color: #1f1f1f;
+            }
+            #passwordContainer {
+                background: #000000;
+            }
+            input{
+                background: #282828;
+                color: white;
+            }
+            .submitBtn button{
+                background: #484747;
+            }
+        }
+
+    </style>
 </head>
 <body>
-<div class="logo">
-    <img src="linklogo.png" alt="Logo">
-</div>
-<header>
-  <p>Welcome to LendLink, a premier peer-to-peer platform that facilitates connections between users.</p>
-</header>
-<footer>
-    <p>
-      <input type="checkbox" id="termsCheckbox">
-      By tapping continue, you confirm that you have read our <a href="rules.html" style="color: black;">Terms and Uses</a> and agree to our conditions.
-    </p>
-</footer>
-<button id="continueButton" disabled>Continue</button>
+    <div id="passwordContainer">
+        <div class="check" style="position: fixed;
+        top: 10px;
+        left: 10px;
+        font-size: 16px;">
+            <a href="fine.html"><i class="fa-solid fa-fire"style="padding: 6px;
+                
+                font-size: 16px;
+                border-radius: 100px;
+                border: solid 1px #5a5858;"></i> Check my fine</a>
+        </div>
+        <img style="position: relative;
+        left: 0px;
+        top: 0px;
+        width: 40%;" src="intoBS.png" alt="">
+        <h1>Welcome..!</h1>
+        <div style="position: relative; display: inline;">
+            <input type="password" id="userPassword" placeholder="Enter password" style=" border: none; padding: 12px 18px;">
+            <button id="togglePassword" style="position: absolute;    padding: 10px;
+; right: 10px; top: 50%; transform: translateY(-50%);color: #c0c0c0; background: none; border: none; cursor: pointer; font-size: 16px;">
+                <i id="toggleIcon" class="fa-solid fa-eye"></i>
+            </button>
+        </div>
+        <br>
+        <div class="buttons" style="    display: flex
+        ;
+            gap: 25px;
+            position: fixed;
+            width: 100%;
+            justify-content: center;
+            margin-top: 15px;
+        ">
+            <button><a href="agree.html" style="color: white;">Lendlink</a></button>
+            <button id="submitBtn">Continue</button>
+        </div>
+        <p id="error-message"></p>
+        <div class="plan" style="position: fixed;
+        bottom: 10px;
+        display: flex;
+        width: 100%;
+        gap: 110px;
+        align-items: center;
+        justify-content: center;">
+            <a href="plan.html"><i class="fa-brands fa-slack" style="padding: 6px;
+                font-size: 16px;
+                border-radius: 100px;
+                border: solid 1px #5a5858;"></i> Upgrade plan</a>
+                <a href="news.html"><i class="fa-regular fa-newspaper"  style="padding: 6px;
+                    
+                    font-size: 16px;
+                    border-radius: 100px;
+                    border: solid 1px #5a5858;"></i> News</a>
+        </div>
+    </div>
 
-<script>
-  const checkbox = document.getElementById('termsCheckbox');
-  const button = document.getElementById('continueButton');
+    <div class="menu">
+        <a href="Bs.html"><i class="fa-solid fa-house"></i></a>
+        <a href="fine.html"><i class="fa-solid fa-fire"></i></a>
+        <a href="news.html"><i class="fa-solid fa-newspaper"></i></a>
+        <a href="plan.html"><i class="fa-brands fa-slack"></i></a>
+        <a href="chatbot.html"><i class="fa-solid fa-comment"></i></a>
+    </div>
+    <img src="intoBS.png" alt="">
+    <ul>
+        
+        <p>Our services</p><br><br>
+        <li><a href="home.html">MFI</a></li>
+        <li><a href="mterprice.html">Mterprice</a></li>
+        <li><a href="reminder.html">Reminder</a></li><br>
+        <div class="check" style="display: flex; gap: 32px; position: fixed;">
+            <button><a href="preinterest.html" style="font-size: 12px; text-align: center; background: #282828; border: solid 1px #313131;width: 63%;">Calculator</a></button>
+            <button><a href="emigraph.html" style="font-size: 12px; text-align: center; background: #282828; border: solid 1px #313131;width: 58%;">My score</a></button>
+        </div>
+        <a href="takemoney.html" style="padding: 11px;font-size: 12px; text-align: center; background: #28282853; border: solid 1px #313131; position: relative; top: 42px;">Return money form</a>
+    </ul>
 
-  checkbox.addEventListener('change', () => {
-    if (checkbox.checked) {
-      button.disabled = false;
-      button.classList.add('enabled');
-    } else {
-      button.disabled = true;
-      button.classList.remove('enabled');
-    }
-  });
-
-  button.addEventListener('click', () => {
-    if (!button.disabled) {
-      window.location.href = 'Bs.html';
-    }
-  });
-</script>
+    <script>
+        document.getElementById("togglePassword").onclick = function () {
+            const passwordInput = document.getElementById("userPassword");
+            const toggleIcon = document.getElementById("toggleIcon");
+    
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text"; // Show the password
+                toggleIcon.classList.remove("fa-eye");
+                toggleIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password"; // Hide the password
+                toggleIcon.classList.remove("fa-eye-slash");
+                toggleIcon.classList.add("fa-eye");
+            }
+        };
+    
+        document.getElementById("submitBtn").onclick = function () {
+            const userInput = document.getElementById("userPassword").value;
+            const errorMessage = document.getElementById("error-message");
+            const today = new Date();
+    
+            if (userInput === "@1789") {
+                const subscriptionEndDate = new Date('2025-1-14');
+                const daysRemaining = Math.ceil((subscriptionEndDate - today) / (1000 * 60 * 60 * 24));
+                // alert("Welcome Chinna.\n\nPlease renew your subscription to regain access.");
+                alert(`Welcome Chinna.\n\nYou have ${daysRemaining} days left for your subscription.`);
+                window.location.href = "https://mfi0212.github.io/MFI/MFI/services";
+            } else if (userInput === "@1389") {
+                const subscriptionEndDate = new Date('2025-1-13');
+                const daysRemaining = Math.ceil((subscriptionEndDate - today) / (1000 * 60 * 60 * 24));
+                alert(`Welcome Phani.\n\nYou have ${daysRemaining} days left for your subscription.`);
+                window.location.href = "https://mfi0212.github.io/MFI/MFI/services";
+            }else {
+                errorMessage.textContent = "Incorrect password..!";
+            }
+        };
+    </script>
+    
 </body>
 </html>
