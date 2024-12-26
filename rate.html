@@ -46,29 +46,69 @@
         </div>
         <div class="date">Interest for different amounts</div><br>
         <div class="prices">
-            <p>Interest for 1000 is 100</p>
-            <p>Interest for 2000 is 200</p>
-            <p>Interest for 3000 is 300</p>
-            <p>Interest for 4000 is 400</p>
-            <p>Interest for 5000 is 500</p>
-            <p>Interest for 6000 is 600</p>
-            <p>Interest for 7000 is 700</p>
-            <p>Interest for 8000 is 800</p>
-            <p>Interest for 9000 is 900</p>
-            <p>Interest for 10000 is 1000</p>
-            <p>Interest for 11000 is 1100</p>
-            <p>Interest for 12000 is 1200</p>
-            <p>Interest for 13000 is 1300</p>
-            <p>Interest for 14000 is 1400</p>
-            <p>Interest for 15000 is 1500</p>
+            <p onclick="showPopup(1000, 100)">Interest for 1000 is 100</p>
+            <p onclick="showPopup(2000, 200)">Interest for 2000 is 200</p>
+            <p onclick="showPopup(3000, 300)">Interest for 3000 is 300</p>
+            <p onclick="showPopup(4000, 400)">Interest for 4000 is 400</p>
+            <p onclick="showPopup(5000, 500)">Interest for 5000 is 500</p>
+            <p onclick="showPopup(6000, 600)">Interest for 6000 is 600</p>
+            <p onclick="showPopup(7000, 700)">Interest for 7000 is 700</p>
+            <p onclick="showPopup(8000, 800)">Interest for 8000 is 800</p>
+            <p onclick="showPopup(9000, 900)">Interest for 9000 is 900</p>
+            <p onclick="showPopup(10000, 1000)">Interest for 10000 is 1000</p>
+            <p onclick="showPopup(11000, 1100)">Interest for 11000 is 1100</p>
+            <p onclick="showPopup(12000, 1200)">Interest for 12000 is 1200</p>
+            <p onclick="showPopup(13000, 1300)">Interest for 13000 is 1300</p>
+            <p onclick="showPopup(14000, 1400)">Interest for 14000 is 1400</p>
+            <p onclick="showPopup(15000, 1500)">Interest for 15000 is 1500</p>
         </div>
+        
+        <div class="popupcon">
+            <!-- Popup Section -->
+        <div id="popup" style="display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 65px 25px;
+        background: rgb(40, 40, 40);
+        box-shadow: rgb(0, 0, 0) 0px 70px 1000px;
+        border-radius: 10px;
+        text-align: center;
+        width: 80%;
+    ">
+            <p id="popup-content"></p>
+            <button onclick="closePopup()" style="padding: 10px 20px;
+            background: #3d3d3d;
+            color: #b7b7b7;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;">Close</button>
+        </div>
+        </div>
+        
+        <script>
+            function showPopup(amount, interest) {
+                const popup = document.getElementById('popup');
+                const content = document.getElementById('popup-content');
+                content.textContent = `If you like to borrow ${amount} amount the interest for the amount was ${interest}`;
+                popup.style.display = 'block';
+            }
+        
+            function closePopup() {
+                const popup = document.getElementById('popup');
+                popup.style.display = 'none';
+            }
+        </script>
+        
         <div class="price">
             <p>If you borrow from us more than 16 times, we will lower the interest rate based on the amount you take.</p>
         </div>
     </div>
 
     <div id="content-transfer" class="menu-content">
-        <div class="buttons"><script src="rate.js"></script>
+        <div class="buttons">
+            <!-- <script src="rate.js"></script> -->
             <a href="https://forms.gle/jPYWS3o7RLFCVL3v6"><button onclick="alert('We are redirecting you to taking form.')">Take Money</button></a>
             <!-- <a href="https://forms.gle/jPYWS3o7RLFCVL3v6"><button onclick="alert('We are redirecting you to returning form.')">Return Money</button></a> -->
         </div>
