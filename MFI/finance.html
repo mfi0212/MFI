@@ -73,13 +73,14 @@ p {
 img {
     display: block;
     margin: 0 auto;
-    max-width: 100%;
+    max-width: 65%;
     height: auto;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     border: solid 1px #cccccc;
     background-color: #ffffffee;
+    margin-top: 20%;
 }
 .note {
         position: fixed;
@@ -272,11 +273,8 @@ img {
             if (account) {
                 showAlert(account);
             } else if(password === "1789"){
-                alert("\nAccount Owner: Chinna.")
-                alert("\nTaken amount : 5,000rs")
-                alert("\nTaken on : 25-12-2024")
-                alert("\nAmount return on : 23-2-2025")
-                alert("\nInterest paid : Sucessful")
+                alert("\nAccount Owner: Chinna(Plus member).")
+                alert("\nReturn amount : sucessful")
                 alert("\nThank you for using finance.")
             }
             else if(password === "1389"){
@@ -289,64 +287,86 @@ img {
             }
         }
     </script>
-    <style>
-        body {
-        
-        position: relative;
-    }
-
-    .snow-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 9999;
-    }
-
-    .snowflake {
-        position: fixed;
-        top: -10px;
-        color: white;
-        font-size: 1rem;
-        opacity: 100%;
-        animation: fall linear infinite;
-    }
-
-    @keyframes fall {
-        0% {
-            transform: translateY(0) translateX(0);
-            opacity: 10;
+     <style>
+    
+        .snow-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
         }
-        100% {
-            transform: translateY(100vh) translateX(20px);
-            opacity: 0;
+
+        .snowflake {
+            position: fixed;
+            top: -3px;
+            color: #ffd500;
+            font-size: 22rem;
+            opacity: 0.8;
+            animation: fall linear infinite, sway 1s infinite ease-in-out;
         }
-    }
-</style>
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(20px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sway {
+            0%, 100% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+        }
+
+        .glowing {
+            text-shadow: 0 0 5px #ffd500, 0 0 10px #ffd500, 0 0 15px #ffd500;
+            animation: glow 3s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="snow-container" id="snowContainer"></div>
+    <div class="snow-container" id="snowContainer"></div>
 
-<script>
-    const snowContainer = document.getElementById('snowContainer');
+    <script>
+        const snowContainer = document.getElementById('snowContainer');
 
-    const createSnowflake = () => {
-        const snowflake = document.createElement('div');
-        snowflake.classList.add('snowflake');
-        snowflake.textContent = '❄';
-        snowflake.style.left = `${Math.random() * 100}vw`;
-        snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`;
-        snowflake.style.fontSize = `${Math.random() * 10 + 10}px`;
-        snowContainer.appendChild(snowflake);
+        const createSnowflake = () => {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            if (Math.random() > 0.7) {
+                snowflake.classList.add('glowing');
+            }
+            snowflake.textContent = '❄';
+            snowflake.style.left = `${Math.random() * 100}vw`;
+            snowflake.style.animationDuration = `${Math.random() * 3 + 2}s, ${Math.random() * 1 + 1}s`;
+            snowflake.style.fontSize = `${Math.random() * 10 + 10}px`;
+            snowContainer.appendChild(snowflake);
 
-        setTimeout(() => {
-            snowflake.remove();
-        }, 5000);
-    };
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        };
 
-    setInterval(createSnowflake, 100);
-</script>
+        setInterval(createSnowflake, 100);
+    </script>
 </body>
 </html>
