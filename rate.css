@@ -38,7 +38,6 @@ body {
         img {
             position: fixed;
         width: 35%;
-        left: 111px;
         top: 14%;
         border-radius: 12px;
         border: 1.3px solid rgb(255, 255, 255);
@@ -71,13 +70,47 @@ body {
             font-weight: 500;
             margin: 10px 0;
         }
-
+        .prices{
+            display: flex
+;
+    white-space: nowrap;
+    gap: 10px;
+    overflow: scroll;
+    margin-bottom: 50px;
+        }
         .date {
-            margin-bottom: 20px;
+            margin-top: 12px;
+
             font-size: 1.2em;
             color: #ffffff;
         }
-
+        .logo{
+            display: flex
+;
+    justify-content: center;
+        }
+        .menu{
+            display: flex
+;
+    gap: 100px;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    border: solid 1px gray;
+    position: fixed;
+    bottom: 100px;
+    width: 85%;
+        }
+        .menu i{
+            font-size: 18px;
+        }
+p{
+    background: #282828;
+    padding: 10px;
+    border-radius: 10px;
+}
         .forecast {
             display: flex;
             justify-content: space-between;
