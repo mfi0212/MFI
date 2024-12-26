@@ -34,11 +34,18 @@ body {
                 position: fixed;
                 top: 26%;
         }
-
+        .input-section{
+            position: relative;
+            top: -90px;        
+        }
+        div#user-details{
+            position: relative;
+            top: -90px;        
+        }
         img {
             position: fixed;
-        width: 35%;
-        top: 14%;
+            width: 25%;
+            top: 15%;    
         border-radius: 12px;
         border: 1.3px solid rgb(255, 255, 255);
         }
