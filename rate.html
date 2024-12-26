@@ -16,7 +16,7 @@
         .input-section { display: flex; flex-direction: column; align-items: center; }
         .input-section input, .input-section button { margin: 10px;
     padding: 10px 30px;
-    font-size: 16px;
+    font-size: 13px;
     background: #282828;
     border: none;
     color: #d6d6d6;
@@ -78,7 +78,7 @@
 
     <div id="content-user" class="menu-content">
         <div class="input-section">
-            <input type="password" id="password" placeholder="Enter your password">
+            <input id="password" placeholder="Enter your password">
             <button onclick="showUserDetails()">Submit</button>
         </div>
         <div id="user-details"></div>
@@ -99,14 +99,43 @@
     }
 
     function showUserDetails() {
-        const password = document.getElementById('password').value;
-        const userDetails = document.getElementById('user-details');
-        if (password === "") { // Replace with real validation
-            userDetails.innerHTML = "<p>User Name: </p><p>Account Balance: </p>";
-        } else {
-            userDetails.innerHTML = "<p>Incorrect password. Please try again.</p>";
-        }
+    const password = document.getElementById('password').value;
+    const userDetails = document.getElementById('user-details');
+    const accounts = {
+        //Can't show another account details here
+        "Deepak@1": {
+            userName: "Deepak",
+            balance: 5000,
+            startDate: "2024-12-26",
+            endDate: "2025-1-15"
+        },
+    };
+
+    if (accounts[password]) {
+        const account = accounts[password];
+        const startDate = new Date(account.startDate);
+        const endDate = new Date(account.endDate);
+        const currentDate = new Date();
+
+        // Calculate the days from the start date to today
+        const diffFromStart = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24));
+        
+        // Calculate the days from today to the end date
+        const diffToEnd = Math.ceil((endDate - currentDate) / (1000 * 60 * 60 * 24));
+
+        userDetails.innerHTML = `
+            <p>User Name: ${account.userName}</p>
+            <p>Account Balance: ${account.balance}</p>
+            <p>No.of.days: ${diffToEnd >= 0 ? diffToEnd : "End date has passed"} days</p>
+            <p style='background: #d7d7d7;
+    color: black;
+    font-weight: 800;'>Days Left: ${diffFromStart} days</p>
+        `;
+    } else {
+        userDetails.innerHTML = "<p>Incorrect password. Please try again.</p>";
     }
+}
+
 </script>
 </body>
 </html>
