@@ -101,8 +101,8 @@
     function showUserDetails() {
         const password = document.getElementById('password').value;
         const userDetails = document.getElementById('user-details');
-        if (password === "12345") { // Replace with real validation
-            userDetails.innerHTML = "<p>User Name: John Doe</p><p>Account Balance: $5000</p>";
+        if (password === "") { // Replace with real validation
+            userDetails.innerHTML = "<p>User Name: </p><p>Account Balance: </p>";
         } else {
             userDetails.innerHTML = "<p>Incorrect password. Please try again.</p>";
         }
