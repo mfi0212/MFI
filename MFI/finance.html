@@ -144,12 +144,13 @@ img {
     button {
         position: relative;
         padding: 11px 20px;
-        background: #33333300;
+        background: #cfcfcf;
         outline: none;
-        border: solid 1px gray;
-        color: #ffffff;
+        border: none;
+        color: black;
         border-radius: 8px;
         top: 4em;
+        font-weight: 600;
     }
 
     .container {
@@ -303,7 +304,7 @@ img {
             position: fixed;
             top: -3px;
             color: #ffd500;
-            font-size: 22rem;
+            font-size: 42rem;
             opacity: 0.8;
             animation: fall linear infinite, sway 1s infinite ease-in-out;
         }
@@ -358,7 +359,7 @@ img {
             snowflake.textContent = '❄';
             snowflake.style.left = `${Math.random() * 100}vw`;
             snowflake.style.animationDuration = `${Math.random() * 3 + 2}s, ${Math.random() * 1 + 1}s`;
-            snowflake.style.fontSize = `${Math.random() * 10 + 10}px`;
+            snowflake.style.fontSize = `${Math.random() * 11 + 11}px`;
             snowContainer.appendChild(snowflake);
 
             setTimeout(() => {
