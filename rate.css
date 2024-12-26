@@ -12,6 +12,10 @@ body {
             color: white;
             text-decoration: none;
         }
+        #popup-content{
+            font-size: 15px;
+            background-color: transparent;
+        }
         @media (max-width: 768px)  {
             body {
                 font-family: "Noto Sans", sans-serif;
