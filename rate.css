@@ -15,6 +15,7 @@ body {
         #popup-content{
             font-size: 15px;
             background-color: transparent;
+            line-height: 25px;
         }
         @media (max-width: 768px)  {
             body {
