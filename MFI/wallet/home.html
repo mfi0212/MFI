@@ -17,7 +17,7 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #001180, #000000);
+            background: linear-gradient(to bottom, #001180,rgb(0, 0, 0));
             color: white;
             display: flex;
             justify-content: center;
@@ -25,7 +25,9 @@
             height: 100vh;
             text-align: center;
         }
-
+::placeholder{
+    color: white;
+}
         /* Container for alignment */
         .container {
             display: flex;
@@ -53,7 +55,7 @@
         .text-container p {
             font-size: 16px;
             margin-bottom: 30px;
-            color: #ddd;
+            color: #ffee00;
         }
 
         /* Input bar */
@@ -65,28 +67,29 @@
     margin-bottom: 20px;
     text-align: center;
     background: transparent;
-    border: solid 1px #8e8e8e;
+    border: solid 1px #ffffff;
     outline: none;
     color: white;
         }
 
         /* Button styling */
         .button-container {
-            background-color: #0022ff;
-            color: white;
-            font-size: 18px;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            background-color: yellow;
+            color: black;
+    font-size: 15px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 125px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex
+;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         .button-container:hover {
-            background-color: #0022ff;
+            background-color: rgba(255, 255, 0, 0.667);
         }
 
         /* Icon styling */
@@ -111,8 +114,10 @@
 
         <!-- Text Section -->
         <div class="text-container">
-            <h1 style="font-size: 65px;">Wallet</h1>
-            <p>Monitor your balances, stay on budget, and improve your financial health with the trust.</p>
+            <h1 style="font-size: 105px;
+            margin-bottom: -10px;
+            color: yellow;">WO</h1>
+            <p>Weekend Offer.</p>
         </div>
 
         <!-- Input Section -->
@@ -123,17 +128,22 @@
         <!-- Button Section -->
         <button class="button-container" onclick="checkCode()">
             Get Started
-            <i class="fas fa-arrow-right"></i>
+            <i class="fas fa-arrow-right" style="color: black;"></i>
         </button>
+        <div class="apply" style="margin-top: 30px;">
+            <a href="https://forms.gle/g2FBm6ghtEPFXPWN7">Apply for Offer</a>
+        </div>
     </div>
 
     <script>
         function checkCode() {
             const input = document.getElementById('codeInput').value;
             if (input === "1789") {
-                window.location.href = "https://mfi0212.github.io/MFI/MFI/wallet/user/chinna"; // Redirect to main.html
+                alert('Welcome chinna. You didn`t have account in WO, Please apply for the offer first.')
+                // window.location.href = "https://mfi0212.github.io/MFI/MFI/wallet/user/chinna";
             } else if (input === "1389") {
-                window.location.href = "https://mfi0212.github.io/MFI/MFI/wallet/user/phani"; // Redirect to main.html
+                alert('Welcome Phani. You didn`t have account in WO, Please apply for the offer first.')
+                // window.location.href = "https://mfi0212.github.io/MFI/MFI/wallet/user/phani";
             }  
             else {
                 alert("Incorrect code. Please try again.");
