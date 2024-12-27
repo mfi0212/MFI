@@ -7,7 +7,6 @@
     <style>
          @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Strait&display=swap');
 *{
-    color: white;
     font-family: "Red Hat Display", sans-serif;
     list-style: none;
 }
@@ -15,6 +14,8 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            color: yellow;
+            text-align: center;
         }
         body {
             background: linear-gradient(to bottom, #001180, #000000);
@@ -49,7 +50,7 @@
         .plan-card .price {
             font-size: 2em;
             font-weight: bold;
-            color: #00e676; /* Bright green for price */
+            color: yellow; /* Bright green for price */
             margin: 10px 0;
         }
         .plan-card ul {
@@ -69,11 +70,11 @@
             content: '✔';
             position: absolute;
             left: 0;
-            color: #00e676; /* Green checkmark */
+            color: yellow; /* Green checkmark */
             font-size: 1.2em;
         }
         .plan-card button {
-            background-color: #00e676; /* Green button */
+            background-color: yellow; /* Green button */
             color: #121212; /* Dark text for button */
             border: none;
             padding: 10px 20px;
@@ -84,7 +85,7 @@
             transition: background-color 0.3s;
         }
         .plan-card button:hover {
-            background-color: #00c853; /* Darker green hover */
+            background-color: rgba(255, 255, 0, 0.687); /* Darker green hover */
         }
     </style>
     <script>
@@ -96,43 +97,10 @@
 </head>
 <body>
     <div class="plans-container">
-        <!-- Plan 1 -->
-        <div class="plan-card">
-            <h2>Basic</h2>
-            <!-- <div class="price"></div> -->
-            <ul>
-                <li>Amount: Below 5,000₹</li>
-                <li>Time: 1 month</li>
-                <li>App usage fee: 89₹</li>
-
-            </ul>
-            <button onclick="showContactPopup('Plan 1')">Apply Wallet</button>
-        </div>
-
-        <!-- Plan 2 -->
-        <div class="plan-card">
-            <h2>Intermediate</h2>
-            
-            <!-- <div class="price"></div> -->
-            <ul>
-                <li>Amount: Below 10,000₹</li>
-                <li>Time: 1 month</li>
-                <li>App usage fee: 119₹</li>
-            </ul>
-            <button onclick="showContactPopup('Plan 2')">Apply Wallet</button>
-        </div>
-
-        <!-- Plan 3 -->
-        <div class="plan-card">
-            <h2>Advanced</h2>
-            <!-- <div class="price"></div> -->
-            <ul>
-                <li>Amount: 15,000₹</li>
-                <li>Time: 1 month</li>
-                <li>App usage fee: 169₹</li>
-            </ul>
-            <button onclick="showContactPopup('Plan 3')">Apply Wallet</button>
-        </div>
+        <h1 style="text-decoration: underline;">
+            Weekend Offers
+        </h1>
+        <p style="color: white;">The Weekend Offer allows you to borrow money from us every weekend at a very low-interest rate, which is not available in any other offer. Take advantage of this opportunity every weekend starting now!</p>
     </div>
 </body>
 </html>
