@@ -361,8 +361,30 @@
                 <a href="plans.html"><i class="fa-solid fa-arrow-up-wide-short"></i></a>
                 <a href="fine.html"><i class="fa-solid fa-fire"></i></a>
             </div>
+            <div class="verify" style="position: fixed;
+            top: 37px;
+            right: 30px;">
+                <button onclick="verifyPayment()">Verify</button>
+
+                <script>
+                    function verifyPayment() {
+                        // Prompt the user for their password
+                        const password = prompt("Please enter your password to proceed:");
+            
+                        // Check if the user entered a password
+                        if (password == 1789) {
+                            // Display the alert message
+                            alert(`Thank you Chinna for making your payment.\n\n\n We will verify your account details shortly.\n\nNOTE: Do not click 'Verify' unless you have completed your EMI payment. If you do, a fine of ₹200 will automatically be added to your account.`);
+                        } else if(password == 1389) {
+                            alert(`Thank you Phani for making your payment.\n\n\n We will verify your account details shortly.\n\nNOTE: Do not click 'Verify' unless you have completed your EMI payment. If you do, a fine of ₹200 will automatically be added to your account.`);
+                        } 
+                        else {
+                            alert("Verification canceled. Password input is required.");
+                        }
+                    }
+                </script>
+            </div>
         </div>
-        
     </div>
 </body>
 </html>
