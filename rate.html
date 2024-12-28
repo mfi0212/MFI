@@ -144,31 +144,33 @@
     const password = document.getElementById('password').value;
     const userDetails = document.getElementById('user-details');
     const accounts = {
-        //Can't show another account details here
+        //By phani kapu garu account
         "Deepak@1": {
             userName: "Deepak",
             balance: 5000,
             startDate: "2024-12-26",
-            endDate: "2025-1-15"
-        },
-        "0212@p": {
-            userName: "Phani",
-            balance: 0,
-            startDate: "-",
-            endDate: "-"
+            endDate: "2025-01-15"
         },
     };
 
     if (accounts[password]) {
         const account = accounts[password];
-        const startDate = new Date(account.startDate);
-        const endDate = new Date(account.endDate);
-        const currentDate = new Date();
 
-        // Calculate the days from the start date to today
+        // Normalize dates to start of the day (midnight)
+        const normalizeDate = (dateString) => {
+            const date = new Date(dateString);
+            date.setHours(0, 0, 0, 0); // Set time to midnight
+            return date;
+        };
+
+        const startDate = normalizeDate(account.startDate);
+        const endDate = normalizeDate(account.endDate);
+        const currentDate = normalizeDate(new Date()); // Today's date normalized
+
+        // Calculate days from the start date to today
         const diffFromStart = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24));
         
-        // Calculate the days from today to the end date
+        // Calculate days from today to the end date
         const diffToEnd = Math.ceil((endDate - currentDate) / (1000 * 60 * 60 * 24));
 
         userDetails.innerHTML = `
@@ -177,7 +179,7 @@
             <p>Days left: ${diffToEnd >= 0 ? diffToEnd : "End date has passed"} days</p>
             <p style='background: #d7d7d7;
     color: black;
-    font-weight: 800;'>Days Passed: ${diffFromStart} days</p>
+    font-weight: 800;'>Days Passed: ${diffFromStart >= 0 ? diffFromStart : "Start date is in the future"} days</p>
         `;
     } else {
         userDetails.innerHTML = "<p>Incorrect password. Please try again.</p>";
