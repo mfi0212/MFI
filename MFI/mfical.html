@@ -12,7 +12,7 @@
             font-family: "Red Hat Display", sans-serif;
         }
         body{
-            background-color: #282828;
+            background-color: #151515;
             position: fixed;
             top: 35%;
         }
@@ -35,7 +35,7 @@
             // Get the input values
             const amount = parseFloat(document.getElementById("amount").value);
             const months = parseInt(document.getElementById("months").value);
-            const percentage = 0.022;
+            const percentage = 0.06;
 
             // Validate the inputs
             if (isNaN(amount) || isNaN(months)) {
@@ -53,7 +53,7 @@
             const halfInterest = totalInterest;
 
             // Display the result
-            document.getElementById("result").textContent = "The calculated interest (3) is: " + halfInterest.toFixed(3);
+            document.getElementById("result").textContent = "The calculated interest (6) is: " + halfInterest.toFixed(3);
         }
     </script>
 </head>
