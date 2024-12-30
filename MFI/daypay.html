@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monthly Interest Payment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
          @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
         
@@ -58,5 +60,101 @@
         <a href="https://forms.gle/k8iiN6Qezcrwf8f66"><button>Apply Now</button></a>
         <a href="monfundplan.html"><button>Fund Plans</button></a>
     </div>
+    <style>
+    .account {
+        cursor: pointer;
+    font-size: 21px;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #282828;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    width: 65%;
+    text-align: center;
+    filter: drop-shadow(21px 41px 106px black);
+    }
+    .modal input {
+        margin-bottom: 10px;
+        padding: 8px;
+        width: 90%;
+        outline: none;
+    }
+    .modal button {
+        padding: 10px 20px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .modal button:hover {
+        background: #0056b3;
+    }
+    .message {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="account">
+    <i class="fa-regular fa-circle-user"></i>
+</div>
+
+<div class="modal" id="passwordModal">
+    <p>Enter your password:</p>
+    <input type="text" id="passwordInput" placeholder="Password">
+    <button id="verifyButton">Verify</button>
+    <div class="message" id="message"></div>
+</div>
+<script>
+    // JavaScript for functionality
+    const accountIcon = document.querySelector('.account');
+    const modal = document.getElementById('passwordModal');
+    const verifyButton = document.getElementById('verifyButton');
+    const passwordInput = document.getElementById('passwordInput');
+    const messageDiv = document.getElementById('message');
+
+    // Predefined user data
+    const userData = {
+        name: "John Doe",
+        password: "1389",
+        plan: "5000rs",
+        monthlyPay: "259rs"
+    };
+
+    accountIcon.addEventListener('click', () => {
+        modal.style.display = 'block';
+        passwordInput.value = '';
+        messageDiv.textContent = '';
+    });
+
+    verifyButton.addEventListener('click', () => {
+        const enteredPassword = passwordInput.value;
+        if (enteredPassword === userData.password) {
+            modal.style.display = 'none';
+            alert(`Welcome to MP, ${userData.name}!`);
+            alert(`Details:\nName: ${userData.name}\nPassword: ${userData.password}\nPlan: ${userData.plan}\nMonthly Pay: ${userData.monthlyPay}`);
+        } else {
+            messageDiv.textContent = "Incorrect password. Try again.";
+            messageDiv.style.color = 'red';
+        }
+    });
+
+    // Optional: Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+</script>
 </body>
 </html>
