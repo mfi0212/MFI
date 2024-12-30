@@ -3,146 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mterprice - Acc</title>
+    <title>User Profile</title>
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/GP8TJvP/logo.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
 
-* {
-    font-family: "Red Hat Display", sans-serif;
+        * {
+            font-family: "Red Hat Display", sans-serif;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            color: #ffffff;
-            font-weight: 400;
-}
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #838081;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #000000; /* Consistent font weight */
+            background-color: #121212;
+            color: white;
         }
-        a{
-            text-decoration: none;
-        }
+
         .container {
             width: 100%;
             max-width: 400px;
             padding: 20px;
             box-sizing: border-box;
-        }
-
-        .header {
-            position: relative;
-            top: -19px;
             text-align: center;
-            left: -152px;
         }
 
-        .header h1 {
-            font-size: 10px;
-            margin: 0;
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .close-btn {
-            background-color: #3e3e3e;
-            border: none;
+        .profile-header img {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 25px;
-            cursor: pointer;
-            text-align: center;
-            line-height: 30px;
-            position: relative;
-            right: -6em;
-        }
-        h1{
-            color: black;
-    font-weight: 500;
-    font-size: 23px;
-        }
-        .close-btn:hover {
-            background-color: #bbbbbb;
+            margin-bottom: 15px;
         }
 
-        .card {
-            border: 1px solid #dddddd;
+        .profile-header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .profile-header p {
+            font-size: 14px;
+            color: #aaaaaa;
+        }
+
+        .details {
+            margin-top: 20px;
+            text-align: left;
+            border: 1px solid #444;
             border-radius: 8px;
             padding: 15px;
-            line-height: 40px;
+            line-height: 1.8;
         }
 
-        .card h2 {
+        .details h2 {
             font-size: 18px;
-            margin: 0 0 10px 0;
-            border-bottom: 1px solid #dddddd;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #444;
             padding-bottom: 5px;
         }
 
-        .card ul {
+        .details ul {
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
-        .card ul li {
-            margin-bottom: 20px; /* Consistent gap between items */
+        .details ul li {
+            margin-bottom: 10px;
+    color: #0040ff;
+    font-size: 16.55px;
+    font-weight: 800;
+
         }
 
-        .note {
-            margin-top: 20px; /* Consistent gap for note section */
+        .bio {
+            margin-top: 20px;
+            text-align: left;
         }
 
-        .note-content {
-            margin-top: 10px;
-            line-height: 20px;
+        .bio h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .bio p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Light Theme */
+        body.light {
+            background-color: #ffffff;
             color: #000000;
         }
-        .logo h1{
-            font-size: 22px;
-            font-weight: 500;
-            position: fixed;
-            left: 0;
-            background-color: #005d1c;
-            width: 100%;
-            padding: 9px 35px;
-            color: black;
-            top: 0;
 
+        .light .details {
+            border-color: #cccccc;
+        }
+
+        /* Dark Theme */
+        body.dark {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .dark .details {
+            border-color: #444444;
+        }
+        strong{
+            color: #8c8c8c;
+        }
+        /* System Theme Detection */
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: #ffffff;
+                color: #000000;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="logo">
-            <h1>M<spans style="color: #ffffff;position: fixed;
-                left: 55px;
-                font-weight: 400;"> terprice</spans></h1>
+        <div class="profile-header">
+            <img src="https://i.ibb.co/9wgGRBv/h.jpg" alt="Profile Picture">
+            <h1>Hemanth</h1>
+            <p>Password: 9919</p>
         </div>
-        <div class="header">
-            <a href="mterprice.html"><button class="close-btn">&times;</button></a>
-        </div>
-        <div class="card">
-            <h1>Phani wallet details</h1>
-            <h2></h2>
+
+        <div class="details">
+            <h2>Account Details</h2>
             <ul>
-                <li><strong>Wallet pin : 9919</strong></li>
-                <li><strong>Wallet opened on : 26 aug 2024</strong></li>
-                <li><strong>Wallet valid for : 2 months</strong></li>
-                <li><strong>Wallet you bought : 1498</strong></li>
-                <li><strong>Wallet permanent amount : 9000</strong></li>
+                <li><strong>Account Opened On:</strong> 30 Dec 2024</li>
+                <li><strong>Running Amount:</strong> Yes</li>
+                <li><strong>Amount:</strong> 20,000</li>
+                <li><strong>Running Finance:</strong> No</li>
             </ul>
-            <div class="note">
-                <h2></h2>
-                <strong>Note :</strong>
-                <div class="note-content">Don't forget to pay on the return date. If any delay's inform us before the date. If delay has taken place extra charges will be added to your interest.</div>
-            </div>
+        </div>
+
+        <div class="bio">
+            <h2>Note</h2>
+            <p>Welcome to Hemanth! Here, you can find all the account details and updates. Don't forget to stay updated on payments to avoid extra charges.</p>
         </div>
     </div>
 </body>
