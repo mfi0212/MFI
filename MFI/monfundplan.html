@@ -6,109 +6,115 @@
   <title>Bank Interest Account</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
-        
-        * {
-            font-family: "Red Hat Display", sans-serif;
-        }
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: url('bg3.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
     
-    .container {
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Red Hat Display', sans-serif;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      background: url('bg3.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
       text-align: center;
-      width: 90%;
     }
 
-    .container h1 {
-      font-size: 1.5em;
-      margin-bottom: 20px;
-      color: #9c9c9c;
+    .container {
+      width: 100%;
+      max-width: 800px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 30px;
     }
 
     .info {
-        margin: 10px 0;
-    padding: 10px;
-    background-color: #ffffff36;
-    border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      margin: 15px 0;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.3s ease;
     }
 
-    
+    .info:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
 
     .info label {
-      display: block;
-      font-weight: bold;
-      color: #ffffff;
-      margin-bottom: 5px;
       font-size: 18px;
-    }
-
-    
-    .info span {
-      font-size: 14px;
-      color: #00fff2;
+      color: #ffffff;
       font-weight: 600;
     }
 
-   
-
-    .footer {
-      margin-top: 20px;
-      font-size: 0.9em;
-      color: #000000;
+    .info span {
+      font-size: 16px;
+      color: #00fff2;
+      font-weight: 500;
     }
 
-    
-
     .language-selection {
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
     .language-selection select {
-      padding: 10px;
+      padding: 12px;
       border: none;
       border-radius: 5px;
       font-size: 16px;
+      background-color: #333333;
+      color: #ffffff;
+      transition: background-color 0.3s;
     }
 
-    section {
-      background-color: #1f1f1f;
-    }
-
-    option {
-      background-color: #9f876d;
-      color: #000000;
-    }
-
-    option:hover {
-      background-color: black;
+    .language-selection select:hover {
+      background-color: #555555;
     }
 
     .toggle-button {
       background-color: #9f876d;
       color: #000000;
-      padding: 10px;
+      padding: 12px 20px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      margin-top: 20px;
+      margin-top: 30px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background-color 0.3s;
     }
 
     .toggle-button:hover {
       background-color: #7a5f3f;
     }
 
+    .footer {
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #000000;
+    }
+
   </style>
 </head>
 <body>
   <div class="container" id="plans-container">
-    <h1 id="plans-title">Fund plans</h1>
+    <h1 id="plans-title">Fund Plans</h1>
     <div class="info">
       <label id="plan1">1000 rs/mon</label>
       <span id="interest1">Interest for this plan = 59/month</span>
@@ -129,14 +135,7 @@
       <label id="plan5">5000 rs/mon</label>
       <span id="interest5">Interest for this plan = 259/month</span>
     </div>
+    <a href="https://forms.gle/k8iiN6Qezcrwf8f66"><button class="toggle-button">Subscribe Now</button></a>
   </div>
-
- 
-  <script>
-    // Detect and set default theme based on user preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-      document.body.classList.add('light-mode');
-    }
-  </script>
 </body>
 </html>
