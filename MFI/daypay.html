@@ -125,7 +125,7 @@
 
     // Predefined user data
     const userData = {
-        name: "John Doe",
+        name: "Phanindra",
         password: "1389",
         plan: "5000rs",
         monthlyPay: "259rs"
@@ -142,7 +142,7 @@
         if (enteredPassword === userData.password) {
             modal.style.display = 'none';
             alert(`Welcome to MP, ${userData.name}!`);
-            alert(`Details:\nName: ${userData.name}\nPassword: ${userData.password}\nPlan: ${userData.plan}\nMonthly Pay: ${userData.monthlyPay}`);
+            alert(`Monthly Pay Details:\n\n\nName: ${userData.name}\nPassword: ${userData.password}\nPlan: ${userData.plan}\nMonthly Pay: ${userData.monthlyPay}`);
         } else {
             messageDiv.textContent = "Incorrect password. Try again.";
             messageDiv.style.color = 'red';
