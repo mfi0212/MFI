@@ -1,5 +1,5 @@
 body {
-    font-family: "Noto Sans", sans-serif;
+    /* font-family: "Noto Sans", sans-serif; */
             margin: 0;
             padding: 0;
             background-size: cover;
@@ -19,7 +19,7 @@ body {
         }
         @media (max-width: 768px)  {
             body {
-                font-family: "Noto Sans", sans-serif;
+                /* font-family: "Noto Sans", sans-serif; */
                         margin: 0;
                         padding: 0;
                         background-size: cover;
