@@ -162,26 +162,32 @@
         }
 
         function startTimer() {
-            setInterval(function() {
-                const now = new Date();
-                const istTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+    setInterval(function () {
+        const now = new Date();
+        const istTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
 
-                // Set the target time to 4:00 PM IST
-                const targetTime = new Date(istTime);
-                targetTime.setHours(16, 0, 0, 0); // 4:00 PM IST
+        // Set the target time to 4:00 PM IST
+        let targetTime = new Date(istTime);
+        targetTime.setHours(16, 0, 0, 0); // 4:00 PM IST
 
-                const timeRemaining = targetTime - istTime; // Time remaining in milliseconds
-
-                // Calculate hours, minutes, and seconds
-                const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
-                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-                // Display the remaining time
-                const timerDisplay = document.getElementById('timer');
-                timerDisplay.textContent = `Fine add at 4 PM : ${hours}h ${minutes}m ${seconds}s`;
-            }, 1000); // Update every second
+        // If the current time is already past 4 PM, set the target to 4 PM the next day
+        if (istTime > targetTime) {
+            targetTime.setDate(targetTime.getDate() + 1);
         }
+
+        const timeRemaining = targetTime - istTime; // Time remaining in milliseconds
+
+        // Calculate hours, minutes, and seconds
+        const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        // Display the remaining time
+        const timerDisplay = document.getElementById('timer');
+        timerDisplay.textContent = `Fine add at 4 PM : ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000); // Update every second
+}
+
 
         document.getElementById('fineForm').addEventListener('submit', function(event) {
             event.preventDefault();
