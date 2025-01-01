@@ -139,8 +139,6 @@
             const user = userData[username];
             const now = new Date();
             const deadlineDate = new Date(user.deadline);
-
-            // Check if the deadline has passed
             const isDeadlinePassed = now > deadlineDate;
             let fine = isDeadlinePassed ? user.baseFine + user.fineIncrement : user.baseFine;
 
@@ -152,11 +150,9 @@
             const istTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
             const currentHour = istTime.getHours();
             const currentMinute = istTime.getMinutes();
-
-            // If it's 4:00 PM (16:00) IST, increase the fine
             if (currentHour === 16 && currentMinute === 0) {
                 for (const username in userData) {
-                    userData[username].baseFine += userData[username].fineIncrement; // Increase fine for all users
+                    userData[username].baseFine += userData[username].fineIncrement;
                 }
             }
         }
@@ -165,31 +161,21 @@
     setInterval(function () {
         const now = new Date();
         const istTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
-
-        // Set the target time to 4:00 PM IST
         let targetTime = new Date(istTime);
-        targetTime.setHours(16, 0, 0, 0); // 4:00 PM IST
-
-        // If the current time is already past 4 PM, set the target to 4 PM the next day
+        targetTime.setHours(16, 0, 0, 0); 
         if (istTime > targetTime) {
             targetTime.setDate(targetTime.getDate() + 1);
         }
 
-        const timeRemaining = targetTime - istTime; // Time remaining in milliseconds
-
-        // Calculate hours, minutes, and seconds
+        const timeRemaining = targetTime - istTime;
         const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
         const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-        // Display the remaining time
         const timerDisplay = document.getElementById('timer');
         timerDisplay.textContent = `Fine add at 4 PM : ${hours}h ${minutes}m ${seconds}s`;
-    }, 1000); // Update every second
+    }, 1000);
 }
-
-
-        document.getElementById('fineForm').addEventListener('submit', function(event) {
+    document.getElementById('fineForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
             const username = document.getElementById('username').value.trim();
@@ -197,7 +183,7 @@
             const fineInfo = document.getElementById('fineInfo');
 
             if (userData[username] && userData[username].password === password) {
-                increaseFineAt4PM();  // Apply fine increase at 4 PM IST
+                increaseFineAt4PM();
                 const fine = calculateFine(username);
                 fineInfo.textContent = `You have ₹${fine} fine`;
                 fineInfo.style.color = 'green';
@@ -206,8 +192,6 @@
                 fineInfo.style.color = 'red';
             }
         });
-
-        // Start the timer when the page loads
         startTimer();
     </script>
     
