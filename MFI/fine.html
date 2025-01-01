@@ -103,7 +103,8 @@
     </style>
 </head>
 <body>
-    <div class="timer" id="timer"></div>
+
+    <div class="timer" id="timer"></div> <!-- Timer display -->
 
     <div class="container">
         <h2>Verify Your Penalty</h2>
@@ -121,7 +122,7 @@
                 password: "1389",
                 baseFine: 0,
                 fineIncrement: 50,
-                deadline: "2025-1-1", // Deadline in YYYY-MM-DD format
+                deadline: "2025-1-1",
             },
             "Chinna": {
                 password: "1789",
@@ -130,46 +131,64 @@
                 deadline: "2024-1-31",
             },
         };
-    
+
         function calculateFine(username) {
             const user = userData[username];
             const now = new Date();
             const deadlineDate = new Date(user.deadline);
-    
+
             // Check if the deadline has passed
             const isDeadlinePassed = now > deadlineDate;
-            const fine = isDeadlinePassed ? user.baseFine + user.fineIncrement : user.baseFine;
-    
+            let fine = isDeadlinePassed ? user.baseFine + user.fineIncrement : user.baseFine;
+
             return fine;
         }
-    
-        function startTimer() {
-            const timerElement = document.getElementById('timer');
-    
-            function updateTimer() {
-                const now = new Date();
-                const tomorrowMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
-                const remainingTime = tomorrowMidnight - now;
-    
-                const hours = Math.floor(remainingTime / (1000 * 60 * 60));
-                const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-    
-                timerElement.textContent = `Fine will increase in: ${hours}h ${minutes}m ${seconds}s`;
+
+        function increaseFineAt4PM() {
+            const now = new Date();
+            const istTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+            const currentHour = istTime.getHours();
+            const currentMinute = istTime.getMinutes();
+
+            // If it's 4:00 PM (16:00) IST, increase the fine
+            if (currentHour === 16 && currentMinute === 0) {
+                for (const username in userData) {
+                    userData[username].baseFine += userData[username].fineIncrement; // Increase fine for all users
+                }
             }
-    
-            updateTimer(); // Initial call
-            setInterval(updateTimer, 1000); // Update every second
         }
-    
+
+        function startTimer() {
+            setInterval(function() {
+                const now = new Date();
+                const istTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+
+                // Set the target time to 4:00 PM IST
+                const targetTime = new Date(istTime);
+                targetTime.setHours(16, 0, 0, 0); // 4:00 PM IST
+
+                const timeRemaining = targetTime - istTime; // Time remaining in milliseconds
+
+                // Calculate hours, minutes, and seconds
+                const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                // Display the remaining time
+                const timerDisplay = document.getElementById('timer');
+                timerDisplay.textContent = `Fine add at 4 PM : ${hours}h ${minutes}m ${seconds}s`;
+            }, 1000); // Update every second
+        }
+
         document.getElementById('fineForm').addEventListener('submit', function(event) {
             event.preventDefault();
-    
+
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value.trim();
             const fineInfo = document.getElementById('fineInfo');
-    
+
             if (userData[username] && userData[username].password === password) {
+                increaseFineAt4PM();  // Apply fine increase at 4 PM IST
                 const fine = calculateFine(username);
                 fineInfo.textContent = `You have ₹${fine} fine`;
                 fineInfo.style.color = 'green';
@@ -178,7 +197,7 @@
                 fineInfo.style.color = 'red';
             }
         });
-    
+
         // Start the timer when the page loads
         startTimer();
     </script>
