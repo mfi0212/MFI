@@ -117,19 +117,28 @@
 
     <script>
         const userData = {
-            "Phani": { password: "1389", baseFine: 0, fineIncrement: 0 },
-            "Chinna": { password: "1789", baseFine: 30, fineIncrement: 60 },
+            "Phani": {
+                password: "1389",
+                baseFine: 0,
+                fineIncrement: 50,
+                deadline: "2025-1-1", // Deadline in YYYY-MM-DD format
+            },
+            "Chinna": {
+                password: "1789",
+                baseFine: 60,
+                fineIncrement: 60,
+                deadline: "2024-1-31",
+            },
         };
     
         function calculateFine(username) {
             const user = userData[username];
             const now = new Date();
-            const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
-            const tomorrowMidnight = new Date(midnight.getTime() + 24 * 60 * 60 * 1000);
+            const deadlineDate = new Date(user.deadline);
     
-            // Check if the current time is today or tomorrow
-            const isTomorrow = now >= midnight && now < tomorrowMidnight;
-            const fine = isTomorrow ? user.baseFine : user.baseFine + user.fineIncrement;
+            // Check if the deadline has passed
+            const isDeadlinePassed = now > deadlineDate;
+            const fine = isDeadlinePassed ? user.baseFine + user.fineIncrement : user.baseFine;
     
             return fine;
         }
