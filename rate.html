@@ -126,6 +126,14 @@
 
     <div id="content-user" class="menu-content">
         <div class="input-section">
+            <div class="apply" style="    position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 13px;
+        ">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScJtASDz2cbcYwibGs32PlrMPrSRtOOAFVE2_pAz8gFULK_4w/viewform">Apply STO</a>
+            </div>
+            <span>Welcome to STO!</span><br>
             <input id="password" placeholder="Enter your password">
             <button onclick="showUserDetails()">Submit</button>
         </div>
@@ -135,7 +143,7 @@
     <div class="menu">
         <a onclick="showContent('content-home')"><i class="fa-solid fa-house"></i></a>
         <a onclick="showContent('content-transfer')"><i class="fa-solid fa-arrows-rotate"></i></a>
-        <!-- <a onclick="showContent('content-user')"><i class="fa-regular fa-circle-user"></i></a> -->
+        <a onclick="showContent('content-user')"><i class="fa-regular fa-star"></i></a>
         <a href="vntglndr.html"><i class="fa-regular fa-circle-user"></i></a>
     </div>
 </div>
@@ -152,18 +160,12 @@
     const userDetails = document.getElementById('user-details');
     const accounts = {
         //By phani kapu garu account
-        "Deepak@1": {
-            userName: "Deepak",
-            balance: 5000,
-            startDate: "2024-12-26",
-            endDate: "2025-01-15"
-        },
-        "Deepak@2": {
-            userName: "Deepak",
-            balance: 10000,
-            startDate: "2025-01-03",
-            endDate: "2025-03-02"
-        },
+        // "Ganesh": {
+        //     userName: "Deepak",
+        //     balance: 15000,
+        //     startDate: "2024-10-12",
+        //     endDate: "2024-21-15"
+        // },
     };
 
     if (accounts[password]) {
