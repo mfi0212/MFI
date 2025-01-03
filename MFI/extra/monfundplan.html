@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Interest Account</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Red Hat Display', sans-serif;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      background: url('bg3.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 30px;
+    }
+
+    .info {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      margin: 15px 0;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+
+    .info:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .info label {
+      font-size: 18px;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .info span {
+      font-size: 16px;
+      color: #00fff2;
+      font-weight: 500;
+    }
+
+    .language-selection {
+      margin-bottom: 30px;
+    }
+
+    .language-selection select {
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      background-color: #333333;
+      color: #ffffff;
+      transition: background-color 0.3s;
+    }
+
+    .language-selection select:hover {
+      background-color: #555555;
+    }
+
+    .toggle-button {
+      background-color: #9f876d;
+      color: #000000;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 30px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    .toggle-button:hover {
+      background-color: #7a5f3f;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #000000;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container" id="plans-container">
+    <h1 id="plans-title">Fund Plans</h1>
+    <div class="info">
+      <label id="plan1">1000 rs/mon</label>
+      <span id="interest1">Interest for this plan = 59/month</span>
+    </div>
+    <div class="info">
+      <label id="plan2">2000 rs/mon</label>
+      <span id="interest2">Interest for this plan = 99/month</span>
+    </div>
+    <div class="info">
+      <label id="plan3">3000 rs/mon</label>
+      <span id="interest3">Interest for this plan = 149/month</span>
+    </div>
+    <div class="info">
+      <label id="plan4">4000 rs/mon</label>
+      <span id="interest4">Interest for this plan = 229/month</span>
+    </div>
+    <div class="info">
+      <label id="plan5">5000 rs/mon</label>
+      <span id="interest5">Interest for this plan = 259/month</span>
+    </div>
+    <a href="https://forms.gle/k8iiN6Qezcrwf8f66"><button class="toggle-button">Subscribe Now</button></a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number, Calculator, and Interest Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+        
+        * {
+            font-family: "Red Hat Display", sans-serif;
+        }
+        body {
+            font-family: "Times New Roman", serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 0px;
+        }
+        .number-display {
+            font-size: 20px;
+            margin: 20px 0;
+            padding: 10px;
+        }
+        .calculator, .interest-calculator {
+            margin-top: 30px;
+        }
+        .calculator input, .interest-calculator input{
+            font-size: 18px;
+            margin: 8px;
+            padding: 8px 27px;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .interest-calculator div {
+            margin-top: 10px;
+        }
+
+        /* Light Mode */
+        :root {
+            --background-color: #ffffff;
+            --text-color: #000000;
+            --button-bg: #c0c0c0;
+            --button-hover-bg: #a0a0a0;
+            --input-bg: #f0f0f0;
+            --input-text-color: #000000;
+        }
+        button{
+            background: #0045ff;
+    color: white;
+    border-radius: 100px;
+    font-size: 15px;
+    border: none;
+    padding: 8px 26px;
+    margin-top: 10px;
+        }
+        button:hover{
+            background: #001c6a;
+        }
+        /* Dark Mode */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #121212;
+                --text-color: #ffffff;
+                --button-bg: #393939;
+                --button-hover-bg: #575757;
+                --input-bg: #303030;
+                --input-text-color: #d6d6d6;
+            }
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        input {
+            background-color: var(--input-bg);
+            color: var(--input-text-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container interest-calculator">
+        <h1>Interest Calculator</h1>
+        <input type="number" id="principal" placeholder="Amount" />
+        <input type="number" id="rate" placeholder="Interest rate" />
+        <input type="number" id="time" placeholder="Months" />
+        <button onclick="calculateInterest()">Calculate</button>
+        <div class="number-display" id="interestResult"></div>
+    </div>
+    <div class="container calculator">
+        <h1>Normal Calculator</h1>
+        <input type="text" id="calcInput" placeholder="1*1" />
+        <button onclick="calculate()">Calculate</button>
+        <div class="number-display" id="calcResult"></div>
+    </div>
+
+    <script>
+        function calculate() {
+            const input = document.getElementById('calcInput').value;
+            try {
+                const result = eval(input);
+                document.getElementById('calcResult').textContent = result;
+            } catch (error) {
+                document.getElementById('calcResult').textContent = "Error!";
+            }
+        }
+
+        function calculateInterest() {
+            const principal = parseFloat(document.getElementById('principal').value);
+            const rate = parseFloat(document.getElementById('rate').value);
+            const time = parseFloat(document.getElementById('time').value);
+
+            if (isNaN(principal) || isNaN(rate) || isNaN(time)) {
+                document.getElementById('interestResult').textContent = "Please enter valid numbers!";
+                return;
+            }
+
+            const interest = (principal * rate * time) / 100;
+            document.getElementById('interestResult').textContent = `Interest: ${interest.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
