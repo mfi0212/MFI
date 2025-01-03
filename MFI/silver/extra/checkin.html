@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Check</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+        
+        * {
+            font-family: "Red Hat Display", sans-serif;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #171717;
+            color: #333;
+        }
+        header {
+            background: #171717;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #171717;
+            border-radius: 8px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+    margin-bottom: 5px;
+    font-weight: 100;
+    color: #898989;
+
+        }
+        input, button {
+            width: 95%;
+            outline: none;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #3c3c3c;
+            border-radius: 4px;
+            color: white;
+            background-color: #3c3c3c;
+        }
+        button {
+            background-color: #004aff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+        }
+        button:hover {
+            background-color: #0048ff76;
+        }
+        .quote {
+            font-style: italic;
+            color: #b9b9b9;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Daily Check</h1>
+    </header>
+    <div class="container">
+        <form id="daily-check-form">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="date">Today's Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter a secure password" required>
+
+            <button type="submit">Submit</button>
+        </form>
+        <div class="quote">
+            "Take money from us for low interest."
+        </div>
+    </div>
+    <script>
+        document.getElementById('daily-check-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const date = document.getElementById('date').value;
+            const password = document.getElementById('password').value;
+
+            alert(`Thank you, ${name}! Your submission for ${date} has been recorded.`);
+            document.getElementById('daily-check-form').reset();
+        });
+    </script>
+</body>
+</html>
