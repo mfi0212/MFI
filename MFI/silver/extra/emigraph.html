@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MFI - Graph</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Strait&display=swap');
+
+    * {
+      font-family: "Red Hat Display", sans-serif;
+      list-style: none;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      text-align: center;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    input {
+      border: 1px solid;
+      border-radius: 5px;
+      padding: 10px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #0084ff;
+    }
+
+    button {
+      background-color: #005eff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #005eff77;
+    }
+
+    #graph {
+      display: none;
+      position: relative;
+      top: 10em;
+    }
+
+    .bar-container {
+      width: 80%;
+      margin: 10px auto;
+      display: flex;
+      align-items: center;
+    }
+
+    .bar {
+      margin-left: 3px;
+      text-align: right;
+      color: white;
+      padding-right: 5px;
+      border-radius: 5px;
+    }
+
+    .bar-1789 {
+      background-color: #ff5722;
+      width: 50%;
+    }
+
+    .bar-1389 {
+      background-color: #008814;
+      width: 82%;
+    }
+
+    /* Default Theme Styles */
+    body {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    input {
+      background-color: #f9f9f9;
+      color: #000000;
+      border: 1px solid #ccc;
+    }
+    .warning p {
+    position: fixed;
+    bottom: 10px;
+    font-size: 13px;
+    text-align: center;
+    left: 0px;
+    width: 90%;
+    background: #ffffff;
+    padding: 28px 15px;
+    color: #000000;}
+    /* Dark Mode Styles */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: #e0e0e0;
+      }
+
+      input {
+        background-color: #1e1e1e;
+        color: #e0e0e0;
+        border: 1px solid #333;
+      }
+
+      button {
+        background-color: #005eff;
+      }
+
+      .bar-container .bar {
+        color: #ffffff;
+      }
+
+      .warning p {
+      position: fixed;
+      bottom: 10px;
+      font-size: 13px;
+      text-align: center;
+      left: 0px;
+      width: 90%;
+      background: #121212;
+      padding: 28px 15px;
+      color: #ffffff;
+    }
+    }
+  </style>
+</head>
+<body>
+  <h1>My account Score</h1>
+  <input type="password" id="password" placeholder="Enter password">
+  <button onclick="checkPassword()">Submit</button>
+
+  <div id="graph">
+    <h2>Graph Results</h2>
+    <div id="bar-1789" class="bar-container" style="display: none;">
+      <span>1789:</span>
+      <div class="bar bar-1789">50%</div>
+    </div>
+    <div id="bar-1389" class="bar-container" style="display: none;">
+      <span>1389:</span>
+      <div class="bar bar-1389">79%</div>
+    </div>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const password = document.getElementById('password').value;
+      const graph = document.getElementById('graph');
+      const bar1789 = document.getElementById('bar-1789');
+      const bar1389 = document.getElementById('bar-1389');
+
+      // Reset graph visibility
+      graph.style.display = 'none';
+      bar1789.style.display = 'none';
+      bar1389.style.display = 'none';
+
+      // Show specific graph based on the password
+      if (password === '1789') {
+        graph.style.display = 'block';
+        bar1789.style.display = 'flex';
+      } else if (password === '1389') {
+        graph.style.display = 'block';
+        bar1389.style.display = 'flex';
+      } else {
+        alert('Incorrect password! Try again.');
+      }
+    }
+  </script>
+
+  <div class="warning">
+    <p>NOTE: Please maintain at least 60% to be eligible for financial support from us. If your performance drops below 40%, we may not allow you to access funds from our services.</p>
+  </div>
+</body>
+</html>
