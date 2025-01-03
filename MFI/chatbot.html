@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot</title>
+  <style>
+      @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&display=swap');
+    
+    /* Default theme for light mode */
+    * {
+      font-family: "Red Hat Display", sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body, html {
+      height: 100%;
+      width: 100%;
+    }
+
+    .chatbot-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .chatbot-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      max-height: calc(100% - 100px);
+    }
+
+    .chatbot-message {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 10px;
+      max-width: 60%;
+      word-wrap: break-word;
+    }
+
+    /* Light mode styles */
+    body {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .bot-message {
+      background-color: #f0f0f0;
+      color: #333;
+      text-align: left;
+    }
+
+    .user-message {
+      background-color: #e0e0e0;
+      color: #000;
+      text-align: right;
+      margin-left: auto;
+    }
+
+    .chatbot-input {
+      display: flex;
+      padding: 10px;
+      background-color: #ffffff;
+      border-top: 1px solid #cccccc;
+      position: relative;
+    bottom: -40px;
+
+    }
+
+    .chatbot-input input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin-right: 10px;
+      outline: none;
+      background: #f1f1f1;
+      color: black;
+    }
+
+    .chatbot-input button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #005eff;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .chatbot-input button:disabled {
+      background-color: #ccc;
+    }
+
+    /* Dark mode styles */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: #00a6ff;
+      }
+
+      .bot-message {
+        background-color: #1f1f1f;
+        color: #bdbdbd;
+      }
+
+      .user-message {
+        background-color: transparent;
+        color: #ffffff;
+      }
+
+      .chatbot-input {
+        background-color: #121212;
+        border-top: 1px solid #474747;
+      }
+
+      .chatbot-input input {
+        background: #202020;
+        color: white;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="chatbot-container">
+    <div class="chatbot-messages" id="chatbot-messages">
+        <div class="chatbot-message bot-message">Welcome..! How can i help?<br><br>1. MFI<br> 2. Mterprice<br> 3. MFI Plus<br> 4. EMI verify<br></div>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="chatbot-input" placeholder="Enter your response here..." />
+      <button id="chatbot-send" onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    let step = 0; // To track the conversation steps
+    let selectedOption = null;
+
+    function sendMessage() {
+      const inputField = document.getElementById("chatbot-input");
+      const messageContainer = document.getElementById("chatbot-messages");
+      const userMessage = inputField.value.trim();
+
+      if (!userMessage) return;
+
+      // Add user message to the chat
+      const userMessageDiv = document.createElement("div");
+      userMessageDiv.classList.add("chatbot-message", "user-message");
+      userMessageDiv.textContent = userMessage;
+      messageContainer.appendChild(userMessageDiv);
+      inputField.value = "";
+
+      // Disable the send button temporarily
+      document.getElementById("chatbot-send").disabled = true;
+
+      setTimeout(() => {
+        let botResponse = "";
+
+        if (step === 0) {
+          if (userMessage === "1" || userMessage === "2" || userMessage === "3") {
+            selectedOption = userMessage;
+            botResponse = "What do you want to do?<br><br> 1. Take money<br> 2. Return money<br>";
+            step = 1;
+          } else if (userMessage === "4") {
+            step = 2;
+            botResponse = "Password of your account:";
+          } else {
+            botResponse = "Invalid option. Please select 1, 2, 3, or 4.";
+          }
+        } else if (step === 1) {
+          if (userMessage === "1") {
+            if (selectedOption === "1") {
+              botResponse = `Fill this form to take money: <a href="https://forms.gle/27SQC2uyMv8QWiLv9" target="_blank">Click here</a>`;
+            } else if (selectedOption === "2") {
+              botResponse = `Fill this form to take money: <a href="https://forms.gle/sWLdKxv2Aa6cTtoaA" target="_blank">Click here</a>`;
+            } else if (selectedOption === "3") {
+              botResponse = `Fill this form to take money: <a href="https://forms.gle/6ZAf45pUL1fE4mXt8" target="_blank">Click here</a>`;
+            }
+          } else if (userMessage === "2") {
+            if (selectedOption === "1") {
+              botResponse = `Fill this form to return money: <a href="https://forms.gle/8kpQQdhg7moroWBe6" target="_blank">Click here</a>`;
+            } else if (selectedOption === "2") {
+              botResponse = `Fill this form to return money: <a href="https://forms.gle/UpndVuCKN34pU49W7" target="_blank">Click here</a>`;
+            } else if (selectedOption === "3") {
+              botResponse = `Fill this form to return money: <a href="https://forms.gle/6ZAf45pUL1fE4mXt8" target="_blank">Click here</a>`;
+            }
+          } else {
+            botResponse = "Invalid option. Please select 1 or 2.";
+          }
+        } else if (step >= 2) {
+          // Continue with the existing EMI verification logic
+          if (step === 2) {
+            if (userMessage === "1789" || userMessage === "1389") {
+              botResponse = "Wait for a few seconds, we are verifying...";
+              addBotMessage(botResponse);
+              setTimeout(() => {
+                botResponse = userMessage === "1789"
+                  ? "Welcome Chinna, Did you pay this month's EMI?"
+                  : "Welcome Phani, Did you pay this month's EMI?";
+                addBotMessage(botResponse);
+                document.getElementById("chatbot-send").disabled = false;
+                step++;
+              }, 2500);
+              return;
+            } else {
+              botResponse = "Incorrect password. Please try again.";
+            }
+          } else if (step === 3) {
+            if (userMessage.toLowerCase() === "yes") {
+              botResponse = "Wait, we are verifying...";
+              addBotMessage(botResponse);
+              setTimeout(() => {
+                botResponse = "You have not paid. Don't delay to pay your EMI or certain penalties will be added.";
+                addBotMessage(botResponse);
+                document.getElementById("chatbot-send").disabled = false;
+              }, 2000);
+              return;
+            } else {
+              botResponse = "Don't delay to pay your EMI or certain penalties will be added. Thank you for using MFI Plus.";
+            }
+          }
+        }
+
+        addBotMessage(botResponse);
+        document.getElementById("chatbot-send").disabled = false;
+      }, 1500);
+    }
+
+    function addBotMessage(message) {
+      const messageContainer = document.getElementById("chatbot-messages");
+      const botMessageDiv = document.createElement("div");
+      botMessageDiv.classList.add("chatbot-message", "bot-message");
+      botMessageDiv.innerHTML = message; // Use innerHTML to support links
+      messageContainer.appendChild(botMessageDiv);
+      messageContainer.scrollTop = messageContainer.scrollHeight;
+    }
+  </script>
+</body>
+</html>

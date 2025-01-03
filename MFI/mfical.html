@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFI</title>
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/M1Vf3cH/BSLOGO.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Strait&display=swap');
+        *{
+            color: rgba(255, 255, 255, 0.767);
+            font-family: "Red Hat Display", sans-serif;
+        }
+        body{
+            background-color: #151515;
+            position: fixed;
+            top: 35%;
+        }
+        input{
+            padding: 5px;
+            background: #ffffff00;
+            border: solid 1px gray;
+            outline: none;
+        }
+        button{
+            background: #004cff;
+            color: white;
+            border: none;
+            padding: 9px 30px;
+            border-radius: 6px;
+        }
+    </style>
+    <script>
+        function calculate() {
+            // Get the input values
+            const amount = parseFloat(document.getElementById("amount").value);
+            const months = parseInt(document.getElementById("months").value);
+            const percentage = 0.06;
+
+            // Validate the inputs
+            if (isNaN(amount) || isNaN(months)) {
+                alert("Enter valid numbers for both amount and months.");
+                return;
+            }
+
+            if (amount < 10000) {
+                alert("MFI can't offer less then 10,000.");
+                return;
+            }
+
+            // Perform the calculation based on months
+            const totalInterest = amount * months * percentage;
+            const halfInterest = totalInterest;
+
+            // Display the result
+            document.getElementById("result").textContent = "The calculated interest (6) is: " + halfInterest.toFixed(3);
+        }
+    </script>
+</head>
+<body>
+    <h1>LIA Calculator</h1>
+    
+    <label for="amount">Amount (max 10,000):</label>
+    <input type="number" id="amount" step="any" max="10000" required><br><br>
+
+    <label for="months">Months:</label>
+    <input type="number" id="months" required><br><br>
+
+    <button onclick="calculate()">Calculate</button>
+
+    <p id="result"></p>
+</body>
+</html>
