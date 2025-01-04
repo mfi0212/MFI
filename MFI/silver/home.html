@@ -376,46 +376,54 @@
    const menuToggle = document.querySelector(".menu-toggle");
 const sidebar = document.querySelector(".sidebar");
 
-let isDragging = false;
 let startX = 0;
+let isTouching = false;
 
 // Function to show or hide the sidebar
-function toggleSidebar() {
-    if (sidebar.style.left === "0px") {
-        sidebar.style.left = "-250px"; // Hide sidebar
-    } else {
+function toggleSidebar(show) {
+    if (show) {
         sidebar.style.left = "0px"; // Show sidebar
+    } else {
+        sidebar.style.left = "-250px"; // Hide sidebar
     }
 }
 
-// Handle click on menu icon
-menuToggle.addEventListener("click", toggleSidebar);
-
-// Handle drag gesture
-document.addEventListener("mousedown", (e) => {
-    isDragging = true;
-    startX = e.clientX;
+// Detect touch start
+document.addEventListener("touchstart", (e) => {
+    isTouching = true;
+    startX = e.touches[0].clientX; // Get the initial touch position
 });
 
-document.addEventListener("mousemove", (e) => {
-    if (isDragging) {
-        const deltaX = e.clientX - startX;
-        if (deltaX > 100) { // Drag to the right
-            sidebar.style.left = "0px"; // Show sidebar
-        } else if (deltaX < -100) { // Drag to the left
-            sidebar.style.left = "-250px"; // Hide sidebar
+// Detect touch move
+document.addEventListener("touchmove", (e) => {
+    if (isTouching) {
+        const deltaX = e.touches[0].clientX - startX; // Calculate the swipe distance
+        if (deltaX > 100) { // Swipe right
+            toggleSidebar(true); // Show sidebar
+        } else if (deltaX < -100) { // Swipe left
+            toggleSidebar(false); // Hide sidebar
         }
     }
 });
 
-document.addEventListener("mouseup", () => {
-    isDragging = false;
+// Detect touch end
+document.addEventListener("touchend", () => {
+    isTouching = false;
 });
 
-// Hide sidebar when clicking outside
+// Also allow toggling with the menu button
+menuToggle.addEventListener("click", () => {
+    if (sidebar.style.left === "0px") {
+        toggleSidebar(false); // Hide sidebar
+    } else {
+        toggleSidebar(true); // Show sidebar
+    }
+});
+
+// Hide sidebar when clicking outside (optional for mobile)
 window.addEventListener("click", (e) => {
     if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
-        sidebar.style.left = "-250px"; // Hide sidebar
+        toggleSidebar(false); // Hide sidebar
     }
 });
 
