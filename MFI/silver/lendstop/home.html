@@ -6,31 +6,32 @@
   <title>Lendspot</title>
   <link rel="icon" type="image/x-icon" href="linklogo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+ <style>
     @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
-        
-        * {
-            font-family: "Red Hat Display", sans-serif;
-        }
+   
     body {
       margin: 0;
       padding: 0;
       background-color: #ffffff;
-      font-family: fantasy;
-    
-    }
+      /* font-family: fantasy; */
+      font-family: 'Anton', sans-serif;
 
+    }
     .logo img {
       width: 40%;
     position: fixed;
     top: 0%;
     left: 0%;
 }
-
+.borrom p{
+  font-family: "Red Hat Display", sans-serif;
+}
 
     header p {
       position: fixed;
-    top: 40%;
+    top: 38%;
     font-size: 41px;
     left: 5%;
     color: black;
@@ -59,6 +60,7 @@
     background: #252525;
     color: white;
     font-size: 15px;
+    font-family: "Red Hat Display", sans-serif;
     width: 100%;
 
     }
@@ -194,7 +196,8 @@ left: 0%;">
   <a href="" onclick="alert('INTEREST DETAILS\n\n\nAmount per account: 10,000\n\nFixed Interest: 3.5%')"><button style="background-color: #dcdcdc;
     border: none;
     color: black;">See interest details</button></a>
-    <p style="    font-size: 10px;
+    <div class="borrom">
+      <p style="    font-size: 10px;
         left: 25px;
     position: fixed;
     top: 85%;
@@ -205,6 +208,7 @@ left: 0%;">
 ">
       In Lendspot you can take only 10,000 per account for fixed interest of 3.5% with no extra fees and etc.. will not be collected from any of our users.
     </p>
+    </div>
 </div>
   
 <script>
