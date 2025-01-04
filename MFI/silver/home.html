@@ -164,7 +164,7 @@
 .sidebar {
     position: fixed;
     top: 0;
-    left: -250px; /* Hidden by default */
+    left: -500px; /* Hidden by default */
     width: 250px;
     height: 100%;
     background-color: #1e1e1e;
@@ -172,7 +172,7 @@
     overflow: hidden;
     transition: 0.3s;
     z-index: 1000;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 12px 0 150px rgb(0 0 0);
 }
 
 .sidebar ul {
@@ -246,6 +246,22 @@
         a {
             color: #004cff; /* Light blue for links in dark theme */
         }
+        .sidebar {
+    position: fixed;
+    top: 0;
+    left: -500px; /* Hidden by default */
+    width: 250px;
+    height: 100%;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    overflow: hidden;
+    transition: 0.3s;
+    z-index: 1000;
+    box-shadow: 12px 0 150px rgb(0 0 0);
+}
+.sidebar ul li a {
+        color: #ffffff;
+}
     }
      /* Light theme */
      @media (prefers-color-scheme: light) {
@@ -262,6 +278,22 @@
         .option .fa-solid, .fas {
             color: black;
         }
+        .sidebar {
+    position: fixed;
+    top: 0;
+    left: -500px; /* Hidden by default */
+    width: 250px;
+    height: 100%;
+    background-color: #ffffff;
+    color: #000000;
+    overflow: hidden;
+    transition: 0.3s;
+    z-index: 1000;
+    box-shadow: 12px 0 150px rgb(0 0 0);
+}
+.sidebar ul li a {
+        color: #000000;
+}
         p{
             background: rgb(221 227 233);
         color: #000000;
