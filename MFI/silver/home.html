@@ -293,7 +293,7 @@
     </div>
     <div class="options">
         <a href="#" id="accountLink">My Account</a>
-        <a href="https://mfi0212.github.io/MFI/MFI/mfiog.html">Go to MFI Premium</a>
+        <a href="mfiog.html">Go to MFI Premium</a>
         <a href="finance.html">Finance</a>
     </div>
     <div class="grant">
@@ -373,20 +373,49 @@
     </ul>
 </div>
 <script>
-    const menuToggle = document.querySelector(".menu-toggle");
+   const menuToggle = document.querySelector(".menu-toggle");
 const sidebar = document.querySelector(".sidebar");
 
-menuToggle.addEventListener("click", () => {
+let isDragging = false;
+let startX = 0;
+
+// Function to show or hide the sidebar
+function toggleSidebar() {
     if (sidebar.style.left === "0px") {
         sidebar.style.left = "-250px"; // Hide sidebar
     } else {
         sidebar.style.left = "0px"; // Show sidebar
     }
+}
+
+// Handle click on menu icon
+menuToggle.addEventListener("click", toggleSidebar);
+
+// Handle drag gesture
+document.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    startX = e.clientX;
 });
 
+document.addEventListener("mousemove", (e) => {
+    if (isDragging) {
+        const deltaX = e.clientX - startX;
+        if (deltaX > 100) { // Drag to the right
+            sidebar.style.left = "0px"; // Show sidebar
+        } else if (deltaX < -100) { // Drag to the left
+            sidebar.style.left = "-250px"; // Hide sidebar
+        }
+    }
+});
+
+document.addEventListener("mouseup", () => {
+    isDragging = false;
+});
+
+// Hide sidebar when clicking outside
 window.addEventListener("click", (e) => {
     if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
-        sidebar.style.left = "-250px"; // Hide sidebar if clicked outside
+        sidebar.style.left = "-250px"; // Hide sidebar
     }
 });
 
