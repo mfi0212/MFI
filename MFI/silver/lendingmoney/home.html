@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        body{
+            background-color: rgb(0, 40, 0);
+    color: white;
+    display: flex
+;font-family: "Josefin Sans", serif;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+        }
+        a{
+            text-decoration: none;
+        }
+        button{
+            padding: 15px;
+    border: solid 1px white;
+    background: transparent;
+    color: white;
+    font-family: "Josefin Sans", serif;
+    border-radius: 100px;
+    font-size: 16px;
+    width: 15em;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo" style="    line-height: 8px;
+    position: fixed;
+    top: 15%;
+">
+        <h1 style="    font-weight: 400;">
+            Lendingmoney
+        </h1>
+        <p style="    font-size: 11px;
+    letter-spacing: 11px;
+        font-weight: 200;
+    ">MARKET</p>
+    </div>
+    <div class="options" style="display: grid
+    ;
+        gap: 10px;position: fixed;
+        top: 55%;">
+        <a  onclick="checkPassword()"><button>My account</button></a>
+        <a href="https://forms.gle/dRrGhAexUTYgENYc7"><button style="background-color: white;color: rgb(0, 40, 0);">Apply for lending</button></a>
+    </div>
+    <footer style="    position: fixed;
+    bottom: 20px;
+    font-size: 10px;
+    color: #b1b1b1;
+    font-weight: 300;
+">
+        Power by MFI
+    </footer>
+    <script>
+        function checkPassword() {
+            const password = prompt("\nEnter your code");
+            const account = accounts[password];
+            if (account) {
+                showAlert(account);
+            } else if(password === "1789"){
+                alert("\nHello welcome to Lendingmoney")
+            }
+            else if(password === "1389"){
+                alert("\nHello welcome to Lendingmoney")
+            }
+            else {
+                alert("\nWe can't find any account in MFI");
+            }
+        }
+    </script>
+</body>
+</html>
