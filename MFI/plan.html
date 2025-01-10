@@ -224,6 +224,38 @@ h2{
                 align-items: center;
             }
         }
+        
+        /* Popup container */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        /* Popup content */
+        .popup img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Close button */
+        .popup .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -235,8 +267,8 @@ h2{
 
     <div class="plans-container">
         <div class="plan">
-            <h2>Gold <img style="    border-radius: 101px;
-" src="https://i.pinimg.com/736x/ee/43/76/ee437641b2cd91dfb6b40142512c17ad.jpg" alt="" width="12%"></h2>
+            <h2>Gold <img id="thumbnail"  style="    border-radius: 101px;
+" src="https://framerusercontent.com/images/YFix4Deko7x1GshIpktU9HpQTqw.png?scale-down-to=512" alt="" width="12%"></h2>
             <div class="price">89/rs</div>
             <ul class="features">
                 <li>Account limit : 5,000₹</li>
@@ -253,8 +285,8 @@ h2{
 
         <!-- Paid Plan -->
         <div class="plan">
-            <h2>Silver <img style="    border-radius: 101px;
-" src="https://i.pinimg.com/736x/6e/ee/9a/6eee9aa5c18c02bdbe9d802776d0f3f0.jpg" alt="" width="12%"></h2>
+            <h2>Silver <img id="thumbnail"  style="    border-radius: 101px;
+" src="https://framerusercontent.com/images/YpitNuObeF9iU8BVZHfVm7CPhc.png?scale-down-to=512" alt="" width="12%"></h2>
             <div class="price">280/rs</div>
             <ul class="features">
                 <li>Account limit: 15,000₹</li>
@@ -269,8 +301,8 @@ h2{
             <button class="current-plan" onclick="openModal()">Get this plan</button>
         </div>
         <div class="plan">
-            <h2>Platinum <img style="    border-radius: 101px;
-" src="https://i.pinimg.com/736x/e9/c5/bd/e9c5bd0eb379ce15ee14c6bebc145b1c.jpg" alt="" width="12%"></h2>
+            <h2>Platinum <img id="thumbnail"  style="    border-radius: 101px;
+" src="https://framerusercontent.com/images/MXZbe9Gs4npzh6RX2U4qvdXUs.png?scale-down-to=512" alt="" width="12%"></h2>
             <div class="price">1699/rs</div>
             <ul class="features">
                 <li>Account limit : 20,000₹</li>
