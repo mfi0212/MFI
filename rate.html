@@ -38,13 +38,6 @@
     </style>
 </head>
 <body>
-    <div class="mfi" style="position: fixed;
-    bottom: 10px;
-    font-size: 11px;
-    color: gray;
-    z-index: 10;">
-          From BS/MFI
-        </div>
 <div class="container">
     <div id="content-home" class="menu-content active">
         <div class="location">For students<br>°</div>
@@ -68,6 +61,11 @@
             <p onclick="showPopup(13000, 1300)">Interest for 13000 is 1300</p>
             <p onclick="showPopup(14000, 1400)">Interest for 14000 is 1400</p>
             <p onclick="showPopup(15000, 1500)">Interest for 15000 is 1500</p>
+            <p onclick="showPopup(16000, 1600)">Interest for 16000 is 1600</p>
+            <p onclick="showPopup(17000, 1700)">Interest for 17000 is 1700</p>
+            <p onclick="showPopup(18000, 1800)">Interest for 18000 is 1800</p>
+            <p onclick="showPopup(19000, 1900)">Interest for 19000 is 1900</p>
+            <p onclick="showPopup(20000, 2000)">Interest for 20000 is 2000</p>
         </div>
         
         <div class="popupcon">
@@ -110,7 +108,7 @@
         </script>
         
         <div class="price">
-            <p>If you borrow from us more than 16 times, we will lower the interest rate based on the amount you take.</p>
+            <p>You can borrow amounts exceeding upto ₹20,000, with flexible repayment options available on a yearly or monthly basis.</p>
         </div>
     </div>
 
@@ -158,13 +156,12 @@
     const password = document.getElementById('password').value;
     const userDetails = document.getElementById('user-details');
     const accounts = {
-        //By phani kapu garu account
-        "Deepak@2": {
-            userName: "Deepak",
-            balance: 7000,
-            startDate: "2025-1-2",
-            endDate: "2025-1-12"
-        },
+        // "Deepak@2": {
+        //     userName: "Deepak",
+        //     balance: 7000,
+        //     startDate: "2025-1-2",
+        //     endDate: "2025-1-12"
+        // },
     };
 
     if (accounts[password]) {
@@ -196,9 +193,26 @@
     font-weight: 800;'>Days Passed: ${diffFromStart >= 0 ? diffFromStart : "Start date is in the future"} days</p>
         `;
     } else {
-        userDetails.innerHTML = "<p>Incorrect password. Please try again.</p>";
+        userDetails.innerHTML = "<p style='background: transparent; color: #ff1919;'>Your offer has completed (or) Incorrect password.</p>";
     }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
 
 </script>
 </body>
