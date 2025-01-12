@@ -143,13 +143,6 @@
     </style>
 </head>
 <body>
-   <div class="mfi" style="position: fixed;
-    bottom: 10px;
-    font-size: 11px;
-    color: gray;
-    z-index: 10;">
-          From BS/MFI
-        </div>
     <div id="passwordContainer">
         <h1 style="font-weight: 100;">Vintage Lender</h1>
         <div style="position: relative; display: inline-block;">
@@ -187,6 +180,13 @@
                 dailyAmount: 25,
                 takenAmount: 5000,
                 endDate: "2025-01-15"
+            },
+            "Deepak@2": {
+                name: "Deepak",
+                planDate: "2025-1-11",
+                dailyAmount: 33.5,
+                takenAmount: 10000,
+                endDate: "2025-03-12"
             }
         };
 
@@ -259,6 +259,24 @@
             passwordContainer.style.display = "none";
             userInfo.style.display = "block";
         }
+        
+document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
+
     </script>
 </body>
 </html>
