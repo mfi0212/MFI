@@ -84,7 +84,7 @@
         transform: translate(-50%, -50%);
         padding: 10px 25px;
         background: rgb(40, 40, 40);
-        box-shadow: rgb(0, 0, 0) 0px 70px 1000px;
+        box-shadow: rgb(0 0 0) 0px 5px 600px;
         border-radius: 10px;
         text-align: center;
         width: 80%;
@@ -104,7 +104,7 @@
                 const popup = document.getElementById('popup');
                 const content = document.getElementById('popup-content');
                 p = amount+interest;
-                content.textContent = `If you borrow ${amount}₹ from us for one month, the interest charged will be ${interest}₹. This means you have to pay ${p}₹ totaly.`;
+                content.textContent = `If you borrow ${amount}₹ for 1 month, the interest charged will be ${interest}₹. This means you have to pay ${p}₹ totaly at the end of the month.`;
                 popup.style.display = 'block';
             }
         
@@ -115,7 +115,7 @@
         </script>
         
         <div class="price">
-            <p>You can borrow amounts exceeding upto ₹20,000, with flexible repayment options available on a yearly or monthly basis.</p>
+            <p>You can borrow amounts exceeding upto ₹20,000, <br><br><span>NOTE: Barrow money for atleast 15 days. While returing the amount once verify the interest in User Info.</span></p>
         </div>
     </div>
 
