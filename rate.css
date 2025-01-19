@@ -33,14 +33,14 @@ body {
                     }
             .container {
                 display: block;
-                text-align: center;
-                padding: 20px;
-                border-radius: 15px;
-                width: 90%;
-                max-width: 400px;
-                margin: 50px auto;
-                position: fixed;
-                top: 26%;
+        text-align: center;
+        padding: 20px;
+        border-radius: 15px;
+        width: 95%;
+        max-width: 400px;
+        margin: 50px auto;
+        position: fixed;
+        top: 26%;
         }
         .input-section{
             position: relative;
@@ -158,7 +158,11 @@ p{
             font-size: 1em;
         }
         .price {
-            display: flex;
+            display: flex
+;
+        width: 95%;
+        left: 10px;
+        position: fixed;
         }
         .matter {
             bottom: 15px;
