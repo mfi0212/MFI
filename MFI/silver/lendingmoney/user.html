@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        
+        body {
+            background-color: rgb(255, 255, 255);
+            color: #0048ff;
+            display: flex;
+            font-family: "Josefin Sans", serif;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1, p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo" style="position: fixed;
+    top: 10px;
+    left: 30px;
+    display: flex;
+    align-items: inherit;
+    white-space: nowrap;">
+        <h1 style="font-weight: 400;">
+            <a href="home.html"><img style="width: 15%;
+            padding: 10px;
+            filter: drop-shadow(0px 4px 16px black);
+            border-radius: 15px;" src="logo.png" alt=""></a>
+        </h1>
+    </div>
+    <div class="details" style="    position: fixed;
+    left: 40px;
+    line-height: 40px;">
+        <h1>Amount details</h1>
+        <p id="userName"></p>
+        <p id="planDetails"></p>
+        <p id="startDate"></p>
+        <p id="daysPassed"></p>
+        <p id="totalInterest"></p>
+    </div>
+        <script>
+            // Extract query parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('name');
+            const plan = parseFloat(urlParams.get('plan')); // Plan amount
+            const dailyRate = parseFloat(urlParams.get('dailyRate')); // Daily interest rate
+            const startDate = urlParams.get('startDate');
+    
+            // Calculate days passed
+            const start = new Date(startDate);
+            const today = new Date();
+            const timeDiff = today - start;
+            const daysPassed = Math.floor(timeDiff / (1000 * 60 * 60 * 24)); // Convert ms to days
+    
+            // Calculate total interest
+            const totalInterest = plan + daysPassed * dailyRate;
+    
+            // Populate user details
+            document.getElementById('userName').textContent = `Account holder: ${name}`;
+            document.getElementById('planDetails').textContent = `Amount: ₹${plan}`;
+            document.getElementById('startDate').textContent = `Taken on: ${startDate}`;
+            document.getElementById('daysPassed').textContent = `Days Passed: ${daysPassed} days`;
+            document.getElementById('totalInterest').textContent = `Total Amount to return: ₹${totalInterest.toFixed(2)}`;
+        </script>
+</body>
+</html>
