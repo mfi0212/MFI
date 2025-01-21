@@ -140,7 +140,7 @@
         const users = [
             {
                 name: "Charan sai.v",
-                password: "8400",
+                password: "1010",
                 plan: 10000, // Initial amount in ₹
                 dailyRate: 43, // ₹ per day for this user
                 startDate: "2025-1-21" // Start date for this user
@@ -163,8 +163,8 @@
             const user = users.find(user => user.password === password);
     
             if (user) {
-                modalMessage.style.color = 'green';
-                modalMessage.textContent = "Welcome to Lendingmoney!";
+                modalMessage.style.color = '#00288c';
+                modalMessage.textContent = "Welcome..!";
                 
                 // Redirect to user.html with user details in query parameters
                 const queryString = `?name=${user.name}&plan=${user.plan}&dailyRate=${user.dailyRate}&startDate=${user.startDate}`;
@@ -173,10 +173,25 @@
                 }, 1000);
             } else {
                 modalMessage.style.color = 'red';
-                modalMessage.textContent = "We can't find any account in MFI.";
+                modalMessage.textContent = "We can't find any account.";
             }
         }
-    
+    document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
         // Close modal if clicked outside
         window.onclick = function(event) {
             const modal = document.getElementById('passwordModal');
