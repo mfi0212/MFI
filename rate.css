@@ -129,11 +129,16 @@ body {
             font-size: 18px;
         }
 p{
-    background: #282828;
+    background: #1f1f1f;
         padding: 10px;
         border-radius: 10px;
         font-size: 12px;
-        color: #a8a8a8;
+        color: hsla(262.5, 4.12%, 61.96%, 1);
+}
+p:hover{
+    background-color: white;
+    color: black;
+    font-size: 14px;
 }
         .forecast {
             display: flex;
