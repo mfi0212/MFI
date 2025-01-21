@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Take Money</title>
-    <link rel="icon" type="image/x-icon" href="https://i.pinimg.com/474x/9a/f7/f4/9af7f4025e5e5061c97817c03e182f4e.jpg">
+    <link rel="icon" type="image/x-icon" href="logo.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
         body {
-            background-color: rgb(9 77 41);
+            background-color: #00288c;
             color: rgb(255, 255, 255);
             display: flex;
             font-family: "Josefin Sans", serif;
@@ -25,7 +25,7 @@
             padding: 14px;
     border: none;
     background: rgb(255 255 255);
-    color: #094d29;
+    color: #00288c;
     font-family: "Josefin Sans", serif;
     border-radius: 100px;
     font-size: 15px;
@@ -118,7 +118,7 @@
             <img style="width: 15%;
             padding: 10px;
             filter: drop-shadow(0px 4px 16px #ffffff);
-            border-radius: 15px;" src="https://i.pinimg.com/474x/9a/f7/f4/9af7f4025e5e5061c97817c03e182f4e.jpg" alt="">
+            border-radius: 15px;" src="logo.png" alt="">
         </h1>
         <p style="font-size: 11px; letter-spacing: 5px; font-weight: 400;">TAKE MONEY</p>
     </div>
@@ -139,27 +139,46 @@
     </div>
 
     <script>
+        const users = [
+            {
+                name: "Cherish",
+                password: "4321",
+                plan: 3000, // Initial amount in ₹
+                dailyRate: 34, // ₹ per day for this user
+                startDate: "2025-1-09" // Start date for this user
+            }
+        ];
+    
         function openModal() {
             document.getElementById('passwordModal').style.display = 'flex';
         }
-
+    
         function closeModal() {
             document.getElementById('passwordModal').style.display = 'none';
         }
-
+    
         function validatePassword() {
             const password = document.getElementById('passwordInput').value;
             const modalMessage = document.getElementById('modalMessage');
-
-            if (password === "1789" || password === "1389") {
+    
+            // Find the user by password
+            const user = users.find(user => user.password === password);
+    
+            if (user) {
                 modalMessage.style.color = 'green';
                 modalMessage.textContent = "Welcome to Lendingmoney!";
+                
+                // Redirect to user.html with user details in query parameters
+                const queryString = `?name=${user.name}&plan=${user.plan}&dailyRate=${user.dailyRate}&startDate=${user.startDate}`;
+                setTimeout(() => {
+                    window.location.href = `user.html${queryString}`;
+                }, 1000);
             } else {
                 modalMessage.style.color = 'red';
                 modalMessage.textContent = "We can't find any account in MFI.";
             }
         }
-
+    
         // Close modal if clicked outside
         window.onclick = function(event) {
             const modal = document.getElementById('passwordModal');
@@ -168,5 +187,6 @@
             }
         }
     </script>
+    
 </body>
 </html>
