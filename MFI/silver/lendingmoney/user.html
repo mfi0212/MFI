@@ -103,6 +103,22 @@
         <p>Welcome <a id="userName"></a> this is your account profile! Here, you can find all the account details and updates. Don't forget to stay updated on payments to avoid extra charges.</p>
     </div>
         <script>
+            document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
             // Extract query parameters
             const urlParams = new URLSearchParams(window.location.search);
             const name = urlParams.get('name');
