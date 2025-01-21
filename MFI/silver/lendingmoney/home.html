@@ -6,76 +6,150 @@
     <title>Document</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-        body{
-            background-color: rgb(0, 40, 0);
-    color: white;
-    display: flex
-;font-family: "Josefin Sans", serif;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+        body {
+            background-color: rgb(26, 79, 51);
+            color: rgb(255, 255, 255);
+            display: flex;
+            font-family: "Josefin Sans", serif;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+            margin: 0;
         }
-        a{
+        a {
             text-decoration: none;
         }
-        button{
+        button {
             padding: 15px;
-    border: solid 1px white;
-    background: transparent;
+            border: solid 1px #ffffff3b;
+            background: rgb(255 255 255 / 0%);
+            color: #ffffffb8;
+            font-family: "Josefin Sans", serif;
+            border-radius: 100px;
+            font-size: 16px;
+            width: 15em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 300;
+            cursor: pointer;
+        }
+        .logo {
+            line-height: 8px;
+            position: fixed;
+            top: 15%;
+        }
+        .options {
+            display: grid;
+            gap: 10px;
+            position: fixed;
+            top: 65%;
+        }
+        footer {
+            position: fixed;
+            bottom: 20px;
+            font-size: 10px;
+            color: #b1b1b1;
+            font-weight: 300;
+        }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 300px;
+            width: 80%;
+        }
+        .modal-content h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: rgb(26, 79, 51);
+        }
+        .modal-content input {
+            padding: 10px;
+            
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .modal-content button {
+            padding: 10px;
+    background-color: rgb(26, 79, 51);
     color: white;
-    font-family: "Josefin Sans", serif;
-    border-radius: 100px;
-    font-size: 16px;
-    width: 15em;
-    display: flex
-;
-    justify-content: center;
-    align-items: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+        }
+        .modal-content button:hover {
+            background-color: rgb(20, 60, 40);
         }
     </style>
 </head>
 <body>
-    <div class="logo" style="    line-height: 8px;
-    position: fixed;
-    top: 15%;
-">
-        <h1 style="    font-weight: 400;">
-            FOR VALID
+    <div class="logo">
+        <h1 style="font-weight: 400;">
+            <img style="width: 15%;" src="https://i.pinimg.com/474x/9a/f7/f4/9af7f4025e5e5061c97817c03e182f4e.jpg" alt="">
         </h1>
-        <p style="    font-size: 11px;
-    letter-spacing: 11px;
-        font-weight: 200;
-    ">MEMBERS</p>
+        <p style="font-size: 11px; letter-spacing: 5px; font-weight: 400;">TAKE MONEY</p>
     </div>
-    <div class="options" style="display: grid
-    ;
-        gap: 10px;position: fixed;
-        top: 65%;">
-        <a  onclick="checkPassword()"><button>My account</button></a>
-        <a href="https://forms.gle/dRrGhAexUTYgENYc7"><button style="background-color: white;color: rgb(0, 40, 0);">Apply Valid</button></a>
+    <div class="options">
+        <a onclick="openModal()"><button>My account</button></a>
+        <a href="https://forms.gle/dRrGhAexUTYgENYc7"><button>Apply Valid</button></a>
     </div>
-    <footer style="    position: fixed;
-    bottom: 20px;
-    font-size: 10px;
-    color: #b1b1b1;
-    font-weight: 300;
-">
-        Power by BS/MFI
-    </footer>
+    <footer>From BS/MFI</footer>
+
+    <!-- Modal -->
+    <div class="modal" id="passwordModal">
+        <div class="modal-content">
+            <h2>Enter Your Code</h2>
+            <input type="password" id="passwordInput" placeholder="Enter code">
+            <button onclick="validatePassword()">Submit</button>
+            <p id="modalMessage" style="margin-top: 10px; color: red; font-size: 14px;"></p>
+        </div>
+    </div>
+
     <script>
-        function checkPassword() {
-            const password = prompt("\nEnter your code");
-            const account = accounts[password];
-            if (account) {
-                showAlert(account);
-            } else if(password === "1789"){
-                alert("\nHello welcome to Lendingmoney")
+        function openModal() {
+            document.getElementById('passwordModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('passwordModal').style.display = 'none';
+        }
+
+        function validatePassword() {
+            const password = document.getElementById('passwordInput').value;
+            const modalMessage = document.getElementById('modalMessage');
+
+            if (password === "1789" || password === "1389") {
+                modalMessage.style.color = 'green';
+                modalMessage.textContent = "Welcome to Lendingmoney!";
+            } else {
+                modalMessage.style.color = 'red';
+                modalMessage.textContent = "We can't find any account in MFI.";
             }
-            else if(password === "1389"){
-                alert("\nHello welcome to Lendingmoney")
-            }
-            else {
-                alert("\nWe can't find any account in MFI");
+        }
+
+        // Close modal if clicked outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('passwordModal');
+            if (event.target === modal) {
+                closeModal();
             }
         }
     </script>
