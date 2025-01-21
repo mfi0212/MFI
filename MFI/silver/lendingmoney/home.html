@@ -87,8 +87,9 @@
         }
         .modal-content input {
             padding: 10px;
-            
+            text-align: center;
             margin-bottom: 15px;
+            font-family: "Josefin Sans", serif;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
@@ -130,8 +131,8 @@
     <!-- Modal -->
     <div class="modal" id="passwordModal">
         <div class="modal-content">
-            <h2>Enter Your Code</h2>
-            <input type="password" id="passwordInput" placeholder="Enter code">
+            <h2>Enter Your Password</h2>
+            <input type="text" id="passwordInput" placeholder="Password">
             <button onclick="validatePassword()">Submit</button>
             <p id="modalMessage" style="margin-top: 10px; color: red; font-size: 14px;"></p>
         </div>
@@ -169,4 +170,3 @@
     </script>
 </body>
 </html>
-
