@@ -21,7 +21,7 @@
         h1, p {
             margin: 10px 0;
             color: #ffffff;
-            font-weight: 400;
+            font-weight: 200;
         }
         .profile-header {
             display: flex;
@@ -30,11 +30,12 @@
         }
 
         .profile-header img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 15px;
-            filter: invert(1);
+            width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin: 15px;
+    filter: invert(1);
+    border: solid 1px #000000;
         }
 
         .profile-header h1 {
@@ -43,8 +44,8 @@
         }
 
         .profile-header p {
-            font-size: 16px;
-            color: #0048ff;
+    font-size: 20px;
+    color: #a4a4a4;
         }
         .bio {
             margin-top: 20px;
@@ -65,11 +66,12 @@
 
         .details {
             margin-top: 20px;
-            text-align: left;
-            border: 1px solid #444;
-            border-radius: 8px;
-            padding: 15px;
-            line-height: 1.8;
+    text-align: left;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 15px;
+    line-height: 1.8;
+    width: 80%;
         }
 
         .details h1 {
@@ -90,7 +92,7 @@
         <h1 style="font-weight: 400;">
             <a href="home.html"><img style="width: 13%;
             padding: 10px;
-            filter: drop-shadow(0px 4px 16px rgb(49, 49, 255));
+            filter: drop-shadow(0px 4px 16px white);
             border-radius: 15px;" src="logo.png" alt=""></a>
         </h1>
     </div>
@@ -99,7 +101,8 @@
         <p id="userName"></p>
     </div>
     <div class="details">
-        <h1>Amount Details</h1>
+        <h1 style="font-size: 20px; font-weight: 600;
+    color: #0048ff">Amount Details</h1>
         <p id="planDetails"></p>
         <p id="duration"></p>
         <p id="startDate"></p>
@@ -129,8 +132,8 @@
         const totalInterest = plan + daysPassed * dailyRate;
 
         // Populate user details
-        document.getElementById('userName').textContent = name;
         document.getElementById('userNameNote').textContent = name;
+        document.getElementById('userName').textContent = `${name}`;
         document.getElementById('planDetails').textContent = `Amount: ₹${plan}`;
         document.getElementById('startDate').textContent = `Start Date: ${startDate}`;
         document.getElementById('daysPassed').textContent = `Days Passed: ${daysPassed} days`;
