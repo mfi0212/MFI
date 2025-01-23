@@ -20,8 +20,8 @@
         }
         h1, p {
             margin: 10px 0;
-    color: #ffffff;
-    font-weight: 400;
+            color: #ffffff;
+            font-weight: 400;
         }
         .profile-header {
             display: flex;
@@ -31,10 +31,10 @@
 
         .profile-header img {
             width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin: 15px;
-    filter: invert(1);
+            height: 120px;
+            border-radius: 50%;
+            margin: 15px;
+            filter: invert(1);
         }
 
         .profile-header h1 {
@@ -48,7 +48,7 @@
         }
         .bio {
             margin-top: 20px;
-    text-align: center;
+            text-align: center;
         }
 
         .bio h2 {
@@ -59,8 +59,24 @@
 
         .bio p {
             font-size: 13px;
-    line-height: 1.6;
-    font-weight: 300;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .details {
+            margin-top: 20px;
+            text-align: left;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 15px;
+            line-height: 1.8;
+        }
+
+        .details h1 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 5px;
         }
     </style>
 </head>
@@ -82,64 +98,44 @@
         <img src="https://i.pinimg.com/736x/9f/90/1e/9f901ee4590ab188820322e4388983c5.jpg" alt="Profile Picture">
         <p id="userName"></p>
     </div>
-    <div class="details" style="margin-top: 20px;
-    text-align: left;
-    border: 1px solid #444;
-    border-radius: 8px;
-    padding: 15px;
-    line-height: 1.8;">
-        <h1 style="font-size: 18px;
-        margin-bottom: 10px;
-        border-bottom: 1px solid #444;
-        padding-bottom: 5px;">Amount details</h1>
+    <div class="details">
+        <h1>Amount Details</h1>
         <p id="planDetails"></p>
+        <p id="duration"></p>
         <p id="startDate"></p>
         <p id="daysPassed"></p>
         <p id="totalInterest"></p>
     </div>
     <div class="bio">
         <h2>Note</h2>
-        <p>Welcome <a id="userName"></a> this is your account profile! Here, you can find all the account details and updates. Don't forget to stay updated on payments to avoid extra charges.</p>
+        <p>Welcome <span id="userNameNote"></span>, this is your account profile! Here, you can find all the account details and updates. Don't forget to stay updated on payments to avoid extra charges.</p>
     </div>
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
+    <script>
+        // Extract query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        const plan = parseFloat(urlParams.get('plan')); // Plan amount
+        const dailyRate = parseFloat(urlParams.get('dailyRate')); // Daily interest rate
+        const startDate = urlParams.get('startDate');
+        const durationMonths = parseInt(urlParams.get('durationMonths'), 10); // Taken duration in months
+    
+        // Calculate days passed
+        const start = new Date(startDate);
+        const today = new Date();
+        const timeDiff = today - start;
+        const daysPassed = Math.floor(timeDiff / (1000 * 60 * 60 * 24)); // Convert ms to days
+    
+        // Calculate total interest
+        const totalInterest = plan + daysPassed * dailyRate;
 
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
-
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
-            // Extract query parameters
-            const urlParams = new URLSearchParams(window.location.search);
-            const name = urlParams.get('name');
-            const plan = parseFloat(urlParams.get('plan')); // Plan amount
-            const dailyRate = parseFloat(urlParams.get('dailyRate')); // Daily interest rate
-            const startDate = urlParams.get('startDate');
-    
-            // Calculate days passed
-            const start = new Date(startDate);
-            const today = new Date();
-            const timeDiff = today - start;
-            const daysPassed = Math.floor(timeDiff / (1000 * 60 * 60 * 24)); // Convert ms to days
-    
-            // Calculate total interest
-            const totalInterest = plan + daysPassed * dailyRate;
-    
-            // Populate user details
-            document.getElementById('userName').textContent = `${name}`;
-            document.getElementById('planDetails').textContent = `Amount: ₹${plan}`;
-            document.getElementById('startDate').textContent = `Taken on: ${startDate}`;
-            document.getElementById('daysPassed').textContent = `Days Passed: ${daysPassed} days`;
-            document.getElementById('totalInterest').textContent = `Total Amount to return: ₹${totalInterest.toFixed(2)}`;
-        </script>
+        // Populate user details
+        document.getElementById('userName').textContent = name;
+        document.getElementById('userNameNote').textContent = name;
+        document.getElementById('planDetails').textContent = `Amount: ₹${plan}`;
+        document.getElementById('startDate').textContent = `Start Date: ${startDate}`;
+        document.getElementById('daysPassed').textContent = `Days Passed: ${daysPassed} days`;
+        document.getElementById('totalInterest').textContent = `Total Amount to Return: ₹${totalInterest.toFixed(2)}`;
+        document.getElementById('duration').textContent = `Taken for: ${durationMonths} months`;
+    </script>
 </body>
 </html>
