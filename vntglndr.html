@@ -90,11 +90,21 @@
             left: 0px;
             line-height: 30px;
         }
-
-        .userinfo p {
-            color: #8d8d8d;
+        a{
+            text-decoration: none;
+            color: white;
         }
 
+        .userinfo p {
+    color: #8d8d8d;
+    line-height: 60px;
+}
+        .userinfo p:hover{
+            color: white;
+    padding: 0px 100px;
+    
+    display: flow;
+        }
         #paymentSection {
             margin-top: 20px;
         }
@@ -140,6 +150,18 @@
         a {
             text-decoration: none;
         }
+        @media(max-width:600px) {
+           .userinfo p {
+    color: #8d8d8d;
+    line-height: 35px;
+}
+        .userinfo p:hover{
+            color: white;
+    display: flow;
+    background: none;
+
+        }
+        }
     </style>
 </head>
 <body>
@@ -175,7 +197,7 @@
         <p><strong><i class="fa-solid fa-arrow-up-wide-short"></i></strong> <span id="totalAmount"></span> rs interest</p>
         <p><strong><i class="fa-solid fa-hourglass-end"></i></strong> <span id="endDate"></span></p>
         <div class="bottom" style="margin-top: 30px;">
-            <a href="https://forms.gle/jPYWS3o7RLFCVL3v6"><p><i class="fa-regular fa-circle"></i> Take amount now</p></a>
+            <a href="https://forms.gle/jPYWS3o7RLFCVL3v6" style="    color: #0039ff;"><i class="fa-regular fa-circle"></i> Take amount now</a>
         </div>
     </div>
 
