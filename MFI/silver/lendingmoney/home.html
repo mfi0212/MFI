@@ -139,13 +139,15 @@
     <script>
         const users = [
             {
-                name: "Charan sai.v(2 months)",
+                name: "Charan sai.v",
                 password: "8400",
                 plan: 10000, // Initial amount in ₹
-                dailyRate: 60, // ₹ per day for this user
-                startDate: "2025-1-21" // Start date for this user
-            }
+                dailyRate: 60, // ₹ per day
+                startDate: "2025-1-21", // Start date
+                durationMonths: 2 // Duration in months
+            },
         ];
+
     
         function openModal() {
             document.getElementById('passwordModal').style.display = 'flex';
@@ -156,26 +158,30 @@
         }
     
         function validatePassword() {
-            const password = document.getElementById('passwordInput').value;
-            const modalMessage = document.getElementById('modalMessage');
-    
-            // Find the user by password
-            const user = users.find(user => user.password === password);
-    
-            if (user) {
-                modalMessage.style.color = '#00288c';
-                modalMessage.textContent = "Welcome..!";
-                
-                // Redirect to user.html with user details in query parameters
-                const queryString = `?name=${user.name}&plan=${user.plan}&dailyRate=${user.dailyRate}&startDate=${user.startDate}`;
-                setTimeout(() => {
-                    window.location.href = `user.html${queryString}`;
-                }, 1000);
-            } else {
-                modalMessage.style.color = 'red';
-                modalMessage.textContent = "We can't find any account.";
-            }
-        }
+    const password = document.getElementById('passwordInput').value;
+    const modalMessage = document.getElementById('modalMessage');
+
+    // Find the user by password
+    const user = users.find(user => user.password === password);
+
+    if (user) {
+        const totalDays = user.durationMonths * 30; // Approximate days for the duration
+        const totalAmount = totalDays * user.dailyRate; // Total amount for the duration
+
+        modalMessage.style.color = '#00288c';
+        modalMessage.textContent = "Welcome..!";
+
+        // Redirect to user.html with user details in query parameters
+        const queryString = `?name=${user.name}&plan=${user.plan}&dailyRate=${user.dailyRate}&startDate=${user.startDate}&durationMonths=${user.durationMonths}&totalAmount=${totalAmount}`;
+        setTimeout(() => {
+            window.location.href = `user.html${queryString}`;
+        }, 1000);
+    } else {
+        modalMessage.style.color = 'red';
+        modalMessage.textContent = "We can't find any account.";
+    }
+}
+
     document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
 
