@@ -29,10 +29,19 @@
     font-weight: 400;
     font-size: 14px;
         }
+        p{
+    display: grid
+;
+    border-bottom: solid 1px #dcdcdc;
+}
         .profile-header {
             display: flex;
             flex-direction: column;
             align-items: center;
+            background: #0045ff;
+    width: 86%;
+    padding: 25px;
+    border-radius: 0px 0px 25px 25px;
         }
 
         .profile-header img {
@@ -40,7 +49,6 @@
             height: 90px;
             border-radius: 50%;
             margin: 15px;
-            border: solid 2px #353535;
         }
 
         .profile-header h1 {
@@ -50,7 +58,8 @@
 
         .profile-header p {
             font-size: 20px;
-            color: #000000;
+            color: #ffffff;
+            font-weight: 500;
         }
         .bio {
             margin-top: 20px;
@@ -71,12 +80,12 @@
 
         .details {
             margin-top: 20px;
-            text-align: left;
-            border: 1px solid #444;
-            border-radius: 8px;
-            padding: 15px;
-            line-height: 1.8;
-            width: 80%;
+    text-align: left;
+    border-radius: 8px;
+    padding: 15px;
+    line-height: 1.8;
+    width: 90%;
+    background: #ebebeb;
         }
 
         .details h1 {
@@ -91,16 +100,16 @@
 </head>
 <body>
     <div class="logo" style="position: fixed;
-    top: 10px;
-    left: 30px;
+   top: 0px;
+   left: 10px;
     display: flex;
     align-items: inherit;
     white-space: nowrap;">
         <h1 style="font-weight: 400;">
-            <a href="home.html"><img style="width: 13%;
+            <a href="home.html"><img style="width: 11%;
                 filter: invert(2);
-                border-radius: 7px;
-                box-shadow: 0px 10px 50px #ffeb00;" src="logo.png" alt=""></a>
+                border-radius: 6px;
+                box-shadow: 0px 10px 50px #ffffff;" src="logo.png" alt=""></a>
         </h1>
     </div>
     <div class="profile-header">
@@ -117,7 +126,7 @@
     </div>
     <div class="bio">
         <h2>Note</h2>
-        <p style="color: #000000;">Welcome <span id="userNameNote"></span>, this is your account profile! Here, you can find all the account details and updates. Don't forget to stay updated on payments to avoid extra charges.</p>
+        <p style="color: #000000;    display: contents;">Welcome <span id="userNameNote"></span>, this is your account profile! Here, you can find all the account details and updates. Don't forget to stay updated on payments to avoid extra charges.</p>
     </div>
     <script>
         // Extract query parameters
