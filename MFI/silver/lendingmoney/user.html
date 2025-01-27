@@ -6,7 +6,7 @@
     <title>Take Money | User Details</title>
     <link rel="icon" type="image/x-icon" href="logo.png">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap');
         
         body {
             background-color: #000000;
@@ -21,8 +21,12 @@
         }
         h1, p {
             margin: 10px 0;
-    color: #c0c0c0;
-    font-weight: 300;
+            color: #ffffff;
+            font-weight: 300;
+        }
+        .highlight {
+            color: #4a4a4a;
+    font-weight: 500;
         }
         .profile-header {
             display: flex;
@@ -32,10 +36,10 @@
 
         .profile-header img {
             width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    margin: 15px;
-    border: solid 2px #353535;
+            height: 90px;
+            border-radius: 50%;
+            margin: 15px;
+            border: solid 2px #353535;
         }
 
         .profile-header h1 {
@@ -44,8 +48,8 @@
         }
 
         .profile-header p {
-    font-size: 20px;
-    color: #a4a4a4;
+            font-size: 20px;
+            color: #a4a4a4;
         }
         .bio {
             margin-top: 20px;
@@ -66,16 +70,18 @@
 
         .details {
             margin-top: 20px;
-    text-align: left;
-    border: 1px solid #444;
-    border-radius: 8px;
-    padding: 15px;
-    line-height: 1.8;
-    width: 80%;
+            text-align: left;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 15px;
+            line-height: 1.8;
+            width: 80%;
         }
 
         .details h1 {
-            font-size: 18px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #0048ff;
             margin-bottom: 10px;
             border-bottom: 1px solid #444;
             padding-bottom: 5px;
@@ -101,8 +107,7 @@
         <p id="userName"></p>
     </div>
     <div class="details">
-        <h1 style="font-size: 20px; font-weight: 600;
-    color: #0048ff">Amount Details</h1>
+        <h1 style="font-size: 20px; font-weight: 600;" class="highlight">Amount Details</h1>
         <p id="planDetails"></p>
         <p id="duration"></p>
         <p id="startDate"></p>
@@ -111,7 +116,7 @@
     </div>
     <div class="bio">
         <h2>Note</h2>
-        <p>Welcome <span id="userNameNote"></span>, this is your account profile! Here, you can find all the account details and updates. Don't forget to stay updated on payments to avoid extra charges.</p>
+        <p style="color: gray;">Welcome <span id="userNameNote"></span>, this is your account profile! Here, you can find all the account details and updates. Don't forget to stay updated on payments to avoid extra charges.</p>
     </div>
     <script>
         // Extract query parameters
@@ -129,16 +134,21 @@
         const daysPassed = Math.floor(timeDiff / (1000 * 60 * 60 * 24)); // Convert ms to days
     
         // Calculate total interest
-        const totalInterest = plan + daysPassed * dailyRate;
+        let totalInterest;
+        if (isNaN(plan) || isNaN(dailyRate)) {
+            totalInterest = 'NaN';
+        } else {
+            totalInterest = plan + daysPassed * dailyRate;
+        }
 
         // Populate user details
         document.getElementById('userNameNote').textContent = name;
         document.getElementById('userName').textContent = `${name}`;
-        document.getElementById('planDetails').textContent = `Amount: ₹${plan}`;
-        document.getElementById('startDate').textContent = `Start Date: ${startDate}`;
-        document.getElementById('daysPassed').textContent = `Days Passed: ${daysPassed} days`;
-        document.getElementById('totalInterest').textContent = `Total Amount to Return: ₹${totalInterest.toFixed(2)}`;
-        document.getElementById('duration').textContent = `Taken for: ${durationMonths} months`;
+        document.getElementById('planDetails').innerHTML = `Amount: <span class="highlight">₹${isNaN(plan) ? 'NaN' : plan}</span>`;
+        document.getElementById('startDate').innerHTML = `Start Date: <span class="highlight">${startDate}</span>`;
+        document.getElementById('daysPassed').innerHTML = `Days Passed: <span class="highlight">${isNaN(daysPassed) ? 'NaN' : daysPassed} days</span>`;
+        document.getElementById('totalInterest').innerHTML = `Total Amount to Return: <span class="highlight">₹${isNaN(totalInterest) ? 'NaN' : totalInterest.toFixed(2)}</span>`;
+        document.getElementById('duration').innerHTML = `Taken for: <span class="highlight">${isNaN(durationMonths) ? 'NaN' : durationMonths} months</span>`;
     </script>
 </body>
 </html>
