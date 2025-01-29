@@ -302,6 +302,9 @@
                 const daysRemaining = Math.ceil((subscriptionEndDate - today) / (1000 * 60 * 60 * 24));
                 alert(`Welcome Phani.\n\nYou have ${daysRemaining} days left for your subscription.`);
                 window.location.href = "https://mfi0212.github.io/MFI/MFI/silver/home";
+            }
+            else if (userInput === "02120") {
+                window.location.href = "https://mfi0212.github.io/MFI/MFI/finance";
             }else {
                 errorMessage.textContent = "Incorrect password..!";
             }
