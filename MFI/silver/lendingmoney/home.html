@@ -83,8 +83,10 @@
         }
         .modal-content h2 {
             font-size: 18px;
-            margin-bottom: 15px;
-            color: #0048ff;
+    margin-bottom: 15px;
+    color: #000000;
+    font-weight: 400;
+
         }
         .modal-content input {
             padding: 10px;
@@ -97,12 +99,13 @@
         }
         .modal-content button {
             padding: 10px;
-    background-color: #0048ff;
+    background-color: #000000;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%;
+    width: 30%;
+    display: inline;
         }
     </style>
 </head>
@@ -133,7 +136,7 @@
             <h2>Enter Your Password</h2>
             <input type="text" id="passwordInput" placeholder="Password">
             <button onclick="validatePassword()">Submit</button>
-            <p id="modalMessage" style="margin-top: 20px;
+            <p id="modalMessage" style="margin-top: 0px;
             color: red;
             font-size: 14px;
             margin-bottom: 0px;"></p>
