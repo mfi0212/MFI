@@ -183,8 +183,8 @@
         const totalDays = user.durationMonths * 30; // Approximate days for the duration
         const totalAmount = totalDays * user.dailyRate; // Total amount for the duration
 
-        modalMessage.style.color = '#00288c';
-        modalMessage.textContent = "Welcome..!";
+        modalMessage.style.color = '#0010d8';
+        modalMessage.textContent = "Account verified..!";
 
         // Redirect to user.html with user details in query parameters
         const queryString = `?name=${user.name}&plan=${user.plan}&dailyRate=${user.dailyRate}&startDate=${user.startDate}&durationMonths=${user.durationMonths}&totalAmount=${totalAmount}`;
