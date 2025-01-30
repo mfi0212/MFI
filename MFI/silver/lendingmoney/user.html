@@ -16,7 +16,6 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
             margin: 0;
         }
         h1, p {
@@ -40,13 +39,14 @@
     width: 100%;
 }
         .profile-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: #0045ff;
+            display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    background: #0045ff;
     width: 86%;
-    padding: 25px;
-    border-radius:25px;
+    padding: 5px 25px;
+    border-radius: 0px 0px 25px 25px;
         }
 
         .profile-header img {
@@ -72,6 +72,7 @@
     background: #262626;
     border-radius: 25px 25px 2px 2px;
     padding: 5px 30px;
+    max-width: 515px;
         }
 
         .bio h2 {
@@ -137,10 +138,10 @@
         <p id="daysPassed"></p>
         <p id="totalInterest"></p>
     </div>
-    </div>
     <div class="bio">
         <h2>Note</h2>
         <p style="color: #ffffff;    display: contents;">Welcome <span id="userNameNote"></span>, this is your account profile! Here, you can find all the account details and updates. Don't forget to stay updated on payments to avoid extra charges.</p>
+    </div>
     </div>
     <script>
         // Extract query parameters
