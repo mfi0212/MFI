@@ -81,7 +81,11 @@ p{
         <div class="popupcon">
             <!-- Popup Section -->
         <div id="popup">
-            <h2 style="color: #bdbdbd;">Interest for amount</h2><br>
+            <h2 style="    color: #e1e1e1;
+            font-size: 20px;
+            text-decoration: underline;
+            padding: 15px;
+        ">Interest for this amount</h2>
             <p id="popup-content" style="    color: #bcbcbc;"></p>
             <button onclick="closePopup()" style="padding: 10px 20px;
             background: #3d3d3d;
@@ -96,7 +100,7 @@ p{
                 const popup = document.getElementById('popup');
                 const content = document.getElementById('popup-content');
                 p = amount+interest;
-                content.textContent = `Borrow ${amount}₹ for 1 month, the interest was for the amount was ${interest}₹. This means you have to pay ${p}₹ totaly at the end of the month.`;
+                content.textContent = `Borrow ${amount}₹ for 1 month, The interest for the amount was ${interest}₹. This means you have to pay ${p}₹ totaly at the end of the month.`;
                 popup.style.display = 'block';
             }
         
