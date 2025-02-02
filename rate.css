@@ -177,7 +177,7 @@ p{
     transform: translate(-50%, -50%);
     padding: 20px 40px;
     background: rgb(32 32 32);
-    box-shadow: rgb(0 0 0 / 36%) 0px 10px 9px 600px;
+    box-shadow: rgb(0 0 0 / 68%) 0px 10px 9px 600px;
     border-radius: 10px;
     text-align: center;
     width: 35%;
@@ -270,7 +270,7 @@ p{
         transform: translate(-50%, -0%);
         padding: 15px;
         background: rgb(32 32 32);
-        box-shadow: rgba(0, 0, 0, 0.626) 0px 0px 200px 610px;
+        box-shadow: rgb(0 0 0 / 68%) 0px 0px 200px 610px;
         border-radius: 15px;
         text-align: center;
         width: 95%;
