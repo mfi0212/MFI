@@ -19,6 +19,7 @@
             color: #ffffffcb;
             text-decoration: none;
         }
+        
         #popup-content{
             font-size: 15px;
             background-color: transparent;
@@ -40,7 +41,7 @@
     }
     div#user-details{
         position: relative;
-        top: -90px;        
+        top: -65px;        
     }
     img {
         position: fixed;
@@ -183,7 +184,6 @@ p{
         filter: drop-shadow(black 2px 10px 100px);
         z-index: 100;
     }
-
         @media (max-width: 768px)  {
             body {
                 font-family: "Noto Sans", sans-serif;
@@ -207,13 +207,16 @@ p{
         position: fixed;
         top: 26%;
         }
+        div#user-details p {
+            margin: 3px;
+        }
         .input-section{
             position: relative;
             top: -90px;        
         }
         div#user-details{
             position: relative;
-            top: -90px;        
+            top: -65px;        
         }
         
         img {
