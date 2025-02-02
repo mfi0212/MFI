@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
         body {
             font-family: "Noto Sans", sans-serif;
@@ -110,23 +112,22 @@ justify-content: center;
     width: 100%;
     background: #000000;
     left: 0px;
-    height: 25px;
+    height: 100px;
 
     }
     .menu i{
         font-size: 18px;
     }
 p{
-background: #9f9f9f;
-padding: 10px;
-border-radius: 10px;
-font-size: 12px;
-color: #000000;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 10px;
+    background-color: #333333;
+    color: #ffffff;
+    font-weight: 100;
+
 }
-p:hover{
-background-color: white;
-color: black;
-}
+
     .forecast {
         display: flex;
         justify-content: space-between;
@@ -168,7 +169,21 @@ color: black;
     padding: 13px;
     border-radius: 5px;
     }
-
+    div#popup {
+        display: none;
+        position: fixed;
+        top: 75%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px 25px;
+        background: rgb(40, 40, 40);
+        box-shadow: rgb(0, 0, 0) 0px 110px 89px;
+        border-radius: 10px;
+        text-align: center;
+        width: 55%;
+        filter: drop-shadow(black 2px 10px 100px);
+        z-index: 100;
+    }
 
         @media (max-width: 768px)  {
             body {
@@ -185,7 +200,7 @@ color: black;
             .container {
                 display: block;
         text-align: center;
-        padding: 20px;
+        padding: 2px;
         border-radius: 15px;
         width: 95%;
         max-width: 400px;
@@ -218,46 +233,7 @@ color: black;
         top: 1em;
         right: 1em;
         }
-        .location {
-            font-size: 15px;
-        font-weight: 100;
-        position: fixed;
-        top: 15px;
-        color: gray;
-        left: 15px;
-        }
-
-        .temperature {
-            font-size: 2em;
-            font-weight: 300;
-            margin: 0;
-        }
-
-        .weather-description {
-            font-size: 1.5em;
-            font-weight: 500;
-            margin: 10px 0;
-        }
-        .prices{
-            display: flex
-            ;
-                    white-space: nowrap;
-                    gap: 10px;
-                    overflow-x: scroll;
-                    margin-bottom: 50px;
-            
-        }
-        .date {
-            margin-top: 12px;
-
-            font-size: 1.2em;
-            color: #ffffff;
-        }
-        .logo{
-            display: flex
-;
-    justify-content: center;
-        }
+        
         .menu{
             display: flex
 ;
@@ -272,47 +248,13 @@ color: black;
         width: 100%;
         background: #000000;
         left: 0px;
-        height: 25px;
+        height: 100px;
 
         }
         .menu i{
             font-size: 18px;
         }
-p{
-    background: #9f9f9f;
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 12px;
-    color: #000000;
-}
-p:hover{
-    background-color: white;
-    color: black;
-}
-        .forecast {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .day {
-            text-align: center;
-            width: 60px;
-        }
-
-        .day .day-name {
-            font-size: 1em;
-            margin-bottom: 5px;
-        }
-
-        .day .icon {
-            font-size: 1.5em;
-            margin-bottom: 5px;
-        }
-
-        .day .high-low {
-            font-size: 1em;
-        }
+        
         .price {
             display: flex
 ;
@@ -320,13 +262,20 @@ p:hover{
         left: 10px;
         position: fixed;
         }
-        .matter {
-            bottom: 15px;
-        position: relative;
-        background-color: rgb(0 76 255);
-        color: #ffffff;
-        padding: 13px;
-        border-radius: 5px;
+        div#popup {
+            display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 15px 25px;
+        background: rgb(40, 40, 40);
+        box-shadow: rgb(0, 0, 0) 0px 80px 89px;
+        border-radius: 10px;
+        text-align: center;
+        width: 95%;
+        filter: drop-shadow(black 2px 10px 100px);
+        z-index: 100;
         }
 
     }
