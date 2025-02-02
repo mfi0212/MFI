@@ -17,7 +17,7 @@
         .input-section input, .input-section button { margin: 10px;
     padding: 10px 30px;
     font-size: 13px;
-    background: #282828;
+    background: #333333;
     border: none;
     color: #d6d6d6;
     outline: none;
@@ -27,12 +27,17 @@
         }
         .buttons button {     padding: 10px 20px;
     font-size: 14px;
-    background: #282828;
+    background: #333333;
     border: none;
     color: #e3e3e3;
     border-radius: 10px;
     white-space: nowrap;
 }
+p{
+            max-width: 600px;
+    text-align: center;
+    display: inline-block;
+        }
     </style>
 </head>
 <body>
@@ -125,8 +130,10 @@
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLScJtASDz2cbcYwibGs32PlrMPrSRtOOAFVE2_pAz8gFULK_4w/viewform">Apply STO</a>
             </div>
             <span>Welcome to STO!</span><br>
-            <input style="background: #9f9f9f;
-            color: #000000;" id="password" placeholder="Enter your password">
+            <input style="background: #333333;
+            color: #ffffff;
+            max-width: 250px;
+            width: 80%;" id="password" placeholder="Enter your password">
             <button onclick="showUserDetails()">Submit</button>
         </div>
         <div id="user-details"></div>
