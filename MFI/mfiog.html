@@ -253,43 +253,33 @@
                     totalInterest: "4,700",
                     totalPaid: "120rs",
                     password: "1789",
-                    startDate: "2024-12-10" // User's start date
+                    startDate: "2024-12-10",
+                    remainingAmount: 3000
                 },
     
                 "9892": { 
                     holderName: "Rama krishna yerra",
                     amountTaken: 18000,
                     planSelected: "1000/mon",
-                    interestPaid: "2,000",
+                    interestPaid: "3,000",
                     totalInterest: "8,000",
                     totalPaid: "120rs",
                     password: "9892",
-                    startDate: "2024-12-9" // User's start date
+                    startDate: "2024-12-9",
+                    remainingAmount: 5000
                 }
             };
-    
-            function calculateClearedAmount(amountTaken, startDate) {
-                const today = new Date();
-                const start = new Date(startDate);
-                const monthsElapsed = 
-                    (today.getFullYear() - start.getFullYear()) * 12 +
-                    (today.getMonth() - start.getMonth());
-                const clearedAmount = monthsElapsed * 1000; // Assuming 1000 is the monthly repayment
-                return Math.max(amountTaken - clearedAmount, 0);
-            }
     
             const feedback = document.querySelector('.feedback');
             const sections = document.querySelectorAll('.content');
             const navButtons = document.querySelectorAll('.nav-bar button');
     
-            // Transition to the right screen
             setTimeout(function () {
                 document.querySelector('.left-screen').style.display = 'none';
                 document.querySelector('.right-screen').classList.add('active');
                 document.querySelector('.content').classList.add('active');
             }, 2500);
     
-            // Navigation
             navButtons.forEach((btn, index) => {
                 btn.addEventListener('click', () => {
                     sections.forEach(section => section.classList.remove('active'));
@@ -297,7 +287,6 @@
                 });
             });
     
-            // Handle password submission
             const submitButton = document.querySelector('.content.active button');
             const inputField = document.querySelector('.content input[type="password"]');
     
@@ -305,20 +294,22 @@
                 const enteredPassword = inputField.value.trim();
     
                 if (passwordMessages[enteredPassword]) {
-                    const { holderName, amountTaken, planSelected, interestPaid, totalInterest, totalPaid, password, startDate } = passwordMessages[enteredPassword];
-                    const remainingAmount = calculateClearedAmount(amountTaken, startDate);
+                    const { holderName, amountTaken, planSelected, interestPaid, totalInterest, totalPaid, password, remainingAmount } = passwordMessages[enteredPassword];
     
                     feedback.innerHTML = `
                         <div>
                             <p><strong>Holder Name:</strong> ${holderName}</p>
                             <p><strong>Password:</strong> ${password}</p>
-                            <p><strong>Amount Taken:</strong> ${amountTaken}</p>
-                            <p><strong>Amount Cleared For Plus:</strong> ${amountTaken - remainingAmount}</p>
-                            <p><strong>Remaining Amount:</strong> ${remainingAmount}</p>
-                            <p><strong>Plan Selected:</strong> ${planSelected}</p>
-                            <p><strong>Interest Paid:</strong> ${interestPaid}</p>
+                            <p><strong>Applyed amount:</strong> ${amountTaken}</p>
                             <p><strong>Total Interest:</strong> ${totalInterest}</p>
-                            <p><strong>Interest for plan:</strong> ${totalPaid}</p>
+                            <p><strong>Interest Paid:</strong> ${interestPaid}</p>
+                            
+                            <p><strong>Plan Selected:</strong> ${planSelected}</p>
+                            <p style="background: #c4d9ff;
+    color: #000000;
+    padding: 10px;
+    text-align: center;
+    border-radius: 12px;"><strong>Cleared amount:</strong> ${remainingAmount}</p>
                         </div>
                     `;
                     feedback.classList.remove('error');
