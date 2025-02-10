@@ -44,10 +44,11 @@
             top: 15%;
         }
         .options {
-            display: grid;
-            gap: 10px;
-            position: fixed;
-            top: 65%;
+            display: grid
+;
+    gap: 10px;
+    position: fixed;
+    bottom: 12%;
         }
         a{
             text-decoration: none;
@@ -109,9 +110,26 @@
     display: inline;
         }
         button:hover {
-    background: rgb(0, 47, 255);
+    background: rgb(0, 0, 0);
     color: white;
 }
+.container {
+    background: #00000017;
+    padding: 10px 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 38%);
+    margin: 0px auto;
+    color: #ffffff;
+    font-weight: 300;
+    line-height: 20px;
+    font-size: 15px;
+    backdrop-filter: blur(30px);
+    border: solid 1px #ffffff6e;
+    max-width: 500px;
+    width: 85%;
+    position: fixed;
+    bottom: 29%;
+        }
     </style>
 </head>
 <body>
@@ -133,9 +151,13 @@
         </h1>
         <p style="font-size: 11px; letter-spacing: 5px; font-weight: 400;text-transform: uppercase;">Vintage Lender</p>
     </div>
+    <div class="container">
+        <h1 style="font-size: 20px;">After filling</h1>
+        <p>Wait few hours after filling the form we need to collect the required amount first. It will take a few hours to arrange the amount, so we kindly ask for your patience during this time.</p>
+    </div>
     <div class="options">
         <a onclick="openModal()"><button>My account</button></a>
-        <a href="optn.html"><button>Option</button></a>
+        <a href="https://forms.gle/dRrGhAexUTYgENYc7"><button>Take money</button></a>
     </div>
     <footer>From BS/MFI</footer>
 
