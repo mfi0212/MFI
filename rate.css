@@ -10,6 +10,7 @@
                     background-color: #181818;
                     display: flex;
                     justify-content: center;
+                    letter-spacing: 0.3px;
                 }
                 ::-webkit-scrollbar{
                     width: 10px;
@@ -193,6 +194,7 @@ padding: 10px 12px;
                         background-color: #181818;
                         display: flex;
                         justify-content: center;
+                        letter-spacing: 0.3px;
                     }
             .container {
                 display: block;
