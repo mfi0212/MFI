@@ -257,8 +257,8 @@ justify-content: center;
         .price {
             display: flex
 ;
-        width:96%;
-        left: 8px;
+        width: 95%;
+        left: 10px;
         position: fixed;
         }
         div#popup {
