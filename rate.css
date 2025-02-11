@@ -9,7 +9,8 @@
                     color: white;
                     background-color: #181818;
                     display: flex;
-                    justify-content: center;letter-spacing: 0.5px;
+                    justify-content: center;
+                    letter-spacing: 0.5px;
                 }
                 ::-webkit-scrollbar{
                     width: 10px;
@@ -193,7 +194,7 @@ padding: 10px 12px;
                         background-color: #181818;
                         display: flex;
                         justify-content: center;
-                        /* background-image: url("https://images.unsplash.com/photo-1639588435079-046d4b50e7bf?q=80&w=2206&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); */
+                        letter-spacing: 0.5px;
                     }
             .container {
                 display: block;
