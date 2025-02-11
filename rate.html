@@ -39,7 +39,12 @@ p{
             max-width: 600px;
     text-align: center;
     display: inline-block;
+    border-radius: 15px;
         }
+        .prices p {
+    border-radius: 1000px;
+    padding: 10px 15px;
+}
     </style>
 </head>
 <body>
@@ -104,7 +109,7 @@ p{
                 const popup = document.getElementById('popup');
                 const content = document.getElementById('popup-content');
                 p = amount+interest;
-                content.textContent = `If you borrow ${amount}₹ for 1 month, The interest for the amount was ${interest}₹. This means you have to pay ${p}₹ totaly at the end of the month.`;
+                content.textContent = `If you barrow ${amount}₹ for 1 month, The interest for the amount was ${interest}₹. This means you have to pay ${p}₹ totaly at the end of the month.`;
                 popup.style.display = 'block';
             }
         
