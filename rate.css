@@ -15,7 +15,7 @@
                     background-color: #222222;
                     display: flex;
                     justify-content: center;
-                    letter-spacing: 1px;
+                    letter-spacing: 0.7px;
                 }
                 ::-webkit-scrollbar{
                     width: 10px;
@@ -124,9 +124,7 @@ justify-content: center;
     .menu i{
         font-size: 18px;
     }
-    p {
-        font-weight: 400;
-    }
+
 
     .forecast {
         display: flex;
@@ -194,7 +192,7 @@ justify-content: center;
                         background-color: #222222;
                         display: flex;
                         justify-content: center;
-                        letter-spacing: 1px;
+                        letter-spacing: 0.7px;
                     }
             .container {
                 display: block;
