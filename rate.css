@@ -193,14 +193,13 @@ padding: 10px 12px;
                         background-color: #181818;
                         display: flex;
                         justify-content: center;
-                       
                     }
             .container {
                 display: block;
         text-align: center;
         padding: 2px;
         border-radius: 15px;
-        width: 95%;
+        width: 98%;
         max-width: 400px;
         margin: 50px auto;
         position: fixed;
@@ -260,8 +259,8 @@ padding: 10px 12px;
         .price {
             display: flex
 ;
-        width: 95%;
-        left: 10px;
+        width:96%;
+        left: 8px;
         position: fixed;
         }
         div#popup {
