@@ -1,16 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
 
+* {
+    font-family: "Red Hat Display", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
         body {
             
                     margin: 0;
                     padding: 0;
                     background-size: cover;
                     color: white;
-                    background-color: #181818;
+                    background-color: #222222;
                     display: flex;
                     justify-content: center;
-                    letter-spacing: 0.3px;
+                    letter-spacing: 1px;
                 }
                 ::-webkit-scrollbar{
                     width: 10px;
@@ -121,7 +126,7 @@ justify-content: center;
     }
     p {
         font-size: 13px;
-        font-weight: 100;
+        font-weight: 300;
     }
 
     .forecast {
@@ -172,7 +177,7 @@ justify-content: center;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px 40px;
-    background: rgb(23 23 23);
+    background: #282828;
     box-shadow: rgb(0 0 0 / 68%) 0px 10px 9px 600px;
     border-radius: 10px;
     text-align: center;
@@ -187,21 +192,19 @@ justify-content: center;
                         padding: 0;
                         background-size: cover;
                         color: white;
-                        background-color: #181818;
+                        background-color: #222222;
                         display: flex;
                         justify-content: center;
-                        letter-spacing: 0.3px;
+                        letter-spacing: 1px;
                     }
             .container {
                 display: block;
-        text-align: center;
-        padding: 2px;
-        border-radius: 15px;
-        width: 98%;
-        max-width: 400px;
-        margin: 50px auto;
-        position: fixed;
-        top: 26%;
+                padding: 2px;
+                width: 95%;
+                max-width: 400px;
+                margin: 50px auto;
+                position: fixed;
+                top: 26%;
         }
         div#user-details p {
             margin: 3px;
@@ -264,7 +267,7 @@ justify-content: center;
         div#popup {
             display: none;
         padding: 15px;
-        background: rgb(23 23 23);
+        background: #282828;
         box-shadow: rgb(0 0 0 / 68%) 0px 0px 200px 610px;
         border-radius: 15px;
         text-align: center;
