@@ -17,7 +17,7 @@
         .input-section input, .input-section button { margin: 10px;
     padding: 10px 30px;
     font-size: 13px;
-    background: #333333;
+    background: #282828;
     border: none;
     color: #d6d6d6;
     outline: none;
@@ -27,7 +27,7 @@
         }
         .buttons button {     padding: 10px 20px;
     font-size: 14px;
-    background: #333333;
+    background: #282828;
     border: none;
     color: #e3e3e3;
     border-radius: 10px;
@@ -51,15 +51,16 @@ p{
 <div class="container">
     <div id="content-home" class="menu-content active">
         
-        <div class="location">For students<br>°</div>
+        <div class="location">For Students<br>°</div>
         <a style="position: fixed;
         top: 13px;
         right: 5px;
         font-size: 12px;
-        background: #333333;
-        padding: 5px 15px;
-        border-radius: 100px;
-        color: #dbdbdb;" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
+        background: transparent;
+        padding: 4px 19px;
+        border-radius: 129px;
+        color: #dbdbdb6e;
+        border: solid 1px;" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
         <div class="logo">
             <img src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="">
         </div>
@@ -81,18 +82,19 @@ p{
         <div class="popupcon">
             <!-- Popup Section -->
         <div id="popup">
-            <h2 style="    color: #e1e1e1;
+            <h2 style="color: #e1e1e1;
             font-size: 20px;
-            text-decoration: underline;
-            padding: 15px;
+            padding: 10px;
+            font-weight: 500;
         ">Interest for this amount</h2>
             <p id="popup-content" style="    color: #bcbcbc;"></p>
-            <button onclick="closePopup()" style="padding: 10px 20px;
-            background: #3d3d3d;
-            color: #b7b7b7;
+            <button onclick="closePopup()" style="padding: 8px 20px;
+            background: #282828;
+            color: #ffffff;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;margin: 10px;">Close</button>
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;font-family: 'Poppins', sans-serif;">Close</button>
         </div>
         </div>
         <script>
@@ -100,7 +102,7 @@ p{
                 const popup = document.getElementById('popup');
                 const content = document.getElementById('popup-content');
                 p = amount+interest;
-                content.textContent = `Borrow ${amount}₹ for 1 month, The interest for the amount was ${interest}₹. This means you have to pay ${p}₹ totaly at the end of the month.`;
+                content.textContent = `If you borrow ${amount}₹ for 1 month, The interest for the amount was ${interest}₹. This means you have to pay ${p}₹ totaly at the end of the month.`;
                 popup.style.display = 'block';
             }
         
@@ -135,7 +137,7 @@ p{
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLScJtASDz2cbcYwibGs32PlrMPrSRtOOAFVE2_pAz8gFULK_4w/viewform">Apply STO</a>
             </div>
             <span>Welcome to STO!</span><br>
-            <input style="background: #333333;
+            <input style="background: #282828;
             color: #ffffff;
             max-width: 250px;
             width: 80%;" id="password" placeholder="Enter your password">
