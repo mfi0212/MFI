@@ -115,7 +115,7 @@
 }
 .container {
     padding: 8px 10px;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 4px 8px rgb(0 0 0 / 38%);
     margin: 0px auto;
     color: #ffffff;
@@ -124,7 +124,7 @@
     font-size: 14px;
     border: solid 1px #ffffff42;
     max-width: 500px;
-    width: 90%;
+    width: 87%;
     position: fixed;
     bottom: 24%;
         }
@@ -227,22 +227,22 @@
     }
 }
 
-//     document.addEventListener("DOMContentLoaded", () => {
-//     const customMenu = document.querySelector(".custom-menu");
+    document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
 
-//     // Show custom menu on right-click
-//     document.addEventListener("contextmenu", (event) => {
-//         event.preventDefault();
-//         customMenu.style.display = "block";
-//         customMenu.style.top = `${event.pageY}px`;
-//         customMenu.style.left = `${event.pageX}px`;
-//     });
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
 
-//     // Hide the menu when clicking elsewhere
-//     document.addEventListener("click", () => {
-//         customMenu.style.display = "none";
-//     });
-// });
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
         // Close modal if clicked outside
         window.onclick = function(event) {
             const modal = document.getElementById('passwordModal');
