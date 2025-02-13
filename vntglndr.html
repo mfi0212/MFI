@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vintage</title>
+    <title>Vintage lender</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
     
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/sbJQLxb/vt.png">
@@ -177,7 +177,7 @@
         </div>
     <div id="passwordContainer">
         <h1 style="font-weight: 400;
-    font-size: 22px;">Golden user</h1>
+    font-size: 22px;">Vintage lender</h1>
         <div style="position: relative; display: inline-block;margin-top: 15px;">
             <input type="text" id="userPassword" placeholder="Enter password">
             <i id="togglePassword"></i>
@@ -316,6 +316,23 @@
             passwordContainer.style.display = "none";
             userInfo.style.display = "block";
         }
+        document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
+
     </script>
 </body>
 </html>
