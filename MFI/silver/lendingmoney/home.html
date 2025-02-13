@@ -3,254 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vintage Lender</title>
-    <link rel="icon" type="image/x-icon" href="logo.png">
+    <title>Site Shutdown</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
         body {
-            background: linear-gradient(to top, rgb(0 20 168), #020041);
-            color: rgb(255, 255, 255);
+            font-family: "Noto Sans", sans-serif;
+            background-color: #000000;
+            color: #f8f9fa;
             display: flex;
-            font-family: "Josefin Sans", serif;
             justify-content: center;
             align-items: center;
-            text-align: center;
             height: 100vh;
-            margin: 0;
-            
-        }
-        a {
-            text-decoration: none;
-        }
-        button {
-            padding: 14px;
-    border: none;
-    background: rgb(255 255 255);
-    color: #000080;
-    font-family: "Josefin Sans", serif;
-    border-radius: 100px;
-    font-size: 15px;
-    width: 15em;
-    display: flex
-;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
-    cursor: pointer;
-        }
-        .logo {
-            line-height: 8px;
-            position: fixed;
-            top: 5%;
-        }
-        .options {
-            display: grid
-;
-    gap: 10px;
-    position: fixed;
-    bottom: 8%;
-        }
-        a{
-            text-decoration: none;
-            color: white;
-        }
-        footer {
-            position: fixed;
-    bottom: 20px;
-    font-size: 10px;
-    color: #0098ff;
-    font-weight: 400;
-    z-index: 1000000;
-        }
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .modal-content {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
             text-align: center;
-            max-width: 300px;
+            margin: 0;
+        }
+        .container {
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 10px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 75%;
+    max-width: 300px;
         }
-        .modal-content h2 {
-            font-size: 18px;
-    margin-bottom: 15px;
-    color: #000000;
-    font-weight: 400;
-
-        }
-        .modal-content input {
-            padding: 10px;
-            text-align: left;
+        h1 {
+            font-size: 24px;
             margin-bottom: 15px;
-            outline: none;
-            font-family: "Josefin Sans", serif;
-            border: 1px solid #ccc;
+        }
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            background-color: #ffffff;
+    color: rgb(0, 0, 0);
+            padding: 10px 20px;
+            text-decoration: none;
             border-radius: 5px;
+            font-size: 16px;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
         }
-        .modal-content button {
-            padding: 10px;
-    background-color: #000000;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 30%;
-    display: inline;
-        }
-        button:hover {
-    background: rgb(0, 0, 0);
-    color: white;
-}
-.container {
-    padding: 8px 10px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgb(0 0 0 / 38%);
-    margin: 0px auto;
-    color: #ffffff;
-    font-weight: 300;
-    line-height: 18px;
-    font-size: 14px;
-    border: solid 1px #ffffff42;
-    max-width: 500px;
-    width: 87%;
-    position: fixed;
-    bottom: 24%;
+        .copy-btn {
+            background-color: #3f3f3f;
+    margin-top: 10px;
+    color: rgb(255, 255, 255);
+    padding: 12px;
         }
     </style>
 </head>
 <body>
-    <a style="position: fixed;
-    top: 10px;
-    right: 10px;
-    font-size: 13px;
-    font-weight: 400;
-    text-decoration: none;
-    background: #ffffff38;
-    padding: 6px 8px;
-    border-radius: 3px;" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
-    <div class="logo">
-        <h1 style="font-weight: 400;">
-            <img style="width: 40%;
-            max-width: 600px;
-            filter: drop-shadow(0px 4px 16px #ffffff);
-            border-radius: 15px;" src="logo.webp" alt="">
-        </h1>
-        <p style="font-size: 11px; letter-spacing: 5px; font-weight: 400;text-transform: uppercase;">Vintage Lender</p>
-    </div>
     <div class="container">
-        <h1 style="font-size: 18px;
-    font-weight: 500;text-decoration: underline;">After filling</h1>
-        <p>Wait few hours after filling the form we need to collect the required amount first. It will take a few hours to arrange the amount, so we kindly ask for your patience during this time.</p>
+        <h1><i class="fas fa-exclamation-triangle"></i> This Site is Shut Down</h1>
+        <p>This website is no longer available.</p>
+        <a href="https://mfi0212.github.io/MFI/rate.html" class="btn"><i class="fas fa-globe"></i> Use this site</a>
+        <button class="btn copy-btn" onclick="copyURL()"><i class="fas fa-copy"></i> Copy URL</button>
     </div>
-    <div class="options">
-        <a onclick="openModal()"><button>My account</button></a>
-        <a href="https://forms.gle/dRrGhAexUTYgENYc7"><button>Take money</button></a>
-    </div>
-    <footer>From BS/MFI</footer>
-
-    <!-- Modal -->
-    <div class="modal" id="passwordModal">
-        <div class="modal-content">
-            <h2>Enter Password</h2>
-            <input type="text" id="passwordInput" placeholder="Password">
-            <button onclick="validatePassword()">Verify</button>
-            <p id="modalMessage" style="margin-top: 0px;
-            color: red;
-            font-size: 14px;
-            margin-bottom: 0px;"></p>
-        </div>
-    </div>
-
     <script>
-        const users = [
-            {
-                name: "V. Sai Charan",
-                password: "8400",
-                plan: 10000, // Initial amount in ₹
-                dailyRate: 0, // ₹ per day
-                startDate: "2025-1-21", // Start date
-                durationMonths: 2 // Duration in months
-            },
-            {
-                name: "V. Charan Sai ",
-                password: "4800",
-                plan: 10000, // Initial amount in ₹
-                dailyRate: 80, // ₹ per day
-                startDate: "2025-1-25", // Start date
-                durationMonths: 1 // Duration in months
-            },
-        ];
-
-    
-        function openModal() {
-            document.getElementById('passwordModal').style.display = 'flex';
-        }
-    
-        function closeModal() {
-            document.getElementById('passwordModal').style.display = 'none';
-        }
-    
-        function validatePassword() {
-    const password = document.getElementById('passwordInput').value;
-    const modalMessage = document.getElementById('modalMessage');
-
-    // Find the user by password
-    const user = users.find(user => user.password === password);
-
-    if (user) {
-        const totalDays = user.durationMonths * 30; // Approximate days for the duration
-        const totalAmount = totalDays * user.dailyRate; // Total amount for the duration
-
-        modalMessage.style.color = '#0010d8';
-        modalMessage.textContent = "Account verified..!";
-
-        // Redirect to user.html with user details in query parameters
-        const queryString = `?name=${user.name}&plan=${user.plan}&dailyRate=${user.dailyRate}&startDate=${user.startDate}&durationMonths=${user.durationMonths}&totalAmount=${totalAmount}`;
-        setTimeout(() => {
-            window.location.href = `user.html${queryString}`;
-        }, 1000);
-    } else {
-        modalMessage.style.color = 'red';
-        modalMessage.textContent = "We can't find any account.";
-    }
-}
-
-    document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
-
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
-
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
-        // Close modal if clicked outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('passwordModal');
-            if (event.target === modal) {
-                closeModal();
-            }
+        function copyURL() {
+            const url = "https://mfi0212.github.io/MFI/rate.html";
+            navigator.clipboard.writeText(url).then(() => {
+                alert("URL copied to clipboard!");
+            }).catch(err => {
+                console.error("Failed to copy: ", err);
+            });
         }
     </script>
-    
 </body>
 </html>
