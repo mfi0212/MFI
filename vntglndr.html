@@ -19,10 +19,10 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #181818; /* Dark background */
+            background-color: #000000; /* Dark background */
             color: #ffffff; /* Light text */
             font-size: 14px;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         #passwordContainer {
@@ -90,7 +90,7 @@
             top: 10px;
             position: fixed;
             left: 0px;
-            line-height: 30px;
+            line-height: 25px;
         }
         a{
             text-decoration: none;
@@ -99,7 +99,7 @@
 
         .userinfo p {
     color: #8d8d8d;
-    line-height: 60px;
+    line-height: 40px;
     font-weight: 100;
 }
         .userinfo p:hover{
@@ -155,7 +155,7 @@
         @media(max-width:600px) {
            .userinfo p {
     color: #8d8d8d;
-    line-height: 50px;
+    line-height: 35px;
     width: 100%;
 }
         .userinfo p:hover{
@@ -193,22 +193,33 @@
             <p style="color: white; font-size: 18px;" id="backIcon">Back</p>
         </div>
         <h2 id="welcomeMessage"></h2>
+        <h3 style="text-decoration: underline;
+        color: #ffffffba;
+        margin: 25px 0px;
+        font-weight: 600;
+        font-size: 15px;">Borrower details</h3>
         <p><strong><i class="fa-regular fa-circle-user"></i></strong> <span id="userName"></span></p>
         <p><strong><i class="fa-solid fa-money-bill-transfer"></i></strong> <span id="takenAmount"></span> Rupees</p>
-        <p><strong><i class="fa-solid fa-sack-dollar"></i></strong> <span id="dailyAmount"></span> Rupees/day</p>
+        <p><strong><i class="fa-solid fa-hourglass-end"></i></strong> <span id="months"></span> months</p>
         <h3 style="text-decoration: underline;
         color: #ffffffba;
         margin: 25px 0px;
         font-weight: 600;
         font-size: 15px;">Amount interest details</h3>
+        <p><strong><i class="fa-solid fa-sack-dollar"></i></strong> <span id="dailyAmount"></span> Rupees/day</p>
         <p><strong><i class="fa-regular fa-calendar-minus"></i></strong> <span id="daysPassed"></span> days passed</p>
         <p><strong><i class="fa-solid fa-arrow-up-wide-short"></i></strong> <span id="totalAmount"></span> rs interest</p>
-        <p><strong><i class="fa-solid fa-hourglass-end"></i></strong> <span id="endDate"></span></p>
-        <div class="bottom" style="margin-top: 30px;">
+        <h3 style="text-decoration: underline;
+        color: #ffffffba;
+        margin: 25px 0px;
+        font-weight: 600;
+        font-size: 15px;">Total amount to return</h3>
+        <p><strong><i class="fa-solid fa-money-check-alt"></i></strong> <span id="totalReturnAmount"></span> Rupees</p>
+        <!-- <div class="bottom" style="margin-top: 30px;">
             <a href="https://forms.gle/PjssBodtdo9iW1xn7" style="color: white;"><i class="fa-regular fa-circle"></i> Take money</a>
-        </div>
+        </div> -->
     </div>
-
+    
     <script>
         const passwords = {
             "Deepak@2": {
@@ -216,10 +227,24 @@
                 planDate: "2025-1-12",
                 dailyAmount: 33.5,
                 takenAmount: 10000,
-                endDate: "2025-03-13"
-            }
+                months: 2
+            },
+            "8400": {
+                name: "V. Sai Charan",
+                planDate: "2025-1-21",
+                dailyAmount: 0,
+                takenAmount: 10000,
+                months: 2
+            },
+            "4800": {
+                name: "V. Charan Sai ",
+                planDate: "2025-1-25",
+                dailyAmount: 80,
+                takenAmount: 10000,
+                months: 1
+            },
         };
-
+    
         const passwordInput = document.getElementById("userPassword");
         const togglePassword = document.getElementById("togglePassword");
         const submitBtn = document.getElementById("submitBtn");
@@ -231,9 +256,10 @@
         const daysPassed = document.getElementById("daysPassed");
         const dailyAmount = document.getElementById("dailyAmount");
         const takenAmount = document.getElementById("takenAmount");
-        const endDateSpan = document.getElementById("endDate");
+        const monthsSpan = document.getElementById("months");
+        const totalReturnAmount = document.getElementById("totalReturnAmount");
         const backIcon = document.getElementById("backIcon");
-
+    
         togglePassword.addEventListener("click", () => {
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";
@@ -243,11 +269,11 @@
                 togglePassword.classList.replace("fa-eye-slash", "fa-eye");
             }
         });
-
+    
         submitBtn.addEventListener("click", () => {
             const userInput = passwordInput.value.trim();
             errorMessage.textContent = "";
-
+    
             if (passwords[userInput]) {
                 const user = passwords[userInput];
                 updateUserBalance(user);
@@ -256,56 +282,40 @@
                 errorMessage.textContent = "Incorrect password!";
             }
         });
-
+    
         backIcon.addEventListener("click", () => {
             userInfo.style.display = "none"; // Hide user info section
             passwordContainer.style.display = "block"; // Show password input section
             passwordInput.value = ""; // Clear the password input
             errorMessage.textContent = ""; // Clear any error messages
         });
-
+    
         function updateUserBalance(user) {
             const currentDate = new Date();
             const planDate = new Date(user.planDate);
-            const endDate = new Date(user.endDate);
-
-            // Calculate the total days passed since planDate and check against endDate
+    
+            // Calculate the total days passed since planDate
             const timeDiff = currentDate - planDate;
-            const daysPassedValue = Math.max(0, Math.min(Math.floor(timeDiff / (1000 * 3600 * 24)), Math.floor((endDate - planDate) / (1000 * 3600 * 24))));
-
+            const daysPassedValue = Math.max(0, Math.floor(timeDiff / (1000 * 3600 * 24)));
+            
             // Calculate total amount based on daily amount and days passed
             const totalAmountValue = daysPassedValue * user.dailyAmount;
-
+            const totalReturnValue = totalAmountValue + user.takenAmount;
+    
             // Display the calculated values
             userName.textContent = user.name;
             totalAmount.textContent = totalAmountValue; // Dynamic balance
             daysPassed.textContent = daysPassedValue;
             dailyAmount.textContent = user.dailyAmount;
             takenAmount.textContent = user.takenAmount; // Show taken amount
-            endDateSpan.textContent = user.endDate; // Display the end date
+            monthsSpan.textContent = user.months; // Display the months
+            totalReturnAmount.textContent = totalReturnValue; // Display total amount to return
         }
-
+    
         function showUserInfo(user) {
             passwordContainer.style.display = "none";
             userInfo.style.display = "block";
         }
-        
-document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
-
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
-
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
     </script>
 </body>
 </html>
