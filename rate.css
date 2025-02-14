@@ -185,17 +185,17 @@ justify-content: center;
                         justify-content: center;
                         letter-spacing: 0.5px;
                     }
-            .container {
-                display: block;
-        text-align: center;
-        padding: 2px;
-        border-radius: 15px;
-        width: 96%;
-        max-width: 400px;
-        margin: 50px auto;
-        position: fixed;
-        top: 26%;
-        }
+                    .container {
+                        display: block;
+                        text-align: center;
+                        padding: 2px;
+                        border-radius: 15px;
+                        width: 97%;
+                        max-width: 600px;
+                        margin: 50px auto;
+                        position: fixed;
+                        top: 26%;
+                    }
         div#user-details p {
             margin: 3px;
         }
@@ -218,7 +218,7 @@ justify-content: center;
         }
         img {
             position: fixed;
-            width: 25%;
+            width: 15%;
             top: 15%;    
         border-radius: 12px;
         border: 1.3px solid rgb(255, 255, 255);
@@ -267,4 +267,25 @@ justify-content: center;
         z-index: 100;
         }
 
+    }
+    @media (max-width: 480px)  {
+        img {
+            position: fixed;
+            width: 25%;
+            top: 15%;
+            border-radius: 12px;
+            border: 1.3px solid rgb(255, 255, 255);
+        }
+        
+        .container {
+            display: block;
+    text-align: center;
+    padding: 2px;
+    border-radius: 15px;
+    width: 96%;
+    max-width: 400px;
+    margin: 50px auto;
+    position: fixed;
+    top: 26%;
+    }
     }
