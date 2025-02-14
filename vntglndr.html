@@ -236,13 +236,6 @@
                 takenAmount: 10000,
                 months: 2
             },
-            "4800": {
-                name: "V. Charan Sai ",
-                planDate: "2025-1-25",
-                dailyAmount: 80,
-                takenAmount: 10000,
-                months: 1
-            },
         };
     
         const passwordInput = document.getElementById("userPassword");
@@ -264,7 +257,8 @@
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";
                 togglePassword.classList.replace("fa-eye", "fa-eye-slash");
-            } else {
+            }
+            else {
                 passwordInput.type = "password";
                 togglePassword.classList.replace("fa-eye-slash", "fa-eye");
             }
@@ -278,7 +272,8 @@
                 const user = passwords[userInput];
                 updateUserBalance(user);
                 showUserInfo(user);
-            } else {
+            }
+            else {
                 errorMessage.textContent = "Incorrect password!";
             }
         });
