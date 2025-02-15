@@ -21,7 +21,7 @@
             text-decoration: none;
         }
         .logo img {
-            max-width: 115px;
+            max-width: 100px;
             display: flex
         ;
             justify-content: center;
