@@ -168,7 +168,13 @@
     </style>
 </head>
 <body>
-
+    <div class="mfi" style="position: fixed;
+    bottom: 10px;
+    font-size: 11px;
+    color: gray;
+    z-index: 10;">
+          From BS/MFI
+        </div>
     <div id="passwordContainer">
         <h1 style="font-weight: 400;
     font-size: 22px;">Vintage lender</h1>
@@ -234,7 +240,7 @@
                name: "Mahesh M",
                  planDate: "2025-2-15",
                dailyAmount: 110,
-               takenAmount: 12000,
+               takenAmount: 4000,
                 months: 1
             },
         };
@@ -316,56 +322,6 @@
             passwordContainer.style.display = "none";
             userInfo.style.display = "block";
         }
-    </script>
-    <style>
-        .mfi {
-            position: fixed;
-            bottom: 10px;
-            font-size: 10px;
-            font-weight: 100;
-            z-index: 10;
-        }
-        .mfi .bs {
-            transition: color 0.5s ease-in-out;
-        }
-        @keyframes colorChange {
-            0% { color: red; }
-            33% { color: yellow; }
-            66% { color: cyan; }
-            100% { color: magenta; }
-        }
-    </style>
-    <div class="mfi">
-        <span class="bs" id="bsText">From BS</span>/<span>MFI</span>
-    </div>
-
-    <script>
-        function applyDayNightEffect() {
-            let now = new Date();
-            let utcHour = now.getUTCHours();
-            let istHour = (utcHour + 5) % 24; // Convert UTC to IST (UTC + 5:30)
-            if (now.getUTCMinutes() >= 30) {
-                istHour = (istHour + 1) % 24; // Adjust for the 30 minutes
-            }
-
-            let img = document.getElementById("borderImage");
-            let bsText = document.getElementById("bsText");
-
-            if (istHour >= 20 || istHour < 4) {
-                // Night mode: apply glowing border and color animation for "From BS"
-                img.classList.add("night");
-                bsText.style.animation = "colorChange 3s infinite alternate";
-            } else {
-                // Day mode: solid border and normal text color
-                img.classList.remove("night");
-                bsText.style.animation = "none";
-                bsText.style.color = "gray";
-            }
-        }
-
-        applyDayNightEffect();
-        setInterval(applyDayNightEffect, 60000); // Check every minute
-
         document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
 
@@ -382,6 +338,7 @@
         customMenu.style.display = "none";
     });
 });
+
     </script>
 </body>
 </html>
