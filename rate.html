@@ -50,11 +50,16 @@ p {
     </style>
 </head>
 <body>
+    <div class="mfi" style="position: fixed;
+    bottom: 10px;
+    font-size: 11px;
+    color: gray;
+    z-index: 10;">
+          From BS/MFI
+        </div>
 <div class="container">
     <div id="content-home" class="menu-content active">
-        <div class="box" id="borderBox">
-            <img src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="Logo">
-        </div>
+        
         <div class="location">For students<br>°</div>
         <a style="position: fixed;
         top: 13px;
@@ -64,6 +69,9 @@ p {
         padding: 4px 15px;
         border-radius: 129px;
         color: #ffffff;" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
+        <div class="logo">
+            <img src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="">
+        </div>
         <div class="date">Interest for different amounts</div><br>
         <div class="prices">
             <p onclick="showPopup(10000, 2500)">Interest For 10000 is 2500</p>
@@ -114,9 +122,11 @@ p {
 
     <div id="content-transfer" class="menu-content">
         <div class="buttons">
+            <!-- <script src="rate.js"></script> -->
             <a href="https://forms.gle/PjssBodtdo9iW1xn7"><button onclick="alert('We are redirecting you to taking form.')">Take Money</button></a>
+            <!-- <a href="https://forms.gle/jPYWS3o7RLFCVL3v6"><button onclick="alert('We are redirecting you to returning form.')">Return Money</button></a> -->
         </div>
-        
+        <!-- <p>Choose an option to proceed with taking or returning money.</p> -->
         <p>Wait few hours after filling the form we need to collect the required amount first. It will take a few hours to arrange the amount, so we kindly ask for your patience during this time.</p>
     </div>
 
@@ -195,76 +205,8 @@ p {
         userDetails.innerHTML = "<p style='background: transparent; color: #ff1919;'>Your offer has completed (or) Incorrect password.</p>";
     }
 }
-</script>
-<style>
 
-        /* Night mode border effect */
-        img.night {
-            border: none;
-            box-shadow: 0 0 20px 5px red, 
-                        0 0 40px 10px yellow, 
-                        0 0 60px 15px cyan, 
-                        0 0 80px 20px magenta;
-            animation: animateBorder 5s infinite alternate;
-        }
-        @keyframes animateBorder {
-            0% { box-shadow: 0 0 20px 5px red, 0 0 40px 10px yellow; }
-            50% { box-shadow: 0 0 30px 10px cyan, 0 0 50px 15px magenta; }
-            100% { box-shadow: 0 0 20px 5px red, 0 0 40px 10px yellow; }
-        }
-        /* Footer */
-        .mfi {
-            position: fixed;
-    bottom: 10px;
-    font-size: 10px;
-    font-weight: 100;
-    z-index: 10;
-        }
-        .mfi .bs {
-            transition: color 0.5s ease-in-out;
-        }
-        @keyframes colorChange {
-            0% { color: red; }
-            33% { color: yellow; }
-            66% { color: cyan; }
-            100% { color: magenta; }
-        }
-</style>
-
-
-<div class="mfi">
-    <span class="bs" id="bsText">From BS</span>/<span>MFI</span>
-</div>
-
-<script>
-    function applyDayNightEffect() {
-        let now = new Date();
-        let utcHour = now.getUTCHours();
-        let istHour = (utcHour + 5) % 24; // Convert UTC to IST (UTC + 5:30)
-        if (now.getUTCMinutes() >= 30) {
-            istHour = (istHour + 1) % 24; // Adjust for the 30 minutes
-        }
-
-        let img = document.getElementById("borderImage");
-        let bsText = document.getElementById("bsText");
-
-        if (istHour >= 20 || istHour < 4) {
-            // Night mode: apply glowing border and color animation for "From BS"
-            img.classList.add("night");
-            bsText.style.animation = "colorChange 3s infinite alternate";
-        } else {
-            // Day mode: solid border and normal text color
-            img.classList.remove("night");
-            bsText.style.animation = "none";
-            bsText.style.color = "gray";
-        }
-    }
-
-    applyDayNightEffect();
-    setInterval(applyDayNightEffect, 60000); // Check every minute
-
-    
-    document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
 
     // Show custom menu on right-click
@@ -280,6 +222,7 @@ p {
         customMenu.style.display = "none";
     });
 });
+
 </script>
 </body>
 </html>
