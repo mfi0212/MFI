@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; z-index: 10000;
+    position: relative;}
 
         body {
             
@@ -19,7 +20,16 @@
             color: #ffffffcb;
             text-decoration: none;
         }
-        
+        .logo img {
+            width: 11%;
+            display: flex
+        ;
+            justify-content: center;
+            align-items: center;
+            border: solid 1px #fcfcfc70;
+            border-radius: 15px;
+            z-index: -1000;
+        }
         #popup-content{
             font-size: 13px;
     background-color: transparent;
@@ -59,8 +69,9 @@
     font-weight: 100;
     position: fixed;
     top: 15px;
-    color: gray;
+    color: #ffffff63;
     left: 15px;
+    z-index: 100000000;
     }
 
     .temperature {
@@ -100,15 +111,7 @@
     align-items: center;
     width: 95%;
     }
-    .logo img {
-        width: 15%;
-        display: flex
-    ;
-        justify-content: center;
-        align-items: center;
-        border: solid 1px #fcfcfc70;
-        border-radius: 15px;
-            }
+   
     .menu{
         display: flex
 ;
@@ -121,7 +124,7 @@
         position: fixed;
         bottom: 0px;
         width: 100%;
-        background: #101010;
+        background: #000000;
         left: 0px;
         height: 100px;
         border-top: solid 1px gray;
