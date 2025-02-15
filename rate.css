@@ -43,13 +43,7 @@
         position: relative;
         top: -65px;        
     }
-    img {
-        position: fixed;
-        width: 7%;
-        top: 15%;
-        border-radius: 12px;
-        border: 1.3px solid rgb(255, 255, 255);
-    }
+    
     #icon-display {
         position: fixed;
     font-size: 13px;
@@ -94,11 +88,27 @@
         font-size: 1.2em;
         color: #ffffff;
     }
-    .logo{
-        display: flex
+    .logo {
+        padding: 20px;
+    border-radius: 15px;
+    display: flex
 ;
-justify-content: center;
+    transition: box-shadow 0.5s ease-in-out;
+    position: fixed;
+    top: 5%;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
     }
+    .logo img {
+        width: 15%;
+        display: flex
+    ;
+        justify-content: center;
+        align-items: center;
+        border: solid 1px #fcfcfc70;
+        border-radius: 15px;
+            }
     .menu{
         display: flex
 ;
@@ -266,17 +276,40 @@ justify-content: center;
         filter: drop-shadow(black 2px 10px 100px);
         z-index: 100;
         }
-
+        .logo {
+            padding: 20px;
+            border-radius: 15px;
+            display: flex
+        ;
+            transition: box-shadow 0.5s ease-in-out;
+            position: fixed;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+        }
     }
     @media (max-width: 480px)  {
-        img {
+       
+        .logo {
+            padding: 20px;
+            border-radius: 15px;
+            display: flex
+    ;
+            transition: box-shadow 0.5s ease-in-out;
             position: fixed;
-            width: 25%;
-            top: 15%;
-            border-radius: 12px;
-            border: 1.3px solid rgb(255, 255, 255);
+            justify-content: center;
+            align-items: center;
+            width: 95%;
         }
-        
+        .logo img {
+            width: 25%;
+            display: flex
+        ;
+            justify-content: center;
+            align-items: center;
+            border: solid 1px #fcfcfc70;
+            border-radius: 15px;
+        }
         .container {
             display: block;
     text-align: center;
