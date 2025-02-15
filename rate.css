@@ -21,7 +21,7 @@
             text-decoration: none;
         }
         .logo img {
-            max-width: 100px;
+            max-width: 90px;
             display: flex
         ;
             justify-content: center;
@@ -271,7 +271,7 @@
         text-align: center;
         width: 95%;
         filter: drop-shadow(black 2px 10px 100px);
-        z-index: 100;
+        z-index: 100000000000;
         }
        
     }
