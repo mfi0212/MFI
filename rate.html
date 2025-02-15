@@ -46,17 +46,39 @@ p {
     font-size: 12px;
     font-weight: 300;
 }
-        
+    
+
+
+
+        /* Default state (no glow) */
+        .glow {
+            animation: travelGlow 5s infinite linear;
+        }
+
+        /* Keyframe animation for traveling glow effect */
+        @keyframes travelGlow {
+            0% { box-shadow: 0 0 120px 5px #ff0000; }  /* Red */
+            25% { box-shadow: 0 0 130px 5px #00ff00; } /* Green */
+            50% { box-shadow: 0 0 140px 5px #0000ff; } /* Blue */
+            75% { box-shadow: 0 0 130px 5px #ff00ff; } /* Magenta */
+            100% { box-shadow: 0 0 120px 5px #ff0000; } /* Back to Red */
+        }
+        /* Bottom text */
+        .mfi {
+            position: fixed;
+            bottom: 10px;
+            font-size: 10px;
+            z-index: 10;
+            font-weight: 100;
+        }
+
     </style>
 </head>
+
 <body>
-    <div class="mfi" style="position: fixed;
-    bottom: 10px;
-    font-size: 11px;
-    color: gray;
-    z-index: 10;">
-          From BS/MFI
-        </div>
+    <div class="mfi" id="mfi">
+        From BS/MF
+    </div>
 <div class="container">
     <div id="content-home" class="menu-content active">
         
@@ -70,7 +92,7 @@ p {
         border-radius: 129px;
         color: #ffffff;" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
         <div class="logo">
-            <img src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="">
+            <img id="logo" src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="">
         </div>
         <div class="date">Interest for different amounts</div><br>
         <div class="prices">
@@ -224,5 +246,28 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 </script>
+<script>
+    function applyGlowEffect() {
+        const now = new Date();
+        const hours = now.getHours();
+        const logo = document.getElementById("logo");
+        const mfiText = document.getElementById("mfi");
+
+        if (hours >= 20 || hours < 4) {  // 8 PM - 4 AM
+            logo.classList.add("glow");
+            mfiText.style.color = "rgb(0, 42, 255)"; // Red text at night
+            mfiText.innerHTML = "From BS/MFI";
+        } else {
+            logo.classList.remove("glow");
+            mfiText.style.color = "#808080"; // Gray text during the day
+            mfiText.innerHTML = "From BS/MF";
+        }
+    }
+
+    // Apply glow on load and check every minute
+    applyGlowEffect();
+    setInterval(applyGlowEffect, 1000 * 60);
+</script>
+
 </body>
 </html>
