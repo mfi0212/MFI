@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; z-index: 10000;
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;;
     position: relative;}
 
         body {
@@ -184,7 +184,7 @@
     text-align: center;
     width: 35%;
     filter: drop-shadow(black 2px 10px 100px);
-    z-index: 100;
+    z-index: 10000000000;
     }
         @media (max-width: 768px)  {
             body {
