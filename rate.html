@@ -40,11 +40,12 @@ p {
     text-align: center;
     display: inline-block;
     border-radius: 11px;
-    border: solid 1px #464646;
+    border: solid 1px #ffffff6b;
     color: #d1d1d1;
     padding: 10px 15px;
     font-size: 12px;
     font-weight: 300;
+    z-index: 1000;
 }
     
 
@@ -57,21 +58,23 @@ p {
 
         /* Keyframe animation for traveling glow effect */
         @keyframes travelGlow {
-            0% { box-shadow: 0 0 120px 5px #ff0000; }  /* Red */
-            25% { box-shadow: 0 0 130px 5px #00ff00; } /* Green */
-            50% { box-shadow: 0 0 140px 5px #0000ff; } /* Blue */
-            75% { box-shadow: 0 0 130px 5px #ff00ff; } /* Magenta */
-            100% { box-shadow: 0 0 120px 5px #ff0000; } /* Back to Red */
+            0% { box-shadow: 0 0 1020px 305px #ff00004d; }  /* Red */
+            25% { box-shadow: 0 0 1030px 305px #00ff0046; } /* Green */
+            50% { box-shadow: 0 0 1040px 305px #ffea0077; } /* Blue */
+            75% { box-shadow: 0 0 1030px 305px #000dff65; } /* Magenta */
+            100% { box-shadow: 0 0 1020px 305px #ff00954f; } /* Back to Red */
         }
         /* Bottom text */
         .mfi {
             position: fixed;
             bottom: 10px;
-            font-size: 10px;
-            z-index: 10;
-            font-weight: 100;
+            font-size: 11px;
+            z-index: 100000;
+            font-weight: 200;
         }
-
+        .logo img {
+            z-index: -1000;
+        }
     </style>
 </head>
 
@@ -90,11 +93,11 @@ p {
         background: #c8c8c863;
         padding: 4px 15px;
         border-radius: 129px;
-        color: #ffffff;" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
+        color: #ffffff;z-index: 100000000;" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
         <div class="logo">
             <img id="logo" src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="">
         </div>
-        <div class="date">Interest for different amounts</div><br>
+        <div  class="date">Interest for different amounts</div><br>
         <div class="prices">
             <p onclick="showPopup(10000, 2500)">Interest For 10000 is 2500</p>
             <p onclick="showPopup(11000, 2600)">Interest For 11000 is 2600</p>
@@ -227,24 +230,6 @@ p {
         userDetails.innerHTML = "<p style='background: transparent; color: #ff1919;'>Your offer has completed (or) Incorrect password.</p>";
     }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
-
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
-
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
-
 </script>
 <script>
     function applyGlowEffect() {
@@ -267,6 +252,23 @@ document.addEventListener("DOMContentLoaded", () => {
     // Apply glow on load and check every minute
     applyGlowEffect();
     setInterval(applyGlowEffect, 1000 * 60);
+    
+    document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
 </script>
 
 </body>
