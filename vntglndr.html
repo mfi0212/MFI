@@ -190,7 +190,7 @@
     <div class="userinfo" id="userInfo">
         <div class="back" style="display: flex; align-items: baseline; gap: 5px;">
             <i class="fa-solid fa-angle-left" id="backIcon" style="cursor: pointer; font-size: 20px; color: white; margin-bottom: 10px;"></i>
-            <p style="color: white; font-size: 18px;" id="backIcon">Back</p>
+            <p id="backIcon" style="color: white; font-size: 18px;" id="backIcon">Back</p>
         </div>
         <h2 id="welcomeMessage"></h2>
         <h3 style="text-decoration: underline;
@@ -337,15 +337,16 @@
     border-radius: 15px;
     display: inline-block;
     transition: box-shadow 0.5s ease-in-out;
-    position: fixed;
-    top: 0%;
-    left: 0%;
+    
 }
 
         .logo img {
             width: 60px; /* Adjust size */
             border-radius: 10px;
             background-color: transparent;
+            position: fixed;
+    top: 15px;
+    right: 15px;
         }
 
         /* Default state (no glow) */
