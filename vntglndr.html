@@ -236,13 +236,13 @@
                 takenAmount: 10000,
                 months: 2
             },
-            "Mahesh888*": {
-                name: "Mahesh M",
-                planDate: "2025-2-15",
-                dailyAmount: 0,
-                takenAmount: 12000,
-                months: 1
-            },
+            // "Mahesh888*": {
+            //     name: "Mahesh M",
+            //     planDate: "2025-2-15",
+            //     dailyAmount: 0,
+            //     takenAmount: 12000,
+            //     months: 1
+            // },
         };
     
         const passwordInput = document.getElementById("userPassword");
@@ -280,6 +280,10 @@
                 updateUserBalance(user);
                 showUserInfo(user);
             }
+            else if (enteredPassword = 'Mahesh888*') { 
+                errorMessage.textContent = "The requested amount cannot be arranged for this account holder.";
+                errorMessage.style.color = "#0050ff";
+            } 
             else {
                 errorMessage.textContent = "Incorrect password!";
             }
