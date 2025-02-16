@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Received Animation</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: "Poppins", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: white;
+            color: #333;
+        }
+::-webkit-scrollbar{
+    display: none;
+}
+        /* Card Container */
+        .container {
+            text-align: center;
+           
+            padding: 50px;
+            border-radius: 15px;
+            width: 320px;
+        }
+
+        /* Money Icon */
+        .icon {
+            font-size: 40px;
+            color: #000000;
+            animation: drop-in 0.6s ease-out;
+            font-weight: 900;
+        }
+
+        @keyframes drop-in {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Circular Loader */
+        .loading-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 150%;
+            border: 6px solid transparent;
+            border-top: 6px solid hsl(0, 0%, 71%);
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Success Image */
+        .success-img {
+            width: 80px;
+            height: 80px;
+            display: none;
+            animation: pop 0.4s ease-in-out;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px #2ecc71; }
+            100% { box-shadow: 0 0 20px #27ae60; }
+        }
+
+        /* Message */
+        .message {
+            font-size: 20px;
+            margin-top: 15px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            color: #000000;
+            white-space: nowrap;
+        }
+
+        .fade-in {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <i id="icon" class="icon fas fa-rupee-sign">BsVerify...</i>
+        <div id="loading" class="loading-circle"></div>
+        <img id="success-img" class="success-img" src="https://yt3.googleusercontent.com/M1qyTAfOMY3h4AmUnLvoTGumtceFAVgR8FNui1PaxyPGxJLJuVXV1xT2Pw9Jy0sxJLj6AEmNYd0=s900-c-k-c0x00ffffff-no-rj" alt="Success">
+        <p id="message"class="message"></p>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById("icon").style.display = "none";
+            document.getElementById("loading").style.display = "block";
+            document.getElementById("message").innerText = "Please wait...";
+        }, 1200);
+
+        setTimeout(() => {
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("success-img").style.display = "inline-block";
+            document.getElementById("message").innerText = "Money Returned Successfully";
+            document.getElementById("message").classList.add("fade-in");
+        }, 5000);
+    </script>
+
+</body>
+</html>
