@@ -6,6 +6,7 @@
     <title>Vintage lender</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/sbJQLxb/vt.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -254,10 +255,17 @@
     const totalReturnAmount = document.getElementById("totalReturnAmount");
     const backIcon = document.getElementById("backIcon");
 
-    togglePassword.addEventListener("click", () => {
-        passwordInput.type = passwordInput.type === "password" ? "text" : "password";
-        togglePassword.classList.toggle("fa-eye");
-        togglePassword.classList.toggle("fa-eye-slash");
+    if (!passwordInput || !submitBtn || !passwordContainer || !userInfo) {
+        console.error("One or more required elements are missing in the DOM.");
+        return;
+    }
+
+    togglePassword?.addEventListener("click", () => {
+        if (passwordInput) {
+            passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+            togglePassword.classList.toggle("fa-eye");
+            togglePassword.classList.toggle("fa-eye-slash");
+        }
     });
 
     submitBtn.addEventListener("click", () => {
@@ -273,7 +281,7 @@
         }
     });
 
-    backIcon.addEventListener("click", () => {
+    backIcon?.addEventListener("click", () => {
         userInfo.style.display = "none";
         passwordContainer.style.display = "block";
         passwordInput.value = "";
@@ -281,6 +289,11 @@
     });
 
     function updateUserBalance(user) {
+        if (!userName || !totalAmount || !daysPassed || !dailyAmount || !takenAmount || !monthsSpan || !totalReturnAmount) {
+            console.error("One or more elements to update user balance are missing.");
+            return;
+        }
+
         const currentDate = new Date();
         const planDate = new Date(user.planDate);
 
@@ -299,10 +312,15 @@
     }
 
     function showUserInfo() {
+        if (!passwordContainer || !userInfo) {
+            console.error("Password container or user info section is missing.");
+            return;
+        }
         passwordContainer.style.display = "none";
         userInfo.style.display = "block";
     }
 });
+
     </script>
     <style>
         body {
