@@ -214,111 +214,95 @@
     </div>
     
     <script>
-        const passwords = {
-            "Deepak@2": {
-                name: "Deepak",
-                planDate: "2025-1-12",
-                dailyAmount: 33.5,
-                takenAmount: 10000,
-                months: 2
-            },
-            "8400": {
-                name: "V. Sai Charan",
-                planDate: "2025-1-21",
-                dailyAmount: 0,
-                takenAmount: 10000,
-                months: 2
-            },
-             "Mahesh888*": {
-               name: "Mahesh M",
-                 planDate: "2025-2-15",
-               dailyAmount: 110,
-               takenAmount: 12000,
-                months: 1
-            },
-        };
-    
-        const passwordInput = document.getElementById("userPassword");
-        const togglePassword = document.getElementById("togglePassword");
-        const submitBtn = document.getElementById("submitBtn");
-        const errorMessage = document.getElementById("error-message");
-        const passwordContainer = document.getElementById("passwordContainer");
-        const userInfo = document.getElementById("userInfo");
-        const userName = document.getElementById("userName");
-        const totalAmount = document.getElementById("totalAmount");
-        const daysPassed = document.getElementById("daysPassed");
-        const dailyAmount = document.getElementById("dailyAmount");
-        const takenAmount = document.getElementById("takenAmount");
-        const monthsSpan = document.getElementById("months");
-        const totalReturnAmount = document.getElementById("totalReturnAmount");
-        const backIcon = document.getElementById("backIcon");
-    
-        togglePassword.addEventListener("click", () => {
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                togglePassword.classList.replace("fa-eye", "fa-eye-slash");
-            }
-            else {
-                passwordInput.type = "password";
-                togglePassword.classList.replace("fa-eye-slash", "fa-eye");
-            }
-        });
-    
-        submitBtn.addEventListener("click", () => {
-            const userInput = passwordInput.value.trim();
-            errorMessage.textContent = "";
-    
-            if (passwords[userInput]) {
-                const user = passwords[userInput];
-                updateUserBalance(user);
-                showUserInfo(user);
-            }
-            // else if (enteredPassword = 'Mahesh888*') { 
-            //     errorMessage.textContent = "The requested amount cannot be arranged for this account holder.";
-            //     errorMessage.style.color = "#0050ff";
-            // } 
-            
-            // else if (enteredPassword === "Akshith2929") { 
-            //      window.location.href = "https://mfi0212.github.io/MFI/sucess";
-            // }
-            else {
-                errorMessage.textContent = "Incorrect password!";
-            }
-        });
-    
-        backIcon.addEventListener("click", () => {
-            userInfo.style.display = "none"; // Hide user info section
-            passwordContainer.style.display = "block"; // Show password input section
-            passwordInput.value = ""; // Clear the password input
-            errorMessage.textContent = ""; // Clear any error messages
-        });
-    
-        function updateUserBalance(user) {
-            const currentDate = new Date();
-            const planDate = new Date(user.planDate);
-    
-            // Calculate the total days passed since planDate
-            const timeDiff = currentDate - planDate;
-            const daysPassedValue = Math.max(0, Math.floor(timeDiff / (1000 * 3600 * 24)));
-            
-            // Calculate total amount based on daily amount and days passed
-            const totalAmountValue = daysPassedValue * user.dailyAmount;
-            const totalReturnValue = totalAmountValue + user.takenAmount;
-    
-            // Display the calculated values
-            userName.textContent = user.name;
-            totalAmount.textContent = totalAmountValue; // Dynamic balance
-            daysPassed.textContent = daysPassedValue;
-            dailyAmount.textContent = user.dailyAmount;
-            takenAmount.textContent = user.takenAmount; // Show taken amount
-            monthsSpan.textContent = user.months; // Display the months
-            totalReturnAmount.textContent = totalReturnValue; // Display total amount to return
+        document.addEventListener("DOMContentLoaded", () => {
+    const passwords = {
+        "Deepak@2": {
+            name: "Deepak",
+            planDate: "2025-1-12",
+            dailyAmount: 33.5,
+            takenAmount: 10000,
+            months: 2
+        },
+        "8400": {
+            name: "V. Sai Charan",
+            planDate: "2025-1-21",
+            dailyAmount: 0,
+            takenAmount: 10000,
+            months: 2
+        },
+        "Mahesh888*": {
+            name: "Mahesh M",
+            planDate: "2025-2-15",
+            dailyAmount: 110,
+            takenAmount: 12000,
+            months: 1
         }
-    
-        function showUserInfo(user) {
-            passwordContainer.style.display = "none";
-            userInfo.style.display = "block";
+    };
+
+    const passwordInput = document.getElementById("userPassword");
+    const togglePassword = document.getElementById("togglePassword");
+    const submitBtn = document.getElementById("submitBtn");
+    const errorMessage = document.getElementById("error-message");
+    const passwordContainer = document.getElementById("passwordContainer");
+    const userInfo = document.getElementById("userInfo");
+    const userName = document.getElementById("userName");
+    const totalAmount = document.getElementById("totalAmount");
+    const daysPassed = document.getElementById("daysPassed");
+    const dailyAmount = document.getElementById("dailyAmount");
+    const takenAmount = document.getElementById("takenAmount");
+    const monthsSpan = document.getElementById("months");
+    const totalReturnAmount = document.getElementById("totalReturnAmount");
+    const backIcon = document.getElementById("backIcon");
+
+    togglePassword.addEventListener("click", () => {
+        passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+        togglePassword.classList.toggle("fa-eye");
+        togglePassword.classList.toggle("fa-eye-slash");
+    });
+
+    submitBtn.addEventListener("click", () => {
+        const userInput = passwordInput.value.trim();
+        errorMessage.textContent = "";
+
+        if (passwords[userInput]) {
+            const user = passwords[userInput];
+            updateUserBalance(user);
+            showUserInfo();
+        } else {
+            errorMessage.textContent = "Incorrect password!";
         }
+    });
+
+    backIcon.addEventListener("click", () => {
+        userInfo.style.display = "none";
+        passwordContainer.style.display = "block";
+        passwordInput.value = "";
+        errorMessage.textContent = "";
+    });
+
+    function updateUserBalance(user) {
+        const currentDate = new Date();
+        const planDate = new Date(user.planDate);
+
+        const timeDiff = currentDate - planDate;
+        const daysPassedValue = Math.max(0, Math.floor(timeDiff / (1000 * 3600 * 24)));
+        const totalAmountValue = daysPassedValue * user.dailyAmount;
+        const totalReturnValue = totalAmountValue + user.takenAmount;
+
+        userName.textContent = user.name;
+        totalAmount.textContent = totalAmountValue.toFixed(2);
+        daysPassed.textContent = daysPassedValue;
+        dailyAmount.textContent = user.dailyAmount;
+        takenAmount.textContent = user.takenAmount;
+        monthsSpan.textContent = user.months;
+        totalReturnAmount.textContent = totalReturnValue.toFixed(2);
+    }
+
+    function showUserInfo() {
+        passwordContainer.style.display = "none";
+        userInfo.style.display = "block";
+    }
+});
     </script>
     <style>
         body {
