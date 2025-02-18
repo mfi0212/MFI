@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Type</title>
+    <title>Mobile Selection</title>
+    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/SxwrHyLz/logo.png">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .container {
             display: flex;
@@ -16,11 +24,15 @@
             gap: 20px;
         }
         .option {
-            padding: 20px;
-            border: 1px solid #000;
-            cursor: pointer;
-            width: 100px;
-            text-align: center;
+            padding: 10px 25px;
+    border: 1px solid #000;
+    cursor: pointer;
+    width: 50%;
+    text-align: center;
+        }
+        .option:hover{
+            background-color: #000;
+            color: white;
         }
     </style>
     <script>
@@ -33,12 +45,16 @@
     </script>
 </head>
 <body>
-    <h2>Select Your Mobile Platform</h2>
+    
+    <div class="all" style="display: grid;
+        gap: 20px;max-width: 250px;">
+        <h2>Select Your Mobile Platform</h2>
     <div class="container">
         <div class="option" onclick="selectPlatform('https://mfi0212.github.io/MFI/vntglndr')">Android</div>
         <div class="option" onclick="selectPlatform('apple')">Apple</div>
     </div>
-
+    <p>NOTE: With Apple devices, We are facing an issue with Apple devices, so we created another page for apple user.</p>
+    </div>
     <script>
         function selectPlatform(platform) {
             localStorage.setItem('selectedPlatform', platform);
