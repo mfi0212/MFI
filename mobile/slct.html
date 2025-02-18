@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .option {
+            padding: 20px;
+            border: 1px solid #000;
+            cursor: pointer;
+            width: 100px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let platform = localStorage.getItem('selectedPlatform');
+            if (platform) {
+                window.location.href = platform + '.html';
+            }
+        });
+    </script>
+</head>
+<body>
+    <h2>Select Your Mobile Platform</h2>
+    <div class="container">
+        <div class="option" onclick="selectPlatform('https://mfi0212.github.io/MFI/vntglndr')">Android</div>
+        <div class="option" onclick="selectPlatform('apple')">Apple</div>
+    </div>
+
+    <script>
+        function selectPlatform(platform) {
+            localStorage.setItem('selectedPlatform', platform);
+            window.location.href = platform + '.html';
+        }
+    </script>
+</body>
+</html>
