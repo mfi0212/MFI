@@ -127,7 +127,6 @@ strong {
        function verifyUser() {
     var password = document.getElementById('password').value;
     var userDatabase = {
-        "7792": { name: "Laxman", amount: 15000, dailyInterest: 85, duration: 30 }, // 30 days duration
         "Mahesh888*": { name: "Mahesh M", amount: 12000, dailyInterest: 110, duration: 30 }, // 45 days duration
         "Deepak@2": { name: "Deepak", amount: 10000, dailyInterest: 33.5, duration: 60 }, // 45 days duration
     };
@@ -186,7 +185,7 @@ border: none;">
 <script>
     // Function to apply saved color or default
     function applySavedColor() {
-        let savedColor = localStorage.getItem("userColor") || "#0800ff"; // Default to blue if no color is saved
+        let savedColor = localStorage.getItem("userColor") || "black"; // Default to blue if no color is saved
         document.body.style.background = `linear-gradient(135deg, #000000 30%, ${savedColor} 100%)`;
         document.getElementById('colorPicker').value = savedColor;
     }
