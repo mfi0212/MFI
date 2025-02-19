@@ -127,30 +127,29 @@ strong {
        function verifyUser() {
     var password = document.getElementById('password').value;
     var userDatabase = {
-        "Mahesh888*": { name: "Mahesh M", amount: 12000, dailyInterest: 110, duration: 30 }, // 45 days duration
-        "Deepak@2": { name: "Deepak", amount: 10000, dailyInterest: 33.5, duration: 60 }, // 45 days duration
+        "Mahesh888*": { name: "Mahesh M", amount: 12000, dailyInterest: 110, duration: 1, startDate: "2025-02-15", totalInterest: 3300 }, 
+        "Deepak@2": { name: "Deepak", amount: 10000, dailyInterest: 33.5, duration: 2, startDate: "2025-01-12", totalInterest: 2000 },
     };
-    
+
     if (userDatabase[password]) {
         var user = userDatabase[password];
-        var totalInterest = user.duration * user.dailyInterest;
-        var totalAmount = user.amount + totalInterest;
-        
+
         document.getElementById('userDetails').innerHTML = `
             <h4 style="text-align: center;
             border-bottom: solid 1px #ffffff;
             margin: 15px;">Your Details</h4>
             <p><strong>Name:</strong> ${user.name}</p>
             <p><strong>Amount Borrowed:</strong> ${user.amount}rs</p>
-            <p><strong>Duration (in days):</strong> ${user.duration} days</p>
-            <p><strong>Total Interest Till Date:</strong> ${totalInterest}rs</p>
-            <p><strong>Total Amount to Return:</strong> ${totalAmount}rs</p>
+            <p><strong>Duration :</strong> ${user.duration} months</p>
+            <p><strong>Taken on:</strong> ${user.startDate}</p>
+            <p><strong>Total Interest:</strong> ${user.totalInterest}rs</p>
         `;
         document.getElementById('userDetails').style.display = 'block';
     } else {
         alert("Invalid password!");
     }
 }
+
 
 
 
