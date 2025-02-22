@@ -127,8 +127,8 @@ strong {
        function verifyUser() {
     var password = document.getElementById('password').value;
     var userDatabase = {
-        "Mahesh888*": { name: "Mahesh M", amount: 12000, dailyInterest: 110, duration: 1, startDate: "2025-02-15", totalInterest: 3300 }, 
-        "Deepak@2": { name: "Deepak", amount: 10000, dailyInterest: 33.5, duration: 2, startDate: "2025-01-12", totalInterest: 2000 },
+        "Mahesh888*": { name: "Mahesh M", amount: 12000, dailyInterest: 110, startDate: "2025-02-15", totalInterest: 3300, returnDate: "2025-03-15" }, 
+        "Deepak@2": { name: "Deepak", amount: 10000, dailyInterest: 33.5, startDate: "2025-01-12", totalInterest: 2000, returnDate: "2025-03-12" },
     };
 
     if (userDatabase[password]) {
@@ -140,8 +140,8 @@ strong {
             margin: 15px;">Your Details</h4>
             <p><strong>Name:</strong> ${user.name}</p>
             <p><strong>Amount Borrowed:</strong> ${user.amount}rs</p>
-            <p><strong>Duration :</strong> ${user.duration} months</p>
             <p><strong>Taken on:</strong> ${user.startDate}</p>
+            <p><strong>Return Date:</strong> ${user.returnDate}</p>
             <p><strong>Total Interest:</strong> ${user.totalInterest}rs</p>
         `;
         document.getElementById('userDetails').style.display = 'block';
@@ -149,6 +149,7 @@ strong {
         alert("Invalid password!");
     }
 }
+
 
 
 
