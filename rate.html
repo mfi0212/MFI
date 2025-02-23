@@ -120,8 +120,8 @@ p {
             function showPopup(amount, interest) {
                 const popup = document.getElementById('popup');
                 const content = document.getElementById('popup-content');
-                p = amount+interest;
-                content.textContent = `If you borrow ${amount}₹ for 1 month, The interest for the amount was ${interest}₹. This means you have to pay ${p}₹ totaly at the end of the month.`;
+                p = amount+interest+300;
+                content.textContent = `If you borrow ${amount}₹ for 1 month, The interest for the amount was ${interest}₹ + 300₹. This means you have to pay ${p}₹ totaly at the end of the month.`;
                 popup.style.display = 'block';
             }
         
