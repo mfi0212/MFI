@@ -5,12 +5,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>BS/MFI</title>
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-family: 'Noto Sans', Verdana, Geneva, Tahoma, sans-serif;
         }
 
         body {
@@ -59,8 +60,7 @@
 }
 .options a{
     text-decoration: none;
-    
-    color: white;
+    color: rgb(255, 255, 255);
 }
 .options a:hover{
     text-decoration: underline;
@@ -79,7 +79,16 @@
     bottom: 10px;
     right: 10px;
         }
-
+        .services{
+            padding: 10px 0px;
+        }
+.services a{
+    text-decoration: none;
+    color: black;
+}
+.services a:hover{
+    text-decoration: underline;
+}
         /* Mobile-specific adjustments */
         @media (max-width: 600px) {
             .by {
@@ -115,25 +124,30 @@
         left: 20px;
         font-size: 11px;
 }
+.options a:hover{
+    text-decoration: underline;
+    font-weight: 600;
+}
         }
     </style>
 </head>
 <body>
     <div class="all">
-        <div class="bg">BLACK SWAN</div>
+        <div class="bg"><a target="_blank" style="text-decoration: none;color: black;" href="https://blackswan19.github.io/bscrop/formbs.html">BLACK SWAN</a></div>
 
     <div class="by">
         <h5>WE<br>BS/MFI</h5>
     </div>
 
     <div class="middle">
-        <strong>BS/MFI</strong> is a lending service from <strong>Black Swan</strong>, providing easy and flexible loans for personal and business needs. We offer a simple process, fair terms, and quick access to funds. Our goal is to support your financial growth with trust and reliability.
+        <strong>BS/MFI</strong> is a lending service from <strong>BS Labels</strong>, providing easy and flexible funds for personal and business needs. We offer a simple process, fair terms, and quick access to funds. Our goal is to support your financial growth with trust and reliability.
         <br><br>
         <h3>Our Services</h3>
-        Golden<br>
-        Lendlink<br>
-        BsVerify<br>
-        Betlends
+        <div class="services">
+            <a target="_blank" href="https://mfi0212.github.io/MFI/rate">Golden</a><br>
+            <a target="_blank" href="https://mfi0212.github.io/swan/home">Lendlink</a><br>
+            <a target="_blank" href="https://blackswan19.github.io/golden/FM/themain">BsVerify</a><br>
+        </div> 
     </div>
     <div class="options">
         <a href="https://mfi0212.github.io/MFI/imlate">Im late</a>
@@ -141,7 +155,24 @@
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfnb-LLSeEUSFEnRitglGIuxi1qrgZWpus4DVunRAE9meijRA/viewform">Apply for Amount</a>
     </div>
     <div class="rights">© BS LABELS. All Rights Reserved</div>
-
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
+    </script>
 </body>
 </html>
