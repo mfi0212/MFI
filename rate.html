@@ -77,24 +77,60 @@ p {
     <div id="content-home" class="menu-content active">
         
         <div class="location">For students<br>°</div>
-        <a style="position: fixed;
-        top: 13px;
-        right: 5px;
-        font-size: 11px;
-    background: #c8c8c863;
-    padding: 4px 13px;
-        font-weight: 100;
-        border-radius: 129px;
-        color: #ffffff;z-index: 100000000;" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
-        <a style="position: fixed;
-        top: 13px;
-        right: 80px;
-        font-size: 11px;
-    background: #c8c8c863;
-    padding: 4px 13px;
-        border-radius: 129px;
-        font-weight: 100;
-        color: #ffffff;z-index: 100000000;" href="https://mfi0212.github.io/MFI/abt.hlp">Helper</a>
+        <style>
+            @keyframes color-move {
+                0% { background-position: 100% 0; }
+                100% { background-position: 0 0; }
+            }
+            
+            .helper-button {
+                position: fixed;
+    top: 10px;
+    font-size: 11px;
+    background: #ffffff4d;
+    padding: 3px 15px;
+    border-radius: 60px;
+    color: #ffffff;
+    text-decoration: none;
+    border: 3px solid transparent;
+    z-index: 100000000;
+            }
+            
+            /* This class will be added and removed dynamically */
+            .animated-border::before {
+                content: "";
+                position: absolute;
+                top: -3px;
+                left: -3px;
+                right: -3px;
+                bottom: -3px;
+                border-radius: 60px;
+                background: linear-gradient(270deg,#ffffff,#ffffffad,#ffffff4d, #ff0000,#003cff,#ea00ff,#ffffff,#ffffffad,#ffffff4d);
+                background-size: 400% 100%;
+                z-index: -1;
+                animation: color-move 3s linear infinite;
+            }
+            
+              </style>
+               <a style="right: 95px;" class="helper-button" href="https://mfi0212.github.io/MFI/abt.hlp">Helper</a>
+              <a style="right: 10px;" class="helper-button" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
+             
+                <script>
+                 document.addEventListener("DOMContentLoaded", function () {
+                let helperButton = document.querySelector(".helper-button");
+            
+                // Add the animation class on page load
+                helperButton.classList.add("animated-border");
+            
+                // Remove animation after 5 seconds
+                setTimeout(() => {
+                    helperButton.classList.remove("animated-border");
+                }, 10000);
+            });
+            
+                </script>
+
+                
         <div class="logo">
             <img id="logo" src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="">
         </div>
