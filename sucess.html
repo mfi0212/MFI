@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Money Received Animation</title>
+    <title>BsVerify...</title>
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
     <style>
         /* General Styling */
         body {
@@ -29,7 +30,7 @@
 
         /* Money Icon */
         .icon {
-            font-size: 40px;
+            font-size: 30px;
             color: #000000;
             animation: drop-in 0.6s ease-out;
             font-weight: 900;
@@ -95,24 +96,38 @@
     <div class="container">
         <i id="icon" class="icon fas fa-rupee-sign">BsVerify...</i>
         <div id="loading" class="loading-circle"></div>
-        <img id="success-img" class="success-img" src="https://yt3.googleusercontent.com/M1qyTAfOMY3h4AmUnLvoTGumtceFAVgR8FNui1PaxyPGxJLJuVXV1xT2Pw9Jy0sxJLj6AEmNYd0=s900-c-k-c0x00ffffff-no-rj" alt="Success">
+        <img id="success-img" class="success-img" style="filter: hue-rotate(57deg);" src="https://yt3.googleusercontent.com/M1qyTAfOMY3h4AmUnLvoTGumtceFAVgR8FNui1PaxyPGxJLJuVXV1xT2Pw9Jy0sxJLj6AEmNYd0=s900-c-k-c0x00ffffff-no-rj" alt="Success">
         <p id="message"class="message"></p>
     </div>
-
     <script>
         setTimeout(() => {
             document.getElementById("icon").style.display = "none";
             document.getElementById("loading").style.display = "block";
-            document.getElementById("message").innerText = "Please wait...";
-        }, 1200);
+            document.getElementById("message").innerText = "Wait...";
+        }, 2000);
 
         setTimeout(() => {
             document.getElementById("loading").style.display = "none";
             document.getElementById("success-img").style.display = "inline-block";
-            document.getElementById("message").innerText = "Money Returned Successfully";
+            document.getElementById("message").innerText = "Money returned successfully";
             document.getElementById("message").classList.add("fade-in");
         }, 5000);
-    </script>
+        document.addEventListener("DOMContentLoaded", () => {
+const customMenu = document.querySelector(".custom-menu");
 
+// Show custom menu on right-click
+document.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+    customMenu.style.display = "block";
+    customMenu.style.top = `${event.pageY}px`;
+    customMenu.style.left = `${event.pageX}px`;
+});
+
+// Hide the menu when clicking elsewhere
+document.addEventListener("click", () => {
+    customMenu.style.display = "none";
+});
+});
+    </script>
 </body>
 </html>
