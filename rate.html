@@ -136,12 +136,12 @@ p {
         </div>
         <div  class="date">Interest for different amounts</div><br>
         <div class="prices">
-            <p onclick="showPopup(10000, 2500)">Interest For 10000 is 2600</p>
-            <p onclick="showPopup(11000, 2600)">Interest For 11000 is 2700</p>
-            <p onclick="showPopup(12000, 2700)">Interest For 12000 is 2800</p>
-            <p onclick="showPopup(13000, 2800)">Interest For 13000 is 2900</p>
-            <p onclick="showPopup(14000, 2900)">Interest For 14000 is 3000</p>
-            <p onclick="showPopup(15000, 3000)">Interest For 15000 is 3100</p>
+            <p onclick="showPopup(10000, 2400)">Interest For ₹10000 is ₹2500</p>
+            <p onclick="showPopup(11000, 2500)">Interest For ₹11000 is ₹2600</p>
+            <p onclick="showPopup(12000, 2600)">Interest For ₹12000 is ₹2700</p>
+            <p onclick="showPopup(13000, 2700)">Interest For ₹13000 is ₹2800</p>
+            <p onclick="showPopup(14000, 2800)">Interest For ₹14000 is ₹2900</p>
+            <p onclick="showPopup(15000, 2900)">Interest For ₹15000 is ₹3000</p>
         </div>
         
         <div class="popupcon">
@@ -167,7 +167,7 @@ p {
                 const popup = document.getElementById('popup');
                 const content = document.getElementById('popup-content');
                 p = amount+interest+100;
-                content.textContent = `If you borrow ${amount}₹ for 1 month, The interest for the amount was ${interest}₹ + 100₹. This means you have to pay ${p}₹ totaly at the end of the month.`;
+                content.textContent = `If you borrow ${amount}₹ for 1 month, The interest for the amount was ${interest}₹ + 100₹(Website fee). This means you have to pay ${p}₹ totaly at the end of the month.`;
                 popup.style.display = 'block';
             }
         
@@ -229,12 +229,7 @@ p {
     const password = document.getElementById('password').value;
     const userDetails = document.getElementById('user-details');
     const accounts = {
-        "Deepak@1": {
-            userName: "Deepak",
-            balance: 3000,
-            startDate: "2025-1-27",
-            endDate: "2025-2-27"
-        },
+       
         "Deepak@11": {
             userName: "Deepak",
             balance: 2000,
@@ -269,7 +264,17 @@ p {
             <p>Days left: ${diffToEnd >= 0 ? diffToEnd : "End date has passed"} days</p>
             <p>Days Passed: ${diffFromStart >= 0 ? diffFromStart : "Start date is in the future"} days</p>
         `;
-    } else {
+    } 
+
+
+
+    else if(password == 'Deepak@1'){window.location.href = "https://mfi0212.github.io/MFI/sucess";}
+      
+    
+
+    
+    
+    else {
         userDetails.innerHTML = "<p style='background: transparent; color: #ff1919;'>Your offer has completed (or) Incorrect password.</p>";
     }
 }
