@@ -8,8 +8,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
     
     <style>
+         @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Red Hat Display", sans-serif;
+        }
         body {
-            font-family: "Noto Sans", sans-serif;
+            /* font-family: "Noto Sans", sans-serif; */
             background-color: #f9f9f9;
             color: #333;
             margin: 0;
@@ -23,7 +30,7 @@
             border-radius: 8px;
     padding: 20px;
     max-width: 600px;
-    line-height: 25px;
+    line-height: 35px;
         }
         h1 {
             color: #000000;
@@ -35,7 +42,6 @@
         }
         p {
             font-size: 16px;
-            line-height: 1.5;
         }
         .highlight {
             font-weight: 600;
@@ -50,6 +56,12 @@
         ul li {
             list-style: square;
             margin-bottom: 10px;
+        }
+        @media (max-width: 600px) {
+            .container {
+           
+    line-height: 25px;
+        }
         }
     </style>
 </head>
