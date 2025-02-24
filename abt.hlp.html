@@ -67,7 +67,7 @@
     transform: scaleY(0);
     transform-origin: top;
     transition: max-height 0.6s ease-in-out, opacity 0.4s ease-in-out, transform 0.4s ease-in-out, padding 0.3s ease-in-out;
-    background: #d3d3d3;
+    background: #eeeeee;
     padding: 0 10px;
     text-align: left;
 }
@@ -93,18 +93,34 @@
     text-decoration: none;
     color: #000000;
     background: transparent;
-    font-weight: 100;
+    font-weight: 600;
     border: solid 1px black;
         }
         .btn:hover {
             background: #000000;
             color: white;
         }
+        p {
+    font-size: 15px;
+    font-weight: 500;
+}
+h4 {
+    font-size: 18px;
+    color: #0048ff;
+}
         @media (max-width: 600px) {
             .container {
-           
+                font-size: 12px;  
     line-height: 30px;
         }
+        p {
+    font-size: 12px;
+    font-weight: 500;
+}
+h4 {
+    font-size: 16px;
+    color: #0048ff;
+}
         }
     </style>
     <script>
@@ -165,7 +181,7 @@
             <p class="question" onclick="toggleAnswer('q8', 'icon8')">How long does it take to receive the money after submitting the form? <span id="icon8" class="icon">+</span></p>
             <p id="q8" class="answer">It may take a few hours to gather the money.</p>
 
-            <p class="question" onclick="toggleAnswer('q9', 'icon9')">How can i get the money from you? <span id="icon9" class="icon">+</span></p>
+            <p class="question" onclick="toggleAnswer('q9', 'icon9')">How can i get the money from services? <span id="icon9" class="icon">+</span></p>
             <p id="q9" class="answer">Before applying for a amount, you must be close to one of us our authorized distributors. If you are a new, we cannot offer a high amount initially.</p>
 
         </div>
