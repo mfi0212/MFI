@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BS/MFI Hepler</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    
+    <style>
+        body {
+            font-family: "Noto Sans", sans-serif;
+            text-align: center;
+            background: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 8px;
+        }
+        h1, h2 {
+            color: #444;
+        }
+        .service, .faq {
+            margin: 20px 0;
+    padding: 15px;
+    background: #bcbcbc2b;
+    border-radius: 5px;
+        }
+        .question {
+            cursor: pointer;
+            color: #0048ff;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 1s;
+            text-align: left;
+        }
+        .question:hover {
+            background: #000000;
+            color: white;
+        }
+        
+        .question .icon {
+            font-size: 25px;
+    transition: transform 1s;
+        }
+        .answer {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: max-height 0.6s ease-in-out, opacity 0.4s ease-in-out, transform 0.4s ease-in-out, padding 0.3s ease-in-out;
+    background: #d3d3d3;
+    padding: 0 10px;
+    text-align: left;
+}
+
+.show-answer {
+    max-height: 500px;
+    opacity: 1;
+    transform: scaleY(1);
+    padding: 10px;
+    text-align: left;
+}
+
+.rotate {
+    transform: rotate(225deg);
+    transition: transform 1s ease;
+}
+
+
+        .btn {
+            display: inline-block;
+    padding: 10px 15px;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #000000;
+    background: transparent;
+    font-weight: 100;
+    border: solid 1px black;
+        }
+        .btn:hover {
+            background: #000000;
+            color: white;
+        }
+    </style>
+    <script>
+        function toggleAnswer(id, iconId) {
+            var answer = document.getElementById(id);
+            var icon = document.getElementById(iconId);
+            
+            if (answer.classList.contains("show-answer")) {
+                answer.classList.remove("show-answer");
+                icon.classList.remove("rotate");
+            } else {
+                answer.classList.add("show-answer");
+                icon.classList.add("rotate");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h6>Welcome to</h6> 
+        <h1 style="#0048ff">BS/MFI</h1>
+        <div class="service">
+            <h2>About Us</h2>
+            <p>BS/MFI Lending Platform makes it easy for people and businesses to get the money they need. We offer flexible repayment plans and keep things simple and transparent.</p>
+        </div>
+
+        <div class="faq">
+            <h2>FAQs</h2>
+            <p class="question" onclick="toggleAnswer('q1', 'icon1')">How much can I borrow from LendLink service? <span id="icon1" class="icon">+</span></p>
+            <p id="q1" class="answer">You can borrow below 10,000₹ from Lendlink service.</p>
+
+            <p class="question" onclick="toggleAnswer('q3', 'icon3')">How much can I borrow in Golden service? <span id="icon3" class="icon">+</span></p>
+            <p id="q3" class="answer">You can borrow above 10,000₹ to 15,000₹ from Golden service.</p>
+            
+            <p class="question" onclick="toggleAnswer('q4', 'icon4')">When can I borrow BSVerify Emergency Fund? <span id="icon4" class="icon">+</span></p>
+            <p id="q4" class="answer">You can borrow amount when it is emergency financial needs.</p>
+            
+            <p class="question" onclick="toggleAnswer('q7', 'icon7')">How long should I borrow a amount for? <span id="icon7" class="icon">+</span></p>
+            <p id="q7" class="answer"> Barrower should take money for atleast 15 days.</p>
+
+            <p class="question" onclick="toggleAnswer('q2', 'icon2')">How to apply for a loan? <span id="icon2" class="icon">+</span></p>
+            <p id="q2" class="answer">On the homepage, click the 'Take Money' option and fill out the form.</p>
+            
+            <p class="question" onclick="toggleAnswer('q5', 'icon5')">What if I'm late in returning the amount? <span id="icon5" class="icon">+</span></p>
+            <p id="q5" class="answer">A penalty interest will be added to your balance. <a style="text-decoration: none;color: #0048ff;" href="https://mfi0212.github.io/MFI/imlate">Learn more..</a></p>
+            
+            <p class="question" onclick="toggleAnswer('q6', 'icon6')">Where can I see my interest details? <span id="icon6" class="icon">+</span></p>
+            <p id="q6" class="answer">You can check your interest details in the 'My Account' section.</p>
+
+            <p class="question" onclick="toggleAnswer('q8', 'icon8')">How long does it take to receive the money after submitting the form? <span id="icon8" class="icon">+</span></p>
+            <p id="q8" class="answer">It may take a few hours to gather the money.</p>
+
+        </div>
+        <div class="service">
+            <h2>Im facing a problem</h2>
+            <p>If you're facing any problems, try filling out the form.</p>
+            <a href="https://forms.gle/RzTJ8W9bwmm8DVj2A" class="btn">Fill the form</a>
+        </div>
+    </div>
+    <script>
+        let openAnswer = null;
+        let openIcon = null;
+    
+        function toggleAnswer(id, iconId) {
+            var answer = document.getElementById(id);
+            var icon = document.getElementById(iconId);
+    
+            if (openAnswer && openAnswer !== answer) {
+                openAnswer.classList.remove("show-answer");
+                openIcon.classList.remove("rotate");
+            }
+    
+            if (answer.classList.contains("show-answer")) {
+                answer.classList.remove("show-answer");
+                icon.classList.remove("rotate");
+                openAnswer = null;
+                openIcon = null;
+            } else {
+                answer.classList.add("show-answer");
+                icon.classList.add("rotate");
+                openAnswer = answer;
+                openIcon = icon;
+            }
+        }
+    </script>
+    
+</body>
+</html>
