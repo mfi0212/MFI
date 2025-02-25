@@ -140,12 +140,12 @@ p {
         </div>
         <div  class="date">Interest for different amounts</div><br>
         <div class="prices">
-            <p onclick="showPopup(10000, 2400)">Interest For ₹10000 is ₹2500</p>
-            <p onclick="showPopup(11000, 2500)">Interest For ₹11000 is ₹2600</p>
-            <p onclick="showPopup(12000, 2600)">Interest For ₹12000 is ₹2700</p>
-            <p onclick="showPopup(13000, 2700)">Interest For ₹13000 is ₹2800</p>
-            <p onclick="showPopup(14000, 2800)">Interest For ₹14000 is ₹2900</p>
-            <p onclick="showPopup(15000, 2900)">Interest For ₹15000 is ₹3000</p>
+            <p onclick="showPopup(10000, 2000)">Interest For ₹10000 is ₹2300</p>
+            <p onclick="showPopup(11000, 2100)">Interest For ₹11000 is ₹2400</p>
+            <p onclick="showPopup(12000, 2200)">Interest For ₹12000 is ₹2500</p>
+            <p onclick="showPopup(13000, 2300)">Interest For ₹13000 is ₹2600</p>
+            <p onclick="showPopup(14000, 2400)">Interest For ₹14000 is ₹2700</p>
+            <p onclick="showPopup(15000, 2500)">Interest For ₹15000 is ₹2800</p>
         </div>
         
         <div class="popupcon">
@@ -170,8 +170,8 @@ p {
             function showPopup(amount, interest) {
                 const popup = document.getElementById('popup');
                 const content = document.getElementById('popup-content');
-                p = amount+interest+100;
-                content.textContent = `If you borrow ${amount}₹ for 1 month, The interest for the amount was ${interest}₹ + 100₹(Website fee). This means you have to pay ${p}₹ totaly at the end of the month.`;
+                p = amount+interest+300;
+                content.textContent = `If you borrow ${amount}₹ for 1 month, The interest for the amount was ${interest}₹ + 300₹. This means you have to pay ${p}₹ totaly at the end of the month.`;
                 popup.style.display = 'block';
             }
         
@@ -247,7 +247,7 @@ p {
             userName: "Deepak",
             balance: 3000,
             startDate: "2025-1-27",
-            endDate: "2025-2-27"
+            endDate: "2025-2-26"
         },
         "Deepak@11": {
             userName: "Deepak",
