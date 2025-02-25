@@ -65,6 +65,13 @@ p {
             z-index: 100000;
             font-weight: 200;
         }
+        .bottom a{
+                
+                text-decoration: none;
+            }
+            .bottom a:hover{
+                text-decoration: underline;
+                        }
     </style>
 </head>
 
@@ -75,7 +82,11 @@ p {
 <div class="container">
     <div id="content-home" class="menu-content active">
         
-        <div class="location">For students<br>°</div>
+        <div class="location"><div class="bottom">
+            <a style="font-size: 12px;
+            color: #ffffff;
+            z-index: 100000000;" href="https://mfi0212.github.io/swan/paymine">Paymine</a>
+         </div></div>
         <style>
             @keyframes color-move {
                 0% { background-position: 100% 0; }
@@ -109,16 +120,9 @@ p {
                 z-index: -1;
                 animation: color-move 3s linear infinite;
             }
-            .bottom a{
-                
-                background: #ffffff2e;
-            }
-            .bottom a:hover{
-                background-color: #003cff;
-                        }
               </style>
-               <a style="right: 95px;" class="helper-button" href="https://mfi0212.github.io/MFI/abt.hlp">Helper</a>
-              <a style="right: 10px;" class="helper-button" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
+               <a style="right: 90px;" class="helper-button" href="https://mfi0212.github.io/MFI/abt.hlp">Helper</a>
+              <a style="right: 5px;" class="helper-button" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
                 <script>
                  document.addEventListener("DOMContentLoaded", function () {
                 let helperButton = document.querySelector(".helper-button");
@@ -182,17 +186,8 @@ p {
         </script>
         
         <div class="price">
-            <p>You can borrow amounts from ₹10,000 to ₹15,000. <br><br><span style="color: #003cff;
+            <p>You can borrow amounts from ₹10,000 to ₹15,000. <br><br><span style="color: #00ddff;
     font-weight: 500;">Note: The borrower must pay the interest before taking the funds.</span></p>
-                <div class="bottom" style="margin: 10px;">
-                    <a style="font-size: 12px;
-                    color: #ffffff;
-                    text-decoration: none;
-                    z-index: 100000000;
-                    margin: 10px;
-                    padding: 6px 15px;
-                    border-radius: 1000px;" href="https://mfi0212.github.io/swan/paymine">Paymine</a>
-                 </div>
         </div>
     </div>
 
@@ -299,22 +294,22 @@ p {
 }
 </script>
 <script>
-    function applyGlowEffect() {
-        const now = new Date();
-        const hours = now.getHours();
-        const logo = document.getElementById("logo");
-        const mfiText = document.getElementById("mfi");
+    // function applyGlowEffect() {
+    //     const now = new Date();
+    //     const hours = now.getHours();
+    //     const logo = document.getElementById("logo");
+    //     const mfiText = document.getElementById("mfi");
 
-        if (hours >= 20 || hours < 4) {  // 8 PM - 4 AM
-            logo.classList.add("glow");
-            mfiText.style.color = "rgb(0, 42, 255)"; // Red text at night
-            mfiText.innerHTML = "From BS/MFI";
-        } else {
-            logo.classList.remove("glow");
-            mfiText.style.color = "#808080"; // Gray text during the day
-            mfiText.innerHTML = "From BS/MF";
-        }
-    }
+    //     if (hours >= 20 || hours < 4) {  // 8 PM - 4 AM
+    //         logo.classList.add("glow");
+    //         mfiText.style.color = "rgb(0, 42, 255)"; // Red text at night
+    //         mfiText.innerHTML = "From BS/MFI";
+    //     } else {
+    //         logo.classList.remove("glow");
+    //         mfiText.style.color = "#808080"; // Gray text during the day
+    //         mfiText.innerHTML = "From BS/MF";
+    //     }
+    // }
 
     // Apply glow on load and check every minute
     applyGlowEffect();
