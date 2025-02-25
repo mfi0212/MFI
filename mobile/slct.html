@@ -64,12 +64,13 @@
     <div class="all" style="display: grid;
         gap: 20px;max-width: 250px;">
         <h2>Select Your Mobile Platform</h2>
-    <div class="container">
-        <div class="option" onclick="selectPlatform('https://mfi0212.github.io/MFI/vntglndr')">Android</div>
-        <div class="option" onclick="selectPlatform('apple')">Apple</div>
+        <div class="container">
+            <div class="option" onclick="selectPlatform('https://mfi0212.github.io/MFI/vntglndr')">Android</div>
+            <div class="option" onclick="selectPlatform('apple')">Apple</div>
+        </div>
+        <p style="font-size: 12px;"><strong>NOTICE </strong><br> With Apple devices, We're having trouble displaying details properly for Apple users, so we created a separate page just for them.</p>
     </div>
-    <p>NOTE: With Apple devices, We're having trouble displaying details properly for Apple users, so we created a separate page just for them.</p>
-    </div>
+    
     <script>
         function selectPlatform(platform) {
             localStorage.setItem('selectedPlatform', platform);
