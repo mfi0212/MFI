@@ -65,13 +65,13 @@
     right: 1em;
     }
     .location {
-        font-size: 15px;
-    font-weight: 100;
-    position: fixed;
-    top: 15px;
-    color: #ffffff63;
-    left: 15px;
-    z-index: 100000000;
+        font-size: 14px;
+        font-weight: 100;
+        position: fixed;
+        top: 15px;
+        color: #ffffffc9;
+        left: 15px;
+        z-index: 100000000;
     }
 
     .temperature {
