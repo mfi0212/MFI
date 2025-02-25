@@ -384,22 +384,22 @@
     </div>
 
     <script>
-        function applyGlowEffect() {
-            const now = new Date();
-            const hours = now.getHours();
-            const logo = document.getElementById("logo");
-            const mfiText = document.getElementById("mfi");
+        // function applyGlowEffect() {
+        //     const now = new Date();
+        //     const hours = now.getHours();
+        //     const logo = document.getElementById("logo");
+        //     const mfiText = document.getElementById("mfi");
 
-            if (hours >= 20 || hours < 4) {  // 8 PM - 4 AM
-                logo.classList.add("glow");
-                mfiText.style.color = "rgb(0, 42, 255)"; // Red text at night
-                mfiText.innerHTML = "From BS/MFI";
-            } else {
-                logo.classList.remove("glow");
-                mfiText.style.color = "#808080"; // Gray text during the day
-                mfiText.innerHTML = "From BS/MF";
-            }
-        }
+        //     if (hours >= 20 || hours < 4) {  // 8 PM - 4 AM
+        //         logo.classList.add("glow");
+        //         mfiText.style.color = "rgb(0, 42, 255)"; // Red text at night
+        //         mfiText.innerHTML = "From BS/MFI";
+        //     } else {
+        //         logo.classList.remove("glow");
+        //         mfiText.style.color = "#808080"; // Gray text during the day
+        //         mfiText.innerHTML = "From BS/MF";
+        //     }
+        // }
 
         // Apply glow on load and check every minute
         applyGlowEffect();
