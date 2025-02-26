@@ -66,9 +66,9 @@
     }
     .location {
         position: fixed;
-        top: 10px;
-        color: #ffffffc9;
-        left: 15px;
+    top: 5px;
+    color: #ffffffc9;
+    left: 0px;
     }
 
     .temperature {
