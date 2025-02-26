@@ -309,16 +309,13 @@
     font-size: 20px;
     z-index: 1000;
     top: 15px;">
-        <a href="mfiplans.html"><img style="position: fixed;
+        <img style="position: fixed;
             right: 10px;
             width: 10%;
             " src="https://framerusercontent.com/images/YpitNuObeF9iU8BVZHfVm7CPhc.png?scale-down-to=512" alt="" width="20%"></a>
     </div>
-    <!-- <div class="mfilogo">
-        <a style="color: rgb(206, 206, 206);" href="mfical.html"><i class="fa-solid fa-calculator"></i> Calculator</a>
-    </div> -->
+   
     <div class="logoimg">
-        <!-- <img src="https://i.ibb.co/dj4tZM8/logo.png" alt=""> -->
         <img src="intrologo.png" alt="">
     </div>
     <div class="input">
@@ -452,7 +449,6 @@ menuToggle.addEventListener("click", () => {
     }
 });
 
-// Hide sidebar when clicking outside (optional for mobile)
 window.addEventListener("click", (e) => {
     if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
         toggleSidebar(false); // Hide sidebar
