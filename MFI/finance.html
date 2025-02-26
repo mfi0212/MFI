@@ -194,7 +194,6 @@ img {
     </div> -->
     <img src="flogo.png" alt="Logo">
     <div class="account">
-        <a onclick="alert('We redirecting you to the application form.')" href="https://forms.gle/mzoKvVixbbxo55XJ7"><button>Available offer</button></a>
         <a href="" onclick="checkPassword()"><button>My Account</button></a>
     </div>
     <div class="container">
@@ -266,17 +265,18 @@ img {
             const account = accounts[password];
             if (account) {
                 showAlert(account);
-            } else if(password === "1789"){
-                alert("OFFER APPLIED DETAILS\n\n\nAccount Owner: Chinna.\n\nAmount Taken: 5,000\n\nTaken on: 12 Dec 2024\n\nOffer valid for: 2 Months.\n\nAmount Return on: 26 Feb 2025\n\n")
-                alert("\nThank you for using finance.")
-            }
-            else if(password === "1389"){
-                alert("\nAccount Owner: Phani(Plus member).")
-                alert("OFFER APPLIED DETAILS\n\n\nAccount Owner: Phani.\n\nAmount Taken: 5,000\n\nTaken on: 25 Dec 2024\n\nOffer valid for: 2 Months.\n\nAmount Return on: 16 Jan 2025\n\n")
-                alert("\nThank you for using finance.")
-            }
+            } 
+            // else if(password === "1789"){
+            //     alert("OFFER APPLIED DETAILS\n\n\nAccount Owner: Chinna.\n\nAmount Taken: 5,000\n\nTaken on: 12 Dec 2024\n\nOffer valid for: 2 Months.\n\nAmount Return on: 26 Feb 2025\n\n")
+            //     alert("\nThank you for using finance.")
+            // }
+            // else if(password === "1389"){
+            //     alert("\nAccount Owner: Phani(Plus member).")
+            //     alert("OFFER APPLIED DETAILS\n\n\nAccount Owner: Phani.\n\nAmount Taken: 5,000\n\nTaken on: 25 Dec 2024\n\nOffer valid for: 2 Months.\n\nAmount Return on: 16 Jan 2025\n\n")
+            //     alert("\nThank you for using finance.")
+            // }
             else {
-                alert("\nInvalid code..!");
+                alert("\nDid not taken any amount (or) Invalid password!");
             }
         }
     </script>
