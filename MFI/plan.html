@@ -7,14 +7,16 @@
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/84x2Bk3/BS.png">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+         @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
         
+        * {
+            font-family: "Red Hat Display", sans-serif;
+        }
         * { 
             margin: 0; 
             padding: 0; 
             box-sizing: border-box; 
-            font-family: 'Poppins', sans-serif; 
-            letter-spacing: 0.2px;
+            letter-spacing: 0.5px;
         }
 
         /* Default theme based on system preference */
@@ -54,7 +56,7 @@
         }
 
         .plan h2 {
-            font-size: 17px;
+            font-size: 16px;
     color: #ffffff;
     font-weight: 100;
         }
@@ -145,6 +147,7 @@ h2{
 }
         .modal-content p {
             font-size: 14px;
+            color: #0048ff;
             line-height: 25px;
         }
 
@@ -172,11 +175,11 @@ h2{
         /* Dark theme styles */
         @media (prefers-color-scheme: dark) {
             body {
-                background-color: #1a1a1a;
+                background-color: #101010;
                 color: white;
             }
             .header {
-                background-color: #1a1a1a;
+                background-color: #101010;
                 color: white;
             }
             .plan {
@@ -184,8 +187,10 @@ h2{
                 border: solid 1px #3f3f3f;
             }
             .modal-content {
-                background-color: #282828;
-            }
+        color: white;
+        background-color: #1e1e1e;
+    }
+    
         }
 
         /* Light theme styles */
@@ -203,7 +208,8 @@ h2{
                 border: solid 1px #dddddd;
             }
             .modal-content {
-                background-color: #f0f0f0;
+                background-color: #ffffff;
+                color: black;
             }
             .plan .features {
     
@@ -297,8 +303,7 @@ h2{
             <span class="close" onclick="closeModal()">&times;</span>
             <h2 style="    justify-content: flex-start;
 ">With plan</h2>
-            <p style="    color: gray;
-">Submit your details in the form to active the subcription.</p>
+            <p>Submit your details in the form to active the subcription.</p>
             <a href="https://forms.gle/AU5ZnXJAGatFxcuN6"><button style="padding: 10px 25px; border: none; border-radius: 5px;">Fill Now</button></a>
         </div>
     </div>
