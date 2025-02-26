@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plans</title>
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/84x2Bk3/BS.png">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Poppins', sans-serif; 
+            letter-spacing: 0.2px;
+        }
+
+        /* Default theme based on system preference */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        .header {
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 12px;
+            border-bottom: solid 1px #cdcdcd;
+        }
+
+        .plans-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 50px;
+            font-size: 13px;
+        }
+
+        .plan {
+            background-color: #1f1f1f3d;
+            padding: 30px;
+            border-radius: 15px;
+            width: 340px;
+            text-align: center;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+            border: solid 1px #6d6d6d;
+        }
+
+        .plan h2 {
+            font-size: 30px;
+            color: #ffffff;
+            border-bottom: solid 1px #ffffff;
+            font-weight: 500;
+        }
+
+        .plan p {
+            font-size: 16px;
+            color: #e2e2e2;
+        }
+
+        .plan .price {
+            font-size: 24px;
+            color: rgb(0 255 202);
+            margin: 20px 0;
+        }
+
+        .plan .features {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            color: #ffffff;
+        }
+
+        .plan .features li {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .plan .btn:hover {
+            background-color: #45a049;
+        }
+
+        .current-plan {
+            background-color: #44444475;
+            padding: 10px 20px;
+            margin-top: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            color: white;
+            border: none;
+            width: 98%;
+        }
+
+        .btn {
+            background-color: #161616;
+            padding: 10px;
+            color: white;
+            border: none;
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+
+        .current-plan button:hover {
+            background-color: #444;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.76);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #282828;
+            margin: 55% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            color: white;
+            line-height: 50px;
+        }
+h2{
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+}
+        .modal-content p {
+            font-size: 14px;
+            line-height: 25px;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 30px;
+            font-weight: 100;
+            float: right;
+            cursor: pointer;
+            top: -22px;
+            position: relative;
+            left: 10px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Dark theme styles */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1a1a;
+                color: white;
+            }
+            .header {
+                background-color: #1a1a1a;
+                color: white;
+            }
+            .plan {
+                background-color: #1f1f1f3d;
+                border: solid 1px #3f3f3f;
+            }
+            .modal-content {
+                background-color: #282828;
+            }
+        }
+
+        /* Light theme styles */
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: #ffffff;
+                color: black;
+            }
+            .header {
+                background-color: #f9f9f9;
+                color: black;
+            }
+            .plan {
+                background-color: #f5f5f5;
+                border: solid 1px #dddddd;
+            }
+            .modal-content {
+                background-color: #f0f0f0;
+            }
+            .plan .features {
+    
+    color: #000000;}
+    .plan h2 {
+    color: #000000;}
+    .plan .price {
+    font-size: 24px;
+    color: rgb(0 176 53);
+    margin: 20px 0;
+}
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .plans-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        /* Popup container */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .popup .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <script src="noright.js"></script>
+    <div class="header">
+        <h1>Upgrade Your Plan</h1>
+        <p>Choose the plan that fits your needs</p>
+    </div>
+
+    <div class="plans-container">
+        <div class="plan">
+            <h2>Gold <img src="https://framerusercontent.com/images/YFix4Deko7x1GshIpktU9HpQTqw.png?scale-down-to=512" alt="" width="12%"></h2>
+            <div class="price">89/rs</div>
+            <ul class="features">
+                <li>Account limit : 5,000₹</li>
+                <li>Finance amount : 0₹</li>
+                <li>Interest for amount : 4.5%</li>
+                <li>Fine : 50₹ per day</li>
+                <li>Delay : Not allowed</li>
+                <li>Services : MFI</li>
+                <li style="color: #595959;
+    font-size: 11px;">In this plan, if the interest cross more then 4500₹. By this subcription plan you can get 1000 off from the interest.</li>
+            </ul>
+            <div class="current-plan" onclick="openModal()">Get this plan</div>
+        </div>
+
+        <!-- Paid Plan -->
+        <div class="plan">
+            <h2>Silver <img src="https://framerusercontent.com/images/YpitNuObeF9iU8BVZHfVm7CPhc.png?scale-down-to=512" alt="" width="12%"></h2>
+            <div class="price">380/rs</div>
+            <ul class="features">
+                <li>Account limit: 10,000₹</li>
+                <li>Finance amount : 1000₹ - 3000₹</li>
+                <li>Interest in amount : 3.5%</li>
+                <li>Fine : 25₹ per day</li>
+                <li>Delay : Allowed</li>
+                <li>Services : MFI, Finance, MFI Premium</li>
+                <li  style="color: #595959;
+    font-size: 11px;">In this plan, if the interest cross more then 6500₹. By this subcription plan you can get 2000 off from the interest.</li>
+            </ul>
+            <button class="current-plan" onclick="openModal()">Get this plan</button>
+        </div>
+        <div class="plan">
+            <h2>Platinum <img src="https://framerusercontent.com/images/MXZbe9Gs4npzh6RX2U4qvdXUs.png?scale-down-to=512" alt="" width="12%"></h2>
+            <div class="price">1499/rs</div>
+            <ul class="features">
+                <li>Account limit : 20,000₹</li>
+                <li>Finance amount : 1000₹ - 5000₹</li>
+                <li>Interest in amount : 0%</li>
+                <li>Fine : 0₹</li>
+                <li>Delay : Allowed</li>
+                <li>Services : MFI, Mterprice, MFI Premium</li>
+                <li style="color: #595959;
+    font-size: 11px;">In this plan, This subcription plans contains offer, When you take 4 month subcription you will get 2 months free, When you take 8 month subcription you will get 4 months free.</li>
+
+            <button class="current-plan" onclick="openModal()">Get this plan</button>
+        </div>
+    </div>
+
+    <!-- Modal for Free Plan Upgrade -->
+    <div id="upgradeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 style="    justify-content: flex-start;
+">With plan</h2>
+            <p style="    color: gray;
+">Submit your details in the form to active the subcription.</p>
+            <a href="conform.html"><button style="padding: 10px 25px; border: none; border-radius: 5px;">Fill Now</button></a>
+        </div>
+    </div>
+
+    <script>
+        // Function to open modal
+        function openModal() {
+            document.getElementById('upgradeModal').style.display = "block";
+        }
+
+        // Function to close modal
+        function closeModal() {
+            document.getElementById('upgradeModal').style.display = "none";
+        }
+
+        // Close modal if clicked outside of it
+        window.onclick = function(event) {
+            var modal = document.getElementById('upgradeModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
