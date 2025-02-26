@@ -4,317 +4,486 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MFI</title>
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/QMjCdHQ/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
-        
-        * {
-            font-family: "Red Hat Display", sans-serif;
-        }
-        a{
-            text-decoration: none;
-        }
-        body {
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 125vh; 
-            margin: 0; 
-            text-align: center;
-        }
-        @media (max-width: 600px) {
-            img {
-                position: fixed;
-                width: 71%;
-                bottom: 65%;
-                z-index: -1;
-                border-radius: 10px;
-            }
-            a {
-                color: white;
-            }
-            .menu{
-                display: flex;
-                position: fixed;
-                top: 660px;
-                gap: 45px;
-                font-size: 20px;
-                border: solid 1px rgb(99 99 99);
-                padding: 10px;
-                border-radius: 10px;
-            }
-        }
-        
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
+</head>
+<style>
+     @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+* {
+    font-family: "Red Hat Display", sans-serif;
+    /* color: #1f1f1f; */
+}
+    body {
+        font-family: "Noto Sans", sans-serif;
+        display: block;
+        color: #004cff; /* Default dark blue text color */
+        letter-spacing: 0.5px;
+    }
+    a {
+        text-decoration: none;
+        color: #004cff; /* Links in dark blue */
+    }
+
+    /* Dark theme *
+
+    /* Mobile styles */
+    @media (max-width: 480px) {
+        .logoimg img {
             position: fixed;
-            top: 14em;
-            display: none; /* Initially hide the menu */
+        left: 15%;
+        top: 6%;
+        width: 69%;
+        border-radius: 11px;
+        filter: drop-shadow(2px 4px 6px #00000054);
         }
-
-        li {
-            margin: 21px 0px;
-            width: 290px;
-        }
-
-        ul a {
-            display: block;
-            text-decoration: none;
-            font-size: 15px;
-            padding: 10px 30px;
-            border-radius: 12px;
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        ul a:hover {
-            transform: scale(1.05);
-        }
-
-        .p img {
-            width: 12%;
+        .logoimg {
+            padding: 71px 60px;
             position: fixed;
-            bottom: 10px;
-            right: 10px;
-            border: solid 2px gray;
-            border-radius: 8px;
-        }
-
-        #passwordContainer {
-            display: block;
-            text-align: center;
-            margin-top: 50px;
-            z-index: 1;
-            background: black;
-            padding: 132px;
-            position: fixed;
-            height: 100%;
+            top: 0px;
+            left: 0px;
             width: 100%;
+            height: 10%;
+            /* background: #221010; */
         }
-        button{
-            background-color: transparent;
-            border: none;
-        }
-        #userPassword {
-            padding: 10px;
-            width: 300px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            margin-bottom: 10px;
+        .input {
             outline: none;
-            transition: border-color 0.3s;
+        width: 50%;
+        position: fixed;
+        padding: 5px 15px;
+        border: solid 1px #3c3c3c;
+        border-radius: 51px;
+        font-size: 16px;
+        left: 20%;
+        text-align: center;
+        top: 13em;
         }
+        ::placeholder {
+            color: rgba(0, 51, 102, 0.6); /* Adjusted placeholder color */
+        }
+        .option {
+            position: absolute;
+            right: 8px;
+        }
+        .option .fa-solid, .fas {
+            font-weight: 900;
+            z-index: 1;
+            position: relative;
+            padding: 12px 12px;
+            border-radius: 100px;
+            font-size: 18px;
+        }
+        p {
+            position: fixed;
+            z-index: 0;
+        top: 21.5em;
+        font-size: 13px;
+        padding: 20px 13px;
+        text-align: center;
+        width: 85%;
+        border-radius: 49px;
+        left: 4%;
+        background: rgb(33 33 33);
+        color: white;
+        }
+        .mfilogo {
+            position: absolute;
+            left: 0px;
+        z-index: 2;
+        top: 0px;
+            font-size: 15px;
+            padding: 10px 8px;
+            border-radius: 43px;
+        }
+        .options {
+            position: absolute;
+            display: grid;
+            text-align: center;
+            width: 95.5%;
+        bottom: 7em;
+        font-size: 20px;
 
-        #userPassword:focus {
-            border-color: #007bff;
         }
-        button {
-            border: none;
-    color: white;
-    background: #3c3c3c;
-    padding: 14px;
-    border-radius: 30px;
-    padding: 11px 25px;
-    font-size: 14px;
+        .options a{
+            padding: 15px 11px;
+            font-weight: 600;
+        }
+        .grant {
+            position: fixed;
+            text-align: center;
+            width: 100%;
+            bottom: 0em;
+            padding: 21px 11px;
+            left: 0;
+        }
+        .grant a {
+            padding: 3px 35px;
+            position: relative;
+            bottom: 2px;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.836);
+            z-index: 1000000;
+        }
+        .modal-content {
+            margin: 80% auto;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        width: 75%;
+        }
+        .close {
+            color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: 400;
+        margin-top: -15px;
+        position: fixed;
+        z-index: 10000;
+        }
+        .close:hover,
+        .close:focus {
+            color: #ff0000;
+            text-decoration: none;
+        }
+        /* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -1000px; /* Hidden by default */
+    width: 250px;
+    height: 100%;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    overflow: hidden;
+    transition: 0.3s;
+    z-index: 1000;
+    box-shadow: 12px 0 150px rgb(0 0 0);
 }
 
-        #error-message {
-            color: red;
-            margin-top: 20px;
-            font-size: 14px;
-            text-align: center;
-        }
-        
-        /* Light Theme */
-        @media (prefers-color-scheme: light) {
-            body {
-                background-color: #f4f4f9;
-                color: #003366;
-            }
-            ul a {
-                background-color: #004cff;
-                color: #ffffff;
-                border: solid 1px #004cff;
-            }
-            a{    
-                background: #ffffff00;
-                color: black;
-            }
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 65px;
+}
 
-    h1{
-        color: black;
+.sidebar ul li {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgb(190 190 190 / 48%);
+}
+
+.sidebar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+}
+
+.menu-toggle {
+    position: fixed;
+        top: 15px;
+        left: 15px;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 1001;
+}
+
+        .modal-content input {
+            padding: 8px;
+        margin: 20px 0px 20px 0px;
+        border-radius: 5px;
+        border: none;
+        font-size: 15px;
+        outline: none;
+        text-align: left;
+        }
+        .modal-content button {
+            background: #004cff;
+            color: white;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .modal-content button:hover {
+            background: #003bbf;
+            color: #ffffff;
+        }
+        svg.icon-xl-heavy {
+    color: #000000;
+    padding: 1px 2px;
+    border-radius: 10px;
+}
     }
-            ul p{
-                color: black;
-            }
-            ul a:hover, ul a:active {
-                background-color: #003bbf;
-                color: #ffffff;
-            }
-            .menu a{
-                color: #494949;
-            }
-            #passwordContainer {
-                background: #ffffff;
-            }
-            input{
-                background-color: #edf2fa;
-                color: rgb(0, 0, 0);
-            }
-            button{
-                background-color: #d8d8d8;
-                color: black;
-            }
-
+    @media (prefers-color-scheme: dark) {
+        body {
+            background-color: #0f0f0f; /* Dark background */
+            color: #e0e0e0; /* Light text */
         }
-
-        /* Dark Theme */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #0f0f0f;
-                color: #ffffff;
-            }
-            ul a {
-                background-color: #004cff;
-                color: #ffffff;
-                border: solid 1px #004cff;
-            }
-            ul a:hover, ul a:active {
-                background-color: #003bbf;
-                color: #ffffff;
-            }
-            h1{
-                color: white;
-            }
-            ul a:active {
-                color: #1f1f1f;
-            }
-            #passwordContainer {
-                background: #0f0f0f;
-            }
-            input{
-                background: #282828;
-                color: white;
-            }
-            button{
-                background: #272727;
-            }
+        .input, .options a, .grant, .modal-content {
+            background-color: #161616; /* Dark theme components */
         }
+        a {
+            color: #004cff; /* Light blue for links in dark theme */
+        }
+        svg.icon-xl-heavy {
+    color: #b9b9b9;
+    padding: 1px 2px;
+    border-radius: 10px;
+}
+        .sidebar {
+    position: fixed;
+    top: 0;
+    left: -1000px; /* Hidden by default */
+    width: 250px;
+    height: 100%;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    overflow: hidden;
+    transition: 0.3s;
+    z-index: 1000;
+    box-shadow: 2px 0 15px rgb(0 0 0);
+}
+.sidebar ul li a {
+        color: #ffffff;
+}
+    }
+     /* Light theme */
+     @media (prefers-color-scheme: light) {
+        body {
+            background-color: #f4f4f9; /* Light background */
+            color: #003366; /* Dark blue text */
+        }
+        .input, .options a, .grant, .modal-content {
+            background-color: #e5f0ff; /* Light theme components */
+        }
+        a {
+            color: #004cff; /* Links dark blue for light theme */
+        }
+        .option .fa-solid, .fas {
+            color: black;
+        }
+        .sidebar {
+    position: fixed;
+    top: 0;
+    left: -500px; /* Hidden by default */
+    width: 250px;
+    height: 100%;
+    background-color: #ffffff;
+    color: #000000;
+    overflow: hidden;
+    transition: 0.3s;
+    z-index: 1000;
+    box-shadow: 2px 0 15px rgb(170 170 170);
+}
+.sidebar ul li a {
+        color: #000000;
+}
+        p{
+            background: rgb(231 231 231);
+        color: #000000;
+        }
+    }
 
-    </style>
-</head>
+</style>
 <body>
-    <div id="passwordContainer">
+
+    <div class="plans" style="position: fixed;
+    right: 15px;
+    font-size: 20px;
+    z-index: 1000;
+    top: 15px;">
+        <img style="position: fixed;
+            right: 10px;
+            width: 10%;
+            " src="https://framerusercontent.com/images/YpitNuObeF9iU8BVZHfVm7CPhc.png?scale-down-to=512" alt="" width="20%"></a>
+    </div>
+   
+    <div class="logoimg">
+        <img src="intrologo.png" alt="">
+    </div>
+    <div class="input">
+        이자에 대한 돈
+    </div>
+    <div class="matter">
+        <p><i class="fa-solid fa-comments-dollar"></i> Take money from us for low interest</p>
+    </div>
+    <div class="options">
+        <a href="#" id="accountLink">My Account</a>
+        <a href="pardha.html">Pardha for the future</a>
+        <a href="finance.html">Finance</a>
+    </div>
+    <div class="grant" style="display: flex
+    ;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;">
+        <a href="https://forms.gle/27SQC2uyMv8QWiLv9">Take money</a>
+        <a href="returnamount.html">Return money</a>
+    </div>
+
+    <!-- The Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="login" style="display: flex
+            ;    margin: 15px;
+                gap: 10px;
+                justify-content: center;
+                align-items: center;">
+                <input type="text" id="userPassword" placeholder="Enter the password">
+            <button id="submitPassword">Submit</button>
+            </div>
+            <h6 style="    color: #0040ff;
+            font-weight: 600;
+            margin: -10px;">Don't enter any wrong password</h6>
+            <p id="error-message" class="error-message" style="background: none; color: rgb(255, 0, 0); font-weight: 600; letter-spacing: 0.8px;"></p>
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById("passwordModal");
+        var btn = document.getElementById("accountLink");
+        var span = document.getElementsByClassName("close")[0];
+        var submitBtn = document.getElementById("submitPassword");
+    
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+    
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+    
+        submitBtn.onclick = function() {
+            var userInput = document.getElementById("userPassword").value;
+            var errorMessage = document.getElementById('error-message');
+            if (userInput === ""){
+                alert('We can not find any account with this code')
+            }
+            // else if (userInput === "1389") {
+            //     window.location.href = "vip12.html";
+            // }else if (userInput === "1789") {
+            //     window.location.href = "vip13.html";
+            // } 
+            else{
+                alert('Account does not exits (or) Incorrect password..!')
+            }
+           
+        }
+    
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    <!-- Add this in the body section -->
+<div class="menu-toggle">
+    <i><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-xl-heavy"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.85719 3H15.1428C16.2266 2.99999 17.1007 2.99998 17.8086 3.05782C18.5375 3.11737 19.1777 3.24318 19.77 3.54497C20.7108 4.02433 21.4757 4.78924 21.955 5.73005C22.2568 6.32234 22.3826 6.96253 22.4422 7.69138C22.5 8.39925 22.5 9.27339 22.5 10.3572V13.6428C22.5 14.7266 22.5 15.6008 22.4422 16.3086C22.3826 17.0375 22.2568 17.6777 21.955 18.27C21.4757 19.2108 20.7108 19.9757 19.77 20.455C19.1777 20.7568 18.5375 20.8826 17.8086 20.9422C17.1008 21 16.2266 21 15.1428 21H8.85717C7.77339 21 6.89925 21 6.19138 20.9422C5.46253 20.8826 4.82234 20.7568 4.23005 20.455C3.28924 19.9757 2.52433 19.2108 2.04497 18.27C1.74318 17.6777 1.61737 17.0375 1.55782 16.3086C1.49998 15.6007 1.49999 14.7266 1.5 13.6428V10.3572C1.49999 9.27341 1.49998 8.39926 1.55782 7.69138C1.61737 6.96253 1.74318 6.32234 2.04497 5.73005C2.52433 4.78924 3.28924 4.02433 4.23005 3.54497C4.82234 3.24318 5.46253 3.11737 6.19138 3.05782C6.89926 2.99998 7.77341 2.99999 8.85719 3ZM6.35424 5.05118C5.74907 5.10062 5.40138 5.19279 5.13803 5.32698C4.57354 5.6146 4.1146 6.07354 3.82698 6.63803C3.69279 6.90138 3.60062 7.24907 3.55118 7.85424C3.50078 8.47108 3.5 9.26339 3.5 10.4V13.6C3.5 14.7366 3.50078 15.5289 3.55118 16.1458C3.60062 16.7509 3.69279 17.0986 3.82698 17.362C4.1146 17.9265 4.57354 18.3854 5.13803 18.673C5.40138 18.8072 5.74907 18.8994 6.35424 18.9488C6.97108 18.9992 7.76339 19 8.9 19H9.5V5H8.9C7.76339 5 6.97108 5.00078 6.35424 5.05118ZM11.5 5V19H15.1C16.2366 19 17.0289 18.9992 17.6458 18.9488C18.2509 18.8994 18.5986 18.8072 18.862 18.673C19.4265 18.3854 19.8854 17.9265 20.173 17.362C20.3072 17.0986 20.3994 16.7509 20.4488 16.1458C20.4992 15.5289 20.5 14.7366 20.5 13.6V10.4C20.5 9.26339 20.4992 8.47108 20.4488 7.85424C20.3994 7.24907 20.3072 6.90138 20.173 6.63803C19.8854 6.07354 19.4265 5.6146 18.862 5.32698C18.5986 5.19279 18.2509 5.10062 17.6458 5.05118C17.0289 5.00078 16.2366 5 15.1 5H11.5ZM5 8.5C5 7.94772 5.44772 7.5 6 7.5H7C7.55229 7.5 8 7.94772 8 8.5C8 9.05229 7.55229 9.5 7 9.5H6C5.44772 9.5 5 9.05229 5 8.5ZM5 12C5 11.4477 5.44772 11 6 11H7C7.55229 11 8 11.4477 8 12C8 12.5523 7.55229 13 7 13H6C5.44772 13 5 12.5523 5 12Z" fill="currentColor"></path></svg></i></a>
+</div>
+<div class="sidebar">
+    <ul>
         <style>
             svg.icon-sm {
-    width: 20%;
+    width: 16%;
 }
         </style>
-        <div class="check" style="position: fixed;
-        top: 10px;
-        left: 10px;
-        font-size: 13px;">
+        <li>
             <a href="fine.html"><i style="display: flex
                 ;
                     font-size: 15px;
                     justify-content: center;
                     align-items: anchor-center;
                     font-style: normal;
-                    gap: 6px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C10.3431 4 9 5.34315 9 7C9 8.65685 10.3431 10 12 10C13.6569 10 15 8.65685 15 7C15 5.34315 13.6569 4 12 4ZM7 7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7C17 9.76142 14.7614 12 12 12C9.23858 12 7 9.76142 7 7ZM19.0277 15.6255C18.6859 15.5646 18.1941 15.6534 17.682 16.1829C17.4936 16.3777 17.2342 16.4877 16.9632 16.4877C16.6922 16.4877 16.4328 16.3777 16.2444 16.1829C15.7322 15.6534 15.2405 15.5646 14.8987 15.6255C14.5381 15.6897 14.2179 15.9384 14.0623 16.3275C13.8048 16.9713 13.9014 18.662 16.9632 20.4617C20.0249 18.662 20.1216 16.9713 19.864 16.3275C19.7084 15.9384 19.3882 15.6897 19.0277 15.6255ZM21.721 15.5847C22.5748 17.7191 21.2654 20.429 17.437 22.4892C17.1412 22.6484 16.7852 22.6484 16.4893 22.4892C12.6609 20.4291 11.3516 17.7191 12.2053 15.5847C12.6117 14.5689 13.4917 13.8446 14.5481 13.6565C15.3567 13.5125 16.2032 13.6915 16.9632 14.1924C17.7232 13.6915 18.5697 13.5125 19.3783 13.6565C20.4347 13.8446 21.3147 14.5689 21.721 15.5847ZM9.92597 14.2049C10.1345 14.7163 9.889 15.2999 9.3776 15.5084C7.06131 16.453 5.5 18.5813 5.5 20.9999C5.5 21.5522 5.05228 21.9999 4.5 21.9999C3.94772 21.9999 3.5 21.5522 3.5 20.9999C3.5 17.6777 5.641 14.8723 8.6224 13.6565C9.1338 13.448 9.71743 13.6935 9.92597 14.2049Z" fill="currentColor"></path></svg> My Penalty</a></i>
+                    gap: 10px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C10.3431 4 9 5.34315 9 7C9 8.65685 10.3431 10 12 10C13.6569 10 15 8.65685 15 7C15 5.34315 13.6569 4 12 4ZM7 7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7C17 9.76142 14.7614 12 12 12C9.23858 12 7 9.76142 7 7ZM19.0277 15.6255C18.6859 15.5646 18.1941 15.6534 17.682 16.1829C17.4936 16.3777 17.2342 16.4877 16.9632 16.4877C16.6922 16.4877 16.4328 16.3777 16.2444 16.1829C15.7322 15.6534 15.2405 15.5646 14.8987 15.6255C14.5381 15.6897 14.2179 15.9384 14.0623 16.3275C13.8048 16.9713 13.9014 18.662 16.9632 20.4617C20.0249 18.662 20.1216 16.9713 19.864 16.3275C19.7084 15.9384 19.3882 15.6897 19.0277 15.6255ZM21.721 15.5847C22.5748 17.7191 21.2654 20.429 17.437 22.4892C17.1412 22.6484 16.7852 22.6484 16.4893 22.4892C12.6609 20.4291 11.3516 17.7191 12.2053 15.5847C12.6117 14.5689 13.4917 13.8446 14.5481 13.6565C15.3567 13.5125 16.2032 13.6915 16.9632 14.1924C17.7232 13.6915 18.5697 13.5125 19.3783 13.6565C20.4347 13.8446 21.3147 14.5689 21.721 15.5847ZM9.92597 14.2049C10.1345 14.7163 9.889 15.2999 9.3776 15.5084C7.06131 16.453 5.5 18.5813 5.5 20.9999C5.5 21.5522 5.05228 21.9999 4.5 21.9999C3.94772 21.9999 3.5 21.5522 3.5 20.9999C3.5 17.6777 5.641 14.8723 8.6224 13.6565C9.1338 13.448 9.71743 13.6935 9.92597 14.2049Z" fill="currentColor"></path></svg> My Penalty</a></i>
         
-        </div>
-        <div class="plan" style="position: fixed;
-        bottom: 10px;
-        display: flex;
-        width: 100%;
-        gap: 110px;
-        align-items: center;font-size: 13px;
-        justify-content: center;">
+        </li>
+        <li>
             <a href="plan.html"><i style="display: flex
-                ;
-                    font-size: 15px;
-                    justify-content: center;
-                    align-items: anchor-center;
-                    font-style: normal;
-                    gap: 6px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.5001 3.44338C12.1907 3.26474 11.8095 3.26474 11.5001 3.44338L4.83984 7.28868C4.53044 7.46731 4.33984 7.79744 4.33984 8.1547V15.8453C4.33984 16.2026 4.53044 16.5327 4.83984 16.7113L11.5001 20.5566C11.8095 20.7353 12.1907 20.7353 12.5001 20.5566L19.1604 16.7113C19.4698 16.5327 19.6604 16.2026 19.6604 15.8453V8.1547C19.6604 7.79744 19.4698 7.46731 19.1604 7.28868L12.5001 3.44338ZM10.5001 1.71133C11.4283 1.17543 12.5719 1.17543 13.5001 1.71133L20.1604 5.55663C21.0886 6.09252 21.6604 7.0829 21.6604 8.1547V15.8453C21.6604 16.9171 21.0886 17.9075 20.1604 18.4434L13.5001 22.2887C12.5719 22.8246 11.4283 22.8246 10.5001 22.2887L3.83984 18.4434C2.91164 17.9075 2.33984 16.9171 2.33984 15.8453V8.1547C2.33984 7.0829 2.91164 6.09252 3.83984 5.55663L10.5001 1.71133Z" fill="currentColor"></path><path d="M9.44133 11.4454L9.92944 9.98105C10.0321 9.67299 10.4679 9.67299 10.5706 9.98105L11.0587 11.4454C11.2941 12.1517 11.8483 12.7059 12.5546 12.9413L14.019 13.4294C14.327 13.5321 14.327 13.9679 14.019 14.0706L12.5546 14.5587C11.8483 14.7941 11.2941 15.3483 11.0587 16.0546L10.5706 17.519C10.4679 17.827 10.0321 17.827 9.92944 17.519L9.44133 16.0546C9.2059 15.3483 8.65167 14.7941 7.94537 14.5587L6.48105 14.0706C6.17298 13.9679 6.17298 13.5321 6.48105 13.4294L7.94537 12.9413C8.65167 12.7059 9.2059 12.1517 9.44133 11.4454Z" fill="currentColor"></path><path d="M14.4946 8.05961L14.7996 7.14441C14.8638 6.95187 15.1362 6.95187 15.2004 7.14441L15.5054 8.05961C15.6526 8.50104 15.999 8.84744 16.4404 8.99458L17.3556 9.29965C17.5481 9.36383 17.5481 9.63617 17.3556 9.70035L16.4404 10.0054C15.999 10.1526 15.6526 10.499 15.5054 10.9404L15.2004 11.8556C15.1362 12.0481 14.8638 12.0481 14.7996 11.8556L14.4946 10.9404C14.3474 10.499 14.001 10.1526 13.5596 10.0054L12.6444 9.70035C12.4519 9.63617 12.4519 9.36383 12.6444 9.29965L13.5596 8.99458C14.001 8.84744 14.3474 8.50104 14.4946 8.05961Z" fill="currentColor"></path></svg> Subscription</i></a>
-        </div>
+            ;    font-size: 15px;
+                justify-content: center;
+                align-items: anchor-center;
+                font-style: normal;
+                gap: 10px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.5001 3.44338C12.1907 3.26474 11.8095 3.26474 11.5001 3.44338L4.83984 7.28868C4.53044 7.46731 4.33984 7.79744 4.33984 8.1547V15.8453C4.33984 16.2026 4.53044 16.5327 4.83984 16.7113L11.5001 20.5566C11.8095 20.7353 12.1907 20.7353 12.5001 20.5566L19.1604 16.7113C19.4698 16.5327 19.6604 16.2026 19.6604 15.8453V8.1547C19.6604 7.79744 19.4698 7.46731 19.1604 7.28868L12.5001 3.44338ZM10.5001 1.71133C11.4283 1.17543 12.5719 1.17543 13.5001 1.71133L20.1604 5.55663C21.0886 6.09252 21.6604 7.0829 21.6604 8.1547V15.8453C21.6604 16.9171 21.0886 17.9075 20.1604 18.4434L13.5001 22.2887C12.5719 22.8246 11.4283 22.8246 10.5001 22.2887L3.83984 18.4434C2.91164 17.9075 2.33984 16.9171 2.33984 15.8453V8.1547C2.33984 7.0829 2.91164 6.09252 3.83984 5.55663L10.5001 1.71133Z" fill="currentColor"></path><path d="M9.44133 11.4454L9.92944 9.98105C10.0321 9.67299 10.4679 9.67299 10.5706 9.98105L11.0587 11.4454C11.2941 12.1517 11.8483 12.7059 12.5546 12.9413L14.019 13.4294C14.327 13.5321 14.327 13.9679 14.019 14.0706L12.5546 14.5587C11.8483 14.7941 11.2941 15.3483 11.0587 16.0546L10.5706 17.519C10.4679 17.827 10.0321 17.827 9.92944 17.519L9.44133 16.0546C9.2059 15.3483 8.65167 14.7941 7.94537 14.5587L6.48105 14.0706C6.17298 13.9679 6.17298 13.5321 6.48105 13.4294L7.94537 12.9413C8.65167 12.7059 9.2059 12.1517 9.44133 11.4454Z" fill="currentColor"></path><path d="M14.4946 8.05961L14.7996 7.14441C14.8638 6.95187 15.1362 6.95187 15.2004 7.14441L15.5054 8.05961C15.6526 8.50104 15.999 8.84744 16.4404 8.99458L17.3556 9.29965C17.5481 9.36383 17.5481 9.63617 17.3556 9.70035L16.4404 10.0054C15.999 10.1526 15.6526 10.499 15.5054 10.9404L15.2004 11.8556C15.1362 12.0481 14.8638 12.0481 14.7996 11.8556L14.4946 10.9404C14.3474 10.499 14.001 10.1526 13.5596 10.0054L12.6444 9.70035C12.4519 9.63617 12.4519 9.36383 12.6444 9.29965L13.5596 8.99458C14.001 8.84744 14.3474 8.50104 14.4946 8.05961Z" fill="currentColor"></path></svg> Subscription</i></a>
+        </li>
+        <li>
+            <a href="rules.html"><i class="fa-solid fa-comments-dollar"></i> Term and conditions</a>
+        </li>
+    </ul>
+</div>
+<script>
+   const menuToggle = document.querySelector(".menu-toggle");
+const sidebar = document.querySelector(".sidebar");
 
+let startX = 0;
+let isTouching = false;
 
-        <img style="position: relative;
-        left: 0px;
-        top: 0px;
-        width: 40%;" src="intoBS.png" alt="">
-        <h1>Welcome..!</h1>
-        <div style="position: relative; display: inline;">
-            <input type="password" id="userPassword" placeholder="Enter password" style="    border: solid 1px gray;
-            padding: 12px 18px;
-            background: transparent;
-            border-radius: 100px;">
-            <button id="togglePassword" style="position: absolute;    padding: 10px;
-; right: 10px; top: 50%; transform: translateY(-50%);color: #c0c0c0; background: none; border: none; cursor: pointer; font-size: 16px;">
-                <i id="toggleIcon" class="fa-solid fa-eye"></i>
-            </button>
-        </div>
-        <br>
-        <div class="buttons" style="    margin-top: 10px;">
-            <i class="fa-solid fa-arrow-right" id="submitBtn" style="cursor: pointer;
-            font-size: 20px;
-            color: white;
-            margin-bottom: 10px;
-            background: #494949;
-            padding: 10px 11px;
-            border-radius: 1000px;"></i>
-        </div>
-        <p id="error-message"></p>
-    </div>
-    <script>
-        document.getElementById("togglePassword").onclick = function () {
-            const passwordInput = document.getElementById("userPassword");
-            const toggleIcon = document.getElementById("toggleIcon");
-    
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text"; // Show the password
-                toggleIcon.classList.remove("fa-eye");
-                toggleIcon.classList.add("fa-eye-slash");
-            } else {
-                passwordInput.type = "password"; // Hide the password
-                toggleIcon.classList.remove("fa-eye-slash");
-                toggleIcon.classList.add("fa-eye");
-            }
-        };
-    
-        document.getElementById("submitBtn").onclick = function () {
-            const userInput = document.getElementById("userPassword").value;
-            const errorMessage = document.getElementById("error-message");
-            const today = new Date();
-    
-            if (userInput === "1789") {
-                const subscriptionEndDate = new Date('2025-12-3');
-                const daysRemaining = Math.ceil((subscriptionEndDate - today) / (1000 * 60 * 60 * 24));
-                alert("You didn't taken any subcription");
-                window.location.href = "plan.html";
+// Function to show or hide the sidebar
+function toggleSidebar(show) {
+    if (show) {
+        sidebar.style.left = "0px"; // Show sidebar
+    } else {
+        sidebar.style.left = "-250px"; // Hide sidebar
+    }
+}
 
-                // alert(`Welcome Chinna.\n\nYou have ${daysRemaining} days left for your subscription.`);
-                // window.location.href = "https://mfi0212.github.io/MFI/MFI/services";
-                // window.location.href = "home.html";
-            } else if (userInput === "1389") {
-                const subscriptionEndDate = new Date('2025-12-3');
-                const daysRemaining = Math.ceil((subscriptionEndDate - today) / (1000 * 60 * 60 * 24));
-                alert("You didn't taken any subcription");
-                window.location.href = "plan.html";
+// Detect touch start
+document.addEventListener("touchstart", (e) => {
+    isTouching = true;
+    startX = e.touches[0].clientX; // Get the initial touch position
+});
 
-                // alert(`Welcome Phani.\n\nYou have ${daysRemaining} days left for your subscription.`);
-                // window.location.href = "home.html";
-            }
-            else if (userInput === "02120") {
-                window.location.href = "home.html";
-            }else {
-                errorMessage.textContent = "Incorrect password..!";
-            }
-        };
-    </script>
+// Detect touch move
+document.addEventListener("touchmove", (e) => {
+    if (isTouching) {
+        const deltaX = e.touches[0].clientX - startX; // Calculate the swipe distance
+        if (deltaX > 100) { // Swipe right
+            toggleSidebar(true); // Show sidebar
+        } else if (deltaX < -100) { // Swipe left
+            toggleSidebar(false); // Hide sidebar
+        }
+    }
+});
+
+// Detect touch end
+document.addEventListener("touchend", () => {
+    isTouching = false;
+});
+
+// Also allow toggling with the menu button
+menuToggle.addEventListener("click", () => {
+    if (sidebar.style.left === "0px") {
+        toggleSidebar(false); // Hide sidebar
+    } else {
+        toggleSidebar(true); // Show sidebar
+    }
+});
+
+window.addEventListener("click", (e) => {
+    if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+        toggleSidebar(false); // Hide sidebar
+    }
+});
+
+</script>
+
 </body>
 </html>
