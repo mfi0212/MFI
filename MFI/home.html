@@ -319,7 +319,7 @@
     </div> -->
     <div class="logoimg">
         <!-- <img src="https://i.ibb.co/dj4tZM8/logo.png" alt=""> -->
-        <img src="https://mfi0212.github.io/MFI/MFI/silver/intrologo.png" alt="">
+        <img src="intrologo.png" alt="">
     </div>
     <div class="input">
         이자에 대한 돈
@@ -369,13 +369,18 @@
         submitBtn.onclick = function() {
             var userInput = document.getElementById("userPassword").value;
             var errorMessage = document.getElementById('error-message');
-            if (userInput === "1389") {
-                window.location.href = "vip12.html";
-            }else if (userInput === "1789") {
-                window.location.href = "vip13.html";
-            } else {
-                errorMessage.textContent = "Incorrect password..!";
+            if (userInput === ""){
+                alert('We can not find any account with this code')
             }
+            // else if (userInput === "1389") {
+            //     window.location.href = "vip12.html";
+            // }else if (userInput === "1789") {
+            //     window.location.href = "vip13.html";
+            // } 
+            else{
+                alert('Account does not exits (or) Incorrect password..!')
+            }
+           
         }
     
         window.onclick = function(event) {
@@ -455,26 +460,6 @@ window.addEventListener("click", (e) => {
 });
 
 </script>
-<!-- <div class="bg">
-    <img style="position: fixed;
-    width: 141%;
-    left: -87px;
-    filter: blur(2px);
-    z-index: -100;
-    top: 0px;
-" src="https://i.pinimg.com/736x/13/9d/cb/139dcba7128118a0ae3fd0057316d954.jpg" alt="">
-</div>
-<div class="decorate" style="position: fixed;    z-index: -11;">
-    <img style="position: fixed;
-    width: 23%;
-    z-index: -100;
-    right: 0px;
-    top: 20%;" src="https://i.pinimg.com/originals/3a/55/b9/3a55b91b61ce2251184122b02eecf4c0.png" alt="">
-    <img style="position: fixed;
-    z-index: 1;
-    filter: brightness(0.5);
-    top: 1%;
-    right: 23%;" src="https://png.pngtree.com/png-vector/20221028/ourmid/pngtree-pipa-fundo-transparente-or-colorful-kite-illustration-png-image_6395344.png" alt="">
-</div> -->
+
 </body>
 </html>
