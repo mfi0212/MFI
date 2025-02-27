@@ -251,15 +251,17 @@ p {
             userName: "Deepak",
             balance: 3000,
             startDate: "2025-1-27",
-            endDate: "2025-2-27"
+            endDate: "2025-2-27",
+            fine: 0
         },
-        
         "Deepak@11": {
-            userName: "Deepak",
-            balance: 2000,
-            startDate: "2025-2-20",
-            endDate: "2025-3-7"
-        },
+    userName: "Deepak",
+    balance: 2000,
+    startDate: "2025-2-20",
+    endDate: "2025-3-7",
+    fine: 0
+},
+
     };
 
     if (accounts[password]) {
@@ -283,12 +285,13 @@ p {
         const diffToEnd = Math.ceil((endDate - currentDate) / (1000 * 60 * 60 * 24));
 
         userDetails.innerHTML = `
-            <p>User Name: ${account.userName}</p>
-            <p>Account Balance: ${account.balance}</p>
-            <p>Days left: ${diffToEnd >= 0 ? diffToEnd : "End date has passed"} days</p>
-            <p>Days Passed: ${diffFromStart >= 0 ? diffFromStart : "Start date is in the future"} days</p>
-        `;
-    } 
+    <p>User Name: ${account.userName}</p>
+    <p>Account Balance: ${account.balance}</p>
+    <p>Days left: ${diffToEnd >= 0 ? diffToEnd : "End date has passed"} days</p>
+    <p>Days Passed: ${diffFromStart >= 0 ? diffFromStart : "Start date is in the future"} days</p>
+    <p>Fine for Delay: ${account.fine ? `$${account.fine}` : "No fine"}</p>
+`;
+    }
 
 
 
