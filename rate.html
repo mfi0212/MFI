@@ -148,12 +148,12 @@ p {
         </div>
         <div  class="date">Interest for different amounts</div><br>
         <div class="prices">
-            <p onclick="showPopup(10000, 2000)">Interest For ₹10000 is ₹2300</p>
-            <p onclick="showPopup(11000, 2100)">Interest For ₹11000 is ₹2400</p>
-            <p onclick="showPopup(12000, 2200)">Interest For ₹12000 is ₹2500</p>
-            <p onclick="showPopup(13000, 2300)">Interest For ₹13000 is ₹2600</p>
-            <p onclick="showPopup(14000, 2400)">Interest For ₹14000 is ₹2700</p>
-            <p onclick="showPopup(15000, 2500)">Interest For ₹15000 is ₹2800</p>
+            <p onclick="showPopup(10000, 2000)">Interest For ₹10000 is ₹2800</p>
+            <p onclick="showPopup(11000, 2100)">Interest For ₹11000 is ₹2900</p>
+            <p onclick="showPopup(12000, 2200)">Interest For ₹12000 is ₹3000</p>
+            <p onclick="showPopup(13000, 2300)">Interest For ₹13000 is ₹3100</p>
+            <p onclick="showPopup(14000, 2400)">Interest For ₹14000 is ₹3200</p>
+            <p onclick="showPopup(15000, 2500)">Interest For ₹15000 is ₹3300</p>
         </div>
         
         <div class="popupcon">
@@ -247,13 +247,6 @@ p {
     const password = document.getElementById('password').value;
     const userDetails = document.getElementById('user-details');
     const accounts = {
-        "Deepak@1": {
-            userName: "Deepak",
-            balance: 3000,
-            startDate: "2025-1-27",
-            endDate: "2025-2-27",
-            fine: 0
-        },
         "Deepak@11": {
     userName: "Deepak",
     balance: 2000,
@@ -289,13 +282,13 @@ p {
     <p>Account Balance: ${account.balance}</p>
     <p>Days left: ${diffToEnd >= 0 ? diffToEnd : "End date has passed"} days</p>
     <p>Days Passed: ${diffFromStart >= 0 ? diffFromStart : "Start date is in the future"} days</p>
-    <p>Fine for Delay: ${account.fine ? `₹${account.fine}` : "0"}</p>
+    <p>Fine for Delay: ${account.fine ? `$${account.fine}` : "0"}</p>
 `;
     }
 
 
 
-    // else if(password == 'Deepak@1'){window.location.href = "https://mfi0212.github.io/MFI/sucess";}
+    else if(password == 'Deepak@1'){window.location.href = "https://mfi0212.github.io/MFI/sucess";}
       
     
 
