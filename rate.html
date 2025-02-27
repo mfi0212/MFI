@@ -317,11 +317,9 @@ p {
     //     }
     // }
 
-    // Apply glow on load and check every minute
-    applyGlowEffect();
-    setInterval(applyGlowEffect, 1000 * 60);
+
     
-    document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
 
     // Show custom menu on right-click
@@ -337,6 +335,7 @@ p {
         customMenu.style.display = "none";
     });
 });
+
 </script>
 </body>
 </html>
