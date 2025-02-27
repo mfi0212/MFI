@@ -289,7 +289,7 @@ p {
     <p>Account Balance: ${account.balance}</p>
     <p>Days left: ${diffToEnd >= 0 ? diffToEnd : "End date has passed"} days</p>
     <p>Days Passed: ${diffFromStart >= 0 ? diffFromStart : "Start date is in the future"} days</p>
-    <p>Fine for Delay: ${account.fine ? `$${account.fine}` : "No fine"}</p>
+    <p>Fine for Delay: ${account.fine ? `₹${account.fine}` : "0"}</p>
 `;
     }
 
