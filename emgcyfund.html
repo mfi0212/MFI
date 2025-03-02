@@ -69,12 +69,30 @@
 </head>
 <body>
     <div class="container">
-        <h1>BsVerfy</h1>
+        <h1>BsVerify</h1>
         <h4>Emergency Funder</h4>
         <p>If you need money quickly, we will collect the amount you need from others and make sure you get it.</p>
         <p>However, since this is an urgent service, you will have to pay a <span class="highlight">high interest rate</span> on the amount borrowed.</p>
         <p>If you agree to these terms, click below to proceed.</p>
         <a href="https://forms.gle/XKBHjXRtK5Wv6Gyx8" class="btn">Apply now</a>
     </div>
+            <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
+    </script>
 </body>
 </html>
