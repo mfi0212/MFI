@@ -26,7 +26,7 @@
     outline: none;
     border-radius: 9px;
     text-align: center;}
-        .buttons { display: flex; justify-content: center; gap: 20px; margin-top: 20px; flex-direction: column-reverse;    padding: 20px;
+        .buttons { display: flex; justify-content: center; gap: 20px; margin-top: 20px;padding: 20px;
         }
         .buttons button {     padding: 10px 20px;
     font-size: 14px;
@@ -49,7 +49,10 @@ p {
     z-index: 1000;
     cursor: help;
 }
-
+a{
+            color: #ffffffcb;
+            text-decoration: none;
+        }
 /* @keyframes travelGlow {
             0% { box-shadow: 0 0 1020px 200px #ff6105; } 
             25% { box-shadow: 0 0 1030px 200px #0066ff } 
@@ -68,7 +71,6 @@ p {
             font-weight: 200;
         }
         .bottom a{
-                
                 text-decoration: none;
             }
             .bottom a:hover{
@@ -200,8 +202,8 @@ p {
     <div id="content-transfer" class="menu-content">
         <div class="buttons">
             <!-- <script src="rate.js"></script> -->
-            <a href=""><button onclick="alert('We will not be able to provide the amount for the next 4 to 5 weeks..')" style="cursor: no-drop;background-color: #161616;">Take Money</button></a>
-            <a href="https://mfi0212.github.io/swan/offer/offer"><button onclick="alert('We are redirecting you to STO.')">STO</button></a>
+            <button onclick="alert('We will not be able to provide the amount for the next 4 to 5 weeks..')" style="cursor: no-drop;background-color: #161616;"><a href="">Take Money</a></button>
+            <button onclick="alert('We are redirecting you to STO.')"><a href="https://mfi0212.github.io/swan/offer/offer">STO</a></button>
             
             <!-- <a href="https://mfi0212.github.io/MFI/takemoney"><button onclick="alert('We are redirecting you to taking form.')">Take Money</button></a> -->
         </div>
