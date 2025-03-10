@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Popup Example</title>
+    <title>Golden Plus</title>
+    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/SxwrHyLz/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
@@ -113,22 +114,22 @@ a{
             document.getElementById("popup").style.display = "none";
         });
            
-// document.addEventListener("DOMContentLoaded", () => {
-//     const customMenu = document.querySelector(".custom-menu");
+document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
 
-//     // Show custom menu on right-click
-//     document.addEventListener("contextmenu", (event) => {
-//         event.preventDefault();
-//         customMenu.style.display = "block";
-//         customMenu.style.top = `${event.pageY}px`;
-//         customMenu.style.left = `${event.pageX}px`;
-//     });
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
 
-//     // Hide the menu when clicking elsewhere
-//     document.addEventListener("click", () => {
-//         customMenu.style.display = "none";
-//     });
-// });
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
     </script>
 
 </body>
