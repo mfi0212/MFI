@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Golden Plus</title>
+    <title>Golden Plus Plans</title>
     <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/SxwrHyLz/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;;
-    position: relative;}
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; position: relative;}
 
-        body {
+            body {
             font-family: 'Verdana, Geneva, Tahoma, sans-serif';
     background-color: #000000;
     color: #fff;
@@ -27,93 +26,157 @@
     background-position: center;
         }
 
-        /* Popup Styling */
+        .popup-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
         .popup {
             width: 95%;
-    background: #00000038;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0px -10px 5540px 15em rgb(126 101 241 / 31%);
-    max-width: 385px;
-    text-align: center;
-    position: relative;
-    backdrop-filter: blur(50px);
+            background: #00000038;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0px -10px 5540px 15em rgb(126 101 241 / 31%);
+            max-width: 385px;
+            text-align: center;
+            position: absolute;
+            backdrop-filter: blur(50px);
+            transition: all 0.3s ease-in-out;
         }
-
-        .popup h2 {
-            font-size: 25px;
-            font-weight: 600;
-
-        }
-
-        .popup p {
-            font-size: 20px;
-    margin-bottom: 20px;
-    font-weight: 600
-        }
-a{
-    text-decoration: none;
-    color: rgb(0, 0, 0);
+        .popup-container {
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
 }
-        .popup .apply-btn {
+        .plan1 { z-index: 1; }
+        .plan2 { top: -150px;z-index: 2; }
+
+        
+
+        .popup h2 { font-size: 25px; font-weight: 600; }
+        .popup p { font-size: 20px; margin-bottom: 20px; font-weight: 600; }
+        .popup ul { list-style: none; padding: 0; line-height: 40px; }
+
+        a { text-decoration: none; color: rgb(0, 0, 0); }
+
+        .apply-btn {
             background-color: #00d6ff;
-    padding: 10px;
-    border: none;
-    color: #000000;
-    font-size: 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-weight: 600;
+            padding: 10px;
+            border: none;
+            color: #000;
+            font-size: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
         }
 
-        .popup .apply-btn:hover {
-            background-color: #00d5ffb8;
-        }
+        .apply-btn:hover { background-color: #00d5ffb8; }
 
-        /* Close (X) Button */
         .close-x {
-           position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 30px;
-    cursor: pointer;
-    color: #fff;
-    font-weight: 100;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #fff;
+            font-weight: 100;
         }
 
-        .close-x:hover {
-            color: #ff4c4c;
+        .close-x:hover { color: #ff4c4c; }
+
+        .verification-box {
+            margin-bottom: 20px;
+    text-align: center;
+    position: fixed;
+        }
+
+        .verification-box input {
+            padding: 10px;
+            width: 200px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+
+        .verification-box button {
+            padding: 10px;
+            border: none;
+            background-color: #00d6ff;
+            color: black;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
-    <a style="text-decoration: underline;
-    color: white;
-    position: fixed;" href="rate.html">Go back Golden</a>
-    <div class="popup" id="popup">
-        <span class="close-x" id="close-x">&times;</span> <!-- X Button -->
-        <h2>Golden Plus+</h2>
-        <h6 style="margin-bottom: 15px;    font-weight: 100;
-">From BS/MFI</h6>
-        <p><strong>What you get:</strong></p>
-        <ul style="list-style: none; padding: 0;line-height: 40px;">
-            <li>✨ Borrow up to ₹30,000</li>  
-            <li>✨ Get EMI repayment options</li>  
-            <li>✨ Get an extra 5 days to repay</li>  
-        </ul>
-        <br>
-        
-<p>549/month</p>
-        
-        <button class="apply-btn"><a href="https://forms.gle/dLtb9WQ5vBrGRHi28">Apply for Plus</a></button>
+    <div class="verification-box">
+        <input type="text" id="phoneNumber" placeholder="Enter phone number">
+        <button onclick="verifySubscription()">Verify My Plus</button>
+    </div>
+    <p style="position: fixed;
+    top: 55%;
+    background: #000000c4;
+    padding: 15px;
+    border-radius: 10px;" id="subscriptionDetails"></p>
+    
+    <div class="popup-container">
+        <div class="popup plan1" id="plan1">
+            <span class="close-x" onclick="closePopup('plan1')">&times;</span>
+            <h2>Golden Eun</h2>
+            <h6 style="margin-bottom: 15px; font-weight: 100;">Premium Benefits</h6>
+            <p><strong>What you get:</strong></p>
+            <ul>
+                <li>🌟 Borrow up to ₹35,000</li>  
+                <li>🌟 Flexible EMI plans</li>  
+                <li>🌟 Get an extra 10 days to repay</li>  
+            </ul>
+            <br>
+            <p>₹949/month</p>
+            <button class="apply-btn"><a href="https://forms.gle/dLtb9WQ5vBrGRHi28">Apply for Elite</a></button>
+        </div>
+
+        <div class="popup plan2" id="plan2" onclick="bringToFront('plan2')">
+            <span class="close-x" onclick="closePopup('plan2')">&times;</span>
+            <h2>Golden Dain</h2>
+            <h6 style="margin-bottom: 15px; font-weight: 100;">From BS/MFI</h6>
+            <p><strong>What you get:</strong></p>
+            <ul>
+                <li>✨ Borrow up to ₹25,000</li> 
+                <li>✨ Get an extra 5 days to repay</li>  
+            </ul>
+            <br>
+            <p>₹549/month</p>
+            <button class="apply-btn"><a href="https://forms.gle/dLtb9WQ5vBrGRHi28">Apply for Plus</a></button>
+            
+        </div>
     </div>
 
     <script>
-        document.getElementById("close-x").addEventListener("click", function() {
-            document.getElementById("popup").style.display = "none";
-        });
-           
+        function bringToFront(planId) {
+            document.querySelectorAll('.popup').forEach(popup => popup.classList.remove('active'));
+            document.getElementById(planId).classList.add('active');
+        }
+
+        function closePopup(planId) {
+            document.getElementById(planId).style.display = 'none';
+        }
+
+        function verifySubscription() {
+    const phoneNumber = document.getElementById("phoneNumber").value;
+    const subscriptionDetails = document.getElementById("subscriptionDetails");
+
+    if (phoneNumber === "9493511389") {
+        subscriptionDetails.innerText = `Phone: ${phoneNumber}\nSubscription valid until: 30/04/2025`;
+    } else {
+        subscriptionDetails.innerText = "Subscription not valid.";
+    }
+}
+      
 document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
 
@@ -131,6 +194,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
     </script>
-
 </body>
 </html>
