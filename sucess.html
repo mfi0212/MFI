@@ -3,116 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BsVerify...</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
-    
+    <title>BS/MFI | Ban</title>
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
+         @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Red Hat Display", sans-serif;
+        }
         body {
-            font-family: "Noto Sans", sans-serif;
+            text-align: center;
+            background: rgb(0, 8, 93);
+            color: #ff0019;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: rgb(0, 8, 93);
-            color: white;
+            margin: 0;
+            overflow: hidden;
+            letter-spacing: 0.5px;
         }
-::-webkit-scrollbar{
-    display: none;
-}
-        /* Card Container */
-        .container {
-            text-align: center;
-            position: fixed;
-            padding: 50px;
-            border-radius: 15px;
-            width: 320px;
+        .ban-container {
+            display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 400px;
+    text-align: center;
+    width: 95%;
         }
-
-        /* Money Icon */
         .icon {
-            font-size: 35px;
-    color: #ffffff;
-    animation: drop-in 0.6sease-out;
-    font-weight: 600;
+            font-size: 60px;
+            color: #ff0800;
+            margin-bottom: 15px;
         }
-
-        @keyframes drop-in {
-            0% { transform: translateY(-50px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
         }
-
-        /* Circular Loader */
-        .loading-circle {
-            width: 60px;
-            height: 60px;
-            border-radius: 150%;
-            border: 6px solid transparent;
-            border-top: 6px solid hsl(0, 0%, 71%);
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-            display: none;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Success Image */
-        .success-img {
-            width: 80px;
-            height: 80px;
-            display: none;
-            animation: pop 0.4s ease-in-out;
-        }
-
-        @keyframes pop {
-            0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        @keyframes glow {
-            0% { box-shadow: 0 0 10px #2ecc71; }
-            100% { box-shadow: 0 0 20px #27ae60; }
-        }
-
-        /* Message */
-        .message {
-            font-size: 20px;
-            margin-top: 15px;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+        p {
+            font-size: 15px;
             color: #ffffff;
-            white-space: nowrap;
+            margin-bottom: 20px;
+            line-height: 25px;
+            font-weight: 400;
         }
-
-        .fade-in {
-            opacity: 1;
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #696969;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #4b4b4b;
+        }
+        a{
+            text-decoration: none;
+    padding: 10px;
+    color: rgb(255, 255, 255);
         }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <i id="icon" class="icon fas fa-rupee-sign">BsVerify...</i>
-        <div id="loading" class="loading-circle"></div>
-        <img id="success-img" class="success-img" style="filter: hue-rotate(1deg);" src="https://icon-library.com/images/verified-icon-png/verified-icon-png-0.jpg" alt="Success">
-        <p id="message"class="message"></p>
+    <div class="ban-container">
+        <i class="fas fa-ban icon"></i>
+        <h1>Access Denied</h1>
+        <p>You have been temporarily banned for 15 days for violating our Terms and Conditions.</p>
+        <p>Funds can only be accessed after the ban period is over. Until then, no transactions can be processed.</p>
+        <button class="btn"><a href="https://mfi0212.github.io/MFI/terms">Read Terms and Conditions</a></button>
     </div>
     <script>
-        setTimeout(() => {
-            document.getElementById("icon").style.display = "none";
-            document.getElementById("loading").style.display = "block";
-            document.getElementById("message").innerText = "Wait...";
-        }, 2000);
-
-        setTimeout(() => {
-            document.getElementById("loading").style.display = "none";
-            document.getElementById("success-img").style.display = "inline-block";
-            document.getElementById("message").innerText = "Money returned successfully";
-            document.getElementById("message").classList.add("fade-in");
-        }, 5000);
-        document.addEventListener("DOMContentLoaded", () => {
+                document.addEventListener("DOMContentLoaded", () => {
 const customMenu = document.querySelector(".custom-menu");
 
 // Show custom menu on right-click
