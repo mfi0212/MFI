@@ -53,11 +53,17 @@
         .plan1 { z-index: 1; }
         .plan2 { top: -150px;z-index: 2; }
 
-        
+        li{
+            font-weight: 100;
+    font-size: 14px;
+
+        }
 
         .popup h2 { font-size: 25px; font-weight: 600; }
-        .popup p { font-size: 20px; margin-bottom: 20px; font-weight: 600; }
-        .popup ul { list-style: none; padding: 0; line-height: 40px; }
+        .popup p { font-size: 16px;
+    margin-bottom: 20px;
+    font-weight: 600; }
+        .popup ul { list-style: none; padding: 0; line-height: 35px; }
 
         a { text-decoration: none; color: rgb(0, 0, 0); }
 
@@ -111,6 +117,12 @@
             cursor: pointer;
             font-weight: 600;
         }
+        .plan{
+            border: solid 1px;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -130,14 +142,22 @@
             <span class="close-x" onclick="closePopup('plan1')">&times;</span>
             <h2>Golden Plus</h2>
             <h6 style="margin-bottom: 15px; font-weight: 100;">From BS/MFI</h6>
-            <p><strong>What you get:</strong></p>
-            <ul>
-                <li>🌟 Borrow up to ₹30,000</li>  
-                <li>🌟 Get an extra 5 days to repay</li>  
-            </ul>
-            <br>
-            <p>With EMI - ₹849/month</p>
-            <p>With out EMI - ₹549/month</p>
+            <div class="plan">
+                <p><strong>For ₹549/month</strong></p>
+                <ul>
+                    <li>✨ No EMI option</li>
+                    <li>✨ Borrow up to ₹20,000</li>  
+                    <li>✨ Get an extra 5 days to repay</li>  
+                </ul>
+            </div>
+            <div class="plan">
+                <p><strong>For ₹849/month</strong></p>
+                <ul>
+                    <li>🌟 EMI option</li>
+                    <li>🌟 Borrow up to ₹30,000</li>  
+                    <li>🌟 Get an extra 10 days to repay</li>  
+                </ul>
+            </div>
             <button class="apply-btn"><a href="https://forms.gle/dLtb9WQ5vBrGRHi28">Apply for Plus</a></button>
         </div>
 
