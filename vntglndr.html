@@ -75,13 +75,13 @@
         .modal {
             display: none;
     position: fixed;
-    z-index: 1000;
-    left: 20px;
-    top: 20px;
+    z-index: 10;
+    left: 0px;
+    top: 0px;
     background: black;
-    padding: 10px 0px;
+    padding: 40px 25px;
     border-radius: 10px;
-    width: 95%;
+    width: 100%;
     text-align: left;
     height: 100%;
     line-height: 30px;
@@ -95,7 +95,7 @@
     font-size: 14px;
     font-weight: 100;
         }
-       
+        
         .close-btn {
             position: absolute;
     top: 10px;
@@ -119,13 +119,21 @@
     top: 15px;
     right: 15px;
         }
+        i{
+            margin: 5px;
+        }
+        .modal p:hover {
+            color: #00ddff;
+            font-weight: 400;
+        }
     </style>
 </head>
 <body>
     <div class="fro" style="position: fixed;
     bottom: 10px;
     font-size: 9px;
-    color: #ffffff91;">
+    color: #ffffff91;    z-index: 1000;
+    ">
         From BS/MFI
     </div>
     <div class="logo" >
@@ -170,8 +178,8 @@
         margin: 25px 0px;
         font-weight: 600;
         font-size: 15px;">Amount & interest details</h3>
-        <p><i class="fa-solid fa-calendar-check"></i> <span id="planDate"></span></p>
-        <p><i class="fa-regular fa-calendar-minus"></i></strong> <span id="endDate"></span></p>
+        <p><i class="fa-solid fa-calendar-day"></i> <span id="planDate"></span></p>
+        <p><i class="fa-solid fa-calendar-check"></i> </strong> <span id="endDate"></span></p>
         <p><strong><i class="fa-solid fa-arrow-up-wide-short"></i></strong> <span id="interest"></span> Rupees</p>
         <h3 style="text-decoration: underline;
         color: #ffffffba;
