@@ -56,8 +56,9 @@
         }
         #error-message {
             color: red;
-            margin-top: 10px;
-            font-size: 14px;
+    bottom: 30px;
+    font-size: 12px;
+    position: fixed;
         }
         h1{
             font-weight: 400;
@@ -111,6 +112,12 @@
     </style>
 </head>
 <body>
+    <div class="fro" style="position: fixed;
+    bottom: 10px;
+    font-size: 9px;
+    color: #ffffff91;">
+        From BS/MFI
+    </div>
     <div class="logo" >
         <img id="logo" src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="Logo">
     </div>
@@ -201,13 +208,30 @@
                 document.getElementById("userInfoModal").style.display = "block";
                 errorMessage.textContent = "";
             } else {
-                errorMessage.textContent = "Incorrect password!";
+                errorMessage.textContent = "Amount returned (or) Invalid password!";
             }
         });
 
         function closeModal() {
             document.getElementById("userInfoModal").style.display = "none";
         }
+        
+                document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
     </script>
 </body>
 </html>
