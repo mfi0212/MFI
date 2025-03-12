@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Vintage lender | Apple | user</title>
-    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
+    <title>Vintage Lender</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 * {
     font-family: 'Poppins', sans-serif;
@@ -15,212 +16,198 @@
     padding: 0;
 }
 
-body {
-    background: linear-gradient(135deg, rgb(0, 0, 0) 30%, rgb(68 68 68) 100%);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 20px;
-}
-
-.container {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 100%;
-    max-width: 360px;
-}
-
-h1 {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
-    background: transparent;
-    color: white;
-    font-size: 16px;
-    outline: none;
-    text-align: center;
-    margin-bottom: 15px;
-    transition: 0.3s;
-}
-
-input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-input:focus {
-    border-color: #ffffff;
-}
-strong {
-    color: #000000;
-}
-.button {
-    width: 100%;
-    background-color: #ffffff;
-    border: none;
-    color: black;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 16px;
-    transition: 0.3s;
-}
-
-.button:hover {
-    background-color: #0000007c;
-    color: white;
-}
-
-.user-details {
-    margin-top: 20px;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
+       body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000000;
+            color: #ffffff;
+        }
+        #passwordContainer {
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            line-height: 60px;
+        }
+        #userPassword {
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ffffff1c;
+            background: #ffffff21;
+            color: #fff;
+            padding: 8px 15px;
+            text-align: center;
+        }
+        #submitBtn {
+            background-color: #eeeeee;
+            color: black;
+            border: none;
+            border-radius: 500px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            margin: 10px;
+        }
+        #error-message {
+            color: red;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        h1{
+            font-weight: 400;
+    font-size: 22px
+        }
+        .modal {
+            display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 20px;
+    top: 20px;
+    background: black;
+    padding: 10px 0px;
+    border-radius: 10px;
+    width: 95%;
     text-align: left;
+    height: 100%;
+        }
+        .modal h2 {
+            color: white;
+        }
+        .modal p {
+            color: #8d8d8d;
+            margin: 10px 0;
+            font-size: 15px;
+        }
+       
+        .close-btn {
+            position: absolute;
+    top: 10px;
+    left: 15px;
+    cursor: pointer;
+    color: white;
+    font-size: 25px;
+        }
+        .logo {
+    padding: 20px;
+    border-radius: 15px;
+    display: inline-block;
+    transition: box-shadow 0.5s ease-in-out;
+    position: fixed;
 }
-
-.user-details p {
-    margin: 6px 0;
-    font-size: 15px;
-}
-
-
+.logo img {
+            width: 50px; /* Adjust size */
+            border-radius: 8px;
+            background-color: transparent;
+            position: fixed;
+    top: 15px;
+    right: 15px;
+        }
     </style>
 </head>
 <body>
-    <a style="position: fixed;
-    top: 10px;
-    right: 5px;
-    font-size: 11px;
-    background: #c8c8c830;
-    padding: 5px 8px;
-    border-radius: 6px;
-    color: #d9d9d9;
-    text-decoration: none;" onclick="logout()">Logout</a>
-    <div class="fro" style="position: fixed;
-    bottom: 10px;
-    font-size: 9px;
-    color: #ffffff91;">
-        From BS/MFI
+    <div class="logo" >
+        <img id="logo" src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="Logo">
     </div>
-    <div class="container">
-        <h1 style="font-weight: 400;
-    font-size: 22px;">Vintage lender<img src="https://www.apple.com/ac/globalnav/7/ru_RU/images/be15095f-5a20-57d0-ad14-cf4c638e223a/globalnav_apple_image__b5er5ngrzxqq_large.svg" alt=""></h1>
-        <input type="text" id="password" placeholder="Enter Password">
-        <button class="button" onclick="verifyUser()">Search</button>
-        <div id="userDetails" class="user-details"></div>
+    <button
+    style="position: fixed;
+    top: 70px;
+    right: 10px;
+    background: #ffffff21;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    font-size: 12px;
+    border-radius: 1000px;cursor: pointer;" class="logout-btn" onclick="logout()">Logout</button>
+    <script>
+       function logout() {
+           localStorage.removeItem('selectedPlatform');
+           window.location.href = 'https://mfi0212.github.io/MFI/mobile/slct';
+       }
+   </script>
+    <div id="passwordContainer">
+        <h1>Vintage Lender<img src="https://www.apple.com/ac/globalnav/7/ru_RU/images/be15095f-5a20-57d0-ad14-cf4c638e223a/globalnav_apple_image__b5er5ngrzxqq_large.svg" alt=""></h1>
+        <input type="text" id="userPassword" placeholder="Enter password">
+        <button id="submitBtn"><i class="fa-solid fa-arrow-right"></i></button><br>
+        <p id="error-message"></p>
+    </div>
+    
+    <div id="userInfoModal" class="modal">
+        <span><i class="fa-solid fa-arrow-left" class="close-btn" onclick="closeModal()" style="cursor: pointer; font-size: 20px; color: white; margin-bottom: 10px;"></i></span>
+        
+        <h3 style="text-decoration: underline;
+        color: #ffffffba;
+        margin: 25px 0px;
+        font-weight: 600;
+        font-size: 15px;">Borrower details</h3>
+        <p><i class="fa-regular fa-circle-user"></i></strong> <span id="userName"></p>
+        <p><i class="fa-solid fa-money-bill-transfer"></i> <span id="takenAmount"></span> Rupees</p>
+        <p><i class="fa-solid fa-hourglass-end"></i></strong> <span id="months"> </span> month</p>
+        <h3 style="text-decoration: underline;
+        color: #ffffffba;
+        margin: 25px 0px;
+        font-weight: 600;
+        font-size: 15px;">Amount & interest details</h3>
+        <p><i class="fa-solid fa-calendar-check"></i> <span id="planDate"></span></p>
+        <p><i class="fa-regular fa-calendar-minus"></i></strong> <span id="endDate"></span></p>
+        <p><strong><i class="fa-solid fa-arrow-up-wide-short"></i></strong> <span id="interest"></span> Rupees</p>
+        <h3 style="text-decoration: underline;
+        color: #ffffffba;
+        margin: 25px 0px;
+        font-weight: 600;
+        font-size: 15px;">Total amount to return</h3>
+        <p><i class="fa-solid fa-money-check-alt"></i> <span id="totalReturnAmount"></span> Rupees</p>
     </div>
     
     <script>
-       function verifyUser() {
-    var password = document.getElementById('password').value;
-    var userDatabase = {
-        "Mahesh888*": { name: "Mahesh M", amount: 12000, startDate: "2025-02-15", totalInterest: 2600, returnDate: "2025-04-15" },//extanded one month 
-        "Deepak@2": { name: "Deepak", amount: 5000, startDate: "2025-01-12", totalInterest: 2900, returnDate: "2025-03-12" },
-    };
+        const passwords = {
+            "Mahesh888*": {
+                name: "Mahesh M",
+                planDate: "15-02-2025",
+                endDate: "15-04-2025",
+                interest: 2600,
+                takenAmount: 12000,
+                months: 2
+            },
+            "Deepak@2": {
+                name: "Deepak",
+                planDate: "12-01-2025",
+                endDate: "12-03-2025",
+                interest: 2900,
+                takenAmount: 5000,
+                months: 1
+            }
+        };
 
-    if (userDatabase[password]) {
-        var user = userDatabase[password];
+        document.getElementById("submitBtn").addEventListener("click", () => {
+            const userInput = document.getElementById("userPassword").value.trim();
+            const errorMessage = document.getElementById("error-message");
+            const user = passwords[userInput];
 
-        document.getElementById('userDetails').innerHTML = `
-            <h4 style="text-align: center;
-            border-bottom: solid 1px #ffffff;
-            margin: 15px;">Your Details</h4>
-            <p><strong>Name:</strong> ${user.name}</p>
-            <p><strong>Amount Borrowed:</strong> ${user.amount}rs</p>
-            <p><strong>Taken on:</strong> ${user.startDate}</p>
-            <p><strong>Return Date:</strong> ${user.returnDate}</p>
-            <p><strong>Total Interest:</strong> ${user.totalInterest}rs</p>
-        `;
-        document.getElementById('userDetails').style.display = 'block';
-    } else {
-        alert("Invalid password!");
-    }
-}
+            if (user) {
+                document.getElementById("userName").textContent = user.name;
+                document.getElementById("planDate").textContent = user.planDate;
+                document.getElementById("endDate").textContent = user.endDate;
+                document.getElementById("interest").textContent = user.interest;
+                document.getElementById("takenAmount").textContent = user.takenAmount;
+                document.getElementById("months").textContent = user.months;
+                document.getElementById("totalReturnAmount").textContent = (user.takenAmount + user.interest).toFixed(2);
+                
+                document.getElementById("userInfoModal").style.display = "block";
+                errorMessage.textContent = "";
+            } else {
+                errorMessage.textContent = "Incorrect password!";
+            }
+        });
 
-
-
-
-
-
-//                 document.addEventListener("DOMContentLoaded", () => {
-//     const customMenu = document.querySelector(".custom-menu");
-
-//     // Show custom menu on right-click
-//     document.addEventListener("contextmenu", (event) => {
-//         event.preventDefault();
-//         customMenu.style.display = "block";
-//         customMenu.style.top = `${event.pageY}px`;
-//         customMenu.style.left = `${event.pageX}px`;
-//     });
-
-//     // Hide the menu when clicking elsewhere
-//     document.addEventListener("click", () => {
-//         customMenu.style.display = "none";
-//     });
-// });
+        function closeModal() {
+            document.getElementById("userInfoModal").style.display = "none";
+        }
     </script>
-<input type="color" id="colorPicker" value="#0800ff" style="margin-bottom: 15px;
-display: block;
-position: fixed;
-top: 10px;
-width: 30px;
-background: rgb(255 255 255);
-border-radius: 1px;
-left: 10px;
-border: none;">
-
-<script>
-    // Function to apply saved color or default
-    function applySavedColor() {
-        let savedColor = localStorage.getItem("userColor") || "black"; // Default to blue if no color is saved
-        document.body.style.background = `linear-gradient(135deg, #000000 30%, ${savedColor} 100%)`;
-        document.getElementById('colorPicker').value = savedColor;
-    }
-
-    // Apply saved color on page load
-    applySavedColor();
-
-    // Event listener for color change
-    document.getElementById('colorPicker').addEventListener('input', function() {
-        let selectedColor = this.value;
-        document.body.style.background = `linear-gradient(135deg, #000000 30%, ${selectedColor} 100%)`;
-        localStorage.setItem("userColor", selectedColor); // Save color in local storage
-    });
-</script>
-<script>
-    function logout() {
-        localStorage.removeItem('selectedPlatform');
-        window.location.href = 'https://mfi0212.github.io/MFI/mobile/slct';
-    }
-    document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
-
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
-
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
-</script>
 </body>
 </html>
