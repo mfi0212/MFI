@@ -3,171 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vintage lender</title>
+    <title>Vintage Lender</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/sbJQLxb/vt.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-        body {
-            
+* {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+       body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #000000; /* Dark background */
-            color: #ffffff; /* Light text */
-            font-size: 14px;
-            letter-spacing: 0.5px;
+            background-color: #000000;
+            color: #ffffff;
         }
-
         #passwordContainer {
             text-align: center;
             padding: 20px;
-            border-radius: 10px;
-            background: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            line-height: 60px;
         }
-
         #userPassword {
             font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ffffff1c;
-    margin-bottom: 10px;
-    outline: none;
-    background: #ffffff21;
-    color: #fff;
-    padding: 8px 15px;
-    text-align: center;
-    max-width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ffffff1c;
+            background: #ffffff21;
+            color: #fff;
+            padding: 8px 15px;
+            text-align: center;
+            width: 95%;
         }
-
-        #userPassword:focus {
-            border-color: #808080;
-        }
-
-        #togglePassword {
-            position: absolute;
-            right: 0%;
-            top: 36%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #007bff;
-        }
-
         #submitBtn {
-          background-color: #eeeeee;
-          color: rgb(0, 0, 0);
-          border: none;
-          border-radius: 500px;
-          font-size: 16px;
-          cursor: pointer;
-          width: 40px;
-          height: 40px;
-          margin: 10px;
+            background-color: #eeeeee;
+            color: black;
+            border: none;
+            border-radius: 500px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            margin: 10px;
+            outline: none;
         }
-
-        #submitBtn:hover {
-            background-color: #c4c4c4;
-        }
-
         #error-message {
             color: red;
-            margin-top: 10px;
-            font-size: 14px;
+    bottom: 30px;
+    font-size: 12px;
+    position: fixed;
         }
-
-        .userinfo {
+        h1{
+            font-weight: 400;
+    font-size: 22px
+        }
+        .modal {
             display: none;
-            text-align: left;
-            background: transparent;
-            padding: 20px;
-            border-radius: 10px;
-            top: 10px;
-            position: fixed;
-            left: 0px;
-            line-height: 25px;
+    position: fixed;
+    z-index: 1000;
+    left: 20px;
+    top: 20px;
+    background: black;
+    padding: 10px 0px;
+    border-radius: 10px;
+    width: 95%;
+    text-align: left;
+    height: 100%;
+    line-height: 30px;
         }
-        a{
-            text-decoration: none;
+        .modal h2 {
             color: white;
         }
-
-        .userinfo p {
-    color: #8d8d8d;
-    line-height: 40px;
+        .modal p {
+            color: #8d8d8d;
+    margin: 10px 0;
+    font-size: 14px;
     font-weight: 100;
+        }
+       
+        .close-btn {
+            position: absolute;
+    top: 10px;
+    left: 15px;
+    cursor: pointer;
+    color: white;
+    font-size: 25px;
+        }
+        .logo {
+    padding: 20px;
+    border-radius: 15px;
+    display: inline-block;
+    transition: box-shadow 0.5s ease-in-out;
+    position: fixed;
 }
-        .userinfo p:hover{
-            color: white;
-    white-space: nowrap;
-    display: flow;
-        }
-        #paymentSection {
-            margin-top: 20px;
-        }
-
-        #moneyInput {
-            background: #333;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            width: 60%;
-            font-size: 16px;
-            border: 1px solid #444;
-            margin-bottom: 10px;
-        }
-
-        #moneyBtn {
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        #moneyBtn:hover {
-            background-color: #218838;
-        }
-
-        #paymentMessage {
-            margin-top: 10px;
-            color: #28a745;
-        }
-
-        #backIcon {
-            display: none; /* Hidden by default */
-        }
-
-        .userinfo #backIcon {
-            display: inline-block; /* Show icon in user info section */
-        }
-
-        a {
-            text-decoration: none;
-        }
-        @media(max-width:600px) {
-           .userinfo p {
-    color: #8d8d8d;
-    line-height: 35px;
-    width: 100%;
-}
-        .userinfo p:hover{
-            color: white;
-    display: flow;
-    background: none;
-
-        }
+.logo img {
+            width: 50px; /* Adjust size */
+            border-radius: 8px;
+            background-color: transparent;
+            position: fixed;
+    top: 15px;
+    right: 15px;
         }
     </style>
 </head>
 <body>
+    <div class="fro" style="position: fixed;
+    bottom: 10px;
+    font-size: 9px;
+    color: #ffffff91;">
+        From BS/MFI
+    </div>
+    <div class="logo" >
+        <img id="logo" src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="Logo">
+    </div>
     <button
     style="position: fixed;
     top: 70px;
@@ -177,7 +134,7 @@
     border: none;
     padding: 5px 12px;
     font-size: 12px;
-    border-radius: 1000px;" class="logout-btn" onclick="logout()">Logout</button>
+    border-radius: 1000px;cursor: pointer;" class="logout-btn"><a href="https://mfi0212.github.io/MFI/rate" style="text-decoration: none;color: white;">Logout</a></button>
     <script>
        function logout() {
            localStorage.removeItem('selectedPlatform');
@@ -185,235 +142,101 @@
        }
    </script>
     <div id="passwordContainer">
-        <h1 style="font-weight: 400;
-    font-size: 22px;">Vintage lender <img style="width: 35px;
-    margin: 0px 0px -2px;" src="https://cdn.freelogovectors.net/wp-content/uploads/2023/09/androidlogo-2023-freelogovectors.net_.png" alt=""></h1>
-        <div style="position: relative; display: inline-block;margin-top: 15px;z-index: 10000;">
-            <input type="text" id="userPassword" placeholder="Enter password">
-            <i id="togglePassword"></i>
-        </div>
-        <br>
-        <button id="submitBtn"><i class="fa-solid fa-arrow-right"></i></button>
+        <h1>Vintage Lender </h1>
+        <input type="text" id="userPassword" placeholder="Enter password">
+        <button id="submitBtn"><i class="fa-solid fa-arrow-right"></i></button><br>
         <p id="error-message"></p>
     </div>
-
-    <div class="userinfo" id="userInfo">
-        <div class="back" style="display: flex; align-items: baseline; gap: 5px;">
-            <i class="fa-solid fa-arrow-left" id="backIcon" style="cursor: pointer; font-size: 20px; color: white; margin-bottom: 10px;"></i>
-            
-        </div>
-        <h2 id="welcomeMessage"></h2>
+    
+    <div id="userInfoModal" class="modal">
+        <span><i class="fa-solid fa-arrow-left" class="close-btn" onclick="closeModal()" style="cursor: pointer; font-size: 20px; color: white; margin-bottom: 10px;"></i></span>
+        
         <h3 style="text-decoration: underline;
         color: #ffffffba;
         margin: 25px 0px;
         font-weight: 600;
         font-size: 15px;">Borrower details</h3>
-        <p><strong><i class="fa-regular fa-circle-user"></i></strong> <span id="userName"></span></p>
-        <p><strong><i class="fa-solid fa-money-bill-transfer"></i></strong> <span id="takenAmount"></span> Rupees</p>
-        <p><strong><i class="fa-solid fa-hourglass-end"></i></strong> <span id="months"></span> months</p>
+        <p><i class="fa-regular fa-circle-user"></i></strong> <span id="userName"></p>
+        <p><i class="fa-solid fa-money-bill-transfer"></i> <span id="takenAmount"></span> Rupees</p>
+        <p><i class="fa-solid fa-hourglass-end"></i></strong> <span id="months"> </span> month</p>
         <h3 style="text-decoration: underline;
         color: #ffffffba;
         margin: 25px 0px;
         font-weight: 600;
-        font-size: 15px;">Amount interest details</h3>
-        <p><strong><i class="fa-solid fa-sack-dollar"></i></strong> <span id="dailyAmount"></span> Rupees/day</p>
-        <p><strong><i class="fa-regular fa-calendar-minus"></i></strong> <span id="daysPassed"></span> days passed</p>
-        <p><strong><i class="fa-solid fa-arrow-up-wide-short"></i></strong> <span id="totalAmount"></span> rs interest</p>
+        font-size: 15px;">Amount & interest details</h3>
+        <p><i class="fa-solid fa-calendar-check"></i> <span id="planDate"></span></p>
+        <p><i class="fa-regular fa-calendar-minus"></i></strong> <span id="endDate"></span></p>
+        <p><strong><i class="fa-solid fa-arrow-up-wide-short"></i></strong> <span id="interest"></span> Rupees</p>
         <h3 style="text-decoration: underline;
         color: #ffffffba;
         margin: 25px 0px;
         font-weight: 600;
         font-size: 15px;">Total amount to return</h3>
-        <p><strong><i class="fa-solid fa-money-check-alt"></i></strong> <span id="totalReturnAmount"></span> Rupees</p>
-        <!-- <div class="bottom" style="margin-top: 30px;">
-            <a href="https://forms.gle/PjssBodtdo9iW1xn7" style="color: white;"><i class="fa-regular fa-circle"></i> Take money</a>
-        </div> -->
+        <p><i class="fa-solid fa-money-check-alt"></i> <span id="totalReturnAmount"></span> Rupees</p>
     </div>
     
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-    const passwords = {
-        
-        "8400": {
-            name: "V. Sai Charan",
-            planDate: "2025-1-21",
-            dailyAmount: 0,
-            takenAmount: 10000,
-            months: 2
-        },
-        "1234": {
-            name: "Charan sai Vemuri ",
-            planDate: "2025-2-27",
-            dailyAmount: 84,
-            takenAmount: 10000,
-            months: 1
-        }
-    };
+        const passwords = {
+            "Mahesh888*": {
+                name: "Mahesh M",
+                planDate: "15-02-2025",
+                endDate: "15-04-2025",
+                interest: 2600,
+                takenAmount: 12000,
+                months: 2
+            },
+            "Deepak@2": {
+                name: "Deepak",
+                planDate: "12-01-2025",
+                endDate: "12-03-2025",
+                interest: 2900,
+                takenAmount: 5000,
+                months: 1
+            },
+            "8400": {
+                name: "V. Sai Charan",
+                planDate: "21-01-2025",
+                endDate: "05-04-2025(Extanded)",
+                interest: 0,
+                takenAmount: 10000,
+                months: 2
+            },
+            "1234": {
+                name: "Charan sai Vemuri",
+                planDate: "27-02-2025",
+                endDate: "05-04-2025(Extanded)",
+                interest: 2500,
+                takenAmount: 10000,
+                months: 1
+            },
+        };
 
-    const passwordInput = document.getElementById("userPassword");
-    const togglePassword = document.getElementById("togglePassword");
-    const submitBtn = document.getElementById("submitBtn");
-    const errorMessage = document.getElementById("error-message");
-    const passwordContainer = document.getElementById("passwordContainer");
-    const userInfo = document.getElementById("userInfo");
-    const userName = document.getElementById("userName");
-    const totalAmount = document.getElementById("totalAmount");
-    const daysPassed = document.getElementById("daysPassed");
-    const dailyAmount = document.getElementById("dailyAmount");
-    const takenAmount = document.getElementById("takenAmount");
-    const monthsSpan = document.getElementById("months");
-    const totalReturnAmount = document.getElementById("totalReturnAmount");
-    const backIcon = document.getElementById("backIcon");
-
-    if (!passwordInput || !submitBtn || !passwordContainer || !userInfo) {
-        console.error("One or more required elements are missing in the DOM.");
-        return;
-    }
-
-    togglePassword?.addEventListener("click", () => {
-        if (passwordInput) {
-            passwordInput.type = passwordInput.type === "password" ? "text" : "password";
-            togglePassword.classList.toggle("fa-eye");
-            togglePassword.classList.toggle("fa-eye-slash");
-        }
-    });
-
-    submitBtn.addEventListener("click", () => {
-        const userInput = passwordInput.value.trim();
-        errorMessage.textContent = "";
-
-        if (passwords[userInput]) {
+        document.getElementById("submitBtn").addEventListener("click", () => {
+            const userInput = document.getElementById("userPassword").value.trim();
+            const errorMessage = document.getElementById("error-message");
             const user = passwords[userInput];
-            updateUserBalance(user);
-            showUserInfo();
-        } else {
-            errorMessage.textContent = "Incorrect password!";
+
+            if (user) {
+                document.getElementById("userName").textContent = user.name;
+                document.getElementById("planDate").textContent = user.planDate;
+                document.getElementById("endDate").textContent = user.endDate;
+                document.getElementById("interest").textContent = user.interest;
+                document.getElementById("takenAmount").textContent = user.takenAmount;
+                document.getElementById("months").textContent = user.months;
+                document.getElementById("totalReturnAmount").textContent = (user.takenAmount + user.interest).toFixed(2);
+                
+                document.getElementById("userInfoModal").style.display = "block";
+                errorMessage.textContent = "";
+            } else {
+                errorMessage.textContent = "Amount returned (or) Invalid password!";
+            }
+        });
+
+        function closeModal() {
+            document.getElementById("userInfoModal").style.display = "none";
         }
-    });
-
-    backIcon?.addEventListener("click", () => {
-        userInfo.style.display = "none";
-        passwordContainer.style.display = "block";
-        passwordInput.value = "";
-        errorMessage.textContent = "";
-    });
-
-    function updateUserBalance(user) {
-        if (!userName || !totalAmount || !daysPassed || !dailyAmount || !takenAmount || !monthsSpan || !totalReturnAmount) {
-            console.error("One or more elements to update user balance are missing.");
-            return;
-        }
-
-        const currentDate = new Date();
-        const planDate = new Date(user.planDate);
-
-        const timeDiff = currentDate - planDate;
-        const daysPassedValue = Math.max(0, Math.floor(timeDiff / (1000 * 3600 * 24)));
-        const totalAmountValue = daysPassedValue * user.dailyAmount;
-        const totalReturnValue = totalAmountValue + user.takenAmount;
-
-        userName.textContent = user.name;
-        totalAmount.textContent = totalAmountValue.toFixed(2);
-        daysPassed.textContent = daysPassedValue;
-        dailyAmount.textContent = user.dailyAmount;
-        takenAmount.textContent = user.takenAmount;
-        monthsSpan.textContent = user.months;
-        totalReturnAmount.textContent = totalReturnValue.toFixed(2);
-    }
-
-    function showUserInfo() {
-        if (!passwordContainer || !userInfo) {
-            console.error("Password container or user info section is missing.");
-            return;
-        }
-        passwordContainer.style.display = "none";
-        userInfo.style.display = "block";
-    }
-});
-
-    </script>
-    <style>
-        body {
-            background: black; /* Dark background to enhance glow */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .logo {
-    padding: 20px;
-    border-radius: 15px;
-    display: inline-block;
-    transition: box-shadow 0.5s ease-in-out;
-    position: fixed;
-}
-
-        .logo img {
-            width: 50px; /* Adjust size */
-            border-radius: 8px;
-            background-color: transparent;
-            position: fixed;
-    top: 15px;
-    right: 15px;
-        }
-
-        /* Default state (no glow) */
-        .glow {
-            animation: travelGlow 5s infinite linear;
-        }
-
-        /* @keyframes travelGlow {
-            0% { box-shadow: 0 0 1020px 200px #ff6105; } 
-            25% { box-shadow: 0 0 1030px 200px #0066ff } 
-            50% { box-shadow: 0 0 1040px 200px #be63ed; } 
-            75% { box-shadow: 0 0 1030px 200px #b15136; } 
-            100% { box-shadow: 0 0 1020px 200px #12afcb; }
-        } */
-        .mfi {
-            position: fixed;
-            bottom: 10px;
-            font-size: 11px;
-            z-index: 10;
-            font-weight: 200;
-        }
-
-    </style>
-</head>
-<body>
-
-    <div class="logo" >
-        <img id="logo" src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="Logo">
-    </div>
-
-    <div class="mfi" id="mfi">
-        From BS/MF
-    </div>
-
-    <script>
-        // function applyGlowEffect() {
-        //     const now = new Date();
-        //     const hours = now.getHours();
-        //     const logo = document.getElementById("logo");
-        //     const mfiText = document.getElementById("mfi");
-
-        //     if (hours >= 20 || hours < 4) {  // 8 PM - 4 AM
-        //         logo.classList.add("glow");
-        //         mfiText.style.color = "rgb(0, 42, 255)"; // Red text at night
-        //         mfiText.innerHTML = "From BS/MFI";
-        //     } else {
-        //         logo.classList.remove("glow");
-        //         mfiText.style.color = "#808080"; // Gray text during the day
-        //         mfiText.innerHTML = "From BS/MF";
-        //     }
-        // }
-
-        // // Apply glow on load and check every minute
-        // applyGlowEffect();
-        // setInterval(applyGlowEffect, 1000 * 60);
-
-
-        document.addEventListener("DOMContentLoaded", () => {
+        
+                document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
 
     // Show custom menu on right-click
