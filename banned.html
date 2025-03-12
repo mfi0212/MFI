@@ -33,10 +33,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     text-align: center;
     width: 95%;
@@ -51,17 +47,18 @@
             margin-bottom: 10px;
         }
         p {
-            font-size: 16px;
-            color: #000000;
+            font-size: 15px;
+            color: #ffffff;
             margin-bottom: 20px;
             line-height: 25px;
+            font-weight: 400;
         }
         .btn {
             display: inline-block;
             padding: 10px 20px;
             font-size: 16px;
             color: white;
-            background-color: #d9534f;
+            background-color: #696969;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -69,12 +66,12 @@
             transition: background 0.3s ease;
         }
         .btn:hover {
-            background-color: #c9302c;
+            background-color: #4b4b4b;
         }
         a{
             text-decoration: none;
     padding: 10px;
-    color: black;
+    color: rgb(255, 255, 255);
         }
     </style>
 </head>
@@ -84,7 +81,7 @@
         <h1>Access Denied</h1>
         <p>You have been temporarily banned for 15 days for violating our Terms and Conditions.</p>
         <p>Funds can only be accessed after the ban period is over. Until then, no transactions can be processed.</p>
-        <button><a href="https://mfi0212.github.io/MFI/terms">Read Terms and Conditions</a></button>
+        <button class="btn"><a href="https://mfi0212.github.io/MFI/terms">Read Terms and Conditions</a></button>
     </div>
     <script>
                 document.addEventListener("DOMContentLoaded", () => {
