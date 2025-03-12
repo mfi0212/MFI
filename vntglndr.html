@@ -33,16 +33,22 @@
             align-items: center;
             flex-direction: column;
             line-height: 60px;
+            
+            position: fixed;
         }
         #userPassword {
             font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ffffff1c;
-            background: #ffffff21;
-            color: #fff;
-            padding: 8px 15px;
-            text-align: center;
-            width: 95%;
+    border-radius: 5px;
+    border: 1px solid #ffffff1c;
+    background: #ffffff21;
+    color: #fff;
+    padding: 8px 30px;
+    text-align: center;
+    width: 95%;
+    outline: none;
+        }
+        #userPassword:focus{
+            border: 1px solid #ffffffda;
         }
         #submitBtn {
             background-color: #eeeeee;
