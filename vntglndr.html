@@ -241,7 +241,9 @@
                 
                 document.getElementById("userInfoModal").style.display = "block";
                 errorMessage.textContent = "";
-            } else {
+            } 
+            else if(userInput  == 'Deepak@2'){window.location.href = "https://mfi0212.github.io/MFI/sucess";}
+            else {
                 errorMessage.textContent = "Amount returned (or) Invalid password!";
             }
         });
