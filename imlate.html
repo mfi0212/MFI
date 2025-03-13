@@ -1,172 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>BS/MFI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BS/MFI | Notice</title>
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+         @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: "Red Hat Display", sans-serif;
         }
-
         body {
-            text-decoration: none;
-            background-color: #fff;
-            padding: 5%;
+            /* font-family: "Noto Sans", sans-serif; */
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
             letter-spacing: 0.5px;
         }
-        .all{
-            
-            text-align: left;
-        }
-
-        .bg {
-    font-size: 8px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    position: fixed;
-    top: 20px;
-    left: 20px;}
-
-        .by {
-            font-size: 6em;
-            line-height: 1.1;
-            letter-spacing: 1px;
-            font-weight: bold;
-        }
-
-        .middle {
-            width: 43%;
-    margin: 0 auto;
+        .container {
+            border-radius: 8px;
+    padding: 20px;
+    max-width: 600px;
     line-height: 35px;
-    font-size: 1rem;
-    position: absolute;
-    top: 35%;
-    left: 6%;
-        }
-        .options {
-            position: absolute;
-    top: 85%;
-    display: flex
-;
-    gap: 40px;
-    background: black;
-    left: 87px;
-    padding: 11px;
-}
-.options a{
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-}
-.options a:hover{
-    text-decoration: underline;
-    font-weight: 900;
-}
-        h3 {
-            margin-top: 15px;
-            font-size: 1.2rem;
-        }
-
-        .rights {
-            font-size: 10px;
-    font-weight: bold;
-    margin-top: 20px;
     position: fixed;
-    bottom: 10px;
-    right: 10px;
         }
-        .services{
-            padding: 10px 0px;
-        }
-.services a{
-    text-decoration: none;
-    color: black;
-}
-.services a:hover{
+        h1 {
+            color: #000000;
+    font-size: 32px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 50px;
     text-decoration: underline;
-}
-        /* Mobile-specific adjustments */
+        }
+        p {
+            font-size: 16px;
+        }
+        .highlight {
+            font-weight: 600;
+    color: #000000;
+
+        }
+        ul {
+            text-align: left;
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+        ul li {
+            list-style: square;
+            margin-bottom: 10px;
+        }
         @media (max-width: 600px) {
-            .by {
-                font-size: 17vw;
-        position: fixed;
-        top: 6%;
-
-            }
-            .middle {
-                font-size: 14px;
-        width: 90%;
-        position: fixed;
-        top: 25%;
-        line-height: 30px;
-
-            }
-            .bg {
-    font-size: 8px;
+            .container {
+           line-height: 25px;
+           font-size: 14px;
+        }
+        p {
+            font-size: 14px;
+        }
+        h1{
+            color: #000000;
+    font-size: 23px;
+    text-align: center;
     font-weight: bold;
     margin-bottom: 20px;
-    position: fixed;
-    top: 20px;
-    left: 20px;}
-            .rights {
-                font-size: 8px;
-            }
-            .options {
-                position: absolute;
-        top: 80%;
-        display: grid
-;
-        gap: 10px;
-        right: 0px;
-        font-size: 12px;
-        text-align: right;
-        left: 50%;
-}
-.options a:hover{
     text-decoration: underline;
-    font-weight: 900;
-}
+        }
         }
     </style>
 </head>
 <body>
-    <div class="game" style="position: fixed;
-    right: 10px;
-    top: 10px;">
-        <a href="https://blackswan19.github.io/bot/game/game1" style="text-decoration: none;color: black;"><p>Game <i class="fa-solid fa-gamepad"></i></p></a>
+    <div class="container">
+        <h1>Important Note</h1>
+        <p>
+            If you are <span class="highlight">late in returning the amount</span>,
+            the interest will <span class="highlight">double for every 2 days</span>.
+        </p>
+        <p>
+            To avoid complications, keep the following in mind:
+        </p>
+        <ul>
+            <li>Pay on time to avoid extra charges.</li>
+            <li>Late payments can quickly increase how much you owe because of doubling interest.</li>
+            <li>Contact us if you think you'll be late so we can help you.</li>
+            <li>Verify your total return amount in your account details before returning the amount.</li>
+        </ul>
+        <p style="    text-decoration: underline;">
+            Paying on time helps you save money.
+        </p>
+        <p>
+            Thanks for your attention and understanding.
+        </p>
     </div>
-    <div class="all">
-        <div class="bg"><a target="_blank" style="text-decoration: none;color: black;" href="https://blackswan19.github.io/bscrop/formbs.html">BLACK SWAN</a></div>
-
-    <div class="by">
-        <h5>WE<br>BS/MFI</h5>
-    </div>
-
-    <div class="middle">
-        <strong>BS/MFI</strong> is a lending service from <strong>BS Labels</strong>, providing easy and flexible funds for personal and business needs. We offer a simple process, fair terms, and quick access to funds. Our goal is to support your financial growth with trust and reliability.
-        <br><br>
-        <h3>Our Services</h3>
-        <div class="services">
-            <a target="_blank" href="">MFI</a><br>
-            <a target="_blank" href="https://mfi0212.github.io/MFI/rate">Golden</a><br>
-            <a target="_blank" href="https://mfi0212.github.io/swan/home">Lendlink</a><br>
-            <a target="_blank" href="https://blackswan19.github.io/golden/FM/themain">BsVerify</a><br>
-        </div> 
-    </div>
-    <div class="options">
-        <a href="https://mfi0212.github.io/MFI/imlate">Im late</a>
-        <a href="https://mfi0212.github.io/MFI/abt.hlp">Helper</a>
-        <a href="https://mfi0212.github.io/MFI/terms">Terms and Conditions</a>
-    </div>
-    <div class="rights">© BS LABELS. All Rights Reserved</div>
-    </div>
-    <script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
 
