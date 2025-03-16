@@ -6,6 +6,9 @@
     <title>Vintage Lender</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
@@ -16,29 +19,51 @@
     padding: 0;
 }
 
-       body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #000000;
-            color: #ffffff;
-            letter-spacing: 0.5px;
-        }
-        #passwordContainer {
-            text-align: center;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            line-height: 60px;
-            
-            position: fixed;
-        }
-        #userPassword {
-            font-size: 16px;
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #000;
+    color: #e0e0e0;
+    letter-spacing: 0.5px;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.header h2 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+/* Password Container */
+#passwordContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    text-align: center;
+    line-height: 15px;
+}
+
+#userPassword {
+    font-size: 16px;
     border-radius: 5px;
     border: 1px solid #ffffff1c;
     background: #ffffff21;
@@ -47,177 +72,257 @@
     text-align: center;
     width: 90%;
     outline: none;
+    max-width: 250px;
+    margin: 21px;
         }
         #userPassword:focus{
             border: 1px solid #ffffffda;
         }
-        #submitBtn {
-            background-color: #eeeeee;
-            color: black;
-            border: none;
-            border-radius: 500px;
-            font-size: 16px;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            margin: 10px;
-            outline: none;
-        }
-        #error-message {
-            color: red;
-    bottom: 30px;
-    font-size: 12px;
-    position: fixed;
-        }
-        h1{
-            font-weight: 400;
-    font-size: 22px
-        }
-        .modal {
-            display: none;
-    position: fixed;
-    z-index: 10;
-    left: 0px;
-    top: 0px;
-    background: black;
-    padding: 40px 25px;
-    border-radius: 10px;
-    width: 100%;
-    text-align: left;
-    height: 100%;
-    line-height: 30px;
-        }
-        .modal h2 {
-            color: white;
-        }
-        .modal p {
-            color: #8d8d8d;
-    margin: 10px 0;
-    font-size: 14px;
-    font-weight: 100;
-        }
-        
-        .close-btn {
-            position: absolute;
-    top: 10px;
-    left: 15px;
+
+#submitBtn {
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
     cursor: pointer;
-    color: white;
-    font-size: 25px;
-        }
-        .logo {
-    padding: 20px;
-    border-radius: 15px;
-    display: inline-block;
-    transition: box-shadow 0.5s ease-in-out;
-    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
 }
-.logo img {
-            width: 50px; /* Adjust size */
-            border-radius: 8px;
-            background-color: transparent;
-            position: fixed;
+
+
+
+#error-message {
+    color: #ff4d4d;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    padding: 65px 20px 20px;
+    line-height: 30px;
+    overflow-y: auto;
+    z-index: 10;
+
+}
+
+.modal h2 {
+    color: #e0e0e0;
+    font-weight: 500;
+}
+
+.modal h3 {
+    color: #00aeff;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: underline;
+    margin: 25px 0;
+}
+
+.modal p {
+    color: #a0a0a0;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 10px 0;
+    transition: color 0.3s ease;
+}
+
+.close-btn {
+    position: fixed;
     top: 15px;
-    right: 15px;
-        }
-        i{
-            margin: 5px;
-        }
-        .modal p:hover {
-            color: #00ddff;
-            font-weight: 400;
-        }
-    </style>
-</head>
-<body>
-    <div class="fro" style=" position: fixed;
-    bottom: 10px;
-    font-size: 11px;
-    z-index: 100000;
-    font-weight: 200;
-    ">
-        By BsLends
-    </div>
-    <div class="logo" >
-        <img id="logo" src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="Logo">
-    </div>
-    <button
-    style="position: fixed;
-    top: 70px;
+    left: 15px;
+    color: #e0e0e0;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 11;
+}
+
+i {
+    margin-right: 8px;
+}
+
+.logo {
+    position: fixed;
+    top: 10px;
     right: 10px;
-    background: #ffffff21;
-    color: white;
+    z-index: 11;
+}
+
+.logo img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.logout-btn {
+    position: fixed;
+    top: 55px;
+    right: 5px;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
     border: none;
     padding: 5px 12px;
     font-size: 12px;
-    border-radius: 1000px;cursor: pointer;" class="logout-btn"><a href="https://mfi0212.github.io/MFI/rate" style="text-decoration: none;color: white;">Logout</a></button>
-    <script>
-       function logout() {
-           localStorage.removeItem('selectedPlatform');
-           window.location.href = 'https://mfi0212.github.io/MFI/mobile/slct';
-       }
-   </script>
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 11;
+}
+
+.logout-btn a {
+    color: #e0e0e0;
+    text-decoration: none;
+}
+
+.logout-btn:hover {
+    background-color: #3a3a3a;
+}
+
+/* Loan Entry and Amount Buttons */
+.loan-entry {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #2a2a2a;
+}
+::-webkit-scrollbar{
+                    width: 10px;
+                }
+.amount-buttons {
+    display: flex
+;
+    gap: 10px;
+    margin: 3px 0px;
+    padding: 10px 0px;
+    overflow-x: scroll;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.amount-btn {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 35px;
+    padding: 10px 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.amount-btn:hover {
+    background-color: #3a3a3a;
+}
+
+.amount-btn.active {
+    background-color: #ffffff;
+    color: #000000;
+}
+    </style>
+</head>
+<body>
+   
+    <div class="logo">
+        <img id="logo" src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="Logo">
+        <button class="logout-btn">
+            <a href="https://mfi0212.github.io/MFI/rate">Logout</a>
+        </button>
+    </div>
+
     <div id="passwordContainer">
-        <h1>Vintage Lender </h1>
+        <h2>Vintage Lender</h2>
         <input type="text" id="userPassword" placeholder="Enter password">
-        <button id="submitBtn"><i class="fa-solid fa-arrow-right"></i></button><br>
+        <button id="submitBtn"><i style="margin: 0px;" class="fa-solid fa-arrow-right"></i></button><br>
         <p id="error-message"></p>
     </div>
-    
+
     <div id="userInfoModal" class="modal">
-        <span><i class="fa-solid fa-arrow-left" class="close-btn" onclick="closeModal()" style="cursor: pointer; font-size: 20px; color: white; margin-bottom: 10px;"></i></span>
-        
-        <h3 style="text-decoration: underline;
-        color: #ffffffba;
-        margin: 25px 0px;
-        font-weight: 600;
-        font-size: 15px;">Borrower details</h3>
-        <p><i class="fa-regular fa-circle-user"></i></strong> <span id="userName"></p>
-        <p><i class="fa-solid fa-money-bill-transfer"></i> <span id="takenAmount"></span> Rupees</p>
-        <p><i class="fa-solid fa-hourglass-end"></i></strong> <span id="months"> </span> month</p>
-        <h3 style="text-decoration: underline;
-        color: #ffffffba;
-        margin: 25px 0px;
-        font-weight: 600;
-        font-size: 15px;">Amount & interest details</h3>
-        <p><i class="fa-solid fa-calendar-day"></i> <span id="planDate"></span></p>
-        <p><i class="fa-solid fa-calendar-check"></i> </strong> <span id="endDate"></span></p>
-        <p><strong><i class="fa-solid fa-arrow-up-wide-short"></i></strong> <span id="interest"></span> Rupees</p>
-        <h3 style="text-decoration: underline;
-        color: #ffffffba;
-        margin: 25px 0px;
-        font-weight: 600;
-        font-size: 15px;">Total amount to return</h3>
-        <p><i class="fa-solid fa-money-check-alt"></i> <span id="totalReturnAmount"></span> Rupees</p>
+        <span><i class="fa-solid fa-arrow-left close-btn" onclick="closeModal()"></i></span>
+        <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">Borrower</h3>
+        <p style="font-size: 20px;"><span id="userName"></span></p>
+        <div class="amount-buttons" id="amountButtons"></div>
+        <div id="loanDetails"></div>
     </div>
-    
+
     <script>
         const passwords = {
             "Mahesh888*": {
                 name: "Mahesh M",
-                planDate: "15-02-2025",
-                endDate: "15-04-2025",
-                interest: 2600,
-                takenAmount: 12000,
-                months: 2
+                loans: [
+                    {
+                        planDate: "15-02-2025",
+                        endDate: "15-04-2025",
+                        interest: 2600,
+                        takenAmount: 12000,
+                        takenFrom: "Golden"
+                    },
+                    {
+                        takenAmount: 5000,
+                        interest: 1000,
+                        planDate: "1-03-2025",
+                        endDate: "1-04-2025",
+                        takenFrom: "STO",
+                    },
+                ]
             },
-           
             "8400": {
                 name: "V. Sai Charan",
-                planDate: "21-01-2025",
-                endDate: "05-04-2025(Extanded)",
-                interest: 0,
-                takenAmount: 10000,
-                months: 2
+                loans: [
+                    {
+                        planDate: "21-01-2025",
+                        endDate: "05-04-2025(Extanded)",
+                        interest: 0,
+                        takenAmount: 10000,
+                        months: 2,
+                        takenFrom: "Golden"
+                    },
+                    {
+                        planDate: "27-02-2025",
+                        endDate: "27-03-2025",
+                        interest: 2500,
+                        takenAmount: 10000,
+                        takenFrom: "Golden"
+                    }
+                ]
             },
-            "1234": {
-                name: "Charan sai Vemuri",
-                planDate: "27-02-2025",
-                endDate: "05-04-2025(Extanded)",
-                interest: 2500,
-                takenAmount: 10000,
-                months: 1
+            "Deepak@1": {
+                name: "Deepak Tallapudi",
+                loans: [
+                    {
+                        planDate: "11-03-2025",
+                        endDate: "31-03-2025",
+                        interest: 300,
+                        takenAmount: 2000,
+                        takenFrom: "STO"
+                    },
+                    {
+                        planDate: "02-03-2025",
+                        endDate: "22-03-2025",
+                        interest: 0,
+                        takenAmount: 5000,
+                        takenFrom: "STO"
+                    },
+                    {
+                        planDate: "06-03-2025",
+                        endDate: "06-04-2025",
+                        interest: 650,
+                        takenAmount: 2000,
+                        takenFrom: "STO"
+                    }
+                ]
             },
+            
         };
 
         document.getElementById("submitBtn").addEventListener("click", () => {
@@ -227,27 +332,74 @@
 
             if (user) {
                 document.getElementById("userName").textContent = user.name;
-                document.getElementById("planDate").textContent = user.planDate;
-                document.getElementById("endDate").textContent = user.endDate;
-                document.getElementById("interest").textContent = user.interest;
-                document.getElementById("takenAmount").textContent = user.takenAmount;
-                document.getElementById("months").textContent = user.months;
-                document.getElementById("totalReturnAmount").textContent = (user.takenAmount + user.interest).toFixed(2);
-                
+                const amountButtons = document.getElementById("amountButtons");
+                amountButtons.innerHTML = "";
+
+                // Create buttons for each loan amount
+                user.loans.forEach((loan, index) => {
+                    const btn = document.createElement("button");
+                    btn.className = "amount-btn";
+                    btn.textContent = ` ${loan.takenAmount} Rupees`;
+                    btn.onclick = () => displayLoanDetails(loan, index);
+                    amountButtons.appendChild(btn);
+                });
+
+                // Show the modal with the first loan by default
+                if (user.loans.length > 0) {
+                    displayLoanDetails(user.loans[0], 0);
+                }
+
                 document.getElementById("userInfoModal").style.display = "block";
                 errorMessage.textContent = "";
-            } 
-            else if(userInput  == 'Deepak@2'){window.location.href = "https://mfi0212.github.io/MFI/sucess";}
-            else {
+            } else if (userInput === 'Deepak@2') {
+                window.location.href = "https://mfi0212.github.io/MFI/sucess";
+            } else {
                 errorMessage.textContent = "Amount returned (or) Invalid password!";
             }
         });
 
+        function displayLoanDetails(loan, index) {
+            const loanDetails = document.getElementById("loanDetails");
+            const totalReturnAmount = (loan.takenAmount + loan.interest).toFixed(2);
+
+            // Remove active class from all buttons
+            document.querySelectorAll(".amount-btn").forEach(btn => btn.classList.remove("active"));
+            // Add active class to the clicked button
+            document.getElementById("amountButtons").children[index].classList.add("active");
+
+            loanDetails.innerHTML = `
+                <div class="loan-entry">
+                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                        Service
+                    </h3>
+                    <p>${loan.takenFrom}</p>
+                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                        Amount Details
+                    </h3>
+                    <p><i class="fa-solid fa-money-bill-transfer"></i>Amount: ${loan.takenAmount} Rupees</p>
+                   <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                        Taken & Ends
+                    </h3>
+
+                     <p><i class="fa-solid fa-calendar-day"></i> Taken on: ${loan.planDate}</p>
+                    <p><i class="fa-solid fa-calendar-check"></i> End on: ${loan.endDate}</p>
+                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                        Interest
+                    </h3>
+                    <p><i class="fa-solid fa-arrow-up-wide-short"></i> Interest: ${loan.interest} Rupees</p>
+                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                        Total Amount to Pay
+                    </h3>
+                    <p><i class="fa-solid fa-money-check-alt"></i> ${totalReturnAmount} Rupees</p>
+                </div>
+            `;
+        }
+
         function closeModal() {
             document.getElementById("userInfoModal").style.display = "none";
         }
-        
-                document.addEventListener("DOMContentLoaded", () => {
+
+        document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
 
     // Show custom menu on right-click
