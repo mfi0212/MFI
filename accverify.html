@@ -145,7 +145,6 @@ a{
     margin: 10px 0;
     transition: color 0.3s ease;
 }
-
 .close-btn {
     position: fixed;
     top: 15px;
@@ -155,8 +154,8 @@ a{
     cursor: pointer;
     z-index: 11;
     background: #282828;
-    padding: 10px;
-    border-radius: 6px;
+    padding: 10px 11px;
+    border-radius: 134px;
 }
 
 i {
@@ -248,7 +247,7 @@ i {
     bottom: 60px;
     color: #00ddff;
     padding: 10px;
-    border: solid 1px gray;
+    border: solid 1.4px #2f2f2f;
     border-radius: 10px;
     width: 90%;
     max-width: 400px;
@@ -381,9 +380,11 @@ i {
 
                 document.getElementById("userInfoModal").style.display = "block";
                 errorMessage.textContent = "";
-            } else if (userInput === 'Deepak@2') {
-                window.location.href = "https://mfi0212.github.io/MFI/sucess";
-            } else {
+            }
+            // else if (userInput === 'Deepak@2') {
+            //     window.location.href = "https://mfi0212.github.io/MFI/sucess";
+            // } 
+            else {
                 errorMessage.textContent = "Amount returned (or) Invalid password!";
             }
         });
