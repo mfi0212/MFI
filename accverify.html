@@ -118,7 +118,7 @@ a{
     width: 100%;
     height: 100%;
     background-color: #000;
-    padding: 65px 25px 20px;
+    padding: 65px 0px 0px 24px;
     line-height: 30px;
     overflow-y: auto;
     z-index: 10;
@@ -240,6 +240,19 @@ i {
     background-color: #ffffff;
     color: #000000;
 }
+.notice {
+    font-weight: 200;
+    font-size: 12px;
+    line-height: 20px;
+    position: fixed;
+    bottom: 60px;
+    color: #00ddff;
+    padding: 10px;
+    border: solid 1px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+}
     </style>
 </head>
 <body>
@@ -258,6 +271,10 @@ i {
         <input type="text" id="userPassword" placeholder="Enter password">
         <button id="submitBtn"><i style="margin: 0px;" class="fa-solid fa-arrow-right"></i></button><br>
         <p id="error-message"></p>
+
+        <div class="notice">
+            Here are your account details, of the borrowed amounts from Golden and STO.
+        </div>
     </div>
 
     <div id="userInfoModal" class="modal">
@@ -274,24 +291,31 @@ i {
                 name: "Mahesh M",
                 loans: [
                     {
-                        planDate: "15-02-2025",
-                        endDate: "15-04-2025",
-                        interest: 2600,
-                        takenAmount: 12000,
-                        takenFrom: "Golden"
-                    },
-                    {
                         takenAmount: 5000,
                         interest: 1000,
                         planDate: "1-03-2025",
                         endDate: "1-04-2025",
                         takenFrom: "STO",
                     },
+                    {
+                        planDate: "15-02-2025",
+                        endDate: "15-04-2025",
+                        interest: 2600,
+                        takenAmount: 12000,
+                        takenFrom: "Golden"
+                    },
                 ]
             },
             "8400": {
                 name: "V. Sai Charan",
                 loans: [
+                    {
+                        planDate: "27-02-2025",
+                        endDate: "27-03-2025",
+                        interest: 2500,
+                        takenAmount: 10000,
+                        takenFrom: "Golden"
+                    },
                     {
                         planDate: "21-01-2025",
                         endDate: "05-04-2025(Extanded)",
@@ -300,30 +324,23 @@ i {
                         months: 2,
                         takenFrom: "Golden"
                     },
-                    {
-                        planDate: "27-02-2025",
-                        endDate: "27-03-2025",
-                        interest: 2500,
-                        takenAmount: 10000,
-                        takenFrom: "Golden"
-                    }
                 ]
             },
             "Deepak@1": {
                 name: "Deepak Tallapudi",
                 loans: [
                     {
-                        planDate: "11-03-2025",
-                        endDate: "31-03-2025",
-                        interest: 300,
-                        takenAmount: 2000,
-                        takenFrom: "STO"
-                    },
-                    {
                         planDate: "02-03-2025",
                         endDate: "22-03-2025",
                         interest: 0,
                         takenAmount: 5000,
+                        takenFrom: "STO"
+                    },
+                    {
+                        planDate: "11-03-2025",
+                        endDate: "31-03-2025",
+                        interest: 300,
+                        takenAmount: 2000,
                         takenFrom: "STO"
                     },
                     {
