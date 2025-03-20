@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deplay Interest Calculator</title>
+    <title>STO | Interest</title>
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
     <style>
          @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&display=swap');
 
@@ -34,11 +35,11 @@
         }
         h2 {
             color: #000000;
-    margin-top: 9px;
+    margin-top: 10px;
     font-size: 11px;
-            font-weight: 500;
-            border-bottom: 2px solid #dbeafe;
-            padding-bottom: 10px;
+    font-weight: 500;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 10px;
         }
         label {
             display: block;
@@ -154,6 +155,22 @@
                 Interest for Extand: <span class="highlight">${interest.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span><br>
             `;
         }
+                document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
     </script>
 </body>
 </html>
