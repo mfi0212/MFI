@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&display=swap');
@@ -32,9 +32,9 @@
     
         #form {
             width: 100%;
-    max-width: 400px;
-    padding: 15px 0px;
-    line-height: 45px;
+            max-width: 400px;
+            padding: 15px 0px;
+            line-height: 45px;
         }
     
         .logo {
@@ -51,22 +51,21 @@
     
         label {
             font-weight: bold;
-    display: flex
-;
-    font-size: 14px;
-    margin-bottom: 5px;
-    align-items: center;
-    gap: 6px;
+            display: flex;
+            font-size: 14px;
+            margin-bottom: 5px;
+            align-items: center;
+            gap: 6px;
         }
     
         input[type="text"],
         input[type="password"],
         input[type="number"] {
             width: 100%;
-    padding: 10px;
-    border: 1px solid #595959;
-    font-size: 16px;
-    outline: none;
+            padding: 10px;
+            border: 1px solid #595959;
+            font-size: 16px;
+            outline: none;
         }
     
         input:focus {
@@ -74,12 +73,7 @@
           box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
         }
     
-        .radio-group {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-        }
-    
+        
         .radio-group label {
           display: flex;
           align-items: center;
@@ -99,10 +93,8 @@
           margin-top: 20px;
         }
         button#submit-button:hover{
-          
           background: #0035c5;
           color: white;
-         
         }
     
         #message {
@@ -121,175 +113,215 @@
           transform: translateX(-50%);
           box-shadow: 2px 0px 26px rgba(0, 0, 0, 0.769);
         }
-    </style>
 
-    <form id="form" class="container m-4 pl-4" method="POST">
-        <div class="logo" style="font-size: 30px;
-        font-weight: 800;
-        color: #003eff;
-        letter-spacing: 0px;">
-            BS/MFI
-        </div>
-      <div class="field">
-        <label class="label">Name</label>
-        <div class="control">
-          <input
-            class="input"
-            type="text"
-            placeholder=""
-            name="Name"
-          />
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label">Password <strong style="color: #008b48;">(Don't use zero's in your password)</strong></label>
-        <div class="control">
-          <input
-            class="input"
-            type="text"
-            placeholder=""
-            name="Password"
-          />
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label">Phone number</label>
-        <div class="control">
-          <input
-            class="input"
-            type="number"
-            placeholder=""
-            name="Phone number"
-          />
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label">Amount you are taking from?</label>
-        <div class="control">
-          <label class="radio">
-            <input type="radio" name="Taking in" value="Lendlink" /> Lendlink
-          </label>
-          <label class="radio">
-            <input type="radio" name="Taking in" value="Golden" /> Golden
-          </label>
-          <label class="radio">
-            <input type="radio" name="Taking in" value="Others" /> MLending
-          </label>
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label">How much amount you like to take?</label>
-        <div class="control">
-          <input
-            class="input"
-            type="text"
-            placeholder=""
-            name="Amount"
-          />
-        </div>
-      </div>
-      <div class="field">
-        <label class="label">In how many days you will return the amount?</label>
-        <div class="control">
-          <input
-            class="input"
-            type="text"
-            placeholder=""
-            name="Days"
-          />
-        </div>
-      </div>
-
-      <div class="field">
-        <div class="control">
-          <button class="btn-primary" type="submit" id="submit-button">
-            Submit
-          </button>
-        </div>
-      </div>
-    </form>
-    <div
-      id="message"></div>
-
-    <script>
-      document.getElementById("form").addEventListener("submit", function (e) {
-        e.preventDefault(); // Prevent the default form submission
-        document.getElementById("message").textContent = "Submitting..";
-        document.getElementById("message").style.display = "block";
-        document.getElementById("submit-button").disabled = true;
-
-        // Collect the form data
-        var formData = new FormData(this);
-        var keyValuePairs = [];
-        for (var pair of formData.entries()) {
-          keyValuePairs.push(pair[0] + "=" + pair[1]);
+        .hidden {
+            display: none;
         }
 
-        var formDataString = keyValuePairs.join("&");
+        .new-button {
+            padding: 0px 20px;
+    color: #000000;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    text-decoration: none;
+    align-items: center;
+    display: flex
+;
+    justify-content: flex-end;
+        }
 
-        // Send a POST request to your Google Apps Script
-        fetch(
-          "https://script.google.com/macros/s/AKfycbxIlao67g-XSHBVoSvYzofopgSa7_7_l9qstp4SxrdqMWCutnasBtQjdLn_aUWdsZvShw/exec",
-          {
-            redirect: "follow",
-            method: "POST",
-            body: formDataString,
-            headers: {
-              "Content-Type": "text/plain;charset=utf-8",
-            },
-          }
-        )
-          .then(function (response) {
-            // Check if the request was successful
-            if (response) {
-              return response; // Assuming your script returns JSON response
-            } else {
-              throw new Error("Failed to submit the form.");
+        .new-button:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <form id="form" class="container m-4 pl-4" method="POST">
+        <div class="logo" style="font-size: 30px; font-weight: 800; color: #003eff; letter-spacing: 0px;">
+            BS/MFI
+        </div>
+
+        <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="" name="Name" />
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Password <strong style="color: #008b48;">(Don't use zero's in your password)</strong></label>
+            <div class="control">
+                <input class="input" type="text" placeholder="" name="Password" />
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Phone number</label>
+            <div class="control">
+                <input class="input" type="number" placeholder="" name="Phone number" />
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Amount you are taking from?</label>
+            <div class="control radio-group">
+                <label class="radio">
+                    <input type="radio" name="Taking in" value="Lendlink" /> Lendlink
+                </label>
+                <label class="radio">
+                    <input type="radio" name="Taking in" value="Golden" /> Golden
+                </label>
+                <label class="radio">
+                    <input type="radio" name="Taking in" value="Others" /> MLending
+                </label>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">How much amount you like to take?</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="" name="Amount" />
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">In how many days you will return the amount?</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="" name="Days" />
+            </div>
+        </div>
+
+        <!-- New Question: Do you like to apply for SPLIT? -->
+        <div class="field">
+            <label class="label">Do you like to apply for SPLIT?</label>
+            <div class="control radio-group">
+                <label class="radio">
+                    <input type="radio" name="ApplySplit" value="Yes" onchange="toggleSplitQuestions(this.value)" /> Yes
+                </label>
+                <label class="radio">
+                    <input type="radio" name="ApplySplit" value="No" onchange="toggleSplitQuestions(this.value)" /> No
+                </label>
+            </div>
+        </div>
+
+        <!-- Conditional Questions for SPLIT (Initially Hidden) -->
+        <div id="splitQuestions" class="hidden">
+            <div class="field">
+                <label class="label">Do you pay the split fee?</label>
+                <div class="control radio-group">
+                    <label class="radio">
+                        <input type="radio" name="PaySplitFee" value="Yes" /> Yes
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="PaySplitFee" value="No" /> No
+                    </label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">No. of splits you like to do?</label>
+                <div class="control">
+                    <input class="input" type="number" placeholder="" name="NumberOfSplits" />
+                </div>
+            </div>
+
+            <div class="field">
+                <a href="https://example.com" class="new-button">Explore Split pay</a>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <button class="btn-primary" type="submit" id="submit-button">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div id="message"></div>
+
+    <script>
+        document.getElementById("form").addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent the default form submission
+            document.getElementById("message").textContent = "Submitting..";
+            document.getElementById("message").style.display = "block";
+            document.getElementById("submit-button").disabled = true;
+
+            // Collect the form data
+            var formData = new FormData(this);
+            var keyValuePairs = [];
+            for (var pair of formData.entries()) {
+                keyValuePairs.push(pair[0] + "=" + pair[1]);
             }
-          })
-          .then(function (data) {
-            // Display a success message
-            document.getElementById("message").textContent =
-              "Details submitted successfully..!";
-            document.getElementById("message").style.display = "block";
-            document.getElementById("message").style.backgroundColor = "green";
-            document.getElementById("message").style.color = "white";
-            document.getElementById("submit-button").disabled = false;
-            document.getElementById("form").reset();
 
-            setTimeout(function () {
-              document.getElementById("message").textContent = "";
-              document.getElementById("message").style.display = "none";
-            }, 2600);
-          })
-          .catch(function (error) {
-            // Handle errors, you can display an error message here
-            console.error(error);
-            document.getElementById("message").textContent =
-              "An error occurred while submitting the form.";
-            document.getElementById("message").style.display = "block";
-          });
-      });
-              document.addEventListener("DOMContentLoaded", () => {
-const customMenu = document.querySelector(".custom-menu");
+            var formDataString = keyValuePairs.join("&");
 
-// Show custom menu on right-click
-document.addEventListener("contextmenu", (event) => {
-    event.preventDefault();
-    customMenu.style.display = "block";
-    customMenu.style.top = `${event.pageY}px`;
-    customMenu.style.left = `${event.pageX}px`;
-});
+            // Send a POST request to your Google Apps Script
+            fetch(
+                "https://script.google.com/macros/s/AKfycbxIlao67g-XSHBVoSvYzofopgSa7_7_l9qstp4SxrdqMWCutnasBtQjdLn_aUWdsZvShw/exec",
+                {
+                    redirect: "follow",
+                    method: "POST",
+                    body: formDataString,
+                    headers: {
+                        "Content-Type": "text/plain;charset=utf-8",
+                    },
+                }
+            )
+                .then(function (response) {
+                    if (response) {
+                        return response; // Assuming your script returns JSON response
+                    } else {
+                        throw new Error("Failed to submit the form.");
+                    }
+                })
+                .then(function (data) {
+                    document.getElementById("message").textContent = "Details submitted successfully..!";
+                    document.getElementById("message").style.display = "block";
+                    document.getElementById("message").style.backgroundColor = "green";
+                    document.getElementById("message").style.color = "white";
+                    document.getElementById("submit-button").disabled = false;
+                    document.getElementById("form").reset();
 
-// Hide the menu when clicking elsewhere
-document.addEventListener("click", () => {
-    customMenu.style.display = "none";
-});
+                    setTimeout(function () {
+                        document.getElementById("message").textContent = "";
+                        document.getElementById("message").style.display = "none";
+                    }, 2600);
+                })
+                .catch(function (error) {
+                    console.error(error);
+                    document.getElementById("message").textContent = "An error occurred while submitting the form.";
+                    document.getElementById("message").style.display = "block";
+                });
+        });
+
+        // Function to toggle SPLIT questions based on user selection
+        function toggleSplitQuestions(value) {
+            const splitQuestions = document.getElementById("splitQuestions");
+            if (value === "Yes") {
+                splitQuestions.classList.remove("hidden");
+            } else {
+                splitQuestions.classList.add("hidden");
+            }
+        }
+                document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
 });
     </script>
-  </body>
+</body>
 </html>
