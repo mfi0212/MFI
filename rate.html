@@ -3,340 +3,425 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Golden</title>
-    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/SxwrHyLz/logo.png">
+    <title>Verify my account</title>
+    <link rel="icon" type="image/x-icon" href="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
-    <link rel="stylesheet" href="rate.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-       
-        .menu-content { display: none; }
-        .active { display: block; }
-        .container { text-align: center; }
-        .menu a { margin: 20px 10px; font-size: 24px; cursor: pointer; }
-        .input-section { display: flex; flex-direction: column; align-items: center; }
-        .input-section input, .input-section button { margin: 20px;
-    padding: 10px 30px;
-    font-size: 13px;
-    background: #282828;
-    border: none;
-    color: #d6d6d6;
-    outline: none;
-    border-radius: 9px;
-    text-align: center;
+       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-        .buttons { display: flex; justify-content: center; gap: 20px; margin-top: 20px;padding: 20px;
-        }
-        .buttons button {     padding: 10px 20px;
-    font-size: 14px;
-    background: #282828;
-    border: none;
-    color: #e3e3e3;
-    border-radius: 10px;
-    white-space: nowrap;    cursor: pointer;
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #000;
+    color: #e0e0e0;
+    letter-spacing: 0.5px;
 }
-.menu{
-    z-index: 10000;
-}
-p {
-    max-width: 600px;
-    text-align: center;
-    display: inline-block;
-    border-radius: 10px;
-    border: solid 1.4px #8e8e8e6b;
-    color: #d1d1d1;
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1a1a1a;
     padding: 10px 15px;
-    font-size: 12px;
-    z-index: 1000;
-    font-weight: 500;
-    letter-spacing: 0.6px;
-    cursor: help;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 10;
 }
+
+.header h2 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+/* Password Container */
+#passwordContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    text-align: center;
+    line-height: 15px;
+    position: fixed;
+    /* padding-top: 50px; */
+}
+
+#userPassword {
+    font-size: 16px;
+    border-radius: 40px;
+    border: 1px solid #ffffff1c;
+    background: #ffffff21;
+    color: #fff;
+    padding: 8px 25px;
+    text-align: center;
+    width: 90%;
+    outline: none;
+    max-width: 280px;
+    margin: 21px;
+        }
+        #userPassword:focus{
+            border: 1px solid #ffffffda;
+        }
+
+#submitBtn {
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
+
 a{
-            color: #ffffffcb;
-            text-decoration: none;
-        }
-/* @keyframes travelGlow {
-            0% { box-shadow: 0 0 1020px 200px #ff6105; } 
-            25% { box-shadow: 0 0 1030px 200px #0066ff } 
-            50% { box-shadow: 0 0 1040px 200px #be63ed; } 
-            75% { box-shadow: 0 0 1030px 200px #b15136; } 
-            100% { box-shadow: 0 0 1020px 200px #12afcb; }
-        }*/
-        .logo img {
-            z-index: -1000;
-        } 
-        .mfi {
-            position: fixed;
-            bottom: 10px;
-            font-size: 11px;
-            z-index: 100000;
-            font-weight: 200;
-        }
-        .bottom a{
-                text-decoration: none;
-            }
-            .bottom a:hover{
-                text-decoration: underline;
-                        }
+    color: #848484;
+}
+
+#error-message {
+    color: #ff0000;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    padding: 65px 0px 0px 24px;
+    line-height: 30px;
+    overflow-y: auto;
+    z-index: 10;
+
+}
+
+.modal h2 {
+    color: #e0e0e0;
+    font-weight: 500;
+}
+
+.modal h3 {
+    color: #00aeff;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: underline;
+    margin: 25px 0;
+}
+
+.modal p {
+    color: #a0a0a0;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 10px 0;
+    transition: color 0.3s ease;
+}
+.close-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    color: #e0e0e0;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 11;
+    background: #282828;
+    padding: 10px 11px;
+    border-radius: 134px;
+}
+
+i {
+    margin-right: 8px;
+}
+
+.logo {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 11;
+}
+
+.logo img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.logout-btn {
+    position: fixed;
+    top: 55px;
+    right: 5px;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border: none;
+    padding: 5px 12px;
+    font-size: 12px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 11;
+}
+
+.logout-btn a {
+    color: #e0e0e0;
+    text-decoration: none;
+}
+
+.logout-btn:hover {
+    background-color: #3a3a3a;
+}
+
+/* Loan Entry and Amount Buttons */
+.loan-entry {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #2a2a2a;
+    width: 103%;
+    padding-bottom: 30px;
+}
+::-webkit-scrollbar{
+                    width: 10px;
+                }
+.amount-buttons {
+    display: flex
+;
+    gap: 10px;
+    margin: 3px 0px;
+    padding: 10px 0px;
+    overflow-x: scroll;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.amount-btn {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 35px;
+    padding: 10px 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.amount-btn:hover {
+    background-color: #3a3a3a;
+}
+
+.amount-btn.active {
+    background-color: #ffffff;
+    color: #000000;
+}
+.notice {
+    font-weight: 200;
+    font-size: 12px;
+    line-height: 20px;
+    position: fixed;
+    bottom: 60px;
+    color: #00ddff;
+    padding: 10px;
+    border: solid 1.4px #2f2f2f;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+}
     </style>
 </head>
-
 <body>
-    <div class="mfi" id="mfi">
-        <a target="_blank" href="https://mfi0212.github.io/MFI/mfimain">By BsLends</a>
-    </div>
-<div class="container">
-    <div id="content-home" class="menu-content active">
-        
-        <div class="location">  
-            <div class="bottom">
-              <a href="https://blackswan19.github.io/bot/game/game1" style="text-decoration: none;color: black;">
-                <p style="display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 5px;border: none;font-size: 13px;">Game <i class="fa-solid fa-gamepad"></i></p></a>
-           </div>
-        </div>
-        <style>
-            @keyframes color-move {
-                0% { background-position: 100% 0; }
-                100% { background-position: 0 0; }
-            }
-            
-            .helper-button {
-                position: fixed;
-    top: 10px;
-    font-size: 11px;
-    background: #ffffff4d;
-    padding: 3px 15px;
-    border-radius: 60px;
-    color: #ffffff;
-    text-decoration: none;
-    border: 3px solid transparent;
-    z-index: 100000000;
-            }
-            
-            /* This class will be added and removed dynamically */
-            .animated-border::before {
-                content: "";
-                position: absolute;
-                top: -3px;
-                left: -3px;
-                right: -3px;
-                bottom: -3px;
-                border-radius: 60px;
-                background: linear-gradient(270deg,#ffffffad,#aa00ff,#ffd500, #ff0000,#003cff,#ea00ff,#00ff73,#ff6a00,#ffffff);
-                background-size: 400% 100%;
-                z-index: -1;
-                animation: color-move 4s linear infinite;
-            }
-              </style>
-               <a style="right: 90px;" class="helper-button" href="https://mfi0212.github.io/MFI/abt.hlp">Helper</a>
-              <a style="right: 5px;" class="helper-button" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
-                <script>
-                 document.addEventListener("DOMContentLoaded", function () {
-                let helperButton = document.querySelector(".helper-button");
-            
-                // Add the animation class on page load
-                helperButton.classList.add("animated-border");
-            
-                // Remove animation after 5 seconds
-                setTimeout(() => {
-                    helperButton.classList.remove("animated-border");
-                }, 60000);
-            });
-            
-                </script>
+   
+    <div id="passwordContainer">
+        <h2 style="font-weight: 400;
+        font-size: 20px;
+        color: white;">Verify my account</h2>
+        <input type="text" id="userPassword" placeholder="Enter password">
+        <button id="submitBtn"><i style="margin: 0px;" class="fa-solid fa-arrow-right"></i></button><br>
+        <p id="error-message"></p>
 
-                
-        <div class="logo">
-            <img id="logo" src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="">
-        </div>
-        <div  class="date">Interest for different amounts</div><br>
-        <div class="prices">
-            <p onclick="showPopup(10000, 2500)">Interest For ₹10000 is ₹2500</p>
-            <p onclick="showPopup(11000, 2600)">Interest For ₹11000 is ₹2600</p>
-            <p onclick="showPopup(12000, 2700)">Interest For ₹12000 is ₹2700</p>
-            <p onclick="showPopup(13000, 2800)">Interest For ₹13000 is ₹2800</p>
-            <p onclick="showPopup(14000, 2900)">Interest For ₹14000 is ₹2900</p>
-            <p onclick="showPopup(15000, 3000)">Interest For ₹15000 is ₹3000</p>
-        </div>
-        
-        <div class="popupcon">
-            <!-- Popup Section -->
-        <div id="popup">
-            <h2 style="color: #e1e1e1;
-            font-size: 20px;
-            padding: 10px;
-            font-weight: 500;
-        ">Interest for this amount</h2>
-            <p id="popup-content" style="    color: #bcbcbc;"></p>
-            <button onclick="closePopup()" style="padding: 8px 20px;
-            background: #282828;
-            color: #ffffff;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            margin: 10px;font-family: 'Poppins', sans-serif;">Close</button>
-        </div>
-        </div>
-        <script>
-            function showPopup(amount, interest) {
-                const popup = document.getElementById('popup');
-                const content = document.getElementById('popup-content');
-                p = amount+interest;
-                content.textContent = `If you borrow ${amount}₹ for 1 month, The interest for the amount was ${interest}₹ . This means you have to pay ${p}₹ totaly at the end of the month.`;
-                popup.style.display = 'block';
-            }
-        
-            function closePopup() {
-                const popup = document.getElementById('popup');
-                popup.style.display = 'none';
-            }
-        </script>
-        
-        <div class="price">
-            <p>You can borrow amounts from ₹10,000 to ₹15,000. <br><br><span style="color: #00ddff;
-    font-weight: 500;">Note: The borrower must pay the interest before taking the funds.</span></p>
+        <div class="notice">
+            You should return the money before the due date, If not additional interest will be charged.
         </div>
     </div>
 
-    <div id="content-transfer" class="menu-content">
-        <div class="buttons">
-            <button onclick="alert('You can apply from 26th of this month...')" style="cursor: no-drop;background-color: #3c3c3c;"><a href="#unable">Take Money</a></button>
-            <!--<button onclick="alert('We are redirecting you to taking form.')"><a href="https://mfi0212.github.io/MFI/takemoney">Take Money</a> </button>-->
-            <p style="position: fixed;
-            top: 10px;
-            right: 5px;
-            border: none;
-            font-size: 11px;
-            color: white;
-            border: solid 1.5px #535353;
-            padding: 6px 16px;
-            border-radius: 30px;"><a href="https://mfi0212.github.io/swan/offer/offer">Explore STO</a></p>
+    <div id="userInfoModal" class="modal">
+        <span><i class="fa-solid fa-arrow-left close-btn" onclick="closeModal()"></i></span>
+        <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">Borrower</h3>
+        <p style="font-size: 20px;"><span id="userName"></span></p>
+        <div class="amount-buttons" id="amountButtons"></div>
+        <div id="loanDetails"></div>
+    </div>
+    <script>
+        const passwords = {
+            "Mahesh888*": {
+                name: "Mahesh M",
+                loans: [
+                    {
+                        takenAmount: 5000,
+                        interest: 1000,
+                        planDate: "1-03-2025",
+                        endDate: "6-04-2025(Extanded)",
+                        takenFrom: "STO",
+                    },
+                    {
+                        planDate: "15-02-2025",
+                        endDate: "15-04-2025",
+                        interest: 2600,
+                        takenAmount: 12000,
+                        takenFrom: "Golden"
+                    },
+                ]
+            },
+            "8400": {
+                name: "V. Sai Charan",
+                loans: [
+                    {
+                        planDate: "21-01-2025",
+                        endDate: "20-04-2025( 15 days extanded)",
+                        interest: 1250,
+                        takenAmount: 10000,
+                        takenFrom: "Golden"
+                    },
+                    {
+                        planDate: "24-01-2025",
+                        endDate: "08-04-2025",
+                        interest: 0,
+                        takenAmount: 3000,
+                        takenFrom: "STO"
+                    },
+                    {
+                        planDate: "28-03-2025",
+                        endDate: "12-04-2025",
+                        interest: 1100,
+                        takenAmount: 5000,
+                        takenFrom: "STO"
+                    },
+                ]
+            },
+            "Deepak@1": {
+                name: "Deepak Tallapudi",
+                loans: [
+                    {
+                        planDate: "02-03-2025",
+                        endDate: "05-04-2025<p style='color: red;'>(Extra +100 interest has added for late payment.)</p>",
+                        interest: 0,
+                        takenAmount: 1400,
+                        takenFrom: "STO"
+                    },
+                    {
+                        planDate: "06-03-2025",
+                        endDate: "06-04-2025",
+                        interest: 650,
+                        takenAmount: 2000,
+                        takenFrom: "STO"
+                    }
+                ]
+            },
             
-        </div>
-        <!-- <p>Choose an option to proceed with taking or returning money.</p> -->
-        <p style="color: #9f9f9f;">Wait few hours after filling the form we need to collect the amount first. It will take a few hours to arrange the amount, so be patience during this time.</p>
-    </div>
-
-    <div id="content-user" class="menu-content">
-        <div class="input-section">
-            
-            <h3 style="font-weight: 400;">Golden Plus+</h3><br>
-            <p style="color: #9f9f9f;">With Golden Plus+ you can apply for amount above 30,000₹, faster approvals, STO(Short Term Offers) with flexible repayment plans.</p>
-           <button><a href="https://mfi0212.github.io/MFI/goldnpls">Explore <i class="fa-solid fa-up-right-from-square"></i></button></a>
-           <p style="position: fixed;
-           top: 10px;
-           right: 5px;
-           border: none;
-           font-size: 11px;
-           color: white;
-           border: solid 1.5px #535353;
-           padding: 6px 16px;
-           border-radius: 30px;"><a href="https://mfi0212.github.io/swan/offer/programs">Explore Programs</a></p>
-        </div>
-        <div id="user-details"></div>
-    </div>
-
-    <div class="menu">
-        <a href="#golden/mainpage" style="margin: 15px 0px;" onclick="showContent('content-home')"><i><svg aria-hidden="true" style="filter: invert(1);
-            width: 85%;
-    opacity: 80%;" aria-label="" class="Uvi gUZ U9O kVc" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M4.6 22.73A107 107 0 0 0 11 23h2.22c2.43-.04 4.6-.16 6.18-.27A3.9 3.9 0 0 0 23 18.8v-8.46a4 4 0 0 0-1.34-3L14.4.93a3.63 3.63 0 0 0-4.82 0L2.34 7.36A4 4 0 0 0 1 10.35v8.46a3.9 3.9 0 0 0 3.6 3.92M13.08 2.4l7.25 6.44a2 2 0 0 1 .67 1.5v8.46a1.9 1.9 0 0 1-1.74 1.92q-1.39.11-3.26.19V16a4 4 0 0 0-8 0v4.92q-1.87-.08-3.26-.19A1.9 1.9 0 0 1 3 18.81v-8.46a2 2 0 0 1 .67-1.5l7.25-6.44a1.63 1.63 0 0 1 2.16 0M13.12 21h-2.24a1 1 0 0 1-.88-1v-4a2 2 0 1 1 4 0v4a1 1 0 0 1-.88 1"></path></svg></i></a>
-        <a href="#apply/amount/sto" style="margin: 15px 0px;" onclick="showContent('content-transfer')"><svg style="
-            width: 140%;" width="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 12.3393C1.58579 12.3393 1.25 12.0035 1.25 11.5893L1.25 6.48933C1.25 4.55633 2.817 2.98933 4.75 2.98933L6.75 2.98933V1.97671C6.75 1.53439 7.2821 1.30991 7.59892 1.61858L9.38241 3.3562C9.58386 3.55246 9.58386 3.8762 9.38242 4.07246L7.59892 5.81008C7.2821 6.11875 6.75 5.89427 6.75 5.45196V4.48933L4.75 4.48933C3.64543 4.48933 2.75 5.38476 2.75 6.48933L2.75 11.5893C2.75 12.0035 2.41421 12.3393 2 12.3393ZM14 3.66067C14.4142 3.66067 14.75 3.99646 14.75 4.41067V9.51066C14.75 11.4437 13.183 13.0107 11.25 13.0107H9.25001V14.0233C9.25001 14.4656 8.7179 14.6901 8.40109 14.3814L6.61759 12.6438C6.41615 12.4475 6.41615 12.1238 6.61759 11.9275L8.40109 10.1899C8.7179 9.88124 9.25001 10.1057 9.25001 10.548V11.5107H11.25C12.3546 11.5107 13.25 10.6152 13.25 9.51066V4.41067C13.25 3.99646 13.5858 3.66067 14 3.66067Z" fill="currentColor"></path></svg></i></a>
-        <a href="#explore/goldenplus" style="margin: 15px 0px;" onclick="showContent('content-user')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.5001 3.44338C12.1907 3.26474 11.8095 3.26474 11.5001 3.44338L4.83984 7.28868C4.53044 7.46731 4.33984 7.79744 4.33984 8.1547V15.8453C4.33984 16.2026 4.53044 16.5327 4.83984 16.7113L11.5001 20.5566C11.8095 20.7353 12.1907 20.7353 12.5001 20.5566L19.1604 16.7113C19.4698 16.5327 19.6604 16.2026 19.6604 15.8453V8.1547C19.6604 7.79744 19.4698 7.46731 19.1604 7.28868L12.5001 3.44338ZM10.5001 1.71133C11.4283 1.17543 12.5719 1.17543 13.5001 1.71133L20.1604 5.55663C21.0886 6.09252 21.6604 7.0829 21.6604 8.1547V15.8453C21.6604 16.9171 21.0886 17.9075 20.1604 18.4434L13.5001 22.2887C12.5719 22.8246 11.4283 22.8246 10.5001 22.2887L3.83984 18.4434C2.91164 17.9075 2.33984 16.9171 2.33984 15.8453V8.1547C2.33984 7.0829 2.91164 6.09252 3.83984 5.55663L10.5001 1.71133Z" fill="currentColor"></path><path d="M9.44133 11.4454L9.92944 9.98105C10.0321 9.67299 10.4679 9.67299 10.5706 9.98105L11.0587 11.4454C11.2941 12.1517 11.8483 12.7059 12.5546 12.9413L14.019 13.4294C14.327 13.5321 14.327 13.9679 14.019 14.0706L12.5546 14.5587C11.8483 14.7941 11.2941 15.3483 11.0587 16.0546L10.5706 17.519C10.4679 17.827 10.0321 17.827 9.92944 17.519L9.44133 16.0546C9.2059 15.3483 8.65167 14.7941 7.94537 14.5587L6.48105 14.0706C6.17298 13.9679 6.17298 13.5321 6.48105 13.4294L7.94537 12.9413C8.65167 12.7059 9.2059 12.1517 9.44133 11.4454Z" fill="currentColor"></path><path d="M14.4946 8.05961L14.7996 7.14441C14.8638 6.95187 15.1362 6.95187 15.2004 7.14441L15.5054 8.05961C15.6526 8.50104 15.999 8.84744 16.4404 8.99458L17.3556 9.29965C17.5481 9.36383 17.5481 9.63617 17.3556 9.70035L16.4404 10.0054C15.999 10.1526 15.6526 10.499 15.5054 10.9404L15.2004 11.8556C15.1362 12.0481 14.8638 12.0481 14.7996 11.8556L14.4946 10.9404C14.3474 10.499 14.001 10.1526 13.5596 10.0054L12.6444 9.70035C12.4519 9.63617 12.4519 9.36383 12.6444 9.29965L13.5596 8.99458C14.001 8.84744 14.3474 8.50104 14.4946 8.05961Z" fill="currentColor"></path></svg></i></a>
-       </a>
-        <a style="margin: 15px 0px;" href="https://mfi0212.github.io/MFI/accverify"><i><svg class="icon icon--account" xmlns="http://www.w3.org/2000/svg" width="24" height="24"  viewBox="0 0 18 18" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M9 1.5C6.92893 1.5 5.25 3.17893 5.25 5.25C5.25 7.32107 6.92893 9 9 9C11.0711 9 12.75 7.32107 12.75 5.25C12.75 3.17893 11.0711 1.5 9 1.5ZM6.75 5.25C6.75 4.00736 7.75736 3 9 3C10.2426 3 11.25 4.00736 11.25 5.25C11.25 6.49264 10.2426 7.5 9 7.5C7.75736 7.5 6.75 6.49264 6.75 5.25Z" fill="currentColor"></path><path d="M6 10.5C5.00544 10.5 4.05161 10.8951 3.34835 11.5984C2.64509 12.3016 2.25 13.2554 2.25 14.25V15.75C2.25 16.1642 2.58579 16.5 3 16.5C3.41421 16.5 3.75 16.1642 3.75 15.75V14.25C3.75 13.6533 3.98705 13.081 4.40901 12.659C4.83097 12.2371 5.40326 12 6 12H12C12.5967 12 13.169 12.2371 13.591 12.659C14.0129 13.081 14.25 13.6533 14.25 14.25V15.75C14.25 16.1642 14.5858 16.5 15 16.5C15.4142 16.5 15.75 16.1642 15.75 15.75V14.25C15.75 13.2554 15.3549 12.3016 14.6517 11.5984C13.9484 10.8951 12.9946 10.5 12 10.5H6Z" fill="currentColor"></path></svg></i></a>
-    </div>
-</div>
-<script>
-    function showContent(id) {
-        const sections = document.querySelectorAll('.menu-content');
-        sections.forEach(section => section.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-    }
-
-    function showUserDetails() {
-    const password = document.getElementById('password').value;
-    const userDetails = document.getElementById('user-details');
-    const accounts = {
-        "Deepak@11": {
-    userName: "Deepak",
-    balance: 2000,
-    startDate: "2025-2-20",
-    endDate: "2025-3-7",
-    fine: 0
-},
-
-    };
-
-    if (accounts[password]) {
-        const account = accounts[password];
-
-        // Normalize dates to start of the day (midnight)
-        const normalizeDate = (dateString) => {
-            const date = new Date(dateString);
-            date.setHours(0, 0, 0, 0); // Set time to midnight
-            return date;
         };
 
-        const startDate = normalizeDate(account.startDate);
-        const endDate = normalizeDate(account.endDate);
-        const currentDate = normalizeDate(new Date()); // Today's date normalized
+        document.getElementById("submitBtn").addEventListener("click", () => {
+            const userInput = document.getElementById("userPassword").value.trim();
+            const errorMessage = document.getElementById("error-message");
+            const user = passwords[userInput];
 
-        // Calculate days from the start date to today
-        const diffFromStart = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24));
-        
-        // Calculate days from today to the end date
-        const diffToEnd = Math.ceil((endDate - currentDate) / (1000 * 60 * 60 * 24));
+            if (user) {
+                document.getElementById("userName").textContent = user.name;
+                const amountButtons = document.getElementById("amountButtons");
+                amountButtons.innerHTML = "";
 
-        userDetails.innerHTML = `
-    <p>User Name: ${account.userName}</p>
-    <p>Account Balance: ${account.balance}</p>
-    <p>Days left: ${diffToEnd >= 0 ? diffToEnd : "End date has passed"} days</p>
-    <p>Days Passed: ${diffFromStart >= 0 ? diffFromStart : "Start date is in the future"} days</p>
-    <p>Fine for Delay: ${account.fine ? `$${account.fine}` : "0"}</p>
-`;
-    }
+                // Create buttons for each loan amount
+                user.loans.forEach((loan, index) => {
+                    const btn = document.createElement("button");
+                    btn.className = "amount-btn";
+                    btn.textContent = ` ${loan.takenAmount} Rupees`;
+                    btn.onclick = () => displayLoanDetails(loan, index);
+                    amountButtons.appendChild(btn);
+                });
 
+                // Show the modal with the first loan by default
+                if (user.loans.length > 0) {
+                    displayLoanDetails(user.loans[0], 0);
+                }
 
+                document.getElementById("userInfoModal").style.display = "block";
+                errorMessage.textContent = "";
+            }
+            // else if (userInput === 'Deepak@2') {
+            //     window.location.href = "https://mfi0212.github.io/MFI/sucess";
+            // } 
+            else {
+                errorMessage.textContent = "Amount returned (or) Invalid password!";
+            }
+        });
 
-    else if(password == 'Deepak@1'){window.location.href = "https://mfi0212.github.io/MFI/sucess";}
-      
-    
+        function displayLoanDetails(loan, index) {
+            const loanDetails = document.getElementById("loanDetails");
+            const totalReturnAmount = (loan.takenAmount + loan.interest).toFixed(2);
 
-    
-    
-    else {
-        userDetails.innerHTML = "<p style='background: transparent; color: #ff1919;'>Your offer has completed (or) Incorrect password.</p>";
-    }
-}
-</script>
-<script>
-    // function applyGlowEffect() {
-    //     const now = new Date();
-    //     const hours = now.getHours();
-    //     const logo = document.getElementById("logo");
-    //     const mfiText = document.getElementById("mfi");
+            // Remove active class from all buttons
+            document.querySelectorAll(".amount-btn").forEach(btn => btn.classList.remove("active"));
+            // Add active class to the clicked button
+            document.getElementById("amountButtons").children[index].classList.add("active");
 
-    //     if (hours >= 20 || hours < 4) {  // 8 PM - 4 AM
-    //         logo.classList.add("glow");
-    //         mfiText.style.color = "rgb(0, 42, 255)"; // Red text at night
-    //         mfiText.innerHTML = "From BS/MFI";
-    //     } else {
-    //         logo.classList.remove("glow");
-    //         mfiText.style.color = "#808080"; // Gray text during the day
-    //         mfiText.innerHTML = "From BS/MF";
-    //     }
-    // }
+            loanDetails.innerHTML = `
+                <div class="loan-entry">
+                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                        Service
+                    </h3>
+                    <p>${loan.takenFrom}</p>
+                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                        Amount Details
+                    </h3>
+                    <p><i class="fa-solid fa-money-bill-transfer"></i>Amount: ${loan.takenAmount} Rupees</p>
+                   <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                        Taken & Ends
+                    </h3>
 
+                     <p><i class="fa-solid fa-calendar-day"></i> Taken on: ${loan.planDate}</p>
+                    <p><i class="fa-solid fa-calendar-check"></i> End on: ${loan.endDate}</p>
+                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                        Interest
+                    </h3>
+                    <p><i class="fa-solid fa-arrow-up-wide-short"></i> Interest: ${loan.interest} Rupees</p>
+                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                        Total Amount to Pay
+                    </h3>
+                    <p><i class="fa-solid fa-money-check-alt"></i> ${totalReturnAmount} Rupees</p>
+                </div>
+            `;
+        }
 
-    
-document.addEventListener("DOMContentLoaded", () => {
+        function closeModal() {
+            document.getElementById("userInfoModal").style.display = "none";
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
 
     // Show custom menu on right-click
@@ -352,7 +437,18 @@ document.addEventListener("DOMContentLoaded", () => {
         customMenu.style.display = "none";
     });
 });
-
-</script>
+    </script>
+      <div class="mfi" style="position: fixed;
+      bottom: 0px;
+      font-size: 10px;
+      color: #848484;
+      z-index: 1000;
+      background: #000000;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      filter: drop-shadow(0px 0px 66px black);">
+           <a target="_blank" style="text-decoration: none;" href="https://mfi0212.github.io/MFI/mfimain">By BsLends</a>
+          </div>
 </body>
 </html>
