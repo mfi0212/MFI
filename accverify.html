@@ -45,7 +45,22 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     z-index: 10;
 }
-
+.fixed {
+    position: fixed;
+    top: 0px;
+    height: 255px;
+    padding: 55px 23px;
+    left: 0px;
+    background-color: #00000099;
+    width: 108%;
+    backdrop-filter: blur(5px);
+    z-index: 10;
+    border-bottom: solid 1.5px #2f2f2f;
+}
+.scroll {
+    position: relative;
+    top: 180px;
+}
 .header h2 {
     font-size: 18px;
     font-weight: 500;
@@ -271,10 +286,17 @@ i {
 
     <div id="userInfoModal" class="modal">
         <span><i class="fa-solid fa-arrow-left close-btn" onclick="closeModal()"></i></span>
-        <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">Borrower</h3>
-        <p style="font-size: 20px;"><span id="userName"></span></p>
-        <div class="amount-buttons" id="amountButtons"></div>
-        <div id="loanDetails"></div>
+        <div class="fixed">
+            <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">Borrower</h3>
+            <p style="font-size: 20px;"><span id="userName"></span></p>
+            <div class="amount-buttons" id="amountButtons"></div>
+            
+        </div>
+        <div class="scroll">
+            <!-- <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                Active amounts</h3> -->
+            <div id="loanDetails"></div>
+        </div>
     </div>
     <script>
         const passwords = {
@@ -288,7 +310,7 @@ i {
                         endDate: "6-04-2025<br><p style='color: green;'>(Have to pay before 10 pm on 6th)</p>",
                         takenFrom: "STO",
                     },
-                    {
+                    {   
                         planDate: "15-02-2025",
                         endDate: "15-04-2025",
                         interest: 2600,
@@ -385,11 +407,11 @@ i {
             loanDetails.innerHTML = `
                 <div class="loan-entry">
                     <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
-                        Service
+                        Taken service
                     </h3>
                     <p>${loan.takenFrom}</p>
                     <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
-                        Amount Details
+                        Amount taken
                     </h3>
                     <p><i class="fa-solid fa-money-bill-transfer"></i>Amount: ${loan.takenAmount} Rupees</p>
                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
@@ -397,13 +419,13 @@ i {
                     </h3>
 
                      <p><i class="fa-solid fa-calendar-day"></i> Taken on: ${loan.planDate}</p>
-                    <p><i class="fa-solid fa-calendar-check"></i> End on: ${loan.endDate}</p>
+                    <p><i class="fa-solid fa-calendar-check"></i> Ends on: ${loan.endDate}</p>
                     <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
                         Interest
                     </h3>
                     <p><i class="fa-solid fa-arrow-up-wide-short"></i> Interest: ${loan.interest} Rupees</p>
                     <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
-                        Total Amount to Pay
+                        Total Amount to Re-Pay
                     </h3>
                     <p><i class="fa-solid fa-money-check-alt"></i> ${totalReturnAmount} Rupees</p>
                 </div>
