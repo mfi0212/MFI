@@ -268,16 +268,17 @@
         #notePopup {
             display: none;
     position: fixed;
-    bottom: 50px;
+    bottom: 35px;
     width: 95%;
-    background-color: #1a1a1a;
+    background: linear-gradient(175deg, #060606, #1d1d1d);
     padding: 20px;
-    border-top: 2px solid #2f2f2f;
-    z-index: 1200;
-    box-shadow: 0px 0px 200px rgb(0 71 255 / 61%);
+    border-top: 2px solid #747474;
+    z-index: 12000;
+    box-shadow: 0px -100px 200px rgb(160 200 255 / 35%);
     align-items: center;
     height: 295px;
-    border-radius: 11px;
+    border-radius: 10px;
+    text-align: center;
         }
 
         #notePopup textarea {
@@ -291,6 +292,7 @@
     resize: unset;
     margin-bottom: 10px;
     outline: none;
+    font-size: 15px;
         }
 
         #notePopup button {
@@ -368,7 +370,7 @@
             <div id="loanDetails"></div>
             <div id="savedNote"></div>
         </div>
-        <button id="toggleLoanBtn" style="display: none;">Show/Hide Loans</button>
+        <button id="toggleLoanBtn" style="display: none;">Show/Hide</button>
         <button id="addNoteBtn" style="display: none;">Add Note</button>
     </div>
 
@@ -376,6 +378,14 @@
         <textarea id="noteInput" placeholder="Enter your note here..."></textarea>
         <button onclick="saveNote()">Save</button>
         <button onclick="closeNotePopup()">Close</button>
+        <div class="power" style="position: absolute;
+        top: 5px;
+        color: gray;
+        font-size: 8px;
+        font-weight: 400;
+        right: 25px;">
+            Power by #BsNotes
+        </div>
     </div>
 
     <script>
@@ -587,11 +597,11 @@
             if (loanDetails.style.display === "none" || loanDetails.style.display === "") {
                 loanDetails.style.display = "block";
                 savedNote.style.display = "block";
-                document.getElementById("toggleLoanBtn").textContent = "Hide Loans";
+                document.getElementById("toggleLoanBtn").textContent = "Hide";
             } else {
                 loanDetails.style.display = "none";
                 savedNote.style.display = "none";
-                document.getElementById("toggleLoanBtn").textContent = "Show Loans";
+                document.getElementById("toggleLoanBtn").textContent = "Show";
             }
         });
         
