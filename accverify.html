@@ -345,6 +345,24 @@
             background-color: #3a3a3a;
         }
 
+        /* Powered by Message */
+        .powered-by {
+            display: none;
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: #fff;
+    z-index: 10000;
+    background: #464646;
+    padding: 6px 12px;
+    border-radius: 25px;
+    box-shadow: 0 0 100px rgb(0 0 0);
+    font-weight: 300;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
     </style>
 </head>
 <body>
@@ -393,9 +411,26 @@
         </div>
     </div>
 
+    <div id="poweredByMsg" class="powered-by">Powered by BsPsgenerater</div>
+
     <script>
-        // Load saved notes from localStorage when the page loads
-        document.addEventListener('DOMContentLoaded', loadSavedNotes);
+        // Load saved password and notes from localStorage when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedPassword = localStorage.getItem('lastPassword');
+            if (savedPassword) {
+                // Delay autofill by 2 seconds
+                setTimeout(() => {
+                    document.getElementById("userPassword").value = savedPassword;
+                    // Show popup message after autofill
+                    document.getElementById("poweredByMsg").style.display = "block";
+                    setTimeout(() => {
+                        document.getElementById("poweredByMsg").style.display = "none";
+                    }, 3500); // Hide popup after 3 seconds
+                }, 2000); // Delay of 2 seconds
+            }
+
+            loadSavedNotes();
+        });
 
         const passwords = {
             "Mahesh888*": {
@@ -415,7 +450,7 @@
                 loans: [
                     {
                         planDate: "21-01-2025",
-                        endDate: "05-05-2025(Extanded 30 days)",
+                        endDate: "05-05-2025(Extended 30 days)",
                         interest: 2500,
                         takenAmount: 10000,
                         takenFrom: "Golden"
@@ -478,6 +513,9 @@
             const userInput = document.getElementById("userPassword").value.trim();
             const errorMessage = document.getElementById("error-message");
             const user = passwords[userInput];
+
+            // Save the entered password to localStorage
+            localStorage.setItem('lastPassword', userInput);
 
             if (user) {
                 currentUser = user;
@@ -602,23 +640,6 @@
                 document.getElementById("toggleLoanBtn").textContent = "Show";
             }
         });
-        
-        document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
-
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
-
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
     </script>
       <div class="mfi" style="position: fixed;
       bottom: 0px;
