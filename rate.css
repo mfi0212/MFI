@@ -326,7 +326,7 @@ p {
                     border-top: solid 5.5px #1d1d1d;
         }
         .menu:hover{
-            border-top: solid 3px rgb(69, 69, 69);
+            border-top: solid .5px rgb(69, 69, 69);
         }
         .menu i{
             font-size: 18px;
