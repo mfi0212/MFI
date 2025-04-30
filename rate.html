@@ -14,7 +14,13 @@
        
         .menu-content { display: none; }
         .active { display: block; }
-        .container { text-align: center; }
+        .container {
+    text-align: center;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+}
         .menu a { margin: 20px 10px; font-size: 24px; cursor: pointer; }
         .input-section { display: flex; flex-direction: column; align-items: center; }
         .input-section input, .input-section button {     margin: 20px;
@@ -42,23 +48,27 @@
     z-index: 10000;
 }
 p {
-    max-width: 600px;
+    max-width: 450px;
     text-align: center;
     display: inline-block;
-    border-radius: 10px;
-    border: solid 1.4px #8e8e8e6b;
+    border-radius: 14px;
+    border: none;
     color: #d1d1d1;
-    padding: 10px 15px;
+    padding: 11px 15px;
     font-size: 12px;
     z-index: 1000;
     font-weight: 500;
     letter-spacing: 0.6px;
     cursor: help;
+    background: #1d1d1d;
 }
 a{
             color: #ffffffcb;
             text-decoration: none;
         }
+        p:hover{
+    background: #2d2d2d;
+}
 /* @keyframes travelGlow {
             0% { box-shadow: 0 0 1020px 200px #ff6105; } 
             25% { box-shadow: 0 0 1030px 200px #0066ff } 
@@ -71,8 +81,8 @@ a{
         } 
         .mfi {
             position: fixed;
-            bottom: 10px;
-            font-size: 11px;
+            bottom: 26px;
+            font-size: 10px;
             z-index: 100000;
             font-weight: 200;
         }
@@ -81,6 +91,39 @@ a{
             }
             .bottom a:hover{
                 text-decoration: underline;
+                        }
+                        .msg{
+                            display: none;
+                        }
+                        @media (max-width: 480px)  {
+                            .container {
+    text-align: center;
+    display: block;
+}
+                            .msg{
+                                display: block;
+                            }
+                            .mfi {
+    position: fixed;
+    bottom: 15px;
+    font-size: 9px;
+    z-index: 100000;
+    font-weight: 200;
+}p {
+    max-width: 600px;
+        text-align: center;
+        display: inline-block;
+        border-radius: 13px;
+        border: none;
+        color: #d1d1d1;
+        padding: 11px 20px;
+        font-size: 11px;
+        z-index: 1000;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        cursor: help;
+        background: #1d1d1d;
+}
                         }
     </style>
 </head>
@@ -95,10 +138,16 @@ a{
         <div class="location">  
             <div class="bottom">
               <a href="https://blackswan19.github.io/bot/game/game1" style="text-decoration: none;color: black;">
-                <p style="display: flex;
+                <p style="display: flex
+                ;
                     align-items: center;
                     justify-content: center;
-                    gap: 5px;border: none;font-size: 13px;">Game <i class="fa-solid fa-gamepad"></i></p></a>
+                    gap: 5px;
+                    border: none;
+                    font-size: 13px;
+                    background: no-repeat;
+                    position: fixed;
+                    top: 0px;">Game <i class="fa-solid fa-gamepad"></i></p></a>
            </div>
         </div>
         <style>
@@ -111,7 +160,7 @@ a{
                 position: fixed;
     top: 10px;
     font-size: 11px;
-    background: #ffffff4d;
+    background: #1b1b1b;
     padding: 3px 15px;
     border-radius: 60px;
     color: #ffffff;
@@ -158,30 +207,29 @@ a{
         </div>
         <div  class="date">Interest for different amounts</div><br>
         <div class="prices">
-            <p onclick="showPopup(10000, 2500)">Interest For ₹10000 is ₹2800</p>
-            <p onclick="showPopup(11000, 2600)">Interest For ₹11000 is ₹2900</p>
-            <p onclick="showPopup(12000, 2700)">Interest For ₹12000 is ₹3000</p>
-            <p onclick="showPopup(13000, 2800)">Interest For ₹13000 is ₹3100</p>
-            <p onclick="showPopup(14000, 2900)">Interest For ₹14000 is ₹3200</p>
-            <p onclick="showPopup(15000, 3000)">Interest For ₹15000 is ₹3300</p>
+            <p onclick="showPopup(10000, 2500)">Interest For ₹10000 is ₹2500</p>
+            <p onclick="showPopup(11000, 2600)">Interest For ₹11000 is ₹2600</p>
+            <p onclick="showPopup(12000, 2700)">Interest For ₹12000 is ₹2700</p>
+            <p onclick="showPopup(13000, 2800)">Interest For ₹13000 is ₹2800</p>
+            <p onclick="showPopup(14000, 2900)">Interest For ₹14000 is ₹2900</p>
+            <p onclick="showPopup(15000, 3000)">Interest For ₹15000 is ₹3000</p>
         </div>
-        
         <div class="popupcon">
             <!-- Popup Section -->
         <div id="popup">
-            <h2 style="color: #e1e1e1;
-            font-size: 20px;
+            <h2 style="color: #9b9b9b;
+            font-size: 15px;
             padding: 10px;
             font-weight: 500;
         ">Interest for this amount</h2>
             <p id="popup-content" style="    color: #bcbcbc;"></p>
             <button onclick="closePopup()" style="padding: 8px 20px;
-            background: #282828;
+            background: #414141;
             color: #ffffff;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            margin: 10px;font-family: 'Poppins', sans-serif;">Close</button>
+            margin: 10px;font-family: 'Poppins', sans-serif;">Okay</button>
         </div>
         </div>
         <script>
@@ -200,16 +248,17 @@ a{
         </script>
         
         <div class="price">
-            <p style="    padding: 10px 10px;
+            <p style="padding: 20px 10px;
             width: 100%;
             max-width: 530px;">You can borrow amounts from ₹10,000 to ₹15,000. <br><br>
                 By pre-saver you can buy next upcoming offers before it goes public.<br><br>
-            <a style="text-decoration: none;
+            <a style="    text-decoration: none;
             background: #004cff;
-            padding: 5px 20px;
+            padding: 6px 20px;
             color: #ffffff;
             border-radius: 1000px;
-            font-weight: 100;border: none;" href="https://forms.gle/rtcayowFYw48u94PA">Apply for Pre-saver</a></span></p>
+            font-weight: 100;
+            border: none;" href="https://forms.gle/rtcayowFYw48u94PA">Apply for Pre-saver</a></span></p>
         </div>
     </div>
 
@@ -226,7 +275,7 @@ a{
             border: none;
             padding: 6px 16px;
             border-radius: 30px;
-            background: #ffffff4d;"><a href="https://mfi0212.github.io/swan/offer/offer">Explore STO</a></p>
+            background: #232323;"><a href="https://mfi0212.github.io/swan/offer/offer">Go to STO</a></p>
             
         </div>
         <!-- <p>Choose an option to proceed with taking or returning money.</p> -->
@@ -248,15 +297,14 @@ a{
            border: none;
            padding: 6px 16px;
            border-radius: 30px;
-           background: #ffffff4d;"><a href="https://mfi0212.github.io/swan/offer/programs">Explore Programs</a></p>
+           background: #232323;"><a href="https://mfi0212.github.io/swan/offer/programs">Programs</a></p>
         </div>
         <div id="user-details"></div>
     </div>
 
     <div class="menu">
         <a href="#golden/mainpage" style="margin: 15px 0px;" onclick="showContent('content-home')"><i><svg aria-hidden="true" style="filter: invert(1);
-            width: 85%;
-    opacity: 80%;" aria-label="" class="Uvi gUZ U9O kVc" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M4.6 22.73A107 107 0 0 0 11 23h2.22c2.43-.04 4.6-.16 6.18-.27A3.9 3.9 0 0 0 23 18.8v-8.46a4 4 0 0 0-1.34-3L14.4.93a3.63 3.63 0 0 0-4.82 0L2.34 7.36A4 4 0 0 0 1 10.35v8.46a3.9 3.9 0 0 0 3.6 3.92M13.08 2.4l7.25 6.44a2 2 0 0 1 .67 1.5v8.46a1.9 1.9 0 0 1-1.74 1.92q-1.39.11-3.26.19V16a4 4 0 0 0-8 0v4.92q-1.87-.08-3.26-.19A1.9 1.9 0 0 1 3 18.81v-8.46a2 2 0 0 1 .67-1.5l7.25-6.44a1.63 1.63 0 0 1 2.16 0M13.12 21h-2.24a1 1 0 0 1-.88-1v-4a2 2 0 1 1 4 0v4a1 1 0 0 1-.88 1"></path></svg></i></a>
+            width: 85%;" aria-label="" class="Uvi gUZ U9O kVc" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M4.6 22.73A107 107 0 0 0 11 23h2.22c2.43-.04 4.6-.16 6.18-.27A3.9 3.9 0 0 0 23 18.8v-8.46a4 4 0 0 0-1.34-3L14.4.93a3.63 3.63 0 0 0-4.82 0L2.34 7.36A4 4 0 0 0 1 10.35v8.46a3.9 3.9 0 0 0 3.6 3.92M13.08 2.4l7.25 6.44a2 2 0 0 1 .67 1.5v8.46a1.9 1.9 0 0 1-1.74 1.92q-1.39.11-3.26.19V16a4 4 0 0 0-8 0v4.92q-1.87-.08-3.26-.19A1.9 1.9 0 0 1 3 18.81v-8.46a2 2 0 0 1 .67-1.5l7.25-6.44a1.63 1.63 0 0 1 2.16 0M13.12 21h-2.24a1 1 0 0 1-.88-1v-4a2 2 0 1 1 4 0v4a1 1 0 0 1-.88 1"></path></svg></i></a>
         <a href="#apply/amount/sto" style="margin: 15px 0px;" onclick="showContent('content-transfer')"><svg style="
             width: 140%;" width="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 12.3393C1.58579 12.3393 1.25 12.0035 1.25 11.5893L1.25 6.48933C1.25 4.55633 2.817 2.98933 4.75 2.98933L6.75 2.98933V1.97671C6.75 1.53439 7.2821 1.30991 7.59892 1.61858L9.38241 3.3562C9.58386 3.55246 9.58386 3.8762 9.38242 4.07246L7.59892 5.81008C7.2821 6.11875 6.75 5.89427 6.75 5.45196V4.48933L4.75 4.48933C3.64543 4.48933 2.75 5.38476 2.75 6.48933L2.75 11.5893C2.75 12.0035 2.41421 12.3393 2 12.3393ZM14 3.66067C14.4142 3.66067 14.75 3.99646 14.75 4.41067V9.51066C14.75 11.4437 13.183 13.0107 11.25 13.0107H9.25001V14.0233C9.25001 14.4656 8.7179 14.6901 8.40109 14.3814L6.61759 12.6438C6.41615 12.4475 6.41615 12.1238 6.61759 11.9275L8.40109 10.1899C8.7179 9.88124 9.25001 10.1057 9.25001 10.548V11.5107H11.25C12.3546 11.5107 13.25 10.6152 13.25 9.51066V4.41067C13.25 3.99646 13.5858 3.66067 14 3.66067Z" fill="currentColor"></path></svg></i></a>
         <a href="#explore/goldenplus" style="margin: 15px 0px;" onclick="showContent('content-user')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.5001 3.44338C12.1907 3.26474 11.8095 3.26474 11.5001 3.44338L4.83984 7.28868C4.53044 7.46731 4.33984 7.79744 4.33984 8.1547V15.8453C4.33984 16.2026 4.53044 16.5327 4.83984 16.7113L11.5001 20.5566C11.8095 20.7353 12.1907 20.7353 12.5001 20.5566L19.1604 16.7113C19.4698 16.5327 19.6604 16.2026 19.6604 15.8453V8.1547C19.6604 7.79744 19.4698 7.46731 19.1604 7.28868L12.5001 3.44338ZM10.5001 1.71133C11.4283 1.17543 12.5719 1.17543 13.5001 1.71133L20.1604 5.55663C21.0886 6.09252 21.6604 7.0829 21.6604 8.1547V15.8453C21.6604 16.9171 21.0886 17.9075 20.1604 18.4434L13.5001 22.2887C12.5719 22.8246 11.4283 22.8246 10.5001 22.2887L3.83984 18.4434C2.91164 17.9075 2.33984 16.9171 2.33984 15.8453V8.1547C2.33984 7.0829 2.91164 6.09252 3.83984 5.55663L10.5001 1.71133Z" fill="currentColor"></path><path d="M9.44133 11.4454L9.92944 9.98105C10.0321 9.67299 10.4679 9.67299 10.5706 9.98105L11.0587 11.4454C11.2941 12.1517 11.8483 12.7059 12.5546 12.9413L14.019 13.4294C14.327 13.5321 14.327 13.9679 14.019 14.0706L12.5546 14.5587C11.8483 14.7941 11.2941 15.3483 11.0587 16.0546L10.5706 17.519C10.4679 17.827 10.0321 17.827 9.92944 17.519L9.44133 16.0546C9.2059 15.3483 8.65167 14.7941 7.94537 14.5587L6.48105 14.0706C6.17298 13.9679 6.17298 13.5321 6.48105 13.4294L7.94537 12.9413C8.65167 12.7059 9.2059 12.1517 9.44133 11.4454Z" fill="currentColor"></path><path d="M14.4946 8.05961L14.7996 7.14441C14.8638 6.95187 15.1362 6.95187 15.2004 7.14441L15.5054 8.05961C15.6526 8.50104 15.999 8.84744 16.4404 8.99458L17.3556 9.29965C17.5481 9.36383 17.5481 9.63617 17.3556 9.70035L16.4404 10.0054C15.999 10.1526 15.6526 10.499 15.5054 10.9404L15.2004 11.8556C15.1362 12.0481 14.8638 12.0481 14.7996 11.8556L14.4946 10.9404C14.3474 10.499 14.001 10.1526 13.5596 10.0054L12.6444 9.70035C12.4519 9.63617 12.4519 9.36383 12.6444 9.29965L13.5596 8.99458C14.001 8.84744 14.3474 8.50104 14.4946 8.05961Z" fill="currentColor"></path></svg></i></a>
