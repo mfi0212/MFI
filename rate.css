@@ -324,9 +324,12 @@ p {
                     left: 0px;
                     height: 100px;
                     border-top: solid 5.5px #1d1d1d;
+                    border-bottom: none;
         }
         .menu:hover{
-            border-top: solid .5px rgb(69, 69, 69);
+            border-top: solid 5.5px rgb(29 29 29);
+            border-bottom: none;
+            transition: 1s;
         }
         .menu i{
             font-size: 18px;
