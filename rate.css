@@ -33,12 +33,6 @@
             line-height: 25px;
             padding: 13px 19px;
         }
-        /* div#content-home {
-            gap: 8px;
-            display: flex
-        ;
-            flex-direction: column;
-        } */
         .container {
             display: block;
             text-align: center;
@@ -122,15 +116,16 @@
             font-size: 20px;
             border-radius: 20px;
             position: fixed;
-            bottom: 69px;
+            bottom: 40px;
             width: 35%;
             background: transparent;
             left: 32%;
-            border: solid 3px #1a1a1a;
+            border-top: solid 5.5px rgb(29 29 29);
             padding: 1px;
     }
-    .menu:hover{
-        border: solid 3px rgb(69, 69, 69);
+    .menu:hover:active{
+        border-top: solid 5.5px rgb(0, 85, 255);
+        transform: 1s;
     }
     .menu i{
         font-size: 18px;
