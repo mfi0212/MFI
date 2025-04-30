@@ -125,7 +125,7 @@
     }
     .menu:hover:active{
         border-top: solid 5.5px rgb(0, 85, 255);
-        transform: 1s;
+        
     }
     .menu i{
         font-size: 18px;
@@ -321,10 +321,9 @@ p {
                     border-top: solid 5.5px #1d1d1d;
                     border-bottom: none;
         }
-        .menu:hover{
-            border-top: solid 5.5px rgb(29 29 29);
+        .menu:hover:active{
             border-bottom: none;
-            transition: 1s;
+            transition: 0.1s;
         }
         .menu i{
             font-size: 18px;
