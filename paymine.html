@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PayMine</title><link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(90deg, #0077cc, #00aaff);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .intro {
+      text-align: center;
+      margin: 3rem auto;
+      max-width: 700px;
+      padding: 0 1rem;
+    }
+
+    .intro p {
+      font-size: 1.1rem;
+      color: #444;
+      font-weight: 300;
+    }
+
+    .plans {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .plan {
+      background: white;
+      border: none;
+      border-radius: 12px;
+      padding: 2rem;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .plan:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .plan h2 {
+      color: #0077cc;
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .plan p {
+      font-size: 0.95rem;
+      color: #666;
+      margin: 0.5rem 0;
+    }
+
+    .plan button {
+      background: linear-gradient(90deg, #0077cc, #00aaff);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .plan button:hover {
+      background: linear-gradient(90deg, #005fa3, #0088cc);
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: #f8f9fa;
+      color: #777;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border: none;
+      border-radius: 12px;
+      padding: 2rem;
+      z-index: 10;
+      width: 360px;
+      max-height: 85vh;
+      overflow-y: auto;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .popup h3 {
+      margin: 0 0 1.25rem;
+      color: #0077cc;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .popup input {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.75rem 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      text-align: center;
+      transition: border-color 0.3s ease;
+    }
+
+    .popup input:focus {
+      border-color: #0077cc;
+    }
+
+    .popup button {
+      width: 100%;
+      background: linear-gradient(90deg, #0077cc, #00aaff);
+      color: white;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+
+    .popup button:hover {
+      background: linear-gradient(90deg, #005fa3, #0088cc);
+    }
+
+    .popup table {
+      width: 100%;
+      margin-top: 1.5rem;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .popup th,
+    .popup td {
+      border: 1px solid #eee;
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    .popup th {
+      background: linear-gradient(90deg, #0077cc, #00aaff);
+      color: white;
+      font-weight: 500;
+    }
+
+    .popup td {
+      background: #f9f9f9;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 5;
+      animation: fadeInOverlay 0.3s ease;
+    }
+
+    #errorMsg {
+      transition: opacity 0.3s ease;
+    }
+
+    #errorMsg:not(:empty) {
+      opacity: 1;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    @keyframes fadeInOverlay {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      .intro p {
+        font-size: 1rem;
+      }
+
+      .plans {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .plan {
+        width: 90%;
+        max-width: 350px;
+      }
+
+      .popup {
+        width: 90%;
+        max-width: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Pay Mine - Smart Bill Payment Service</h1>
+</header>
+
+<section class="intro">
+  <p>
+    We pay your bills on time, so you don’t have to worry. Pay us back after receiving your funds with a small service fee.
+  </p>
+</section>
+
+<section class="plans">
+  <div class="plan">
+    <h2>Pay Mine</h2>
+    <p>We pay your bill repay to us when you have money.</p>
+    <p>Click below to apply.</p>
+    <button onclick="openApply()" aria-label="Apply for Pay Mine">Take Money</button>
+  </div>
+  <div class="plan">
+    <h2>My Account</h2>
+    <p>View your borrowed amount and fees.</p>
+    <p>Click below to access.</p>
+    <button onclick="openPopup()" aria-label="View My Account">My Account</button>
+  </div>
+</section>
+
+<footer>
+  © Pay Mine by BS/MFI.
+</footer>
+
+<div class="overlay" id="overlay"></div>
+<div class="popup" id="passwordPopup">
+  <h3>Enter Password</h3>
+  <input type="password" id="passwordInput" placeholder="Enter your password">
+  <button onclick="checkPassword()">Submit</button>
+  <p id="errorMsg" style="color: #ff0000; font-size: 13px;"></p>
+  <div id="accountsTable" style="display: none;">
+    <h3>Your Accounts</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Amount Taken</th>
+          <th>Fee (10%)</th>
+        </tr>
+      </thead>
+      <tbody id="accountsTableBody">
+        <!-- Rows filled dynamically -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  // Data: password -> array of accounts
+  const accountsData = {
+    "admin123": [
+      { name: "John Doe", amount: 150 },
+      { name: "Alice Brown", amount: 250 }
+    ],
+    "team456": [
+      { name: "Mohammed Ali", amount: 100 },
+      { name: "Sara Khan", amount: 90 }
+    ],
+    "user789": [
+      { name: "David", amount: 60 }
+    ]
+  };
+
+  function openApply() {
+    window.open("https://forms.gle/9URS1LAqd3iB8qDUA");
+  }
+
+  function openPopup() {
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("passwordPopup").style.display = "block";
+    document.getElementById("accountsTable").style.display = "none";
+    document.getElementById("passwordInput").value = "";
+    document.getElementById("errorMsg").innerText = "";
+  }
+
+  function closePopup() {
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("passwordPopup").style.display = "none";
+    document.getElementById("errorMsg").innerText = "";
+    document.getElementById("passwordInput").value = "";
+    document.getElementById("accountsTable").style.display = "none";
+  }
+
+  function checkPassword() {
+    const entered = document.getElementById("passwordInput").value;
+    const tableBody = document.getElementById("accountsTableBody");
+    tableBody.innerHTML = "";
+
+    if (accountsData[entered]) {
+      accountsData[entered].forEach(entry => {
+        const fee = (entry.amount * 0.10).toFixed(2);
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${entry.name}</td>
+          <td>$${entry.amount.toFixed(2)}</td>
+          <td>$${fee}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+      document.getElementById("passwordInput").style.display = "none";
+      document.getElementById("errorMsg").innerText = "";
+      document.getElementById("accountsTable").style.display = "block";
+      document.querySelector(".popup button").style.display = "none";
+    } else {
+      document.getElementById("errorMsg").innerText = "Incorrect password";
+    }
+  }
+
+  document.getElementById("overlay").addEventListener("click", closePopup);
+
+  // Close popup on Esc key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closePopup();
+  });
+
+                  document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
+</script>
+</body>
+</html>
