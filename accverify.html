@@ -13,7 +13,15 @@
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
+ * {
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
         * {
             font-family: 'Poppins', sans-serif;
             box-sizing: border-box;
@@ -251,18 +259,19 @@
             color: #000000;
         }
         .notice {
-            font-weight: 200;
+                font-weight: 200;
     font-size: 12px;
     line-height: 20px;
     position: fixed;
     bottom: 35px;
     color: #ffffff;
     padding: 10px;
-    border: solid 1.4px #000000;
+    border: solid 1.5px #0033ff85;
     border-radius: 10px;
     width: 90%;
     max-width: 400px;
-    background: #0048ff69;
+    background: linear-gradient(1deg, #000000, #000133);
+
         }
 
         /* Note Popup */
@@ -321,25 +330,26 @@
         /* Add Note Button */
         #addNoteBtn, #addNoteBtnInitial, #toggleLoanBtn {
             position: fixed;
-            top: 15px;
-            right: 15px;
-            background-color: #2a2a2a;
-            color: #e0e0e0;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            z-index: 11;
-            display: none; /* Hidden by default, shown after verification */
-            transition: background-color 0.3s ease;
+    top: 20px;
+    right: 15px;
+    background-color: #2a2a2ad1;
+    color: #e0e0e0;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 48px;
+    cursor: pointer;
+    z-index: 11;
+    display: none;
+    transition: background-color 0.3s ease;
+    font-size: 12px;
         }
 
         #addNoteBtn {
-            right: 15px;
+            right: 5px;
         }
 
         #toggleLoanBtn {
-            right: 120px;
+            right: 100px;
         }
 
         #addNoteBtn:hover, #addNoteBtnInitial:hover, #toggleLoanBtn:hover {
@@ -426,7 +436,7 @@
                     document.getElementById("poweredByMsg").style.display = "block";
                     setTimeout(() => {
                         document.getElementById("poweredByMsg").style.display = "none";
-                    }, 3500); // Hide popup after 3 seconds
+                    }, 1500); // Hide popup after 3 seconds
                 }, 2000); // Delay of 2 seconds
             }
 
@@ -434,18 +444,18 @@
         });
 
         const passwords = {
-            // "Deepak@1": {
-            //     name: "Deepak Tallapudi",
-            //     loans: [
-            //         {   
-            //             planDate: "24-02-2025",
-            //             endDate: "9-05-2025",
-            //             interest: 0,
-            //             takenAmount: 1500,
-            //             takenFrom: "STO"
-            //         },
-            //     ]
-            // },
+            "0212": {
+                name: "Phani",
+                loans: [
+                    {   
+                        planDate: "24-02-2025",
+                        endDate: "9-05-2025",
+                        interest: 0,
+                        takenAmount: 1500,
+                        takenFrom: "STO"
+                    },
+                ]
+            },
         };
 
         let currentUser = null;
