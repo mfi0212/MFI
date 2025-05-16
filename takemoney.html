@@ -18,7 +18,15 @@
           box-sizing: border-box;
           font-family: "Red Hat Display", sans-serif;
         }
-    
+     * {
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
         body {
           background-color: white;
           color: black;
@@ -173,7 +181,7 @@
                     <input type="radio" name="Taking in" value="Golden" /> Golden
                 </label>
                 <label class="radio">
-                    <input type="radio" name="Taking in" value="Others" /> MLending
+                    <input type="radio" name="Taking in" value="Others" /> Others
                 </label>
             </div>
         </div>
