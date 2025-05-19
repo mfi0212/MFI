@@ -1,3 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BS/MFI | Take Money</title>
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&display=swap');
+    
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: "Red Hat Display", sans-serif;
+        }
+     * {
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+        body {
+          background-color: white;
+          color: black;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          line-height: 1.5;
+          padding: 20px;
+          letter-spacing: 0.4px;
+        }
+    
+        #form {
+            width: 100%;
+            max-width: 400px;
+            padding: 15px 0px;
+            line-height: 45px;
+        }
+    
+        .logo {
+          font-size: 24px;
+          font-weight: bold;
+          color: #0045ff;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+    
+        .form-group {
+          margin-bottom: 15px;
+        }
+    
+        label {
+            font-weight: bold;
+            display: flex;
+            font-size: 14px;
+            margin-bottom: 5px;
+            align-items: center;
+            gap: 6px;
+        }
+    
+        input[type="text"],
+        input[type="password"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #595959;
+            font-size: 16px;
+            outline: none;
+        }
+    
+        input:focus {
+          border-color: #007bff;
+          box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
+    
+        
+        .radio-group label {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+    
+        button#submit-button {
+          padding: 12px;
+          text-align: center;
+          width: 100%;
+          background: #0045ff;
+          color: white;
+          border: none;
+          font-size: 16px;
+          font-weight: 400;
+          cursor: pointer;
+          margin-top: 20px;
+        }
+        button#submit-button:hover{
+          background: #0035c5;
+          color: white;
+        }
+    
+        #message {
+          display: none;
+          text-align: center;
+          font-size: 14px;
+          font-weight: 400;
+          padding: 10px 20px;
+          border-radius: 5px;
+          margin-top: 15px;
+          background-color: #000;
+          color: #fff;
+          position: fixed;
+          top: 10px;
+          left: 50%;
+          transform: translateX(-50%);
+          box-shadow: 2px 0px 26px rgba(0, 0, 0, 0.769);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .new-button {
+            padding: 0px 20px;
+    color: #000000;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    text-decoration: none;
+    align-items: center;
+    display: flex
+;
+    justify-content: flex-end;
+        }
+
+        .new-button:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <form id="form" class="container m-4 pl-4" method="POST">
+        <div class="logo" style="font-size: 30px; font-weight: 800; color: #003eff; letter-spacing: 0px;">
+            BS/MFI<br>
+            <p style="font-size: 10px;
+    color: #545454;
+    margin-top: -20px;">BsLends/Myootive</p>
+        </div>
+
+        <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="" autocomplete="off" name="Name" />
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Password <strong style="color: #008b48;">(Don't use zero's in your password)</strong></label>
+            <div class="control">
+                <input class="input" type="text" placeholder=""autocomplete="off" name="Password" />
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Phone number</label>
+            <div class="control">
+                <input class="input" type="number" placeholder=""autocomplete="off" name="Phone number" />
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Amount you are taking from?</label>
+            <div class="control radio-group">
+                <label class="radio">
+                    <input type="radio" name="Taking in" value="Lendlink" /> Lendlink
+                </label>
+                <label class="radio">
+                    <input type="radio" name="Taking in" value="Golden" /> Golden
+                </label>
+                <label class="radio">
+                    <input type="radio" name="Taking in" value="MLending" /> MLending
+                </label>
+                <label class="radio">
+                    <input type="radio" name="Taking in" value="Others" /> Others
+                </label>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">How much amount you like to take?</label>
+            <div class="control">
+                <input class="input" type="text"autocomplete="off" placeholder="" name="Amount" />
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">In how many days you will return the amount?</label>
+            <div class="control">
+                <input class="input" type="text"autocomplete="off" placeholder="" name="Days" />
+            </div>
+        </div>
+
+        <!-- New Question: Do you like to apply for SPLIT? -->
+        <div class="field">
+            <label class="label">Do you like to apply for SPLIT?</label>
+            <div class="control radio-group">
+                <label class="radio">
+                    <input type="radio" name="ApplySplit"autocomplete="off" value="Yes" onchange="toggleSplitQuestions(this.value)" /> Yes
+                </label>
+                <label class="radio">
+                    <input type="radio" name="ApplySplit"autocomplete="off" value="No" onchange="toggleSplitQuestions(this.value)" /> No
+                </label>
+            </div>
+        </div>
+
+        <!-- Conditional Questions for SPLIT (Initially Hidden) -->
+        <div id="splitQuestions" class="hidden">
+            <div class="field">
+                <label class="label">Do you pay the split fee?</label>
+                <div class="control radio-group">
+                    <label class="radio">
+                        <input type="radio" name="PaySplitFee"autocomplete="off" value="Yes" /> Yes
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="PaySplitFee"autocomplete="off" value="No" /> No
+                    </label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">No. of splits you like to do?</label>
+                <div class="control">
+                    <input class="input" type="number" placeholder="" name="NumberOfSplits" />
+                </div>
+            </div>
+
+            <div class="field">
+                <a href="https://example.com" class="new-button">Explore Split pay</a>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <button class="btn-primary" type="submit" id="submit-button">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div id="message"></div>
+
+    <script>
+        document.getElementById("form").addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent the default form submission
+            document.getElementById("message").textContent = "Submitting..";
+            document.getElementById("message").style.display = "block";
+            document.getElementById("submit-button").disabled = true;
+
+            // Collect the form data
+            var formData = new FormData(this);
+            var keyValuePairs = [];
+            for (var pair of formData.entries()) {
+                keyValuePairs.push(pair[0] + "=" + pair[1]);
+            }
+
+            var formDataString = keyValuePairs.join("&");
+
+            // Send a POST request to your Google Apps Script
+            fetch(
+                "https://script.google.com/macros/s/AKfycbxIlao67g-XSHBVoSvYzofopgSa7_7_l9qstp4SxrdqMWCutnasBtQjdLn_aUWdsZvShw/exec",
+                {
+                    redirect: "follow",
+                    method: "POST",
+                    body: formDataString,
+                    headers: {
+                        "Content-Type": "text/plain;charset=utf-8",
+                    },
+                }
+            )
+                .then(function (response) {
+                    if (response) {
+                        return response; // Assuming your script returns JSON response
+                    } else {
+                        throw new Error("Failed to submit the form.");
+                    }
+                })
+                .then(function (data) {
+                    document.getElementById("message").textContent = "Details submitted successfully..!";
+                    document.getElementById("message").style.display = "block";
+                    document.getElementById("message").style.backgroundColor = "green";
+                    document.getElementById("message").style.color = "white";
+                    document.getElementById("submit-button").disabled = false;
+                    document.getElementById("form").reset();
+
+                    setTimeout(function () {
+                        document.getElementById("message").textContent = "";
+                        document.getElementById("message").style.display = "none";
+                    }, 2600);
+                })
+                .catch(function (error) {
+                    console.error(error);
+                    document.getElementById("message").textContent = "An error occurred while submitting the form.";
+                    document.getElementById("message").style.display = "block";
+                });
+        });
+
+        // Function to toggle SPLIT questions based on user selection
+        function toggleSplitQuestions(value) {
+            const splitQuestions = document.getElementById("splitQuestions");
+            if (value === "Yes") {
+                splitQuestions.classList.remove("hidden");
+            } else {
+                splitQuestions.classList.add("hidden");
+            }
+        }
+                document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
+    </script>
+</body>
+</html>
+
+
+
+
+
+<!-- 
 <style>
      @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&display=swap');
     
@@ -14,4 +361,4 @@
     font-size: 45px;
     }
 </style>
-The new launch date is 19th of this month.
+The new launch date is 19th of this month. -->
