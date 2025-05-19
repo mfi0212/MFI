@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,28 +8,20 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
- * {
-  -webkit-tap-highlight-color: transparent;
-}
-body {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
         * {
+            -webkit-tap-highlight-color: transparent;
             font-family: 'Poppins', sans-serif;
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -54,15 +46,15 @@ body {
         }
         .fixed {
             position: fixed;
-            top: 0px;
-            height: 255px;
-            padding: 55px 23px;
-            left: 0px;
-            background-color: #00000099;
-            width: 108%;
-            backdrop-filter: blur(5px);
-            z-index: 10;
-            border-bottom: solid 1.5px #2f2f2f;
+    top: 0px;
+    height: 255px;
+    padding: 55px 23px;
+    left: 0px;
+    background-color: #0000008a;
+    width: 108%;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    border-bottom: solid 2px #ffffff30;
         }
         .scroll {
             position: relative;
@@ -100,7 +92,7 @@ body {
             max-width: 300px;
             margin: 21px;
         }
-        #userPassword:focus{
+        #userPassword:focus {
             border: 1px solid #ffffffda;
         }
 
@@ -120,7 +112,7 @@ body {
             transition: background-color 0.3s ease;
         }
 
-        a{
+        a {
             color: #848484;
         }
 
@@ -225,8 +217,9 @@ body {
             border-bottom: 1px solid #2a2a2a;
             width: 103%;
             padding-bottom: 30px;
+            position: relative; /* For positioning the amount label */
         }
-        ::-webkit-scrollbar{
+        ::-webkit-scrollbar {
             width: 10px;
         }
         .amount-buttons {
@@ -277,33 +270,33 @@ body {
         /* Note Popup */
         #notePopup {
             display: none;
-    position: fixed;
-    bottom: 35px;
-    width: 94%;
-    background: linear-gradient(358deg, #000000, #2a2a2a);
-    padding: 20px;
-    border-top: 2px solid #4f4f4f;
-    z-index: 12000;
-    box-shadow: 0px -100px 200px rgb(25 79 255 / 35%);
-    align-items: center;
-    height: 340px;
-    border-radius: 15px;
-    text-align: center;
-    max-width: 800px;
+            position: fixed;
+            bottom: 35px;
+            width: 94%;
+            background: linear-gradient(358deg, #000000, #2a2a2a);
+            padding: 20px;
+            border-top: 2px solid #4f4f4f;
+            z-index: 12000;
+            box-shadow: 0px -100px 200px rgb(25 79 255 / 35%);
+            align-items: center;
+            height: 340px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 800px;
         }
 
         #notePopup textarea {
             width: 100%;
-    min-height: 250px;
-    background-color: #181818;
-    border: 1.5px solid #ffffff29;
-    border-radius: 5px;
-    padding: 10px;
-    color: #e0e0e0;
-    resize: unset;
-    margin-bottom: 10px;
-    outline: none;
-    font-size: 15px;
+            min-height: 250px;
+            background-color: #181818;
+            border: 1.5px solid #ffffff29;
+            border-radius: 5px;
+            padding: 10px;
+            color: #e0e0e0;
+            resize: unset;
+            margin-bottom: 10px;
+            outline: none;
+            font-size: 15px;
         }
 
         #notePopup button {
@@ -330,18 +323,18 @@ body {
         /* Add Note Button */
         #addNoteBtn, #addNoteBtnInitial, #toggleLoanBtn {
             position: fixed;
-    top: 20px;
-    right: 15px;
-    background-color: #2a2a2ad1;
-    color: #e0e0e0;
-    border: none;
-    padding: 5px 15px;
-    border-radius: 48px;
-    cursor: pointer;
-    z-index: 11;
-    display: none;
-    transition: background-color 0.3s ease;
-    font-size: 12px;
+            top: 20px;
+            right: 15px;
+            background-color: #2a2a2ad1;
+            color: #e0e0e0;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 48px;
+            cursor: pointer;
+            z-index: 11;
+            display: none;
+            transition: background-color 0.3s ease;
+            font-size: 12px;
         }
 
         #addNoteBtn {
@@ -359,32 +352,43 @@ body {
         /* Powered by Message */
         .powered-by {
             display: none;
-    position: fixed;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 10px;
-    color: #fff;
-    z-index: 10000;
-    background: #464646;
-    padding: 6px 12px;
-    border-radius: 25px;
-    box-shadow: 0 0 100px rgb(0 0 0);
-    font-weight: 300;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            color: #fff;
+            z-index: 10000;
+            background: #464646;
+            padding: 6px 12px;
+            border-radius: 25px;
+            box-shadow: 0 0 100px rgb(0 0 0);
+            font-weight: 300;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
+        /* Amount Label */
+        .amount-label {
+          position: fixed;
+    top: 265px;
+    font-size: 10px;
+    color: #ffffff;
+    background: #003dff;
+    padding: 0px 5px 0px 10px;
+    border-radius: 8px 0px 0px 8px;
+    z-index: 1000;
+    right: 0px;
+        }
     </style>
 </head>
 <body>
-   
     <div id="passwordContainer">
         <h2 style="font-weight: 400; font-size: 20px; color: white;">Verify my account</h2>
         <input type="text" id="userPassword" placeholder="Enter password">
         <button id="submitBtn"><i style="margin: 0px;" class="fa-solid fa-arrow-right"></i></button><br>
         <p id="error-message"></p>
         <button id="addNoteBtnInitial" style="display: none;">Add Note</button>
-        <div class="notice">
+         <div class="notice">
             You should return the money before the due date, If not additional interest will be charged.
         </div>
     </div>
@@ -393,11 +397,10 @@ body {
         <span><i class="fa-solid fa-arrow-left close-btn" onclick="closeModal()"></i></span>
         <div class="fixed">
             <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">Borrower</h3>
-            <p style="font-size: 20px;
-            display: flex
-        ;
-            align-items: center;
-            gap: 4px;"><span id="userName"></span> <img style="cursor: pointer;" onclick="alert('Verified BS/MFI member..!')" src="https://static.vecteezy.com/system/resources/thumbnails/047/309/930/small/verified-badge-profile-icon-png.png" alt="" width="16px"></p>
+            <p style="font-size: 20px; display: flex; align-items: center; gap: 4px;">
+                <span id="userName"></span>
+                <img style="cursor: pointer;" onclick="alert('Verified BS/MFI member..!')" src="https://static.vecteezy.com/system/resources/thumbnails/047/309/930/small/verified-badge-profile-icon-png.png" alt="" width="16px">
+            </p>
             <div class="amount-buttons" id="amountButtons"></div>
         </div>
         <div class="scroll">
@@ -412,12 +415,7 @@ body {
         <textarea id="noteInput" placeholder="Power by @BsNotes"></textarea>
         <button onclick="saveNote()">Save</button>
         <button onclick="closeNotePopup()">Close</button>
-        <div class="power" style="position: absolute;
-        top: 5px;
-        color: #c3c3c3;
-        font-size: 9px;
-        font-weight: 200;
-        right: 25px;">
+        <div class="power" style="position: absolute; top: 5px; color: #c3c3c3; font-size: 9px; font-weight: 200; right: 25px;">
             Power by @BsNotes
         </div>
     </div>
@@ -429,15 +427,13 @@ body {
         document.addEventListener('DOMContentLoaded', () => {
             const savedPassword = localStorage.getItem('lastPassword');
             if (savedPassword) {
-                // Delay autofill by 2 seconds
                 setTimeout(() => {
                     document.getElementById("userPassword").value = savedPassword;
-                    // Show popup message after autofill
                     document.getElementById("poweredByMsg").style.display = "block";
                     setTimeout(() => {
                         document.getElementById("poweredByMsg").style.display = "none";
-                    }, 1500); // Hide popup after 3 seconds
-                }, 2000); // Delay of 2 seconds
+                    }, 1500);
+                }, 2000);
             }
 
             loadSavedNotes();
@@ -445,14 +441,15 @@ body {
 
         const passwords = {
             "0212": {
-                name: "Phani",
+                name: "PHANI",
                 loans: [
-                    {   
-                        planDate: "24-02-2025",
-                        endDate: "9-05-2025",
-                        interest: 0,
-                        takenAmount: 1500,
-                        takenFrom: "STO"
+                    {
+                        // RUFF
+                        planDate: "24-05-2025",
+                        endDate: "20-08-2025(Extended to 5 days)",
+                        interest: 7000,
+                        takenAmount: 18000,
+                        takenFrom: "MLending"
                     },
                 ]
             },
@@ -460,6 +457,7 @@ body {
 
         let currentUser = null;
         let currentLoanIndex = null;
+        let timeoutId = null; // To manage the delay timeout
 
         // Function to load saved notes from localStorage
         function loadSavedNotes() {
@@ -487,7 +485,6 @@ body {
             const errorMessage = document.getElementById("error-message");
             const user = passwords[userInput];
 
-            // Save the entered password to localStorage
             localStorage.setItem('lastPassword', userInput);
 
             if (user) {
@@ -500,7 +497,16 @@ body {
                     const btn = document.createElement("button");
                     btn.className = "amount-btn";
                     btn.textContent = ` ${loan.takenAmount} Rupees`;
-                    btn.onclick = () => displayLoanDetails(loan, index);
+                    btn.onclick = () => {
+                        // Clear any existing timeout
+                        if (timeoutId) {
+                            clearTimeout(timeoutId);
+                        }
+                        // Set a 2-second delay before displaying loan details
+                        timeoutId = setTimeout(() => {
+                            displayLoanDetails(loan, index);
+                        }, 100);
+                    };
                     amountButtons.appendChild(btn);
                 });
 
@@ -508,7 +514,6 @@ body {
                     displayLoanDetails(user.loans[0], 0);
                 }
 
-                // Show both Add Note buttons and toggle loan button after successful verification
                 document.getElementById("addNoteBtnInitial").style.display = "block";
                 document.getElementById("addNoteBtn").style.display = "block";
                 document.getElementById("toggleLoanBtn").style.display = "block";
@@ -524,11 +529,19 @@ body {
             const loanDetails = document.getElementById("loanDetails");
             const totalReturnAmount = (loan.takenAmount + loan.interest).toFixed(2);
 
+            // Calculate the number of days between planDate and endDate
+            const startDate = new Date(loan.planDate.split('-').reverse().join('-'));
+            const endDateStr = loan.endDate.split('(')[0];
+            const endDate = new Date(endDateStr.split('-').reverse().join('-'));
+            const timeDiff = endDate - startDate;
+            const daysDiff = Math.abs(Math.ceil(timeDiff / (1000 * 60 * 60 * 24)));
+
             document.querySelectorAll(".amount-btn").forEach(btn => btn.classList.remove("active"));
             document.getElementById("amountButtons").children[index].classList.add("active");
 
             loanDetails.innerHTML = `
                 <div class="loan-entry">
+                    <span class="amount-label">Amount ${index + 1}</span>
                     <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
                         Taken service
                     </h3>
@@ -542,6 +555,10 @@ body {
                     </h3>
                     <p><i class="fa-solid fa-calendar-day"></i> Taken on: ${loan.planDate}</p>
                     <p><i class="fa-solid fa-calendar-check"></i> Ends on: ${loan.endDate}</p>
+                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                        Duration
+                    </h3>
+                    <p><i class="fa-solid fa-clock"></i> No. of Days: ${daysDiff} days</p>
                     <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
                         Interest
                     </h3>
@@ -570,6 +587,9 @@ body {
             currentUser = null;
             currentLoanIndex = null;
             saveNotesToStorage();
+            if (timeoutId) {
+                clearTimeout(timeoutId); // Clear any pending timeout
+            }
         }
 
         document.getElementById("addNoteBtnInitial").addEventListener("click", openNotePopup);
@@ -595,10 +615,6 @@ body {
             closeNotePopup();
         }
 
-        function editNote() {
-            saveNote();
-        }
-
         // Add toggle functionality for loan details
         document.getElementById("toggleLoanBtn").addEventListener("click", () => {
             const loanDetails = document.getElementById("loanDetails");
@@ -613,36 +629,9 @@ body {
                 document.getElementById("toggleLoanBtn").textContent = "Show";
             }
         });
-
-        
-        document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
-
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
-
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
     </script>
-      <div class="mfi" style="position: fixed;
-      bottom: 0px;
-      font-size: 10px;
-      color: #848484;
-      z-index: 1000;
-      background: #000000;
-      width: 100%;
-      text-align: center;
-      padding: 10px;
-      filter: drop-shadow(0px 0px 66px black);">
-           <a target="_blank" style="text-decoration: none;" href="https://mfi0212.github.io/MFI/mfimain">By BsLends</a>
-          </div>
+    <div class="mfi" style="position: fixed; bottom: 0px; font-size: 10px; color: #848484; z-index: 1000; background: #000000; width: 100%; text-align: center; padding: 10px; filter: drop-shadow(0px 0px 66px black);">
+        <a target="_blank" style="text-decoration: none;" href="https://mfi0212.github.io/MFI/mfimain">By BsLends</a>
+    </div>
 </body>
 </html>
