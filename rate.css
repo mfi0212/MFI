@@ -28,13 +28,14 @@
             z-index: -1000;
         }
         #popup-content{
-        font-size: 13px;
-        background-color: #6565655c;
-        line-height: 30px;
-        padding: 13px 19px;
-        border-radius: 20px;
-        font-weight: 400;
-        letter-spacing: 0px;
+       font-size: 13px;
+    line-height: 30px;
+    padding: 13px 19px;
+    border-radius: 20px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    filter: drop-shadow(2px 0px 46px gray);
+    background: #1f1f1f;
         }
         .container {
             display: block;
@@ -170,16 +171,20 @@
     padding: 13px;
     border-radius: 5px;
     }
+    .prices p{
+        border-radius: 40px;
+    }
     div#popup {
         display: none;
     position: fixed;
     top: 50%;
     left: 50%;
+    font-size: 12px;
     transform: translate(-50%, -50%);
     padding: 20px 40px;
     background: rgb(0 0 0 / 35%);
     box-shadow: rgb(0 0 0 / 89%) 0px 0px 200px 610px;
-    border-radius: 40px;
+    border-radius: 35px;
     text-align: center;
     z-index: 10000000000;
     backdrop-filter: blur(20px);
@@ -219,19 +224,21 @@
     cursor: pointer;
 }
 p {
-   max-width: 600px;
+       max-width: 500px;
     text-align: center;
     display: inline-block;
-    border-radius: 30px;
     border: none;
     color: #d1d1d1;
     padding: 10px 18px;
-    font-size: 12.5px;
+    border-radius: 15px;
     z-index: 1000;
     font-weight: 100;
     letter-spacing: 0.5px;
     cursor: help;
-    background: #ffffff38;
+    border-radius: 20px;
+    background: #ffffff24;
+    line-height: 21px;
+
 }
 
 /* @keyframes travelGlow {
@@ -303,13 +310,15 @@ p {
             justify-content: flex-start;
         }
        #popup-content{
-               font-size: 12px;
-        background-color: #65656560;
+                      font-size: 12px;
+        background-color: #242424;
         line-height: 26px;
         padding: 13px 19px;
         border-radius: 20px;
         font-weight: 400;
         letter-spacing: 0px;
+        filter: drop-shadow(2px 0px 26px gray);
+        background: #181818;
         }
         #icon-display {
             position: fixed;
@@ -362,7 +371,6 @@ p {
         padding: 15px;
         background: rgb(0 0 0 / 0%);
         box-shadow: rgb(0 0 0 / 56%) 0px 0px 200px 610px;
-        border-radius: 35px;
         text-align: center;
         z-index: 10000000000;
         backdrop-filter: blur(20px);
@@ -377,13 +385,14 @@ p {
         display: inline-block;
         border: none;
         color: #d1d1d1;
-        padding: 10px 20px;
-        font-size: 13px;
+        padding: 10px 20px;       
+        font-size: 12px;
         z-index: 1000;
         font-weight: 100;
         letter-spacing: 0.5px;
-        cursor: help;
-        background: #ffffff38;
+        cursor: help; 
+        border-radius: 20px;
+        background: #ffffff24;
     }
        
         .container {
