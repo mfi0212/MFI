@@ -5,14 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relaunch Lottery</title>
     <link rel="icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkHG-F14N_f0CkYb6UO9Cb7IhtlkGz65lR6QTzSh-D5W9HMuU5hzUnwyvuTmIVuC2IIao&usqp=CAU">
-    
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Roboto font -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
-    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Prompt font -->
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -22,42 +18,33 @@
             font-family: "Prompt", sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
-* {
-  -webkit-tap-highlight-color: transparent;
-}
-body {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            -webkit-user-select: none;
+            user-select: none;
             background-color: #121212;
+            background-image: linear-gradient(20deg, rgb(0, 0, 0), rgb(0, 99, 35));
             color: #ffffff;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            letter-spacing: 0.3px;
-            background-image: linear-gradient(20deg, rgb(0 0 0), rgb(0 99 35));
         }
         .container {
-           background-color: #1c1c1c;
-    max-width: 600px;
-    margin: 10px;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    width: 100%;
+            background-color: #1c1c1c;
+            max-width: 600px;
+            width: 100%;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            text-align: center;
         }
         h1 {
             font-size: 28px;
             font-weight: 700;
-            color: #ffffff;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -70,7 +57,7 @@ body {
         }
         .highlight {
             color: #1db954;
-            font-weight: bold;
+            font-weight: 400;
         }
         .note {
             font-style: italic;
@@ -100,16 +87,15 @@ body {
             padding: 0;
         }
         .ticket-info ul {
-               list-style-type: none;
-    padding: 20px;
-    text-align: center;
-    display: flex
-;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background: #3c3c3c63;
-    border-radius: 15px;
+            list-style-type: none;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: #3c3c3c63;
+            border-radius: 15px;
         }
         .ticket-info li {
             margin-bottom: 12px;
@@ -133,38 +119,46 @@ body {
 </head>
 <body>
     <div class="container">
-        <h1>Dear Members,</h1>
-        <p>We’re pumped to announce the relaunch of our <span class="highlight">brand-new website</span>! To celebrate, we’re rolling out an epic lottery with a chance to win!</p>
+        <h1>Hello Members!</h1>
+        <p>We’re excited to share that our <span class="highlight">new website</span> is now live! To celebrate, we're hosting a fun lottery—and you could win big!</p>
+        
         <div class="ticket-info">
             <ul>
                 <li><span class="highlight">₹120 Ticket</span>: Win up to <span class="highlight">₹2,500</span>!</li>
                 <li><span class="highlight">₹240 Ticket</span>: Win up to <span class="highlight">₹5,000</span>!</li>
+                <li><span class="highlight">Bonus</span>: You may also win a <span class="highlight">zero-interest offer</span>!</li>
+
             </ul>
         </div>
-       <p class="note">NOTE : Every member can participate. This is a genuine opportunity with no scams involved.</p>
+
+        <p class="note">Note: Every member can participate. This is a genuine opportunity with no scams involved.</p>
+
         <a href="https://forms.gle/b33k3Qm4hRbyz4VW9" class="button">Apply for Lottery</a>
-        <p class="footer">Thank you for being a valued member!</p>
+
+        <p class="footer">Thank you for being with us!</p>
     </div>
 
-    <p style="position: fixed;bottom: 10px;    font-size: 12px;
-">Power by BS/MFI</p>
-<script>
-                    document.addEventListener("DOMContentLoaded", () => {
+    <p style="position: fixed; bottom: 10px; font-size: 12px;">Powered by BS/MFI</p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
             const customMenu = document.querySelector(".custom-menu");
-        
-            // Show custom menu on right-click
+
             document.addEventListener("contextmenu", (event) => {
                 event.preventDefault();
-                customMenu.style.display = "block";
-                customMenu.style.top = `${event.pageY}px`;
-                customMenu.style.left = `${event.pageX}px`;
+                if (customMenu) {
+                    customMenu.style.display = "block";
+                    customMenu.style.top = `${event.pageY}px`;
+                    customMenu.style.left = `${event.pageX}px`;
+                }
             });
-        
-            // Hide the menu when clicking elsewhere
+
             document.addEventListener("click", () => {
-                customMenu.style.display = "none";
+                if (customMenu) {
+                    customMenu.style.display = "none";
+                }
             });
         });
-</script>
+    </script>
 </body>
 </html>
