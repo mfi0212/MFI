@@ -83,7 +83,7 @@ position: fixed;
         #userPassword {
             font-size: 16px;
             border-radius: 40px;
-            border: 1px solid #ffffff1c;
+            border: none;
             background: #ffffff21;
             color: #fff;
             padding: 8px 25px;
@@ -94,7 +94,8 @@ position: fixed;
             margin: 21px;
         }
         #userPassword:focus {
-            border: 1px solid #ffffffda;
+            border: none;
+             background: #3c3c3c;
         }
 
         #submitBtn {
@@ -381,12 +382,15 @@ position: fixed;
     filter: drop-shadow(2px 0px 16px black);
     right: 0px;
 }
+::placeholder{
+    color: rgba(255, 255, 255, 0.783);
+}
     </style>
 </head>
 <body>
     <div id="passwordContainer">
         <h2 style="font-weight: 400; font-size: 20px; color: white;">Verify my account</h2>
-        <input type="text" id="userPassword" placeholder="Enter password">
+        <input type="text" id="userPassword" placeholder="enter password">
         <button id="submitBtn"><i style="margin: 0px;" class="fa-solid fa-arrow-right"></i></button><br>
         <p id="error-message"></p>
         <button id="addNoteBtnInitial" style="display: none;">Add Note</button>
@@ -401,7 +405,7 @@ position: fixed;
             <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">Borrower</h3>
             <p style="font-size: 20px; display: flex; align-items: center; gap: 4px;">
                 <span id="userName"></span>
-                <img style="cursor: pointer;" onclick="alert('Verified BS/MFI member..!')" src="https://static.vecteezy.com/system/resources/thumbnails/047/309/930/small/verified-badge-profile-icon-png.png" alt="" width="16px">
+                <img style="cursor: pointer;" onclick="alert('Verified BS/MFI member..!')" src="veriflgo.png" alt="" width="35px">
             </p>
             <div class="amount-buttons" id="amountButtons"></div>
         </div>
