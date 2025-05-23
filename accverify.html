@@ -3,352 +3,649 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BS/MFI | Take Money</title>
-    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
+    <title>Verify my account</title>
+    <link rel="icon" type="image/x-icon" href="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&display=swap');
-    
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
         * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          font-family: "Red Hat Display", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-     * {
-  -webkit-tap-highlight-color: transparent;
-}
-body {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
         body {
-          background-color: white;
-          color: black;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          line-height: 1.5;
-          padding: 20px;
-          letter-spacing: 0.4px;
-        }
-    
-        #form {
-            width: 100%;
-            max-width: 400px;
-            padding: 15px 0px;
-            line-height: 45px;
-        }
-    
-        .logo {
-          font-size: 24px;
-          font-weight: bold;
-          color: #0045ff;
-          text-align: center;
-          margin-bottom: 20px;
-        }
-    
-        .form-group {
-          margin-bottom: 15px;
-        }
-    
-        label {
-            font-weight: bold;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
             display: flex;
-            font-size: 14px;
-            margin-bottom: 5px;
+            justify-content: center;
             align-items: center;
-            gap: 6px;
+            min-height: 100vh;
+            background-color: #000;
+            color: #e0e0e0;
+            letter-spacing: 0.5px;
         }
-    
-        input[type="text"],
-        input[type="password"],
-        input[type="number"] {
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            padding: 10px;
-            border: 1px solid #595959;
+            background-color: #1a1a1a;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+        .fixed {
+position: fixed;
+    top: 0px;
+    height: 255px;
+    padding: 55px 23px;
+    left: 0px;
+    background-color: #16161636;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    border-bottom: solid 2px #ffffff21;
+    border-radius: 30px;
+        }
+        .scroll {
+            position: relative;
+            top: 180px;
+        }
+        .header h2 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+
+        /* Password Container */
+        #passwordContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            width: 100%;
+            text-align: center;
+            line-height: 15px;
+            position: fixed;
+        }
+
+        #userPassword {
             font-size: 16px;
+            border-radius: 40px;
+            border: none;
+            background: #ffffff21;
+            color: #fff;
+            padding: 8px 25px;
+            text-align: center;
+            width: 90%;
             outline: none;
+            max-width: 300px;
+            margin: 21px;
         }
-    
-        input:focus {
-          border-color: #007bff;
-          box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-        }
-    
-        
-        .radio-group label {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-        }
-    
-        button#submit-button {
-          padding: 12px;
-          text-align: center;
-          width: 100%;
-          background: #0045ff;
-          color: white;
-          border: none;
-          font-size: 16px;
-          font-weight: 400;
-          cursor: pointer;
-          margin-top: 20px;
-        }
-        button#submit-button:hover{
-          background: #0035c5;
-          color: white;
-        }
-    
-        #message {
-          display: none;
-          text-align: center;
-          font-size: 14px;
-          font-weight: 400;
-          padding: 10px 20px;
-          border-radius: 5px;
-          margin-top: 15px;
-          background-color: #000;
-          color: #fff;
-          position: fixed;
-          top: 10px;
-          left: 50%;
-          transform: translateX(-50%);
-          box-shadow: 2px 0px 26px rgba(0, 0, 0, 0.769);
+        #userPassword:focus {
+            border: none;
+             background: #3c3c3c;
         }
 
-        .hidden {
+        #submitBtn {
+            width: 40px;
+            height: 40px;
+            background-color: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        a {
+            color: #848484;
+        }
+
+        #error-message {
+            color: #ff0000;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        /* Modal */
+        .modal {
             display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            padding: 65px 0px 0px 24px;
+            line-height: 30px;
+            overflow-y: auto;
+            z-index: 10;
         }
 
-        .new-button {
-            padding: 0px 20px;
-    color: #000000;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-    text-decoration: none;
-    align-items: center;
-    display: flex
-;
-    justify-content: flex-end;
+        .modal h2 {
+            color: #e0e0e0;
+            font-weight: 500;
         }
 
-        .new-button:hover {
+        .modal h3 {
+            color: #0048ff;
+            font-size: 16px;
+            font-weight: 400;
             text-decoration: underline;
+            margin: 25px 0;
         }
+
+        .modal p {
+            color: #a0a0a0;
+            font-size: 14px;
+            font-weight: 400;
+            margin: 10px 0;
+            transition: color 0.3s ease;
+        }
+        .close-btn {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            color: #e0e0e0;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 11;
+            background: #282828;
+            padding: 10px 11px;
+            border-radius: 134px;
+        }
+
+        i {
+            margin-right: 8px;
+        }
+
+        .logo {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 11;
+        }
+
+        .logo img {
+            width: 40px;
+            border-radius: 50%;
+        }
+
+        .logout-btn {
+            position: fixed;
+            top: 55px;
+            right: 5px;
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            border: none;
+            padding: 5px 12px;
+            font-size: 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            z-index: 11;
+        }
+
+        .logout-btn a {
+            color: #e0e0e0;
+            text-decoration: none;
+        }
+
+        .logout-btn:hover {
+            background-color: #3a3a3a;
+        }
+
+        /* Loan Entry and Amount Buttons */
+        .loan-entry {
+            padding: 10px 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #2a2a2a;
+            width: 103%;
+            padding-bottom: 30px;
+            position: relative; /* For positioning the amount label */
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        .amount-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 3px 0px;
+            padding: 10px 0px;
+            overflow-x: scroll;
+            width: 100%;
+            white-space: nowrap;
+        }
+
+        .amount-btn {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            border: none;
+            border-radius: 35px;
+            padding: 10px 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .amount-btn:hover {
+            background-color: #3a3a3a;
+        }
+
+        .amount-btn.active {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .notice {
+                font-weight: 200;
+    font-size: 12px;
+    line-height: 20px;
+    position: fixed;
+    bottom: 35px;
+    color: #ffffff;
+    padding: 10px;
+    border: solid 1.5px #0033ff85;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    background: linear-gradient(1deg, #000000, #000133);
+
+        }
+
+        /* Note Popup */
+        #notePopup {
+            display: none;
+            position: fixed;
+            bottom: 35px;
+            width: 94%;
+            background: linear-gradient(358deg, #000000, #141414);
+            padding: 20px;
+            border-top: 2px solid #4f4f4f;
+            z-index: 12000;
+            box-shadow: 0px -150px 250px rgb(0 16 255 / 42%);
+            align-items: center;
+            height: 340px;
+            border-radius: 21px;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        #notePopup textarea {
+            width: 100%;
+            min-height: 250px;
+            background-color: #181818;
+            border: 1.5px solid #ffffff29;
+            border-radius: 10px;
+            padding: 10px;
+            color: #e0e0e0;
+            resize: unset;
+            margin-bottom: 10px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        #notePopup button {
+            background-color: #004cff;
+            color: #ffffff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        #notePopup button:hover {
+            background-color: #002fff;
+        }
+
+        #savedNote {
+            margin-top: 10px;
+            color: #a0a0a0;
+            font-size: 14px;
+            word-wrap: break-word;
+        }
+
+        /* Add Note Button */
+        #addNoteBtn, #addNoteBtnInitial, #toggleLoanBtn {
+            position: fixed;
+            top: 20px;
+            right: 15px;
+            background-color: #2a2a2ad1;
+            color: #e0e0e0;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 48px;
+            cursor: pointer;
+            z-index: 11;
+            display: none;
+            transition: background-color 0.3s ease;
+            font-size: 12px;
+        }
+
+        #addNoteBtn {
+            right: 5px;
+        }
+
+        #toggleLoanBtn {
+            right: 100px;
+        }
+
+        #addNoteBtn:hover, #addNoteBtnInitial:hover, #toggleLoanBtn:hover {
+            background-color: #3a3a3a;
+        }
+
+        /* Powered by Message */
+        .powered-by {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            color: #fff;
+            z-index: 10000;
+            background: #464646;
+            padding: 6px 12px;
+            border-radius: 25px;
+            box-shadow: 0 0 100px rgb(0 0 0);
+            font-weight: 300;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Amount Label */
+        .amount-label {
+        position: fixed;
+    top: 280px;
+    font-size: 12px;
+    color: #ffffff;
+    background: #001bb3;
+    padding: 5px 6px 5px 15px;
+    border-radius: 8px 0px 0px 8px;
+    z-index: 1000;
+    filter: drop-shadow(2px 0px 16px black);
+    right: 0px;
+}
+::placeholder{
+    color: rgba(255, 255, 255, 0.783);
+}
     </style>
 </head>
 <body>
-    <form id="form" class="container m-4 pl-4" method="POST">
-        <div class="logo" style="font-size: 30px; font-weight: 800; color: #003eff; letter-spacing: 0px;">
-            BS/MFI<br>
-            <p style="font-size: 10px;
-    color: #545454;
-    margin-top: -20px;">BsLends/Myootive</p>
+    <div id="passwordContainer">
+        <h2 style="font-weight: 400; font-size: 20px; color: white;">Verify my account</h2>
+        <input type="text" id="userPassword" placeholder="Enter password">
+        <button id="submitBtn"><i style="margin: 0px;" class="fa-solid fa-arrow-right"></i></button><br>
+        <p id="error-message"></p>
+        <button id="addNoteBtnInitial" style="display: none;">Add Note</button>
+         <div class="notice">
+            You should return the money before the due date, If not additional interest will be charged.
         </div>
+    </div>
 
-        <div class="field">
-            <label class="label">Name</label>
-            <div class="control">
-                <input class="input" type="text" placeholder="" autocomplete="off" name="Name" />
-            </div>
+    <div id="userInfoModal" class="modal">
+        <span><i class="fa-solid fa-arrow-left close-btn" onclick="closeModal()"></i></span>
+        <div class="fixed">
+            <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">Borrower</h3>
+            <p style="font-size: 20px; display: flex; align-items: center; gap: 4px;">
+                <span id="userName"></span>
+                <img style="cursor: pointer;" onclick="alert('Verified BS/MFI member..!')" src="veriflgo.png" alt="" width="35px">
+            </p>
+            <div class="amount-buttons" id="amountButtons"></div>
         </div>
-
-        <div class="field">
-            <label class="label">Password <strong style="color: #008b48;">(Don't use zero's in your password)</strong></label>
-            <div class="control">
-                <input class="input" type="text" placeholder=""autocomplete="off" name="Password" />
-            </div>
+        <div class="scroll">
+            <div id="loanDetails"></div>
+            <div id="savedNote"></div>
         </div>
+        <button id="toggleLoanBtn" style="display: none;">Show/Hide</button>
+        <button id="addNoteBtn" style="display: none;">Add Note</button>
+    </div>
 
-        <div class="field">
-            <label class="label">Phone number</label>
-            <div class="control">
-                <input class="input" type="number" placeholder=""autocomplete="off" name="Phone number" />
-            </div>
+    <div id="notePopup">
+        <textarea id="noteInput" placeholder="Power by @BsNotes"></textarea>
+        <button onclick="saveNote()">Save</button>
+        <button onclick="closeNotePopup()">Close</button>
+        <div class="power" style="position: absolute; top: 5px; color: #c3c3c3; font-size: 9px; font-weight: 200; right: 25px;">
+            Power by @BsNotes
         </div>
+    </div>
 
-        <div class="field">
-            <label class="label">Amount you are taking from?</label>
-            <div class="control radio-group">
-                <label class="radio">
-                    <input type="radio" name="Taking in" value="Lendlink" /> Lendlink
-                </label>
-                <label class="radio">
-                    <input type="radio" name="Taking in" value="Golden" /> Golden
-                </label>
-                <label class="radio">
-                    <input type="radio" name="Taking in" value="MLending" /> MLending
-                </label>
-                <label class="radio">
-                    <input type="radio" name="Taking in" value="Others" /> Others
-                </label>
-            </div>
-        </div>
-        <div class="field">
-            <label class="label">How much amount you like to take?</label>
-            <div class="control">
-                <input class="input" type="text"autocomplete="off" placeholder="" name="Amount" />
-            </div>
-        </div>
-
-        <div class="field">
-            <label class="label">In how many days you will return the amount?</label>
-            <div class="control">
-                <input class="input" type="text"autocomplete="off" placeholder="" name="Days" />
-            </div>
-        </div>
- <div class="field">
-            <label class="label">Is the amount you're taking an offer?</label>
-            <div class="control radio-group">
-                <label class="radio">
-                    <input type="radio" name="offer or not" value="yes" /> Yes
-                </label>
-                <label class="radio">
-                    <input type="radio" name="offer or not" value="no" /> No
-                </label>
-            </div>
-        </div>
-       
-        <hr style="height: 2px;
-    background: #6e6e6e;">
-
-        <!-- New Question: Do you like to apply for SPLIT? -->
-        <div class="field">
-            <label class="label">Do you like to apply for SPLIT?</label>
-            <div class="control radio-group">
-                <label class="radio">
-                    <input type="radio" name="ApplySplit"autocomplete="off" value="Yes" onchange="toggleSplitQuestions(this.value)" /> Yes
-                </label>
-                <label class="radio">
-                    <input type="radio" name="ApplySplit"autocomplete="off" value="No" onchange="toggleSplitQuestions(this.value)" /> No
-                </label>
-            </div>
-        </div>
-
-        <!-- Conditional Questions for SPLIT (Initially Hidden) -->
-        <div id="splitQuestions" class="hidden">
-            <div class="field">
-                <label class="label">Do you pay the split fee?</label>
-                <div class="control radio-group">
-                    <label class="radio">
-                        <input type="radio" name="PaySplitFee"autocomplete="off" value="Yes" /> Yes
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="PaySplitFee"autocomplete="off" value="No" /> No
-                    </label>
-                </div>
-            </div>
-
-            <div class="field">
-                <label class="label">No. of splits you like to do?</label>
-                <div class="control">
-                    <input class="input" type="number" placeholder="" name="NumberOfSplits" />
-                </div>
-            </div>
-
-            <div class="field">
-                <a href="https://mfi0212.github.io/swan/offer/split" class="new-button">Explore Split pay</a>
-            </div>
-        </div>
-
-        <div class="field">
-            <div class="control">
-                <button class="btn-primary" type="submit" id="submit-button">
-                    Submit
-                </button>
-            </div>
-        </div>
-    </form>
-
-    <div id="message"></div>
+    <div id="poweredByMsg" class="powered-by">Powered by BsPsgenerater</div>
 
     <script>
-        document.getElementById("form").addEventListener("submit", function (e) {
-            e.preventDefault(); // Prevent the default form submission
-            document.getElementById("message").textContent = "Submitting..";
-            document.getElementById("message").style.display = "block";
-            document.getElementById("submit-button").disabled = true;
-
-            // Collect the form data
-            var formData = new FormData(this);
-            var keyValuePairs = [];
-            for (var pair of formData.entries()) {
-                keyValuePairs.push(pair[0] + "=" + pair[1]);
+        // Load saved password and notes from localStorage when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedPassword = localStorage.getItem('lastPassword');
+            if (savedPassword) {
+                setTimeout(() => {
+                    document.getElementById("userPassword").value = savedPassword;
+                    document.getElementById("poweredByMsg").style.display = "block";
+                    setTimeout(() => {
+                        document.getElementById("poweredByMsg").style.display = "none";
+                    }, 1500);
+                }, 2000);
             }
 
-            var formDataString = keyValuePairs.join("&");
-
-            // Send a POST request to your Google Apps Script
-            fetch(
-                "https://script.google.com/macros/s/AKfycbxIlao67g-XSHBVoSvYzofopgSa7_7_l9qstp4SxrdqMWCutnasBtQjdLn_aUWdsZvShw/exec",
-                {
-                    redirect: "follow",
-                    method: "POST",
-                    body: formDataString,
-                    headers: {
-                        "Content-Type": "text/plain;charset=utf-8",
-                    },
-                }
-            )
-                .then(function (response) {
-                    if (response) {
-                        return response; // Assuming your script returns JSON response
-                    } else {
-                        throw new Error("Failed to submit the form.");
-                    }
-                })
-                .then(function (data) {
-                    document.getElementById("message").textContent = "Details submitted successfully..!";
-                    document.getElementById("message").style.display = "block";
-                    document.getElementById("message").style.backgroundColor = "green";
-                    document.getElementById("message").style.color = "white";
-                    document.getElementById("submit-button").disabled = false;
-                    document.getElementById("form").reset();
-
-                    setTimeout(function () {
-                        document.getElementById("message").textContent = "";
-                        document.getElementById("message").style.display = "none";
-                    }, 2600);
-                })
-                .catch(function (error) {
-                    console.error(error);
-                    document.getElementById("message").textContent = "An error occurred while submitting the form.";
-                    document.getElementById("message").style.display = "block";
-                });
+            loadSavedNotes();
         });
 
-        // Function to toggle SPLIT questions based on user selection
-        function toggleSplitQuestions(value) {
-            const splitQuestions = document.getElementById("splitQuestions");
-            if (value === "Yes") {
-                splitQuestions.classList.remove("hidden");
-            } else {
-                splitQuestions.classList.add("hidden");
+        const passwords = {
+            "0212": {
+                name: "PHANI",
+                loans: [
+                    {
+                        // RUFF
+                        planDate: "24-05-2025",
+                        endDate: "20-08-2025(Extended to 5 days)",
+                        interest: 8000,
+                        takenAmount: 18000,
+                        takenFrom: "MLending"
+                    },
+                    {
+                        // RUFF
+                        planDate: "24-05-2025",
+                        endDate: "20-08-2025(Extended to 5 days)",
+                        interest: 8000,
+                        takenAmount: 28000,
+                        takenFrom: "MLending"
+                    },
+                ]
+            },
+        };
+
+        let currentUser = null;
+        let currentLoanIndex = null;
+        let timeoutId = null; // To manage the delay timeout
+
+        // Function to load saved notes from localStorage
+        function loadSavedNotes() {
+            const savedNotes = JSON.parse(localStorage.getItem('loanNotes')) || {};
+            for (let password in passwords) {
+                if (savedNotes[password]) {
+                    passwords[password].notes = savedNotes[password];
+                } else {
+                    passwords[password].notes = {};
+                }
             }
         }
-                document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
 
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
+        // Function to save notes to localStorage
+        function saveNotesToStorage() {
+            const notesToSave = {};
+            for (let password in passwords) {
+                notesToSave[password] = passwords[password].notes;
+            }
+            localStorage.setItem('loanNotes', JSON.stringify(notesToSave));
+        }
 
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
+        document.getElementById("submitBtn").addEventListener("click", () => {
+            const userInput = document.getElementById("userPassword").value.trim();
+            const errorMessage = document.getElementById("error-message");
+            const user = passwords[userInput];
+
+            localStorage.setItem('lastPassword', userInput);
+
+            if (user) {
+                currentUser = user;
+                document.getElementById("userName").textContent = user.name;
+                const amountButtons = document.getElementById("amountButtons");
+                amountButtons.innerHTML = "";
+
+                user.loans.forEach((loan, index) => {
+                    const btn = document.createElement("button");
+                    btn.className = "amount-btn";
+                    btn.textContent = ` ${loan.takenAmount} Rupees`;
+                    btn.onclick = () => {
+                        // Clear any existing timeout
+                        if (timeoutId) {
+                            clearTimeout(timeoutId);
+                        }
+                        // Set a 2-second delay before displaying loan details
+                        timeoutId = setTimeout(() => {
+                            displayLoanDetails(loan, index);
+                        }, 100);
+                    };
+                    amountButtons.appendChild(btn);
+                });
+
+                if (user.loans.length > 0) {
+                    displayLoanDetails(user.loans[0], 0);
+                }
+
+                document.getElementById("addNoteBtnInitial").style.display = "block";
+                document.getElementById("addNoteBtn").style.display = "block";
+                document.getElementById("toggleLoanBtn").style.display = "block";
+                document.getElementById("userInfoModal").style.display = "block";
+                errorMessage.textContent = "";
+            } else {
+                errorMessage.textContent = "Amount returned (or) Invalid password!";
+            }
+        });
+
+        function displayLoanDetails(loan, index) {
+            currentLoanIndex = index;
+            const loanDetails = document.getElementById("loanDetails");
+            const totalReturnAmount = (loan.takenAmount + loan.interest).toFixed(2);
+
+            // Calculate the number of days between planDate and endDate
+            const startDate = new Date(loan.planDate.split('-').reverse().join('-'));
+            const endDateStr = loan.endDate.split('(')[0];
+            const endDate = new Date(endDateStr.split('-').reverse().join('-'));
+            const timeDiff = endDate - startDate;
+            const daysDiff = Math.abs(Math.ceil(timeDiff / (1000 * 60 * 60 * 24)));
+
+            document.querySelectorAll(".amount-btn").forEach(btn => btn.classList.remove("active"));
+            document.getElementById("amountButtons").children[index].classList.add("active");
+
+            loanDetails.innerHTML = `
+                <div class="loan-entry">
+                    <span class="amount-label">${index + 1} amount</span>
+                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                        Taken service
+                    </h3>
+                    <p>${loan.takenFrom}</p>
+                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                        Amount taken
+                    </h3>
+                    <p><i class="fa-solid fa-money-bill-transfer"></i>Amount: ${loan.takenAmount} Rupees</p>
+                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                        Taken & Ends
+                    </h3>
+                    <p><i class="fa-solid fa-calendar-day"></i> Taken on: ${loan.planDate}</p>
+                    <p><i class="fa-solid fa-calendar-check"></i> Ends on: ${loan.endDate}</p>
+                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                        Duration
+                    </h3>
+                    <p><i class="fa-solid fa-clock"></i> No. of Days: ${daysDiff} days</p>
+                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                        Interest
+                    </h3>
+                    <p><i class="fa-solid fa-arrow-up-wide-short"></i> Interest: ${loan.interest} Rupees</p>
+                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
+                        Total Amount to Re-Pay
+                    </h3>
+                    <p><i class="fa-solid fa-money-check-alt"></i> ${totalReturnAmount} Rupees</p>
+                </div>
+            `;
+
+            // Display existing note if any
+            const savedNoteDiv = document.getElementById("savedNote");
+            if (currentUser.notes[index]) {
+                savedNoteDiv.innerHTML = `<p>Note: ${currentUser.notes[index]}</p>`;
+            } else {
+                savedNoteDiv.innerHTML = '';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById("userInfoModal").style.display = "none";
+            document.getElementById("addNoteBtn").style.display = "none";
+            document.getElementById("addNoteBtnInitial").style.display = "none";
+            document.getElementById("toggleLoanBtn").style.display = "none";
+            currentUser = null;
+            currentLoanIndex = null;
+            saveNotesToStorage();
+            if (timeoutId) {
+                clearTimeout(timeoutId); // Clear any pending timeout
+            }
+        }
+
+        document.getElementById("addNoteBtnInitial").addEventListener("click", openNotePopup);
+        document.getElementById("addNoteBtn").addEventListener("click", openNotePopup);
+
+        function openNotePopup() {
+            document.getElementById("notePopup").style.display = "block";
+            const noteInput = document.getElementById("noteInput");
+            noteInput.value = currentUser.notes[currentLoanIndex] || '';
+        }
+
+        function closeNotePopup() {
+            document.getElementById("notePopup").style.display = "none";
+        }
+
+        function saveNote() {
+            const noteInput = document.getElementById("noteInput").value.trim();
+            if (currentUser && currentLoanIndex !== null) {
+                currentUser.notes[currentLoanIndex] = noteInput;
+                displayLoanDetails(currentUser.loans[currentLoanIndex], currentLoanIndex);
+                saveNotesToStorage();
+            }
+            closeNotePopup();
+        }
+
+        // Add toggle functionality for loan details
+        document.getElementById("toggleLoanBtn").addEventListener("click", () => {
+            const loanDetails = document.getElementById("loanDetails");
+            const savedNote = document.getElementById("savedNote");
+            if (loanDetails.style.display === "none" || loanDetails.style.display === "") {
+                loanDetails.style.display = "block";
+                savedNote.style.display = "block";
+                document.getElementById("toggleLoanBtn").textContent = "Hide";
+            } else {
+                loanDetails.style.display = "none";
+                savedNote.style.display = "none";
+                document.getElementById("toggleLoanBtn").textContent = "Show";
+            }
+        });
     </script>
+    <div class="mfi" style="position: fixed; bottom: 0px; font-size: 10px; color: #848484; z-index: 1000; background: #000000; width: 100%; text-align: center; padding: 10px; filter: drop-shadow(0px 0px 66px black);">
+        <a target="_blank" style="text-decoration: none;" href="https://mfi0212.github.io/MFI/mfimain">By BsLends</a>
+    </div>
 </body>
 </html>
