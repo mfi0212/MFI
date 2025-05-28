@@ -59,11 +59,10 @@ body {
     
         label {
             font-weight: bold;
-            display: flex;
-            font-size: 14px;
-            margin-bottom: 5px;
-            align-items: center;
-            gap: 6px;
+    font-size: 14px;
+    margin-bottom: 5px;
+    align-items: center;
+    line-height: 45px;
         }
     
         input[type="text"],
@@ -221,7 +220,7 @@ body {
 
         <!-- New Question: Do you like to apply for SPLIT? -->
         <div class="field">
-            <label class="label">Do you like to apply for SPLIT?</label>
+            <label class="label">Do you like to apply for SPLIT (Only for <span style="color: blue;font-weight: 800;">PLUS</span> members)?</label>
             <div class="control radio-group">
                 <label class="radio">
                     <input type="radio" name="ApplySplit"autocomplete="off" value="Yes" onchange="toggleSplitQuestions(this.value)" /> Yes
