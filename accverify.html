@@ -45,17 +45,17 @@
             z-index: 10;
         }
         .fixed {
-position: fixed;
-    top: 0px;
-    height: 255px;
-    padding: 55px 23px;
-    left: 0px;
-    background-color: #16161636;
-    width: 100%;
-    backdrop-filter: blur(10px);
-    z-index: 10;
-    border-bottom: solid 2px #ffffff21;
-    border-radius: 30px;
+            position: fixed;
+            top: 0px;
+            height: 255px;
+            padding: 55px 23px;
+            left: 0px;
+            background-color: #16161636;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            border-bottom: solid 2px #ffffff21;
+            border-radius: 30px;
         }
         .scroll {
             position: relative;
@@ -95,7 +95,7 @@ position: fixed;
         }
         #userPassword:focus {
             border: none;
-             background: #3c3c3c;
+            background: #3c3c3c;
         }
 
         #submitBtn {
@@ -254,19 +254,18 @@ position: fixed;
             color: #000000;
         }
         .notice {
-                font-weight: 200;
-    font-size: 12px;
-    line-height: 20px;
-    position: fixed;
-    bottom: 35px;
-    color: #ffffff;
-    padding: 10px;
-    border: solid 1.5px #0033ff85;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 400px;
-    background: linear-gradient(1deg, #000000, #000133);
-
+            font-weight: 200;
+            font-size: 12px;
+            line-height: 20px;
+            position: fixed;
+            bottom: 35px;
+            color: #ffffff;
+            padding: 10px;
+            border: solid 1.5px #0033ff85;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            background: linear-gradient(1deg, #000000, #000133);
         }
 
         /* Note Popup */
@@ -371,20 +370,20 @@ position: fixed;
 
         /* Amount Label */
         .amount-label {
-        position: fixed;
-    top: 280px;
-    font-size: 12px;
-    color: #ffffff;
-    background: #001bb3;
-    padding: 5px 6px 5px 15px;
-    border-radius: 8px 0px 0px 8px;
-    z-index: 1000;
-    filter: drop-shadow(2px 0px 16px black);
-    right: 0px;
-}
-::placeholder{
-    color: rgba(255, 255, 255, 0.783);
-}
+            position: fixed;
+            top: 280px;
+            font-size: 12px;
+            color: #ffffff;
+            background: #001bb3;
+            padding: 5px 6px 5px 15px;
+            border-radius: 8px 0px 0px 8px;
+            z-index: 1000;
+            filter: drop-shadow(2px 0px 16px black);
+            right: 0px;
+        }
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.783);
+        }
     </style>
 </head>
 <body>
@@ -394,7 +393,7 @@ position: fixed;
         <button id="submitBtn"><i style="margin: 0px;" class="fa-solid fa-arrow-right"></i></button><br>
         <p id="error-message"></p>
         <button id="addNoteBtnInitial" style="display: none;">Add Note</button>
-         <div class="notice">
+        <div class="notice">
             You should return the money before the due date, If not additional interest will be charged.
         </div>
     </div>
@@ -452,7 +451,7 @@ position: fixed;
                     {
                         // RUFF
                         planDate: "24-05-2025",
-                        endDate: "20-08-2025(Extended to 5 days)",
+                        endDate: "2-06-2025(Extended to 5 days)",
                         interest: 8000,
                         takenAmount: 18000,
                         takenFrom: "MLending"
@@ -541,18 +540,37 @@ position: fixed;
         function displayLoanDetails(loan, index) {
             currentLoanIndex = index;
             const loanDetails = document.getElementById("loanDetails");
-            const totalReturnAmount = (loan.takenAmount + loan.interest).toFixed(2);
+            
+            // Calculate the base total return amount
+            let totalReturnAmount = (loan.takenAmount + loan.interest).toFixed(2);
+            let additionalInterest = 0;
+
+            // Parse the end date (remove any text like "(Extended to 5 days)")
+            const endDateStr = loan.endDate.split('(')[0];
+            const endDate = new Date(endDateStr.split('-').reverse().join('-'));
+            const currentDate = new Date();
 
             // Calculate the number of days between planDate and endDate
             const startDate = new Date(loan.planDate.split('-').reverse().join('-'));
-            const endDateStr = loan.endDate.split('(')[0];
-            const endDate = new Date(endDateStr.split('-').reverse().join('-'));
             const timeDiff = endDate - startDate;
             const daysDiff = Math.abs(Math.ceil(timeDiff / (1000 * 60 * 60 * 24)));
 
+            // Check if current date is past the end date
+            if (currentDate > endDate) {
+                // Calculate hours elapsed since end date
+                const timeElapsed = currentDate - endDate;
+                const hoursElapsed = Math.floor(timeElapsed / (1000 * 60 * 60));
+                // Calculate additional interest (30 rupees per hour)
+                additionalInterest = hoursElapsed * 30;
+                // Update total return amount
+                totalReturnAmount = (loan.takenAmount + loan.interest + additionalInterest).toFixed(2);
+            }
+
+            // Update the active button
             document.querySelectorAll(".amount-btn").forEach(btn => btn.classList.remove("active"));
             document.getElementById("amountButtons").children[index].classList.add("active");
 
+            // Update loan details HTML
             loanDetails.innerHTML = `
                 <div class="loan-entry">
                     <span class="amount-label">${index + 1} amount</span>
@@ -576,7 +594,11 @@ position: fixed;
                     <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
                         Interest
                     </h3>
-                    <p><i class="fa-solid fa-arrow-up-wide-short"></i> Interest: ${loan.interest} Rupees</p>
+                    <p><i class="fa-solid fa-arrow-up-wide-short"></i> Base Interest: ${loan.interest} Rupees</p>
+                    ${additionalInterest > 0 ? `
+                        <p><i class="fa-solid fa-exclamation-circle"></i>Overdue interest : ${additionalInterest} Rupees</p>
+                        <p style="color: #ff0000; font-size: 12px;">Overdue by ${Math.floor((currentDate - endDate) / (1000 * 60 * 60))} hours</p>
+                    ` : ''}
                     <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
                         Total Amount to Re-Pay
                     </h3>
@@ -647,5 +669,26 @@ position: fixed;
     <div class="mfi" style="position: fixed; bottom: 0px; font-size: 10px; color: #848484; z-index: 1000; background: #000000; width: 100%; text-align: center; padding: 10px; filter: drop-shadow(0px 0px 66px black);">
         <a target="_blank" style="text-decoration: none;" href="https://mfi0212.github.io/MFI/mfimain">By BsLends</a>
     </div>
+    <script>
+        
+        document.addEventListener("DOMContentLoaded", () => {
+            const customMenu = document.querySelector(".custom-menu");
+
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                if (customMenu) {
+                    customMenu.style.display = "block";
+                    customMenu.style.top = `${event.pageY}px`;
+                    customMenu.style.left = `${event.pageX}px`;
+                }
+            });
+
+            document.addEventListener("click", () => {
+                if (customMenu) {
+                    customMenu.style.display = "none";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
