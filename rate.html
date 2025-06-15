@@ -86,6 +86,94 @@ a{
 </head>
 
 <body>
+    <style>
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Stack image and dots vertically */
+        z-index: 1000000000;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+    }
+    .loading-overlay.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+    .loading-logo {
+        width: 200px;
+        height: auto;
+        /* animation: floatDoughnut 1.5s ease-in-out infinite;  */
+    }
+    @keyframes floatDoughnut {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+    .loading-dots {
+     display: flex
+;
+    position: fixed;
+    bottom: 100px;
+    align-items: center;
+    justify-content: center;
+    }
+    .dot {
+        width: 10px;
+        height: 10px;
+        background-color: #006aff; /* Matches your theme color */
+        border-radius: 50%;
+        margin: 0 5px;
+        animation: bounceDot 1s ease-in-out infinite;
+    }
+    .dot:nth-child(2) {
+        animation-delay: 0.2s; /* Staggered animation for second dot */
+    }
+    .dot:nth-child(3) {
+        animation-delay: 0.4s; /* Staggered animation for third dot */
+    }
+    @keyframes bounceDot {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-15px); /* Dots move up */
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<div class="loading-overlay" id="loadingOverlay">
+    <img src="https://i.ibb.co/PZCnKZHB/loadingmfi.png" alt="Loading Doughnut" class="loading-logo">
+    <div class="loading-dots">
+        <!-- <h3 style="color: #006aff;">Loading</h3> -->
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loadingOverlay = document.getElementById("loadingOverlay");
+            setTimeout(() => {
+                loadingOverlay.classList.add("hidden");
+            }, 3000);
+        });
+    </script>
     <div class="mfi" id="mfi">
         <a target="_blank" href="https://mfi0212.github.io/MFI/mfimain">From BsLends</a>
     </div>
