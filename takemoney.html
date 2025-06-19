@@ -3,358 +3,563 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BS/MFI | Take Money</title>
+    <title>BS/MFI | Rora Chatbot</title>
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&display=swap');
-    
+
+        :root {
+            /* White Theme Variables */
+            --background-color: #151515;
+            --chat-container-bg: white;
+            --chat-body-bg: #fafafa;
+            --bot-message-bg: #e6f3ff;
+            --user-message-bg: #0045ff;
+            --user-message-color: white;
+            --text-color: #333;
+            --border-color: #e0e0e0;
+            --input-border-color: #595959;
+            --typing-color: #666;
+            --link-color: #0000EE;
+            --link-hover-color: #0035c5;
+            --message-box-shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            /* Dark Theme Variables */
+            --background-color: #1a1a1a;
+            --chat-container-bg: #2c2c2c;
+            --chat-body-bg: #222222;
+            --bot-message-bg: #3a3a3a;
+            --user-message-bg: #0055ff;
+            --user-message-color: #e0e0e0;
+            --text-color: #e0e0e0;
+            --border-color: #444444;
+            --input-border-color: #666666;
+            --typing-color: #999999;
+            --link-color: #4da8ff;
+            --link-hover-color: #66b3ff;
+            --message-box-shadow: rgba(0, 0, 0, 0.3);
+        }
+
         * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          font-family: "Red Hat Display", sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Red Hat Display", sans-serif;
         }
-     * {
-  -webkit-tap-highlight-color: transparent;
-}
-body {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
+
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
-          background-color: white;
-          color: black;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          line-height: 1.5;
-          padding: 20px;
-          letter-spacing: 0.4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* min-height: 100vh; */
+            padding: 5px;
+            letter-spacing: 0.4px;
         }
-    
-        #form {
+
+        .chat-container {
             width: 100%;
-            max-width: 400px;
-            padding: 15px 0px;
-            line-height: 45px;
+    max-width: 850px;
+    background: var(--chat-container-bg);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px var(--message-box-shadow);
+    display: flex
+;
+    flex-direction: column;
+    /* height: 98vh; */
+    overflow: hidden;
         }
-    
-        .logo {
-          font-size: 24px;
-          font-weight: bold;
-          color: #0045ff;
-          text-align: center;
-          margin-bottom: 20px;
+
+        .chat-header {
+            background: linear-gradient(135deg, #0045ff, #0035c5);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
         }
-    
-        .form-group {
-          margin-bottom: 15px;
+
+        .chat-header .logo {
+            font-size: 28px;
+            font-weight: 800;
         }
-    
-        label {
-            font-weight: bold;
-    font-size: 14px;
-    margin-bottom: 5px;
-    align-items: center;
-    line-height: 45px;
+
+        .chat-header p {
+            font-size: 13px;
+            color: #e0e0e0;
+            margin-top: 6px;
         }
-    
-        input[type="text"],
-        input[type="password"],
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #595959;
-            font-size: 16px;
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: var(--chat-body-bg);
+        }
+
+        .message {
+            max-width: 75%;
+            padding: 12px 18px;
+            border-radius: 12px;
+            line-height: 1.6;
+            font-size: 15px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            color: var(--text-color);
+        }
+
+        .message:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px var(--message-box-shadow);
+        }
+
+        .bot-message {
+            background: var(--bot-message-bg);
+            align-self: flex-start;
+            border-bottom-left-radius: 0;
+        }
+
+        .user-message {
+            background: var(--user-message-bg);
+            color: var(--user-message-color);
+            align-self: flex-end;
+            border-bottom-right-radius: 0;
+        }
+
+        .typing-indicator {
+            display: none;
+            color: var(--typing-color);
+            font-style: italic;
+            font-size: 14px;
+            align-self: flex-start;
+            padding: 10px 15px;
+        }
+
+        .chat-input {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            background: var(--chat-container-bg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-input input,
+        .chat-input button {
+            padding: 12px;
+            font-size: 15px;
+            border: 1px solid var(--input-border-color);
+            border-radius: 8px;
             outline: none;
         }
-    
-        input:focus {
-          border-color: #007bff;
-          box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+
+        .chat-input input {
+            flex: 1;
+            transition: border-color 0.2s ease;
+            background: var(--chat-container-bg);
+            color: var(--text-color);
         }
-    
-        
+
+        .chat-input input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+        }
+
+        .chat-input button {
+            width: 90px;
+            background: #0045ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .chat-input button:hover {
+            background: #0035c5;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
         .radio-group label {
-          display: flex;
-          align-items: center;
-          gap: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            color: var(--text-color);
         }
-    
-        button#submit-button {
-          padding: 12px;
-          text-align: center;
-          width: 100%;
-          background: #0045ff;
-          color: white;
-          border: none;
-          font-size: 16px;
-          font-weight: 400;
-          cursor: pointer;
-          margin-top: 20px;
+
+        .radio-group input[type="radio"] {
+            accent-color: #0045ff;
         }
-        button#submit-button:hover{
-          background: #0035c5;
-          color: white;
-        }
-    
+
         #message {
-          display: none;
-          text-align: center;
-          font-size: 14px;
-          font-weight: 400;
-          padding: 10px 20px;
-          border-radius: 5px;
-          margin-top: 15px;
-          background-color: #000;
-          color: #fff;
-          position: fixed;
-          top: 10px;
-          left: 50%;
-          transform: translateX(-50%);
-          box-shadow: 2px 0px 26px rgba(0, 0, 0, 0.769);
-        }
+            display: none;
+            text-align: center;
+            font-size: 14px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            margin: 10px;
+            background-color: #000;
+            color: #fff;
+            align-self: center;
+            box-shadow: 0 4px 20px var(--message-box-shadow);
+        } 
 
         .hidden {
             display: none;
         }
 
         .new-button {
-            padding: 0px 20px;
-    color: #000000;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-    text-decoration: none;
-    align-items: center;
-    display: flex
-;
-    justify-content: flex-end;
+            color: var(--link-color);
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 12px;
+            display: inline-block;
+            transition: color 0.2s ease;
         }
 
         .new-button:hover {
+            color: var(--link-hover-color);
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <form id="form" class="container m-4 pl-4" method="POST">
-        <div class="logo" style="font-size: 30px; font-weight: 800; color: #003eff; letter-spacing: 0px;">
-            BS/MFI<br>
-            <p style="font-size: 10px;
-    color: #545454;
-    margin-top: -20px;">BsLends/Myootive</p>
+    <div class="chat-container" id="chat-container">
+        <div class="chat-header">
+            <div class="logo">BS/MFI</div>
+            <p>BsLends/Myootive</p>
+            <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
-
-        <div class="field">
-            <label class="label">Name</label>
-            <div class="control">
-                <input class="input" type="text" placeholder="" autocomplete="off" name="Name" />
-            </div>
+        <div class="chat-body" id="chat-body">
+            <div class="message bot-message">I'm Rora, developed by BS. I'm here to help you apply for an amount and assist with anything I can!</div>
+            <div class="message bot-message">Enter /start to begin</div>
+            <div class="typing-indicator" id="typing-indicator">typing...</div>
         </div>
-
-        <div class="field">
-            <label class="label">Password <strong style="color: #008b48;">(Don't use zero's in your password)</strong></label>
-            <div class="control">
-                <input class="input" type="text" placeholder=""autocomplete="off" name="Password" />
-            </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your response..." autocomplete="off">
+            <button id="send-button">Send</button>
         </div>
-
-        <div class="field">
-            <label class="label">Phone number</label>
-            <div class="control">
-                <input class="input" type="number" placeholder=""autocomplete="off" name="Phone number" />
-            </div>
-        </div>
-
-        <div class="field">
-            <label class="label">Amount you are taking from?</label>
-            <div class="control radio-group">
-                <label class="radio">
-                    <input type="radio" name="Taking in" value="Lendlink" /> Lendlink
-                </label>
-                <label class="radio">
-                    <input type="radio" name="Taking in" value="Golden" /> Golden
-                </label>
-                <label class="radio">
-                    <input type="radio" name="Taking in" value="MLending" /> MLending
-                </label>
-                <label class="radio">
-                    <input type="radio" name="Taking in" value="Mlld" /> MLLD
-                </label>
-            </div>
-        </div>
-        <div class="field">
-            <label class="label">How much amount you like to take?</label>
-            <div class="control">
-                <input class="input" type="text"autocomplete="off" placeholder="" name="Amount" />
-            </div>
-        </div>
-
-        <div class="field">
-            <label class="label">In how many days you will return the amount?</label>
-            <div class="control">
-                <input class="input" type="text"autocomplete="off" placeholder="" name="Days" />
-            </div>
-        </div>
- <div class="field">
-            <label class="label">Is the amount you're taking an offer?</label>
-            <div class="control radio-group">
-                <label class="radio">
-                    <input type="radio" name="offer or not" value="yes" /> Yes
-                </label>
-                <label class="radio">
-                    <input type="radio" name="offer or not" value="no" /> No
-                </label>
-            </div>
-        </div>
-       
-        <hr style="height: 2px;
-    background: #6e6e6e;">
-
-        <!-- New Question: Do you like to apply for SPLIT? -->
-        <div class="field" style="background: #8080801f;
-    padding: 15px;
-    margin: 0px;">
-            <label class="label">Do you like to apply for SPLIT PAY?<span style="color: blue;
-    font-weight: 500;"> (Only for Premium - Tele members)</span> </label>
-            <div class="control radio-group">
-                <label class="radio">
-                    <input type="radio" name="ApplySplit"autocomplete="off" value="Yes" onchange="toggleSplitQuestions(this.value)" /> Yes
-                </label>
-                <label class="radio">
-                    <input type="radio" name="ApplySplit"autocomplete="off" value="No" onchange="toggleSplitQuestions(this.value)" /> No
-                </label>
-            </div>
-        </div>
-
-        <!-- Conditional Questions for SPLIT (Initially Hidden) -->
-        <div id="splitQuestions" class="hidden">
-            <div class="field" style="background: #8080801f;
-    padding: 15px;
-    margin: 0px;">
-                <label class="label">Do you pay the split fee?</label>
-                <div class="control radio-group">
-                    <label class="radio">
-                        <input type="radio" name="PaySplitFee"autocomplete="off" value="Yes" /> Yes
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="PaySplitFee"autocomplete="off" value="No" /> No
-                    </label>
-                </div>
-            </div>
-
-            <div class="field" style="background: #8080801f;
-    padding: 15px;
-    margin: 0px;">
-                <label class="label">No. of splits you like to do?</label>
-                <div class="control">
-                    <input class="input" type="number" placeholder="" name="NumberOfSplits" />
-                </div>
-            </div>
-
-            <div class="field">
-                <a href="https://mfi0212.github.io/swan/offer/split" class="new-button">Explore Split pay</a>
-            </div>
-        </div>
-
-        <div class="field">
-            <div class="control">
-                <button class="btn-primary" type="submit" id="submit-button">
-                    Submit
-                </button>
-            </div>
-        </div>
-    </form>
-
-    <div id="message"></div>
+        <div id="message"></div>
+    </div>
 
     <script>
-        document.getElementById("form").addEventListener("submit", function (e) {
-            e.preventDefault(); // Prevent the default form submission
-            document.getElementById("message").textContent = "Submitting..";
-            document.getElementById("message").style.display = "block";
-            document.getElementById("submit-button").disabled = true;
-
-            // Collect the form data
-            var formData = new FormData(this);
-            var keyValuePairs = [];
-            for (var pair of formData.entries()) {
-                keyValuePairs.push(pair[0] + "=" + pair[1]);
-            }
-
-            var formDataString = keyValuePairs.join("&");
-
-            // Send a POST request to your Google Apps Script
-            fetch(
-                "https://script.google.com/macros/s/AKfycbxIlao67g-XSHBVoSvYzofopgSa7_7_l9qstp4SxrdqMWCutnasBtQjdLn_aUWdsZvShw/exec",
-                {
-                    redirect: "follow",
-                    method: "POST",
-                    body: formDataString,
-                    headers: {
-                        "Content-Type": "text/plain;charset=utf-8",
-                    },
-                }
-            )
-                .then(function (response) {
-                    if (response) {
-                        return response; // Assuming your script returns JSON response
-                    } else {
-                        throw new Error("Failed to submit the form.");
+        const questions = [
+            {
+                text: "Is the amount you're taking an offer?",
+                type: "radio",
+                name: "offer or not",
+                options: ["Yes", "No"]
+            },
+            {
+                text: "What's your name?",
+                type: "text",
+                name: "Name"
+            },
+            {
+                text: "Please enter your password <strong style='color: #008b48;'>(Don't use zero's in your password)</strong>",
+                type: "text",
+                name: "Password"
+            },
+            {
+                text: "What's your phone number? (Must be exactly 10 digits)",
+                type: "number",
+                name: "Phone number",
+                validate: (value) => {
+                    if (!/^\d{10}$/.test(value)) {
+                        return "Phone number must be exactly 10 digits.";
                     }
-                })
-                .then(function (data) {
-                    document.getElementById("message").textContent = "Details submitted successfully..!";
-                    document.getElementById("message").style.display = "block";
-                    document.getElementById("message").style.backgroundColor = "green";
-                    document.getElementById("message").style.color = "white";
-                    document.getElementById("submit-button").disabled = false;
-                    document.getElementById("form").reset();
+                    return null;
+                }
+            },
+            {
+                text: "Which platform are you taking the amount from?",
+                type: "radio",
+                name: "Taking in",
+                options: ["Lendlink", "Golden", "MLending", "Mlld"]
+            },
+            {
+                text: "How much amount would you like to take?",
+                type: "text",
+                name: "Amount"
+            },
+            {
+                text: "In how many days will you return the amount?",
+                type: "text",
+                name: "Days"
+            },
+            {
+                text: "Do you like to apply for SPLIT PAY? <span style='color: blue; font-weight: 500;'>(Only for Premium - Tele members)</span>",
+                type: "radio",
+                name: "ApplySplit",
+                options: ["Yes", "No"],
+                onChange: "toggleSplitQuestions"
+            }
+        ];
 
-                    setTimeout(function () {
-                        document.getElementById("message").textContent = "";
-                        document.getElementById("message").style.display = "none";
-                    }, 2600);
-                })
-                .catch(function (error) {
-                    console.error(error);
-                    document.getElementById("message").textContent = "An error occurred while submitting the form.";
-                    document.getElementById("message").style.display = "block";
-                });
+        const splitQuestions = [
+            {
+                text: "Do you pay the split fee?",
+                type: "radio",
+                name: "PaySplitFee",
+                options: ["Yes", "No"]
+            },
+            {
+                text: "How many splits would you like to do?",
+                type: "number",
+                name: "NumberOfSplits"
+            },
+            {
+                text: "<a href='https://mfi0212.github.io/swan/offer/split' class='new-button'>Explore Split pay</a>",
+                type: "link"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let formData = new FormData();
+        let hasStarted = false;
+        let isSplitActive = false;
+
+        const chatBody = document.getElementById("chat-body");
+        const userInput = document.getElementById("user-input");
+        const sendButton = document.getElementById("send-button");
+        const typingIndicator = document.getElementById("typing-indicator");
+        const chatContainer = document.getElementById("chat-container");
+        const themeToggle = document.getElementById("theme-toggle");
+
+        // Theme Management
+        function setTheme(theme) {
+            chatContainer.setAttribute("data-theme", theme);
+            themeToggle.innerHTML = theme === "dark" ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem("theme", theme);
+        }
+
+        // Load theme from localStorage or default to white
+        const savedTheme = localStorage.getItem("theme") || "white";
+        setTheme(savedTheme);
+
+        themeToggle.addEventListener("click", () => {
+            const currentTheme = chatContainer.getAttribute("data-theme");
+            const newTheme = currentTheme === "dark" ? "white" : "dark";
+            setTheme(newTheme);
         });
 
-        // Function to toggle SPLIT questions based on user selection
+        function displayMessage(content, isBot = true) {
+            const messageDiv = document.createElement("div");
+            messageDiv.className = `message ${isBot ? "bot-message" : "user-message"}`;
+            messageDiv.innerHTML = content;
+            chatBody.appendChild(messageDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            typingIndicator.style.display = "block";
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            typingIndicator.style.display = "none";
+        }
+
+        function askQuestion(index) {
+            if (index >= questions.length && !isSplitActive) {
+                submitForm();
+                return;
+            }
+
+            const question = isSplitActive ? splitQuestions[index - questions.length] : questions[index];
+            showTypingIndicator();
+            setTimeout(() => {
+                hideTypingIndicator();
+                if (question.type === "radio") {
+                    let optionsHtml = question.options.map(option => `
+                        <label class="radio">
+                            <input type="radio" name="${question.name}" value="${option}" ${question.onChange ? `onchange="${question.onChange}(this.value)"` : "onchange='handleRadioSelection(this)'"}>
+                            ${option}
+                        </label>
+                    `).join("");
+                    displayMessage(`${question.text}<div class="radio-group">${optionsHtml}</div>`);
+                } else if (question.type === "link") {
+                    displayMessage(question.text);
+                    currentQuestionIndex++;
+                    askQuestion(currentQuestionIndex);
+                } else {
+                    displayMessage(question.text);
+                }
+            }, 1000);
+        }
+
+        function submitForm() {
+            showTypingIndicator();
+            setTimeout(() => {
+                hideTypingIndicator();
+                displayMessage("Submitting...");
+                document.getElementById("message").textContent = "Submitting..";
+                document.getElementById("message").style.display = "block";
+                sendButton.disabled = true;
+
+                var keyValuePairs = [];
+                for (var pair of formData.entries()) {
+                    keyValuePairs.push(pair[0] + "=" + pair[1]);
+                }
+
+                var formDataString = keyValuePairs.join("&");
+
+                fetch(
+                    "https://script.google.com/macros/s/AKfycbxIlao67g-XSHBVoSvYzofopgSa7_7_l9qstp4SxrdqMWCutnasBtQjdLn_aUWdsZvShw/exec",
+                    {
+                        redirect: "follow",
+                        method: "POST",
+                        body: formDataString,
+                        headers: {
+                            "Content-Type": "text/plain;charset=utf-8",
+                        },
+                    }
+                )
+                    .then(function (response) {
+                        if (response) {
+                            return response;
+                        } else {
+                            throw new Error("Failed to submit the form.");
+                        }
+                    })
+                    .then(function (data) {
+                        document.getElementById("message").textContent = "Details submitted successfully..!";
+                        document.getElementById("message").style.display = "block";
+                        document.getElementById("message").style.backgroundColor = "green";
+                        displayMessage("Details submitted successfully..!");
+                        sendButton.disabled = false;
+                        setTimeout(() => {
+                            document.getElementById("message").textContent = "";
+                            document.getElementById("message").style.display = "none";
+                            // Reset chat
+                            currentQuestionIndex = 0;
+                            isSplitActive = false;
+                            hasStarted = false;
+                            formData = new FormData();
+                            chatBody.innerHTML = `<div class="message bot-message">I'm Rora, developed by BS. I'm here to help you apply for an amount and assist with anything I can!</div><div class="message bot-message">Enter /start to begin</div>`;
+                        }, 2600);
+                    })
+                    .catch(function (error) {
+                        console.error(error);
+                        document.getElementById("message").textContent = "An error occurred while submitting the form.";
+                        document.getElementById("message").style.display = "block";
+                        displayMessage("An error occurred while submitting the form.");
+                        sendButton.disabled = false;
+                    });
+            }, 1000);
+        }
+
         function toggleSplitQuestions(value) {
-            const splitQuestions = document.getElementById("splitQuestions");
-            if (value === "Yes") {
-                splitQuestions.classList.remove("hidden");
-            } else {
-                splitQuestions.classList.add("hidden");
+            isSplitActive = value === "Yes";
+            displayMessage(value, false); // Display the selected radio option as user message
+            currentQuestionIndex++;
+            askQuestion(currentQuestionIndex);
+        }
+
+        function handleRadioSelection(radio) {
+            const question = isSplitActive ? splitQuestions[currentQuestionIndex - questions.length] : questions[currentQuestionIndex];
+            formData.append(question.name, radio.value);
+            displayMessage(radio.value, false); // Display the selected radio option as user message
+            if (!question.onChange) {
+                currentQuestionIndex++;
+                askQuestion(currentQuestionIndex);
             }
         }
-                document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
 
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
+        sendButton.addEventListener("click", () => {
+            const answer = userInput.value.trim();
+            if (!hasStarted) {
+                if (answer.toLowerCase() === "/start") {
+                    displayMessage(answer, false);
+                    userInput.value = "";
+                    hasStarted = true;
+                    askQuestion(currentQuestionIndex);
+                } else {
+                    displayMessage("Please enter /start to begin.", true);
+                }
+                return;
+            }
 
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
+            if (answer && !isSplitActive && questions[currentQuestionIndex].type !== "radio" && questions[currentQuestionIndex].type !== "link") {
+                const question = questions[currentQuestionIndex];
+                if (question.validate) {
+                    const validationError = question.validate(answer);
+                    if (validationError) {
+                        displayMessage(validationError);
+                        return;
+                    }
+                }
+                displayMessage(answer, false);
+                formData.append(question.name, answer);
+                userInput.value = "";
+                currentQuestionIndex++;
+                askQuestion(currentQuestionIndex);
+            } else if (answer && isSplitActive && splitQuestions[currentQuestionIndex - questions.length].type !== "radio" && splitQuestions[currentQuestionIndex - questions.length].type !== "link") {
+                const question = splitQuestions[currentQuestionIndex - questions.length];
+                if (question.validate) {
+                    const validationError = question.validate(answer);
+                    if (validationError) {
+                        displayMessage(validationError);
+                        return;
+                    }
+                }
+                displayMessage(answer, false);
+                formData.append(question.name, answer);
+                userInput.value = "";
+                currentQuestionIndex++;
+                askQuestion(currentQuestionIndex);
+            }
+        });
+
+        userInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                sendButton.click();
+            }
+        });
+
+        // Start with initial messages only
     </script>
 </body>
 </html>
