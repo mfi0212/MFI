@@ -65,22 +65,20 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* min-height: 100vh; */
             padding: 5px;
             letter-spacing: 1px;
         }
 
         .chat-container {
             width: 100%;
-    max-width: 850px;
-    background: var(--chat-container-bg);
-    border-radius: 15px;
-    box-shadow: 0 4px 20px var(--message-box-shadow);
-    display: flex
-;
-    flex-direction: column;
-    height: 60vh;
-    overflow: hidden;
+            max-width: 850px;
+            background: var(--chat-container-bg);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px var(--message-box-shadow);
+            display: flex;
+            flex-direction: column;
+            height: 60vh;
+            overflow: hidden;
         }
 
         .chat-header {
@@ -132,12 +130,12 @@
         }
 
         .message {
-           max-width: 65%;
-    padding: 5px 15px;
-    border-radius: 13px;
-    line-height: 19px;
-    font-size: 14px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+            max-width: 65%;
+            padding: 5px 15px;
+            border-radius: 13px;
+            line-height: 25px;
+            font-size: 14px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             color: var(--text-color);
         }
 
@@ -180,10 +178,10 @@
         .chat-input input,
         .chat-input button {
             padding: 8px 25px;
-    font-size: 15px;
-    border: 1.5px solid var(--input-border-color);
-    border-radius: 40px;
-    outline: none;
+            font-size: 15px;
+            border: 1.5px solid var(--input-border-color);
+            border-radius: 40px;
+            outline: none;
         }
 
         .chat-input input {
@@ -273,7 +271,7 @@
             </button>
         </div>
         <div class="chat-body" id="chat-body">
-           <div class="message bot-message">Enter /start to begin</div>
+            <div class="message bot-message">Enter /start to begin</div>
             <div class="typing-indicator" id="typing-indicator">typing...</div>
         </div>
         <div class="chat-input">
@@ -282,19 +280,11 @@
         </div>
         <div id="message"></div>
     </div>
-<footer>
-         <div style=" position: fixed;
-    bottom: 0px;
-    left: 0px;
-    text-align: center;
-    background: #28292a;
-    padding: 10px;
-    color: #ffffff80;
-    font-weight: 200;
-    width: 100%;
-    font-size: 14px;
-    line-height: 34px;" >I'm Rora, developed by BS. I'm here to help you apply for an amount and assist with anything I can!</div>
-        </footer>
+    <footer>
+        <div style="position: fixed; bottom: 0px; left: 0px; text-align: center; background: #28292a; padding: 10px; color: #ffffff80; font-weight: 200; width: 100%; font-size: 14px; line-height: 34px;">
+            I'm Rora, developed by BS. I'm here to help you apply for an amount and assist with anything I can!
+        </div>
+    </footer>
 
     <script>
         const questions = [
@@ -305,17 +295,23 @@
                 options: ["Yes", "No"]
             },
             {
-                text: "What's your name?",
+                text: "Which service are you taking the amount from?",
+                type: "radio",
+                name: "Taking in",
+                options: ["Lendlink", "Golden", "MLending", "Mlld"]
+            },
+            {
+                text: "Enter your name?",
                 type: "text",
                 name: "Name"
             },
             {
-                text: "Please enter your password <strong style='color: #008b48;'>(Don't use zero's in your password)</strong>",
+                text: "Enter your password <strong style='color: #008b48;'>(Don't use zero's in your password)</strong>",
                 type: "text",
                 name: "Password"
             },
             {
-                text: "What's your phone number? (Must be exactly 10 digits)",
+                text: "Enter your phone number? (Must be exactly 10 digits)",
                 type: "number",
                 name: "Phone number",
                 validate: (value) => {
@@ -324,12 +320,6 @@
                     }
                     return null;
                 }
-            },
-            {
-                text: "Which platform are you taking the amount from?",
-                type: "radio",
-                name: "Taking in",
-                options: ["Lendlink", "Golden", "MLending", "Mlld"]
             },
             {
                 text: "How much amount would you like to take?",
@@ -368,10 +358,18 @@
             }
         ];
 
+        const startOptions = [
+            { text: "Terms and Conditions", url: "https://mfi0212.github.io/MFI/terms" },
+            { text: "I'm Late", url: "https://mfi0212.github.io/MFI/imlate" },
+            { text: "Helper", url: "https://mfi0212.github.io/MFI/abt.hlp" },
+            { text: "Take Money", url: null }
+        ];
+
         let currentQuestionIndex = 0;
         let formData = new FormData();
         let hasStarted = false;
         let isSplitActive = false;
+        let showingOptions = false;
 
         const chatBody = document.getElementById("chat-body");
         const userInput = document.getElementById("user-input");
@@ -412,6 +410,43 @@
 
         function hideTypingIndicator() {
             typingIndicator.style.display = "none";
+        }
+
+        function showStartOptions() {
+            showTypingIndicator();
+            setTimeout(() => {
+                hideTypingIndicator();
+                const optionsHtml = startOptions.map(option => `
+                    <label class="radio">
+                        <input type="radio" name="startOption" value="${option.text}" onchange="handleStartOption(this.value)">
+                        ${option.text}
+                    </label>
+                `).join("");
+                displayMessage(`Please select an option:<div class="radio-group">${optionsHtml}</div>`);
+                showingOptions = true;
+            }, 1000);
+        }
+
+        function handleStartOption(value) {
+            displayMessage(value, false);
+            const selectedOption = startOptions.find(option => option.text === value);
+            if (selectedOption.text === "Take Money") {
+                showingOptions = false;
+                hasStarted = true;
+                askQuestion(currentQuestionIndex);
+            } else {
+                showTypingIndicator();
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    displayMessage(`Do you like to visit the <a style="background-color: #000000;
+    border-radius: 30px;
+    padding: 4px 15px;
+    color: #00e5ff;
+    display: inline;" href="${selectedOption.url}" class="new-button" target="_blank">${selectedOption.text}</a> site?`);
+                    showingOptions = false;
+                    hasStarted = false; // Reset to allow /start again
+                }, 1000);
+            }
         }
 
         function askQuestion(index) {
@@ -489,6 +524,7 @@
                             currentQuestionIndex = 0;
                             isSplitActive = false;
                             hasStarted = false;
+                            showingOptions = false;
                             formData = new FormData();
                             chatBody.innerHTML = `<div class="message bot-message">I'm Rora, developed by BS. I'm here to help you apply for an amount and assist with anything I can!</div><div class="message bot-message">Enter /start to begin</div>`;
                         }, 2600);
@@ -522,14 +558,13 @@
 
         sendButton.addEventListener("click", () => {
             const answer = userInput.value.trim();
-            if (!hasStarted) {
+            if (!hasStarted && !showingOptions) {
                 if (answer.toLowerCase() === "/start") {
                     displayMessage(answer, false);
                     userInput.value = "";
-                    hasStarted = true;
-                    askQuestion(currentQuestionIndex);
+                    showStartOptions();
                 } else {
-                    displayMessage("Please enter /start to begin.", true);
+                    displayMessage("Enter /start to begin.", true);
                 }
                 return;
             }
@@ -570,8 +605,6 @@
                 sendButton.click();
             }
         });
-
-        // Start with initial messages only
     </script>
 </body>
 </html>
