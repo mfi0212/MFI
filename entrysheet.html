@@ -13,6 +13,15 @@
       font-family: Arial, sans-serif;
       text-align: center;
     }
+    * {
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
     .hero.is-primary.is-bold {
     background-image: linear-gradient(135deg, #003cff 0%, #008bff 100%);
 }
@@ -298,5 +307,26 @@ button:hover{
       }
     });
   </script>
+  <script>
+        
+        document.addEventListener("DOMContentLoaded", () => {
+            const customMenu = document.querySelector(".custom-menu");
+
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                if (customMenu) {
+                    customMenu.style.display = "block";
+                    customMenu.style.top = `${event.pageY}px`;
+                    customMenu.style.left = `${event.pageX}px`;
+                }
+            });
+
+            document.addEventListener("click", () => {
+                if (customMenu) {
+                    customMenu.style.display = "none";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
