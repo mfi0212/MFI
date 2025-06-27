@@ -47,7 +47,7 @@
         .fixed {
             position: fixed;
             top: 0px;
-            height: 255px;
+            height: 315px;
             padding: 55px 23px;
             left: 0px;
             background-color: #16161636;
@@ -59,7 +59,7 @@
         }
         .scroll {
             position: relative;
-            top: 180px;
+            top: 250px;
         }
         .header h2 {
             font-size: 18px;
@@ -212,6 +212,27 @@
             background-color: #3a3a3a;
         }
 
+        /* Profile Container */
+        .profile-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .profile-picture {
+           width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 600;
+    background-size: cover;
+    background-position: center;
+        }
+
         /* Loan Entry and Amount Buttons */
         .loan-entry {
             padding: 10px 0;
@@ -294,7 +315,7 @@
             border-radius: 10px;
             padding: 10px;
             color: #e0e0e0;
-            resize: unset;
+            resize: none;
             margin-bottom: 10px;
             outline: none;
             font-size: 15px;
@@ -370,16 +391,16 @@
 
         /* Amount Label */
         .amount-label {
-            position: fixed;
-            top: 280px;
-            font-size: 12px;
-            color: #ffffff;
-            background: #001bb3;
-            padding: 5px 6px 5px 15px;
-            border-radius: 8px 0px 0px 8px;
-            z-index: 1000;
-            filter: drop-shadow(2px 0px 16px black);
-            right: 0px;
+           position: fixed;
+    font-size: 12px;
+    color: #ffffff;
+    background: #001bb3;
+    padding: 5px 6px 5px 15px;
+    border-radius: 8px 0px 0px 8px;
+    z-index: 1000;
+    filter: drop-shadow(2px 0px 16px black);
+    right: 0px;
+    bottom: 66px;
         }
         ::placeholder {
             color: rgba(255, 255, 255, 0.783);
@@ -402,10 +423,13 @@
         <span><i class="fa-solid fa-arrow-left close-btn" onclick="closeModal()"></i></span>
         <div class="fixed">
             <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">Borrower</h3>
-            <p style="font-size: 20px; display: flex; align-items: center; gap: 4px;">
-                <span id="userName"></span>
-                <img style="cursor: pointer;" onclick="alert('Verified BS/MFI member..!')" src="veriflgo.png" alt="" width="35px">
-            </p>
+            <div class="profile-container">
+                <div class="profile-picture" id="profilePicture"></div>
+                <p style="font-size: 20px; display: flex; align-items: center; gap: 4px;">
+                    <span id="userName"></span>
+                    <img style="cursor: pointer;" onclick="alert('Verified BS/MFI member..!')" src="veriflgo.png" alt="" width="35px">
+                </p>
+            </div>
             <div class="amount-buttons" id="amountButtons"></div>
         </div>
         <div class="scroll">
@@ -427,7 +451,46 @@
 
     <div id="poweredByMsg" class="powered-by">Powered by BsPsgenerater</div>
 
+    <div class="mfi" style="position: fixed; bottom: 0px; font-size: 10px; color: #848484; z-index: 1000; background: #000000; width: 100%; text-align: center; padding: 10px; filter: drop-shadow(0px 0px 66px black);">
+        <a target="_blank" style="text-decoration: none;" href="https://mfi0212.github.io/MFI/mfimain">By BsLends</a>
+    </div>
+
     <script>
+         // Define light background colors and corresponding dark font colors
+        const colorPairs = [
+            { background: 'rgb(55 20 0)', font: 'rgb(255 93 0)' }, // Light Brown, Dark Brown
+            { background: 'rgb(0 53 14)', font: 'rgb(0 255 66)' },// Light Green, Dark Green
+            { background: 'rgb(0 45 20)', font: 'rgb(0 255 113)' }, // Light Blue, Dark Blue
+            { background: 'rgb(63 25 0)', font: 'rgb(255 100 0)' }  // Light Sky Blue, Dark Sky Blue
+        ];
+
+        // Function to generate a unique number for a user based on their name
+        function getUserIndex(name) {
+            let sum = 0;
+            for (let i = 0; i < name.length; i++) {
+                sum += name.charCodeAt(i);
+            }
+            return sum;
+        }
+
+        // Function to get background and font color based on hour and user
+        function getColorPair(name, hour) {
+            const userIndex = getUserIndex(name);
+            const colorIndex = (hour + userIndex) % colorPairs.length;
+            return colorPairs[colorIndex];
+        }
+
+        // Function to generate unique icon for a user
+        function generateIcon(name, userIndex) {
+            const nameParts = name.trim().split(/\s+/).slice(0, 2);
+            let iconText = nameParts.map(part => part.charAt(0)).join("").toUpperCase();
+            // Handle single-word names or conflicts (e.g., multiple users with same initials)
+            if (nameParts.length === 1) {
+                iconText = nameParts[0].charAt(0).toUpperCase();
+            }
+            return iconText;
+        }
+
         // Load saved password and notes from localStorage when the page loads
         document.addEventListener('DOMContentLoaded', () => {
             const savedPassword = localStorage.getItem('lastPassword');
@@ -446,10 +509,9 @@
 
         const passwords = {
             "0212": {
-                name: "PHANI",
+                name: "Phani yerra",
                 loans: [
                     {
-                        // RUFF
                         planDate: "24-05-2025",
                         endDate: "2-06-2025(Extended to 5 days)",
                         interest: 8000,
@@ -457,7 +519,6 @@
                         takenFrom: "MLending"
                     },
                     {
-                        // RUFF
                         planDate: "24-05-2025",
                         endDate: "20-08-2025(Extended to 5 days)",
                         interest: 8000,
@@ -503,6 +564,18 @@
             if (user) {
                 currentUser = user;
                 document.getElementById("userName").textContent = user.name;
+
+                // Set up profile picture
+                const profilePicture = document.getElementById("profilePicture");
+                const currentHour = new Date().getHours();
+                const colorPair = getColorPair(user.name, currentHour);
+                profilePicture.style.backgroundColor = colorPair.background;
+                profilePicture.style.color = colorPair.font;
+                profilePicture.style.backgroundImage = "none";
+                const userKeys = Object.keys(passwords);
+                const userIndex = userKeys.indexOf(userInput);
+                profilePicture.textContent = generateIcon(user.name, userIndex);
+
                 const amountButtons = document.getElementById("amountButtons");
                 amountButtons.innerHTML = "";
 
@@ -511,11 +584,9 @@
                     btn.className = "amount-btn";
                     btn.textContent = ` ${loan.takenAmount} Rupees`;
                     btn.onclick = () => {
-                        // Clear any existing timeout
                         if (timeoutId) {
                             clearTimeout(timeoutId);
                         }
-                        // Set a 2-second delay before displaying loan details
                         timeoutId = setTimeout(() => {
                             displayLoanDetails(loan, index);
                         }, 100);
@@ -665,12 +736,7 @@
                 document.getElementById("toggleLoanBtn").textContent = "Show";
             }
         });
-    </script>
-    <div class="mfi" style="position: fixed; bottom: 0px; font-size: 10px; color: #848484; z-index: 1000; background: #000000; width: 100%; text-align: center; padding: 10px; filter: drop-shadow(0px 0px 66px black);">
-        <a target="_blank" style="text-decoration: none;" href="https://mfi0212.github.io/MFI/mfimain">By BsLends</a>
-    </div>
-    <script>
-        
+
         document.addEventListener("DOMContentLoaded", () => {
             const customMenu = document.querySelector(".custom-menu");
 
