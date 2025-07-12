@@ -374,7 +374,161 @@
             });
         });
 
-       form.addEventListener("submit", function (e) {
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            if (validateStep(currentStep)) {
+                const formData = new FormData(this);
+                const keyValuePairs = [];
+                for (const pair of formData.entries()) {
+                    keyValuePairs.push(pair[0] + "=" + pair[1]);
+                }
+                const formDataString = keyValuePairs.join("&");
+                alert("Form submitted successfully with data: " + formDataString);
+                form.reset();
+                currentStep = 1;
+                showStep(currentStep);
+            }
+        });
+    </script>
+    <script>
+        // Theme toggle functionality
+        const toggleButton = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Load saved theme from localStorage
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        toggleButton.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            toggleButton.innerHTML = theme === 'dark' ? 
+                '<i class="fas fa-sun"></i>' : 
+                '<i class="fas fa-moon"></i>';
+        }
+
+       
+        function showError(input, errorId, messageText) {
+            const errorElement = document.getElementById(errorId);
+            input.classList.add('error');
+            errorElement.textContent = messageText;
+            errorElement.style.display = 'block';
+        }
+
+        function clearError(input, errorId) {
+            const errorElement = document.getElementById(errorId);
+            input.classList.remove('error');
+            errorElement.style.display = 'none';
+        }
+
+        function validateForm() {
+            let isValid = true;
+
+            // Name validation
+            const nameInput = form.querySelector('input[name="Name"]');
+            if (!nameInput.value.trim()) {
+                showError(nameInput, 'name-error', 'Try to enter your name');
+                isValid = false;
+            } else {
+                clearError(nameInput, 'name-error');
+            }
+
+            // Password validation
+            const passwordInput = form.querySelector('input[name="Password"]');
+            if (!passwordInput.value) {
+                showError(passwordInput, 'password-error', 'Try to enter a password');
+                isValid = false;
+            } else if (passwordInput.value.includes('0')) {
+                showError(passwordInput, 'password-error', 'Password cannot contain zeros');
+                isValid = false;
+            } else {
+                clearError(passwordInput, 'password-error');
+            }
+
+            // Phone number validation
+            const phoneInput = form.querySelector('input[name="Phone number"]');
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneInput.value || !phoneRegex.test(phoneInput.value)) {
+                showError(phoneInput, 'phone-error', 'Try to enter a valid 10-digit phone number');
+                isValid = false;
+            } else {
+                clearError(phoneInput, 'phone-error');
+            }
+
+            // Taking in radio validation
+            const takingInInput = form.querySelector('input[name="Taking in"]:checked');
+            if (!takingInInput) {
+                showError(form.querySelector('.radio-group'), 'taking-in-error', 'Try to select an option');
+                isValid = false;
+            } else {
+                clearError(form.querySelector('.radio-group'), 'taking-in-error');
+            }
+
+            // Amount validation
+            const amountInput = form.querySelector('input[name="Amount"]');
+            if (!amountInput.value || amountInput.value <= 0) {
+                showError(amountInput, 'amount-error', 'Try to enter a valid amount');
+                isValid = false;
+            } else {
+                clearError(amountInput, 'amount-error');
+            }
+
+            // Days validation
+            const daysInput = form.querySelector('input[name="Days"]');
+            if (!daysInput.value || daysInput.value <= 0) {
+                showError(daysInput, 'days-error', 'Try to enter a valid number of days');
+                isValid = false;
+            } else {
+                clearError(daysInput, 'days-error');
+            }
+
+            // Offer or not radio validation
+            const offerInput = form.querySelector('input[name="offer or not"]:checked');
+            if (!offerInput) {
+                showError(form.querySelector('.radio-group:last-of-type'), 'offer-error', 'Try to select an option');
+                isValid = false;
+            } else {
+                clearError(form.querySelector('.radio-group:last-of-type'), 'offer-error');
+            }
+
+            return isValid;
+        }
+
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                if (input.name === 'Name') {
+                    if (input.value.trim()) clearError(input, 'name-error');
+                } else if (input.name === 'Password') {
+                    if (!input.value.includes('0')) clearError(input, 'password-error');
+                } else if (input.name === 'Phone number') {
+                    if (/^\d{10}$/.test(input.value)) clearError(input, 'phone-error');
+                } else if (input.name === 'Amount') {
+                    if (input.value > 0) clearError(input, 'amount-error');
+                } else if (input.name === 'Days') {
+                    if (input.value > 0) clearError(input, 'days-error');
+                }
+            });
+        });
+
+        form.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.name === 'Taking in') {
+                    clearError(form.querySelector('.radio-group'), 'taking-in-error');
+                } else if (radio.name === 'offer or not') {
+                    clearError(form.querySelector('.radio-group:last-of-type'), 'offer-error');
+                }
+            });
+        });
+
+        form.addEventListener("submit", function (e) {
             e.preventDefault();
 
             if (!validateForm()) {
