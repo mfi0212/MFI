@@ -151,20 +151,23 @@
         }
 
         #message {
-            display: none;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 400;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-top: 15px;
-            background-color: var(--message-bg);
-            color: var(--message-text);
-            position: fixed;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 2px 0px 26px rgba(0, 0, 0, 0.769);
+               display: none;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+    background-color: var(--message-bg);
+    position: fixed;
+    top: 40px;
+    color: white;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 2px 0px 26px rgb(0 0 0 / 62%);
+    width: 80%;
+    color: #ffffff;
+    max-width: 400px;
         }
 
         .headingselct {
@@ -263,7 +266,7 @@
         <div class="field form-group">
             <label class="label">Password <span style="color: red;">*</span> <strong style="color: #ff6c00;">(Don't use zeros)</strong></label>
             <div class="control">
-                <input class="input" type="password" placeholder="Enter your password" autocomplete="off" name="Password" required />
+                <input class="input" type="text" placeholder="Enter your password" autocomplete="off" name="Password" required />
                 <div class="error-message" id="password-error">Password cannot contain zeros</div>
             </div>
         </div>
@@ -490,7 +493,7 @@
                 submitButton.disabled = false;
                 setTimeout(() => {
                     message.style.display = "none";
-                }, 3000);
+                }, 300000000);
                 return;
             }
 
