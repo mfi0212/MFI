@@ -18,7 +18,7 @@
                 }
 
         .logo img {
-            max-width: 90px;
+            max-width: 100px;
             display: flex
         ;
             justify-content: center;
@@ -183,7 +183,7 @@
     transform: translate(-50%, -50%);
     padding: 20px 40px;
     background: rgb(0 0 0 / 35%);
-    box-shadow: rgb(0 0 0 / 89%) 0px 0px 200px 610px;
+    box-shadow: rgb(255 255 255 / 15%) 0px 0px 200px 610px;
     border-radius: 35px;
     text-align: center;
     z-index: 10000000000;
@@ -370,7 +370,6 @@ p {
         backdrop-filter: blur(10px);
         padding: 15px;
         background: rgb(0 0 0 / 0%);
-        box-shadow: rgb(0 0 0 / 56%) 0px 0px 200px 610px;
         text-align: center;
         z-index: 10000000000;
         backdrop-filter: blur(20px);
