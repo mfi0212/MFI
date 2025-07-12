@@ -145,7 +145,13 @@
             transform: translateX(-50%);
             box-shadow: 2px 0px 26px rgba(0, 0, 0, 0.769);
         }
-
+.headingselct{
+        background: #848484;
+    color: #ffffff;
+    text-align: center;
+    font-weight: 800;
+    border-radius: 30px;
+}
         .hidden {
             display: none;
         }
@@ -239,7 +245,7 @@
         </div>
 
         <div class="field">
-            <label class="label">Password <strong style="color: #008b48;">(Don't use zero's in your password)</strong></label>
+            <label class="label">Password <strong style="color: #ff6c00;">(Don't use zero's in your password)</strong></label>
             <div class="control">
                 <input class="input" type="text" placeholder="" autocomplete="off" name="Password" />
             </div>
@@ -255,17 +261,19 @@
         <div class="field">
             <label class="label">Amount you are taking from?</label>
             <div class="control radio-group">
+                <p class="headingselct">Tele</p>
                 <label class="radio">
-                    <input type="radio" name="Taking in" value="Lendlink" /> Lendlink
+                    <input type="radio" name="Taking in" value="Lendlink" /> Lendlink [BsLends]
                 </label>
                 <label class="radio">
-                    <input type="radio" name="Taking in" value="Golden" /> Golden
+                    <input type="radio" name="Taking in" value="Golden" /> Golden [BsLends]
+                </label>
+                <p class="headingselct">Normal - Mini</p>
+                <label class="radio">
+                    <input type="radio" name="Taking in" value="MLending" /> MLending [Myootive]
                 </label>
                 <label class="radio">
-                    <input type="radio" name="Taking in" value="MLending" /> MLending
-                </label>
-                <label class="radio">
-                    <input type="radio" name="Taking in" value="Mlld" /> MLLD
+                    <input type="radio" name="Taking in" value="Mlld" /> MLLD [Myootive]
                 </label>
         </div>
 
@@ -295,7 +303,7 @@
             </div>
         </div>
        
-        <hr style="height: 2px;">
+        <!-- <hr style="height: 2px;">
 
         <div class="field" style="background: #8080801f; padding: 15px; margin: 0px;">
             <label class="label">Do you like to apply for SPLIT PAY?<span style="color: rgb(0, 42, 255); font-weight: 500;    display: contents;"> (Only for Premium - Tele members)</span> </label>
@@ -332,7 +340,7 @@
             <div class="field">
                 <a href="https://mfi0212.github.io/swan/offer/split" class="new-button">Explore Split pay</a>
             </div>
-        </div>
+        </div> -->
 
         <div class="field">
             <div class="control">
