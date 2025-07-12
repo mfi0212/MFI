@@ -189,7 +189,6 @@
     z-index: 10000000000;
     backdrop-filter: blur(20px);
     max-width: 600px;
-    border: solid 3px #ffffff30;
     }
     .menu-content { display: none; }
         .active { display: block; }
@@ -310,7 +309,7 @@ p {
             justify-content: flex-start;
         }
        #popup-content{
-                      font-size: 12px;
+                      font-size: 13px;
         background-color: #242424;
         line-height: 26px;
         padding: 13px 19px;
