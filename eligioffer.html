@@ -34,17 +34,17 @@
             overflow: visible;
         }
         .container {
-            background-color: #121212;
-            max-width: 600px;
-            width: 100%;
-            margin: 10px;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            position: relative;
-            z-index: 10;
-            display: none; /* Initially hidden */
+               background: linear-gradient(224deg, black, transparent);
+    max-width: 600px;
+    width: 100%;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 0px 25px rgb(0 0 0);
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    display: none;
         }
         h1 {
             font-size: 27px;
@@ -65,27 +65,27 @@
         }
         .note {
             font-style: italic;
-            color: #b3b3b3;
+            color: #1cb251;
             font-size: 14px;
             margin-bottom: 30px;
         }
         .button {
-            display: inline-block;
-            padding: 14px 28px;
-            background-color: #1ed860;
-            color: #121212;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 700;
-            text-transform: uppercase;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            position: relative;
-            z-index: 10;
+           display: inline-block;
+    padding: 11px 25px;
+    background-color: #1ed860;
+    color: #121212;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    z-index: 10;
         }
         .button:hover {
-            background-color: #1ed760;
-            transform: scale(1.05);
+            background-color: #1ed460;
+            transform: scale(1.01);
         }
         .offer-info {
             margin: 20px 0;
@@ -93,28 +93,28 @@
             padding: 0;
         }
         .offer-info ul {
-            list-style-type: none;
-            padding: 20px;
-            text-align: start;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            background: #2a2a2a54;
-            border-radius: 15px;
-            color: white;
+           list-style-type: none;
+    padding: 20px;
+    text-align: start;
+    display: flex
+;
+    justify-content: center;
+    flex-direction: column;
+    background: #1ed8601f;
+    border-radius: 15px;
+    color: white;
         }
         .offer-info li {
             margin-bottom: 12px;
             font-size: 16px;
             color: #e3e3e3;
             position: relative;
-            padding-left: 25px;
         }
         .offer-info li::before {
-            content: '🎁';
-            position: absolute;
+               content: '🎁';
+            position: relative;
             left: 0;
-            font-size: 18px;
+            font-size: 23px;
         }
         .footer {
             margin-top: 30px;
@@ -165,7 +165,7 @@
             </ul>
         </div>
 
-        <p class="note">Note: This exclusive offer is available to all members for a limited time only.</p>
+        <p class="note">Note: This exclusive offer is available for only few members for a limited time only.</p>
 
         <a href="https://forms.gle/HZ9g7kQy95aBEoTw6" class="button">Claim Offer Now</a>
 
@@ -259,7 +259,6 @@
             createExplosion(e.clientX, e.clientY);
         });
 
-        // Commented-out original script
         document.addEventListener("DOMContentLoaded", () => {
             const customMenu = document.querySelector(".custom-menu");
             document.addEventListener("contextmenu", (event) => {
