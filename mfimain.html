@@ -1,186 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YG Audition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>BS/MFI</title>
-    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+    
+    <style>        
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
         * {
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: "Red Hat Display", sans-serif;
         }
 
         body {
-            text-decoration: none;
-            background-color: #fff;
-            padding: 5%;
-            letter-spacing: 0.5px;
-        }
-        .all{
-            
-            text-align: left;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .bg {
-            font-size: 12px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    position: fixed;
-    bottom: 5px;
-    left: 6%;
+i.fa-regular.fa-user {
+    padding: 10px;
+    font-size: 25px;
 }
-
-        .by {
-            font-size: 6em;
-            line-height: 1.1;
-            letter-spacing: 1px;
-            font-weight: bold;
+       * {
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+        header {
+            background: url('https://via.placeholder.com/360x640?text=YG+Audition+Hero+Image') no-repeat center center/cover;
+            height: 100vh;
+            max-height: 640px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px 15px;
         }
 
-        .middle {
-            width: 43%;
-    margin: 0 auto;
-    line-height: 35px;
-    font-size: 1rem;
-    position: absolute;
-    top: 35%;
-    left: 6%;
-        }
-        .options {
+        header::after {
+            content: '';
             position: absolute;
-    bottom: 10%;
-    display: grid
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .header-top {
+                  width: 100%;
+    display: flex
 ;
-    gap: 15px;
-    background: black;
-    right: 0px;
-    padding: 11px;
-    text-align: end;
-}
-.options a{
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-}
-.options a:hover{
-    text-decoration: underline;
-    font-weight: 900;
-}
-        h3 {
-            margin-top: 15px;
-    font-size: 15px;
-    color: #0045ff;
-        }
-
-        .rights {
-            font-size: 10px;
-    font-weight: bold;
-    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000000;
+    background: #1c1c1c9c;
+    padding: 15px;
     position: fixed;
-    bottom: 10px;
-    right: 10px;
+    top: 0px;
+    left: 0px;
         }
-        .services{
-            padding: 10px 0px;
+
+        .header-top .title {
+            font-size: 30px;
+    font-weight: 900;
         }
-.services a{
+
+        .header-top .menu {
+            font-size: 1.5rem;
+        }
+
+        .header-content {
+            text-align: left;
+    z-index: 1;
+    display: flex
+;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 180px;
+        }
+.header-content h1 {
+    font-size: 160px;
+    font-weight: 900;
+    line-height: 130px;
+}
+
+
+        .header-content h1 span.red-dot {
+            color: #ff4500;
+            font-size: 0.8em;
+            vertical-align: super;
+        }
+
+        .header-content p {
+            font-size: 1rem;
+            margin: 10px 0;
+        }
+
+        .apply-btn {
+            background-color: #0042ff;
+            color: #fff;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            cursor: pointer;
+            position: fixed;
+            bottom: 40px;
+            right: 20px;
+            z-index: 1;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .apply-btn:hover {
+            background-color: #0044ff82;
+            transform: scale(1.03);
+        }
+
+        /* Slideshow */
+        .slideshow {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            margin-top: -20px;
+        }
+
+        .slideshow-container {
+            display: flex;
+            animation: slide 20s infinite;
+            width: 300%;
+        }
+
+        .slide {
+            width: 20%;
+    position: relative;
+    text-align: center;
+    justify-content: center;
+    display: flex
+;
+    align-items: center;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes slide {  
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-20%); }
+    40% { transform: translateX(-40%); }
+    60% { transform: translateX(-60%); }
+    80% { transform: translateX(-80%); }
+    100% { transform: translateX(0); }
+}
+
+        /* Footer */
+        footer {
+            background: #111;
+            padding: 15px;
+            text-align: left;
+            font-size: 0.8rem;
+            color: #666;
+            width: 100;
+                z-index: 1000;
+    position: relative;
+        }
+
+        footer .footer-links {
+            margin: 10px 0;
+        }
+
+        footer .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        footer .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .textslide {
+    font-size: 80px;
+            font-weight: 900;
+}
+a{
     text-decoration: none;
-    color: black;
+    color: white;
 }
-.services a:hover{
-    text-decoration: underline;
-}
-        /* Mobile-specific adjustments */
-        @media (max-width: 600px) {
-            .by {
-                font-size: 17vw;
-        position: fixed;
-        top: 6%;
-
-            }
-            .middle {
-                font-size: 14px;
-        width: 90%;
-        position: fixed;
-        top: 25%;
-        line-height: 30px;
-
-            }
-            .bg {
-                font-size: 10px;
-        position: fixed;
-        bottom: 0%;
-        left: 10px;
-            }
-            .rights {
-                font-size: 8px;
-            }
-            .options {
-
-        font-size: 12px;
-     
-}
+@media (max-width:480px) {
+    .textslide {
+    font-size: 30px;
+}    
+         .header-content h1 {
+                font-size: 60px;
+    font-weight: 900;
+    line-height: 60px;
 
         }
+.header-top {
+                 
+    padding: 4px 15px;
+
+        }
+         .header-top .title {
+            font-size: 20px;
+        }
+        i.fa-regular.fa-user {
+    padding: 10px;
+    font-size: 18px;
+}
+}
     </style>
 </head>
 <body>
-    <div class="game" style="position: fixed;
-    right: 10px;
-    top: 10px;">
-        <a href="https://blackswan19.github.io/bot/game/game1" style="text-decoration: none;color: black;"><p>Game <i class="fa-solid fa-gamepad"></i></p></a>
-    </div>
-    <div class="all">
-        <div class="bg"><a style="text-decoration: none;color: black;" href="https://blackswan19.github.io/BS/bslends">Services</a></div>
+    <header>
+        <div class="header-top">
+            <div class="title">BS/MFI Services</div>
+            <div class="menu"><a href="https://blackswan19.github.io/golden/FM/accverify"><i class="fa-regular fa-user"></i></a></div>
+        </div>
+        <div class="header-content">
+            <h1>Vibe<br>the new <br>flow<span class="red-dot">•</span> </h1>
+            <p>Do you want to be the new flow of<br>BS/MFI services.</p>
+        </div>
+        <button class="apply-btn"><a href="https://mfi0212.github.io/MFI/takemoney">Apply</a></button>
+    </header>
 
-    <div class="by">
-        <h5>WE<br>BS/MFI</h5>
+    <div class="slideshow">
+    <div class="slideshow-container">
+        <div class="slide"><img src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="Slide 1"></div>
+        <div class="slide"><img style="filter: invert();" src="https://i.ibb.co/20msG8Mh/linklogo.png" alt="Slide 2"></div>
+        <div class="slide"><a class="textslide" alt="Slide 3">MLending</a></div>
+        <div class="slide"><a class="textslide" alt="Slide 4">MLLD</a></div>
+        <div class="slide"><a class="textslide" alt="Slide 5">STO</a></div>
     </div>
+</div>
 
-    <div class="middle">
-        <strong>BS/MFI</strong> is a lending service which providing easy and flexible funds for personal and business needs. We offer a simple process, fair terms, and quick access to funds. Our goal is to support your financial growth with trust and reliability.
-        <br><br>
-        <h3>By BsLends </h3>
-        <div class="services">
-            <a target="_blank" href="https://mfi0212.github.io/MFI/rate">Golden</a><br>
-            <a target="_blank" href="https://mfi0212.github.io/swan/home">Lendlink</a><br>
-            <a target="_blank" href="https://mfi0212.github.io/swan/offer/offer">STO</a><br>
-        </div> 
-        <h3>By Myootive</h3>
-        <div class="services">
-            <a target="_blank" href="https://blackswan19.github.io/golden/FM/themain">MLending</a><br>
-            <a target="_blank" href="https://blackswan19.github.io/golden/FM/mlld.html">MLLD</a><br>
-        </div> 
-
-    </div>
-    <div class="options">
-        <a href="https://mfi0212.github.io/MFI/imlate">Im late</a>
-        <a href="https://mfi0212.github.io/MFI/abt.hlp">Helper</a>
-        <a href="https://mfi0212.github.io/MFI/terms">Terms and Conditions</a>
-    </div>
-    <div class="rights">© BS/MFI. All Rights Reserved</div>
-    </div>
+    <footer>
+        <p>Individual Service Pages</p>
+        <div class="footer-links">
+            <a href="https://mfi0212.github.io/MFI/rate">Golden</a>
+            <a href="https://mfi0212.github.io/swan/home">Lendlink</a>
+            <a href="https://mfi0212.github.io/swan/offer/offer">STO</a>
+            <a href="https://blackswan19.github.io/golden/FM/themain">MLending</a>
+            <a href="https://blackswan19.github.io/golden/FM/mlld">MLLD</a>
+        </div>
+    </footer>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
+            const customMenu = document.querySelector(".custom-menu");
 
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                if (customMenu) {
+                    customMenu.style.display = "block";
+                    customMenu.style.top = `${event.pageY}px`;
+                    customMenu.style.left = `${event.pageX}px`;
+                }
+            });
 
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
+            document.addEventListener("click", () => {
+                if (customMenu) {
+                    customMenu.style.display = "none";
+                }
+            });
+        });
     </script>
 </body>
 </html>
