@@ -9,193 +9,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&display=swap');
-    
-        :root {
-            --bg-color: white;
-            --text-color: black;
-            --input-border: #595959;
-            --button-bg: #0045ff;
-            --button-hover: #0035c5;
-            --message-bg: #000;
-            --message-text: #ffffffc8;
-            --split-bg: #b3b3b35e;
-            --hr-color: #6e6e6e;
-            --error-border: #ff0000;
-            --error-text: #ff0000;
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #1a1a1a;
-            --text-color: #ffffff;
-            --input-border: #666;
-            --button-bg: #2563eb;
-            --button-hover: #1e40af;
-            --message-bg: #333;
-            --message-text: #fff;
-            --split-bg: #0000005e;
-            --hr-color: #444;
-            --error-border: #ff5555;
-            --error-text: #ff5555;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Red Hat Display", sans-serif;
-        }
-
-        * {
-            -webkit-tap-highlight-color: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            background-color: var(--bg-color);
-            color: var(--text-color);
             display: flex;
             justify-content: center;
             align-items: center;
-            line-height: 1.5;
+            min-height: 100vh;
+            background-color: #f5f5f5;
             padding: 20px;
-            letter-spacing: 0.4px;
-            transition: all 0.3s ease;
         }
 
         #form {
             width: 100%;
-            max-width: 600px;
-            padding: 65px 0px;
-            line-height: 45px;
+            max-width: 400px;
+            text-align: center;
         }
 
         .logo {
             font-size: 24px;
             font-weight: bold;
             color: #0045ff;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 5px;
-            align-items: center;
-            line-height: 45px;
-        }
-
-        input[type="text"],
-        input[type="password"],
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            border: 1.5px solid #848484;
-            font-size: 16px;
-            outline: none;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
-
-        input:focus {
-            border-color: #004bff52;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.369);
-        }
-
-        input.error {
-            border-color: var(--error-border);
-            box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
-        }
-
-        .error-message {
-            color: var(--error-text);
-            font-size: 12px;
-            margin-top: 5px;
-            display: none;
-        }
-
-        .radio-group label {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        button#submit-button {
-            padding: 12px;
-            text-align: center;
-            width: 100%;
-            background: var(--button-bg);
-            color: white;
-            border: none;
-            font-size: 16px;
-            font-weight: 400;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        button#submit-button:hover {
-            background: var(--button-hover);
-        }
-
-        button#submit-button:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-        }
-
-        #message {
-               display: none;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 15px;
-    background-color: var(--message-bg);
-    position: fixed;
-    top: 40px;
-    color: white;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 2px 0px 26px rgb(0 0 0 / 62%);
-    width: 80%;
-    color: #ffffff;
-    max-width: 400px;
-        }
-
-        .headingselct {
-            background: #848484;
-            color: #ffffff;
-            text-align: center;
-            font-weight: 800;
-            border-radius: 30px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .new-button {
-            padding: 0px 20px;
-            color: var(--text-color);
-            border: none;
-            cursor: pointer;
-            margin-top: 20px;
-            text-decoration: none;
-            align-items: center;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .new-button:hover {
-            text-decoration: underline;
+            position: fixed;
+            top: 20px;
+            right: 20px;
         }
 
         .theme-toggle {
@@ -203,9 +45,6 @@
             top: 0px;
             right: 0px;
             cursor: pointer;
-            background: none;
-            border: none;
-            color: var(--text-color);
             background: #848484;
             padding: 3px 13px;
             border-radius: 0px 0px 0px 10px;
@@ -213,163 +52,230 @@
             gap: 15px;
             justify-content: center;
             align-items: baseline;
-            filter: drop-shadow(3px -3px 10px black);
             z-index: 1000;
         }
 
-        hr {
-            background: var(--hr-color);
-            height: 2px;
-        }
-
-        .field[style*="background"] {
-            background: var(--split-bg) !important;
-        }
-
-        .theme-toggle i {
-            background: transparent;
-            border: none;
+        .theme-toggle a {
             color: white;
+            text-decoration: none;
         }
 
-        .theme-toggle button {
-            background: transparent;
-            border: none;
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .form-group.active {
+            display: block;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="number"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 5px;
+            justify-content: center;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #6b46c1;
             color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #553c9a;
+        }
+
+        button#cancel-button {
+            background-color: #ccc;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        button#cancel-button:hover {
+            background-color: #bbb;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .info-text {
+            color: #666;
+            font-size: 12px;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+
+        .error-message {
+            color: #ff0000;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        input.error {
+            border-color: #ff0000;
         }
     </style>
 </head>
 <body>
     <div class="theme-toggle">
-        <button id="theme-toggle" title="Toggle Theme">
-            <i class="fas fa-moon"></i>
-        </button>
         <a href="https://mfi0212.github.io/MFI/chatbot"><i style="font-size: 14px;" class="fa-solid fa-robot"></i></a>
     </div>
-    <a href="https://mfi0212.github.io/MFI/starpre"><marquee behavior="" direction="left" style="background: black; padding: 6px; position: fixed; font-size: 12px; z-index: 10; top: 0px; color: white; left: 0px;">
-        NOTE: Take Premium to return amount in splits, <span style="font-weight: 600;color: yellow;">CLICK</span> to visit to learn more about Premium
-    </marquee></a>
-    <form id="form" class="container m-4 pl-4" method="POST">
-        <div class="logo" style="font-size: 30px; font-weight: 800; color: #003eff; letter-spacing: 0px;">
+    <form id="form" method="POST">
+        <div class="logo">
             BS/MFI<br>
-            <p style="font-size: 10px; color: #545454; margin-top: -20px;">BsLends/Myootive</p>
+            <p style="font-size: 10px; color: #545454;">BsLends/Myootive</p>
         </div>
 
-        <div class="field form-group">
-            <label class="label">Name <span style="color: red;">*</span></label>
-            <div class="control">
-                <input class="input" type="text" placeholder="Enter your full name" autocomplete="off" name="Name" required />
-                <div class="error-message" id="name-error">Try to enter your name</div>
-            </div>
+        <div class="form-group" data-step="1">
+            <h1>Take Amount</h1>
+            <p class="subtitle">Enter your details</p>
+            <label>Name <span style="color: red;">*</span></label>
+            <input type="text" placeholder="Enter your full name" autocomplete="off" name="Name" required />
+            <div class="error-message" id="name-error">Try to enter your name</div>
         </div>
 
-        <div class="field form-group">
-            <label class="label">Password <span style="color: red;">*</span> <strong style="color: #ff6c00;">(Don't use zeros)</strong></label>
-            <div class="control">
-                <input class="input" type="text" placeholder="Enter your password" autocomplete="off" name="Password" required />
-                <div class="error-message" id="password-error">Password cannot contain zeros</div>
-            </div>
+        <div class="form-group" data-step="2">
+            <h1>Take Amount</h1>
+            <p class="subtitle">Enter your details</p>
+            <label>Password <span style="color: red;">*</span> <strong style="color: #ff6c00;">(Don't use zeros)</strong></label>
+            <input type="password" placeholder="Enter your password" autocomplete="off" name="Password" required />
+            <div class="error-message" id="password-error">Password cannot contain zeros</div>
         </div>
 
-        <div class="field form-group">
-            <label class="label">Phone number <span style="color: red;">*</span></label>
-            <div class="control">
-                <input class="input" type="number" placeholder="Enter 10-digit phone number" autocomplete="off" name="Phone number" required />
-                <div class="error-message" id="phone-error">Try to enter a valid 10-digit phone number</div>
-            </div>
+        <div class="form-group" data-step="3">
+            <h1>Take Amount</h1>
+            <p class="subtitle">Enter your details</p>
+            <label>Phone number <span style="color: red;">*</span></label>
+            <input type="number" placeholder="Enter 10-digit phone number" autocomplete="off" name="Phone number" required />
+            <div class="error-message" id="phone-error">Try to enter a valid 10-digit phone number</div>
         </div>
 
-        <div class="field form-group">
-            <label class="label">Amount you are taking from? <span style="color: red;">*</span></label>
-            <div class="control radio-group">
-                <p class="headingselct">Tele</p>
-                <label class="radio">
-                    <input type="radio" name="Taking in" value="Lendlink" required /> Lendlink [BsLends]
-                </label>
-                <label class="radio">
-                    <input type="radio" name="Taking in" value="Golden" /> Golden [BsLends]
-                </label>
-                <p class="headingselct">Normal - Mini</p>
-                <label class="radio">
-                    <input type="radio" name="Taking in" value="MLending" /> MLending [Myootive]
-                </label>
-                <label class="radio">
-                    <input type="radio" name="Taking in" value="Mlld" /> MLLD [Myootive]
-                </label>
-                <div class="error-message" id="taking-in-error">Try to select an option</div>
+        <div class="form-group" data-step="4">
+            <h1>Take Amount</h1>
+            <p class="subtitle">Select an option</p>
+            <label>Amount you are taking from? <span style="color: red;">*</span></label>
+            <div class="radio-group">
+                <label><input type="radio" name="Taking in" value="Lendlink" required /> Lendlink [BsLends]</label>
+                <label><input type="radio" name="Taking in" value="Golden" /> Golden [BsLends]</label>
+                <label><input type="radio" name="Taking in" value="MLending" /> MLending [Myootive]</label>
+                <label><input type="radio" name="Taking in" value="Mlld" /> MLLD [Myootive]</label>
             </div>
+            <div class="error-message" id="taking-in-error">Try to select an option</div>
         </div>
 
-        <div class="field form-group">
-            <label class="label">How much amount you like to take? <span style="color: red;">*</span></label>
-            <div class="control">
-                <input class="input" type="number" autocomplete="off" placeholder="Enter amount" name="Amount" required min="1" />
-                <div class="error-message" id="amount-error">Try to enter a valid amount</div>
-            </div>
+        <div class="form-group" data-step="5">
+            <h1>Take Amount</h1>
+            <p class="subtitle">Enter your details</p>
+            <label>How much amount you like to take? <span style="color: red;">*</span></label>
+            <input type="number" placeholder="Enter amount" autocomplete="off" name="Amount" required min="1" />
+            <div class="error-message" id="amount-error">Try to enter a valid amount</div>
         </div>
 
-        <div class="field form-group">
-            <label class="label">In how many days you will return the amount? <span style="color: red;">*</span></label>
-            <div class="control">
-                <input class="input" type="number" autocomplete="off" placeholder="Enter number of days" name="Days" required min="1" />
-                <div class="error-message" id="days-error">Try to enter a valid number of days</div>
-            </div>
+        <div class="form-group" data-step="6">
+            <h1>Take Amount</h1>
+            <p class="subtitle">Enter your details</p>
+            <label>In how many days you will return the amount? <span style="color: red;">*</span></label>
+            <input type="number" placeholder="Enter number of days" autocomplete="off" name="Days" required min="1" />
+            <div class="error-message" id="days-error">Try to enter a valid number of days</div>
         </div>
 
-        <div class="field form-group">
-            <label class="label">Is the amount you're taking an offer? <span style="color: red;">*</span></label>
-            <div class="control radio-group">
-                <label class="radio">
-                    <input type="radio" name="offer or not" value="yes" required /> Yes
-                </label>
-                <label class="radio">
-                    <input type="radio" name="offer or not" value="no" /> No
-                </label>
-                <div class="error-message" id="offer-error">Try to select an option</div>
+        <div class="form-group" data-step="7">
+            <h1>Take Amount</h1>
+            <p class="subtitle">Select an option</p>
+            <label>Is the amount you're taking an offer? <span style="color: red;">*</span></label>
+            <div class="radio-group">
+                <label><input type="radio" name="offer or not" value="yes" required /> Yes</label>
+                <label><input type="radio" name="offer or not" value="no" /> No</label>
             </div>
+            <div class="error-message" id="offer-error">Try to select an option</div>
         </div>
 
-        <div class="field">
-            <div class="control">
-                <button class="btn-primary" type="submit" id="submit-button">
-                    Submit
-                </button>
-            </div>
+        <div class="button-group">
+            <button type="button" id="cancel-button">Cancel</button>
+            <button type="button" id="next-button">Continue</button>
+            <button type="submit" id="submit-button" style="display: none;">Submit</button>
+        </div>
+
+        <div class="info-text">
+            By continuing, you agree to BS/MFI's terms, privacy policy, and<br>
+            to sharing your name, email, and avatar with BsLends/Myootive<br>
+            STORE. See their terms and privacy policy.
         </div>
     </form>
 
-    <div id="message"></div>
-
     <script>
-        // Theme toggle functionality
-        const toggleButton = document.getElementById('theme-toggle');
-        const htmlElement = document.documentElement;
+        const form = document.getElementById("form");
+        const steps = form.querySelectorAll('.form-group');
+        const nextButton = document.getElementById("next-button");
+        const submitButton = document.getElementById("submit-button");
+        const cancelButton = document.getElementById("cancel-button");
+        let currentStep = 1;
 
-        // Load saved theme from localStorage
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        htmlElement.setAttribute('data-theme', savedTheme);
-        updateThemeIcon(savedTheme);
-
-        toggleButton.addEventListener('click', () => {
-            const currentTheme = htmlElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            
-            htmlElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
-        });
-
-        function updateThemeIcon(theme) {
-            toggleButton.innerHTML = theme === 'dark' ? 
-                '<i class="fas fa-sun"></i>' : 
-                '<i class="fas fa-moon"></i>';
+        function showStep(step) {
+            steps.forEach(s => s.classList.remove('active'));
+            form.querySelector(`[data-step="${step}"]`).classList.add('active');
+            nextButton.style.display = step < steps.length ? 'block' : 'none';
+            submitButton.style.display = step === steps.length ? 'block' : 'none';
         }
 
-        // Form validation and submission
-        const form = document.getElementById("form");
-        const inputs = form.querySelectorAll('input');
-        const submitButton = document.getElementById("submit-button");
-        const message = document.getElementById("message");
+        showStep(currentStep);
+
+        nextButton.addEventListener('click', () => {
+            if (validateStep(currentStep)) {
+                currentStep++;
+                if (currentStep <= steps.length) {
+                    showStep(currentStep);
+                }
+            }
+        });
+
+        cancelButton.addEventListener('click', () => {
+            window.history.back();
+        });
 
         function showError(input, errorId, messageText) {
             const errorElement = document.getElementById(errorId);
@@ -384,91 +290,76 @@
             errorElement.style.display = 'none';
         }
 
-        function validateForm() {
+        function validateStep(step) {
             let isValid = true;
+            const currentStepElement = form.querySelector(`[data-step="${step}"]`);
+            const input = currentStepElement.querySelector('input:not([type="radio"])');
+            const radios = currentStepElement.querySelectorAll('input[type="radio"]');
 
-            // Name validation
-            const nameInput = form.querySelector('input[name="Name"]');
-            if (!nameInput.value.trim()) {
-                showError(nameInput, 'name-error', 'Try to enter your name');
-                isValid = false;
-            } else {
-                clearError(nameInput, 'name-error');
-            }
-
-            // Password validation
-            const passwordInput = form.querySelector('input[name="Password"]');
-            if (!passwordInput.value) {
-                showError(passwordInput, 'password-error', 'Try to enter a password');
-                isValid = false;
-            } else if (passwordInput.value.includes('0')) {
-                showError(passwordInput, 'password-error', 'Password cannot contain zeros');
-                isValid = false;
-            } else {
-                clearError(passwordInput, 'password-error');
-            }
-
-            // Phone number validation
-            const phoneInput = form.querySelector('input[name="Phone number"]');
-            const phoneRegex = /^\d{10}$/;
-            if (!phoneInput.value || !phoneRegex.test(phoneInput.value)) {
-                showError(phoneInput, 'phone-error', 'Try to enter a valid 10-digit phone number');
-                isValid = false;
-            } else {
-                clearError(phoneInput, 'phone-error');
-            }
-
-            // Taking in radio validation
-            const takingInInput = form.querySelector('input[name="Taking in"]:checked');
-            if (!takingInInput) {
-                showError(form.querySelector('.radio-group'), 'taking-in-error', 'Try to select an option');
-                isValid = false;
-            } else {
-                clearError(form.querySelector('.radio-group'), 'taking-in-error');
-            }
-
-            // Amount validation
-            const amountInput = form.querySelector('input[name="Amount"]');
-            if (!amountInput.value || amountInput.value <= 0) {
-                showError(amountInput, 'amount-error', 'Try to enter a valid amount');
-                isValid = false;
-            } else {
-                clearError(amountInput, 'amount-error');
-            }
-
-            // Days validation
-            const daysInput = form.querySelector('input[name="Days"]');
-            if (!daysInput.value || daysInput.value <= 0) {
-                showError(daysInput, 'days-error', 'Try to enter a valid number of days');
-                isValid = false;
-            } else {
-                clearError(daysInput, 'days-error');
-            }
-
-            // Offer or not radio validation
-            const offerInput = form.querySelector('input[name="offer or not"]:checked');
-            if (!offerInput) {
-                showError(form.querySelector('.radio-group:last-of-type'), 'offer-error', 'Try to select an option');
-                isValid = false;
-            } else {
-                clearError(form.querySelector('.radio-group:last-of-type'), 'offer-error');
+            if (input) {
+                if (input.name === 'Name' && !input.value.trim()) {
+                    showError(input, 'name-error', 'Try to enter your name');
+                    isValid = false;
+                } else if (input.name === 'Password') {
+                    if (!input.value) {
+                        showError(input, 'password-error', 'Try to enter a password');
+                        isValid = false;
+                    } else if (input.value.includes('0')) {
+                        showError(input, 'password-error', 'Password cannot contain zeros');
+                        isValid = false;
+                    } else {
+                        clearError(input, 'password-error');
+                    }
+                } else if (input.name === 'Phone number') {
+                    const phoneRegex = /^\d{10}$/;
+                    if (!input.value || !phoneRegex.test(input.value)) {
+                        showError(input, 'phone-error', 'Try to enter a valid 10-digit phone number');
+                        isValid = false;
+                    } else {
+                        clearError(input, 'phone-error');
+                    }
+                } else if (input.name === 'Amount') {
+                    if (!input.value || input.value <= 0) {
+                        showError(input, 'amount-error', 'Try to enter a valid amount');
+                        isValid = false;
+                    } else {
+                        clearError(input, 'amount-error');
+                    }
+                } else if (input.name === 'Days') {
+                    if (!input.value || input.value <= 0) {
+                        showError(input, 'days-error', 'Try to enter a valid number of days');
+                        isValid = false;
+                    } else {
+                        clearError(input, 'days-error');
+                    }
+                }
+            } else if (radios.length > 0) {
+                const checked = currentStepElement.querySelector('input[type="radio"]:checked');
+                const errorId = radios[0].name === 'Taking in' ? 'taking-in-error' : 'offer-error';
+                if (!checked) {
+                    showError(currentStepElement.querySelector('.radio-group'), errorId, 'Try to select an option');
+                    isValid = false;
+                } else {
+                    clearError(currentStepElement.querySelector('.radio-group'), errorId);
+                }
             }
 
             return isValid;
         }
 
+        const inputs = form.querySelectorAll('input');
         inputs.forEach(input => {
             input.addEventListener('input', () => {
-                if (input.name === 'Name') {
-                    if (input.value.trim()) clearError(input, 'name-error');
-                } else if (input.name === 'Password') {
-                    if (!input.value.includes('0')) clearError(input, 'password-error');
-                } else if (input.name === 'Phone number') {
-                    if (/^\d{10}$/.test(input.value)) clearError(input, 'phone-error');
-                } else if (input.name === 'Amount') {
-                    if (input.value > 0) clearError(input, 'amount-error');
-                } else if (input.name === 'Days') {
-                    if (input.value > 0) clearError(input, 'days-error');
+                if (input.name === 'Name' && input.value.trim()) {
+                    clearError(input, 'name-error');
+                } else if (input.name === 'Password' && !input.value.includes('0')) {
+                    clearError(input, 'password-error');
+                } else if (input.name === 'Phone number' && /^\d{10}$/.test(input.value)) {
+                    clearError(input, 'phone-error');
+                } else if (input.name === 'Amount' && input.value > 0) {
+                    clearError(input, 'amount-error');
+                } else if (input.name === 'Days' && input.value > 0) {
+                    clearError(input, 'days-error');
                 }
             });
         });
@@ -478,96 +369,25 @@
                 if (radio.name === 'Taking in') {
                     clearError(form.querySelector('.radio-group'), 'taking-in-error');
                 } else if (radio.name === 'offer or not') {
-                    clearError(form.querySelector('.radio-group:last-of-type'), 'offer-error');
+                    clearError(form.querySelector('.radio-group'), 'offer-error');
                 }
             });
         });
 
         form.addEventListener("submit", function (e) {
             e.preventDefault();
-
-            if (!validateForm()) {
-                message.textContent = "Try to correct the errors in the form";
-                message.style.display = "block";
-                message.style.backgroundColor = "red";
-                submitButton.disabled = false;
-                setTimeout(() => {
-                    message.style.display = "none";
-                }, 300000000);
-                return;
+            if (validateStep(currentStep)) {
+                const formData = new FormData(this);
+                const keyValuePairs = [];
+                for (const pair of formData.entries()) {
+                    keyValuePairs.push(pair[0] + "=" + pair[1]);
+                }
+                const formDataString = keyValuePairs.join("&");
+                alert("Form submitted successfully with data: " + formDataString);
+                form.reset();
+                currentStep = 1;
+                showStep(currentStep);
             }
-
-            message.textContent = "Submitting...";
-            message.style.display = "block";
-            submitButton.disabled = true;
-
-            const formData = new FormData(this);
-            const keyValuePairs = [];
-            for (const pair of formData.entries()) {
-                keyValuePairs.push(pair[0] + "=" + pair[1]);
-            }
-
-            const formDataString = keyValuePairs.join("&");
-
-            fetch(
-                "https://script.google.com/macros/s/AKfycbxIlao67g-XSHBVoSvYzofopgSa7_7_l9qstp4SxrdqMWCutnasBtQjdLn_aUWdsZvShw/exec",
-                {
-                    redirect: "follow",
-                    method: "POST",
-                    body: formDataString,
-                    headers: {
-                        "Content-Type": "text/plain;charset=utf-8",
-                    },
-                }
-            )
-                .then(function (response) {
-                    if (response) {
-                        return response;
-                    } else {
-                        throw new Error("Failed to submit the form.");
-                    }
-                })
-                .then(function (data) {
-                    message.textContent = "Details submitted successfully!";
-                    message.style.display = "block";
-                    message.style.backgroundColor = "green";
-                    message.style.color = "white";
-                    submitButton.disabled = false;
-                    form.reset();
-
-                    setTimeout(function () {
-                        message.textContent = "";
-                        message.style.display = "none";
-                    }, 2600);
-                })
-                .catch(function (error) {
-                    console.error(error);
-                    message.textContent = "An error occurred while submitting the form.";
-                    message.style.display = "block";
-                    message.style.backgroundColor = "red";
-                    submitButton.disabled = false;
-                });
-        });
-    </script>
-    <script>
-        
-        document.addEventListener("DOMContentLoaded", () => {
-            const customMenu = document.querySelector(".custom-menu");
-
-            document.addEventListener("contextmenu", (event) => {
-                event.preventDefault();
-                if (customMenu) {
-                    customMenu.style.display = "block";
-                    customMenu.style.top = `${event.pageY}px`;
-                    customMenu.style.left = `${event.pageX}px`;
-                }
-            });
-
-            document.addEventListener("click", () => {
-                if (customMenu) {
-                    customMenu.style.display = "none";
-                }
-            });
         });
     </script>
 </body>
