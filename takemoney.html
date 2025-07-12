@@ -29,11 +29,20 @@
         }
 
         #form {
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
+               width: 91%;
+    max-width: 400px;
+    text-align: center;
+    position: fixed;
         }
-
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
         .logo {
             font-size: 24px;
             font-weight: bold;
@@ -599,6 +608,27 @@ top: 10px;
                     message.style.backgroundColor = "red";
                     submitButton.disabled = false;
                 });
+        });
+    </script>
+    <script>
+        
+        document.addEventListener("DOMContentLoaded", () => {
+            const customMenu = document.querySelector(".custom-menu");
+
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                if (customMenu) {
+                    customMenu.style.display = "block";
+                    customMenu.style.top = `${event.pageY}px`;
+                    customMenu.style.left = `${event.pageX}px`;
+                }
+            });
+
+            document.addEventListener("click", () => {
+                if (customMenu) {
+                    customMenu.style.display = "none";
+                }
+            });
         });
     </script>
 </body>
