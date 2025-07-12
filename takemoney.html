@@ -21,6 +21,8 @@
             --message-text: #ffffffc8;
             --split-bg: #b3b3b35e;
             --hr-color: #6e6e6e;
+            --error-border: #ff0000;
+            --error-text: #ff0000;
         }
 
         [data-theme="dark"] {
@@ -33,6 +35,8 @@
             --message-text: #fff;
             --split-bg: #0000005e;
             --hr-color: #444;
+            --error-border: #ff5555;
+            --error-text: #ff5555;
         }
 
         * {
@@ -63,10 +67,10 @@
         }
 
         #form {
-                width: 100%;
-    max-width: 600px;
-    padding: 65px 0px;
-    line-height: 45px;
+            width: 100%;
+            max-width: 600px;
+            padding: 65px 0px;
+            line-height: 45px;
         }
 
         .logo {
@@ -94,7 +98,7 @@
         input[type="number"] {
             width: 100%;
             padding: 10px;
-            border: 1px solid var(--input-border);
+            border: 1.5px solid #848484;
             font-size: 16px;
             outline: none;
             background-color: var(--bg-color);
@@ -102,8 +106,20 @@
         }
 
         input:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+            border-color: #004bff52;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.369);
+        }
+
+        input.error {
+            border-color: var(--error-border);
+            box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+        }
+
+        .error-message {
+            color: var(--error-text);
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
         }
 
         .radio-group label {
@@ -129,6 +145,11 @@
             background: var(--button-hover);
         }
 
+        button#submit-button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+
         #message {
             display: none;
             text-align: center;
@@ -145,13 +166,15 @@
             transform: translateX(-50%);
             box-shadow: 2px 0px 26px rgba(0, 0, 0, 0.769);
         }
-.headingselct{
-        background: #848484;
-    color: #ffffff;
-    text-align: center;
-    font-weight: 800;
-    border-radius: 30px;
-}
+
+        .headingselct {
+            background: #848484;
+            color: #ffffff;
+            text-align: center;
+            font-weight: 800;
+            border-radius: 30px;
+        }
+
         .hidden {
             display: none;
         }
@@ -173,22 +196,22 @@
         }
 
         .theme-toggle {
-                    position: fixed;
-    top: 0px;
-    right: 0px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    color: var(--text-color);
-    background: #848484;
-    padding: 3px 13px;
-    border-radius: 0px 0px 0px 10px;
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    align-items: baseline;
-    filter: drop-shadow(3px -3px 10px black);
-    z-index: 1000;
+            position: fixed;
+            top: 0px;
+            right: 0px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            background: #848484;
+            padding: 3px 13px;
+            border-radius: 0px 0px 0px 10px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: baseline;
+            filter: drop-shadow(3px -3px 10px black);
+            z-index: 1000;
         }
 
         hr {
@@ -199,71 +222,66 @@
         .field[style*="background"] {
             background: var(--split-bg) !important;
         }
-        .theme-toggle i{
-                background: transparent;
-    border: none;
-    color: white;
+
+        .theme-toggle i {
+            background: transparent;
+            border: none;
+            color: white;
         }
-        .theme-toggle button{
-                background: transparent;
-    border: none;
-    color: white;
+
+        .theme-toggle button {
+            background: transparent;
+            border: none;
+            color: white;
         }
     </style>
-
 </head>
 <body>
-    
     <div class="theme-toggle">
         <button id="theme-toggle" title="Toggle Theme">
             <i class="fas fa-moon"></i>
         </button>
         <a href="https://mfi0212.github.io/MFI/chatbot"><i style="font-size: 14px;" class="fa-solid fa-robot"></i></a>
     </div>
-<a href="https://mfi0212.github.io/MFI/starpre"><marquee behavior="" direction="left" style="background: black;
-    padding: 6px;
-    position: fixed;
-    font-size: 12px;
-    z-index: 10;
-    top: 0px;
-    color: white;left: 0px;
-">
-    NOTE: Take Premium to return amount in splits, <span style="font-weight: 600;color: yellow;">CLICK</span> to visit to learn more about Premium
+    <a href="https://mfi0212.github.io/MFI/starpre"><marquee behavior="" direction="left" style="background: black; padding: 6px; position: fixed; font-size: 12px; z-index: 10; top: 0px; color: white; left: 0px;">
+        NOTE: Take Premium to return amount in splits, <span style="font-weight: 600;color: yellow;">CLICK</span> to visit to learn more about Premium
     </marquee></a>
     <form id="form" class="container m-4 pl-4" method="POST">
-        <!-- Rest of your form content remains unchanged -->
         <div class="logo" style="font-size: 30px; font-weight: 800; color: #003eff; letter-spacing: 0px;">
             BS/MFI<br>
             <p style="font-size: 10px; color: #545454; margin-top: -20px;">BsLends/Myootive</p>
         </div>
 
-        <div class="field">
-            <label class="label">Name</label>
+        <div class="field form-group">
+            <label class="label">Name <span style="color: red;">*</span></label>
             <div class="control">
-                <input class="input" type="text" placeholder="" autocomplete="off" name="Name" />
+                <input class="input" type="text" placeholder="Enter your full name" autocomplete="off" name="Name" required />
+                <div class="error-message" id="name-error">Try to enter your name</div>
             </div>
         </div>
 
-        <div class="field">
-            <label class="label">Password <strong style="color: #ff6c00;">(Don't use zero's in your password)</strong></label>
+        <div class="field form-group">
+            <label class="label">Password <span style="color: red;">*</span> <strong style="color: #ff6c00;">(Don't use zeros)</strong></label>
             <div class="control">
-                <input class="input" type="text" placeholder="" autocomplete="off" name="Password" />
+                <input class="input" type="password" placeholder="Enter your password" autocomplete="off" name="Password" required />
+                <div class="error-message" id="password-error">Password cannot contain zeros</div>
             </div>
         </div>
 
-        <div class="field">
-            <label class="label">Phone number</label>
+        <div class="field form-group">
+            <label class="label">Phone number <span style="color: red;">*</span></label>
             <div class="control">
-                <input class="input" type="number" placeholder="" autocomplete="off" name="Phone number" />
+                <input class="input" type="number" placeholder="Enter 10-digit phone number" autocomplete="off" name="Phone number" required />
+                <div class="error-message" id="phone-error">Try to enter a valid 10-digit phone number</div>
             </div>
         </div>
 
-        <div class="field">
-            <label class="label">Amount you are taking from?</label>
+        <div class="field form-group">
+            <label class="label">Amount you are taking from? <span style="color: red;">*</span></label>
             <div class="control radio-group">
                 <p class="headingselct">Tele</p>
                 <label class="radio">
-                    <input type="radio" name="Taking in" value="Lendlink" /> Lendlink [BsLends]
+                    <input type="radio" name="Taking in" value="Lendlink" required /> Lendlink [BsLends]
                 </label>
                 <label class="radio">
                     <input type="radio" name="Taking in" value="Golden" /> Golden [BsLends]
@@ -275,72 +293,38 @@
                 <label class="radio">
                     <input type="radio" name="Taking in" value="Mlld" /> MLLD [Myootive]
                 </label>
-        </div>
-
-        <div class="field">
-            <label class="label">How much amount you like to take?</label>
-            <div class="control">
-                <input class="input" type="text" autocomplete="off" placeholder="" name="Amount" />
+                <div class="error-message" id="taking-in-error">Try to select an option</div>
             </div>
         </div>
 
-        <div class="field">
-            <label class="label">In how many days you will return the amount?</label>
+        <div class="field form-group">
+            <label class="label">How much amount you like to take? <span style="color: red;">*</span></label>
             <div class="control">
-                <input class="input" type="text" autocomplete="off" placeholder="" name="Days" />
+                <input class="input" type="number" autocomplete="off" placeholder="Enter amount" name="Amount" required min="1" />
+                <div class="error-message" id="amount-error">Try to enter a valid amount</div>
             </div>
         </div>
 
-        <div class="field">
-            <label class="label">Is the amount you're taking an offer?</label>
+        <div class="field form-group">
+            <label class="label">In how many days you will return the amount? <span style="color: red;">*</span></label>
+            <div class="control">
+                <input class="input" type="number" autocomplete="off" placeholder="Enter number of days" name="Days" required min="1" />
+                <div class="error-message" id="days-error">Try to enter a valid number of days</div>
+            </div>
+        </div>
+
+        <div class="field form-group">
+            <label class="label">Is the amount you're taking an offer? <span style="color: red;">*</span></label>
             <div class="control radio-group">
                 <label class="radio">
-                    <input type="radio" name="offer or not" value="yes" /> Yes
+                    <input type="radio" name="offer or not" value="yes" required /> Yes
                 </label>
                 <label class="radio">
                     <input type="radio" name="offer or not" value="no" /> No
                 </label>
+                <div class="error-message" id="offer-error">Try to select an option</div>
             </div>
         </div>
-       
-        <!-- <hr style="height: 2px;">
-
-        <div class="field" style="background: #8080801f; padding: 15px; margin: 0px;">
-            <label class="label">Do you like to apply for SPLIT PAY?<span style="color: rgb(0, 42, 255); font-weight: 500;    display: contents;"> (Only for Premium - Tele members)</span> </label>
-            <div class="control radio-group">
-                <label class="radio">
-                    <input type="radio" name="ApplySplit" autocomplete="off" value="Yes" onchange="toggleSplitQuestions(this.value)" /> Yes
-                </label>
-                <label class="radio">
-                    <input type="radio" name="ApplySplit" autocomplete="off" value="No" onchange="toggleSplitQuestions(this.value)" /> No
-                </label>
-            </div>
-        </div>
-
-        <div id="splitQuestions" class="hidden">
-            <div class="field" style="background: #8080801f; padding: 15px; margin: 0px;">
-                <label class="label">Do you pay the split fee?</label>
-                <div class="control radio-group">
-                    <label class="radio">
-                        <input type="radio" name="PaySplitFee" autocomplete="off" value="Yes" /> Yes
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="PaySplitFee" autocomplete="off" value="No" /> No
-                    </label>
-                </div>
-            </div>
-
-            <div class="field" style="background: #8080801f; padding: 15px; margin: 0px;">
-                <label class="label">No. of splits you like to do?</label>
-                <div class="control">
-                    <input class="input" type="number" placeholder="" name="NumberOfSplits" />
-                </div>
-            </div>
-
-            <div class="field">
-                <a href="https://mfi0212.github.io/swan/offer/split" class="new-button">Explore Split pay</a>
-            </div>
-        </div> -->
 
         <div class="field">
             <div class="control">
@@ -378,20 +362,149 @@
                 '<i class="fas fa-moon"></i>';
         }
 
-        // Existing form submission script
-        document.getElementById("form").addEventListener("submit", function (e) {
-            e.preventDefault();
-            document.getElementById("message").textContent = "Submitting..";
-            document.getElementById("message").style.display = "block";
-            document.getElementById("submit-button").disabled = true;
+        // Form validation and submission
+        const form = document.getElementById("form");
+        const inputs = form.querySelectorAll('input');
+        const submitButton = document.getElementById("submit-button");
+        const message = document.getElementById("message");
 
-            var formData = new FormData(this);
-            var keyValuePairs = [];
-            for (var pair of formData.entries()) {
+        function showError(input, errorId, messageText) {
+            const errorElement = document.getElementById(errorId);
+            input.classList.add('error');
+            errorElement.textContent = messageText;
+            errorElement.style.display = 'block';
+        }
+
+        function clearError(input, errorId) {
+            const errorElement = document.getElementById(errorId);
+            input.classList.remove('error');
+            errorElement.style.display = 'none';
+        }
+
+        function validateForm() {
+            let isValid = true;
+
+            // Name validation
+            const nameInput = form.querySelector('input[name="Name"]');
+            if (!nameInput.value.trim()) {
+                showError(nameInput, 'name-error', 'Try to enter your name');
+                isValid = false;
+            } else {
+                clearError(nameInput, 'name-error');
+            }
+
+            // Password validation
+            const passwordInput = form.querySelector('input[name="Password"]');
+            if (!passwordInput.value) {
+                showError(passwordInput, 'password-error', 'Try to enter a password');
+                isValid = false;
+            } else if (passwordInput.value.includes('0')) {
+                showError(passwordInput, 'password-error', 'Password cannot contain zeros');
+                isValid = false;
+            } else {
+                clearError(passwordInput, 'password-error');
+            }
+
+            // Phone number validation
+            const phoneInput = form.querySelector('input[name="Phone number"]');
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneInput.value || !phoneRegex.test(phoneInput.value)) {
+                showError(phoneInput, 'phone-error', 'Try to enter a valid 10-digit phone number');
+                isValid = false;
+            } else {
+                clearError(phoneInput, 'phone-error');
+            }
+
+            // Taking in radio validation
+            const takingInInput = form.querySelector('input[name="Taking in"]:checked');
+            if (!takingInInput) {
+                showError(form.querySelector('.radio-group'), 'taking-in-error', 'Try to select an option');
+                isValid = false;
+            } else {
+                clearError(form.querySelector('.radio-group'), 'taking-in-error');
+            }
+
+            // Amount validation
+            const amountInput = form.querySelector('input[name="Amount"]');
+            if (!amountInput.value || amountInput.value <= 0) {
+                showError(amountInput, 'amount-error', 'Try to enter a valid amount');
+                isValid = false;
+            } else {
+                clearError(amountInput, 'amount-error');
+            }
+
+            // Days validation
+            const daysInput = form.querySelector('input[name="Days"]');
+            if (!daysInput.value || daysInput.value <= 0) {
+                showError(daysInput, 'days-error', 'Try to enter a valid number of days');
+                isValid = false;
+            } else {
+                clearError(daysInput, 'days-error');
+            }
+
+            // Offer or not radio validation
+            const offerInput = form.querySelector('input[name="offer or not"]:checked');
+            if (!offerInput) {
+                showError(form.querySelector('.radio-group:last-of-type'), 'offer-error', 'Try to select an option');
+                isValid = false;
+            } else {
+                clearError(form.querySelector('.radio-group:last-of-type'), 'offer-error');
+            }
+
+            return isValid;
+        }
+
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                if (input.name === 'Name') {
+                    if (input.value.trim()) clearError(input, 'name-error');
+                } else if (input.name === 'Password') {
+                    if (!input.value.includes('0')) clearError(input, 'password-error');
+                } else if (input.name === 'Phone number') {
+                    if (/^\d{10}$/.test(input.value)) clearError(input, 'phone-error');
+                } else if (input.name === 'Amount') {
+                    if (input.value > 0) clearError(input, 'amount-error');
+                } else if (input.name === 'Days') {
+                    if (input.value > 0) clearError(input, 'days-error');
+                }
+            });
+        });
+
+        form.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.name === 'Taking in') {
+                    clearError(form.querySelector('.radio-group'), 'taking-in-error');
+                } else if (radio.name === 'offer or not') {
+                    clearError(form.querySelector('.radio-group:last-of-type'), 'offer-error');
+                }
+            });
+        });
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            if (!validateForm()) {
+                message.textContent = "Try to correct the errors in the form";
+                message.style.display = "block";
+                message.style.backgroundColor = "red";
+                submitButton.disabled = false;
+                setTimeout(() => {
+                    message.style.display = "none";
+                }, 3000);
+                return;
+            }
+
+            message.textContent = "Submitting...";
+            message.style.display = "block";
+            submitButton.disabled = true;
+
+            const formData = new FormData(this);
+            const keyValuePairs = [];
+            for (const pair of formData.entries()) {
                 keyValuePairs.push(pair[0] + "=" + pair[1]);
             }
 
-            var formDataString = keyValuePairs.join("&");
+            const formDataString = keyValuePairs.join("&");
 
             fetch(
                 "https://script.google.com/macros/s/AKfycbxIlao67g-XSHBVoSvYzofopgSa7_7_l9qstp4SxrdqMWCutnasBtQjdLn_aUWdsZvShw/exec",
@@ -412,51 +525,27 @@
                     }
                 })
                 .then(function (data) {
-                    document.getElementById("message").textContent = "Details submitted successfully..!";
-                    document.getElementById("message").style.display = "block";
-                    document.getElementById("message").style.backgroundColor = "green";
-                    document.getElementById("message").style.color = "white";
-                    document.getElementById("submit-button").disabled = false;
-                    document.getElementById("form").reset();
+                    message.textContent = "Details submitted successfully!";
+                    message.style.display = "block";
+                    message.style.backgroundColor = "green";
+                    message.style.color = "white";
+                    submitButton.disabled = false;
+                    form.reset();
 
                     setTimeout(function () {
-                        document.getElementById("message").textContent = "";
-                        document.getElementById("message").style.display = "none";
+                        message.textContent = "";
+                        message.style.display = "none";
                     }, 2600);
                 })
                 .catch(function (error) {
                     console.error(error);
-                    document.getElementById("message").textContent = "An error occurred while submitting the form.";
-                    document.getElementById("message").style.display = "block";
+                    message.textContent = "An error occurred while submitting the form.";
+                    message.style.display = "block";
+                    message.style.backgroundColor = "red";
+                    submitButton.disabled = false;
                 });
-        });
-
-        function toggleSplitQuestions(value) {
-            const splitQuestions = document.getElementById("splitQuestions");
-            if (value === "Yes") {
-                splitQuestions.classList.remove("hidden");
-            } else {
-                splitQuestions.classList.add("hidden");
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const customMenu = document.querySelector(".custom-menu");
-            if (customMenu) {
-                document.addEventListener("contextmenu", (event) => {
-                    event.preventDefault();
-                    customMenu.style.display = "block";
-                    customMenu.style.top = `${event.pageY}px`;
-                    customMenu.style.left = `${event.pageX}px`;
-                });
-
-                document.addEventListener("click", () => {
-                    customMenu.style.display = "none";
-                });
-            }
         });
     </script>
-
     <script>
         
         document.addEventListener("DOMContentLoaded", () => {
