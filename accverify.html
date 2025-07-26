@@ -45,21 +45,21 @@
             z-index: 10;
         }
         .fixed {
-            position: fixed;
-            top: 0px;
-            height: 315px;
-            padding: 55px 23px;
-            left: 0px;
-            background-color: #16161636;
-            width: 100%;
-            backdrop-filter: blur(10px);
-            z-index: 10;
-            border-bottom: solid 2px #ffffff21;
-            border-radius: 30px;
+           position: fixed;
+    top: 0px;
+    height: 280px;
+    padding: 55px 23px;
+    left: 0px;
+    background-color: transparent;
+    width: 100%;
+    backdrop-filter: blur(8px);
+    z-index: 10;
+    border-bottom: solid 1px #ffffff3d;
+    border-radius: 0px 0px 25px 25px;
         }
         .scroll {
             position: relative;
-            top: 250px;
+            top: 200px;
         }
         .header h2 {
             font-size: 18px;
@@ -86,7 +86,7 @@
             border: none;
             background: #ffffff21;
             color: #fff;
-            padding: 8px 25px;
+            padding: 9px 25px;
             text-align: center;
             width: 90%;
             outline: none;
@@ -248,22 +248,21 @@
         .amount-buttons {
             display: flex;
             gap: 10px;
-            margin: 3px 0px;
-            padding: 10px 0px;
             overflow-x: scroll;
             width: 100%;
             white-space: nowrap;
         }
 
         .amount-btn {
-            background-color: #2a2a2a;
-            color: #e0e0e0;
-            border: none;
-            border-radius: 35px;
-            padding: 10px 20px;
-            font-size: 12px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+                color: #e0e0e0;
+    border: none;
+    border-radius: 35px;
+    padding: 8px 16px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background: transparent;
+    border: solid 2px #3a3a3a;
         }
 
         .amount-btn:hover {
@@ -272,67 +271,67 @@
 
         .amount-btn.active {
             background-color: #ffffff;
+            border: solid 2px white;
             color: #000000;
         }
         .notice {
-            font-weight: 200;
-            font-size: 12px;
-            line-height: 20px;
-            position: fixed;
-            bottom: 35px;
-            color: #ffffff;
-            padding: 10px;
-            border: solid 1.5px #0033ff85;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 400px;
-            background: linear-gradient(1deg, #000000, #000133);
+                font-weight: 200;
+    font-size: 12px;
+    line-height: 20px;
+    position: fixed;
+    bottom: 35px;
+    color: #ffffff;
+    padding: 10px;
+    border: solid 1.5px #0043ff;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
         }
 
         /* Note Popup */
         #notePopup {
-            display: none;
-            position: fixed;
-            bottom: 35px;
-            width: 94%;
-            background: linear-gradient(358deg, #000000, #141414);
-            padding: 20px;
-            border-top: 2px solid #4f4f4f;
-            z-index: 12000;
-            box-shadow: 0px -150px 250px rgb(0 16 255 / 42%);
-            align-items: center;
-            height: 340px;
-            border-radius: 21px;
-            text-align: center;
-            max-width: 800px;
+               display: none;
+    position: fixed;
+    bottom: 35px;
+    width: 98%;
+    background: linear-gradient(358deg, #000000, #141414);
+    padding: 20px;
+    border-top: 2px solid #4f4f4f;
+    z-index: 12000;
+    box-shadow: 0px -150px 1000px 50px rgb(4 0 255 / 66%);
+    align-items: center;
+    height: 340px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 600px;
         }
 
         #notePopup textarea {
-            width: 100%;
-            min-height: 250px;
-            background-color: #181818;
-            border: 1.5px solid #ffffff29;
-            border-radius: 10px;
-            padding: 10px;
-            color: #e0e0e0;
-            resize: none;
-            margin-bottom: 10px;
-            outline: none;
-            font-size: 15px;
+               width: 100%;
+    min-height: 250px;
+    border-radius: 10px;
+    padding: 10px;
+    color: #e0e0e0;
+    resize: none;
+    margin-bottom: 10px;
+    outline: none;
+    font-size: 15px;
+    background: linear-gradient(179deg, black, transparent);
+    border: none;
         }
 
         #notePopup button {
-            background-color: #004cff;
-            color: #ffffff;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
+            background-color: #4f4f4f;
+    color: #ffffffbf;
+    border: none;
+    padding: 2px 10px;
+    border-radius: 20px;
+    cursor: pointer;
             margin-right: 10px;
         }
 
         #notePopup button:hover {
-            background-color: #002fff;
+            background-color: #004fff;
         }
 
         #savedNote {
@@ -364,7 +363,7 @@
         }
 
         #toggleLoanBtn {
-            right: 100px;
+            right: 80px;
         }
 
         #addNoteBtn:hover, #addNoteBtnInitial:hover, #toggleLoanBtn:hover {
@@ -391,16 +390,16 @@
 
         /* Amount Label */
         .amount-label {
-           position: fixed;
-    font-size: 12px;
+          position: fixed;
+    font-size: 9px;
     color: #ffffff;
-    background: #001bb3;
-    padding: 5px 6px 5px 15px;
-    border-radius: 8px 0px 0px 8px;
+    background: #00103c;
+    padding: 1px 13px;
+    border-radius: 48px 0px 0px 48px;
     z-index: 1000;
     filter: drop-shadow(2px 0px 16px black);
     right: 0px;
-    bottom: 66px;
+    top: 330px;
         }
         ::placeholder {
             color: rgba(255, 255, 255, 0.783);
@@ -437,7 +436,7 @@
             <div id="savedNote"></div>
         </div>
         <button id="toggleLoanBtn" style="display: none;">Show/Hide</button>
-        <button id="addNoteBtn" style="display: none;">Add Note</button>
+        <button id="addNoteBtn" style="display: none;">+ Note</button>
     </div>
 
     <div id="notePopup">
@@ -500,8 +499,8 @@
                     document.getElementById("poweredByMsg").style.display = "block";
                     setTimeout(() => {
                         document.getElementById("poweredByMsg").style.display = "none";
-                    }, 1500);
-                }, 2000);
+                    }, 500);
+                }, 500);
             }
 
             loadSavedNotes();
