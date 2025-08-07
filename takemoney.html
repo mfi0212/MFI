@@ -198,36 +198,35 @@
                 }
             });
 
-            // Time restriction logic
             function checkTimeRestriction() {
-                const now = new Date();
-                const hours = now.getHours();
-                const minutes = now.getMinutes();
-                const timeInMinutes = hours * 60 + minutes;
-                const startRestriction = 23 * 60;//11
-                const endRestriction = 18 * 60;//6
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const timeInMinutes = hours * 60 + minutes;
+    const startRestriction = 22 * 60 + 30; // 10:30 PM (22:30)
+    const endRestriction = 6 * 60; // 6:00 AM (6:00)
 
-                const sleepingMessage = document.getElementById("sleeping-message");
-                const form = document.getElementById("form");
-                const themeToggle = document.querySelector(".theme-toggle");
+    const sleepingMessage = document.getElementById("sleeping-message");
+    const form = document.getElementById("form");
+    const themeToggle = document.querySelector(".theme-toggle");
 
-                // Check if current time is between 10:30 PM and 6:00 PM
-                if (timeInMinutes >= startRestriction || timeInMinutes < endRestriction) {
-                    sleepingMessage.style.display = "flex";
-                    form.style.display = "none";
-                    themeToggle.style.display = "none";
-                } else {
-                    sleepingMessage.style.display = "none";
-                    form.style.display = "block";
-                    themeToggle.style.display = "flex";
-                }
-            }
+    // Check if current time is between 10:30 PM and 6:00 AM
+    if (timeInMinutes >= startRestriction || timeInMinutes < endRestriction) {
+        sleepingMessage.style.display = "flex";
+        form.style.display = "none";
+        themeToggle.style.display = "none";
+    } else {
+        sleepingMessage.style.display = "none";
+        form.style.display = "block";
+        themeToggle.style.display = "flex";
+    }
+}
 
-            // Run the check immediately
-            checkTimeRestriction();
+// Run the check immediately
+checkTimeRestriction();
 
-            // Update every minute to handle time changes
-            setInterval(checkTimeRestriction, 60000);
+// Update every minute to handle time changes
+setInterval(checkTimeRestriction, 60000);
         });
     </script>
 </body>
