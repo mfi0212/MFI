@@ -47,14 +47,14 @@
         .fixed {
            position: fixed;
     top: 0px;
-    height: 280px;
+    height: 275px;
     padding: 55px 23px;
     left: 0px;
     background-color: transparent;
     width: 100%;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(5px);
     z-index: 10;
-    border-bottom: solid 1px #ffffff3d;
+    border-bottom: solid 1.5px #ffffff40;
     border-radius: 0px 0px 25px 25px;
         }
         .scroll {
@@ -161,15 +161,15 @@
         }
         .close-btn {
             position: fixed;
-            top: 15px;
-            left: 15px;
-            color: #e0e0e0;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 11;
-            background: #282828;
-            padding: 10px 11px;
-            border-radius: 134px;
+    top: 21px;
+    left: 20px;
+    color: #e0e0e0;
+    font-size: 17px;
+    cursor: pointer;
+    z-index: 11;
+    background: #282828;
+    padding: 10px 11px;
+    border-radius: 50px;
         }
 
         i {
@@ -238,9 +238,10 @@
             padding: 10px 0;
             margin-bottom: 20px;
             border-bottom: 1px solid #2a2a2a;
-            width: 103%;
+            width: 100%;
             padding-bottom: 30px;
-            position: relative; /* For positioning the amount label */
+            position: relative; 
+                z-index: 6;
         }
         ::-webkit-scrollbar {
             width: 10px;
@@ -292,15 +293,15 @@
         #notePopup {
                display: none;
     position: fixed;
-    bottom: 35px;
-    width: 98%;
+    bottom: 0px;
+    width: 97%;
     background: linear-gradient(358deg, #000000, #141414);
     padding: 20px;
     border-top: 2px solid #4f4f4f;
     z-index: 12000;
     box-shadow: 0px -150px 1000px 50px rgb(4 0 255 / 66%);
     align-items: center;
-    height: 340px;
+    height: 325px;
     border-radius: 20px;
     text-align: center;
     max-width: 600px;
@@ -390,16 +391,15 @@
 
         /* Amount Label */
         .amount-label {
-          position: fixed;
+              position: fixed;
     font-size: 9px;
     color: #ffffff;
-    background: #00103c;
-    padding: 1px 13px;
+    background-image: linear-gradient(282deg, black, #1200ff);
+    padding: 1px 15px;
     border-radius: 48px 0px 0px 48px;
-    z-index: 1000;
-    filter: drop-shadow(2px 0px 16px black);
+    z-index: 100;
     right: 0px;
-    top: 330px;
+    top: 310px;
         }
         ::placeholder {
             color: rgba(255, 255, 255, 0.783);
@@ -421,7 +421,10 @@
     <div id="userInfoModal" class="modal">
         <span><i class="fa-solid fa-arrow-left close-btn" onclick="closeModal()"></i></span>
         <div class="fixed">
-            <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">Borrower</h3>
+            <h3 style="    text-decoration: underline;
+    margin: 20px 0px;
+    font-weight: 600;
+    font-size: 15px;">Borrower</h3>
             <div class="profile-container">
                 <div class="profile-picture" id="profilePicture"></div>
                 <p style="font-size: 20px; display: flex; align-items: center; gap: 4px;">
@@ -450,7 +453,7 @@
 
     <div id="poweredByMsg" class="powered-by">Powered by BsPsgenerater</div>
 
-    <div class="mfi" style="position: fixed; bottom: 0px; font-size: 10px; color: #848484; z-index: 1000; background: #000000; width: 100%; text-align: center; padding: 10px; filter: drop-shadow(0px 0px 66px black);">
+    <div class="mfi" style="position: fixed; bottom: 0px; font-size: 10px; color: #848484; z-index: 1000; background: #00000082; width: 100%; text-align: center; padding: 10px; filter: drop-shadow(0px 0px 66px black);">
         <a target="_blank" style="text-decoration: none;" href="https://mfi0212.github.io/MFI/mfimain">By BsLends</a>
     </div>
 
@@ -508,21 +511,21 @@
 
         const passwords = {
             "0212": {
-                name: "Phani yerra",
+                name: "Phanindra yerra",
                 loans: [
                     {
-                        planDate: "24-05-2025",
-                        endDate: "2-06-2025(Extended to 5 days)",
-                        interest: 8000,
-                        takenAmount: 18000,
-                        takenFrom: "MLending"
+                        planDate: "24-07-2025",
+                        endDate: "24-08-2025",
+                        interest: 6250,
+                        takenAmount: 25000,
+                        takenFrom: "Golden"
                     },
                     {
-                        planDate: "24-05-2025",
-                        endDate: "20-08-2025(Extended to 5 days)",
-                        interest: 8000,
-                        takenAmount: 28000,
-                        takenFrom: "MLending"
+                        planDate: "05-08-2025",
+                        endDate: "05-09-2025",
+                        interest: 3750,
+                        takenAmount: 15000,
+                        takenFrom: "Golden"
                     },
                 ]
             },
