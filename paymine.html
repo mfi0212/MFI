@@ -79,7 +79,7 @@
 
     .plan:hover {
       transform: translateY(-8px);
-      box-shadow: 0 10px 20px rgba(100, 65, 165, 0.4); /* Purple shadow on hover */
+      box-shadow: 0 0px 120px rgba(100, 65, 165, 0.4); /* Purple shadow on hover */
     }
 
     .plan h2 {
@@ -90,16 +90,15 @@
     }
 
     .plan p {
-      font-size: 0.95rem;
-      color: #a1a1aa;
-      margin: 0.5rem 0;
+      font-size: 13px;
+      margin: 20px 0;
     }
 
     .plan button {
       background: #6441a5; /* Twitch purple */
       color: #ffffff;
       border: none;
-      padding: 0.75rem 1.5rem;
+      padding: 10px 20px;
       cursor: pointer;
       font-size: 1rem;
       font-weight: 600;
@@ -258,7 +257,7 @@
 <body>
 
 <header>
-  <h1>Pay Mine <h3>We pay for you when you don’t have, Pay back when you have</h3>
+  <h1>Pay Mine <h3 style="color: #00e1a4;">We pay for you when you don’t have, Pay back when you have</h3>
   </h1>
 </header>
 
@@ -273,14 +272,14 @@
 <section class="plans">
   <div class="plan">
     <h2>Pay Mine</h2>
-    <p>We pay your bill, repay to us when you have money.</p>
-    <p>Click below to apply.</p>
+    <p>If you have bills to pay. But you don’t have money to pay</p>
+    <p style="color: #00e1a4;" >Click below to apply for money.</p>
     <button onclick="openApply()" aria-label="Apply for Pay Mine">Take Money</button>
   </div>
   <div class="plan">
     <h2>My Account</h2>
-    <p>View your borrowed amount and fees.</p>
-    <p>Click below to access.</p>
+    <p>View your borrowed amount and more details here....</p>
+    <p style="color: #00e1a4;">Click below to view the details.</p>
     <button onclick="openPopup()" aria-label="View My Account">My Account</button>
   </div>
 </section>
@@ -379,21 +378,27 @@
     if (e.key === "Escape") closePopup();
   });
 
-  // Note: Custom context menu code is present but references a non-existent .custom-menu element
-  document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
-    if (customMenu) {
-      document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-      });
-      document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-      });
-    }
-  });
 </script>
+<script>
+        
+        document.addEventListener("DOMContentLoaded", () => {
+            const customMenu = document.querySelector(".custom-menu");
+
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                if (customMenu) {
+                    customMenu.style.display = "block";
+                    customMenu.style.top = `${event.pageY}px`;
+                    customMenu.style.left = `${event.pageX}px`;
+                }
+            });
+
+            document.addEventListener("click", () => {
+                if (customMenu) {
+                    customMenu.style.display = "none";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
