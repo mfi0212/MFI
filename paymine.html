@@ -3,38 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PayMine</title><link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>PayMine</title>
+  <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-      color: #333;
+      background: #18181b; /* Twitch dark background */
+      color: #e4e4e7; /* Light text for contrast */
       line-height: 1.6;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
     header {
-      background: linear-gradient(90deg, #0077cc, #00aaff);
-      color: white;
+      background: #6441a5; /* Twitch purple */
+      color: #ffffff;
       padding: 1.5rem;
       text-align: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
     header h1 {
       margin: 0;
       font-size: 2rem;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
     .intro {
@@ -46,7 +53,7 @@
 
     .intro p {
       font-size: 1.1rem;
-      color: #444;
+      color: #a1a1aa; /* Lighter gray for secondary text */
       font-weight: 300;
     }
 
@@ -54,28 +61,28 @@
       display: flex;
       justify-content: center;
       gap: 2rem;
-      padding: 2rem;
+      padding: 5px;
       flex-wrap: wrap;
     }
 
     .plan {
-      background: white;
-      border: none;
-      border-radius: 12px;
-      padding: 2rem;
-      width: 300px;
-      text-align: center;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #26262b;
+    border: 1px solid #3f3f46;
+    padding: 2rem;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 500px;
     }
 
     .plan:hover {
       transform: translateY(-8px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 10px 20px rgba(100, 65, 165, 0.4); /* Purple shadow on hover */
     }
 
     .plan h2 {
-      color: #0077cc;
+      color: #b9a3e3; /* Lighter purple for headings */
       font-size: 1.6rem;
       margin-bottom: 0.75rem;
       font-weight: 600;
@@ -83,32 +90,31 @@
 
     .plan p {
       font-size: 0.95rem;
-      color: #666;
+      color: #a1a1aa;
       margin: 0.5rem 0;
     }
 
     .plan button {
-      background: linear-gradient(90deg, #0077cc, #00aaff);
-      color: white;
+      background: #6441a5; /* Twitch purple */
+      color: #ffffff;
       border: none;
       padding: 0.75rem 1.5rem;
-      border-radius: 8px;
       cursor: pointer;
       font-size: 1rem;
-      font-weight: 500;
+      font-weight: 600;
       transition: background 0.3s ease, transform 0.2s ease;
     }
 
     .plan button:hover {
-      background: linear-gradient(90deg, #005fa3, #0088cc);
+      background: #7e57c2; /* Lighter purple on hover */
       transform: scale(1.05);
     }
 
     footer {
       text-align: center;
       padding: 1.5rem;
-      background: #f8f9fa;
-      color: #777;
+      background: #1f1f23;
+      color: #71717a;
       font-size: 0.9rem;
       margin-top: auto;
     }
@@ -119,22 +125,21 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: white;
-      border: none;
-      border-radius: 12px;
+      background: #26262b;
+      border: 1px solid #3f3f46;
       padding: 2rem;
       z-index: 10;
       width: 360px;
       max-height: 85vh;
       overflow-y: auto;
       text-align: center;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
       animation: fadeIn 0.3s ease;
     }
 
     .popup h3 {
       margin: 0 0 1.25rem;
-      color: #0077cc;
+      color: #b9a3e3;
       font-size: 1.3rem;
       font-weight: 600;
     }
@@ -143,33 +148,33 @@
       width: 100%;
       padding: 0.75rem;
       margin: 0.75rem 0;
-      border: 1px solid #ddd;
-      border-radius: 8px;
+      border: 1px solid #3f3f46;
       font-size: 0.95rem;
+      background: #1f1f23;
+      color: #e4e4e7;
       outline: none;
       text-align: center;
       transition: border-color 0.3s ease;
     }
 
     .popup input:focus {
-      border-color: #0077cc;
+      border-color: #6441a5;
     }
 
     .popup button {
       width: 100%;
-      background: linear-gradient(90deg, #0077cc, #00aaff);
-      color: white;
+      background: #6441a5;
+      color: #ffffff;
       border: none;
       padding: 0.75rem;
-      border-radius: 8px;
       cursor: pointer;
       font-size: 1rem;
-      font-weight: 500;
+      font-weight: 600;
       transition: background 0.3s ease;
     }
 
     .popup button:hover {
-      background: linear-gradient(90deg, #005fa3, #0088cc);
+      background: #7e57c2;
     }
 
     .popup table {
@@ -181,19 +186,20 @@
 
     .popup th,
     .popup td {
-      border: 1px solid #eee;
+      border: 1px solid #3f3f46;
       padding: 0.75rem;
       text-align: left;
     }
 
     .popup th {
-      background: linear-gradient(90deg, #0077cc, #00aaff);
-      color: white;
-      font-weight: 500;
+      background: #6441a5;
+      color: #ffffff;
+      font-weight: 600;
     }
 
     .popup td {
-      background: #f9f9f9;
+      background: #1f1f23;
+      color: #e4e4e7;
     }
 
     .overlay {
@@ -203,12 +209,15 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.7);
       z-index: 5;
       animation: fadeInOverlay 0.3s ease;
     }
 
     #errorMsg {
+      color: #f87171; /* Red for errors, Twitch-inspired */
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
       transition: opacity 0.3s ease;
     }
 
@@ -217,23 +226,13 @@
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translate(-50%, -60%);
-      }
-      to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-      }
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
     }
 
     @keyframes fadeInOverlay {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     @media (max-width: 768px) {
@@ -249,16 +248,6 @@
         flex-direction: column;
         align-items: center;
         gap: 1.5rem;
-      }
-
-      .plan {
-        width: 90%;
-        max-width: 350px;
-      }
-
-      .popup {
-        width: 90%;
-        max-width: 320px;
       }
     }
   </style>
@@ -278,7 +267,7 @@
 <section class="plans">
   <div class="plan">
     <h2>Pay Mine</h2>
-    <p>We pay your bill repay to us when you have money.</p>
+    <p>We pay your bill, repay to us when you have money.</p>
     <p>Click below to apply.</p>
     <button onclick="openApply()" aria-label="Apply for Pay Mine">Take Money</button>
   </div>
@@ -298,8 +287,8 @@
 <div class="popup" id="passwordPopup">
   <h3>Enter Password</h3>
   <input type="password" id="passwordInput" placeholder="Enter your password">
-  <button onclick="checkPassword()">Submit</button>
-  <p id="errorMsg" style="color: #ff0000; font-size: 13px;"></p>
+  <button id="submitButton" onclick="checkPassword()">Submit</button>
+  <p id="errorMsg"></p>
   <div id="accountsTable" style="display: none;">
     <h3>Your Accounts</h3>
     <table>
@@ -320,17 +309,9 @@
 <script>
   // Data: password -> array of accounts
   const accountsData = {
-    "admin123": [
-      { name: "John Doe", amount: 150 },
-      { name: "Alice Brown", amount: 250 }
+    "Test": [
+      { name: "1", amount: 150 },
     ],
-    "team456": [
-      { name: "Mohammed Ali", amount: 100 },
-      { name: "Sara Khan", amount: 90 }
-    ],
-    "user789": [
-      { name: "David", amount: 60 }
-    ]
   };
 
   function openApply() {
@@ -340,6 +321,8 @@
   function openPopup() {
     document.getElementById("overlay").style.display = "block";
     document.getElementById("passwordPopup").style.display = "block";
+    document.getElementById("passwordInput").style.display = "block";
+    document.getElementById("submitButton").style.display = "block";
     document.getElementById("accountsTable").style.display = "none";
     document.getElementById("passwordInput").value = "";
     document.getElementById("errorMsg").innerText = "";
@@ -348,9 +331,11 @@
   function closePopup() {
     document.getElementById("overlay").style.display = "none";
     document.getElementById("passwordPopup").style.display = "none";
-    document.getElementById("errorMsg").innerText = "";
-    document.getElementById("passwordInput").value = "";
+    document.getElementById("passwordInput").style.display = "block";
+    document.getElementById("submitButton").style.display = "block";
     document.getElementById("accountsTable").style.display = "none";
+    document.getElementById("passwordInput").value = "";
+    document.getElementById("errorMsg").innerText = "";
   }
 
   function checkPassword() {
@@ -370,9 +355,9 @@
         tableBody.appendChild(row);
       });
       document.getElementById("passwordInput").style.display = "none";
+      document.getElementById("submitButton").style.display = "none";
       document.getElementById("errorMsg").innerText = "";
       document.getElementById("accountsTable").style.display = "block";
-      document.querySelector(".popup button").style.display = "none";
     } else {
       document.getElementById("errorMsg").innerText = "Incorrect password";
     }
@@ -385,22 +370,42 @@
     if (e.key === "Escape") closePopup();
   });
 
-                  document.addEventListener("DOMContentLoaded", () => {
+  // Note: Custom context menu code is present but references a non-existent .custom-menu element
+  document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
-
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
+    if (customMenu) {
+      document.addEventListener("contextmenu", (event) => {
         event.preventDefault();
         customMenu.style.display = "block";
         customMenu.style.top = `${event.pageY}px`;
         customMenu.style.left = `${event.pageX}px`;
-    });
-
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
+      });
+      document.addEventListener("click", () => {
         customMenu.style.display = "none";
-    });
-});
+      });
+    }
+  });
 </script>
+<script>
+        
+        document.addEventListener("DOMContentLoaded", () => {
+            const customMenu = document.querySelector(".custom-menu");
+
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                if (customMenu) {
+                    customMenu.style.display = "block";
+                    customMenu.style.top = `${event.pageY}px`;
+                    customMenu.style.left = `${event.pageX}px`;
+                }
+            });
+
+            document.addEventListener("click", () => {
+                if (customMenu) {
+                    customMenu.style.display = "none";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
