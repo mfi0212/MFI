@@ -42,7 +42,7 @@
     if (accountsData[entered]) {
       document.getElementById("accountHeader").innerText = `${entered} Account`;
       accountsData[entered].forEach(entry => {
-        const fee = (entry.amount * 0.10).toFixed(2);
+        const fee = (entry.amount * 0.16).toFixed(2);
         const row = document.createElement("tr");
         row.innerHTML = `
           <td>${entry.name}</td>
@@ -91,3 +91,4 @@
     </script>
 </body>
 </html>
+
