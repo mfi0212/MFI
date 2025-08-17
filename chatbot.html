@@ -65,7 +65,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* padding: 5px; */
             letter-spacing: 1px;
         }
 
@@ -73,11 +72,10 @@
             width: 100%;
             max-width: 850px;
             background: var(--chat-container-bg);
-            /* border-radius: 15px; */
             box-shadow: 0 4px 20px var(--message-box-shadow);
             display: flex;
             flex-direction: column;
-            height: 55vh;
+            height: 80vh;
             overflow: hidden;
         }
 
@@ -130,13 +128,14 @@
         }
 
         .message {
-            max-width: 65%;
-            padding: 5px 15px;
-            border-radius: 13px;
-            line-height: 25px;
-            font-size: 14px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            color: var(--text-color);
+                max-width: 65%;
+    padding: 10px 25px;
+    border-radius: 25px;
+    line-height: 25px;
+    font-size: 13px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: var(--text-color);
+    letter-spacing: 1px;
         }
 
         .message:hover {
@@ -174,7 +173,6 @@
             align-items: center;
             gap: 10px;
         }
-
         .chat-input input,
         .chat-input button {
             padding: 8px 15px;
@@ -189,6 +187,7 @@
             transition: border-color 0.2s ease;
             background: var(--chat-container-bg);
             color: var(--text-color);
+            padding: 10px 30px;
         }
 
         .chat-input input:focus {
@@ -276,13 +275,14 @@
         </div>
         <div class="chat-input">
             <input type="text" id="user-input" placeholder="Type your response..." autocomplete="off">
-            <button id="send-button"><i class="fa-solid fa-paper-plane"></i></button>
+            <button id="send-button"><i style="rotate: 45deg;
+    font-size: 19px;" class="fa-solid fa-location-arrow"></i></button>
         </div>
         <div id="message"></div>
     </div>
     <footer>
         <div style="position: fixed; bottom: 0px; left: 0px; text-align: center; background: #28292a; padding: 10px; color: #ffffff80; font-weight: 200; width: 100%; font-size: 14px; line-height: 34px;filter: drop-shadow(2px -8px 8px #00000096);">
-            I'm Rora, developed by Black swan.
+            I'm Rora, developed by Black Swan.
         </div>
     </footer>
 
@@ -330,31 +330,55 @@
                 text: "In how many days will you return the amount?",
                 type: "text",
                 name: "Days"
-            },
-            {
-                text: "Do you like to apply for SPLIT PAY? <span style='color: blue; font-weight: 500;'>(Only for Premium - Tele members)</span>",
-                type: "radio",
-                name: "ApplySplit",
-                options: ["Yes", "No"],
-                onChange: "toggleSplitQuestions"
             }
         ];
 
-        const splitQuestions = [
+        const setupQuestions = [
             {
-                text: "Do you pay the split fee?",
+                text: "Is the amount you're taking an offer?",
                 type: "radio",
-                name: "PaySplitFee",
+                name: "offer or not",
                 options: ["Yes", "No"]
             },
             {
-                text: "How many splits would you like to do?",
-                type: "number",
-                name: "NumberOfSplits"
+                text: "Enter your name?",
+                type: "text",
+                name: "Name"
             },
             {
-                text: "<a href='https://mfi0212.github.io/swan/offer/split' class='new-button'>Explore Split pay</a>",
-                type: "link"
+                text: "Enter your password <strong style='color: orange;'>(Don't use zero's in your password)</strong>",
+                type: "text",
+                name: "Password"
+            },
+            {
+                text: "Enter your phone number? (Must be exactly 10 digits)",
+                type: "number",
+                name: "Phone number",
+                validate: (value) => {
+                    if (!/^\d{10}$/.test(value)) {
+                        return "Phone number must be exactly 10 digits.";
+                    }
+                    return null;
+                }
+            }
+        ];
+
+        const useQuestions = [
+            {
+                text: "How much amount would you like to take?",
+                type: "text",
+                name: "Amount"
+            },
+            {
+                text: "In how many days will you return the amount?",
+                type: "text",
+                name: "Days"
+            },
+            {
+                text: "Which service are you taking the amount from?",
+                type: "radio",
+                name: "Taking in",
+                options: ["Lendlink", "Golden", "MLending", "Mlld"]
             }
         ];
 
@@ -362,14 +386,21 @@
             { text: "Terms and Conditions", url: "https://mfi0212.github.io/MFI/terms" },
             { text: "I'm Late", url: "https://mfi0212.github.io/MFI/imlate" },
             { text: "Helper", url: "https://mfi0212.github.io/MFI/abt.hlp" },
-            { text: "Take Money", url: null }
+            { text: "Take Money", url: null },
+            { text: "BsRora", url: null }
+        ];
+
+        const fillOptions = [
+            { text: "Setup Autofill", value: "setup" },
+            { text: "Use Autofill", value: "use" }
         ];
 
         let currentQuestionIndex = 0;
         let formData = new FormData();
         let hasStarted = false;
-        let isSplitActive = false;
         let showingOptions = false;
+        let fillMode = "";
+        let autofillData = null;
 
         const chatBody = document.getElementById("chat-body");
         const userInput = document.getElementById("user-input");
@@ -422,18 +453,33 @@
                         ${option.text}
                     </label>
                 `).join("");
-                displayMessage(`With what can i help you?:<div class="radio-group">${optionsHtml}</div>`);
+                displayMessage(`Welcome! With what can I help you?:<div class="radio-group">${optionsHtml}</div>`);
                 showingOptions = true;
             }, 1000);
         }
 
         function handleStartOption(value) {
             displayMessage(value, false);
+            showingOptions = false;
             const selectedOption = startOptions.find(option => option.text === value);
             if (selectedOption.text === "Take Money") {
-                showingOptions = false;
                 hasStarted = true;
+                fillMode = "manual";
+                formData = new FormData();
+                currentQuestionIndex = 0;
                 askQuestion(currentQuestionIndex);
+            } else if (selectedOption.text === "BsRora") {
+                showTypingIndicator();
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    const optionsHtml = fillOptions.map(option => `
+                        <label class="radio">
+                            <input type="radio" name="fillMethod" value="${option.value}" onchange="handleFillMethod(this.value)">
+                            ${option.text}
+                        </label>
+                    `).join("");
+                    displayMessage(`Choose an option:<div class="radio-group">${optionsHtml}</div>`);
+                }, 1000);
             } else {
                 showTypingIndicator();
                 setTimeout(() => {
@@ -443,34 +489,131 @@
     padding: 4px 15px;
     color: #00e5ff;
     display: inline;" href="${selectedOption.url}" class="new-button" target="_blank">${selectedOption.text}</a> site?`);
-                    showingOptions = false;
-                    hasStarted = false; // Reset to allow /start again
+                    hasStarted = false;
                 }, 1000);
             }
         }
 
+        function handleFillMethod(value) {
+            const selectedText = fillOptions.find(option => option.value === value).text;
+            displayMessage(selectedText, false);
+            fillMode = value;
+            hasStarted = true;
+            formData = new FormData();
+            currentQuestionIndex = 0;
+            if (value === "setup") {
+                askSetupQuestion(currentQuestionIndex);
+            } else if (value === "use") {
+                const stored = localStorage.getItem('autofill');
+                if (!stored) {
+                    displayMessage("No autofill data found. Please use Setup Autofill first.");
+                    resetChat();
+                    return;
+                }
+                autofillData = JSON.parse(stored);
+                formData.append("offer or not", autofillData.offer);
+                formData.append("Name", autofillData.name);
+                formData.append("Password", autofillData.password);
+                formData.append("Phone number", autofillData.phone);
+                askUseQuestion(currentQuestionIndex);
+            }
+        }
+
         function askQuestion(index) {
-            if (index >= questions.length && !isSplitActive) {
+            if (index >= questions.length) {
                 submitForm();
                 return;
             }
 
-            const question = isSplitActive ? splitQuestions[index - questions.length] : questions[index];
+            const question = questions[index];
             showTypingIndicator();
             setTimeout(() => {
                 hideTypingIndicator();
                 if (question.type === "radio") {
                     let optionsHtml = question.options.map(option => `
                         <label class="radio">
-                            <input type="radio" name="${question.name}" value="${option}" ${question.onChange ? `onchange="${question.onChange}(this.value)"` : "onchange='handleRadioSelection(this)'"}>
+                            <input type="radio" name="${question.name}" value="${option}" onchange="handleRadioSelection(this)">
                             ${option}
                         </label>
                     `).join("");
                     displayMessage(`${question.text}<div class="radio-group">${optionsHtml}</div>`);
-                } else if (question.type === "link") {
+                } else {
                     displayMessage(question.text);
-                    currentQuestionIndex++;
-                    askQuestion(currentQuestionIndex);
+                }
+            }, 1000);
+        }
+
+        function askSetupQuestion(index) {
+            if (index >= setupQuestions.length) {
+                showTypingIndicator();
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    const autofill = {
+                        offer: formData.get("offer or not"),
+                        name: formData.get("Name"),
+                        password: formData.get("Password"),
+                        phone: formData.get("Phone number")
+                    };
+                    localStorage.setItem("autofill", JSON.stringify(autofill));
+                    displayMessage("Details stored for autofill.");
+                    resetChat();
+                }, 1000);
+                return;
+            }
+
+            const question = setupQuestions[index];
+            showTypingIndicator();
+            setTimeout(() => {
+                hideTypingIndicator();
+                if (question.type === "radio") {
+                    let optionsHtml = question.options.map(option => `
+                        <label class="radio">
+                            <input type="radio" name="${question.name}" value="${option}" onchange="handleSetupRadio(this)">
+                            ${option}
+                        </label>
+                    `).join("");
+                    displayMessage(`${question.text}<div class="radio-group">${optionsHtml}</div>`);
+                } else {
+                    displayMessage(question.text);
+                }
+            }, 1000);
+        }
+
+        function askUseQuestion(index) {
+            if (index >= useQuestions.length) {
+                showTypingIndicator();
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    const details = `
+                        Offer: ${formData.get("offer or not")}<br>
+                        Service: ${formData.get("Taking in")}<br>
+                        Name: ${formData.get("Name")}<br>
+                        Phone number: ${formData.get("Phone number")}<br>
+                        Amount: ${formData.get("Amount")}<br>
+                        Days: ${formData.get("Days")}<br>
+                        Password: ${formData.get("Password")}
+                    `;
+                    const confirmHtml = `<div class="radio-group">
+                        <label><input type="radio" name="confirm" value="Yes" onchange="handleConfirm(this.value)">Yes</label>
+                        <label><input type="radio" name="confirm" value="No" onchange="handleConfirm(this.value)">No</label>
+                    </div>`;
+                    displayMessage(`Here are the details:<br>${details}<br>Submit?${confirmHtml}`);
+                }, 1000);
+                return;
+            }
+
+            const question = useQuestions[index];
+            showTypingIndicator();
+            setTimeout(() => {
+                hideTypingIndicator();
+                if (question.type === "radio") {
+                    let optionsHtml = question.options.map(option => `
+                        <label class="radio">
+                            <input type="radio" name="${question.name}" value="${option}" onchange="handleUseRadio(this)">
+                            ${option}
+                        </label>
+                    `).join("");
+                    displayMessage(`${question.text}<div class="radio-group">${optionsHtml}</div>`);
                 } else {
                     displayMessage(question.text);
                 }
@@ -520,13 +663,7 @@
                         setTimeout(() => {
                             document.getElementById("message").textContent = "";
                             document.getElementById("message").style.display = "none";
-                            // Reset chat
-                            currentQuestionIndex = 0;
-                            isSplitActive = false;
-                            hasStarted = false;
-                            showingOptions = false;
-                            formData = new FormData();
-                            chatBody.innerHTML = `<div class="message bot-message">I'm Rora, developed by BS. I'm here to help you apply for an amount and assist with anything I can!</div><div class="message bot-message">Enter /start to begin</div>`;
+                            resetChat();
                         }, 2600);
                     })
                     .catch(function (error) {
@@ -539,29 +676,57 @@
             }, 1000);
         }
 
-        function toggleSplitQuestions(value) {
-            isSplitActive = value === "Yes";
-            displayMessage(value, false); // Display the selected radio option as user message
+        function handleRadioSelection(radio) {
+            const question = questions[currentQuestionIndex];
+            formData.append(question.name, radio.value);
+            displayMessage(radio.value, false);
             currentQuestionIndex++;
             askQuestion(currentQuestionIndex);
         }
 
-        function handleRadioSelection(radio) {
-            const question = isSplitActive ? splitQuestions[currentQuestionIndex - questions.length] : questions[currentQuestionIndex];
+        function handleSetupRadio(radio) {
+            const question = setupQuestions[currentQuestionIndex];
             formData.append(question.name, radio.value);
-            displayMessage(radio.value, false); // Display the selected radio option as user message
-            if (!question.onChange) {
-                currentQuestionIndex++;
-                askQuestion(currentQuestionIndex);
+            displayMessage(radio.value, false);
+            currentQuestionIndex++;
+            askSetupQuestion(currentQuestionIndex);
+        }
+
+        function handleUseRadio(radio) {
+            const question = useQuestions[currentQuestionIndex];
+            formData.append(question.name, radio.value);
+            displayMessage(radio.value, false);
+            currentQuestionIndex++;
+            askUseQuestion(currentQuestionIndex);
+        }
+
+        function handleConfirm(value) {
+            displayMessage(value, false);
+            if (value === "Yes") {
+                submitForm();
+            } else {
+                displayMessage("Submission cancelled.");
+                resetChat();
             }
+        }
+
+        function resetChat() {
+            currentQuestionIndex = 0;
+            hasStarted = false;
+            showingOptions = false;
+            formData = new FormData();
+            fillMode = "";
+            chatBody.innerHTML = `<div class="message bot-message">I'm BsRora, developed to help you apply for amounts and assist with anything from BS/MFI...!<br><br>Enter /start to begin</div><div class="typing-indicator" id="typing-indicator">typing...</div>`;
         }
 
         sendButton.addEventListener("click", () => {
             const answer = userInput.value.trim();
+            userInput.value = "";
+            if (!answer) return;
+
             if (!hasStarted && !showingOptions) {
                 if (answer.toLowerCase() === "/start") {
                     displayMessage(answer, false);
-                    userInput.value = "";
                     showStartOptions();
                 } else {
                     displayMessage("Enter /start to begin.", true);
@@ -569,34 +734,31 @@
                 return;
             }
 
-            if (answer && !isSplitActive && questions[currentQuestionIndex].type !== "radio" && questions[currentQuestionIndex].type !== "link") {
-                const question = questions[currentQuestionIndex];
-                if (question.validate) {
-                    const validationError = question.validate(answer);
-                    if (validationError) {
-                        displayMessage(validationError);
-                        return;
-                    }
+            let question;
+            if (fillMode === "manual") {
+                question = questions[currentQuestionIndex];
+            } else if (fillMode === "setup") {
+                question = setupQuestions[currentQuestionIndex];
+            } else if (fillMode === "use") {
+                question = useQuestions[currentQuestionIndex];
+            }
+
+            if (question && question.type !== "radio") {
+                const validationError = question.validate ? question.validate(answer) : null;
+                if (validationError) {
+                    displayMessage(validationError);
+                    return;
                 }
                 displayMessage(answer, false);
                 formData.append(question.name, answer);
-                userInput.value = "";
                 currentQuestionIndex++;
-                askQuestion(currentQuestionIndex);
-            } else if (answer && isSplitActive && splitQuestions[currentQuestionIndex - questions.length].type !== "radio" && splitQuestions[currentQuestionIndex - questions.length].type !== "link") {
-                const question = splitQuestions[currentQuestionIndex - questions.length];
-                if (question.validate) {
-                    const validationError = question.validate(answer);
-                    if (validationError) {
-                        displayMessage(validationError);
-                        return;
-                    }
+                if (fillMode === "manual") {
+                    askQuestion(currentQuestionIndex);
+                } else if (fillMode === "setup") {
+                    askSetupQuestion(currentQuestionIndex);
+                } else if (fillMode === "use") {
+                    askUseQuestion(currentQuestionIndex);
                 }
-                displayMessage(answer, false);
-                formData.append(question.name, answer);
-                userInput.value = "";
-                currentQuestionIndex++;
-                askQuestion(currentQuestionIndex);
             }
         });
 
@@ -607,7 +769,6 @@
         });
     </script>
     <script>
-        
         document.addEventListener("DOMContentLoaded", () => {
             const customMenu = document.querySelector(".custom-menu");
 
