@@ -170,14 +170,17 @@
         }
 
         .chat-input {
-            padding: 10px;
-            border-top: 1px solid var(--border-color);
-            background: var(--chat-container-bg);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-                position: sticky;
-    bottom: 50px;
+                padding: 10px;
+    border-top: 1px solid var(--border-color);
+    background: var(--chat-container-bg);
+    display: flex
+;
+    align-items: center;
+    gap: 10px;
+    position: fixed;
+    bottom: 100px;
+    width: 100%;
+    max-width: 850px;
         }
         .chat-input input,
         .chat-input button {
