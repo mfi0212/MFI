@@ -75,7 +75,7 @@
             box-shadow: 0 4px 20px var(--message-box-shadow);
             display: flex;
             flex-direction: column;
-            height: 55vh;
+            height: 70vh;
             overflow: hidden;
         }
 
@@ -128,13 +128,14 @@
         }
 
         .message {
-            max-width: 65%;
-            padding: 5px 15px;
-            border-radius: 13px;
-            line-height: 25px;
-            font-size: 14px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            color: var(--text-color);
+            max-width: 70%;
+    padding: 11px 20px;
+    border-radius: 25px;
+    line-height: 22px;
+    font-size: 13px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: var(--text-color);
+    letter-spacing: 0.8px;
         }
 
         .message:hover {
@@ -184,6 +185,7 @@
 
         .chat-input input {
             flex: 1;
+                padding: 10px 25px;
             transition: border-color 0.2s ease;
             background: var(--chat-container-bg);
             color: var(--text-color);
