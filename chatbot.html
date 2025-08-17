@@ -66,17 +66,21 @@
             justify-content: center;
             align-items: center;
             letter-spacing: 1px;
+                height: 100vh;
         }
 
         .chat-container {
             width: 100%;
-            max-width: 850px;
-            background: var(--chat-container-bg);
-            box-shadow: 0 4px 20px var(--message-box-shadow);
-            display: flex;
-            flex-direction: column;
-            height: 65vh;
-            overflow: hidden;
+    max-width: 850px;
+    background: var(--chat-container-bg);
+    box-shadow: 0 4px 20px var(--message-box-shadow);
+    display: flex
+;
+    flex-direction: column;
+    overflow: hidden;
+    position: fixed;
+    top: 0px;
+    height: 90vh;
         }
 
         .chat-header {
