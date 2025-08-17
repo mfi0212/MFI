@@ -66,8 +66,6 @@
             justify-content: center;
             align-items: center;
             letter-spacing: 1px;
-            height: 100vh;
-            margin: 0;
         }
 
         .chat-container {
@@ -77,10 +75,8 @@
             box-shadow: 0 4px 20px var(--message-box-shadow);
             display: flex;
             flex-direction: column;
+            height: 65vh;
             overflow: hidden;
-            position: fixed;
-            top: 0;
-            height: 100vh;
         }
 
         .chat-header {
@@ -129,18 +125,16 @@
             flex-direction: column;
             gap: 15px;
             background: var(--chat-body-bg);
-            padding-bottom: 80px;
         }
 
         .message {
             max-width: 65%;
-            padding: 10px 25px;
-            border-radius: 25px;
+            padding: 5px 15px;
+            border-radius: 13px;
             line-height: 25px;
-            font-size: 13px;
+            font-size: 14px;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             color: var(--text-color);
-            letter-spacing: 1px;
         }
 
         .message:hover {
@@ -177,11 +171,15 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            max-width: 850px;
-            box-sizing: border-box;
+        }
+
+        .chat-input input,
+        .chat-input button {
+            padding: 8px 15px;
+            font-size: 15px;
+            border: 1.5px solid var(--input-border-color);
+            border-radius: 40px;
+            outline: none;
         }
 
         .chat-input input {
@@ -189,11 +187,6 @@
             transition: border-color 0.2s ease;
             background: var(--chat-container-bg);
             color: var(--text-color);
-            padding: 10px 30px;
-            font-size: 15px;
-            border: 1.5px solid var(--input-border-color);
-            border-radius: 40px;
-            outline: none;
         }
 
         .chat-input input:focus {
@@ -203,13 +196,11 @@
 
         .chat-input button {
             width: 50px;
-    background: #0045ff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s ease;
-    padding: 10px 15px;
-    border-radius: 101px;
+            background: #0045ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s ease;
         }
 
         .chat-input button:hover {
@@ -247,7 +238,7 @@
             color: #fff;
             align-self: center;
             box-shadow: 0 4px 20px var(--message-box-shadow);
-        }
+        } 
 
         .hidden {
             display: none;
@@ -282,12 +273,17 @@
             <div class="typing-indicator" id="typing-indicator">typing...</div>
         </div>
         <div class="chat-input">
-            <input type="text" id="user-input" placeholder="Type your response..." autocomplete="off" aria-label="Chat input">
-            <button id="send-button" aria-label="Send message"><i style="rotate: 45deg; font-size: 19px;" class="fa-solid fa-location-arrow"></i></button>
+            <input type="text" id="user-input" placeholder="Type your response..." autocomplete="off">
+            <button id="send-button"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
         <div id="message"></div>
     </div>
-   
+    <footer>
+        <div style="position: fixed; bottom: 0px; left: 0px; text-align: center; background: #28292a; padding: 10px; color: #ffffff80; font-weight: 200; width: 100%; font-size: 14px; line-height: 34px;filter: drop-shadow(2px -8px 8px #00000096);">
+            I'm Rora, developed by Black Swan.
+        </div>
+    </footer>
+
     <script>
         const questions = [
             {
@@ -389,7 +385,7 @@
             { text: "I'm Late", url: "https://mfi0212.github.io/MFI/imlate" },
             { text: "Helper", url: "https://mfi0212.github.io/MFI/abt.hlp" },
             { text: "Take Money", url: null },
-            { text: "BsRora(Autofill Bot)", url: null }
+            { text: "BsRora", url: null }
         ];
 
         const fillOptions = [
@@ -470,7 +466,7 @@
                 formData = new FormData();
                 currentQuestionIndex = 0;
                 askQuestion(currentQuestionIndex);
-            } else if (selectedOption.text === "BsRora(Autofill Bot)") {
+            } else if (selectedOption.text === "BsRora") {
                 showTypingIndicator();
                 setTimeout(() => {
                     hideTypingIndicator();
@@ -486,7 +482,11 @@
                 showTypingIndicator();
                 setTimeout(() => {
                     hideTypingIndicator();
-                    displayMessage(`Do you like to visit the <a style="background-color: #000000; border-radius: 30px; padding: 4px 15px; color: #00e5ff; display: inline;" href="${selectedOption.url}" class="new-button" target="_blank">${selectedOption.text}</a> site?`);
+                    displayMessage(`Do you like to visit the <a style="background-color: #000000;
+    border-radius: 30px;
+    padding: 4px 15px;
+    color: #00e5ff;
+    display: inline;" href="${selectedOption.url}" class="new-button" target="_blank">${selectedOption.text}</a> site?`);
                     hasStarted = false;
                 }, 1000);
             }
@@ -765,24 +765,20 @@
                 sendButton.click();
             }
         });
-
-        // Handle input focus to prevent unwanted scrolling
-        userInput.addEventListener("focus", () => {
-            const scrollPosition = chatBody.scrollTop;
-            setTimeout(() => {
-                chatBody.scrollTop = scrollPosition;
-                window.scrollTo(0, 0);
-            }, 0);
-        });
-
-        // Prevent default touch behavior on input to avoid zoom/scroll
-        userInput.addEventListener("touchstart", (e) => {
-            e.preventDefault();
-            userInput.focus();
-        });
-
+    </script>
+    <script>
         document.addEventListener("DOMContentLoaded", () => {
             const customMenu = document.querySelector(".custom-menu");
+
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                if (customMenu) {
+                    customMenu.style.display = "block";
+                    customMenu.style.top = `${event.pageY}px`;
+                    customMenu.style.left = `${event.pageX}px`;
+                }
+            });
+
             document.addEventListener("click", () => {
                 if (customMenu) {
                     customMenu.style.display = "none";
