@@ -72,14 +72,15 @@
       return;
     }
 
-    const interest = (amount * 0.125);
-    const fee = 10*days;
-    const total = interest + fee;
+    const dailyInterestRate = 0.125 / 15; // 12.5% for 15 days, so 0.008333 per day
+    const interest = (amount * dailyInterestRate * days).toFixed(2);
+    const fee = (10 * days).toFixed(2);
+    const total = (parseFloat(interest) + parseFloat(fee)).toFixed(2);
 
     resultElement.innerHTML = `
-      Interest for <span>₹${amount.toFixed(2)}</span> for <span>${days} days</span> was: <span>₹${interest.toFixed(2)}</span><br>
-      Our charges for ${days} days was: <span>₹${fee.toFixed(2)}</span><br>
-      Total amount to repay: <span>₹${total.toFixed(2)}</span>
+      Interest for <span>₹${amount.toFixed(2)}</span> for <span>${days} days</span> was: <span>₹${interest}</span><br>
+      Our charges for ${days} days was: <span>₹${fee}</span><br>
+      Total amount to repay: <span>₹${total}</span>
     `;
   }
 
@@ -97,24 +98,26 @@
       }
     });
   });
-        document.addEventListener("DOMContentLoaded", () => {
-            const customMenu = document.querySelector(".custom-menu");
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
 
-            document.addEventListener("contextmenu", (event) => {
-                event.preventDefault();
-                if (customMenu) {
-                    customMenu.style.display = "block";
-                    customMenu.style.top = `${event.pageY}px`;
-                    customMenu.style.left = `${event.pageX}px`;
-                }
-            });
+    document.addEventListener("contextmenu", (event) => {
+      event.preventDefault();
+      if (customMenu) {
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+      }
+    });
 
-            document.addEventListener("click", () => {
-                if (customMenu) {
-                    customMenu.style.display = "none";
-                }
-            });
-        });
-    </script>
+    document.addEventListener("click", () => {
+      if (customMenu) {
+        customMenu.style.display = "none";
+      }
+    });
+  });
+</script>
 </body>
 </html>
