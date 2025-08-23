@@ -54,18 +54,25 @@
                 name: "Phanindra yerra",
                 loans: [
                     {
-                        planDate: "14-08-2025",
-                        endDate: "13-09-2025",
-                        interest: 5200,
-                        takenAmount: 25000,
-                        takenFrom: "Golden"
-                    },
-                    {
                         planDate: "11-08-2025",
                         endDate: "26-08-2025",
                         interest: 1000,
                         takenAmount: 8000,
                         takenFrom: "STO Offer"
+                    },
+                    {
+                        planDate: "20-08-2025",
+                        endDate: "09-09-2025",
+                        interest: 1030,
+                        takenAmount: 2000,
+                        takenFrom: "STO"
+                    },
+                    {
+                        planDate: "14-08-2025",
+                        endDate: "13-09-2025",
+                        interest: 5200,
+                        takenAmount: 25000,
+                        takenFrom: "Golden"
                     },
                     {
                         planDate: "16-08-2025",
@@ -80,14 +87,7 @@
                         interest: 2500,
                         takenAmount: 5000,
                         takenFrom: "Lendlink"
-                    },
-                    {
-                        planDate: "21-08-2025",
-                        endDate: "24-08-2025",
-                        interest: 530,
-                        takenAmount: 9000,
-                        takenFrom: "Lendlink"
-                    },
+                    },            
                 ]
             },
         };
