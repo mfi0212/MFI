@@ -50,31 +50,17 @@
         });
 
         const passwords = {
-            "0212": {
-                name: "Phanindra yerra",
+            "0": {
+                name: "",
                 loans: [
                     
                     {
-                        planDate: "14-08-2025",
-                        endDate: "13-09-2025",
-                        interest: 5200,
-                        takenAmount: 25000,
+                        planDate: "",
+                        endDate: "",
+                        interest: 0,
+                        takenAmount: 0,
                         takenFrom: "Golden"
-                    },
-                    {
-                        planDate: "16-08-2025",
-                        endDate: "20-09-2025",
-                        interest: 1600,
-                        takenAmount: 8000,
-                        takenFrom: "STO Offer"
-                    },
-                    {
-                        planDate: "01-08-2025",
-                        endDate: "30-09-2025",
-                        interest: 2500,
-                        takenAmount: 5000,
-                        takenFrom: "Lendlink"
-                    },            
+                    },          
                 ]
             },
         };
