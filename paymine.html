@@ -72,7 +72,7 @@
     }
 
     const normalInterestRate = 0.25 / 15; // 25% for 15 days, so 0.016666 per day
-    const offerInterestRate = 0.21 / 15; // 21% for 15 days, so 0.014 per day
+    const offerInterestRate = 0.15 / 15; // 21% for 15 days, so 0.014 per day
     const interestRate = isOfferValid ? offerInterestRate : normalInterestRate;
     const interest = (amount * interestRate * days).toFixed(2);
     const feeRate = isOfferValid ? 0.0325 : 0.0325; // 21% off on fee if offer valid
@@ -131,8 +131,6 @@
 </script>
 </body>
 </html>
-
-
 
 
 
