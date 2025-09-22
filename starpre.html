@@ -67,6 +67,7 @@
             border: none;
             max-width: 600px;
             width: 100%;
+            position: relative;
         }
         .card:hover {
             transform: translateY(-4px);
@@ -131,8 +132,24 @@
             font-size: 11px;
             padding: 3px 8px;
             border-radius: 8px;
-            margin: 5px 0;
+            margin-right: 5px;
             display: inline-block;
+        }
+        .discount-text {
+            font-size: 11px;
+            font-weight: bold;
+            color: #0048ff;
+            display: inline-block;
+        }
+        .end-date {
+            position: absolute;
+    top: 23px;
+    right: 10px;
+    font-size: 10px;
+    color: black;
+    background: #ff000036;
+    padding: 3px 10px;
+    border-radius: 6px;
         }
         button {
             padding: 11px;
@@ -179,6 +196,10 @@
             .header p {
                 font-size: 14px;
             }
+            .end-date {
+                font-size: 9px;
+                padding: 3px 6px;
+            }
         }
     </style>
 </head>
@@ -208,6 +229,7 @@
         <!-- Turbo Plan -->
         <div class="card">
             <div class="badge">Tele</div>
+            <div id="endDateDisplay" class="end-date"></div>
             <img src="https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/animated/10000/2.gif" alt="Tele-STAR Plan Icon" aria-label="Tele-STAR Plan Icon">
             <h2 style="display: flex; justify-content: center; align-items: baseline; gap: 10px;">
                 Turbo <p style="color: green; font-size: 13px; font-weight: 500;">(Premium Plan)</p>
@@ -241,8 +263,8 @@
 
     <script>
         // === CONFIGURE YOUR OFFER DATES HERE ===
-        const startDate = new Date('2025-09-22');  // Replace with your actual start date (YYYY-MM-DD)
-        const endDate = new Date('2025-10-26');    // Replace with your actual end date (YYYY-MM-DD)
+        const startDate = new Date('2025-01-01');  // Replace with your actual start date (YYYY-MM-DD)
+        const endDate = new Date('2025-12-31');    // Replace with your actual end date (YYYY-MM-DD)
 
         const basePrice = 189;
         // Discounted prices (from previous calculations)
@@ -259,6 +281,7 @@
         const monthsSelect = document.getElementById('monthsSelect');
         const priceDisplay = document.getElementById('priceDisplay');
         const offerStatus = document.getElementById('offerStatus');
+        const endDateDisplay = document.getElementById('endDateDisplay');
 
         function updatePrice() {
             const now = new Date();
@@ -269,6 +292,7 @@
                 monthsSelect.style.display = 'none';
                 priceDisplay.style.display = 'none';
                 offerStatus.style.display = 'none';
+                endDateDisplay.style.display = 'none';
                 return;
             }
 
@@ -276,13 +300,19 @@
             monthsSelect.style.display = 'block';
             priceDisplay.style.display = 'block';
             offerStatus.style.display = 'block';
-            offerStatus.innerHTML = '<div class="offer-badge">Offer Active!</div>';
+            endDateDisplay.style.display = 'block';
+
+            // Format end date (e.g., "Dec 31, 2025")
+            endDateDisplay.textContent = `Ends: ${endDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
 
             const months = parseInt(monthsSelect.value);
             const originalTotal = fullPrices[months];
             const discountedTotal = discountedPrices[months];
             const monthly = Math.round(discountedTotal / months);
-            priceDisplay.innerHTML = `Total amount: <span class="strikethrough">₹${originalTotal}.00</span>₹${discountedTotal}.00`;
+            const discountPercent = months <= 6 ? 15 : 25;
+
+            offerStatus.innerHTML = `<div class="offer-badge">Offer Active!</div><span class="discount-text">${discountPercent}% Off</span>`;
+             priceDisplay.innerHTML = `Total amount: <span class="strikethrough">₹${originalTotal}.00</span>₹${discountedTotal}.00`;
         }
 
         monthsSelect.addEventListener('change', updatePrice);
