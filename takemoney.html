@@ -1,12 +1,95 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>BS/MFI | Take Money</title> <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png"> <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <style> @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&display=swap'); * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Red Hat Display", sans-serif; letter-spacing: 0.2px; } body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: white; padding: 20px; } #form { width: 91%; max-width: 400px; text-align: center; position: fixed; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .logo { font-size: 24px; font-weight: bold; color: #0045ff; position: fixed; top: 20px; right: 20px; } .theme-toggle { position: fixed; cursor: pointer; background: #000000; padding: 10px 12px; border-radius: 10px; display: flex; gap: 15px; justify-content: center; align-items: baseline; z-index: 1000; top: 10px; right: 10px; } .theme-toggle a { color: white; text-decoration: none; } h1 { font-size: 29px; color: #0045ff; margin-bottom: 0px; font-weight: 900; } p.subtitle { color: #666; margin-bottom: 20px; font-size: 14px; } .form-group { margin-bottom: 20px; display: none; } .form-group.active { display: block; } label { display: block; font-weight: bold; font-size: 14px; margin-bottom: 20px; color: #333; } input[type="text"], input[type="password"], input[type="number"], input[type="email"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 10px; font-size: 16px; outline: none; text-align: center; } input:focus { border: 1px solid #000000; } .radio-group label { display: flex; align-items: center; gap: 15px; margin: 15px; } button { width: 100%; padding: 12px; background-color: #0045ff; color: white; border: none; border-radius: 10px; font-size: 16px; cursor: pointer; } button:hover { background-color: #003ab6; } button#cancel-button { background-color: #cccccc40; color: #333; margin-top: 20px; } button#cancel-button:hover { background-color: #bbb; } .button-group { display: flex; justify-content: space-between; gap: 10px; } .info-text { color: #1c1c1ccf; font-size: 12px; bottom: 20px; line-height: 1.5; position: fixed; width: 90%; max-width: 400px; font-weight: 600; } .error-message { color: #ff0000; font-size: 12px; margin-top: 5px; display: none; } input.error { border-color: #ff0000; } .submitting-message { display: none; background-color: #002886; color: white; padding: 10px 25px; font-size: 14px; width: 100%; font-weight: 600; position: fixed; top: 0%; left: 0px; } /* New styles for sleeping message */ #sleeping-message { display: none; text-align: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: blue; z-index: 2000; flex-direction: column; justify-content: center; align-items: center; } #sleeping-message img { width: 200px; margin-bottom: 20px; } #sleeping-message p { font-size: 16px; color: white; font-weight: 400; max-width: 90%; letter-spacing: 0.3px; } </style> </head> <body> <div class="theme-toggle"> <a href="https://mfi0212.github.io/MFI/chatbot"><i style="font-size: 14px;" class="fa-solid fa-robot"></i></a> </div> <!-- Sleeping message container --> <div id="sleeping-message"> <img src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/about-to-sleep.gif" alt="Sleeping GIF"> <p>Amount providers are not available right now, Visit again at 6 am tomorrow.!<br>or <br> Try Snake Game</p> <a style=" margin: 40px;" href="https://blackswan19.github.io/golden/FM/game2"><button>Open Game Now</button></a> </div> <form id="form" method="POST"> <div class="form-group" data-step="1"> <h1>BS/MFI</h1> <p class="subtitle">Services take money form </p> <label>Enter your name <span style="color: red;">*</span></label> <input autofocus type="text" autocomplete="off" name="Name" required /> <div class="error-message" id="name-error">Try to enter your name</div> </div> <div class="form-group" data-step="2"> <h1>BS/MFI</h1> <p class="subtitle">Services take money form </p> <label>Enter your password <span style="color: red;">*</span> <strong style="color: #ff6c00;">(Don't use zeros)</strong></label> <input type="text" autocomplete="off" name="Password" required /> <div class="error-message" id="password-error">Password cannot contain zeros</div> </div> <div class="form-group" data-step="3"> <h1>BS/MFI</h1> <p class="subtitle">Services take money form </p> <label>Enter your phone number <span style="color: red;">*</span></label> <input type="number" autocomplete="off" name="Phone number" required /> <div class="error-message" id="phone-error">Try to enter a valid 10-digit phone number</div> </div> <div class="form-group" data-step="4"> <h1>BS/MFI</h1> <p class="subtitle">Select an option</p> <label>Amount you are taking from? <span style="color: red;">*</span></label> <div class="radio-group"> <label><input type="radio" name="Taking in" value="Lendlink" required /> Lendlink [BsLends]</label> <label><input type="radio" name="Taking in" value="Golden" /> Golden [BsLends]</label> <label><input type="radio" name="Taking in" value="MLending" /> MLending [Myootive]</label> <label><input type="radio" name="Taking in" value="Mlld" /> MLLD [Myootive]</label> </div> <div class="error-message" id="taking-in-error">Try to select an option</div> </div> <div class="form-group" data-step="5"> <h1>BS/MFI</h1> <p class="subtitle">Services take money form </p> <label>How much amount you like to take? <span style="color: red;">*</span></label> <input type="number" autocomplete="off" name="Amount" required min="1" /> <div class="error-message" id="amount-error">Try to enter a valid amount</div> </div> <div class="form-group" data-step="6"> <h1>BS/MFI</h1> <p class="subtitle">Services take money form </p> <label>In how many days you will return the amount? <span style="color: red;">*</span></label> <input type="number" autocomplete="off" name="Days" required min="1" /> <div class="error-message" id="days-error">Try to enter a valid number of days</div> </div> <div class="form-group" data-step="7"> <h1>BS/MFI</h1> <p class="subtitle">Select an option</p> <label>Is the amount you're taking an offer? <span style="color: red;">*</span></label> <div class="radio-group"> <label><input type="radio" name="offer or not" value="yes" required /> Yes</label> <label><input type="radio" name="offer or not" value="no" /> No</label> </div> <div class="error-message" id="offer-error">Try to select an option</div> <br> <span style="background-color: #000000; color: white; border-radius: 30px; padding: 10px 25px; font-size: 12px; font-weight: 600;"> NOTE: Wait few minutes after clicking on SUBMIT. </span> <span class="submitting-message" id="submitting-message">Submitting...</span> </div> <div class="button-group"> <button type="button" id="next-button">Continue</button> <button type="submit" id="submit-button" style="display: none;">Submit</button> </div> <div class="info-text"> To provide the amount, we need to collect the amount first. It takes few hours to arrange the amount, So be patience during this time to get the amount. <button type="button" id="cancel-button">Cancel</button> </div> </form>
-<script>
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>BS/MFI | Take Money</title> <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png"> <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <style> @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&display=swap'); * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Red Hat Display", sans-serif; letter-spacing: 0.2px; } body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: white; padding: 20px; } #form { width: 91%; max-width: 400px; text-align: center; position: fixed; display: none; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .logo { font-size: 24px; font-weight: bold; color: #0045ff; position: fixed; top: 20px; right: 20px; } .theme-toggle { position: fixed; cursor: pointer; background: #000000; padding: 10px 12px; border-radius: 10px; display: flex; gap: 15px; justify-content: center; align-items: baseline; z-index: 1000; top: 10px; right: 10px; } .theme-toggle a { color: white; text-decoration: none; } h1 { font-size: 29px; color: #0045ff; margin-bottom: 0px; font-weight: 900; } p.subtitle { color: #666; margin-bottom: 20px; font-size: 14px; } .form-group { margin-bottom: 20px; display: none; } .form-group.active { display: block; } label { display: block; font-weight: bold; font-size: 14px; margin-bottom: 20px; color: #333; } input[type="text"], input[type="password"], input[type="number"], input[type="email"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 10px; font-size: 16px; outline: none; text-align: center; } input:focus { border: 1px solid #000000; } input[readonly] { background-color: #f0f0f0; cursor: not-allowed; } .radio-group label { display: flex; align-items: center; gap: 15px; margin: 15px; } button { width: 100%; padding: 12px; background-color: #0045ff; color: white; border: none; border-radius: 10px; font-size: 16px; cursor: pointer; } button:hover { background-color: #003ab6; } button#cancel-button { background-color: #cccccc40; color: #333; margin-top: 20px; } button#cancel-button:hover { background-color: #bbb; } .button-group { display: flex; justify-content: space-between; gap: 10px; } .info-text { color: #1c1c1ccf; font-size: 12px; bottom: 20px; line-height: 1.5; position: fixed; width: 90%; max-width: 400px; font-weight: 600; } .error-message { color: #ff0000; font-size: 12px; margin-top: 5px; display: none; } input.error { border-color: #ff0000; } .submitting-message { display: none; background-color: #002886; color: white; padding: 10px 25px; font-size: 14px; width: 100%; font-weight: 600; position: fixed; top: 0%; left: 0px; } #sleeping-message { display: none; text-align: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: blue; z-index: 2000; flex-direction: column; justify-content: center; align-items: center; } #sleeping-message img { width: 200px; margin-bottom: 20px; } #sleeping-message p { font-size: 16px; color: white; font-weight: 400; max-width: 90%; letter-spacing: 0.3px; } #popup { display: flex; flex-direction: column; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1500; text-align: center; padding: 0px; } #popup-content { background-color: white; padding: 20px; border-radius: 10px; width: 90%; max-width: 400px; } #popup-content h2 { font-size: 24px; color: #0045ff; margin-bottom: 10px; } #popup-content label { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 10px; display: block; } #popup-content input[type="number"] { margin-bottom: 15px; } #interest-display { font-size: 16px; color: #333; margin: 15px 0; font-weight: 600; display: none; } #popup-buttons { display: flex; gap: 10px; justify-content: space-between; } #popup-cancel { background-color: #cccccc40; color: #333; } #popup-cancel:hover { background-color: #bbb; } #agree-section { margin: 15px 0; font-size: 14px; color: #333; text-align: left; } #agree-section label { display: flex; align-items: center; gap: 10px; margin-top: 10px; } </style> </head> <body> <div class="theme-toggle"> <a href="https://mfi0212.github.io/MFI/chatbot"><i style="font-size: 14px;" class="fa-solid fa-robot"></i></a> </div> <div id="sleeping-message"> <img src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/about-to-sleep.gif" alt="Sleeping GIF"> <p>Amount providers are not available right now, Visit again at 6 am tomorrow.!<br>or <br> Try Snake Game</p> <a style="margin: 40px;" href="https://blackswan19.github.io/golden/FM/game2"><button>Open Game Now</button></a> </div> <div id="popup"> <div id="popup-content"> <h2>BS/MFI</h2> <p class="subtitle">Enter your desired amount</p> <label>Amount you want to take <span style="color: red;">*</span></label> <input type="number" id="popup-amount" min="1" required /> <div class="error-message" id="popup-amount-error">Please enter a valid amount</div> <div id="interest-display"></div> <div id="popup-buttons"> <button id="popup-cancel">Cancel</button> <button id="popup-apply">Apply Now</button> </div> </div> </div> <form id="form" method="POST"> <div class="form-group" data-step="1"> <h1>BS/MFI</h1> <p class="subtitle">Services take money form</p> <label>Enter your name <span style="color: red;">*</span></label> <input autofocus type="text" autocomplete="off" name="Name" required /> <div class="error-message" id="name-error">Try to enter your name</div> </div> <div class="form-group" data-step="2"> <h1>BS/MFI</h1> <p class="subtitle">Services take money form</p> <label>Enter your password <span style="color: red;">*</span> <strong style="color: #ff6c00;">(Don't use zeros)</strong></label> <input type="text" autocomplete="off" name="Password" required /> <div class="error-message" id="password-error">Password cannot contain zeros</div> </div> <div class="form-group" data-step="3"> <h1>BS/MFI</h1> <p class="subtitle">Services take money form</p> <label>Enter your phone number <span style="color: red;">*</span></label> <input type="number" autocomplete="off" name="Phone number" required /> <div class="error-message" id="phone-error">Try to enter a valid 10-digit phone number</div> </div> <div class="form-group" data-step="4"> <h1>BS/MFI</h1> <p class="subtitle">Select an option</p> <label>Amount you are taking from? <span style="color: red;">*</span></label> <div class="radio-group"> <label><input type="radio" name="Taking in" value="Lendlink" required /> Lendlink [BsLends]</label> <label><input type="radio" name="Taking in" value="Golden" /> Golden [BsLends]</label> <label><input type="radio" name="Taking in" value="MLending" /> MLending [Myootive]</label> <label><input type="radio" name="Taking in" value="Mlld" /> MLLD [Myootive]</label> </div> <div class="error-message" id="taking-in-error">Try to select an option</div> </div> <div class="form-group" data-step="5"> <h1>BS/MFI</h1> <p class="subtitle">Services take money form</p> <label>How much amount you like to take? <span style="color: red;">*</span></label> <input type="number" autocomplete="off" name="Amount" required min="1" readonly /> <label>Interest amount <span style="color: red;">*</span></label> <input type="number" autocomplete="off" name="Interest" id="interest-input" required readonly /> <div class="error-message" id="amount-error">Try to enter a valid amount</div> </div> <div class="form-group" data-step="6"> <h1>BS/MFI</h1> <p class="subtitle">Services take money form</p> <label>In how many days you will return the amount? <span style="color: red;">*</span></label> <input type="number" autocomplete="off" name="Days" required min="1" /> <div class="error-message" id="days-error">Try to enter a valid number of days</div> </div> <div class="form-group" data-step="7"> <h1>BS/MFI</h1> <p class="subtitle">Select an option</p> <label>Is the amount you're taking an offer? <span style="color: red;">*</span></label> <div class="radio-group"> <label><input type="radio" name="offer or not" value="yes" required /> Yes</label> <label><input type="radio" name="offer or not" value="no" /> No</label> </div> <div class="error-message" id="offer-error">Try to select an option</div> </div> <div class="form-group" data-step="8"> <h1>BS/MFI</h1> <p class="subtitle">Agreement</p> <div id="agree-section"> <p>If I don't repay the amount which I'm taking now, You can complaint to the police, Or you can come to my house do whatever you want.</p> <label>Enter your name <span style="color: red;">*</span></label> <input type="text" autocomplete="off" name="AgreementName" id="agreement-name" required /> <div class="error-message" id="agreement-name-error">Try to enter your name</div> <label><input type="checkbox" id="agree-checkbox" name="Agreed" /> Agreed</label> <div class="error-message" id="agree-error">You must agree to the terms to proceed</div> </div> <br> <span style="background-color: #000000; color: white; border-radius: 30px; padding: 10px 25px; font-size: 12px; font-weight: 600;"> NOTE: Wait few minutes after clicking on SUBMIT. </span> <span class="submitting-message" id="submitting-message">Submitting...</span> </div> <div class="button-group"> <button type="button" id="next-button">Continue</button> <button type="submit" id="submit-button" style="display: none;">Submit</button> </div> <div class="info-text"> To provide the amount, we need to collect the amount first. It takes few hours to arrange the amount, So be patience during this time to get the amount. <button type="button" id="cancel-button">Cancel</button> </div> <input type="hidden" name="InterestPercentage" id="interest-percentage-input" /> </form>
+    <script>
         const form = document.getElementById("form");
         const steps = form.querySelectorAll('.form-group');
         const nextButton = document.getElementById("next-button");
         const submitButton = document.getElementById("submit-button");
         const cancelButton = document.getElementById("cancel-button");
         const submittingMessage = document.getElementById("submitting-message");
+        const popup = document.getElementById("popup");
+        const popupAmountInput = document.getElementById("popup-amount");
+        const popupAmountError = document.getElementById("popup-amount-error");
+        const interestDisplay = document.getElementById("interest-display");
+        const popupApply = document.getElementById("popup-apply");
+        const popupCancel = document.getElementById("popup-cancel");
+        const interestInput = document.getElementById("interest-input");
+        const interestPercentageInput = document.getElementById("interest-percentage-input");
+        const agreeCheckbox = document.getElementById("agree-checkbox");
+        const agreementNameInput = document.getElementById("agreement-name");
         let currentStep = 1;
+        let selectedInterest = null;
+        let selectedInterestPercentage = null;
+
+        function getRandomInterestPercentage() {
+            return Math.floor(Math.random() * (33 - 25 + 1)) + 25; // Random integer from 25 to 33
+        }
+
+        function getDailyInterestRate() {
+            const storedDate = localStorage.getItem('interestRateDate');
+            const storedRate = localStorage.getItem('interestRate');
+            const today = new Date().toDateString();
+
+            if (storedDate !== today || !storedRate) {
+                const newRate = getRandomInterestPercentage();
+                localStorage.setItem('interestRate', newRate);
+                localStorage.setItem('interestRateDate', today);
+                return newRate;
+            }
+            return parseInt(storedRate);
+        }
+
+        function calculateInterest(amount, percentage) {
+            return Math.round((amount * percentage) / 100);
+        }
+
+        function showPopup() {
+            popup.style.display = "flex";
+            form.style.display = "none";
+            const themeToggle = document.querySelector(".theme-toggle");
+            themeToggle.style.display = "none";
+            interestDisplay.style.display = "none";
+            popupAmountInput.value = "";
+            interestInput.value = "";
+            interestPercentageInput.value = "";
+            popupApply.textContent = "Apply Now";
+        }
+
+        popupAmountInput.addEventListener('input', () => {
+            const amount = parseFloat(popupAmountInput.value);
+            if (amount > 0) {
+                clearError(popupAmountInput, 'popup-amount-error');
+                form.querySelector('input[name="Amount"]').value = amount;
+                selectedInterestPercentage = getDailyInterestRate();
+                selectedInterest = calculateInterest(amount, selectedInterestPercentage);
+                interestDisplay.textContent = `Interest: ${selectedInterest} (${selectedInterestPercentage}%)`;
+                interestDisplay.style.display = "block";
+                interestInput.value = selectedInterest;
+                interestPercentageInput.value = selectedInterestPercentage;
+                popupApply.textContent = `${selectedInterest} interest, Apply now`;
+            } else {
+                interestDisplay.style.display = "none";
+                interestInput.value = "";
+                interestPercentageInput.value = "";
+                popupApply.textContent = "Apply Now";
+            }
+        });
+
+        popupApply.addEventListener('click', () => {
+            const amount = parseFloat(popupAmountInput.value);
+            if (amount <= 0 || isNaN(amount)) {
+                showError(popupAmountInput, 'popup-amount-error', 'Please enter a valid amount');
+                return;
+            }
+            popup.style.display = "none";
+            form.style.display = "block";
+            const themeToggle = document.querySelector(".theme-toggle");
+            themeToggle.style.display = "flex";
+            showStep(currentStep);
+        });
+
+        popupCancel.addEventListener('click', () => {
+            window.history.back();
+        });
 
         function showStep(step) {
             steps.forEach(s => s.classList.remove('active'));
@@ -15,7 +98,7 @@
             submitButton.style.display = step === steps.length ? 'block' : 'none';
         }
 
-        showStep(currentStep);
+        showPopup();
 
         nextButton.addEventListener('click', () => {
             if (validateStep(currentStep)) {
@@ -46,8 +129,9 @@
         function validateStep(step) {
             let isValid = true;
             const currentStepElement = form.querySelector(`[data-step="${step}"]`);
-            const input = currentStepElement.querySelector('input:not([type="radio"])');
+            const input = currentStepElement.querySelector('input:not([type="radio"]):not([type="checkbox"])');
             const radios = currentStepElement.querySelectorAll('input[type="radio"]');
+            const checkbox = currentStepElement.querySelector('input[type="checkbox"]');
 
             if (input) {
                 if (input.name === 'Name' && !input.value.trim()) {
@@ -71,11 +155,10 @@
                     } else {
                         clearError(input, 'phone-error');
                     }
-                } else if (input.name === 'Amount') {
+                } else if (input.name === 'Amount' || input.name === 'Interest') {
                     if (!input.value || input.value <= 0) {
                         showError(input, 'amount-error', 'Try to enter a valid amount');
                         isValid = false;
-                   ល
                     } else {
                         clearError(input, 'amount-error');
                     }
@@ -86,6 +169,9 @@
                     } else {
                         clearError(input, 'days-error');
                     }
+                } else if (input.name === 'AgreementName' && !input.value.trim()) {
+                    showError(input, 'agreement-name-error', 'Try to enter your name');
+                    isValid = false;
                 }
             } else if (radios.length > 0) {
                 const checked = currentStepElement.querySelector('input[type="radio"]:checked');
@@ -98,10 +184,19 @@
                 }
             }
 
+            if (step === steps.length && checkbox) {
+                if (!checkbox.checked) {
+                    showError(null, 'agree-error', 'You must agree to the terms to proceed');
+                    isValid = false;
+                } else {
+                    clearError(null, 'agree-error');
+                }
+            }
+
             return isValid;
         }
 
-        const inputs = form.querySelectorAll('input');
+        const inputs = form.querySelectorAll('input:not([type="checkbox"])');
         inputs.forEach(input => {
             input.addEventListener('input', () => {
                 if (input.name === 'Name' && input.value.trim()) {
@@ -110,10 +205,10 @@
                     clearError(input, 'password-error');
                 } else if (input.name === 'Phone number' && /^\d{10}$/.test(input.value)) {
                     clearError(input, 'phone-error');
-                } else if (input.name === 'Amount' && input.value > 0) {
-                    clearError(input, 'amount-error');
                 } else if (input.name === 'Days' && input.value > 0) {
                     clearError(input, 'days-error');
+                } else if (input.name === 'AgreementName' && input.value.trim()) {
+                    clearError(input, 'agreement-name-error');
                 }
             });
         });
@@ -126,6 +221,12 @@
                     clearError(null, 'offer-error');
                 }
             });
+        });
+
+        agreeCheckbox.addEventListener('change', () => {
+            if (agreeCheckbox.checked) {
+                clearError(null, 'agree-error');
+            }
         });
 
         form.addEventListener("submit", function (e) {
@@ -164,11 +265,13 @@
                 .then(data => {
                     alert("Details submitted successfully!");
                     form.reset();
+                    agreeCheckbox.checked = false;
                     currentStep = 1;
                     showStep(currentStep);
                     submitButton.disabled = false;
                     submitButton.style.opacity = '1';
                     submittingMessage.style.display = 'none';
+                    showPopup();
                 })
                 .catch(error => {
                     alert("An error occurred while submitting the form.");
@@ -199,34 +302,33 @@
             });
 
             function checkTimeRestriction() {
-    const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const timeInMinutes = hours * 60 + minutes;
-    const startRestriction = 22 * 60 + 30; // 10:30 PM (22:30)
-    const endRestriction = 6 * 60; // 6:00 AM (6:00)
+                const now = new Date();
+                const hours = now.getHours();
+                const minutes = now.getMinutes();
+                const timeInMinutes = hours * 60 + minutes;
+                const startRestriction = 22 * 60 + 30; // 10:30 PM
+                const endRestriction = 6 * 60; // 6:00 AM
 
-    const sleepingMessage = document.getElementById("sleeping-message");
-    const form = document.getElementById("form");
-    const themeToggle = document.querySelector(".theme-toggle");
+                const sleepingMessage = document.getElementById("sleeping-message");
+                const form = document.getElementById("form");
+                const themeToggle = document.querySelector(".theme-toggle");
+                const popup = document.getElementById("popup");
 
-    // Check if current time is between 10:30 PM and 6:00 AM
-    if (timeInMinutes >= startRestriction || timeInMinutes < endRestriction) {
-        sleepingMessage.style.display = "flex";
-        form.style.display = "none";
-        themeToggle.style.display = "none";
-    } else {
-        sleepingMessage.style.display = "none";
-        form.style.display = "block";
-        themeToggle.style.display = "flex";
-    }
-}
+                if (timeInMinutes >= startRestriction || timeInMinutes < endRestriction) {
+                    sleepingMessage.style.display = "flex";
+                    form.style.display = "none";
+                    themeToggle.style.display = "none";
+                    popup.style.display = "none";
+                } else {
+                    sleepingMessage.style.display = "none";
+                    popup.style.display = "flex";
+                    form.style.display = "none";
+                    themeToggle.style.display = "flex";
+                }
+            }
 
-// Run the check immediately
-checkTimeRestriction();
-
-// Update every minute to handle time changes
-setInterval(checkTimeRestriction, 60000);
+            checkTimeRestriction();
+            setInterval(checkTimeRestriction, 60000);
         });
     </script>
 </body>
