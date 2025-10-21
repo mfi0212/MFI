@@ -4,14 +4,14 @@
         const startDate = new Date('2025-01-01');  // Replace with your actual start date (YYYY-MM-DD)
         const endDate = new Date('2025-12-31');    // Replace with your actual end date (YYYY-MM-DD)
 
-        const basePrice = 622;
+        const basePrice = 450;
         // Discounted prices (from previous calculations)
         const discountedPrices = {
-            1: 461, 3: 882, 5: 1643, 8: 2186
+            1: 285, 3: 770, 5: 1153, 8: 1540
         };
         // Full base prices
         const fullPrices = {};
-        for (let i = 1; i <= 12; i++) {
+        for (let i = 1; i <= 8; i++) {
             fullPrices[i] = basePrice * i;
         }
 
