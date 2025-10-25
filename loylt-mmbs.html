@@ -1,421 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BS&MFI/Golden | Loyalty Wolves</title>
-  <link rel="icon" href="https://i.postimg.cc/SxwrHyLz/logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <style>
-    :root {
-      --bg: #0a0e17;
-      --card: rgba(255, 255, 255, 0.06);
-      --accent: #2563eb;
-      --gold: #fbbf24;
-      --text: #f8fafc;
-      --subtext: #94a3b8;
-      --border: rgba(255, 255, 255, 0.1);
-      --shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      --radius: 16px;
-      --ease: cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-       -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      padding: 100px 0px 130px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-    .loader {
-      position: fixed; inset: 0; background: black;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      z-index: 9999; gap: 6px;
-    }
-    .loader h1 {
-      font-weight: 800; font-size: 1.8rem; letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #fff, var(--gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;    margin: -5px;
-
-    }
-    .loader .dots {     display: flex
-;
-    gap: 17px;
-    position: fixed;
-    bottom: 100px; }
-    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 1.4s infinite alternate; }
-    .dot:nth-child(2) { animation-delay: .2s; } .dot:nth-child(3) { animation-delay: .4s; }
-    @keyframes pulse { from { opacity: .4; transform: scale(.8); } to { opacity: 1; transform: scale(1.2); } }
-
-    /* Header */
-    .logo img { width: 72px; border-radius: 12px; box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);    border: solid #ffffff36; }
-    .title {
-      font-size: 1.75rem; font-weight: 800; margin: 20px 0 8px;
-      background: linear-gradient(135deg, #fff, var(--gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .subtitle { color: var(--subtext); font-size: 1rem; font-weight: 500; }
-
-    /* Cards */
-    .loyalty-list { margin-top: 40px; width: 100%; max-width: 420px; }
-    .loyalty-card {
-      background: var(--card);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      margin: 14px 0;
-      cursor: pointer;
-      transition: all 0.35s var(--ease);
-      position: relative;
-      overflow: hidden;
-    }
-    .loyalty-card::before {
-      content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
-    background: linear-gradient(90deg, #0400ff, var(--gold));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s var(--ease);
-    }
-    .loyalty-card:hover::before { transform: scaleX(1); }
-    .loyalty-card:hover {
-          transform: translateY(-1px) scale(1.01);
-    box-shadow: var(--shadow);
-    background: rgb(255 255 255 / 15%);
-    }
-
-    .amount { font-weight: 700; font-size: 1.15rem; color: #e2e8f0; }
-    .discount {
-      color: var(--gold); font-weight: 700; margin: 8px 0 4px;
-      font-size: 1.1rem; letter-spacing: -0.3px;
-    }
-    .total { color: var(--subtext); font-size: 0.9rem; font-weight: 500; }
-
-    /* Calculator */
-    .calc-container {
-      background: var(--card);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px;
-      margin: 24px 0;
-      max-width: 420px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-    .calc-input, .calc-select {
-      width: 100%; padding: 14px 16px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid var(--border);
-      border-radius: 12px; color: var(--text);
-      font-size: 1rem; margin-bottom: 16px;
-      transition: all 0.3s var(--ease);
-    }
-    .calc-input:focus, .calc-select:focus {
-      outline: none; border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
-      background: rgba(255,255,255,0.12);
-    }
-    .calc-btn {
-      background: linear-gradient(135deg, var(--accent), #1d4ed8);
-      color: #fff; border: none; padding: 14px;
-      border-radius: 12px; font-weight: 600; font-size: 1rem;
-      cursor: pointer; width: 100%; margin-top: 8px;
-      transition: all 0.3s var(--ease); box-shadow: 0 4px 12px rgba(37,99,235,0.3);
-    }
-    .calc-btn:hover {
-      transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,99,235,0.4);
-    }
-    .calc-result {
-      margin-top: 20px; padding: 20px;
-      background: rgba(37, 99, 235, 0.08);
-      border-radius: 14px;
-      text-align: center;
-      opacity: 0; transform: translateY(12px);
-      transition: all 0.4s var(--ease);
-      backdrop-filter: blur(8px);
-    }
-    .calc-result.show { opacity: 1; transform: translateY(0); }
-    .calc-result p { margin: 6px 0; font-size: 0.95rem; }
-    .calc-result strong { color: var(--gold); }
-
-    /* Popup */
-    .popup {
-      position: fixed;
-    inset: 0;
-    background: rgb(0 0 0 / 12%);
-    backdrop-filter: blur(15px);
-    display: flex
-;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(0.94);
-    transition: all 0.45s var(--ease);
-    padding: 32px;
-    z-index: 999;
-    }
-    .popup.active { opacity: 1; visibility: visible; transform: scale(1); }
-    .popup h2 {
-      font-size: 1.8rem; font-weight: 800; margin-bottom: 12px;
-      background: linear-gradient(135deg, var(--gold), #fcd34d);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .popup p { max-width: 90%; font-size: 1.1rem; line-height: 1.7; margin-bottom: 28px; }
-    .popup button {
-      background: linear-gradient(135deg, var(--accent), #1d4ed8);
-      color: #fff; border: none; padding: 14px 36px;
-      border-radius: 50px; font-weight: 600; font-size: 1rem;
-      cursor: pointer; transition: all 0.3s var(--ease);
-      box-shadow: 0 6px 16px rgba(37,99,235,0.3);
-    }
-    .popup button:hover {
-      transform: translateY(-3px) scale(1.04);
-      box-shadow: 0 10px 25px rgba(37,99,235,0.45);
-    }
-
-    /* Buttons */
-    .btn-group { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 40px; }
-    .btn {
-      padding: 14px 32px; border-radius: 12px; font-weight: 600; font-size: 0.95rem;
-      text-decoration: none; transition: all 0.35s var(--ease); display: inline-flex; align-items: center; gap: 8px;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), #1d4ed8);
-      color: #fff; border: none; box-shadow: 0 4px 12px rgba(37,99,235,0.3);
-    }
-    .btn-primary:hover {
-      transform: translateY(-3px); box-shadow: 0 8px 20px rgba(37,99,235,0.4);
-    }
-    .btn-outline {
-      background: transparent; color: var(--text); border: 1.5px solid var(--border);
-    }
-    .btn-outline:hover {
-      border-color: var(--accent); color: var(--accent); background: rgba(37,99,235,0.1);
-      transform: translateY(-2px);
-    }
-
-    /* Menu */
-    .menu {
-      position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border);
-      border-radius: 50px;     padding: 10px 30px;
-    display: flex
-;
-    gap: 65px; z-index: 100;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-    }
-    .menu a {
-      color: #ffffff88; font-size: 1.4em; transition: all 0.3s var(--ease);
-    }
-    .menu a:hover { color: #245fe8; transform: translateY(-2px); }
-    .menu a.active {
-      color: var(--gold); transform: scale(1.3);
-      filter: drop-shadow(0 0 10px rgba(251,191,36,0.5));
-    }
-
-    /* Game Link */
-    .game-link {
-      position: fixed;
-    top: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, #1f2937, #111827);
-    color: #0048ff;
-    padding: 10px 20px 10px 9px;
-    border-radius: 0 0 16px 16px;
-    font-weight: 600;
-    z-index: 1000;
-    display: flex
-;
-    justify-content: center;
-    align-items: center;
-    gap: 3px;
-    text-decoration: none;
-    }
-    .game-link svg{
-      fill: #0048ff;
-    }
-    .game-link:hover {
-      transform: translateX(-50%) translateY(4px);
-    padding: 20px 20px 12px 10px;
-    box-shadow: 0 10px 50px rgb(255 184 0);
-    top: -13px;
-    }
-
-    /* Footer */
-    .mfi {
-      position: fixed; bottom: 8px; left: 50%; transform: translateX(-50%);
-      font-size: 0.7rem; color: #64748b;
-    }
-    .mfi a { color: #94a3b8; text-decoration: none; }
-    .mfi a:hover { color: var(--gold); }
-
-    /* Content Fade */
-    .menu-content {
-      display: none; opacity: 0; transform: translateY(12px);
-      transition: opacity 0.4s var(--ease), transform 0.6s var(--ease);
-    }
-    hr{
-      background: linear-gradient(to right, transparent, #ffffff, transparent);
-    height: 1px;
-    border: none;
-    outline: none;
-    }
-    .menu-content.active { display: block; opacity: 1; transform: translateY(0); }
-  </style>
-</head>
-<body>
-
-  <!-- Loader -->
-  <div class="loader" id="loader">
-    <h1>BS&MFI</h1>
-    <h1>Loyalty Wolves</h1>
-    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-  </div>
-
-  <!-- Game Link -->
-  <a href="#Welcome/BS&MFI/LoyaltyMember" class="game-link">
-    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="m422-232 207-248H469l29-227-185 267h139l-30 208ZM320-80l40-280H160l360-520h80l-40 320h240L400-80h-80Zm151-390Z"/></svg> BS&MFI
-  </a>
-
-  <div class="container" style="width: 90%;">
-
-    <!-- Home -->
-    <div id="content-home" class="menu-content active">
-      <div class="logo"><img src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="Logo"></div>
-      <div class="title">Loyalty Wolves</div>
-      <div class="subtitle">Exclusive Interest Discounts for Members</div>
-
-      <div class="loyalty-list">
-        <div class="loyalty-card" onclick="openPopup(10000, 2000, 500, 'Normal')">
-          <div class="amount">₹10,000 Loan</div>
-          <div class="discount">20% OFF → ₹2,000 Interest</div>
-          <div class="total">Total: ₹12,000 (Normal Tier)</div>
-        </div>
-        <div class="loyalty-card" onclick="openPopup(10000, 1875, 625, 'Premium')">
-          <div class="amount">₹10,000 Loan</div>
-          <div class="discount">25% OFF → ₹1,875 Interest</div>
-          <div class="total">Total: ₹11,875 (Premium Tier)</div>
-        </div>
-        <div class="loyalty-card" onclick="openPopup(10000, 1750, 750, 'Business Premium')">
-          <div class="amount">₹10,000 Loan</div>
-          <div class="discount">30% OFF → ₹1,750 Interest</div>
-          <div class="total">Total: ₹11,750 (Business Tier)</div>
-        </div>
-      </div>
-
-      <div class="btn-group">
-<!-- Button -->
-<a href="javascript:void(0)" class="btn btn-primary" onclick="showThanks()">
-  <i class="fa-solid fa-crown"></i> Welcome Loyal Wolve
-</a>
-      </div>
-    </div>
-
-    <!-- Account -->
-    <div id="content-account" class="menu-content">
-      <h3 style="color:var(--gold);font-weight:800;margin:20px 0;">Your Account</h3>
-      <p style="color:var(--subtext);max-width:400px;margin:0 auto 24px;">Manage loans, track repayments and view rewards.</p>
-      <div class="btn-group">
-        <a href="https://mfi0212.github.io/MFI/accverify" class="btn btn-primary">View Account</a>
-        <a href="https://mfi0212.github.io/MFI/takemoney" class="btn btn-outline">Request Loan</a>
-      </div>
-    </div>
-
-    <!-- Calculator -->
-    <div id="content-calculator" class="menu-content">
-      <h3 style="color:var(--gold);font-weight:800;margin:20px 0;">Loan Calculator</h3>
-      <p style="color:var(--subtext);max-width:400px;margin:0 auto 24px;">Calculate savings based on your membership tier</p>
-
-      <div class="calc-container">
-        <input type="number" id="loan-amount" class="calc-input" placeholder="Enter Loan Amount (e.g. 10000)" min="1000" step="1000">
-        <select id="account-type" class="calc-select">
-          <option value="normal">Normal Account (20% OFF)</option>
-          <option value="premium">Premium (25% OFF)</option>
-          <option value="business">Business Premium (30% OFF)</option>
-        </select>
-        <button class="calc-btn" onclick="calculateLoan()">Calculate Savings</button>
-
-        <div id="calc-result" class="calc-result">
-          <p><strong>Loan:</strong> ₹<span id="res-loan">0</span></p>
-          <p><strong>Original Interest:</strong> <del>₹<span id="res-original">0</span></del></p>
-          <p><strong>Wolves Interest:</strong> <strong>₹<span id="res-interest">0</span></strong></p>
-          <hr>
-          <p><strong>You Save:</strong> <strong>₹<span id="res-save">0</span></strong></p>
-          <hr>
-          <p><strong>Total Repayment:</strong> ₹<span id="res-total">0</span></p>
-          <p style="font-size:0.8rem;color:var(--subtext);margin-top:10px;" id="res-type"></p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Popup -->
-    <div class="popup" id="popup">
-      <h2 id="popup-title">Loyalty Discount</h2>
-      <p id="popup-text"></p>
-      <button onclick="closePopup()">Close</button>
-    </div>
-  </div>
-
-  <!-- Menu -->
-  <div class="menu">
-    <a href="#" onclick="show('content-home')" class="active"><i class="fa-solid fa-house"></i></a>
-    <a href="#" onclick="show('content-account')"><i class="fa-solid fa-user"></i></a>
-    <a href="#" onclick="show('content-calculator')"><i class="fa-solid fa-calculator"></i></a>
-  </div>
-
-  <div class="mfi"><a href="https://mfi0212.github.io/MFI/mfimain" target="_blank">Powered by BsLends</a></div>
-
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <title>Loyalty Wolves | Premium Loan Benefits</title> <link rel="icon" href="https://i.postimg.cc/SxwrHyLz/logo.png" /> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/> <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script> <style> :root { --bg: #0a0e17; --card: rgba(255, 255, 255, 0.06); --accent: #2563eb; --gold: #fbbf24; --text: #f8fafc; --subtext: #94a3b8; --border: rgba(255, 255, 255, 0.1); --shadow: 0 8px 32px rgba(0, 0, 0, 0.2); --radius: 16px; --ease: cubic-bezier(0.4, 0, 0.2, 1); } /* ---------- GLOBAL RESET & SCROLL ---------- */ *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent !important; /* <<< NO BLUE HIGHLIGHT */ -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; outline: none !important; } html, body { height:100%; overflow-x:hidden; overflow-y:auto; /* <<< SCROLL ENABLED */ font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; } /* ---------- NO BLUE ON CLICK (Mobile & Desktop) ---------- */ a, button, input, select, [onclick], .loyalty-card { -webkit-tap-highlight-color: transparent; tap-highlight-color: transparent; } * { -webkit-appearance: none; -moz-appearance: none; appearance: none; } /* ---------- Animated Bots ---------- */ .bg-bots { position:fixed; inset:0; z-index:-1; pointer-events:none; } .bot { position:absolute; width:6px; height:6px; background:var(--accent); border-radius:50%; box-shadow:0 0 12px var(--accent); opacity:0.6; } /* ---------- Password Overlay ---------- */ #password-overlay { position:fixed; inset:0; background:rgba(10,14,23,.98); backdrop-filter:blur(20px); display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:9999; padding:20px; } .pass-container { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:32px; max-width:380px; width:100%; text-align:center; box-shadow:var(--shadow); } .pass-container h2 { font-weight:800; font-size:1.8rem; background:linear-gradient(135deg,#fff,var(--gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:12px; } .pass-input { width:100%; padding:14px 16px; background:rgba(255,255,255,.08); border:1px solid var(--border); border-radius:12px; color:var(--text); font-size:1rem; margin:16px 0; text-align:center; } .pass-btn { background:linear-gradient(135deg,var(--accent),#1d4ed8); color:#fff; border:none; padding:14px; border-radius:12px; font-weight:600; font-size:1rem; cursor:pointer; width:100%; transition:all .3s var(--ease); } .pass-btn:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(37,99,235,.4); } .error { color:#ef4444; font-size:.9rem; margin-top:8px; opacity:0; } /* ---------- Loader ---------- */ .loader { position:fixed; inset:0; background:black; display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:9998; gap:6px; } .loader h1 { font-weight:800; font-size:1.8rem; letter-spacing:-.5px; background:linear-gradient(135deg,#fff,var(--gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin:-5px; } .loader .dots { display:flex; gap:17px; position:fixed; bottom:100px; } .dot { width:7px; height:7px; border-radius:50%; background:var(--accent); animation:pulse 1.4s infinite alternate; } .dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s} @keyframes pulse{from{opacity:.4;transform:scale(.8)}to{opacity:1;transform:scale(1.2)}} /* ---------- Main Content ---------- */ .main-content { display:none; padding:100px 0 130px; flex-direction:column; align-items:center; min-height:100vh; } /* Header */ .logo img { width:72px; border-radius:12px; box-shadow:0 4px 12px rgba(255,255,255,.2); border:solid #ffffff36; } .title { font-size:1.75rem; font-weight:800; margin:20px 0 8px; background:linear-gradient(135deg,#fff,var(--gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; } .subtitle { color:var(--subtext); font-size:1rem; font-weight:500; } /* Cards */ .loyalty-list { margin-top:40px; width:100%; max-width:420px; } .loyalty-card { background:var(--card); backdrop-filter:blur(12px); border:1px solid var(--border); border-radius:var(--radius); padding:24px; margin:14px 0; cursor:pointer; transition:all .35s var(--ease); position:relative; overflow:hidden; } .loyalty-card::before { content:''; position:absolute; top:0; left:0; right:0; height:5px; background:linear-gradient(90deg,#0400ff,var(--gold)); transform:scaleX(0); transform-origin:left; transition:transform .4s var(--ease); } .loyalty-card:hover::before{transform:scaleX(1)} .loyalty-card:hover{ transform:translateY(-1px) scale(1.01); box-shadow:var(--shadow); background:rgb(255 255 255 / 15%); } .amount { font-weight:700; font-size:1.15rem; color:#e2e8f0; } .discount { color:var(--gold); font-weight:700; margin:8px 0 4px; font-size:1.1rem; letter-spacing:-.3px; } .total { color:var(--subtext); font-size:.9rem; font-weight:500; } /* Calculator */ .calc-container { background:var(--card); backdrop-filter:blur(12px); border:1px solid var(--border); border-radius:var(--radius); padding:28px; margin:24px 0; max-width:420px; box-shadow:0 4px 20px rgba(0,0,0,.1); } .calc-input,.calc-select { width:100%; padding:14px 16px; background:rgba(255,255,255,.08); border:1px solid var(--border); border-radius:12px; color:var(--text); font-size:1rem; margin-bottom:16px; transition:all .3s var(--ease); } .calc-input:focus,.calc-select:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(37,99,235,.2); background:rgba(255,255,255,.12); } .calc-btn { background:linear-gradient(135deg,var(--accent),#1d4ed8); color:#fff; border:none; padding:14px; border-radius:12px; font-weight:600; font-size:1rem; cursor:pointer; width:100%; margin-top:8px; transition:all .3s var(--ease); box-shadow:0 4px 12px rgba(37,99,235,.3); } .calc-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(37,99,235,.4);} .calc-result { margin-top:20px; padding:20px; background:rgba(37,99,235,.08); border-radius:14px; text-align:center; opacity:0; transform:translateY(12px); transition:all .4s var(--ease); backdrop-filter:blur(8px); } .calc-result.show { opacity:1; transform:translateY(0); } .calc-result p { margin:6px 0; font-size:.95rem; } .calc-result strong { color:var(--gold); } /* Popup */ .popup { position:fixed; inset:0; background:rgb(0 0 0 / 12%); backdrop-filter:blur(15px); display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:0; visibility:hidden; transform:scale(.94); transition:all .45s var(--ease); padding:32px; z-index:999; } .popup.active { opacity:1; visibility:visible; transform:scale(1); } .popup h2 { font-size:1.8rem; font-weight:800; margin-bottom:12px; background:linear-gradient(135deg,var(--gold),#fcd34d); -webkit-background-clip:text; -webkit-text-fill-color:transparent; } .popup p { max-width:90%; font-size:1.1rem; line-height:1.7; margin-bottom:28px; } .popup button { background:linear-gradient(135deg,var(--accent),#1d4ed8); color:#fff; border:none; padding:14px 36px; border-radius:50px; font-weight:600; font-size:1rem; cursor:pointer; transition:all .3s var(--ease); box-shadow:0 6px 16px rgba(37,99,235,.3); } .popup button:hover{ transform:translateY(-3px) scale(1.04); box-shadow:0 10px 25px rgba(37,99,235,.45); } /* Buttons */ .btn-group { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:40px; } .btn { padding:14px 32px; border-radius:12px; font-weight:600; font-size:.95rem; text-decoration:none; transition:all .35s var(--ease); display:inline-flex; align-items:center; gap:8px; } .btn-primary { background:linear-gradient(135deg,var(--accent),#1d4ed8); color:#fff; border:none; box-shadow:0 4px 12px rgba(37,99,235,.3); } .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(37,99,235,.4);} .btn-outline { background:transparent; color:var(--text); border:1.5px solid var(--border); } .btn-outline:hover{ border-color:var(--accent);color:var(--accent); background:rgba(37,99,235,.1);transform:translateY(-2px); } /* Menu */ .menu { position:fixed; bottom:40px; left:50%; transform:translateX(-50%); background:rgba(255,255,255,.08); backdrop-filter:blur(16px); border:1px solid var(--border); border-radius:50px; padding:10px 30px; display:flex; gap:65px; z-index:100; box-shadow:0 8px 32px rgba(0,0,0,.2); } .menu a { color:#ffffff88; font-size:1.4em; transition:all .3s var(--ease); } .menu a:hover{color:#245fe8;transform:translateY(-2px);} .menu a.active{color:var(--gold);transform:scale(1.3);filter:drop-shadow(0 0 10px rgba(251,191,36,.5));} /* Game Link */ .game-link { position:fixed; top:0; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,#1f2937,#111827); color:#0048ff; padding:10px 20px 10px 9px; border-radius:0 0 16px 16px; font-weight:600; z-index:1000; display:flex; justify-content:center; align-items:center; gap:3px; text-decoration:none; } .game-link svg{fill:#0048ff;} .game-link:hover{ transform:translateX(-50%) translateY(4px); padding:20px 20px 12px 10px; box-shadow:0 10px 50px rgb(255 184 0);top:-13px; } /* Footer */ .mfi { position:fixed; bottom:8px; left:50%; transform:translateX(-50%); font-size:.7rem; color:#64748b; } .mfi a{color:#94a3b8;text-decoration:none;} .mfi a:hover{color:var(--gold);} /* Content Fade */ .menu-content { display:none; opacity:0; transform:translateY(12px); transition:opacity .4s var(--ease),transform .6s var(--ease); } hr{ background:linear-gradient(to right,transparent,#ffffff,transparent); height:1px;border:none;outline:none; } .menu-content.active{display:block;opacity:1;transform:translateY(0);} </style> </head> <body> <!-- Animated Background Bots --> <div class="bg-bots" id="bg-bots"></div> <!-- Password Overlay (shown only first time) --> <div id="password-overlay"> <div class="pass-container"> <h2>Loyalty Wolves</h2> <p style="color:var(--subtext);margin-bottom:16px;">Enter access code to continue</p> <input type="password" id="pass-input" class="pass-input" placeholder="Enter code here.." maxlength="4"> <button class="pass-btn" onclick="checkPassword()">Unlock Access</button> <p class="error" id="error-msg">Incorrect code. Try again.</p> </div> </div> <!-- Loader --> <div class="loader" id="loader" style="display:none;"> <h1>BS&MFI</h1> <h1>Loyalty Wolves</h1> <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div> </div> <!-- Main Content --> <div class="main-content" id="main-content"> <div class="container" style="width:90%;"> <!-- Game Link --> <a href="#Welcome/BS&MFI/LoyaltyMember" class="game-link"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="m422-232 207-248H469l29-227-185 267h139l-30 208ZM320-80l40-280H160l360-520h80l-40 320h240L400-80h-80Zm151-390Z"/></svg> BS&MFI </a> <!-- Home --> <div id="content-home" class="menu-content active"> <div class="logo"><img src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="Logo"></div> <div class="title">Loyalty Wolves</div> <div class="subtitle">Exclusive Interest Discounts for Members</div> <div class="loyalty-list"> <div class="loyalty-card" onclick="openPopup(10000,2000,500,'Normal')"> <div class="amount">₹10,000 Loan</div> <div class="discount">20% OFF → ₹2,000 Interest</div> <div class="total">Total: ₹12,000 (Normal Tier)</div> </div> <div class="loyalty-card" onclick="openPopup(10000,1875,625,'Premium')"> <div class="amount">₹10,000 Loan</div> <div class="discount">25% OFF → ₹1,875 Interest</div> <div class="total">Total: ₹11,875 (Premium Tier)</div> </div> <div class="loyalty-card" onclick="openPopup(10000,1750,750,'Business Premium')"> <div class="amount">₹10,000 Loan</div> <div class="discount">30% OFF → ₹1,750 Interest</div> <div class="total">Total: ₹11,750 (Business Tier)</div> </div> </div> <div class="btn-group"> <a href="javascript:void(0)" class="btn btn-primary" onclick="showThanks()"> <i class="fa-solid fa-crown"></i> Welcome Loyal Wolve </a> </div> </div> <!-- Account --> <div id="content-account" class="menu-content"> <h3 style="color:var(--gold);font-weight:800;margin:20px 0;">Your Account</h3> <p style="color:var(--subtext);max-width:400px;margin:0 auto 24px;">Manage loans, track repayments and view rewards.</p> <div class="btn-group"> <a href="https://mfi0212.github.io/MFI/accverify" class="btn btn-primary">View Account</a> <a href="https://mfi0212.github.io/MFI/takemoney" class="btn btn-outline">Request Loan</a> </div> </div> <!-- Calculator --> <div id="content-calculator" class="menu-content"> <h3 style="color:var(--gold);font-weight:800;margin:20px 0;">Loan Calculator</h3> <p style="color:var(--subtext);max-width:400px;margin:0 auto 24px;">Calculate savings based on your membership tier</p> <div class="calc-container"> <input type="number" id="loan-amount" class="calc-input" placeholder="Enter Loan Amount (e.g. 10000)" min="1000" step="1000"> <select id="account-type" class="calc-select"> <option value="normal">Normal Account (20% OFF)</option> <option value="premium">Premium (25% OFF)</option> <option value="business">Business Premium (30% OFF)</option> </select> <button class="calc-btn" onclick="calculateLoan()">Calculate Savings</button> <div id="calc-result" class="calc-result"> <p><strong>Loan:</strong> ₹<span id="res-loan">0</span></p> <p><strong>Original Interest:</strong> <del>₹<span id="res-original">0</span></del></p> <p><strong>Wolves Interest:</strong> <strong>₹<span id="res-interest">0</span></strong></p> <hr> <p><strong>You Save:</strong> <strong>₹<span id="res-save">0</span></strong></p> <hr> <p><strong>Total Repayment:</strong> ₹<span id="res-total">0</span></p> <p style="font-size:0.8rem;color:var(--subtext);margin-top:10px;" id="res-type"></p> </div> </div> </div> <!-- Popup --> <div class="popup" id="popup"> <h2 id="popup-title">Loyalty Discount</h2> <p id="popup-text"></p> <button onclick="closePopup()">Close</button> </div> </div> <!-- Menu --> <div class="menu"> <a href="#" onclick="show('content-home')" class="active"><i class="fa-solid fa-house"></i></a> <a href="#" onclick="show('content-account')"><i class="fa-solid fa-user"></i></a> <a href="#" onclick="show('content-calculator')"><i class="fa-solid fa-calculator"></i></a> </div> <div class="mfi"><a href="https://mfi0212.github.io/MFI/mfimain" target="_blank">Powered by BS&MFI</a></div> </div>
   <script>
-    // Loader
-    gsap.to("#loader", { opacity: 0, delay: 2.2, duration: 1, onComplete: () => document.getElementById('loader').remove() });
+    const VALID_PASSWORDS = ['021212'];
+    const STORAGE_KEY = 'loyaltyWolvesUnlocked';
 
-    // Tab Switching
-    const show = (id) => {
+    const passwordOverlay = document.getElementById('password-overlay');
+    const mainContent = document.getElementById('main-content');
+    const loader = document.getElementById('loader');
+    const errorMsg = document.getElementById('error-msg');
+    const bgBots = document.getElementById('bg-bots');
+
+    /* ---------- NO BLUE HIGHLIGHT (Extra JS Safety) ---------- */
+    document.addEventListener('touchstart', () => {}, { passive: true });
+    document.addEventListener('click', (e) => {
+      e.preventDefault();
+    }, { capture: true, passive: false });
+
+    /* ---------- Animated Bots ---------- */
+    function createBot() {
+      const bot = document.createElement('div');
+      bot.className = 'bot';
+      const size = Math.random() * 4 + 3;
+      bot.style.width = bot.style.height = `${size}px`;
+      bot.style.left = `${Math.random() * 100}vw`;
+      bot.style.top = `${Math.random() * 100}vh`;
+      bot.style.opacity = Math.random() * .5 + .3;
+
+      const duration = Math.random() * 20 + 15;
+      const angle = Math.random() * 360;
+      const dist = Math.random() * 300 + 200;
+
+      gsap.to(bot, {
+        x: Math.cos(angle * Math.PI / 180) * dist,
+        y: Math.sin(angle * Math.PI / 180) * dist,
+        duration,
+        ease: "none",
+        repeat: -1,
+        yoyo: true,
+        delay: Math.random() * 5
+      });
+
+      bgBots.appendChild(bot);
+      setTimeout(() => bot.remove(), duration * 2000);
+    }
+    setInterval(createBot, 800);
+    for (let i = 0; i < 30; i++) setTimeout(createBot, i * 200);
+
+    /* ---------- Password Logic (Only Once) ---------- */
+    function checkPassword() {
+      const input = document.getElementById('pass-input').value.trim();
+      if (VALID_PASSWORDS.includes(input)) {
+        localStorage.setItem(STORAGE_KEY, 'true');
+        unlockSite();
+      } else {
+        errorMsg.style.opacity = 1;
+        gsap.fromTo(errorMsg, {y:-5}, {y:0, duration:.3});
+        setTimeout(() => gsap.to(errorMsg, {opacity:0, y:-5, duration:.3}), 2000);
+      }
+    }
+
+    function unlockSite() {
+      gsap.to(passwordOverlay, {
+        opacity: 0,
+        duration: .8,
+        onComplete: () => {
+          passwordOverlay.remove();
+          loader.style.display = 'flex';
+          gsap.to(loader, {
+            opacity: 0,
+            delay: 2.2,
+            duration: 1,
+            onComplete: () => {
+              loader.remove();
+              mainContent.style.display = 'flex';
+              gsap.fromTo(mainContent, {opacity:0}, {opacity:1, duration:1});
+            }
+          });
+        }
+      });
+    }
+
+    // Auto-unlock if already accessed
+    if (localStorage.getItem(STORAGE_KEY) === 'true') {
+      passwordOverlay.remove();
+      loader.style.display = 'flex';
+      setTimeout(() => {
+        loader.remove();
+        mainContent.style.display = 'flex';
+        gsap.fromTo(mainContent, {opacity:0}, {opacity:1, duration:1});
+      }, 500);
+    }
+
+    // Enter key support
+    document.getElementById('pass-input')?.addEventListener('keypress', e => {
+      if (e.key === 'Enter') checkPassword();
+    });
+
+    /* ---------- Tab Switching ---------- */
+    const show = id => {
       document.querySelectorAll('.menu-content').forEach(el => {
         el.classList.toggle('active', el.id === id);
-        if (el.id === id) {
-          gsap.fromTo(el, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" });
-        }
+        if (el.id === id) gsap.fromTo(el, {opacity:0,y:12}, {opacity:1,y:0,duration:.5,ease:"power3.out"});
       });
       document.querySelectorAll('.menu a').forEach(a => a.classList.remove('active'));
       document.querySelector(`.menu a[onclick="show('${id}')"]`)?.classList.add('active');
     };
 
-    // Popup
-    const popup = document.getElementById('popup'), text = document.getElementById('popup-text'), title = document.getElementById('popup-title');
+    /* ---------- Popup ---------- */
+    const popup = document.getElementById('popup'), popupTitle = document.getElementById('popup-title'), popupText = document.getElementById('popup-text');
     const openPopup = (amt, int, sav, type) => {
-      title.innerText = `${type} Member`;
-      text.innerHTML = `
+      popupTitle.innerText = `${type} Member`;
+      popupText.innerHTML = `
         <strong style="font-size:1.2rem;">₹${amt.toLocaleString()}</strong> Loan<br><br>
         Interest: <del style="color:#94a3b8;">₹${(int+sav).toLocaleString()}</del> → 
         <strong style="color:var(--gold);">₹${int.toLocaleString()}</strong><br>
@@ -426,49 +120,45 @@
     };
     const closePopup = () => popup.classList.remove('active');
 
-    // Calculator (Real Interest = ₹2,500 for ₹10,000 → 25%)
+    /* ---------- Calculator ---------- */
     function calculateLoan() {
       const amount = parseFloat(document.getElementById('loan-amount').value);
       const type = document.getElementById('account-type').value;
+      if (!amount || amount < 1000) return alert("Enter a valid loan amount (min ₹1,000)");
 
-      if (!amount || amount < 1000) {
-        alert("Please enter a valid loan amount (minimum ₹1,000)");
-        return;
-      }
+      const original = amount * 0.25;
+      let discount, label;
+      if (type === 'normal') { discount = 0.20; label = "Normal Account (20% OFF)"; }
+      else if (type === 'premium') { discount = 0.25; label = "Premium (25% OFF)"; }
+      else { discount = 0.30; label = "Business Premium (30% OFF)"; }
 
-      const originalInterest = amount * 0.25;
-      let discountPct, label;
-      if (type === 'normal') { discountPct = 0.20; label = "Normal Account (20% OFF)"; }
-      else if (type === 'premium') { discountPct = 0.25; label = "Premium (25% OFF)"; }
-      else { discountPct = 0.30; label = "Business Premium (30% OFF)"; }
-
-      const interest = originalInterest * (1 - discountPct);
-      const save = originalInterest * discountPct;
+      const interest = original * (1 - discount);
+      const save = original * discount;
       const total = amount + interest;
 
-      const result = document.getElementById('calc-result');
+      const res = document.getElementById('calc-result');
       document.getElementById('res-loan').innerText = amount.toLocaleString();
-      document.getElementById('res-original').innerText = originalInterest.toFixed(0).toLocaleString();
+      document.getElementById('res-original').innerText = original.toFixed(0).toLocaleString();
       document.getElementById('res-interest').innerText = interest.toFixed(0).toLocaleString();
       document.getElementById('res-save').innerText = save.toFixed(0).toLocaleString();
       document.getElementById('res-total').innerText = total.toFixed(0).toLocaleString();
       document.getElementById('res-type').innerText = label;
 
-      result.classList.add('show');
-      gsap.fromTo(result, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.5)" });
+      res.classList.add('show');
+      gsap.fromTo(res, {opacity:0,y:12}, {opacity:1,y:0,duration:.5,ease:"back.out(1.5)"});
     }
-       // Inside <script> – add this function
-function showThanks() {
-  document.getElementById('popup-title').innerText = 'Thank You!';
-  document.getElementById('popup-text').innerHTML = `
-    <strong style="color:var(--gold);font-size:1.2rem;">Welcome Loyal Wolve..!</strong><br><br>
-    Thanks for choosing <strong>BS&MFI Services</strong>.<br>
-    Enjoy exclusive discounts benefits just made for you.<br><br>
-    <em>We’re glad to have you as a Loyalty Wolf...!</em>
-  `;
-  document.getElementById('popup').classList.add('active');
-}
-document.addEventListener("DOMContentLoaded", () => {
+
+    function showThanks() {
+      popupTitle.innerText = 'Thank You!';
+      popupText.innerHTML = `
+        <strong style="color:var(--gold);font-size:1.2rem;">Welcome Loyal Wolve..!</strong><br><br>
+        Thanks for choosing <strong>BS&MFI Services</strong>.<br>
+        Enjoy exclusive discounts benefits just made for you.<br><br>
+        <em>We’re glad to have you as a Loyalty Wolf...!</em>
+      `;
+      popup.classList.add('active');
+    }
+    document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
 
     document.addEventListener("contextmenu", (event) => {
