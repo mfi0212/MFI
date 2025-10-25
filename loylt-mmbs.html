@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Loyalty Wolves | Premium Loan Benefits</title>
+  <title>Loyalty Wolves | Premium Amount Benefits</title>
   <link rel="icon" href="https://i.postimg.cc/SxwrHyLz/logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -232,18 +232,32 @@
     .calc-result strong { color:var(--gold); }
 
     .popup { 
-      position: fixed; inset: 0; background: transparent;
-      backdrop-filter: blur(15px); display: flex; flex-direction: column;
-      align-items: center; justify-content: center; opacity: 0; visibility: hidden;
-      transform: scale(.94); transition: all .45s var(--ease); z-index: 999;
-      padding: 60px 10px 0px 0px; overflow-y: scroll;
+      position: fixed;
+    inset: 0;
+    background: transparent;
+    backdrop-filter: blur(15px);
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(.94);
+    transition: all .45s var(--ease);
+    z-index: 999;
+    padding-top: 60px;
+    overflow-y: scroll;
+    width: 105%;
     }
     #popup-text strong{ color: #fcd046; font-size: 15px; font-weight: 800; }
     .popup.active { opacity:1; visibility:visible; transform:scale(1); }
     .popup h2 { 
-      font-size:1.8rem; font-weight:800; margin-bottom:12px; 
-      background:linear-gradient(135deg,var(--gold),#fcd34d); 
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent; 
+         font-size: 1.3em;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: #0040ff;
+
     }
     .popup p { 
       max-width: 90%; font-size: 13px; line-height: 30px;
@@ -373,17 +387,17 @@
         <!-- Tier Cards -->
         <div class="loyalty-list">
           <div class="loyalty-card" onclick="openPopup(10000,2000,500,'Normal')">
-            <div class="amount">₹10,000 Loan</div>
+            <div class="amount">₹10,000 Amount</div>
             <div class="discount">20% OFF → ₹2,000 Interest</div>
             <div class="total">Total: ₹12,000 (Normal Tier - 1)</div>
           </div>
           <div class="loyalty-card" onclick="openPopup(10000,1875,625,'Premium')">
-            <div class="amount">₹10,000 Loan</div>
+            <div class="amount">₹10,000 Amount</div>
             <div class="discount">25% OFF → ₹1,875 Interest</div>
             <div class="total">Total: ₹11,875 (Premium Tier - 2)</div>
           </div>
           <div class="loyalty-card" onclick="openPopup(10000,1750,750,'Business Premium')">
-            <div class="amount">₹10,000 Loan</div>
+            <div class="amount">₹10,000 Amount</div>
             <div class="discount">30% OFF → ₹1,750 Interest</div>
             <div class="total">Total: ₹11,750 (Business Tier - 3)</div>
           </div>
@@ -393,7 +407,7 @@
         <div class="section-title">How Loyalty Wolves Works</div>
         <div class="steps">
           <div class="step"><div class="step-num">1</div><div>Join as a member via BS&MFI</div></div>
-          <div class="step"><div class="step-num">2</div><div>Choose your loan amount</div></div>
+          <div class="step"><div class="step-num">2</div><div>Choose your Amount amount</div></div>
           <div class="step"><div class="step-num">3</div><div>Enjoy instant interest discount</div></div>
           <div class="step"><div class="step-num">4</div><div>Repay with savings</div></div>
         </div>
@@ -410,7 +424,7 @@
         <!-- Testimonials -->
         <!-- <div class="section-title">What Members Say</div>
         <div class="testimonial">
-          "Saved ₹750 on my last loan! Best decision to join Loyalty Wolves."<br><strong>— Rajesh K., Tier 3</strong>
+          "Saved ₹750 on my last Amount! Best decision to join Loyalty Wolves."<br><strong>— Rajesh K., Tier 3</strong>
         </div>
         <div class="testimonial">
           "Fast, transparent, and actually saves money. Highly recommend!"<br><strong>— Priya S., Tier 2</strong>
@@ -427,11 +441,11 @@
       <div id="content-account" class="menu-content">
         <h3 class="section-title">Your Account Dashboard</h3>
         
-        <p class="section-subtitle">Track loans, repayments, rewards, and membership status in one place.</p>
+        <p class="section-subtitle">Track Amounts, repayments, rewards, and membership status in one place.</p>
 
         <div class="btn-group">
           <a href="https://mfi0212.github.io/MFI/accverify" class="btn btn-primary">View Full Account</a>
-          <a href="https://mfi0212.github.io/MFI/takemoney" class="btn btn-outline">Request New Loan</a>
+          <a href="https://mfi0212.github.io/MFI/takemoney" class="btn btn-outline">Request New Amount</a>
         </div>
         <div class="info-card">
           <strong>Membership Tier:</strong> <span style="color:var(--gold)">Premium (Active)</span><br>
@@ -456,20 +470,20 @@
 
       <!-- CALCULATOR TAB -->
       <div id="content-calculator" class="menu-content">
-        <h3 class="section-title">Smart Loan Calculator</h3>
+        <h3 class="section-title">Smart Amount Calculator</h3>
         <p class="section-subtitle">See how much you save based on your Loyalty Tier</p>
 
         <div class="calc-container">
-          <input type="number" id="loan-amount" class="calc-input" placeholder="Enter Loan Amount (e.g. 10000)" min="1000" step="1000">
+          <input type="number" id="Amount-amount" class="calc-input" placeholder="Enter Amount Amount (e.g. 10000)" min="1000" step="1000">
           <select id="account-type" class="calc-select">
             <option value="normal">Normal Account (20% OFF)</option>
             <option value="premium">Premium (25% OFF)</option>
             <option value="business">Business Premium (30% OFF)</option>
           </select>
-          <button class="calc-btn" onclick="calculateLoan()">Calculate Savings</button>
+          <button class="calc-btn" onclick="calculateAmount()">Calculate Savings</button>
 
           <div id="calc-result" class="calc-result">
-            <p><strong>Loan:</strong> ₹<span id="res-loan">0</span></p>
+            <p><strong>Amount:</strong> ₹<span id="res-Amount">0</span></p>
             <p><strong>Original Interest:</strong> <del>₹<span id="res-original">0</span></del></p>
             <p><strong>Wolves Interest:</strong> <strong>₹<span id="res-interest">0</span></strong></p>
             <hr>
@@ -484,7 +498,7 @@
         <div class="section-title">Frequently Asked Questions</div>
         <div class="faq-item" onclick="toggleFAQ(this)">
           <div class="faq-question">How is the discount applied? <i class="fa-solid fa-chevron-down"></i></div>
-          <div class="faq-answer">Discount is automatically applied at loan approval based on your active membership tier.</div>
+          <div class="faq-answer">Discount is automatically applied at Amount approval based on your active membership tier.</div>
         </div>
         <div class="faq-item" onclick="toggleFAQ(this)">
           <div class="faq-question">Can I upgrade my tier? <i class="fa-solid fa-chevron-down"></i></div>
@@ -492,7 +506,7 @@
         </div>
         <div class="faq-item" onclick="toggleFAQ(this)">
           <div class="faq-question">Is there a membership fee? <i class="fa-solid fa-chevron-down"></i></div>
-          <div class="faq-answer">No hidden fees. Membership is included with qualifying loans.</div>
+          <div class="faq-answer">No hidden fees. Membership is included with qualifying Amounts.</div>
         </div>
       </div>
 
@@ -609,7 +623,7 @@
     const openPopup = (amt, int, sav, type) => {
       popupTitle.innerText = `${type} Member`;
       popupText.innerHTML = `
-        <strong style="font-size:1.2rem;">₹${amt.toLocaleString()}</strong> Loan<br><br>
+        <strong style="font-size:1.2rem;">₹${amt.toLocaleString()}</strong> Amount<br><br>
         Interest: <del style="color:#94a3b8;">₹${(int+sav).toLocaleString()}</del> → 
         <strong style="color:var(--gold);">₹${int.toLocaleString()}</strong><br>
         <strong style="color:var(--gold);">You Save: ₹${sav.toLocaleString()}</strong><br><br>
@@ -619,10 +633,10 @@
     };
     const closePopup = () => popup.classList.remove('active');
 
-    function calculateLoan() {
-      const amount = parseFloat(document.getElementById('loan-amount').value);
+    function calculateAmount() {
+      const amount = parseFloat(document.getElementById('Amount-amount').value);
       const type = document.getElementById('account-type').value;
-      if (!amount || amount < 1000) return alert("Enter a valid loan amount (min ₹1,000)");
+      if (!amount || amount < 1000) return alert("Enter a valid Amount amount (min ₹1,000)");
 
       const original = amount * 0.25;
       let discount, label;
@@ -635,7 +649,7 @@
       const total = amount + interest;
 
       const res = document.getElementById('calc-result');
-      document.getElementById('res-loan').innerText = amount.toLocaleString();
+      document.getElementById('res-Amount').innerText = amount.toLocaleString();
       document.getElementById('res-original').innerText = original.toFixed(0).toLocaleString();
       document.getElementById('res-interest').innerText = interest.toFixed(0).toLocaleString();
       document.getElementById('res-save').innerText = save.toFixed(0).toLocaleString();
