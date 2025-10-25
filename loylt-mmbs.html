@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Loyalty Wolves | Premium Loan Benefits</title>
+  <title>BS&MFI/Golden | Loyalty Wolves</title>
   <link rel="icon" href="https://i.postimg.cc/SxwrHyLz/logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -152,7 +152,6 @@
     .calc-result {
       margin-top: 20px; padding: 20px;
       background: rgba(37, 99, 235, 0.08);
-      border: 1px solid rgba(37, 99, 235, 0.3);
       border-radius: 14px;
       text-align: center;
       opacity: 0; transform: translateY(12px);
@@ -285,6 +284,12 @@
       display: none; opacity: 0; transform: translateY(12px);
       transition: opacity 0.4s var(--ease), transform 0.6s var(--ease);
     }
+    hr{
+      background: linear-gradient(to right, transparent, #ffffff, transparent);
+    height: 1px;
+    border: none;
+    outline: none;
+    }
     .menu-content.active { display: block; opacity: 1; transform: translateY(0); }
   </style>
 </head>
@@ -363,8 +368,10 @@
         <div id="calc-result" class="calc-result">
           <p><strong>Loan:</strong> ₹<span id="res-loan">0</span></p>
           <p><strong>Original Interest:</strong> <del>₹<span id="res-original">0</span></del></p>
-          <p><strong>Discounted Interest:</strong> <strong>₹<span id="res-interest">0</span></strong></p>
+          <p><strong>Wolves Interest:</strong> <strong>₹<span id="res-interest">0</span></strong></p>
+          <hr>
           <p><strong>You Save:</strong> <strong>₹<span id="res-save">0</span></strong></p>
+          <hr>
           <p><strong>Total Repayment:</strong> ₹<span id="res-total">0</span></p>
           <p style="font-size:0.8rem;color:var(--subtext);margin-top:10px;" id="res-type"></p>
         </div>
@@ -464,12 +471,12 @@ function showThanks() {
 document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
 
-    // document.addEventListener("contextmenu", (event) => {
-    //     event.preventDefault();
-    //     customMenu.style.display = "block";
-    //     customMenu.style.top = `${event.pageY}px`;
-    //     customMenu.style.left = `${event.pageX}px`;
-    // });
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
 
     document.addEventListener("click", () => {
         customMenu.style.display = "none";
