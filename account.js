@@ -1,274 +1,448 @@
- // Define light background colors and corresponding dark font colors
-        const colorPairs = [
-            { background: 'rgb(55 20 0)', font: 'rgb(255 93 0)' }, // Light Brown, Dark Brown
-            { background: 'rgb(0 53 14)', font: 'rgb(0 255 66)' },// Light Green, Dark Green
-            { background: 'rgb(0 45 20)', font: 'rgb(0 255 113)' }, // Light Blue, Dark Blue
-            { background: 'rgb(63 25 0)', font: 'rgb(255 100 0)' }  // Light Sky Blue, Dark Sky Blue
-        ];
+// ==================== CURRENCY LOGIC ====================
+        const USD_RATE = 87.85; // 1 USD = 87.85 INR (you can change this)
+        let currentCurrency = localStorage.getItem('currency') || 'INR'; // default INR
 
-        // Function to generate a unique number for a user based on their name
-        function getUserIndex(name) {
-            let sum = 0;
-            for (let i = 0; i < name.length; i++) {
-                sum += name.charCodeAt(i);
-            }
-            return sum;
+        function formatMoney(amount) {
+            const val = currentCurrency === 'USD' ? (amount / USD_RATE) : amount;
+            const symbol = currentCurrency === 'USD' ? '$' : '₹';
+            return `${symbol}${val.toFixed(2)}`;
         }
 
-        // Function to get background and font color based on hour and user
-        function getColorPair(name, hour) {
-            const userIndex = getUserIndex(name);
-            const colorIndex = (hour + userIndex) % colorPairs.length;
-            return colorPairs[colorIndex];
+        function updateCurrencyUI() {
+            document.getElementById('currencyLabel').textContent = currentCurrency;
+            document.querySelector('#currencySwitch i').className = 
+                currentCurrency === 'USD' ? 'fa-solid fa-dollar-sign' : 'fa-solid fa-rupee-sign';
         }
 
-        // Function to generate unique icon for a user
-        function generateIcon(name, userIndex) {
-            const nameParts = name.trim().split(/\s+/).slice(0, 2);
-            let iconText = nameParts.map(part => part.charAt(0)).join("").toUpperCase();
-            // Handle single-word names or conflicts (e.g., multiple users with same initials)
-            if (nameParts.length === 1) {
-                iconText = nameParts[0].charAt(0).toUpperCase();
+        function toggleCurrency() {
+            currentCurrency = currentCurrency === 'INR' ? 'USD' : 'INR';
+            localStorage.setItem('currency', currentCurrency);
+            updateCurrencyUI();
+            // Refresh everything that shows money
+            if (currentUser) {
+                renderAmountButtons();
+                if (currentLoanIndex !== null) displayLoanDetails(currentUser.loans[currentLoanIndex], currentLoanIndex);
+                showTotalPopup(); // will close & reopen, but it's fine
+                if (document.getElementById('graphContainer').style.display === 'block') renderChart();
             }
-            return iconText;
         }
 
-        // Load saved password and notes from localStorage when the page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedPassword = localStorage.getItem('lastPassword');
-            if (savedPassword) {
-                setTimeout(() => {
-                    document.getElementById("userPassword").value = savedPassword;
-                    document.getElementById("poweredByMsg").style.display = "block";
-                    setTimeout(() => {
-                        document.getElementById("poweredByMsg").style.display = "none";
-                    }, 500);
-                }, 500);
-            }
-
-            loadSavedNotes();
-        });
-
+        // ==================== DATA ====================
         const passwords = {
-            "0": {
-                name: "",
+            "0212": {
+                name: "Tony Mantana",
                 loans: [
-                    
-                    {
-                        planDate: "",
-                        endDate: "",
-                        interest: 0,
-                        takenAmount: 0,
-                        takenFrom: "Golden"
-                    },          
-                ]
-            },
+                    {planDate:"10-08-2025",endDate:"25-08-2025",interest:1360,takenAmount:5000,takenFrom:"MLLD",fineRate:86},
+                    {planDate:"15-08-2025",endDate:"30-08-2025",interest:4800,takenAmount:20000,takenFrom:"MLending",fineRate:320},
+                    {planDate:"16-08-2025",endDate:"31-08-2025",interest:1275,takenAmount:5000,takenFrom:"MLLD",fineRate:90},
+                    {planDate:"18-08-2025",endDate:"02-09-2025",interest:1380,takenAmount:5000,takenFrom:"MLLD",fineRate:88},
+                    {planDate:"18-08-2025",endDate:"02-09-2025",interest:690,takenAmount:2500,takenFrom:"MLLD",fineRate:46},
+                    {planDate:"13-10-2025",endDate:"28-10-2025",interest:0,takenAmount:10000,takenFrom:"MLending",fineRate:46},
+                    {planDate:"14-10-2025",endDate:"29-10-2025",interest:0,takenAmount:2700,takenFrom:"MLLD",fineRate:46},
+                    {planDate:"23-10-2025",endDate:"07-11-2025",interest:1320,takenAmount:4000,takenFrom:"MLLD",fineRate:46},
+                ],
+                links: [],
+                emote: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0"
+            }
         };
 
-        let currentUser = null;
-        let currentLoanIndex = null;
-        let timeoutId = null; // To manage the delay timeout
+        let currentUser = null, currentLoanIndex = null, loanChart = null, calendarMonth = new Date();
+        const PINNED_KEY = 'pinnedView';
+        let pendingLink = null;
+        let filteredLoans = [];
 
-        // Function to load saved notes from localStorage
-        function loadSavedNotes() {
-            const savedNotes = JSON.parse(localStorage.getItem('loanNotes')) || {};
-            for (let password in passwords) {
-                if (savedNotes[password]) {
-                    passwords[password].notes = savedNotes[password];
-                } else {
-                    passwords[password].notes = {};
+        // ==================== LOAD DATA ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('lastPassword');
+            if (saved) setTimeout(() => document.getElementById("userPassword").value = saved, 300);
+            loadUserData();
+            updateCurrencyUI(); // restore saved currency
+            document.getElementById('currencySwitch').onclick = toggleCurrency;
+        });
+
+        function loadUserData() {
+            const data = JSON.parse(localStorage.getItem('userData')) || {};
+            for (let k in passwords) {
+                if (data[k]) {
+                    passwords[k].links = data[k].links || [];
+                    passwords[k].emote = data[k].emote || passwords[k].emote;
+                    passwords[k].loans.forEach((loan, i) => loan.purpose = data[k].purposes?.[i] || "");
                 }
             }
         }
 
-        // Function to save notes to localStorage
-        function saveNotesToStorage() {
-            const notesToSave = {};
-            for (let password in passwords) {
-                notesToSave[password] = passwords[password].notes;
+        function saveUserData() {
+            const data = {};
+            for (let k in passwords) {
+                data[k] = {
+                    links: passwords[k].links,
+                    emote: passwords[k].emote,
+                    purposes: passwords[k].loans.map(l => l.purpose)
+                };
             }
-            localStorage.setItem('loanNotes', JSON.stringify(notesToSave));
+            localStorage.setItem('userData', JSON.stringify(data));
         }
 
-        document.getElementById("submitBtn").addEventListener("click", () => {
-            const userInput = document.getElementById("userPassword").value.trim();
-            const errorMessage = document.getElementById("error-message");
-            const user = passwords[userInput];
+        // ==================== LOGIN ====================
+        document.getElementById("submitBtn").onclick = () => {
+            const input = document.getElementById("userPassword").value.trim();
+            const user = passwords[input];
+            const err = document.getElementById("error-message");
 
-            localStorage.setItem('lastPassword', userInput);
+            localStorage.setItem('lastPassword', input);
 
             if (user) {
                 currentUser = user;
+                filteredLoans = [...user.loans];
                 document.getElementById("userName").textContent = user.name;
+                document.getElementById("userEmote").src = user.emote;
 
-                // Set up profile picture
-                const profilePicture = document.getElementById("profilePicture");
-                const currentHour = new Date().getHours();
-                const colorPair = getColorPair(user.name, currentHour);
-                profilePicture.style.backgroundColor = colorPair.background;
-                profilePicture.style.color = colorPair.font;
-                profilePicture.style.backgroundImage = "none";
-                const userKeys = Object.keys(passwords);
-                const userIndex = userKeys.indexOf(userInput);
-                profilePicture.textContent = generateIcon(user.name, userIndex);
+                renderLinks();
+                renderAmountButtons();
+                if (user.loans.length) displayLoanDetails(user.loans[0], 0);
 
-                const amountButtons = document.getElementById("amountButtons");
-                amountButtons.innerHTML = "";
-
-                user.loans.forEach((loan, index) => {
-                    const btn = document.createElement("button");
-                    btn.className = "amount-btn";
-                    btn.textContent = ` ${loan.takenAmount} Rupees`;
-                    btn.onclick = () => {
-                        if (timeoutId) {
-                            clearTimeout(timeoutId);
-                        }
-                        timeoutId = setTimeout(() => {
-                            displayLoanDetails(loan, index);
-                        }, 100);
-                    };
-                    amountButtons.appendChild(btn);
-                });
-
-                if (user.loans.length > 0) {
-                    displayLoanDetails(user.loans[0], 0);
-                }
-
-                document.getElementById("addNoteBtnInitial").style.display = "block";
-                document.getElementById("addNoteBtn").style.display = "block";
-                document.getElementById("toggleLoanBtn").style.display = "block";
                 document.getElementById("userInfoModal").style.display = "block";
-                errorMessage.textContent = "";
-            } else {
-                errorMessage.textContent = "Amount returned (or) Invalid password!";
-            }
-        });
+                err.textContent = "";
 
+                const pinned = localStorage.getItem(PINNED_KEY) || 'list';
+                switchView(pinned, false);
+                updateNavActive(pinned);
+            } else {
+                err.textContent = "Invalid password!";
+            }
+        };
+
+        // ==================== SEARCH ====================
+        let searchOpen = false;
+        function toggleSearch() {
+            const input = document.getElementById("searchInput");
+            const icon = document.getElementById("searchIcon");
+            const buttons = document.getElementById("amountButtons");
+
+            searchOpen = !searchOpen;
+            if (searchOpen) {
+                input.classList.add("active");
+                icon.style.transform = "rotate(90deg)";
+                buttons.style.transform = "translateY(0px)";
+                setTimeout(() => input.focus(), 300);
+            } else {
+                input.classList.remove("active");
+                icon.style.transform = "rotate(0deg)";
+                buttons.style.transform = "translateY(0)";
+                input.value = "";
+                filterLoans();
+            }
+        }
+
+        function filterLoans() {
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            filteredLoans = currentUser.loans.filter(loan =>
+                loan.takenAmount.toString().includes(query) ||
+                (loan.purpose && loan.purpose.toLowerCase().includes(query)) ||
+                loan.takenFrom.toLowerCase().includes(query)
+            );
+            renderAmountButtons();
+        }
+
+        // ==================== RENDER BUTTONS ====================
+        function renderAmountButtons() {
+            const btns = document.getElementById("amountButtons");
+            btns.innerHTML = "";
+            filteredLoans.forEach((loan, i) => {
+                const originalIndex = currentUser.loans.indexOf(loan);
+                const b = document.createElement("button");
+                b.className = "amount-btn";
+                b.innerHTML = `
+                    ${formatMoney(loan.takenAmount)}
+                    <div class="purpose-tag">${loan.purpose || 'Set Purpose'}</div>
+                `;
+                b.onclick = () => { displayLoanDetails(loan, originalIndex); switchView('list', false); };
+                btns.appendChild(b);
+            });
+        }
+
+        // ==================== DISPLAY LOAN DETAILS ====================
         function displayLoanDetails(loan, index) {
             currentLoanIndex = index;
-            const loanDetails = document.getElementById("loanDetails");
-            
-            // Calculate the base total return amount
-            let totalReturnAmount = (loan.takenAmount + loan.interest).toFixed(2);
-            let additionalInterest = 0;
-
-            // Parse the end date (remove any text like "(Extended to 5 days)")
-            const endDateStr = loan.endDate.split('(')[0];
-            const endDate = new Date(endDateStr.split('-').reverse().join('-'));
-            const currentDate = new Date();
-
-            // Calculate the number of days between planDate and endDate
-            const startDate = new Date(loan.planDate.split('-').reverse().join('-'));
-            const timeDiff = endDate - startDate;
-            const daysDiff = Math.abs(Math.ceil(timeDiff / (1000 * 60 * 60 * 24)));
-
-            // Check if current date is past the end date
-            if (currentDate > endDate) {
-                // Calculate hours elapsed since end date
-                const timeElapsed = currentDate - endDate;
-                const hoursElapsed = Math.floor(timeElapsed / (1000 * 60 * 60));
-                // Calculate additional interest (30 rupees per hour)
-                additionalInterest = hoursElapsed * 30;
-                // Update total return amount
-                totalReturnAmount = (loan.takenAmount + loan.interest + additionalInterest).toFixed(2);
+            const now = new Date();
+            const end = new Date(loan.endDate.split('-').reverse().join('-'));
+            const daysLeft = Math.ceil((end - now) / 86400000);
+            let total = loan.takenAmount + loan.interest;
+            let extra = 0;
+            if (now > end) {
+                const hrs = Math.floor((now - end) / 3600000);
+                extra = hrs * 30;
+                total += extra;
             }
 
-            // Update the active button
-            document.querySelectorAll(".amount-btn").forEach(btn => btn.classList.remove("active"));
-            document.getElementById("amountButtons").children[index].classList.add("active");
+            document.querySelectorAll(".amount-btn").forEach(b => b.classList.remove("active"));
+            const activeBtn = document.getElementById("amountButtons").children[filteredLoans.indexOf(loan)];
+            if (activeBtn) activeBtn.classList.add("active");
 
-            // Update loan details HTML
-            loanDetails.innerHTML = `
-                <div class="loan-entry">
-                    <span class="amount-label">${index + 1} amount</span>
-                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
-                        Taken service
-                    </h3>
+            document.getElementById("loanDetails").innerHTML = `
+                <div class="loan-entry" id="loanCard${index}">
+                    <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Purpose</h3>
+                    <input type="text" class="purpose-input" placeholder="e.g. Taken for shoes" value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
+                    <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Taken service</h3>
                     <p>${loan.takenFrom}</p>
-                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
-                        Amount taken
-                    </h3>
-                    <p><i class="fa-solid fa-money-bill-transfer"></i>Amount: ${loan.takenAmount} Rupees</p>
-                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
-                        Taken & Ends
-                    </h3>
-                    <p><i class="fa-solid fa-calendar-day"></i> Taken on: ${loan.planDate}</p>
-                    <p><i class="fa-solid fa-calendar-check"></i> Ends on: ${loan.endDate}</p>
-                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
-                        Duration
-                    </h3>
-                    <p><i class="fa-solid fa-clock"></i> No. of Days: ${daysDiff} days</p>
-                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
-                        Interest
-                    </h3>
-                    <p><i class="fa-solid fa-arrow-up-wide-short"></i> Base Interest: ${loan.interest} Rupees</p>
-                    ${additionalInterest > 0 ? `
-                        <p><i class="fa-solid fa-exclamation-circle"></i>Overdue interest : ${additionalInterest} Rupees</p>
-                        <p style="color: #ff0000; font-size: 12px;">Overdue by ${Math.floor((currentDate - endDate) / (1000 * 60 * 60))} hours</p>
-                    ` : ''}
-                    <h3 style="text-decoration: underline; margin: 25px 0px; font-weight: 600; font-size: 15px;">
-                        Total Amount to Re-Pay
-                    </h3>
-                    <p><i class="fa-solid fa-money-check-alt"></i> ${totalReturnAmount} Rupees</p>
+                    <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Amount taken</h3>
+                    <p><i class="fa-solid fa-money-bill-transfer"></i> ${formatMoney(loan.takenAmount)}</p>
+                    <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Taken & Ends</h3>
+                    <p><i class="fa-solid fa-calendar-day"></i> ${loan.planDate}</p>
+                    <p><i class="fa-solid fa-calendar-check"></i> ${loan.endDate}</p>
+                    <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Interest</h3>
+                    <p><i class="fa-solid fa-arrow-up-wide-short"></i> ${formatMoney(loan.interest)}</p>
+                    ${extra > 0 ? `<p style="color:#ffca00;"><i class="fa-solid fa-exclamation-circle"></i> Overdue: ${formatMoney(extra)}</p>` : ''}
+                    <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Total to Pay</h3>
+                    <p><i class="fa-solid fa-money-check-alt"></i> ${formatMoney(total)}</p>
                 </div>
             `;
+        }
 
-            // Display existing note if any
-            const savedNoteDiv = document.getElementById("savedNote");
-            if (currentUser.notes[index]) {
-                savedNoteDiv.innerHTML = `<p>Note: ${currentUser.notes[index]}</p>`;
-            } else {
-                savedNoteDiv.innerHTML = '';
+        function updatePurpose(index, value) {
+            currentUser.loans[index].purpose = value.trim();
+            saveUserData();
+            filterLoans();
+        }
+
+        // ==================== LINKS ====================
+        function renderLinks() {
+            const c = document.getElementById("userLinks"); c.innerHTML = "";
+            currentUser.links.forEach((link, i) => {
+                const a = document.createElement("div");
+                a.className = "user-link";
+                a.innerHTML = `<i class="fa-solid fa-link"></i> ${link.title}`;
+                a.onclick = () => openLinkConfirm(link, i);
+                c.appendChild(a);
+            });
+        }
+
+        function addLink() {
+            const title = prompt("Link title:");
+            if (!title) return;
+            const url = prompt("Full URL[](https://...):");
+            if (url && url.startsWith('http')) {
+                currentUser.links.push({ title, url });
+                renderLinks();
+                saveUserData();
             }
         }
 
+        function openLinkConfirm(link, index) {
+            pendingLink = { link, index };
+            document.getElementById("linkConfirmText").textContent = `Do you like to visit "${link.title}"? or you like delete it?`;
+            document.getElementById("linkConfirmPopup").style.display = "block";
+        }
+
+        document.getElementById("linkYesBtn").onclick = () => {
+            window.open(pendingLink.link.url, '_blank');
+            document.getElementById("linkConfirmPopup").style.display = "none";
+        };
+
+        document.getElementById("linkDeleteBtn").onclick = () => {
+            currentUser.links.splice(pendingLink.index, 1);
+            renderLinks();
+            saveUserData();
+            document.getElementById("linkConfirmPopup").style.display = "none";
+        };
+
+        // ==================== EMOTE CHOOSER ====================
+        function openEmoteChooser() { document.getElementById("emoteChooser").style.display = "block"; }
+        function closeEmoteChooser() { document.getElementById("emoteChooser").style.display = "none"; }
+        function setUserEmote(src) {
+            currentUser.emote = src;
+            document.getElementById("userEmote").src = src;
+            saveUserData();
+            closeEmoteChooser();
+        }
+
+        // ==================== TOTAL POPUP ====================
+        function showTotalPopup() {
+            const now = new Date();
+            let base = 0, interest = 0, overdue = 0;
+            currentUser.loans.forEach(loan => {
+                base += loan.takenAmount;
+                interest += loan.interest;
+                const end = new Date(loan.endDate.split('-').reverse().join('-'));
+                if (now > end) {
+                    const hrs = Math.floor((now - end) / 3600000);
+                    overdue += hrs * 30;
+                }
+            });
+            const total = base + interest + overdue;
+
+            document.getElementById("totalContent").innerHTML = `
+                <p>Taken amount : <strong>${formatMoney(base)}</strong></p>
+                <p>Total Interest : <strong>${formatMoney(interest)}</strong></p>
+                <hr>
+                <p style='margin:0;padding:10px;'>Overdue : <strong>${formatMoney(overdue)}</strong></p>
+                <hr>
+                <p style='margin-top:15px;color:#00ff00;'>Total to re-pay : <strong style='color:#00ff00;'>${formatMoney(total)}</strong></p>
+            `;
+            document.getElementById("totalPopup").style.display = "block";
+        }
+
+        function closeTotalPopup() { document.getElementById("totalPopup").style.display = "none"; }
+
+        // ==================== NAV & VIEWS ====================
+        function updateNavActive(view) {
+            document.querySelectorAll('.nav-item').forEach(n => {
+                n.classList.toggle('active', n.dataset.view === view);
+                const pin = n.querySelector('.toggle-pin');
+                const isPinned = localStorage.getItem(PINNED_KEY) === n.dataset.view;
+                pin.className = `fa-solid fa-toggle-${isPinned ? 'on' : 'off'} toggle-pin ${isPinned ? 'on' : ''}`;
+            });
+        }
+
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.onclick = () => {
+                const view = item.dataset.view;
+                switchView(view, true);
+            };
+        });
+
+        document.querySelectorAll('.toggle-pin').forEach(pin => {
+            pin.onclick = (e) => {
+                e.stopPropagation();
+                const view = pin.dataset.view;
+                const current = localStorage.getItem(PINNED_KEY);
+                if (current === view) localStorage.removeItem(PINNED_KEY);
+                else localStorage.setItem(PINNED_KEY, view);
+                updateNavActive(document.querySelector('.nav-item.active').dataset.view);
+            };
+        });
+
+        function switchView(view, changeNav = true) {
+            document.getElementById('loanDetails').style.display = view === 'list' ? 'block' : 'none';
+            const graph = document.getElementById('graphContainer');
+            const cal = document.getElementById('calendarContainer');
+            graph.style.display = view === 'graph' ? 'block' : 'none';
+            cal.style.display = view === 'calendar' ? 'block' : 'none';
+
+            if (view === 'graph') renderChart();
+            if (view === 'calendar') renderCalendar();
+
+            if (changeNav) updateNavActive(view);
+        }
+
+        // ==================== GRAPH ====================
+        function renderChart() {
+            const ctx = document.getElementById('loanChart').getContext('2d');
+            const now = new Date();
+            const labels = [], data = [], colors = [];
+
+            currentUser.loans.forEach((loan, i) => {
+                const end = new Date(loan.endDate.split('-').reverse().join('-'));
+                const days = Math.ceil((end - now) / 86400000);
+                let col = '#4CAF50';
+                if (days <= 2) col = '#F44336';
+                else if (days <= 6) col = '#004fff';
+                labels.push(`L${i+1}`);
+                data.push(currentCurrency === 'USD' ? loan.takenAmount / USD_RATE : loan.takenAmount);
+                colors.push(col);
+            });
+
+            if (loanChart) loanChart.destroy();
+            loanChart = new Chart(ctx, {
+                type: 'bar',
+                data: { labels, datasets: [{ data, backgroundColor: colors, borderColor: '#333', borderWidth: 1 }] },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { grid: { color: '#333' }, ticks: { color: '#aaa' } } },
+                    onClick: (e, el) => { if (el.length) showDatePopup(currentUser.loans.indexOf(filteredLoans[el[0].index])); }
+                }
+            });
+        }
+
+        // ==================== CALENDAR ====================
+        function renderCalendar() {
+            const c = document.getElementById('calendarContainer');
+            const y = calendarMonth.getFullYear(), m = calendarMonth.getMonth();
+            const first = new Date(y, m, 1).getDay();
+            const days = new Date(y, m + 1, 0).getDate();
+            const today = new Date();
+            const todayStr = `${today.getDate()}-${String(today.getMonth()+1).padStart(2,'0')}-${today.getFullYear()}`;
+
+            const dueMap = {};
+            currentUser.loans.forEach((l, i) => {
+                const [d,m,y] = l.endDate.split('-');
+                dueMap[`${d}-${m}-${y}`] = i;
+            });
+
+            let html = `<div style="text-align:center;margin:12px 0;display:flex;justify-content:space-between;align-items:center;">
+                <button class='move-asaid' onclick="prevMonth()">Previous</button>
+                <span style="margin:0 16px;font-weight:600;color:#eee;">${calendarMonth.toLocaleString('default', { month: 'long'})}</span>
+                <button class='move-asaid' onclick="nextMonth()">Next</button>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center;font-weight:600;color:#888;">
+                <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`;
+
+            for (let i = 0; i < first; i++) html += `<div></div>`;
+            for (let d = 1; d <= days; d++) {
+                const ds = `${d}-${String(m+1).padStart(2,'0')}-${y}`;
+                const isToday = ds === todayStr;
+                const idx = dueMap[ds];
+                let style = `cursor:${idx!==undefined?'pointer':'default'};`;
+                if (isToday) style += `border:2px solid #00aaff;`;
+                if (idx !== undefined) {
+                    const daysLeft = Math.ceil((new Date(ds.split('-').reverse().join('-')) - today) / 86400000);
+                    let bg = '#4CAF50';
+                    if (daysLeft <= 2) bg = '#F44336';
+                    else if (daysLeft <= 6) bg = '#004fff';
+                    style += `background:${bg};color:#000;border-radius:50%;`;
+                }
+                html += `<div style="${style}" ${idx!==undefined?`onclick="showDatePopup(${idx})"`:''}>${d}</div>`;
+            }
+            html += `</div>`;
+            c.innerHTML = html;
+        }
+
+        function prevMonth() { calendarMonth.setMonth(calendarMonth.getMonth() - 1); renderCalendar(); }
+        function nextMonth() { calendarMonth.setMonth(calendarMonth.getMonth() + 1); renderCalendar(); }
+
+        // ==================== DATE POPUP ====================
+        function showDatePopup(idx) {
+            const loan = currentUser.loans[idx];
+            const now = new Date();
+            const end = new Date(loan.endDate.split('-').reverse().join('-'));
+            const daysLeft = Math.ceil((end - now) / 86400000);
+            const status = daysLeft > 0 ? `${daysLeft} day${daysLeft>1?'s':''} left` : 'Overdue';
+
+            document.getElementById('popupContent').innerHTML = `
+                <p><strong>Amount:</strong> ${formatMoney(loan.takenAmount)}</p>
+                <p><strong>Purpose:</strong> ${loan.purpose || 'Not set'}</p>
+                <p><strong>Taken On:</strong> ${loan.planDate}</p>
+                <p><strong>Due:</strong> ${loan.endDate}</p>
+                <p><strong>Interest:</strong> ${formatMoney(loan.interest)}</p>
+                <p><strong>Status:</strong> <span style="color:${daysLeft<=2?'#F44336':daysLeft<=6?'#004fff':'#4CAF50'}">${status}</span></p>
+                <button style='text-align:center;display:flex;justify-content:center;align-items:center;width:100%;' onclick="goToList(${idx})">View Full</button>
+            `;
+            document.getElementById('datePopup').style.display = 'block';
+        }
+
+        function closeDatePopup() { document.getElementById('datePopup').style.display = 'none'; }
+        function goToList(idx) { closeDatePopup(); switchView('list', true); displayLoanDetails(currentUser.loans[idx], idx); }
+
+        // ==================== CLOSE MODAL ====================
         function closeModal() {
             document.getElementById("userInfoModal").style.display = "none";
-            document.getElementById("addNoteBtn").style.display = "none";
-            document.getElementById("addNoteBtnInitial").style.display = "none";
-            document.getElementById("toggleLoanBtn").style.display = "none";
+            saveUserData();
             currentUser = null;
-            currentLoanIndex = null;
-            saveNotesToStorage();
-            if (timeoutId) {
-                clearTimeout(timeoutId); // Clear any pending timeout
-            }
         }
+        document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
 
-        document.getElementById("addNoteBtnInitial").addEventListener("click", openNotePopup);
-        document.getElementById("addNoteBtn").addEventListener("click", openNotePopup);
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
 
-        function openNotePopup() {
-            document.getElementById("notePopup").style.display = "block";
-            const noteInput = document.getElementById("noteInput");
-            noteInput.value = currentUser.notes[currentLoanIndex] || '';
-        }
-
-        function closeNotePopup() {
-            document.getElementById("notePopup").style.display = "none";
-        }
-
-        function saveNote() {
-            const noteInput = document.getElementById("noteInput").value.trim();
-            if (currentUser && currentLoanIndex !== null) {
-                currentUser.notes[currentLoanIndex] = noteInput;
-                displayLoanDetails(currentUser.loans[currentLoanIndex], currentLoanIndex);
-                saveNotesToStorage();
-            }
-            closeNotePopup();
-        }
-
-        // Add toggle functionality for loan details
-        document.getElementById("toggleLoanBtn").addEventListener("click", () => {
-            const loanDetails = document.getElementById("loanDetails");
-            const savedNote = document.getElementById("savedNote");
-            if (loanDetails.style.display === "none" || loanDetails.style.display === "") {
-                loanDetails.style.display = "block";
-                savedNote.style.display = "block";
-                document.getElementById("toggleLoanBtn").textContent = "Hide";
-            } else {
-                loanDetails.style.display = "none";
-                savedNote.style.display = "none";
-                document.getElementById("toggleLoanBtn").textContent = "Show";
-            }
-        });
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
