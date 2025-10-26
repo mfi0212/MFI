@@ -1,6 +1,6 @@
-// ==================== CURRENCY LOGIC ====================
-        const USD_RATE = 87.85; // 1 USD = 87.85 INR (you can change this)
-        let currentCurrency = localStorage.getItem('currency') || 'INR'; // default INR
+
+        const USD_RATE = 87.85;
+        let currentCurrency = localStorage.getItem('currency') || 'INR';
 
         function formatMoney(amount) {
             const val = currentCurrency === 'USD' ? (amount / USD_RATE) : amount;
@@ -22,12 +22,10 @@
             if (currentUser) {
                 renderAmountButtons();
                 if (currentLoanIndex !== null) displayLoanDetails(currentUser.loans[currentLoanIndex], currentLoanIndex);
-                showTotalPopup(); // will close & reopen, but it's fine
+                showTotalPopup(); 
                 if (document.getElementById('graphContainer').style.display === 'block') renderChart();
             }
         }
-
-        // ==================== DATA ====================
         const passwords = {
             "0212": {
                 name: "Tony Mantana",
@@ -51,7 +49,6 @@
         let pendingLink = null;
         let filteredLoans = [];
 
-        // ==================== LOAD DATA ====================
         document.addEventListener('DOMContentLoaded', () => {
             const saved = localStorage.getItem('lastPassword');
             if (saved) setTimeout(() => document.getElementById("userPassword").value = saved, 300);
@@ -83,7 +80,6 @@
             localStorage.setItem('userData', JSON.stringify(data));
         }
 
-        // ==================== LOGIN ====================
         document.getElementById("submitBtn").onclick = () => {
             const input = document.getElementById("userPassword").value.trim();
             const user = passwords[input];
@@ -112,7 +108,6 @@
             }
         };
 
-        // ==================== SEARCH ====================
         let searchOpen = false;
         function toggleSearch() {
             const input = document.getElementById("searchInput");
@@ -144,7 +139,6 @@
             renderAmountButtons();
         }
 
-        // ==================== RENDER BUTTONS ====================
         function renderAmountButtons() {
             const btns = document.getElementById("amountButtons");
             btns.innerHTML = "";
@@ -161,7 +155,6 @@
             });
         }
 
-        // ==================== DISPLAY LOAN DETAILS ====================
         function displayLoanDetails(loan, index) {
             currentLoanIndex = index;
             const now = new Date();
@@ -205,7 +198,6 @@
             filterLoans();
         }
 
-        // ==================== LINKS ====================
         function renderLinks() {
             const c = document.getElementById("userLinks"); c.innerHTML = "";
             currentUser.links.forEach((link, i) => {
@@ -246,7 +238,6 @@
             document.getElementById("linkConfirmPopup").style.display = "none";
         };
 
-        // ==================== EMOTE CHOOSER ====================
         function openEmoteChooser() { document.getElementById("emoteChooser").style.display = "block"; }
         function closeEmoteChooser() { document.getElementById("emoteChooser").style.display = "none"; }
         function setUserEmote(src) {
@@ -325,7 +316,6 @@
             if (changeNav) updateNavActive(view);
         }
 
-        // ==================== GRAPH ====================
         function renderChart() {
             const ctx = document.getElementById('loanChart').getContext('2d');
             const now = new Date();
@@ -354,8 +344,6 @@
                 }
             });
         }
-
-        // ==================== CALENDAR ====================
         function renderCalendar() {
             const c = document.getElementById('calendarContainer');
             const y = calendarMonth.getFullYear(), m = calendarMonth.getMonth();
@@ -401,7 +389,6 @@
         function prevMonth() { calendarMonth.setMonth(calendarMonth.getMonth() - 1); renderCalendar(); }
         function nextMonth() { calendarMonth.setMonth(calendarMonth.getMonth() + 1); renderCalendar(); }
 
-        // ==================== DATE POPUP ====================
         function showDatePopup(idx) {
             const loan = currentUser.loans[idx];
             const now = new Date();
@@ -424,25 +411,26 @@
         function closeDatePopup() { document.getElementById('datePopup').style.display = 'none'; }
         function goToList(idx) { closeDatePopup(); switchView('list', true); displayLoanDetails(currentUser.loans[idx], idx); }
 
-        // ==================== CLOSE MODAL ====================
         function closeModal() {
             document.getElementById("userInfoModal").style.display = "none";
             saveUserData();
             currentUser = null;
         }
-        document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
+         document.addEventListener("DOMContentLoaded", () => {
+            const customMenu = document.querySelector(".custom-menu");
 
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                if (customMenu) {
+                    customMenu.style.display = "block";
+                    customMenu.style.top = `${event.pageY}px`;
+                    customMenu.style.left = `${event.pageX}px`;
+                }
+            });
 
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
+            document.addEventListener("click", () => {
+                if (customMenu) {
+                    customMenu.style.display = "none";
+                }
+            });
+        });
