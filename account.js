@@ -185,7 +185,7 @@
                     <p><i class="fa-solid fa-calendar-check"></i> ${loan.endDate}</p>
                     <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Interest</h3>
                     <p><i class="fa-solid fa-arrow-up-wide-short"></i> ${formatMoney(loan.interest)}</p>
-                    ${extra > 0 ? `<p style="color:#cf8500;"><i class="fa-solid fa-exclamation-circle"></i> Overdue: ${formatMoney(extra)}</p>` : ''}
+                    ${extra > 0 ? `<p style="color:#ffca00;"><i class="fa-solid fa-exclamation-circle"></i> Overdue: ${formatMoney(extra)}</p>` : ''}
                     <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Total to Pay</h3>
                     <p><i class="fa-solid fa-money-check-alt"></i> ${formatMoney(total)}</p>
                 </div>
@@ -325,7 +325,7 @@
                 const end = new Date(loan.endDate.split('-').reverse().join('-'));
                 const days = Math.ceil((end - now) / 86400000);
                 let col = '#4CAF50';
-                if (days <= 2) col = 'red';
+                if (days <= 2) col = '#F44336';
                 else if (days <= 6) col = '#004fff';
                 labels.push(`L${i+1}`);
                 data.push(currentCurrency === 'USD' ? loan.takenAmount / USD_RATE : loan.takenAmount);
@@ -372,13 +372,13 @@
                 const isToday = ds === todayStr;
                 const idx = dueMap[ds];
                 let style = `cursor:${idx!==undefined?'pointer':'default'};`;
-                if (isToday) style += `border:2px solid #ffffff6a;border-radius:10px;`;
+                if (isToday) style += `border:2px solid #00aaff;`;
                 if (idx !== undefined) {
                     const daysLeft = Math.ceil((new Date(ds.split('-').reverse().join('-')) - today) / 86400000);
                     let bg = '#4CAF50';
-                    if (daysLeft <= 2) bg = 'red';
+                    if (daysLeft <= 2) bg = '#F44336';
                     else if (daysLeft <= 6) bg = '#004fff';
-                    style += `background:${bg};color:#000;border-radius:10px;`;
+                    style += `background:${bg};color:#000;border-radius:50%;`;
                 }
                 html += `<div style="${style}" ${idx!==undefined?`onclick="showDatePopup(${idx})"`:''}>${d}</div>`;
             }
@@ -402,7 +402,7 @@
                 <p><strong>Taken On:</strong> ${loan.planDate}</p>
                 <p><strong>Due:</strong> ${loan.endDate}</p>
                 <p><strong>Interest:</strong> ${formatMoney(loan.interest)}</p>
-                <p><strong>Status:</strong> <span style="color:${daysLeft<=2?'#00fff2':daysLeft<=6?'#004fff':'#4CAF50'}">${status}</span></p>
+                <p><strong>Status:</strong> <span style="color:${daysLeft<=2?'#F44336':daysLeft<=6?'#004fff':'#4CAF50'}">${status}</span></p>
                 <button style='text-align:center;display:flex;justify-content:center;align-items:center;width:100%;' onclick="goToList(${idx})">View Full</button>
             `;
             document.getElementById('datePopup').style.display = 'block';
