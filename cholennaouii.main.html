@@ -5,13 +5,9 @@
             document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // === DAILY RATES: FORCE RESET + STRICTLY CENTERED INSIDE LIMITS ===
+        // === DAILY RATES: ONE FIXED RATE PER DAY (CACHED IN LOCALSTORAGE) ===
         const DAILY_RATES_KEY = 'dailyRates';
         const DAILY_DATE_KEY = 'dailyRatesDate';
-
-        // FORCE CLEAR OLD RATES ON LOAD (resets to fresh every time)
-        localStorage.removeItem(DAILY_RATES_KEY);
-        localStorage.removeItem(DAILY_DATE_KEY);
 
         function getTodayDateString() {
             return new Date().toISOString().split('T')[0]; // YYYY-MM-DD
@@ -22,49 +18,55 @@
             let rates = JSON.parse(localStorage.getItem(DAILY_RATES_KEY));
             const storedDate = localStorage.getItem(DAILY_DATE_KEY);
 
-            // Always generate fresh (due to clear above)
-            const randomBetween = (min, max) => {
-                const r = Math.random() * (max - min) + min;
-                return Number(r.toFixed(4));
-            };
+            // Generate only if not today
+            if (!rates || storedDate !== today) {
+                const randomBetween = (min, max) => {
+                    const r = Math.random() * (max - min) + min;
+                    return Number(r.toFixed(4));
+                };
 
-            // CENTERED RANGES: Always display cleanly inside limits
-            rates = {
-                normal:   randomBetween(0.205, 0.225),  // 20.5% – 22.5% (inside 20-23)
-                premium:  randomBetween(0.155, 0.175),  // 15.5% – 17.5% (inside 15-18)
-                business: randomBetween(0.105, 0.125)   // 10.5% – 12.5% (inside 10-13)
-            };
+                // One fixed rate per tier, centered inside original range
+                rates = {
+                    normal:   randomBetween(0.205, 0.225),  // e.g. 21.37%
+                    premium:  randomBetween(0.155, 0.175),  // e.g. 16.82%
+                    business: randomBetween(0.105, 0.125)   // e.g. 11.49%
+                };
 
-            localStorage.setItem(DAILY_RATES_KEY, JSON.stringify(rates));
-            localStorage.setItem(DAILY_DATE_KEY, today);
+                localStorage.setItem(DAILY_RATES_KEY, JSON.stringify(rates));
+                localStorage.setItem(DAILY_DATE_KEY, today);
 
-            // DEBUG: Log rates to console (open DevTools to check)
-            console.log('Fresh Daily Rates:', {
-                normal: (rates.normal * 100).toFixed(2) + '%',
-                premium: (rates.premium * 100).toFixed(2) + '%',
-                business: (rates.business * 100).toFixed(2) + '%'
-            });
+                console.log('New Daily Rates Set:', {
+                    normal: (rates.normal * 100).toFixed(2) + '%',
+                    premium: (rates.premium * 100).toFixed(2) + '%',
+                    business: (rates.business * 100).toFixed(2) + '%'
+                });
+            } else {
+                console.log('Using Cached Daily Rates:', {
+                    normal: (rates.normal * 100).toFixed(2) + '%',
+                    premium: (rates.premium * 100).toFixed(2) + '%',
+                    business: (rates.business * 100).toFixed(2) + '%'
+                });
+            }
 
             return rates;
         }
 
-        const dailyRates = generateDailyRates(); // Always fresh now
+        const dailyRates = generateDailyRates(); // One rate per day
 
-        // === FIXED CALCULATOR: Shows range + daily value ===
+        // === FIXED CALCULATOR: Shows ONE DAILY RATE ===
         function calculate() {
             const amount = parseFloat(document.getElementById('amount').value);
             const tierSelect = document.getElementById('tier');
             const tier = tierSelect.value;
             const tierText = tierSelect.options[tierSelect.selectedIndex].text;
             const tierName = tierText.split(' – ')[0];
-            const rangeText = tierText.split(' – ')[1].split(' ')[0]; // e.g., "20-23"
 
             if (!amount || amount < 100) {
                 document.getElementById('result').innerHTML = '<span style="color:#ff0000;">ENTER VALID AMOUNT (min $100)</span>';
                 return;
             }
 
-            const rate = parseFloat(dailyRates[tier]);
+            const rate = dailyRates[tier];
             const ratePercent = (rate * 100).toFixed(2);
             const interest = (amount * rate).toFixed(2);
             const total = (parseFloat(amount) + parseFloat(interest)).toFixed(2);
@@ -72,8 +74,8 @@
             const monthly = (total / months).toFixed(2);
 
             document.getElementById('result').innerHTML = `
-
-                Interest: <strong style="color:#ffd700;">$${interest}</strong><br>
+                Daily Rate: <strong style="color:#ffd700;">${ratePercent}%</strong><br>
+                Interest Earned: <strong style="color:#ffd700;">$${interest}</strong><br>
             `;
         }
 
@@ -137,9 +139,13 @@
             }, 3000);
         });
 
-        window.addEventListener('click', (e) => { if (e.target === checkModal) closeCheckRateModal(); });
-   
- document.addEventListener("DOMContentLoaded", () => {
+        window.addEventListener('click', (e) => { 
+            if (e.target === checkModal) closeCheckRateModal(); 
+        });
+
+        // Prevent context menu
+        document.addEventListener("contextmenu", (e) => e.preventDefault());
+         document.addEventListener("DOMContentLoaded", () => {
             const customMenu = document.querySelector(".custom-menu");
 
             document.addEventListener("contextmenu", (event) => {
@@ -157,10 +163,6 @@
                 }
             });
         });
-        window.addEventListener('click', (e) => {
-            if (e.target === checkModal) closeCheckRateModal();
-        });
     </script>
 </body>
 </html>
-
