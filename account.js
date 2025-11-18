@@ -6,11 +6,11 @@ let pendingLink = null;
 let filteredLoans = [];
 
 const usersDB = {
-    "Mahesh888*": {
+    "0212": {
         name: "Mahesh Muthinti",
         coins: 0,
         loans: [
-            { planDate: "25-05-2025", endDate: "11-11-2025(Extended to 15 days)", interest: 640, takenAmount: 5100, takenFrom: "Delayit offer", fineRate: 50, purpose: "" },
+            { planDate: "25-05-2025", endDate: "21-11-2025(Extended to 15 days)", interest: 640, takenAmount: 5100, takenFrom: "Delayit offer", fineRate: 50, purpose: "" },
             { planDate: "29-09-2025", endDate: "14-12-2025(Extended to 30 days)", interest: 1380, takenAmount: 4720, takenFrom: "MLLD", fineRate: 40, purpose: "" },
         ],
         links: [],
@@ -193,7 +193,10 @@ function displayLoanDetails(loan, index) {
             </div>
             <hr>
             <div class="totaldetails">
-                <h3 style=";margin:25px 0;font-weight:600;font-size:15px;">Total amount to return</h3>
+                <h3 style="margin: 10px 0;
+    font-weight: 600;
+    font-size: 15px;
+    color: #ffffff91;">Total amount to return</h3>
                 <p style="font-size:24px;color:${overdueFine > 0 ? '#ff4444' : '#00ff00'};font-weight:bold;">
                     ${formatMoney(totalPayable)}
                 </p>
