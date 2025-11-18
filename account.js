@@ -1,4 +1,3 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || 'INR';
 let currentUser = null, currentLoanIndex = null, loanChart = null, calendarMonth = new Date();
@@ -7,11 +6,11 @@ let pendingLink = null;
 let filteredLoans = [];
 
 const usersDB = {
-    "0212": {
-        name: "Tony Mantana",
-        coins: 10,
+    "Mahesh888*": {
+        name: "Mahesh Muthinti",
+        coins: 0,
         loans: [
-            { planDate: "25-05-2025", endDate: "21-11-2025(Extended to 15 days)", interest: 640, takenAmount: 5100, takenFrom: "Delayit offer", fineRate: 50, purpose: "" },
+            { planDate: "25-05-2025", endDate: "11-11-2025(Extended to 15 days)", interest: 640, takenAmount: 5100, takenFrom: "Delayit offer", fineRate: 50, purpose: "" },
             { planDate: "29-09-2025", endDate: "14-12-2025(Extended to 30 days)", interest: 1380, takenAmount: 4720, takenFrom: "MLLD", fineRate: 40, purpose: "" },
         ],
         links: [],
@@ -160,34 +159,45 @@ function displayLoanDetails(loan, index) {
 
     document.getElementById("loanDetails").innerHTML = `
         <div class="loan-entry">
-            <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Purpose</h3>
-            <input type="text" class="purpose-input" placeholder="e.g. Taken for shopping" value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
+            <div class="details">
+                <h3 style=";margin:25px 0;font-weight:600;font-size:15px;">Purpose</h3>
+                <input type="text" class="purpose-input" placeholder="e.g. Taken for shopping" value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
+            </div>
+            <div class="details">
+                <h3 style=";margin:25px 0;font-weight:600;font-size:15px;">Taken From</h3>
+                <p>${loan.takenFrom}</p>
+            </div>
+            <div class="details">
+                <h3 style=";margin:25px 0;font-weight:600;font-size:15px;">Taken Date</h3>
+                <p>${loan.planDate}</p>
+            </div>
+            <div class="details">
+                <h3 style=";margin:25px 0;font-weight:600;font-size:15px;">Return Date</h3>
+                <p style="color:${daysLeft <= 2 ? '#ff4444' : daysLeft <= 6 ? '#ffca00' : '#00ff88'};"> ${cleanEndDate}</p>
+            </div>
+            <div class="details">
+                <h3 style=";margin:25px 0;font-weight:600;font-size:15px;">Amount Taken</h3>
+                <p> ${formatMoney(loan.takenAmount)}</p>
+            </div>
+            <div class="details">
+                <h3 style=";margin:25px 0;font-weight:600;font-size:15px;">Interest</h3>
+                <p> ${formatMoney(loan.interest)}</p>
+            </div>
 
-            <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Taken From</h3>
-            <p>${loan.takenFrom}</p>
-
-            <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Taken Date</h3>
-            <p><i class="fa-solid fa-calendar-plus"></i> ${loan.planDate}</p>
-
-            <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Return Date</h3>
-            <p><i class="fa-solid fa-calendar-check" style="color:${daysLeft <= 2 ? '#ff4444' : daysLeft <= 6 ? '#ffca00' : '#00ff88'};"></i> ${cleanEndDate}</p>
-
-            <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Amount Taken</h3>
-            <p><i class="fa-solid fa-money-bill-transfer"></i> ${formatMoney(loan.takenAmount)}</p>
-
-            <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Interest</h3>
-            <p><i class="fa-solid fa-arrow-up-wide-short"></i> ${formatMoney(loan.interest)}</p>
-
-            ${overdueFine > 0 ? `
-            <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Overdue Fine</h3>
-            <p><i class="fa-solid fa-exclamation-triangle"></i> ${formatMoney(overdueFine)} 
-                <small>(${Math.abs(daysLeft)} days × ₹${loan.fineRate}/day)</small>
-            </p>` : ''}
-
-            <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Total amount to return</h3>
-            <p style="font-size:24px;color:${overdueFine > 0 ? '#ff4444' : '#00ff00'};font-weight:bold;">
-                <i class="fa-solid fa-indian-rupee-sign"></i> ${formatMoney(totalPayable)}
-            </p>
+            <div class="details">
+                ${overdueFine > 0 ? `
+                <h3 style=";margin:25px 0;font-weight:600;font-size:15px;">Overdue Fine</h3>
+                <p style='color: #ff4444;'>${formatMoney(overdueFine)} 
+                    <small>(${Math.abs(daysLeft)} days)</small>
+                </p>` : ''}
+            </div>
+            <hr>
+            <div class="totaldetails">
+                <h3 style=";margin:25px 0;font-weight:600;font-size:15px;">Total amount to return</h3>
+                <p style="font-size:24px;color:${overdueFine > 0 ? '#ff4444' : '#00ff00'};font-weight:bold;">
+                    ${formatMoney(totalPayable)}
+                </p>
+            </div>
         </div>
     `;
 }
@@ -251,10 +261,21 @@ function renderCalendar() {
         dueMap[`${d.padStart(2,'0')}-${mm.padStart(2,'0')}-${yy}`] = i;
     });
 
-    let html = `<div style="text-align:center;margin:12px 0;display:flex;justify-content:space-between;">
-        <button class="move-asaid" onclick="prevMonth()">Previous</button>
+    let html = `<div style="    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    position: sticky;
+    top: -20px;
+    background: transparent;
+    padding: 13px 0px 10px 0px;
+    backdrop-filter: blur(3px);
+    width: 100%;    margin-bottom: 20px;
+">
         <span style="font-weight:600;color:#eee;">${calendarMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
-        <button class="move-asaid" onclick="nextMonth()">Next</button>
+        <button class="move-asaid" onclick="prevMonth()"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="move-asaid" onclick="nextMonth()"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
     <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center;color:#888;font-weight:600;">
         <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`;
@@ -263,14 +284,14 @@ function renderCalendar() {
     for (let d = 1; d <= days; d++) {
         const ds = `${String(d).padStart(2,'0')}-${String(m+1).padStart(2,'0')}-${y}`;
         const idx = dueMap[ds];
-        let style = `padding:8px;border-radius:50%;cursor:${idx!==undefined?'pointer':'default'};transition:all .2s;`;
+        let style = `border-radius:12px;cursor:${idx!==undefined?'pointer':'default'};transition:all .2s;`;
         if (idx !== undefined) {
             const end = new Date(currentUser.loans[idx].endDate.split('(')[0].trim().split('-').reverse().join('-'));
             const daysLeft = Math.ceil((end - today) / 86400000);
             let bg = '#4CAF50';
             if (daysLeft <= 2) bg = '#F44336';
-            else if (daysLeft <= 6) bg = '#FFCA28';
-            style += `background:${bg};color:white;font-weight:bold;`;
+            else if (daysLeft <= 6) bg = '#ffbf00ff';
+            style += `background:${bg};color:black;font-weight:bold;`;
         }
         if (ds === today.toLocaleDateString('en-GB').split('/').reverse().join('-')) {
             style += `border:2px solid #00aaff;box-sizing:border-box;`;
@@ -405,4 +426,3 @@ function filterLoans() {
     );
     renderAmountButtons();
 }
-
