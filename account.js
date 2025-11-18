@@ -1,436 +1,406 @@
+const USD_RATE = 87.85;
+let currentCurrency = localStorage.getItem('currency') || 'INR';
+let currentUser = null, currentLoanIndex = null, loanChart = null, calendarMonth = new Date();
+const PINNED_KEY = 'pinnedView';
+let pendingLink = null;
+let filteredLoans = [];
 
-        const USD_RATE = 87.85;
-        let currentCurrency = localStorage.getItem('currency') || 'INR';
+const usersDB = {
+    "0212": {
+        name: "Tony Mantana",
+        coins: 10,
+        loans: [
+            { planDate: "25-05-2025", endDate: "21-11-2025(Extended to 15 days)", interest: 640, takenAmount: 5100, takenFrom: "Delayit offer", fineRate: 50, purpose: "" },
+            { planDate: "29-09-2025", endDate: "14-12-2025(Extended to 30 days)", interest: 1380, takenAmount: 4720, takenFrom: "MLLD", fineRate: 40, purpose: "" },
+        ],
+        links: [],
+        emote: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0"
+    },
+};
 
-        function formatMoney(amount) {
-            const val = currentCurrency === 'USD' ? (amount / USD_RATE) : amount;
-            const symbol = currentCurrency === 'USD' ? '$' : '₹';
-            return `${symbol}${val.toFixed(2)}`;
-        }
-
-        function updateCurrencyUI() {
-            document.getElementById('currencyLabel').textContent = currentCurrency;
-            document.querySelector('#currencySwitch i').className = 
-                currentCurrency === 'USD' ? 'fa-solid fa-dollar-sign' : 'fa-solid fa-rupee-sign';
-        }
-
-        function toggleCurrency() {
-            currentCurrency = currentCurrency === 'INR' ? 'USD' : 'INR';
-            localStorage.setItem('currency', currentCurrency);
-            updateCurrencyUI();
-            // Refresh everything that shows money
-            if (currentUser) {
-                renderAmountButtons();
-                if (currentLoanIndex !== null) displayLoanDetails(currentUser.loans[currentLoanIndex], currentLoanIndex);
-                showTotalPopup(); 
-                if (document.getElementById('graphContainer').style.display === 'block') renderChart();
+function loadUserData() {
+    const savedData = JSON.parse(localStorage.getItem('userData') || '{}');
+    
+    for (let pin in usersDB) {
+        const saved = savedData[pin];
+        if (saved) {
+            usersDB[pin].links = saved.links || [];
+            usersDB[pin].emote = saved.emote || usersDB[pin].emote;
+            if (saved.purposes) {
+                saved.purposes.forEach((p, i) => {
+                    if (usersDB[pin].loans[i]) usersDB[pin].loans[i].purpose = p;
+                });
             }
         }
-        const passwords = {
-            "0212": {
-                name: "Tony Mantana",
-                loans: [
-                    {planDate:"10-08-2025",endDate:"25-08-2025",interest:1360,takenAmount:5000,takenFrom:"MLLD",fineRate:86},
-                    {planDate:"15-08-2025",endDate:"30-08-2025",interest:4800,takenAmount:20000,takenFrom:"MLending",fineRate:320},
-                    {planDate:"16-08-2025",endDate:"31-08-2025",interest:1275,takenAmount:5000,takenFrom:"MLLD",fineRate:90},
-                    {planDate:"18-08-2025",endDate:"02-09-2025",interest:1380,takenAmount:5000,takenFrom:"MLLD",fineRate:88},
-                    {planDate:"18-08-2025",endDate:"02-09-2025",interest:690,takenAmount:2500,takenFrom:"MLLD",fineRate:46},
-                    {planDate:"13-10-2025",endDate:"28-10-2025",interest:0,takenAmount:10000,takenFrom:"MLending",fineRate:46},
-                    {planDate:"14-10-2025",endDate:"29-10-2025",interest:0,takenAmount:2700,takenFrom:"MLLD",fineRate:46},
-                    {planDate:"23-10-2025",endDate:"07-11-2025",interest:1320,takenAmount:4000,takenFrom:"MLLD",fineRate:46},
-                ],
-                links: [],
-                emote: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0"
-            }
+    }
+}
+
+function saveUserData() {
+    const data = {};
+    for (let pin in usersDB) {
+        data[pin] = {
+            links: usersDB[pin].links,
+            emote: usersDB[pin].emote,
+            purposes: usersDB[pin].loans.map(l => l.purpose || "")
         };
+    }
+    localStorage.setItem('userData', JSON.stringify(data));
+}
 
-        let currentUser = null, currentLoanIndex = null, loanChart = null, calendarMonth = new Date();
-        const PINNED_KEY = 'pinnedView';
-        let pendingLink = null;
-        let filteredLoans = [];
+function formatMoney(amount) {
+    const val = currentCurrency === 'USD' ? (amount / USD_RATE).toFixed(2) : amount;
+    const symbol = currentCurrency === 'USD' ? '$' : '₹';
+    return `${symbol}${parseFloat(val).toLocaleString()}`;
+}
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const saved = localStorage.getItem('lastPassword');
-            if (saved) setTimeout(() => document.getElementById("userPassword").value = saved, 300);
-            loadUserData();
-            updateCurrencyUI(); // restore saved currency
-            document.getElementById('currencySwitch').onclick = toggleCurrency;
-        });
+function updateCurrencyUI() {
+    document.getElementById('currencyLabel').textContent = currentCurrency;
+    document.querySelector('#currencySwitch i').className = 
+        currentCurrency === 'USD' ? 'fa-solid fa-dollar-sign' : 'fa-solid fa-indian-rupee-sign';
+}
 
-        function loadUserData() {
-            const data = JSON.parse(localStorage.getItem('userData')) || {};
-            for (let k in passwords) {
-                if (data[k]) {
-                    passwords[k].links = data[k].links || [];
-                    passwords[k].emote = data[k].emote || passwords[k].emote;
-                    passwords[k].loans.forEach((loan, i) => loan.purpose = data[k].purposes?.[i] || "");
-                }
-            }
+function toggleCurrency() {
+    currentCurrency = currentCurrency === 'INR' ? 'USD' : 'INR';
+    localStorage.setItem('currency', currentCurrency);
+    updateCurrencyUI();
+    if (currentUser) {
+        renderAmountButtons();
+        if (currentLoanIndex !== null) displayLoanDetails(currentUser.loans[currentLoanIndex], currentLoanIndex);
+        showTotalPopup();
+        if (document.getElementById('graphContainer').style.display === 'block') renderChart();
+        updateCoinsDisplay();
+    }
+}
+
+function updateCoinsDisplay() {
+    if (currentUser && document.getElementById('userCoinsDisplay')) {
+        document.getElementById('userCoinsDisplay').textContent = currentUser.coins.toLocaleString();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadUserData();
+    updateCurrencyUI();
+    document.getElementById('currencySwitch').onclick = toggleCurrency;
+    const saved = localStorage.getItem('lastPassword');
+    if (saved) setTimeout(() => document.getElementById("userPassword").value = saved, 300);
+});
+
+document.getElementById("submitBtn").onclick = () => {
+    const input = document.getElementById("userPassword").value.trim();
+    const user = usersDB[input];
+    const err = document.getElementById("error-message");
+
+    if (user) {
+        localStorage.setItem('lastPassword', input);
+        currentUser = user;
+        filteredLoans = [...user.loans];
+
+        document.getElementById("userName").textContent = user.name;
+        document.getElementById("userEmote").src = user.emote;
+        updateCoinsDisplay();
+        renderLinks();
+        renderAmountButtons();
+        if (user.loans.length) displayLoanDetails(user.loans[0], 0);
+
+        document.getElementById("userInfoModal").style.display = "block";
+        document.getElementById("passwordContainer").style.display = "none";
+        err.textContent = "";
+
+        const pinned = localStorage.getItem(PINNED_KEY) || 'list';
+        switchView(pinned, false);
+        updateNavActive(pinned);
+    } else {
+        err.textContent = "Invalid password!";
+    }
+};
+
+function showTotalPopup() {
+    const now = new Date();
+    let base = 0, interest = 0, overdue = 0;
+
+    currentUser.loans.forEach(loan => {
+        base += loan.takenAmount;
+        interest += loan.interest;
+        const cleanEnd = loan.endDate.split('(')[0].trim();
+        const end = new Date(cleanEnd.split('-').reverse().join('-'));
+        if (now > end) {
+            const days = Math.ceil((now - end) / 86400000);
+            overdue += days * loan.fineRate;
         }
+    });
 
-        function saveUserData() {
-            const data = {};
-            for (let k in passwords) {
-                data[k] = {
-                    links: passwords[k].links,
-                    emote: passwords[k].emote,
-                    purposes: passwords[k].loans.map(l => l.purpose)
-                };
-            }
-            localStorage.setItem('userData', JSON.stringify(data));
+    const total = base + interest + overdue;
+
+    document.getElementById("totalContent").innerHTML = `
+        <p>Taken amount : <strong>${formatMoney(base)}</strong></p>
+        <p>Total Interest : <strong>${formatMoney(interest)}</strong></p>
+        ${overdue > 0 ? `<p style="color:#ff4444;">Overdue Fine : <strong>${formatMoney(overdue)}</strong></p>` : ''}
+        <hr>
+        <p style="font-size: 22px;margin-top: 22px;margin-bottom: 10px;">Total to Return: <strong>${formatMoney(total)}</strong></p>
+    `;
+    document.getElementById("totalPopup").style.display = "block";
+}
+
+function closeTotalPopup() { document.getElementById("totalPopup").style.display = "none"; }
+
+function displayLoanDetails(loan, index) {
+    currentLoanIndex = index;
+    const now = new Date();
+    const cleanEndDate = loan.endDate.split('(')[0].trim();
+    const endDate = new Date(cleanEndDate.split('-').reverse().join('-'));
+    const daysLeft = Math.ceil((endDate - now) / 86400000);
+    let overdueFine = daysLeft < 0 ? Math.abs(daysLeft) * loan.fineRate : 0;
+    const totalPayable = loan.takenAmount + loan.interest + overdueFine;
+
+    document.querySelectorAll(".amount-btn").forEach(b => b.classList.remove("active"));
+    const btns = document.getElementById("amountButtons").children;
+    if (btns[filteredLoans.indexOf(loan)]) btns[filteredLoans.indexOf(loan)].classList.add("active");
+
+    document.getElementById("loanDetails").innerHTML = `
+        <div class="loan-entry">
+            <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Purpose</h3>
+            <input type="text" class="purpose-input" placeholder="e.g. Taken for shopping" value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
+
+            <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Taken From</h3>
+            <p>${loan.takenFrom}</p>
+
+            <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Taken Date</h3>
+            <p><i class="fa-solid fa-calendar-plus"></i> ${loan.planDate}</p>
+
+            <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Return Date</h3>
+            <p><i class="fa-solid fa-calendar-check" style="color:${daysLeft <= 2 ? '#ff4444' : daysLeft <= 6 ? '#ffca00' : '#00ff88'};"></i> ${cleanEndDate}</p>
+
+            <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Amount Taken</h3>
+            <p><i class="fa-solid fa-money-bill-transfer"></i> ${formatMoney(loan.takenAmount)}</p>
+
+            <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Interest</h3>
+            <p><i class="fa-solid fa-arrow-up-wide-short"></i> ${formatMoney(loan.interest)}</p>
+
+            ${overdueFine > 0 ? `
+            <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Overdue Fine</h3>
+            <p><i class="fa-solid fa-exclamation-triangle"></i> ${formatMoney(overdueFine)} 
+                <small>(${Math.abs(daysLeft)} days × ₹${loan.fineRate}/day)</small>
+            </p>` : ''}
+
+            <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Total amount to return</h3>
+            <p style="font-size:24px;color:${overdueFine > 0 ? '#ff4444' : '#00ff00'};font-weight:bold;">
+                <i class="fa-solid fa-indian-rupee-sign"></i> ${formatMoney(totalPayable)}
+            </p>
+        </div>
+    `;
+}
+
+function updatePurpose(index, value) {
+    currentUser.loans[index].purpose = value.trim();
+    saveUserData();
+    renderAmountButtons();
+}
+
+function renderAmountButtons() {
+    const container = document.getElementById("amountButtons");
+    container.innerHTML = "";
+    filteredLoans.forEach((loan, i) => {
+        const originalIndex = currentUser.loans.indexOf(loan);
+        const btn = document.createElement("button");
+        btn.className = "amount-btn";
+        btn.innerHTML = `${formatMoney(loan.takenAmount)}<div class="purpose-tag">${loan.purpose || 'Set Purpose'}</div>`;
+        btn.onclick = () => { displayLoanDetails(loan, originalIndex); switchView('list', false); };
+        container.appendChild(btn);
+    });
+}
+
+function renderChart() {
+    const ctx = document.getElementById('loanChart').getContext('2d');
+    const now = new Date();
+    const labels = [], data = [], colors = [];
+
+    currentUser.loans.forEach((loan, i) => {
+        const clean = loan.endDate.split('(')[0].trim();
+        const end = new Date(clean.split('-').reverse().join('-'));
+        const daysLeft = Math.ceil((end - now) / 86400000);
+        let color = '#4CAF50';
+        if (daysLeft <= 2) color = '#F44336';
+        else if (daysLeft <= 6) color = '#FFCA28';
+
+        labels.push(`Loan ${i+1}`);
+        data.push(currentCurrency === 'USD' ? (loan.takenAmount / USD_RATE).toFixed(2) : loan.takenAmount);
+        colors.push(color);
+    });
+
+    if (loanChart) loanChart.destroy();
+    loanChart = new Chart(ctx, {
+        type: 'bar',
+        data: { labels, datasets: [{ data, backgroundColor: colors, borderWidth: 1.5 }] },
+        options: { responsive: true, plugins: { legend: { display: false } } }
+    });
+}
+
+function renderCalendar() {
+    const c = document.getElementById('calendarContainer');
+    const y = calendarMonth.getFullYear(), m = calendarMonth.getMonth();
+    const first = new Date(y, m, 1).getDay();
+    const days = new Date(y, m + 1, 0).getDate();
+    const today = new Date();
+
+    const dueMap = {};
+    currentUser.loans.forEach((loan, i) => {
+        const clean = loan.endDate.split('(')[0].trim();
+        const [d, mm, yy] = clean.split('-');
+        dueMap[`${d.padStart(2,'0')}-${mm.padStart(2,'0')}-${yy}`] = i;
+    });
+
+    let html = `<div style="text-align:center;margin:12px 0;display:flex;justify-content:space-between;">
+        <button class="move-asaid" onclick="prevMonth()">Previous</button>
+        <span style="font-weight:600;color:#eee;">${calendarMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
+        <button class="move-asaid" onclick="nextMonth()">Next</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center;color:#888;font-weight:600;">
+        <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`;
+
+    for (let i = 0; i < first; i++) html += `<div></div>`;
+    for (let d = 1; d <= days; d++) {
+        const ds = `${String(d).padStart(2,'0')}-${String(m+1).padStart(2,'0')}-${y}`;
+        const idx = dueMap[ds];
+        let style = `padding:8px;border-radius:50%;cursor:${idx!==undefined?'pointer':'default'};transition:all .2s;`;
+        if (idx !== undefined) {
+            const end = new Date(currentUser.loans[idx].endDate.split('(')[0].trim().split('-').reverse().join('-'));
+            const daysLeft = Math.ceil((end - today) / 86400000);
+            let bg = '#4CAF50';
+            if (daysLeft <= 2) bg = '#F44336';
+            else if (daysLeft <= 6) bg = '#FFCA28';
+            style += `background:${bg};color:white;font-weight:bold;`;
         }
-
-        document.getElementById("submitBtn").onclick = () => {
-            const input = document.getElementById("userPassword").value.trim();
-            const user = passwords[input];
-            const err = document.getElementById("error-message");
-
-            localStorage.setItem('lastPassword', input);
-
-            if (user) {
-                currentUser = user;
-                filteredLoans = [...user.loans];
-                document.getElementById("userName").textContent = user.name;
-                document.getElementById("userEmote").src = user.emote;
-
-                renderLinks();
-                renderAmountButtons();
-                if (user.loans.length) displayLoanDetails(user.loans[0], 0);
-
-                document.getElementById("userInfoModal").style.display = "block";
-                err.textContent = "";
-
-                const pinned = localStorage.getItem(PINNED_KEY) || 'list';
-                switchView(pinned, false);
-                updateNavActive(pinned);
-            } else {
-                err.textContent = "Invalid password!";
-            }
-        };
-
-        let searchOpen = false;
-        function toggleSearch() {
-            const input = document.getElementById("searchInput");
-            const icon = document.getElementById("searchIcon");
-            const buttons = document.getElementById("amountButtons");
-
-            searchOpen = !searchOpen;
-            if (searchOpen) {
-                input.classList.add("active");
-                icon.style.transform = "rotate(90deg)";
-                buttons.style.transform = "translateY(0px)";
-                setTimeout(() => input.focus(), 300);
-            } else {
-                input.classList.remove("active");
-                icon.style.transform = "rotate(0deg)";
-                buttons.style.transform = "translateY(0)";
-                input.value = "";
-                filterLoans();
-            }
+        if (ds === today.toLocaleDateString('en-GB').split('/').reverse().join('-')) {
+            style += `border:2px solid #00aaff;box-sizing:border-box;`;
         }
+        html += `<div style="${style}" ${idx!==undefined?`onclick="showDatePopup(${idx})"`:''}>${d}</div>`;
+    }
+    html += `</div>`;
+    c.innerHTML = html;
+}
 
-        function filterLoans() {
-            const query = document.getElementById("searchInput").value.toLowerCase();
-            filteredLoans = currentUser.loans.filter(loan =>
-                loan.takenAmount.toString().includes(query) ||
-                (loan.purpose && loan.purpose.toLowerCase().includes(query)) ||
-                loan.takenFrom.toLowerCase().includes(query)
-            );
-            renderAmountButtons();
-        }
+function prevMonth() { calendarMonth.setMonth(calendarMonth.getMonth() - 1); renderCalendar(); }
+function nextMonth() { calendarMonth.setMonth(calendarMonth.getMonth() + 1); renderCalendar(); }
 
-        function renderAmountButtons() {
-            const btns = document.getElementById("amountButtons");
-            btns.innerHTML = "";
-            filteredLoans.forEach((loan, i) => {
-                const originalIndex = currentUser.loans.indexOf(loan);
-                const b = document.createElement("button");
-                b.className = "amount-btn";
-                b.innerHTML = `
-                    ${formatMoney(loan.takenAmount)}
-                    <div class="purpose-tag">${loan.purpose || 'Set Purpose'}</div>
-                `;
-                b.onclick = () => { displayLoanDetails(loan, originalIndex); switchView('list', false); };
-                btns.appendChild(b);
-            });
-        }
+function showDatePopup(idx) {
+    const loan = currentUser.loans[idx];
+    const cleanEnd = loan.endDate.split('(')[0].trim();
+    const daysLeft = Math.ceil((new Date(cleanEnd.split('-').reverse().join('-')) - new Date()) / 86400000);
+    document.getElementById('popupContent').innerHTML = `
+        <p style='color: #e2b325;font-weight: 800;font-size: 18px;'><strong>Amount:</strong> ${formatMoney(loan.takenAmount)}</p>
+        <p style='color: #e2b325;font-weight: 800;font-size: 18px;'><strong>Purpose:</strong> ${loan.purpose || 'Not set'}</p>
+        <p style='color: #e2b325;font-weight: 800;font-size: 18px;'><strong>Due:</strong> ${cleanEnd}</p>
+        <p style='color: #e2b325;font-weight: 800;font-size: 18px;'><strong>Status:</strong> <span style="color:${daysLeft<=2?'#F44336':daysLeft<=6?'#FFCA28':'#4CAF50'}">
+            ${daysLeft > 0 ? daysLeft + ' days left' : 'Overdue'}
+        </span></p>
+        <button style="margin-top:15px;width:100%;padding:10px;background:#004fff;border-radius:20px;" onclick="goToList(${idx})">View Full</button>
+    `;
+    document.getElementById('datePopup').style.display = 'block';
+}
 
-        function displayLoanDetails(loan, index) {
-            currentLoanIndex = index;
-            const now = new Date();
-            const end = new Date(loan.endDate.split('-').reverse().join('-'));
-            const daysLeft = Math.ceil((end - now) / 86400000);
-            let total = loan.takenAmount + loan.interest;
-            let extra = 0;
-            if (now > end) {
-                const hrs = Math.floor((now - end) / 3600000);
-                extra = hrs * 30;
-                total += extra;
-            }
+function closeDatePopup() { document.getElementById('datePopup').style.display = 'none'; }
+function goToList(idx) { closeDatePopup(); switchView('list', true); displayLoanDetails(currentUser.loans[idx], idx); }
 
-            document.querySelectorAll(".amount-btn").forEach(b => b.classList.remove("active"));
-            const activeBtn = document.getElementById("amountButtons").children[filteredLoans.indexOf(loan)];
-            if (activeBtn) activeBtn.classList.add("active");
+function renderLinks() {
+    const c = document.getElementById("userLinks"); c.innerHTML = "";
+    currentUser.links.forEach((link, i) => {
+        const div = document.createElement("div");
+        div.className = "user-link";
+        div.innerHTML = `<i class="fa-solid fa-link"></i> ${link.title}`;
+        div.onclick = () => { pendingLink = {link, i}; document.getElementById("linkConfirmPopup").style.display = "block"; };
+        c.appendChild(div);
+    });
+}
 
-            document.getElementById("loanDetails").innerHTML = `
-                <div class="loan-entry" id="loanCard${index}">
-                    <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Purpose</h3>
-                    <input type="text" class="purpose-input" placeholder="e.g. Taken for shoes" value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
-                    <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Taken service</h3>
-                    <p>${loan.takenFrom}</p>
-                    <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Amount taken</h3>
-                    <p><i class="fa-solid fa-money-bill-transfer"></i> ${formatMoney(loan.takenAmount)}</p>
-                    <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Taken & Ends</h3>
-                    <p><i class="fa-solid fa-calendar-day"></i> ${loan.planDate}</p>
-                    <p><i class="fa-solid fa-calendar-check"></i> ${loan.endDate}</p>
-                    <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Interest</h3>
-                    <p><i class="fa-solid fa-arrow-up-wide-short"></i> ${formatMoney(loan.interest)}</p>
-                    ${extra > 0 ? `<p style="color:#ffca00;"><i class="fa-solid fa-exclamation-circle"></i> Overdue: ${formatMoney(extra)}</p>` : ''}
-                    <h3 style="text-decoration:underline;margin:25px 0;font-weight:600;font-size:15px;">Total to Pay</h3>
-                    <p><i class="fa-solid fa-money-check-alt"></i> ${formatMoney(total)}</p>
-                </div>
-            `;
-        }
+function addLink() {
+    const title = prompt("Link title:");
+    if (!title) return;
+    const url = prompt("URL:");
+    if (url && url.startsWith('http')) {
+        currentUser.links.push({title, url});
+        renderLinks();
+        saveUserData();
+    }
+}
 
-        function updatePurpose(index, value) {
-            currentUser.loans[index].purpose = value.trim();
-            saveUserData();
-            filterLoans();
-        }
+document.getElementById("linkYesBtn").onclick = () => {
+    window.open(pendingLink.link.url, '_blank');
+    document.getElementById("linkConfirmPopup").style.display = "none";
+};
 
-        function renderLinks() {
-            const c = document.getElementById("userLinks"); c.innerHTML = "";
-            currentUser.links.forEach((link, i) => {
-                const a = document.createElement("div");
-                a.className = "user-link";
-                a.innerHTML = `<i class="fa-solid fa-link"></i> ${link.title}`;
-                a.onclick = () => openLinkConfirm(link, i);
-                c.appendChild(a);
-            });
-        }
+document.getElementById("linkDeleteBtn").onclick = () => {
+    currentUser.links.splice(pendingLink.i, 1);
+    renderLinks();
+    saveUserData();
+    document.getElementById("linkConfirmPopup").style.display = "none";
+};
 
-        function addLink() {
-            const title = prompt("Link title:");
-            if (!title) return;
-            const url = prompt("Full URL[](https://...):");
-            if (url && url.startsWith('http')) {
-                currentUser.links.push({ title, url });
-                renderLinks();
-                saveUserData();
-            }
-        }
+function openEmoteChooser() { document.getElementById("emoteChooser").style.display = "block"; }
+function closeEmoteChooser() { document.getElementById("emoteChooser").style.display = "none"; }
+function setUserEmote(src) {
+    currentUser.emote = src;
+    document.getElementById("userEmote").src = src;
+    saveUserData();
+    closeEmoteChooser();
+}
 
-        function openLinkConfirm(link, index) {
-            pendingLink = { link, index };
-            document.getElementById("linkConfirmText").textContent = `Do you like to visit "${link.title}"? or you like delete it?`;
-            document.getElementById("linkConfirmPopup").style.display = "block";
-        }
+function updateNavActive(view) {
+    document.querySelectorAll('.nav-item').forEach(n => {
+        n.classList.toggle('active', n.dataset.view === view);
+        const pin = n.querySelector('.toggle-pin');
+        const isOn = localStorage.getItem(PINNED_KEY) === n.dataset.view;
+        pin.className = `fa-solid fa-toggle-${isOn ? 'on' : 'off'} toggle-pin ${isOn ? 'on' : ''}`;
+    });
+}
 
-        document.getElementById("linkYesBtn").onclick = () => {
-            window.open(pendingLink.link.url, '_blank');
-            document.getElementById("linkConfirmPopup").style.display = "none";
-        };
+document.querySelectorAll('.nav-item').forEach(item => {
+    item.onclick = () => switchView(item.dataset.view, true);
+});
 
-        document.getElementById("linkDeleteBtn").onclick = () => {
-            currentUser.links.splice(pendingLink.index, 1);
-            renderLinks();
-            saveUserData();
-            document.getElementById("linkConfirmPopup").style.display = "none";
-        };
+document.querySelectorAll('.toggle-pin').forEach(pin => {
+    pin.onclick = (e) => {
+        e.stopPropagation();
+        const view = pin.closest('.nav-item').dataset.view;
+        if (localStorage.getItem(PINNED_KEY) === view) localStorage.removeItem(PINNED_KEY);
+        else localStorage.setItem(PINNED_KEY, view);
+        updateNavActive(document.querySelector('.nav-item.active')?.dataset.view || 'list');
+    };
+});
 
-        function openEmoteChooser() { document.getElementById("emoteChooser").style.display = "block"; }
-        function closeEmoteChooser() { document.getElementById("emoteChooser").style.display = "none"; }
-        function setUserEmote(src) {
-            currentUser.emote = src;
-            document.getElementById("userEmote").src = src;
-            saveUserData();
-            closeEmoteChooser();
-        }
+function switchView(view, nav = true) {
+    document.getElementById('loanDetails').style.display = view === 'list' ? 'block' : 'none';
+    document.getElementById('graphContainer').style.display = view === 'graph' ? 'block' : 'none';
+    document.getElementById('calendarContainer').style.display = view === 'calendar' ? 'block' : 'none';
+    if (view === 'graph') renderChart();
+    if (view === 'calendar') renderCalendar();
+    if (nav) updateNavActive(view);
+}
 
-        // ==================== TOTAL POPUP ====================
-        function showTotalPopup() {
-            const now = new Date();
-            let base = 0, interest = 0, overdue = 0;
-            currentUser.loans.forEach(loan => {
-                base += loan.takenAmount;
-                interest += loan.interest;
-                const end = new Date(loan.endDate.split('-').reverse().join('-'));
-                if (now > end) {
-                    const hrs = Math.floor((now - end) / 3600000);
-                    overdue += hrs * 30;
-                }
-            });
-            const total = base + interest + overdue;
+function closeModal() {
+    document.getElementById("userInfoModal").style.display = "none";
+    document.getElementById("passwordContainer").style.display = "flex";
+    saveUserData();
+    currentUser = null;
+}
 
-            document.getElementById("totalContent").innerHTML = `
-                <p>Taken amount : <strong>${formatMoney(base)}</strong></p>
-                <p>Total Interest : <strong>${formatMoney(interest)}</strong></p>
-                <hr>
-                <p style='margin:0;padding:10px;'>Overdue : <strong>${formatMoney(overdue)}</strong></p>
-                <hr>
-                <p style='margin-top:15px;color:#00ff00;'>Total to re-pay : <strong style='color:#00ff00;'>${formatMoney(total)}</strong></p>
-            `;
-            document.getElementById("totalPopup").style.display = "block";
-        }
+let searchOpen = false;
+function toggleSearch() {
+    const input = document.getElementById("searchInput");
+    const icon = document.getElementById("searchIcon");
+    searchOpen = !searchOpen;
+    input.classList.toggle("active", searchOpen);
+    icon.style.transform = searchOpen ? "rotate(90deg)" : "rotate(0deg)";
+    if (searchOpen) setTimeout(() => input.focus(), 300);
+    else { input.value = ""; filterLoans(); }
+}
 
-        function closeTotalPopup() { document.getElementById("totalPopup").style.display = "none"; }
-
-        // ==================== NAV & VIEWS ====================
-        function updateNavActive(view) {
-            document.querySelectorAll('.nav-item').forEach(n => {
-                n.classList.toggle('active', n.dataset.view === view);
-                const pin = n.querySelector('.toggle-pin');
-                const isPinned = localStorage.getItem(PINNED_KEY) === n.dataset.view;
-                pin.className = `fa-solid fa-toggle-${isPinned ? 'on' : 'off'} toggle-pin ${isPinned ? 'on' : ''}`;
-            });
-        }
-
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.onclick = () => {
-                const view = item.dataset.view;
-                switchView(view, true);
-            };
-        });
-
-        document.querySelectorAll('.toggle-pin').forEach(pin => {
-            pin.onclick = (e) => {
-                e.stopPropagation();
-                const view = pin.dataset.view;
-                const current = localStorage.getItem(PINNED_KEY);
-                if (current === view) localStorage.removeItem(PINNED_KEY);
-                else localStorage.setItem(PINNED_KEY, view);
-                updateNavActive(document.querySelector('.nav-item.active').dataset.view);
-            };
-        });
-
-        function switchView(view, changeNav = true) {
-            document.getElementById('loanDetails').style.display = view === 'list' ? 'block' : 'none';
-            const graph = document.getElementById('graphContainer');
-            const cal = document.getElementById('calendarContainer');
-            graph.style.display = view === 'graph' ? 'block' : 'none';
-            cal.style.display = view === 'calendar' ? 'block' : 'none';
-
-            if (view === 'graph') renderChart();
-            if (view === 'calendar') renderCalendar();
-
-            if (changeNav) updateNavActive(view);
-        }
-
-        function renderChart() {
-            const ctx = document.getElementById('loanChart').getContext('2d');
-            const now = new Date();
-            const labels = [], data = [], colors = [];
-
-            currentUser.loans.forEach((loan, i) => {
-                const end = new Date(loan.endDate.split('-').reverse().join('-'));
-                const days = Math.ceil((end - now) / 86400000);
-                let col = '#4CAF50';
-                if (days <= 2) col = '#F44336';
-                else if (days <= 6) col = '#004fff';
-                labels.push(`L${i+1}`);
-                data.push(currentCurrency === 'USD' ? loan.takenAmount / USD_RATE : loan.takenAmount);
-                colors.push(col);
-            });
-
-            if (loanChart) loanChart.destroy();
-            loanChart = new Chart(ctx, {
-                type: 'bar',
-                data: { labels, datasets: [{ data, backgroundColor: colors, borderColor: '#333', borderWidth: 1 }] },
-                options: {
-                    responsive: true,
-                    plugins: { legend: { display: false } },
-                    scales: { y: { grid: { color: '#333' }, ticks: { color: '#aaa' } } },
-                    onClick: (e, el) => { if (el.length) showDatePopup(currentUser.loans.indexOf(filteredLoans[el[0].index])); }
-                }
-            });
-        }
-        function renderCalendar() {
-            const c = document.getElementById('calendarContainer');
-            const y = calendarMonth.getFullYear(), m = calendarMonth.getMonth();
-            const first = new Date(y, m, 1).getDay();
-            const days = new Date(y, m + 1, 0).getDate();
-            const today = new Date();
-            const todayStr = `${today.getDate()}-${String(today.getMonth()+1).padStart(2,'0')}-${today.getFullYear()}`;
-
-            const dueMap = {};
-            currentUser.loans.forEach((l, i) => {
-                const [d,m,y] = l.endDate.split('-');
-                dueMap[`${d}-${m}-${y}`] = i;
-            });
-
-            let html = `<div style="text-align:center;margin:12px 0;display:flex;justify-content:space-between;align-items:center;">
-                <button class='move-asaid' onclick="prevMonth()">Previous</button>
-                <span style="margin:0 16px;font-weight:600;color:#eee;">${calendarMonth.toLocaleString('default', { month: 'long'})}</span>
-                <button class='move-asaid' onclick="nextMonth()">Next</button>
-            </div>
-            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center;font-weight:600;color:#888;">
-                <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`;
-
-            for (let i = 0; i < first; i++) html += `<div></div>`;
-            for (let d = 1; d <= days; d++) {
-                const ds = `${d}-${String(m+1).padStart(2,'0')}-${y}`;
-                const isToday = ds === todayStr;
-                const idx = dueMap[ds];
-                let style = `cursor:${idx!==undefined?'pointer':'default'};`;
-                if (isToday) style += `border:2px solid #00aaff;`;
-                if (idx !== undefined) {
-                    const daysLeft = Math.ceil((new Date(ds.split('-').reverse().join('-')) - today) / 86400000);
-                    let bg = '#4CAF50';
-                    if (daysLeft <= 2) bg = '#F44336';
-                    else if (daysLeft <= 6) bg = '#004fff';
-                    style += `background:${bg};color:#000;border-radius:50%;`;
-                }
-                html += `<div style="${style}" ${idx!==undefined?`onclick="showDatePopup(${idx})"`:''}>${d}</div>`;
-            }
-            html += `</div>`;
-            c.innerHTML = html;
-        }
-
-        function prevMonth() { calendarMonth.setMonth(calendarMonth.getMonth() - 1); renderCalendar(); }
-        function nextMonth() { calendarMonth.setMonth(calendarMonth.getMonth() + 1); renderCalendar(); }
-
-        function showDatePopup(idx) {
-            const loan = currentUser.loans[idx];
-            const now = new Date();
-            const end = new Date(loan.endDate.split('-').reverse().join('-'));
-            const daysLeft = Math.ceil((end - now) / 86400000);
-            const status = daysLeft > 0 ? `${daysLeft} day${daysLeft>1?'s':''} left` : 'Overdue';
-
-            document.getElementById('popupContent').innerHTML = `
-                <p><strong>Amount:</strong> ${formatMoney(loan.takenAmount)}</p>
-                <p><strong>Purpose:</strong> ${loan.purpose || 'Not set'}</p>
-                <p><strong>Taken On:</strong> ${loan.planDate}</p>
-                <p><strong>Due:</strong> ${loan.endDate}</p>
-                <p><strong>Interest:</strong> ${formatMoney(loan.interest)}</p>
-                <p><strong>Status:</strong> <span style="color:${daysLeft<=2?'#F44336':daysLeft<=6?'#004fff':'#4CAF50'}">${status}</span></p>
-                <button style='text-align:center;display:flex;justify-content:center;align-items:center;width:100%;' onclick="goToList(${idx})">View Full</button>
-            `;
-            document.getElementById('datePopup').style.display = 'block';
-        }
-
-        function closeDatePopup() { document.getElementById('datePopup').style.display = 'none'; }
-        function goToList(idx) { closeDatePopup(); switchView('list', true); displayLoanDetails(currentUser.loans[idx], idx); }
-
-        function closeModal() {
-            document.getElementById("userInfoModal").style.display = "none";
-            saveUserData();
-            currentUser = null;
-        }
-         document.addEventListener("DOMContentLoaded", () => {
-            const customMenu = document.querySelector(".custom-menu");
-
-            document.addEventListener("contextmenu", (event) => {
-                event.preventDefault();
-                if (customMenu) {
-                    customMenu.style.display = "block";
-                    customMenu.style.top = `${event.pageY}px`;
-                    customMenu.style.left = `${event.pageX}px`;
-                }
-            });
-
-            document.addEventListener("click", () => {
-                if (customMenu) {
-                    customMenu.style.display = "none";
-                }
-            });
-        });
+function filterLoans() {
+    const q = document.getElementById("searchInput").value.toLowerCase();
+    filteredLoans = currentUser.loans.filter(loan =>
+        loan.takenAmount.toString().includes(q) ||
+        (loan.purpose && loan.purpose.toLowerCase().includes(q)) ||
+        loan.takenFrom.toLowerCase().includes(q)
+    );
+    renderAmountButtons();
+}
