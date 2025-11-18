@@ -6,7 +6,7 @@ let pendingLink = null;
 let filteredLoans = [];
 
 const usersDB = {
-    "0212": {
+    "Mahesh888*": {
         name: "Mahesh Muthinti",
         coins: 0,
         loans: [
@@ -134,8 +134,8 @@ function showTotalPopup() {
 
     document.getElementById("totalContent").innerHTML = `
         <p>Taken amount : <strong>${formatMoney(base)}</strong></p>
-        <p>Total Interest : <strong>${formatMoney(interest)}</strong></p>
-        ${overdue > 0 ? `<p style="color:#ff4444;">Overdue Fine : <strong>${formatMoney(overdue)}</strong></p>` : ''}
+        <p style='margin-bottom: 20px;'>Total Interest : <strong>${formatMoney(interest)}</strong></p>
+        ${overdue > 0 ? `<p style="color:#ff4444;margin-bottom: 20px;">Overdue Fine : <strong style='color: #ff4444;'>${formatMoney(overdue)}</strong></p>` : ''}
         <hr>
         <p style="font-size: 22px;margin-top: 22px;margin-bottom: 10px;">Total to Return: <strong>${formatMoney(total)}</strong></p>
     `;
