@@ -1,3 +1,4 @@
+document.addEventListener('contextmenu', e => e.preventDefault());
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || 'INR';
 let currentUser = null, currentLoanIndex = null, loanChart = null, calendarMonth = new Date();
@@ -404,3 +405,4 @@ function filterLoans() {
     );
     renderAmountButtons();
 }
+
