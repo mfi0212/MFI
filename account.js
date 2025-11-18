@@ -6,16 +6,7 @@ let pendingLink = null;
 let filteredLoans = [];
 
 const usersDB = {
-    "Mahesh888*": {
-        name: "Mahesh Muthinti",
-        coins: 0,
-        loans: [
-            { planDate: "25-05-2025", endDate: "21-11-2025(Extended to 15 days)", interest: 640, takenAmount: 5100, takenFrom: "Delayit offer", fineRate: 50, purpose: "" },
-            { planDate: "29-09-2025", endDate: "14-12-2025(Extended to 30 days)", interest: 1380, takenAmount: 4720, takenFrom: "MLLD", fineRate: 40, purpose: "" },
-        ],
-        links: [],
-        emote: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0"
-    },
+   
 };
 
 function loadUserData() {
@@ -197,7 +188,7 @@ function displayLoanDetails(loan, index) {
     font-weight: 600;
     font-size: 15px;
     color: #ffffff91;">Total amount to return</h3>
-                <p style="font-size:24px;color:${overdueFine > 0 ? '#ff4444' : '#00ff00'};font-weight:bold;">
+                <p style="font-size:24px;color:${overdueFine > 0 ?  '#ff4444' : '#00ff00'};font-weight:bold;">
                     ${formatMoney(totalPayable)}
                 </p>
             </div>
