@@ -153,7 +153,7 @@ const usersDB = {
             { planDate: "29-09-2025", endDate: "14-12-2025(Extended to 30 days)", interest: 1380, takenAmount: 4720, takenFrom: "MLLD", fineRate: 40, purpose: "" },
         ],
         links: [],
-        emote: "https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/christmas-tree.gif"
+        emote: "https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/snowman.gif"
     },
 };
 
