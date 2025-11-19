@@ -42,9 +42,9 @@ const modes = {
     "Classic Red & Green": ["#c00","#0a0"],
     "Warm White": ["#fff7e0","#ffe0b3"],
     "Multicolor Rainbow": ["#f00","#0f0","#00f","#ff0","#f0f","#0ff"],
-    "Candy Cane Stripes": ["#fff","#ff3366"],
-    "Ice Blue Winter": ["#62ff00ff","#0091ffff"],
-    "Golden Elegance": ["#ff9900ff","#ffffffff"]
+    "Candy Cane Stripes": ["#ea00ffff","#ff0040ff"],
+    "Ice Blue Winter": ["#000dffff","#0091ffff"],
+    "Golden Elegance": ["#ffc400ff","#ffffffff"]
 };
 
 function startMode() {
