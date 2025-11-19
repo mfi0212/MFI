@@ -44,7 +44,7 @@ const modes = {
     "Multicolor Rainbow": ["#f00","#0f0","#00f","#ff0","#f0f","#0ff"],
     "Candy Cane Stripes": ["#fff","#ff3366"],
     "Ice Blue Winter": ["#62ff00ff","#0091ffff"],
-    "Golden Elegance": ["#ffd700","#ff0000ff"]
+    "Golden Elegance": ["#ff9900ff","#ffffffff"]
 };
 
 function startMode() {
@@ -66,7 +66,7 @@ function applySingleColor() {
     const c = singleColorInput.value;
     bulbs.forEach(b => {
         b.style.background = c;
-        b.style.boxShadow = `0 0 30px 8px ${c}`;
+        b.style.boxShadow = `0 0 20px 8px ${c}`;
         b.style.opacity = 1;
     });
 }
@@ -97,7 +97,7 @@ function startDisco() {
             const h = Math.random()*360;
             const c = `hsl(${h},100%,62%)`;
             b.style.background = c;
-            b.style.boxShadow = `0 0 32px 10px ${c}`;
+            b.style.boxShadow = `0 0 20px 10px ${c}`;
             b.style.opacity = 1;
         });
     }, getSpeedDelay());
@@ -145,15 +145,15 @@ let pendingLink = null;
 let filteredLoans = [];
 
 const usersDB = {
-    "0212": {
-        name: "Tony Mantana",
+    "Mahesh888*": {
+        name: "Mahesh Muthinti",
         coins: 0,
         loans: [
             { planDate: "25-05-2025", endDate: "21-11-2025(Extended to 15 days)", interest: 640, takenAmount: 5100, takenFrom: "Delayit offer", fineRate: 50, purpose: "" },
             { planDate: "29-09-2025", endDate: "14-12-2025(Extended to 30 days)", interest: 1380, takenAmount: 4720, takenFrom: "MLLD", fineRate: 40, purpose: "" },
         ],
         links: [],
-        emote: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0"
+        emote: "https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/christmas-tree.gif"
     },
 };
 
