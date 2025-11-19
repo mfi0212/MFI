@@ -145,8 +145,8 @@ let pendingLink = null;
 let filteredLoans = [];
 
 const usersDB = {
-    "Mahesh888*": {
-        name: "Mahesh Muthinti",
+    "0212*": {
+        name: "Tony Mantana",
         coins: 0,
         loans: [
             { planDate: "25-05-2025", endDate: "21-11-2025(Extended to 15 days)", interest: 640, takenAmount: 5100, takenFrom: "Delayit offer", fineRate: 50, purpose: "" },
@@ -587,3 +587,4 @@ const coinSection = document.getElementById('coinSection');
         popupOverlay.classList.remove('active');
       }
     });
+
