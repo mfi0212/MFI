@@ -145,7 +145,7 @@ let pendingLink = null;
 let filteredLoans = [];
 
 const usersDB = {
-    "0212*": {
+    "0212": {
         name: "Tony Mantana",
         coins: 0,
         loans: [
@@ -587,4 +587,3 @@ const coinSection = document.getElementById('coinSection');
         popupOverlay.classList.remove('active');
       }
     });
-
