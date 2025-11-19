@@ -42,7 +42,7 @@ const modes = {
     "Classic Red & Green": ["#c00","#0a0"],
     "Warm White": ["#fff7e0","#ffe0b3"],
     "Multicolor Rainbow": ["#f00","#0f0","#00f","#ff0","#f0f","#0ff"],
-    "Candy Cane Stripes": ["#ea00ffff","#ff0040ff"],
+    "Candy Red & white": ["#ffffffff","#ff0000ff"],
     "Ice Blue Winter": ["#000dffff","#0091ffff"],
     "Golden Elegance": ["#ffc400ff","#ffffffff"]
 };
@@ -145,7 +145,7 @@ let pendingLink = null;
 let filteredLoans = [];
 
 const usersDB = {
-    "0212": {
+      "0212": {
         name: "Tony Mantana",
         coins: 0,
         loans: [
