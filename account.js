@@ -1,3 +1,142 @@
+// document.addEventListener('contextmenu', e => e.preventDefault());
+for(let i=0;i<15;i++){
+    const b=document.createElement("div");b.className="bulb";
+    const dur=6+Math.random()*5;
+    b.style.animationDuration=dur+"s";
+    b.style.animationDelay=Math.random()*dur+"s";
+    document.getElementById("lights").appendChild(b);
+}
+const bulbs = document.querySelectorAll('.bulb');
+
+document.getElementById("candy").onclick = () => document.getElementById("panel").classList.toggle("show");
+
+// Elements
+const modeSelect = document.getElementById("mode");
+const singleColorRow = document.getElementById("singleColorRow");
+const singleColorInput = document.getElementById("singleColor");
+
+// Show/hide single color picker
+modeSelect.onchange = function() {
+    if(this.value === "single") {
+        singleColorRow.style.display = "flex";
+        applySingleColor();
+    } else {
+        singleColorRow.style.display = "none";
+        startMode();
+    }
+};
+singleColorInput.oninput = applySingleColor;
+
+// Speed
+function getSpeedDelay() {
+    const val = document.getElementById("speed").value;
+    return Math.round(2000 - val * 19); // 100 → ~100ms, 1 → ~1900ms
+}
+document.getElementById("speed").oninput = updateAllSpeeds;
+
+// Intervals
+let modeInt = null, twinkleInt = null, discoInt = null;
+
+// Predefined modes
+const modes = {
+    "Classic Red & Green": ["#c00","#0a0"],
+    "Warm White": ["#fff7e0","#ffe0b3"],
+    "Multicolor Rainbow": ["#f00","#0f0","#00f","#ff0","#f0f","#0ff"],
+    "Candy Cane Stripes": ["#fff","#ff3366"],
+    "Ice Blue Winter": ["#62ff00ff","#0091ffff"],
+    "Golden Elegance": ["#ffd700","#ff0000ff"]
+};
+
+function startMode() {
+    clearInterval(modeInt); clearInterval(discoInt);
+    document.getElementById("disco").textContent = "Disco OFF";
+
+    const colors = modes[modeSelect.value];
+    let i = 0;
+    modeInt = setInterval(() => {
+        const c = colors[i++ % colors.length];
+        bulbs.forEach(b => { b.style.background = c; b.style.boxShadow = `0 0 30px 8px ${c}`; b.style.opacity = 1; });
+    }, getSpeedDelay());
+}
+
+// Single color mode
+function applySingleColor() {
+    clearInterval(modeInt); clearInterval(discoInt);
+    document.getElementById("disco").textContent = "Disco OFF";
+    const c = singleColorInput.value;
+    bulbs.forEach(b => {
+        b.style.background = c;
+        b.style.boxShadow = `0 0 30px 8px ${c}`;
+        b.style.opacity = 1;
+    });
+}
+
+// Twinkle
+document.getElementById("twinkle").onclick = function() {
+    if(twinkleInt){ clearInterval(twinkleInt); twinkleInt=null; this.textContent="Twinkle OFF"; bulbs.forEach(b=>b.style.opacity=1); }
+    else { this.textContent="Twinkle ON"; startTwinkle(); }
+};
+function startTwinkle() {
+    clearInterval(twinkleInt);
+    twinkleInt = setInterval(() => {
+        const b = bulbs[Math.floor(Math.random()*bulbs.length)];
+        b.style.opacity = 0.25;
+        setTimeout(() => b.style.opacity = 1, 100 + Math.random()*200);
+    }, getSpeedDelay() * 0.7);
+}
+
+// Disco
+document.getElementById("disco").onclick = function() {
+    if(discoInt){ clearInterval(discoInt); discoInt=null; this.textContent="Disco OFF"; (modeSelect.value==="single"?applySingleColor():startMode()); }
+    else { this.textContent="Disco ON"; clearInterval(modeInt); startDisco(); }
+};
+function startDisco() {
+    clearInterval(discoInt);
+    discoInt = setInterval(() => {
+        bulbs.forEach(b => {
+            const h = Math.random()*360;
+            const c = `hsl(${h},100%,62%)`;
+            b.style.background = c;
+            b.style.boxShadow = `0 0 32px 10px ${c}`;
+            b.style.opacity = 1;
+        });
+    }, getSpeedDelay());
+}
+
+// Update all effects when speed changes
+function updateAllSpeeds() {
+    if(modeInt && modeSelect.value !== "single") { clearInterval(modeInt); startMode(); }
+    if(discoInt) { clearInterval(discoInt); startDisco(); }
+    if(twinkleInt) { clearInterval(twinkleInt); startTwinkle(); }
+}
+
+// Snow
+let snowInt;
+document.getElementById("snow").oninput = function(){
+    clearInterval(snowInt);
+    const delay = 500 - this.value * 4.5;
+    snowInt = setInterval(() => {
+        const s=document.createElement("div");s.className="snow";
+        s.style.left=Math.random()*100+"vw";
+        s.style.animationDuration=(4+Math.random()*7)+"s";
+        document.body.appendChild(s);
+        setTimeout(()=>s.remove(),14000);
+    }, delay);
+};
+document.getElementById("snow").oninput();
+
+// Click glow
+document.addEventListener("click", e => {
+    if(e.target.closest("#panel") || e.target.id==="candy") return;
+    const col = getComputedStyle(bulbs[Math.floor(Math.random()*bulbs.length)]).backgroundColor;
+    document.body.style.transition = "background 1.6s ease";
+    document.body.style.background = `radial-gradient(circle at ${e.clientX}px ${e.clientY}px, ${col}70, #000 75%)`;
+});
+
+// Initialize
+startMode();
+
+
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || 'INR';
 let currentUser = null, currentLoanIndex = null, loanChart = null, calendarMonth = new Date();
@@ -6,7 +145,16 @@ let pendingLink = null;
 let filteredLoans = [];
 
 const usersDB = {
-   
+    "0212": {
+        name: "Tony Mantana",
+        coins: 0,
+        loans: [
+            { planDate: "25-05-2025", endDate: "21-11-2025(Extended to 15 days)", interest: 640, takenAmount: 5100, takenFrom: "Delayit offer", fineRate: 50, purpose: "" },
+            { planDate: "29-09-2025", endDate: "14-12-2025(Extended to 30 days)", interest: 1380, takenAmount: 4720, takenFrom: "MLLD", fineRate: 40, purpose: "" },
+        ],
+        links: [],
+        emote: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0"
+    },
 };
 
 function loadUserData() {
@@ -420,3 +568,22 @@ function filterLoans() {
     );
     renderAmountButtons();
 }
+const coinSection = document.getElementById('coinSection');
+    const popupOverlay = document.getElementById('swanShopPopup');
+    const closeBtn = document.querySelector('.close-btn');
+
+    // Open popup when clicking the coin display
+    coinSection.addEventListener('click', () => {
+      popupOverlay.classList.add('active');
+    });
+
+    // Close when clicking X or outside the popup
+    closeBtn.addEventListener('click', () => {
+      popupOverlay.classList.remove('active');
+    });
+
+    popupOverlay.addEventListener('click', (e) => {
+      if (e.target === popupOverlay) {
+        popupOverlay.classList.remove('active');
+      }
+    });
