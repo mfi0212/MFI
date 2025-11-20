@@ -1,4 +1,4 @@
-// document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('contextmenu', e => e.preventDefault());
 for(let i=0;i<15;i++){
     const b=document.createElement("div");b.className="bulb";
     const dur=6+Math.random()*5;
@@ -10,12 +10,10 @@ const bulbs = document.querySelectorAll('.bulb');
 
 document.getElementById("candy").onclick = () => document.getElementById("panel").classList.toggle("show");
 
-// Elements
 const modeSelect = document.getElementById("mode");
 const singleColorRow = document.getElementById("singleColorRow");
 const singleColorInput = document.getElementById("singleColor");
 
-// Show/hide single color picker
 modeSelect.onchange = function() {
     if(this.value === "single") {
         singleColorRow.style.display = "flex";
@@ -27,17 +25,14 @@ modeSelect.onchange = function() {
 };
 singleColorInput.oninput = applySingleColor;
 
-// Speed
 function getSpeedDelay() {
     const val = document.getElementById("speed").value;
-    return Math.round(2000 - val * 19); // 100 → ~100ms, 1 → ~1900ms
+    return Math.round(2000 - val * 19); 
 }
 document.getElementById("speed").oninput = updateAllSpeeds;
 
-// Intervals
 let modeInt = null, twinkleInt = null, discoInt = null;
 
-// Predefined modes
 const modes = {
     "Classic Red & Green": ["#c00","#0a0"],
     "Warm White": ["#fff7e0","#ffe0b3"],
@@ -59,7 +54,6 @@ function startMode() {
     }, getSpeedDelay());
 }
 
-// Single color mode
 function applySingleColor() {
     clearInterval(modeInt); clearInterval(discoInt);
     document.getElementById("disco").textContent = "Disco OFF";
@@ -71,7 +65,6 @@ function applySingleColor() {
     });
 }
 
-// Twinkle
 document.getElementById("twinkle").onclick = function() {
     if(twinkleInt){ clearInterval(twinkleInt); twinkleInt=null; this.textContent="Twinkle OFF"; bulbs.forEach(b=>b.style.opacity=1); }
     else { this.textContent="Twinkle ON"; startTwinkle(); }
@@ -85,7 +78,6 @@ function startTwinkle() {
     }, getSpeedDelay() * 0.7);
 }
 
-// Disco
 document.getElementById("disco").onclick = function() {
     if(discoInt){ clearInterval(discoInt); discoInt=null; this.textContent="Disco OFF"; (modeSelect.value==="single"?applySingleColor():startMode()); }
     else { this.textContent="Disco ON"; clearInterval(modeInt); startDisco(); }
@@ -103,14 +95,12 @@ function startDisco() {
     }, getSpeedDelay());
 }
 
-// Update all effects when speed changes
 function updateAllSpeeds() {
     if(modeInt && modeSelect.value !== "single") { clearInterval(modeInt); startMode(); }
     if(discoInt) { clearInterval(discoInt); startDisco(); }
     if(twinkleInt) { clearInterval(twinkleInt); startTwinkle(); }
 }
 
-// Snow
 let snowInt;
 document.getElementById("snow").oninput = function(){
     clearInterval(snowInt);
@@ -125,7 +115,6 @@ document.getElementById("snow").oninput = function(){
 };
 document.getElementById("snow").oninput();
 
-// Click glow
 document.addEventListener("click", e => {
     if(e.target.closest("#panel") || e.target.id==="candy") return;
     const col = getComputedStyle(bulbs[Math.floor(Math.random()*bulbs.length)]).backgroundColor;
@@ -133,8 +122,23 @@ document.addEventListener("click", e => {
     document.body.style.background = `radial-gradient(circle at ${e.clientX}px ${e.clientY}px, ${col}70, #000 75%)`;
 });
 
-// Initialize
 startMode();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const USD_RATE = 87.85;
@@ -145,7 +149,7 @@ let pendingLink = null;
 let filteredLoans = [];
 
 const usersDB = {
-      "0212": {
+     "0212": {
         name: "Tony Mantana",
         coins: 0,
         loans: [
@@ -458,7 +462,7 @@ function showDatePopup(idx) {
         <p style='color: #e2b325;font-weight: 800;font-size: 18px;'><strong>Status:</strong> <span style="color:${daysLeft<=2?'#F44336':daysLeft<=6?'#FFCA28':'#4CAF50'}">
             ${daysLeft > 0 ? daysLeft + ' days left' : 'Overdue'}
         </span></p>
-        <button style="margin-top:15px;width:100%;padding:10px;background:#004fff;border-radius:20px;" onclick="goToList(${idx})">View Full</button>
+        <button style="margin-top:15px;width:100%;padding:10px;background:#004fff;border-radius:20px;margin-bottom:-5px" onclick="goToList(${idx})">View Full</button>
     `;
     document.getElementById('datePopup').style.display = 'block';
 }
@@ -572,12 +576,10 @@ const coinSection = document.getElementById('coinSection');
     const popupOverlay = document.getElementById('swanShopPopup');
     const closeBtn = document.querySelector('.close-btn');
 
-    // Open popup when clicking the coin display
     coinSection.addEventListener('click', () => {
       popupOverlay.classList.add('active');
     });
 
-    // Close when clicking X or outside the popup
     closeBtn.addEventListener('click', () => {
       popupOverlay.classList.remove('active');
     });
