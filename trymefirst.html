@@ -326,10 +326,24 @@ div#popupContent {
     text-align: center;
 }
         #totalPopup, #datePopup, #linkConfirmPopup, #emoteChooser {
-            display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
-            background:#1111112b; color:#e0e0e0; padding:25px; border-radius:40px; max-width:340px; width:90%;
-            z-index:20000; box-shadow:0 0 40px 100vh rgb(0 0 0 / 71%); text-align:left; font-size:14.5px;
-            line-height:1.7; border:1.5px solid #ffffff3d; backdrop-filter:blur(20px);
+           display: none;
+    position: fixed;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, -4%);
+    background: #1111112b;
+    color: #e0e0e0;
+    padding: 25px;
+    border-radius: 40px;
+    max-width: 450px;
+    width: 96%;
+    z-index: 20000;
+    text-align: left;
+    font-size: 14.5px;
+    line-height: 1.7;
+    backdrop-filter: blur(20px);
+    box-shadow: inset 0 1px 0 #ffffff69, inset 0 -4px 9px #ffffff69;
+    border: 1px solid rgba(255, 255, 255, 0.2);
         }
         #totalPopup h3, #datePopup h3, #linkConfirmPopup h3, #emoteChooser h3 { margin: 0 0 14px;
     color: #ffffff99;
@@ -395,7 +409,7 @@ div#popupContent {
     width: 100%;
     justify-content: center;
     gap: 10px;
-    align-items: center;
+    align-items: center;background: linear-gradient(358deg, #000000f2 25%, transparent);
     
         }
         .nav-item { 
@@ -427,7 +441,7 @@ div#popupContent {
     padding: 30px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
     border: 1px solid #222;
-    max-width: 535px;
+    max-width: 400px;
     width: 100%;
     scrollbar-width: none;
     transform: translateX(-50%);
@@ -438,6 +452,8 @@ div#popupContent {
     scrollbar-width: none;
     overflow: scroll;
     margin-top: 25px;
+     box-shadow: inset 0 1px 0 #ffffff69, inset 0 -4px 9px #ffffff69;
+    border: 1px solid rgba(255, 255, 255, 0.2);
         }
         #calendarContainer > div > div {
             color:#ddd; border-radius:13px; min-height:30px; display:flex;
@@ -1214,10 +1230,9 @@ function closeSheet() {
         <button onclick="closeEmoteChooser()" style="    margin-bottom: 0px;">Close</button>
     </div>
 
-    <script src="account.js">
+    <script src="try.js">
         
     </script>
    
 </body>
 </html>
-
