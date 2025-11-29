@@ -64,10 +64,10 @@
             background-color: transparent;
         }
         #userPassword {
-          font-size: 16px;
+         font-size: 16px;
     border-radius: 40px;
     border: none;
-    background: #ffffff24;
+    background: #ffffff12;
     color: #fff;
     padding: 9px 25px;
     text-align: center;
@@ -75,12 +75,15 @@
     outline: none;
     max-width: 300px;
     margin: 0px 0px 18px 0px;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(5px);
     filter: drop-shadow(0px 0px 2px black);
-    box-shadow: inset 0 1px 0 #ffffff69, inset 0 -4px 9px #ffffff69;
+    box-shadow: inset 0 1px 0 #ffffff36, inset 0 -3px 15px #ffffff75;
     border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        #userPassword:focus { background: #3c3c3c; }
+    transition: 0.5s;
+        } 
+        #submitBtn:hover { transform: scale(1.1); }
+  #submitBtn:active { transform: scale(0.98); }
+
         #submitBtn {
             width: 40px;
             height: 40px;
@@ -95,6 +98,8 @@
             justify-content: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
+        
+  #submitBtn:active { transform: scale(0.98); }
         #error-message { color: #ff0000; font-size: 12px; margin-top: 10px; }
         .notice {
             font-weight: 200;
@@ -137,7 +142,7 @@
             font-size: 16px;
             cursor: pointer;
             z-index: 11;
-            background: #ffffff30;
+            background: #ffffff09;
             padding: 10px 11px;
             border-radius: 50px;    box-shadow: inset 0 1px 0 #ffffff69, inset 0 -4px 9px #ffffff69;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -168,7 +173,7 @@
             position: fixed;
    top: 15px;
     right: 10px;
-    background: #ffffff33;
+    background: #ffffff09;
     color: #ffffffd4;
     border: none;
     padding: 5px 17px;
@@ -213,8 +218,22 @@
     top: 25px;
          }
          
-        .user-link { background:#ffffff30; 
-    white-space: nowrap;color:#ffffffb3; padding:4px 12px; border-radius:20px; font-size:11px; text-decoration:none; display:flex; align-items:center; gap:4px; cursor:pointer; font-weight:100; }
+        .user-link { 
+          background: #ffffff24;
+    white-space: nowrap;
+    color: #ffffffb3;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    font-weight: 100;
+    box-shadow: inset 0 1px 0 #ffffff0a, inset 0 -3px 7px #ffffff3d;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+         }
         .add-link-btn { background: #004fff;
     color: white;
     border: none;
@@ -226,13 +245,16 @@
 }
 
         /* SEARCH + AMOUNT BUTTONS */
-        .search-container {     display: flex;
+        .search-container {display: flex;
     align-items: center;
     gap: 10px;
     transition: all .4s 
 ease;
     position: relative;
-    top: -3.5px;}
+    top: -3.5px;
+    height: 70px;
+    width: 130%;
+    padding: 0px 50px 0px 0px;}
         #searchIcon { 
            font-size: 18px;
     color: #00fff2;
@@ -276,6 +298,7 @@ ease-in-out;
     transition: transform .4s 
 ease;
     margin-left: -15px;
+    scrollbar-width: none;
         }
         /* h3{ color:#006fff; } */
         p { margin-bottom: 0px;
@@ -299,13 +322,21 @@ ease;
     align-items: center;
     flex-direction: column;
 }
-        .amount-btn { color:#e0e0e0; border:none; border-radius:35px; padding:3px 60px; font-size:13px; cursor:pointer; background:transparent; border:1.5px solid #ffffff3b; position:relative; min-width:100px; text-align:center; transition:all .3s ease; display:flex; justify-content:center; align-items:center; flex-direction:column;     box-shadow: inset 0 1px 0 #ffffff69, inset 0 -4px 9px #ffffff69;
-    border: 1px solid rgba(255, 255, 255, 0.2);}
+        .amount-btn { color:#e0e0e0; border:none; border-radius:35px; padding: 5px 35px;
+    font-size: 12px; cursor:pointer; background:transparent; border:1.5px solid #ffffff3b; position:relative; min-width:100px; text-align:center; transition:all .3s ease; display:flex; justify-content:center; align-items:center; flex-direction:column;     
+    box-shadow: inset 0 1px 0 #ffffff42, inset 0 -4px 9px #ffffff54;
+    border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;}
+        .amount-btn:hover{
+              transform: scale(1.05); 
+        }
+        .amount-btn:active{
+              transform: scale(0.90); 
+        }
         .amount-btn.active { background-color:#004fff; border:1.5px solid #ffffff00; color:white; }
         .purpose-tag { font-size:9px; color:#00fff2; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:80px; }
 
         .total-icon {     box-shadow: inset 0 1px 0 #ffffff69, inset 0 -4px 9px #ffffff69;
-    border: 1px solid rgba(255, 255, 255, 0.2);color:#ffffff99; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:15px; cursor:pointer; background:#ffffff30; width:32px; height:32px; }
+    border: 1px solid rgba(255, 255, 255, 0.2);color:#ffffff99; border-radius:10px;z-index: 10000000; display:flex; align-items:center; justify-content:center; font-size:15px; cursor:pointer; background:#ffffff08; width:32px; height:32px; }
         hr{     background: linear-gradient(45deg, transparent, #ffffff4f, transparent);
     height: 1.5px; outline:none; border:none; }
        ::placeholder{
@@ -331,7 +362,7 @@ div#popupContent {
     bottom: 0%;
     left: 50%;
     transform: translate(-50%, -4%);
-    background: #1111112b;
+    background: #11111100;
     color: #e0e0e0;
     padding: 25px;
     border-radius: 40px;
@@ -341,8 +372,8 @@ div#popupContent {
     text-align: left;
     font-size: 14.5px;
     line-height: 1.7;
-    backdrop-filter: blur(20px);
-    box-shadow: inset 0 1px 0 #ffffff69, inset 0 -4px 9px #ffffff69;
+    backdrop-filter: blur(15px);
+    box-shadow: inset 0 1px 0 #ffffff66, inset 0 -10px 23px #ffffff70;
     border: 1px solid rgba(255, 255, 255, 0.2);
         }
         #totalPopup h3, #datePopup h3, #linkConfirmPopup h3, #emoteChooser h3 { margin: 0 0 14px;
@@ -386,7 +417,7 @@ div#popupContent {
         .purpose-input {
            padding: 10px 20px;
     margin: 2px 0;
-    background: #ffffff24;
+    background: #ffffff00;
     border: none;
     border-radius: 13px;
     color: white;
@@ -395,8 +426,13 @@ div#popupContent {
     max-width: 145px;
         text-align: end;
     backdrop-filter: blur(5px);
-
+box-shadow: inset 0 1px 0 #ffffff69, inset 0 -4px 9px #ffffff69;
+    border: 1px solid rgba(255, 255, 255, 0.2);
    }
+   .purpose-input:focus{
+              transform: scale(1.2) translateX(-30px);
+              padding: 8px 30px; 
+        }
      #bottomNav {
            position: fixed;
     bottom: 0;
@@ -409,8 +445,14 @@ div#popupContent {
     width: 100%;
     justify-content: center;
     gap: 10px;
-    align-items: center;background: linear-gradient(358deg, #000000f2 25%, transparent);
-    
+    align-items: center;background: linear-gradient(0deg, #000000 8%, transparent);
+     transition: all 0.3s ease-in-out;
+        }
+         #bottomNav .nav-item:hover{
+              transform: scale(1); 
+        }
+        #bottomNav .nav-item:active{
+              transform: scale(0.95); 
         }
         .nav-item { 
                 display: flex;
@@ -665,7 +707,7 @@ cubic-bezier(0.4, 0, 0.2, 1);
     .details svg{
         width: 30px;
         height: 30px;
-        background: #ffffff2e;
+        background: #ffffff0e;
         padding: 6.5px;
         border-radius: 10px;
         stroke: #939393;
@@ -710,15 +752,15 @@ margin:15px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 9
 
 
     <!-- offerdisplay -->
-    <div class="offergift" style="    position: fixed;
-    bottom: 60px;
+    <div class="offergift" style=" position: fixed;
+    bottom: 65px;
     left: 10px;
     z-index: 100;
-    background: #ffffff30;
+    background: #ffffff14;
     padding: 8px;
     border-radius: 15px;
     backdrop-filter: blur(3px);
-        box-shadow: inset 0 1px 0 #ffffff69, inset 0 -4px 9px #ffffff69;
+    box-shadow: inset 0 1px 0 #ffffff4a, inset 0 -4px 9px #ffffff5c;
     border: 1px solid rgba(255, 255, 255, 0.2);">
         <a style="display: flex;" onclick="alert('You don`t have any current offers...!')" ><img style="width: 32px;" src="https://static-cdn.jtvnw.net/emoticons/v2/1713819/default/dark/2.0" alt=""></a>
     </div>
@@ -753,7 +795,7 @@ ease;
     padding: 8px 10px;
     gap: 5px;
     font-size: 10px;
-    background: #ffffff3d;
+    background: #ffffff0a;
     border-radius: 100px;    box-shadow: inset 0 1px 0 #ffffff69, inset 0 -4px 9px #ffffff69;
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
@@ -766,7 +808,7 @@ ease;
     bottom: 0;
     left: 0;
     right: 0;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(11px);
     border-radius: 35px 35px 0 0;
     max-height: 80vh;
     overflow-y: auto;
@@ -776,8 +818,8 @@ ease;
     transition: transform 0.4s 
 cubic-bezier(0.32, 0.72, 0, 1);
     z-index: 1000000000;
-    box-shadow: 0 -20px 30px rgb(0 0 0 / 80%);
-    border-top: solid 1.5px #ffffff52;
+    box-shadow: inset 0 1px 0 #ffffff47, inset 0 -4px 30px #ffffff4f;
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
   .bottom-sheet.active {
     transform: translateY(0);
@@ -1230,10 +1272,9 @@ function closeSheet() {
         <button onclick="closeEmoteChooser()" style="    margin-bottom: 0px;">Close</button>
     </div>
 
-    <script src="account.js">
+    <script src="try.js">
         
     </script>
    
 </body>
 </html>
-
