@@ -4,1412 +4,406 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify my account</title>
-    
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet"> -->
-    <link rel="icon" type="image/x-icon" href="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg">
+    <title>Golden</title>
+    <link rel="icon" href="https://i.postimg.cc/SxwrHyLz/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
         * {
             -webkit-tap-highlight-color: transparent;
+            font-family: 'Poppins', sans-serif;
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
-  /* font-family: "Libre Baskerville", serif; */
             
-        }
-
-        body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #000;
-            color: #e0e0e0;
-            letter-spacing: 0.5px;
-        }
-        * {
-            -webkit-tap-highlight-color: transparent;
-        }
-        body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        #passwordContainer {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            width: 100%;
-            text-align: center;
-            line-height: 15px;
-            position: fixed;
-            background: #00000099;
-        }
-        ::-webkit-scrollbar{
-            background-color: transparent;
-        }
-        #userPassword {
-         font-size: 16px;
-    border-radius: 40px;
-    border: none;
-    background: #ffffff00;
-    color: #fff;
-    padding: 9px 25px;
-    text-align: center;
-    width: 90%;
-    outline: none;
-    max-width: 300px;
-    margin: 0px 0px 18px 0px;
-    backdrop-filter: blur(5px);
-    filter: drop-shadow(0px 0px 2px black);
-    box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff3d;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: 0.5s;
-        } 
-        #submitBtn:hover { transform: scale(1.1); }
-  #submitBtn:active { transform: scale(0.98); }
-
-        #submitBtn {
-            width: 40px;
-            height: 40px;
-            background-color: #ffffff;
-            color: #000000;
-            border: none;
-            border-radius: 50%;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-        
-  #submitBtn:active { transform: scale(0.98); }
-        #error-message { color: #ff0000; font-size: 12px; margin-top: 10px; }
-        .notice {
-            font-weight: 200;
-    font-size: 11px;
-    line-height: 16px;
-    position: fixed;
-    bottom: 35px;
-    color: #ffffff;
-    padding: 9px 25px;
-    border-radius: 100px;
-    width: 90%;
-    max-width: 400px;
-    background: #0045ff7d;
-        }
-
-        /* MODAL */
-        .modal {
-            display: none;
+        }:root { --gold: #0040ff; --dark: #0a0a0a; --card: rgba(20,20,20,0.6); --text: #eaeaea; --muted: #888; --glass: rgb(60 60 60); } 
+        .loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #00000091;
-            padding: 65px 20px 0 20px;
-            overflow-y: auto;
-            z-index: 10;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 10000000;
+            opacity: 1;
+            transition: opacity 0.5s ease;
         }
-        .title {
-         color: #ffffff80;
-    font-weight: 500;
-    }
-     @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-     
-        .close-btn {
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+         .loading-logo {
+            width: 260px;
+            height: auto;
+        }
+        .loading-dots {
+            display: flex;
             position: fixed;
-            top: 12px;
-    left: 15px;
-            color: #e0e0e0;
-            font-size: 16px;
-            cursor: pointer;
-            z-index: 11;
-            background: #ffffff09;
-            padding: 10px 11px;
-            border-radius: 50px;    box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff3d;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-        transition: all 0.3s ease;}
-        .close-btn:hover{
-              transform: scale(1.05); 
+            bottom: 100px;
+            align-items: center;
+            justify-content: center;
         }
-        .close-btn:active{
-              transform: scale(0.90); 
-        } 
-        .fixed {
-           position: fixed;
-    top: 0;
-    padding: 60px 0px 20px 20px;
-    left: 0;
-    width: 100%;
-    background: transparent;
-    backdrop-filter: blur(15px);
-    z-index: 10;
-    border-bottom: 1.5px solid #ffffff1f;
-    box-shadow: -7px 26px 20px #0000008c;
-    height: fit-content;
-    max-height: 280px;
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(#006aff,rgb(0, 157, 255));
+            border-radius: 50%;
+            margin: 0 5px;
+            animation: bounceDot 1s ease-in-out infinite;
         }
-        .scroll {
-               top: 195px;
-    padding-bottom: 90px;
-    transform: translateX(-50%);
-    position: relative;
-    left: 50%;
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
         }
-        /* CURRENCY SWITCH */
-        .currency-switch {
-            position: fixed;
-   top: 15px;
-    right: 10px;
-    background: #ffffff09;
-    color: #ffffffd4;
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounceDot {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+        ::-webkit-scrollbar { background-color: transparent; } 
+        *{box-sizing:border-box;} 
+        body{ margin:0; background: black; color:var(--text); font-family:'Noto Sans',sans-serif; display:flex; flex-direction:column; align-items:center; min-height:100vh; overflow-x:hidden; } 
+        .logo img{ width: 90px; margin: 40px auto 20px; filter: drop-shadow(0 0 10px #d9b86177); border: solid 2px #ffffff3d; border-radius: 18px; } 
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}} 
+        h3{
+    color: var(--gold);
+    letter-spacing: 0px;
+    margin: 6px 0px;} 
+        body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } 
+        .btn{
+        background: #ffffff26;
     border: none;
-    padding: 5px 17px;
+    color: var(--text);
+    padding: 9px 25px;
     border-radius: 30px;
-    font-size: 13px;
+    font-weight: 300;
     cursor: pointer;
-    z-index: 11;
-    display: flex;
-    align-items: center;
-    gap: 6px;    box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff3d;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-       transition: all 0.3s ease;}
-        .currency-switch:hover{
-              transform: scale(1.05); 
-        }
-        .currency-switch:active{
-              transform: scale(0.90); 
-        } 
-        .currency-switch i { font-size: 15px; }
-
-        /* PROFILE */
-        .profile-container { display:flex; align-items:flex-start; gap:15px; margin-bottom:0; flex-wrap:wrap; flex-direction:column; }
-        .user-name-container { 
-                    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: -30px;
-        padding-top: 10px;
-         }
-        #userEmote { 
-               width: 30px;
-    height: 30px;
-    cursor: pointer;
-    border-radius: 0px;
-    transition: transform .2s;
-        }
-        #userEmote:hover { transform:scale(1.1); }
-
-       .linkadder{
-        width: 99%;
-       }
-        .user-links {
-               
-    overflow: auto;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    position: relative;
-    top: 25px;
     transition: all 0.3s 
-ease;
-    padding: 5px 10px;
-    margin-left: -10px;
-    transition: all 0.3s ease;
-         }
-         
-        .user-link { 
-          background: #ffffff24;
-    white-space: nowrap;
-    color: #ffffffb3;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 11px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    cursor: pointer;
-    font-weight: 100;
-    box-shadow: inset 0 1px 0 #ffffff0a, inset 0 -3px 7px #ffffff3d;
+ease;    margin: 10px;
+    backdrop-filter: blur(10px); box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff3d;
     border: 1px solid rgba(255, 255, 255, 0.2);
          transition: all 0.3s ease;}
-        .user-links :hover{
-              transform: scale(1.05); 
+        .btn:hover{
+              transform: scale(1.05); background:rgba(255, 255, 255, 0.187);
         }
-        .user-links :active{
+       .btn:active{
               transform: scale(0.90); 
         } 
-        .add-link-btn { background: #004fff;
-    color: white;
-    border: none;
-    padding: 6px 15px;
-    border-radius: 20px;
-    font-size: 11px;
-    cursor: pointer;
-        margin-top: 35px;
-transition: all 0.3s ease-in-out;}
-        .add-link-btn:hover{
-              transform: scale(1.05); 
-        }
-        .add-link-btn:active{
-              transform: scale(0.90); 
-        } 
-
-        /* SEARCH + AMOUNT BUTTONS */
-        .search-container {
-            display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: all .4s 
-ease;
-    position: relative;
-    top: -8px;
-    height: 70px;
-    width: 130%;
-    padding: 0px 50px 0px 0px;
-        }
-        #searchIcon { 
-           font-size: 18px;
-    color: #00fff2;
-    cursor: pointer;
-    transition:all 3s ease;
-    position: relative;}
-        #searchIcon:hover{
-              transform: scale(1.05); 
-        }
-        #searchIcon:active{
-              transform: scale(0.90); 
-        } 
-        #searchInput { 
-            width: 0;
-    padding: 0;
-    border: none;
-    background: transparent;
-    color: #e0e0e0;
-    font-size: 14px;
-    outline: none;
-    transition: all 2s 
-ease-in-out;
-    overflow: hidden;
-    border-bottom: solid 1.5px #ffffff3d;
-        top: -5px;
-    position: relative;
-    left: -500px;
-    opacity: 0%;
-    margin-right: 15px;
-        }
-        #searchInput.active { 
-          width: 110px;
-    left: 11px;
-    margin-right: 45px;
-    opacity: 100%;
-    padding: 9px 10px;
-        }
-        .amount-buttons { 
-           display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    width: 100%;
-    white-space: nowrap;
-    padding: 10px 0px 0px 10px;
-    transition: transform .4s 
-ease;
-    margin-left: -25px;
-    scrollbar-width: none;
-        }
-        /* h3{ color:#006fff; } */
-        p { margin-bottom: 0px;
-    color: #969696e3;
-    font-weight: 500;
-    font-size: 15px;}
-        .details {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    justify-content: space-between;
-}.totaldetails {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-.totaldetails {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-        .amount-btn { color:#e0e0e0; border:none; border-radius:35px; padding: 3px 35px;
-    font-size: 12px; cursor:pointer; background:transparent; border:1.5px solid #ffffff3b; position:relative; min-width:100px; text-align:center; transition:all .3s ease; display:flex; justify-content:center; align-items:center; flex-direction:column;     
-    box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff3d;
-    border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;}
-        .amount-btn:hover{
-              transform: scale(1.05); 
-        }
-        .amount-btn:active{
-              transform: scale(0.90); 
-        }
-        .amount-btn.active { background-color:#004fff; border:1.5px solid #ffffff00; color:white; }
-        .purpose-tag { font-size:9px; color:#00fff2; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:80px; }
-
-        .total-icon {     box-shadow: inset 0 0.5px 0 #ffffff33, inset 0 -4px 9px #ffffff3d;
-    border: 1px solid rgba(255, 255, 255, 0.2);color:#ffffff99; border-radius:10px;z-index: 10000000; display:flex; align-items:center; justify-content:center; font-size:15px; cursor:pointer; background:#ffffff08; width:32px; 
-    height:32px;
-    transition: all 0.3s ease;}
-        .total-icon:hover{
-              transform: scale(1.05); 
-        }
-        .total-icon:active{
-              transform: scale(0.90); 
-        }    
-        #coinSection {
-    border-radius: 10px;
-    padding: 4px 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 700;
-    font-size: 13px;
-    margin-left: 0px;
-    box-shadow: inset 0 0.5px 0 #ffc100a8, inset 0 -4px 9px #ffc800b3;
-    border: 1px solid rgb(255 255 255 / 31%);
-    transition: all 0.3s 
-ease;z-index: 100000;
-    color: #e8b801;
- transition: all 0.3s ease;}
-        #coinSection:hover{
-              transform: scale(1.05); 
-        }
-        #coinSection:active{
-              transform: scale(0.90); 
-        }    
-.offergift {
-    position: fixed;
-    bottom: 65px;
-    left: 10px;
-    z-index: 100;
-    background: #ffffff14;
-    padding: 8px;
-    border-radius: 15px;
-    backdrop-filter: blur(3px);
-    box-shadow: inset 0 0.5px 0 #ffffff12, inset 0 -4px 9px #ffffff3d;
-    border: 1px solid rgba(255, 255, 255, 0.2);
- transition: all 0.3s ease;}
-        .offergift:hover{
-              transform: scale(1.05); 
-        }
-        .offergift:active{
-              transform: scale(0.90); 
-        } 
-    hr{     background: linear-gradient(45deg, transparent, #ffffff4f, transparent);
-    height: 1.5px; outline:none; border:none; }
-       ::placeholder{
-        color: rgba(255, 255, 255, 0.427);
-       }
-       input{
-        color: white;
-       }
-         #totalContent strong { color:rgb(255,204,0); }
-        #popupContent strong{
-                color: #ffffff85;
-                font-weight: 500;
-        }
-        #totalContent p{ text-align:center; }
-        .total-icon svg { fill:white; width:19px; }
-        button.move-asaid { padding:5px 14px;background:#ffffff42; outline:none; border:none; color:white; border-radius:1000px;}
-div#popupContent {
-    text-align: center;
-}
-        #totalPopup, #datePopup, #linkConfirmPopup, #emoteChooser {
-           display: none;
-    position: fixed;
-    bottom: 0%;
-    left: 50%;
-    scale: 1;
-    transform: translate(-50%, -4%);
-    background: #11111100;
-    color: #e0e0e0;
-    padding: 25px;
-    border-radius: 40px;
-    max-width: 450px;
-    width: 96%;
-    z-index: 20000;
-    text-align: left;
-    font-size: 14.5px;
-    line-height: 1.7;
-    backdrop-filter: blur(15px);
-    box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff3d;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        #totalPopup h3, #datePopup h3, #linkConfirmPopup h3, #emoteChooser h3 { margin: 0 0 14px;
-    color: #ffffff99;
-    
-    text-align: center;
-    font-size: 25px;
-    text-decoration: underline; }
-    
-        #totalPopup button, 
-        #datePopup button, 
-        #linkConfirmPopup button, 
-        #emoteChooser button {
-            margin-top: 14px;
-    background: #004fffbf;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 22px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 16px;
-  transition: all 0.3s ease;}
-        #totalPopup button:hover, 
-        #datePopup button:hover, 
-        #linkConfirmPopup button:hover, 
-        #emoteChooser button:hover{
-              transform: scale(1.05); 
-        }
-        #totalPopup button:active,
-        #datePopup button:active,
-        #linkConfirmPopup button:active, 
-        #emoteChooser button:active{
-              transform: scale(0.90);
-        } 
-        .btn-yes { background:#00ff88; color:#000; }
-        .btn-delete { background:#ff4444; color:white; }
-
-        /* EMOTE CHOOSER */
-        .emote-grid {display: flex;
-    gap: 10px;
-    margin: 0;
-    flex-direction: column;
-    align-items: center;
+        .btn-gold{background:var(--gold);color:white;} 
+        .btn-gold:hover{filter:brightness(1.1);} 
+        .prices{
+              margin-top: 20px;
     height: 200px;
-    overflow-y: auto;
-    width: 100%;
-    scrollbar-width: thin;
-    padding: 5px 0px 5px 0px}
-        .graphsays{ display:flex; align-items:center; }
-        .emote-option { 
-            width: 60px;
-    height: 60px;
-    cursor: pointer;
-    transition: .2s;
+    overflow-y: scroll;
+    background: black;
     padding: 10px;
-    margin: 0px 25px;
-        }
-        .emote-option:hover { transform:scale(1.5); 
-    border-radius: 16px;background: #ffffff1f;z-index: 10000;}
-
-        /* LOAN CARD */
-        .loan-entry { padding: 0px; border-radius:16px; position:relative; width:100%; }
-        .purpose-input {
-           padding: 10px 20px;
-    margin: 2px 0;
-    background: #ffffff00;
-    border: none;
-    border-radius: 13px;
-    color: white;
-    font-size: 14px;
-    outline: none;
-    max-width: 145px;
-        text-align: end;
-    backdrop-filter: blur(5px);
-box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff3d;
+    border-radius: 30px;
+    border: solid 1.5px #ffffff1d;
+    scrollbar-width: none;
+     box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff3d;
     border: 1px solid rgba(255, 255, 255, 0.2);
-transition: all 0.5s ease;}
-        .purpose-input:hover{
-              transform: scale(1.05); 
-        }
-        .purpose-input:active{
-              transform: scale(0.90); 
-              border-radius: 100px; 
         } 
-   .purpose-input:focus{
-              transform: scale(1.2) translateX(-30px);
-                  padding: 7.5px 11px;
-                  border-radius: 100px; 
-        }
-        
-     #bottomNav {
-           position: fixed;
-    bottom: 0;
-    left: 0;
-    border-radius: 0;
-    padding: 15px 10px;
-    display: flex;
-    box-shadow: none;
-    z-index: 1000;
-    width: 100%;
-    justify-content: center;
-    gap: 10px;
-    align-items: center;background: linear-gradient(0deg, #000000 8%, transparent);
-     
-        }
-        .nav-item { 
-           display: flex;
-    align-items: center;
-    gap: 5px;
-    color: #ffffffa4;
-    font-size: 11px;
+        html { scroll-behavior: smooth; } 
+        .price-card{
+         background: rgba(255, 255, 255, 0.073);
+    backdrop-filter: blur(10px);
+    margin: 6px;
+    border-radius: 14px;
+    padding: 10px;
+    transition: 0.3s;
     cursor: pointer;
-    background: #ffffff00;
-    padding: 10px 15px;
-    border-radius: 46px;
-    width: 100%;
-    text-align: center;
+    font-weight: 100;
+    color: #ffffffbf;
+    font-size: 14px;
+    box-shadow: inset 0 0.5px 0 #ffffff47, inset 0 -4px 9px #ffffff29;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+        } 
+        .price-card:hover{
+          transform: scale(1.01);
+    background: rgb(38 38 38);
+    font-size: 16px;
+        } 
+        .price-card span{color: #00aeff;
+    font-weight: 800;} 
+        .popup{ position:fixed; top:0;left:0; width:100%;height:100%;    padding: 10px; display:none; align-items:center; justify-content:center; backdrop-filter:blur(8px); z-index:1000; animation:fadeIn 0.25s ease; } 
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}} 
+        .popup-content{ width: 100%; max-width: 400px; text-align: center; line-height: 40px; } 
+        .popup h3{margin-bottom:10px;} 
+        .close-btn{margin-top:20px;} 
+        .menu{ 
+        position: fixed;
+    bottom: 10px;
+    max-width: 500px;
+    display: flex;
     justify-content: space-around;
-    max-width: 135px;
-    backdrop-filter: blur(6px);
-    box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff3d;
-    border: 1px solid rgba(255, 255, 255, 0.2);transition: all 0.3s ease;
+    background: black;
+    backdrop-filter: blur(12px);
+    z-index: 999;
+    padding: 9px;
+    border-radius: 22px;
+    width: 95%;
+    box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff66;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+        } 
+        b {
+    color: #ffe200;
+}
+        .menu a{ flex:1;text-align:center; color:var(--muted); padding:10px 0; transition:0.3s; } 
+        .menu svg.active,.menu a:hover{
+          color:var(--gold);} 
+        .menu a i{font-size:20px;} 
+        a{ color: white; text-decoration: none; } 
+        .menu-content{ display: none; text-align: center; padding: 10px; } 
+        .menu-content.active{display:block;} 
+        .note{ font-size:12.5px;color:#aaa;padding:20px; line-height: 20px; } 
+
+        #stoexplore{ 
+    padding: 8px 20px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    background: linear-gradient(45deg, #ff00ff, #0023ff);
+    color: white;
+    box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffffcf;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+         transition: all 0.3s ease-in-out;}
+        #stoexplore:hover{
+            transform: scale(1.05); 
         }
-        .nav-item:hover{
+        #stoexplore:active{
+            transform: scale(0.90); 
+        } 
+        .helper-button,.helper-buttons {
+          position: fixed;
+    top: 10px;
+    font-size: 13px;
+    background: #ffffff26;
+    padding: 5px 15px;
+    border-radius: 60px;
+    color: #ffffff;
+    text-decoration: none;
+    border: none;
+    z-index: 1000;
+        box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff3d;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+ transition: all 0.3s ease;}
+        .helper-button:hover,.helper-buttons:hover{
               transform: scale(1.05); 
         }
-        .nav-item:active{
-              transform: scale(0.95); 
-        }
-        .nav-item.active { color:#00fff2; }
-        .nav-item i { font-size:15px; }
-        .toggle-pin { font-size:15px; color:#ffffffa4; cursor:pointer; }
-        .toggle-pin.on { color:#004fff; }
-.iconbotm {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
-        /* GRAPH & CALENDAR */
-        #graphContainer, #calendarContainer {
-           background: #111;
-    border-radius: 40px;
-    padding: 30px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
-    border: 1px solid #222;
-    max-width: 400px;
-    width: 100%;
-    scrollbar-width: none;
-    transform: translateX(-50%);
-    position: relative;
-    left: 50%;
-    max-height: 400px;
-    height: 255px;
-    scrollbar-width: none;
-    overflow: scroll;
-    margin-top: 25px;
-     box-shadow: inset 0 1px 0 #ffffff69, inset 0 -4px 9px #ffffff69;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        #calendarContainer > div > div {
-            color:#ddd; border-radius:13px; min-height:30px; display:flex;
-            align-items:center; justify-content:center; font-weight:500;
-        }
-        
-
-#lights {
+        .helper-button:active,.helper-buttons:active{
+              transform: scale(0.90); 
+        } 
     
-    display: none;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 110px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding-top: 7px;
-    pointer-events: none;
-    z-index: 10000;
-    left: 0;
-}
- .bulb {
-    display: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #c00;
-    box-shadow: 0 0 60px 8px #c00;
-    position: relative;
-    animation: sway linear infinite;
-    transform-origin: center top;
-}
-    .bulb::before{content:'';position:absolute;top:-28px;left:50%;    width: 1px;
-    height: 31px;background:linear-gradient(#555,#222);transform:translateX(-50%);}
-    @keyframes sway{
-        0%,100%{transform:translateX(0) rotate(-4deg);}
-        25%{transform:translateX(12px) rotate(4deg);}
-        50%{transform:translateX(0) rotate(5deg);}
-        75%{transform:translateX(-12px) rotate(-5deg);}
+    .helper-buttons::before {
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        border-radius: 60px;
+        background: linear-gradient(270deg,#ffffffad,#aa00ff,#ffd500, #ff0000,#003cff,#ea00ff,#00ff73,#ff6a00,#ffffff4d);
+                background-size: 400% 100%;
+        z-index: -1;
+        animation: color-move 3s linear infinite;
     }
-    /* .snow{
-        position:fixed;top:-12px;z-index: 100000;width:4px;height:4px;background:#ffffffdc;border-radius:50%;pointer-events:none;animation:fall linear forwards;opacity:0.8;box-shadow:0 0 10px #fff;
+     @keyframes color-move {
+        0% { background-position: 100% 0; }
+        100% { background-position: 0 0; }
     }
-    @keyframes fall{to{transform:translateY(110vh);}} */
-
-    /* #candy{position: fixed;
-    bottom: 80px;
-    right: 4%;
-    font-size: 18px;
-    color: #ffffff;
-    cursor: pointer;
-    z-index: 10;
-    transition: all .3s;
-    background: rgb(184, 0, 0);
-    padding: 10px;
-    border-radius: 100px;
-    backdrop-filter: blur(3px);}
-    #candy:hover{
-        transform:scale(1.15) rotate(8deg);
-        background-color: red;
-    } */
-input{
-    
-    accent-color: white;
+    .menu-content p {
+    font-size: 13px;
+    margin: 10px;
 }
-    #panel{
-            position: fixed;
-    bottom: 130px;
-    left: 50%;
-    transform: translateX(-50%) scale(0.92);
-    background: rgba(255, 0, 0, 0.808);
-    backdrop-filter: blur(20px);
-    border-radius: 40px;
-    padding: 5px 0px 30px 0px;
-    width: 95%;
-    max-width: 450px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-    text-align: center;
-    z-index: 9000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all .4s 
-cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateX(-50%) scale(1);
-    color: white;
-    }
-.show select#mode,button {
-    padding: 10px;
-    border: none;
-    outline: none;
-    border-radius: 13px;
-    margin-bottom: 10px;
-   box-shadow: inset 0 1px 0 #ffffff73, inset 0 4px 15px #ffffff86;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-    #panel.show{opacity:1;visibility:visible;transform:translateX(-50%) scale(1);}
-
-    .title{font-size: 28px;
-    font-weight: 600;
-    margin: 0px 0px 20px 0px;}
-.youtube-wrapper {
- position: relative;
-
-    width: 100%;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    border-radius: 22px;
-    margin: 25px 20px 65px 5px;
-    border: solid 3px rgba(255, 255, 255, 0.411);
-}
-
-.youtube-wrapper iframe {
-      position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-        @media (max-width : 500px) {
-              .fixed {
-           position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 10;
-        border-bottom: 1.5px solid #ffffff1f;
-        }
-      
-.bulb {
-    width: 25px;
+        .menu svg{width: 23px;
     height: 25px;
-    border-radius: 50%;
-    background: #c00;
-    box-shadow: 0 0 60px 8px #c00;
-    position: relative;
-    animation: sway linear infinite;
-    transform-origin: center top;
-}
+    cursor: pointer;
+    opacity: 30%;} 
+        .menu svg:hover{opacity: 100% }
+        @media(max-width:500px) {
+          
         }
-        
-    /* Popup overlay */
-    .popup-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-          height: 95vh;
-          scale: 0.95;
-    }
-    .popup-overlay.active {
-      opacity: 1;
-      scale:1;
-      visibility: visible;
-    }
-.issuebtn button {
-            width: 100%;
-            position: relative;
-            left: -6px;
-            padding: 10px;
-            background: red;
-            color: white;
-            border: none;
-            font-size: 16px;
-            border-radius: 13px;
-            cursor: pointer;
-        }
-
-    .popup {
-      background: #000000cc;
-    border-radius: 35px;
-    width: 96%;
-    max-width: 550px;
-    padding: 30px 20px 5px 20px;
-    transition: transform 0.3s;
-    backdrop-filter: blur(20px);
-    border: none;
-    box-shadow: none;
-    box-shadow: inset 0px 0px 35px #ffffffab;
-    }
-
-    .popup-header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 20px;
-      font-size: 25px;
-      font-weight: 600;
-      color: #004fff;
-    }
-    
-    .pack {
-      border-radius: 30px;
-    padding: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background 0.2s;
-    }
-    .pack-name { font-weight: 600; }
-    .pack-price { color: #ffffff8a; font-weight: 700; }
-    .pack-bonus { font-size: 12px; color: #0f0; margin-top: 4px; }
-    .details svg{
-        width: 30px;
-        height: 30px;
-        background: #ffffff0e;
-        padding: 6.5px;
-        border-radius: 10px;
-        stroke: #939393;
-            backdrop-filter: blur(5px);    box-shadow: inset 0 0.5px 0 #ffffff3d, inset 0 -4px 9px #ffffff3d;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    .leftflow {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-}
-
     </style>
 </head>
 
 <body>
-    <!-- PASSWORD -->
-    <div id="passwordContainer">
-        <h2 style="font-weight: 400;
-    font-size: 9px;
-    color: white;">Enter your pin</h2>
-    <svg style="    fill: white;
-rotate: 180deg;
-width: 38px;
-height: 60px;
-margin:15px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M480-40q-33 0-56.5-23.5T400-120q0-33 23.5-56.5T480-200q33 0 56.5 23.5T560-120q0 33-23.5 56.5T480-40ZM240-760q-33 0-56.5-23.5T160-840q0-33 23.5-56.5T240-920q33 0 56.5 23.5T320-840q0 33-23.5 56.5T240-760Zm0 240q-33 0-56.5-23.5T160-600q0-33 23.5-56.5T240-680q33 0 56.5 23.5T320-600q0 33-23.5 56.5T240-520Zm0 240q-33 0-56.5-23.5T160-360q0-33 23.5-56.5T240-440q33 0 56.5 23.5T320-360q0 33-23.5 56.5T240-280Zm480-480q-33 0-56.5-23.5T640-840q0-33 23.5-56.5T720-920q33 0 56.5 23.5T800-840q0 33-23.5 56.5T720-760ZM480-280q-33 0-56.5-23.5T400-360q0-33 23.5-56.5T480-440q33 0 56.5 23.5T560-360q0 33-23.5 56.5T480-280Zm240 0q-33 0-56.5-23.5T640-360q0-33 23.5-56.5T720-440q33 0 56.5 23.5T800-360q0 33-23.5 56.5T720-280Zm0-240q-33 0-56.5-23.5T640-600q0-33 23.5-56.5T720-680q33 0 56.5 23.5T800-600q0 33-23.5 56.5T720-520Zm-240 0q-33 0-56.5-23.5T400-600q0-33 23.5-56.5T480-680q33 0 56.5 23.5T560-600q0 33-23.5 56.5T480-520Zm0-240q-33 0-56.5-23.5T400-840q0-33 23.5-56.5T480-920q33 0 56.5 23.5T560-840q0 33-23.5 56.5T480-760Z"/></svg>
-    <input type="text" id="userPassword" placeholder="Enter here....">
-        <button id="submitBtn"><i class="fa-solid fa-arrow-right"></i></button><br>
-        <p id="error-message"></p>
-        <div class="notice">You should return the money before the return date, If not additional interest will be charged.</div>
+    <div class="loading-overlay" id="loadingOverlay">
+        <img src="loadinglogo.gif" alt="Loading Doughnut" class="loading-logo">
+        <div class="loading-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
     </div>
-    <div id="userInfoModal" class="modal">
-
-
-
-
-
-
-
-
-
-
-    <!-- offerdisplay -->
-    <div class="offergift">
-        <a style="display: flex;" onclick="alert('You don`t have any current offers...!')" ><img style="width: 32px;" src="https://static-cdn.jtvnw.net/emoticons/v2/1713819/default/dark/2.0" alt=""></a>
+<div class="container" style="display: flex;justify-content: center;align-items: center;height: 90vh;">
+  <div id="content-home" class="menu-content active">
+    <a style="left: 5px;    box-shadow: inset 0 0.5px 0 #ffffffd2, inset 0 -4px 9px #ffffffb2;
+" class="helper-buttons" href="https://mfi0212.github.io/MFI/abt.hlp">Helper</a>
+      <a style="right: 5px;" class="helper-button" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
+   
+    <div class="logo">
+      <img src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="logo">
     </div>
+    <h3>Interest for Different Amounts</h3>
 
+    <button id="currencyToggle" class="btn">Switch to USD ($)</button>
+    <div id="pricesList" class="prices"></div>
 
+    <p class="note">
+      These are not fixed interest rates, They change based on amount providers.<br><br>
+      <a id="stoexplore" href="https://mfi0212.github.io/swan/offer/offer">STO</a>
+    </p>
+  </div>
 
+  <div id="content-transfer" class="menu-content" style="margin: 230px auto auto auto;    padding: 20px;">
+    <h3>Apply for Money</h3>
+    <button class="btn"><a href="https://mfi0212.github.io/MFI/takemoney" style="text-decoration:none;color:#fff;">Take Money</a></button>
+    <p style="color:#aaa;margin:20px;">Wait a few hours after submitting, funds are arranged shortly.</p>
+    <button style="background: black;
+    box-shadow: 0px 0px 22px #0040ff;" class="btn"><a href="https://mfi0212.github.io/swan/home" style="text-decoration:none;color:#fff;">To borrow below 5k - Lendlink</a></button>
+  </div>
 
+  <div id="content-user" class="menu-content" style="margin: 280px auto auto auto;    padding: 20px;">
+    <h3>Premium</h3>
+    <p style="color:#aaa;">Get more benefits with our Premium service</p>
+    <button class="btn" style="background: rgba(255, 255, 255, 0.354);"><a href="https://mfi0212.github.io/MFI/premium" style="text-decoration:none;color:#000000;font-weight: 600;">Explore</a></button>
+  </div>
 
-
-
-
-
-
-
-
-
-
-
- <style>
-    .fab {
-    position: fixed;
-       top: 15px;
-    left: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-    z-index: 999;
-    transition: all 0.3s 
-ease;
-    padding: 8px 10px;
-    gap: 5px;
-    font-size: 10px;
-    background: #ffffff0a;
-    border-radius: 100px;    box-shadow:inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff3d;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  .fab:hover { transform: scale(1.1); }
-  .fab:active { transform: scale(0.98); }
-
-  /* Bottom Sheet Popup */
-  .bottom-sheet {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    backdrop-filter: blur(11px);
-    border-radius: 35px 35px 0 0;
-    max-height: 80vh;
-    overflow-y: auto;
-    padding: 20px;
-    color: white;
-    transform: translateY(1000%);
-    transition: transform 0.4s 
-cubic-bezier(0.32, 0.72, 0, 1);
-    z-index: 1000000000;
-    box-shadow: inset 0 1px 0 #ffffff47, inset 0 -4px 30px #ffffff4f;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  .bottom-sheet.active {
-    transform: translateY(0);
-  }
-
-  .handle {
-    width: 40px;
-    height: 5px;
-    background: rgba(255,255,255,0.3);
-    border-radius: 3px;
-    margin: 0 auto 20px;
-  }
-
-  .title {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-
-  .option {
-        padding: 11px;
-    background: rgb(255 255 255 / 17%);
-    border-radius: 11px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-    font-size: 12px;
-    text-align: center;
-transition: all 0.5s ease;}
-         .option:hover{
-              transform: scale(1); background: rgb(255 255 255 / 31%);
-        }
-         .option:active{
-              transform: scale(0.90); 
-        }
-  /* Wallpaper Grid */
-  .wallpaper-grid {
-        display: flex;
-    gap: 8px;
-    overflow: scroll;
-    padding: 10px;
-    scrollbar-width: none;
-  }
-  .wallpaper-thumb {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 12px;
-    cursor: pointer;
-    border: 3px solid transparent;
-    transition: 0.3s;
-  }
-  .wallpaper-thumb:hover {
-    border-color: #fff;
-    transform: scale(1.05);
-  }
-
-  .upload-area {
-    border: 2px dashed rgba(255,255,255,0.3);
-    border-radius: 16px;
-    padding: 30px;
-    text-align: center;
-    margin: 16px 0;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  .upload-area:hover {
-    border-color: #fff;
-    background: rgba(255,255,255,0.05);
-  }
-
-  /* Overlay to close on outside tap */
-  .overlay {
-    position: fixed;
-    inset: 0;
-    background: transparent;
-    z-index: 998;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
-  }
-  .overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* Scrollbar styling (Webkit) */
-  .bottom-sheet::-webkit-scrollbar {
-    width: 6px;
-  }
-  .bottom-sheet::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .bottom-sheet::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.3);
-    border-radius: 3px;
-  }
-</style>
-</head>
-<body>
-
-<!-- Floating Action Button (Your SVG Icon) -->
-<div class="fab" id="fab">
-  <svg style="    width: 15px;
-    height: 15px;
-" xmlns="http://www.w3.org/2000/svg" width="36px" height="36px" viewBox="0 0 24 24" fill="#ffffff">
-    <g fill="#ffffff">
-      <path d="M15.72 7.349a1.86 1.86 0 1 1-3.72 0a1.86 1.86 0 0 1 3.72 0Zm6.28.405c0-.374 0-.642-.037-.878a3.023 3.023 0 0 0-1.315-2.047c-.078-.052-.177.016-.164.109c.1.744.117 1.627.12 2.59v8.944c-.003.964-.02 1.847-.12 2.591c-.013.093.086.16.164.109a3.023 3.023 0 0 0 1.315-2.047c.037-.236.037-.504.037-.878V7.754Zm-18.605.06a51.83 51.83 0 0 1 .002-.465c.004-.894.025-1.714.12-2.411c.012-.093-.087-.16-.165-.109a3.023 3.023 0 0 0-1.315 2.047C2 7.112 2 7.38 2 7.754v8.492c0 .374 0 .642.037.878a3.022 3.022 0 0 0 1.315 2.047c.078.052.177-.016.164-.109c-.094-.697-.115-1.517-.12-2.41a88.883 88.883 0 0 1 0-.466V7.814Z"/>
-      <path fill-rule="evenodd" d="M16.085 2.108C15.28 2 14.253 2 12.981 2H11.02c-1.272 0-2.298 0-3.104.108c-.838.113-1.543.354-2.103.914c-.56.56-.8 1.265-.913 2.102c-.108.806-.108 1.832-.108 3.104v7.544c0 1.272 0 2.298.108 3.104c.113.837.354 1.542.913 2.102c.56.56 1.265.801 2.103.914C8.72 22 9.747 22 11.019 22h1.962c1.272 0 2.298 0 3.104-.108c.838-.113 1.543-.354 2.103-.914c.56-.56.8-1.265.913-2.102c.108-.806.108-1.832.108-3.104V8.228c0-1.272 0-2.298-.108-3.104c-.113-.837-.354-1.542-.913-2.102c-.56-.56-1.265-.801-2.103-.914Zm.723 14.522l.987 1.04c.018-.536.019-1.175.019-1.95V8.28c0-1.336-.002-2.267-.096-2.97c-.092-.683-.26-1.044-.517-1.302c-.258-.257-.619-.425-1.302-.517c-.702-.094-1.633-.096-2.969-.096h-1.86c-1.335 0-2.267.002-2.97.096c-.682.092-1.043.26-1.3.517c-.258.258-.426.62-.518 1.302c-.094.703-.096 1.634-.096 2.97v4.624l.003-.003c.917-.941 2.336-.877 3.184.118l2.94 3.448c.236.276.545.289.783.093l.204-.169c1.076-.886 2.552-.77 3.508.24Z" clip-rule="evenodd"/>
-    </g>
-  </svg>
-  <p style="    font-size: 10px;
-    color: white;
-    font-weight: 400;">Wallpaper</p>
+  <div id="content-account" class="menu-content" style="margin: 280px auto auto auto;    padding: 20px;">
+    <h3>Account</h3>
+    <p style="color:#bbb;">Manage your personal details, activity & security.</p>
+    <button class="btn" onclick="openPopup('accountPopup')"><i class="fa-solid fa-user-gear"></i> Open Account</button>
+  </div>
 </div>
 
-<!-- Overlay -->
-<div class="overlay" id="overlay"></div>
+<div class="menu">
+  <a  class="active">
+    <svg onclick="showContent('content-home', this)" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><path fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="1.5" d="M15 18H9m12.636-5.042l-.279 1.937c-.487 3.388-.731 5.081-1.906 6.093C18.276 22 16.553 22 13.106 22h-2.212c-3.447 0-5.17 0-6.345-1.012c-1.175-1.012-1.419-2.705-1.906-6.093l-.279-1.937c-.38-2.637-.57-3.956-.029-5.083c.54-1.127 1.691-1.813 3.992-3.183l1.385-.825C9.8 2.622 10.846 2 12 2c1.154 0 2.199.622 4.288 1.867l1.385.825c2.3 1.37 3.451 2.056 3.992 3.183"/></svg>
+  </a>
+  <a >
+    <svg onclick="showContent('content-transfer', this)" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-width="1.5"><path stroke-linecap="round" d="M4.979 6.315C2.993 7.109 2 7.506 2 8s.993.89 2.979 1.685l2.808 1.123C9.773 11.604 10.767 12 12 12c1.234 0 2.227-.397 4.213-1.191l2.808-1.124C21.007 8.891 22 8.494 22 8s-.993-.89-2.979-1.685l-2.808-1.123C14.227 4.397 13.233 4 12 4c-.954 0-1.764.237-3 .712"/><path d="m5.766 10l-.787.315C2.993 11.109 2 11.507 2 12c0 .493.993.89 2.979 1.685l2.808 1.123C9.773 15.604 10.767 16 12 16c1.234 0 2.227-.397 4.213-1.191l2.808-1.124C21.007 12.891 22 12.493 22 12c0-.493-.993-.89-2.979-1.685L18.234 10"/><path stroke-linecap="round" d="M19.021 17.685C21.007 16.891 22 16.494 22 16c0-.493-.993-.89-2.979-1.685L18.234 14M5.766 14l-.787.315C2.993 15.109 2 15.507 2 16c0 .494.993.89 2.979 1.685l2.808 1.123C9.773 19.604 10.767 20 12 20c.954 0 1.764-.237 3-.712"/></g></svg>  
+  </a>
+  <a>
+    <svg  onclick="showContent('content-user', this)" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><g fill="none"><path stroke="#ffffff" stroke-linecap="round" stroke-width="1.5" d="M17.713 8c.024.158.06.29.12.413c.148.311.42.538.963.992l.495.413c1.911 1.598 2.867 2.397 2.688 3.342c-.18.946-1.374 1.412-3.765 2.344l-.618.241c-.68.265-1.02.398-1.274.647c-.255.249-.395.586-.677 1.261l-.257.614c-.992 2.375-1.488 3.563-2.434 3.717c-.946.155-1.715-.826-3.254-2.788l-.398-.507c-.438-.558-.656-.836-.962-.994c-.306-.157-.665-.176-1.382-.213l-.654-.033c-2.524-.13-3.786-.195-4.192-1.045c-.405-.85.314-1.922 1.753-4.067l.373-.555c.408-.61.613-.914.679-1.26c.065-.347-.016-.696-.177-1.393l-.147-.635C4.024 6.039 3.74 4.81 4.436 4.13c.695-.68 1.91-.362 4.338.275l.628.164c.69.181 1.035.271 1.382.215c.346-.057.655-.254 1.272-.648l.563-.36c2.173-1.387 3.26-2.08 4.095-1.65c.518.266.727.857.825 1.873"/><path fill="#ffffff" d="M19.53 18.47a.75.75 0 1 0-1.06 1.06l1.06-1.06Zm.94 3.06a.75.75 0 1 0 1.06-1.06l-1.06 1.06Zm-2-2l2 2l1.06-1.06l-2-2l-1.06 1.06Z"/></g></svg>
+  </a>
+  <a>
+    <svg  onclick="showContent('content-account', this)" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-width="1.5"><circle cx="12" cy="6" r="4"/><path stroke-linecap="round" d="M19.997 18c.003-.164.003-.331.003-.5c0-2.485-3.582-4.5-8-4.5s-8 2.015-8 4.5S4 22 12 22c2.231 0 3.84-.157 5-.437"/></g></svg>  
+  </a>
+</div>
 
-<!-- Bottom Sheet Menu -->
-<div class="bottom-sheet" id="sheet">
-  <div class="handle"></div>
-  <div class="title">Choose Background</div>
-
-  <div class="option" id="presetBtn">Use Preset Wallpaper</div>
-  <div id="presetSection" style="display:none;">
-       <div class="wallpaper-grid">
-      <img class="wallpaper-thumb" src="http://i.pinimg.com/1200x/6c/c2/f0/6cc2f0cebf6052dcfbe71864d85ffeaa.jpg" alt="Wallpaper 6">
-      <img class="wallpaper-thumb" src="https://i.pinimg.com/1200x/39/e9/4d/39e94ddce22f8eac25d2f8b0f1831394.jpg" alt="Wallpaper 6">
-      <img class="wallpaper-thumb" src="https://i.pinimg.com/1200x/3d/d0/fd/3dd0fdd3607bc3fdd5f5e28fa991c660.jpg" alt="Wallpaper 6">
-      <img class="wallpaper-thumb" src="http://i.pinimg.com/736x/d2/ae/c2/d2aec2b8f59fd63c9dff867d5fd1c557.jpg" alt="Wallpaper 6">
-    </div>
+<div class="popup" id="interestPopup">
+  <div class="popup-content">
+    <h3 style="    color: #00b5ff;">Interest Details</h3>
+    <p id="popup-content"></p>
+    <button class="btn btn-gold close-btn" onclick="closePopup('interestPopup')">Close</button>
   </div>
+</div>
 
-  <div class="option" id="uploadBtn">Upload Your Own Image</div>
-  <div id="uploadSection" style="display:none;">
-    <div class="upload-area" id="dropArea">
-      <p>Tap to select image</p>
-      <input type="file" accept="image/*" id="fileInput" style="display:none;">
-    </div>
+<div class="popup" id="accountPopup">
+  <div class="popup-content">
+    <h3 style="color: #00b5ff;">Account</h3>
+    <p>We are redirecting you to visit your account...!</p>
+    <button class="btn btn-gold close-btn" onclick="closePopup('accountPopup')"><a href="https://mfi0212.github.io/MFI/accverify">Ok, visit</a></button>
   </div>
-
-  <div class="option" id="originalBtn">Original Black Background</div>
 </div>
 
 <script>
-// Load saved background
-window.onload = () => {
-  const saved = localStorage.getItem('userBG');
-  if (saved === 'black') {
-    applyBlack();
-  } else if (saved) {
-    applyImage(saved, false); // false = no repeat
+  // document.addEventListener('contextmenu', e => e.preventDefault());
+function showContent(id, el){
+  document.querySelectorAll('.menu-content').forEach(sec=>sec.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.menu a').forEach(a=>a.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function openPopup(id){ document.getElementById(id).style.display='flex'; }
+function closePopup(id){ document.getElementById(id).style.display='none'; }
+
+const loadingOverlay = document.getElementById("loadingOverlay");
+setTimeout(() => {
+    loadingOverlay.classList.add("hidden");
+}, 3000);
+
+const exchangeRate = 113.86 / 10000;
+let currentCurrency = localStorage.getItem('currency') || 'INR';
+const data = [
+  { amount: 10000, interest: 2500 },
+  { amount: 11000, interest: 2600 },
+  { amount: 12000, interest: 2700 },
+  { amount: 13000, interest: 2800 },
+  { amount: 14000, interest: 2900 },
+  { amount: 15000, interest: 3000 }
+];
+const pricesList = document.getElementById("pricesList");
+const toggleBtn  = document.getElementById("currencyToggle");
+
+function updateToggleButton() {
+  toggleBtn.textContent = currentCurrency === 'INR' 
+    ? 'Switch to USD ($)' 
+    : 'Switch to INR (₹)';
+}
+
+function renderPrices(){
+  pricesList.innerHTML = "";
+  data.forEach(item => {
+    let amount = item.amount;
+    let interest = item.interest;
+    const symbol = currentCurrency === 'USD' ? '$' : '₹';
+
+    if (currentCurrency === 'USD') {
+      amount   = (amount   * exchangeRate).toFixed(2);
+      interest = (interest * exchangeRate).toFixed(2);
+    }
+
+    const div = document.createElement("div");
+    div.className = "price-card";
+    div.innerHTML = `Interest for <span>${symbol}${amount}</span> → <span>${symbol}${interest}</span>`;
+    div.onclick = () => showInterestPopup(item.amount, item.interest);
+    pricesList.appendChild(div);
+  });
+}
+
+function showInterestPopup(baseAmount, baseInterest){
+  const symbol = currentCurrency === 'USD' ? '$' : '₹';
+  let amount = baseAmount;
+  let interest = baseInterest;
+  let total = amount + interest;
+
+  if (currentCurrency === 'USD') {
+    amount   = (amount   * exchangeRate).toFixed(2);
+    interest = (interest * exchangeRate).toFixed(2);
+    total    = (parseFloat(amount) + parseFloat(interest)).toFixed(2);
   }
-};
 
-const fab = document.getElementById('fab');
-const sheet = document.getElementById('sheet');
-const overlay = document.getElementById('overlay');
+  document.getElementById("popup-content").innerHTML =
+    `Borrow <b>${symbol}${amount}</b> for 1 month.<br>
+     Interest: <b>${symbol}${interest}</b><br>
+     Total Repay: <b>${symbol}${total}</b>`;
+  openPopup('interestPopup');
+}
 
-fab.onclick = () => {
-  sheet.classList.toggle('active');
-  overlay.classList.toggle('active');
-};
-
-overlay.onclick = () => {
-  sheet.classList.remove('active');
-  overlay.classList.remove('active');
-  document.getElementById('presetSection').style.display = 'none';
-  document.getElementById('uploadSection').style.display = 'none';
-};
-
-// Preset Wallpapers
-document.getElementById('presetBtn').onclick = () => {
-  const section = document.getElementById('presetSection');
-  section.style.display = section.style.display === 'block' ? 'none' : 'block';
-  document.getElementById('uploadSection').style.display = 'none';
-};
-
-document.querySelectorAll('.wallpaper-thumb').forEach(img => {
-  img.onclick = () => {
-    applyImage(img.src, false);
-    closeSheet();
-  };
+toggleBtn.addEventListener("click", () => {
+  currentCurrency = currentCurrency === 'INR' ? 'USD' : 'INR';
+  localStorage.setItem('currency', currentCurrency);
+  updateToggleButton();
+  renderPrices();
 });
 
-// Upload Image
-document.getElementById('uploadBtn').onclick = () => {
-  const section = document.getElementById('uploadSection');
-  section.style.display = section.style.display === 'block' ? 'none' : 'block';
-  document.getElementById('presetSection').style.display = 'none';
-};
-
-document.getElementById('dropArea').onclick = () => {
-  document.getElementById('fileInput').click();
-};
-
-document.getElementById('fileInput').onchange = (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      applyImage(ev.target.result, false);
-      closeSheet();
-    };
-    reader.readAsDataURL(file);
-  }
-};
-
-// Original Black
-document.getElementById('originalBtn').onclick = () => {
-  applyBlack();
-  closeSheet();
-};
-
-function applyImage(url, repeat = false) {
-  document.body.style.backgroundImage = `url(${url})`;
-  document.body.style.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
-  document.body.style.backgroundSize = 'cover';
-  document.body.style.backgroundPosition = 'center';
-  localStorage.setItem('userBG', url);
-}
-
-function applyBlack() {
-  document.body.style.background = '#000';
-  document.body.style.backgroundImage = 'none';
-  localStorage.setItem('userBG', 'black');
-}
-
-function closeSheet() {
-  sheet.classList.remove('active');
-  overlay.classList.remove('active');
-}
+updateToggleButton();
+renderPrices();
 </script>
-    
-
-    <div id="lights"></div>
-<i class="fa-solid fa-candy-cane" id="candy"></i>
-<div id="panel">
-    <div style="margin-top:20px;font-size:13px;">BS&MFI wishing you a very</div>
-    <div class="title">Happy Merry Christmas</div>
-    <select id="mode">
-        <option>Multicolor Rainbow</option>
-        <option>Golden Elegance</option>
-        <option value="single">Single Color →</option>
-        <option>Classic Red & Green</option>
-        <option>Warm White</option>
-        <option>Candy Red & white</option>
-        <option>Ice Blue Winter</option>
-    </select>
-
-    <!-- Single color picker (shown only when "Single Color" is selected) -->
-    <div id="singleColorRow" class="color-row" style="display: flex;
-    margin: 16px 0px;
-    justify-content: center;
-    gap: 10px;
-    align-items: center;">
-        <input type="color" id="singleColor" value="#ff0000">
-        <span style="font-size:14px;">Pick a color</span>
-    </div>
-
-    <button id="twinkle">Twinkle OFF</button>
-    <button id="disco">Disco OFF</button>
-
-    <div style="margin:16px 0 8px;font-size:14px;">Light switch Speed</div>
-    <input style="height: 1px;" type="range" id="speed" min="1" max="100" value="50">
-
-    <div style="margin:16px 0 8px;font-size:14px;">Snow</div>
-    <input style="height: 1px;" type="range" id="snow" min="10" max="100" value="45">
-    <div class="pngchris">
-        <img style="position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 19%;
-    filter: drop-shadow(6px -2px 5px #00000082);" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/christmas-tree.gif" alt="">
-    </div>
-</div>
-
-        <span><i class="fa-solid fa-arrow-left close-btn" onclick="closeModal()"></i></span>
-
-        <!-- CURRENCY SWITCH -->
-        <button class="currency-switch" id="currencySwitch">
-            <i class="fa-solid fa-dollar-sign"></i> <span id="currencyLabel">USD</span>
-        </button>
-
-        <div class="fixed">
-            <h3 style="text-decoration:underline;margin:0;font-weight:500;font-size:12px;text-align:left;color:#ffffff82;">Borrower</h3>
-            <div class="profile-container">
-                <div class="user-name-container">
-                    <img id="userEmote" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0" onclick="openEmoteChooser()">
-                    <span id="userName" style="font-size:19px;"></span>
-                    <div class="total-icon" onclick="showTotalPopup()">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M240-160q-66 0-113-47T80-320v-320q0-66 47-113t113-47h480q66 0 113 47t47 113v320q0 66-47 113t-113 47H240Zm0-480h480q22 0 42 5t38 16v-21q0-33-23.5-56.5T720-720H240q-33 0-56.5 23.5T160-640v21q18-11 38-16t42-5Zm-74 130 445 108q9 2 18 0t17-8l139-116q-11-15-28-24.5t-37-9.5H240q-26 0-45.5 13.5T166-510Z"/></svg>
-                    </div>
-                    <div id="coinSection">
-                        <i class="fa-solid fa-feather-pointed"></i>
-                        <span id="userCoinsDisplay">0</span>
-                    </div>
-                </div>
-                <div class="linkadder">
-                    <div class="user-links" id="userLinks"></div>
-                    <button class="add-link-btn" onclick="addLink()">+ Add Link</button>
-                    <a target="_blank" href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: red;" class="add-link-btn">I have an issue with my account.!</button></a>
-                </div> 
-            </div>
-            <div class="popup-overlay" id="swanShopPopup">
-    <div class="popup">
-      <div class="popup-header">
-        <span style="    color: #fac600;"><i class="fa-solid fa-feather-pointed"></i> Swans</span>
-      </div>
-
-      <div class="pack">
-        <div>
-          <div class="pack-name">220 <i class="fa-solid fa-feather-pointed"></i></div>
-          <div class="pack-bonus">Get 20 free Swans</div>
-        </div>
-        <div class="pack-price">₹120.99</div>
-      </div>
-
-      <div class="pack">
-        <div>
-          <div class="pack-name">500 <i class="fa-solid fa-feather-pointed"></i></div>
-          <div class="pack-bonus">Get 60 free Swans</div>
-        </div>
-        <div class="pack-price">₹280.99</div>
-      </div>
-
-      <div class="pack">
-        <div>
-          <div class="pack-name">1000 <i class="fa-solid fa-feather-pointed"></i></div>
-          <div class="pack-bonus">Get 120 free Swans</div>
-        </div>
-        <div class="pack-price">₹420.99</div>
-      </div>
-
-      <div class="pack">
-        <div>
-          <div class="pack-name">1220 <i class="fa-solid fa-feather-pointed"></i></div>
-          <div class="pack-bonus">Get 210 free Swans</div>
-        </div>
-        <div class="pack-price">₹660.99</div>
-      </div>
-
-      <div class="pack">
-        <div>
-          <div class="pack-name">1560 <i class="fa-solid fa-feather-pointed"></i></div>
-          <div class="pack-bonus">Get 380 free Swans</div>
-        </div>
-        <div class="pack-price">₹830.99</div>
-      </div>
-    </div>
-            </div>
-
-
-            
-            <!-- SEARCH + AMOUNT BUTTONS -->
-            <div class="search-container">
-                <i id="searchIcon" class="fa-solid fa-magnifying-glass" onclick="toggleSearch()"></i> 
-                <input type="text" id="searchInput" placeholder="Search here..." oninput="filterLoans()">
-                <div class="amount-buttons" id="amountButtons"></div>
-            </div>
-        </div>
-
-        <div class="scroll">
-        <!-- <div class="youtube-wrapper">
-            <span style="display: flex;justify-content: center;align-items: center;font-size: 15px;height: fit-content;margin: 0px auto;background: rgba(255, 255, 255, 0.171);">Power by BsFesta</span>
-            <iframe 
-                src="https://www.yout-ube.com/embed/V1Pl8CzNzCw?si=U4pA0xjMKhGUz09P"
-                title="YouTube video player"
-                allowfullscreen
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
-            </iframe>
-        </div> -->
-        <div id="loanDetails"></div>
-        <div id="graphContainer" style="display:none;"><canvas id="loanChart"></canvas>
-            <div class="explain" style="font-size:12px;line-height:35px;color:#ffffff8a;"><br>
-                <div class="graphsays"><span style="background-color:#f44336;padding:10px;width:10px;height:10px;float:left;left:-5px;position: relative;"></span> Very near for return date<br></div>
-                <div class="graphsays"><span style="background-color:#004fff;padding:10px;width:10px;height:10px;float:left;left:-5px;position: relative;"></span> Middle for return date<br></div>
-                <div class="graphsays"><span style="background-color:#4caf50;padding:10px;width:10px;height:10px;float:left;left:-5px;position: relative;"></span> Very far for return date<br></div>
-            </div>
-        </div>
-        <div id="calendarContainer" style="display:none;"></div>
-        <!-- <div class="youtube-wrapper">
-            <iframe 
-                src="https://www.youtube.com/embed/nv_2rz5BFDA?list=TLGG6heKRNpwk1QyNDExMjAyNQ"
-                title="YouTube video player"
-                allowfullscreen
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
-            </iframe>
-        </div> -->
-    </div>
-
-        <div id="bottomNav">
-            <div class="nav-item active" data-view="list"><?xml version="1.0" encoding="UTF-8"?>
-                <div class="iconbotm">
-                    <svg style="    height: 18px;
-                    fill: #ffffffbf;
-                    width: 18px;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-width="1.5"><path stroke-linecap="round" d="M10.5 14H17M7 14h.5M7 10.5h.5m-.5 7h.5m3-7H17m-6.5 7H17"/><path d="M8 3.5A1.5 1.5 0 0 1 9.5 2h5A1.5 1.5 0 0 1 16 3.5v1A1.5 1.5 0 0 1 14.5 6h-5A1.5 1.5 0 0 1 8 4.5v-1Z"/><path stroke-linecap="round" d="M21 16c0 2.829 0 4.243-.879 5.122C19.243 22 17.828 22 15 22H9c-2.828 0-4.243 0-5.121-.878C3 20.242 3 18.829 3 16v-3m13-8.998c2.175.012 3.353.109 4.121.877C21 5.758 21 7.172 21 10v2M8 4.002c-2.175.012-3.353.109-4.121.877c-.769.768-.865 1.946-.877 4.121"/></g></svg>
-                    <span>List</span>
-                </div>
-                <i class="fa-solid fa-toggle-on toggle-pin on" data-view="list"></i>
-            </div>
-            <div class="nav-item" data-view="graph"><?xml version="1.0" encoding="UTF-8"?>
-                <div class="iconbotm">
-                    <svg style="   height: 18px;
-                        fill: #ffffffbf;
-                        width: 18px;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-width="1.5"><path stroke-linecap="round" d="M10 21h12M2 21h4M5 9v5.5c0 .935 0 1.402.201 1.75a1.5 1.5 0 0 0 .549.549C6.098 17 6.565 17 7.5 17s1.402 0 1.75-.201a1.5 1.5 0 0 0 .549-.549c.201-.348.201-.815.201-1.75v-9c0-.935 0-1.402-.201-1.75a1.5 1.5 0 0 0-.549-.549C8.902 3 8.435 3 7.5 3s-1.402 0-1.75.201a1.5 1.5 0 0 0-.549.549c-.161.28-.193.636-.2 1.25"/><path d="M16.5 17c-.935 0-1.402 0-1.75-.201a1.5 1.5 0 0 1-.549-.549C14 15.902 14 15.435 14 14.5v-6c0-.935 0-1.402.201-1.75a1.5 1.5 0 0 1 .549-.549C15.098 6 15.565 6 16.5 6s1.402 0 1.75.201a1.5 1.5 0 0 1 .549.549C19 7.098 19 7.565 19 8.5v6c0 .935 0 1.402-.201 1.75a1.5 1.5 0 0 1-.549.549c-.348.201-.815.201-1.75.201Z"/></g></svg>
-                    <span>Graph</span>
-                </div>
-                <i class="fa-solid fa-toggle-off toggle-pin" data-view="graph"></i>
-            </div>
-            <div class="nav-item" data-view="calendar"><?xml version="1.0" encoding="UTF-8"?>
-                <div class="iconbotm">
-                    <svg style="    height: 18px;
-                    fill: #ffffffbf;
-                    width: 18px;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="1.5"><path d="M10 4C6.229 4 4.343 4 3.172 5.172C2 6.343 2 8.229 2 12c0 3.771 0 5.657 1.172 6.828C4.343 20 6.229 20 10 20h1.5M14 4c3.771 0 5.657 0 6.828 1.172C21.892 6.235 21.99 7.886 22 11"/><path stroke-linejoin="round" d="M15.5 14v6m0 0l2-2m-2 2l-2-2m6.5 2v-6m0 0l2 2m-2-2l-2 2"/><path d="M10 16H6m-4-6h5m15 0H11"/></g></svg>
-                    <span>Calendar</span>
-                </div>
-                <i class="fa-solid fa-toggle-off toggle-pin" data-view="calendar"></i>
-            </div>
-        </div>
-    </div>
-
-    <!-- POPUPS -->
-    <div id="totalPopup">
-        <h3>Wallet Balance</h3>
-        <div id="totalContent"></div>
-        <button onclick="closeTotalPopup()"  style="margin-bottom:-5px" >Close</button>
-    </div>
-
-    <div id="datePopup">
-        <i class="fa-solid fa-xmark" style="position: absolute;
-    top: 25px;
-    right: 25px;
-    cursor: pointer;
-    color: #aaa;
-    font-size: 16px;    z-index: 10000;" onclick="closeDatePopup()"></i>
-        <h3>Amount details</h3>
-        <div id="popupContent"></div>
-    </div>
-
-    <div id="linkConfirmPopup">
-        <p id="linkConfirmText" style="text-align: center;font-size: 20px;">Do you like to visit (or) Delete this site..?</p>
-        <button class="btn-yes" id="linkYesBtn" style="    margin-bottom: 0px;">Yes</button>
-        <button style="color:white;background:rgb(176,0,0);    margin-bottom: 0px;" class="btn-delete" id="linkDeleteBtn">Delete</button>
-    </div>
-
-    <div id="emoteChooser">
-        <h3>Choose Your Emote</h3>
-        <div class="emote-grid">
-            <div class="emote-grid">
-            <img class="emote-option" src="https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif" onclick="setUserEmote(this.src)">
-            <img class="emote-option" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_aa7da3b15c7d4a608b87665d33022f30/default/dark/2.0" onclick="setUserEmote(this.src)">
-            <img class="emote-option" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_500ba2d7450c45cf9392be301390e66c/default/dark/2.0" onclick="setUserEmote(this.src)">
-            <img class="emote-option" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/christmas-tree.gif" onclick="setUserEmote(this.src)">
-            <img class="emote-option" src="https://static-cdn.jtvnw.net/emoticons/v2/1713816/default/dark/2.0" onclick="setUserEmote(this.src)"> 
-            <img class="emote-option" src="https://static-cdn.jtvnw.net/emoticons/v2/1713825/default/dark/2.0" onclick="setUserEmote(this.src)"> 
-            <img class="emote-option" src="https://static-cdn.jtvnw.net/emoticons/v2/1713822/default/dark/2.0" onclick="setUserEmote(this.src)">
-            <img class="emote-option" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_d780a6af03ae474ca22e133ca7bde5bf/default/dark/2.0" onclick="setUserEmote(this.src)"> 
-            <img class="emote-option" src="https://cdn.pixabay.com/animation/2023/09/18/17/03/17-03-52-455_512.gif" onclick="setUserEmote(this.src)">
-            <img class="emote-option" src="https://www.gifs.cc/halloweengifs/2024-halloween-animated-gif-00077.gif" onclick="setUserEmote(this.src)">
-            <img class="emote-option" src="https://cdn.pixabay.com/animation/2023/09/18/16/59/16-59-34-600_512.gif" onclick="setUserEmote(this.src)">
-            </div>
-        </div>
-        <button onclick="closeEmoteChooser()" style="    margin-bottom: 0px;">Close</button>
-    </div>
-
-    <script src="account.js">
-        
-    </script>
-   
 </body>
 </html>
