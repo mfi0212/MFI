@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lendlink</title>
-  <link rel="icon" type="image/x-icon" href="linklogo.png">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden</title>
+    <link rel="icon" href="https://i.postimg.cc/SxwrHyLz/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
         * {
             -webkit-tap-highlight-color: transparent;
@@ -19,308 +18,201 @@
             margin: 0;
             padding: 0;
             
+        }:root { --gold: #0040ff; --dark: #0a0a0a; --card: rgba(20,20,20,0.6); --text: #eaeaea; --muted: #888; --glass: rgb(60 60 60); } 
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 10000000;
+            opacity: 1;
+            transition: opacity 0.5s ease;
         }
-        a{
-          color: white;
-          text-decoration: none;
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
-      * {
-  -webkit-tap-highlight-color: transparent;
-}
-body {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-      body {
-        display: block;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #000000;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    letter-spacing: 0.5px;
-    }
-    img{
-      width: 20%;
-    }
-      .job-card {
+         .loading-logo {
+            width: 260px;
+            height: auto;
+        }
+        .loading-dots {
+            display: flex;
+            position: fixed;
+            bottom: 100px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(#006aff,rgb(0, 157, 255));
+            border-radius: 50%;
+            margin: 0 5px;
+            animation: bounceDot 1s ease-in-out infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounceDot {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+        ::-webkit-scrollbar { background-color: transparent; } 
+        *{box-sizing:border-box;} 
+        body{ margin:0; background: black; color:var(--text); font-family:'Noto Sans',sans-serif; display:flex; flex-direction:column; align-items:center; min-height:100vh; overflow-x:hidden; } 
+        .logo img{ width: 90px;
+    margin: 40px auto 20px;
+    filter: drop-shadow(0 0 10px #d9b86177);
+    border: solid 2px #ffffff1a;
+    border-radius: 20px;
+    filter: drop-shadow(0px 0px 16px white);} 
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}} 
+        h3{
+    color: var(--gold);
+    letter-spacing: 0px;
+    margin: 6px 0px;} 
+        body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } 
+        .btn{
+        background: #ffffff11;
     border: none;
-    border-radius: 30px 30px 0px 0px;
-    padding: 20px;
-    margin-bottom: 21px;
-    max-width: 600px;
-    text-align: center;
-    font-size: 13px;
-    background: linear-gradient(180deg, #004bff, #000000 90%);
+    color: var(--text);
+    padding: 9px 25px;
+    border-radius: 30px;
     font-weight: 300;
-    box-shadow: inset 0px 15px 11px #ffffff40;
-    }
-
-    .job-card span {
-      font-weight: 600;
-        color: #00ffc3;
-        text-decoration: underline;
-    }
-
-    .apply-button {
-             bottom: 45px;
-    padding: 8px 20px;
-    color: #000000;
-    border-radius: 50px;
-    font-size: 14px;
     cursor: pointer;
-    position: fixed;
-    border: none;
-    background: #ffffff26;
-    }
- button:hover{
-  background:  rgba(255, 255, 255, 0.326);
-}
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgb(0 0 0 / 83%);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background: rgb(255 255 255);
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 4px 18px rgb(0 0 0 / 59%);
-    width: 80%;
-    max-width: 300px;
-
-    }
-
-    .modal-content h3 {
-      margin: 10px;
-      color: rgb(0, 0, 0);
-    }
-    .modal-content input {
-      padding: 7px 15px;
-    margin: 10px 0;
-    border: 1px solid #333;
-    border-radius: 4px;
-    background-color: #ffffff;
-    color: #000000;
-    font-size: 15px;
-outline: none;
-    }
-
-    .modal-content input::placeholder {
-      color: #888;
-    }
-
-    .modal-content button {
-      padding: 10px 15px;
-    background-color: #000000;
-    color: #ffffff;
-    border-radius: 6px;
-    font-size: 13px;
-    cursor: pointer;
-    border: none;
-    }
-
-    .message {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #ff2121;
-    font-weight: 600;
-    }
-
-    #accountIcon {
-      font-size: 22px;
-    cursor: pointer;
-    color: #424242;
-    position: fixed;
-    display: contents;
-    }
-
-        .presave{
-          text-decoration: none;
-    padding: 11px 28px;
-    color: rgb(255, 255, 255);
-    border-radius: 4cqh;
-    font-size: 13px;
-    filter: drop-shadow(2px 0px 6px black);
-    background: #ffffff07;
-    box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -5px 10px #ffffff5c;
-    border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s 
-ease;
+ease;    margin: 10px;
+    backdrop-filter: blur(10px); box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff3d;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+         transition: all 0.3s ease;}
+        .btn:hover{
+              transform: scale(1.05); background:rgba(255, 255, 255, 0.096);
         }
-        .presave:hover{
-            transform: scale(1.05);
+       .btn:active{
+              transform: scale(0.90); 
+        } 
+        .btn-gold{background:var(--gold);color:white;} 
+        .btn-gold:hover{filter:brightness(1.1);} 
+        .prices{
+              margin-top: 20px;
+    height: 200px;
+    overflow-y: scroll;
+    background: black;
+    padding: 10px;
+    border-radius: 30px;
+    border: solid 1.5px #ffffff1d;
+    scrollbar-width: none;
+     box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff3d;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+        } 
+        html { scroll-behavior: smooth; } 
+        .price-card{
+         background: rgba(255, 255, 255, 0.073);
+    backdrop-filter: blur(10px);
+    margin: 6px;
+    border-radius: 14px;
+    padding: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+    font-weight: 100;
+    color: #ffffffbf;
+    font-size: 14px;
+    box-shadow: inset 0 0.5px 0 #ffffff26, inset 0 -4px 9px #ffffff1f;
+        border: 1px solid rgb(255 255 255 / 9%);
+        } 
+        .price-card:hover{
+          transform: scale(1.01);
+    background: rgba(255, 255, 255, 0.187);
+    font-size: 16px;
+        } 
+        .price-card span{color: #00aeff;
+    font-weight: 800;} 
+        .popup{ position:fixed; top:0;left:0; width:100%;height:100%;    padding: 10px; display:none; align-items:center; justify-content:center; backdrop-filter:blur(8px); z-index:1000; animation:fadeIn 0.25s ease; } 
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}} 
+        .popup-content{ width: 100%; max-width: 400px; text-align: center; line-height: 40px; } 
+        .popup h3{margin-bottom:10px;} 
+        .close-btn{margin-top:20px;} 
+        .menu{ 
+       position: fixed;
+    bottom: 0px;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-around;
+    background: black;
+    backdrop-filter: blur(12px);
+    z-index: 999;
+    padding: 12px;
+    border-radius: 22px;
+    width: 95%;
+    box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff66;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+        } 
+        b {
+    color: #ffe200;
+}
+        .menu a{ flex:1;text-align:center; color:var(--muted); padding:10px 0; transition:0.3s; } 
+        .menu svg.active,.menu a:hover{
+          color:var(--gold);} 
+        .menu a i{font-size:20px;} 
+        a{ color: white; text-decoration: none; } 
+        .menu-content{ display: none; text-align: center; padding: 10px; } 
+        .menu-content.active{display:block;} 
+        .note{ font-size:12.5px;color:#aaa;padding:20px; line-height: 20px; } 
+
+        #stoexplore{ 
+    padding: 8px 20px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    background: linear-gradient(45deg, #ff00ff, #0023ff);
+    color: white;
+    box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffffcf;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+         transition: all 0.3s ease-in-out;}
+        #stoexplore:hover{
+            transform: scale(1.05); 
         }
-        .presave:active{
+        #stoexplore:active{
             transform: scale(0.90); 
         } 
-    @media(max-width: 600px){
-      body {
-        display: block;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: black;
-    color: #000000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    letter-spacing: 0.5px;
-    }
-    img{
-      width: 68%;
-    }
-      .job-card {
-         color: white;
-        border: none;
-        text-align: center;
-        font-size: 12px;
-        font-weight: 300;
-        width: 96%;
-    }
-    }
-    .bottom:hover{
-      text-decoration: underline;
-    }
-  </style>
-
-</head>
-<body>
-  <style>
-    .loading-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #000000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        z-index: 10000000000;
-        opacity: 1;
-        transition: opacity 0.5s ease;
-    }
-    .loading-overlay.hidden {
-        opacity: 0;
-        pointer-events: none;
-    }
-    .loading-logo {
-        width: 260px;
-        height: auto;
-    }
-    .loading-dots {
-     display: flex;
-    position: fixed;
-    bottom: 100px;
-    align-items: center;
-    justify-content: center;
-    }
-    .dot {
-        width: 10px;
-        height: 10px;
-            background: linear-gradient(#006aff,rgb(0, 157, 255));
-        border-radius: 50%;
-        margin: 0 5px;
-        animation: bounceDot 1s ease-in-out infinite;
-    }
-    .dot:nth-child(2) {
-        animation-delay: 0.2s;
-    }
-    .dot:nth-child(3) {
-        animation-delay: 0.4s;
-    }
-    @keyframes bounceDot {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-15px);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-</style>
-
-<div class="loading-overlay" id="loadingOverlay">
-    <img src="loadinglogo.gif" alt="Loading Doughnut" class="loading-logo">
-    <div class="loading-dots">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-    </div>
-</div>
-
-  <div class="mfi" style="position: fixed; bottom: 10px; font-size: 10px; color: #848484; z-index: 1000;">
-       <a target="_blank" style="text-decoration: none;" href="https://mfi0212.github.io/MFI/mfimain">From BsLends</a>
-      </div>
-  <img style="position: fixed; top: 60px; z-index: -1; filter: invert(1) drop-shadow(0px 0px 20px #ffffffab);" src="linklogo.png" alt="">
-  
-  <div class="job-card" style="position: fixed; bottom: 10px">
-    <span style="font-size: 15px;">After filling wait few hours..!</span>
-    <br><br>
-    To provide the fund, we need to collect the amount first. It takes few hours to arrange the fund, so be patience during this time to get the fund.<br><br><br>
-      <a class="presave" style="text-decoration: none;" href="https://mfi0212.github.io/MFI/takemoney">Take money</a>
-    <br>
-  </div>
-  
-  <div class="bottom" style="position: fixed; top: 15px; left: 15px;">
-    <a href="https://mfi0212.github.io/swan/lndlnk-mid" style="text-decoration: none;color: rgb(255, 255, 255);">
-      <p style="display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    font-size: 13px;
-    text-decoration: underline 1.5px;
-    text-underline-position: under;">Lendlink - Mid</p></a>
- </div>
-
-  <style>
-    @keyframes color-move {
-        0% { background-position: 100% 0; }
-        100% { background-position: 0 0; }
-    }
-    
-    .helper-button {
-         position: fixed;
+        .helper-button,.helper-buttons {
+          position: fixed;
     top: 10px;
     font-size: 13px;
+    background: #ffffff26;
     padding: 5px 15px;
     border-radius: 60px;
     color: #ffffff;
     text-decoration: none;
     border: none;
-    z-index: 100000000;
-    box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff63;
+    z-index: 1000;
+        box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff3d;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
-  }
-        .helper-button:hover{
-            transform: scale(1.05); 
+ transition: all 0.3s ease;}
+        .helper-button:hover,.helper-buttons:hover{
+              transform: scale(1.05); 
         }
-        .helper-button:active{
-            transform: scale(0.90); 
+        .helper-button:active,.helper-buttons:active{
+              transform: scale(0.90); 
         } 
     
-    .animated-border::before {
+    .helper-buttons::before {
         content: "";
         position: absolute;
         top: 0px;
@@ -333,107 +225,199 @@ ease;
         z-index: -1;
         animation: color-move 3s linear infinite;
     }
-    .option {
-display: flex;
-    gap: 5px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-size: 15px;
-    position: fixed;
-    bottom: 260px;
-    padding: 8px 18px;
-    flex-direction: row;
-    background: #ffffff07;
-    /* box-shadow: inset 0px 0px 10px #ffffff6b; */
-    border-radius: 1000px;
-box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff3d;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-.option a{
-  display: contents;
+     @keyframes color-move {
+        0% { background-position: 100% 0; }
+        100% { background-position: 0 0; }
+    }
+    .menu-content p {
+    font-size: 13px;
+    margin: 10px;
 }
-      </style>
-       <a style="right: 95px;" class="helper-button" href="https://mfi0212.github.io/MFI/abt.hlp">Helper</a>
+        .menu svg{width: 23px;
+    height: 25px;
+    cursor: pointer;
+    opacity: 30%; 
+    transition: all 0.3s ease;}
+        .menu svg:hover{
+              transform: scale(1.1); 
+        }
+        .menu svg:active{
+              transform: scale(0.80); 
+        } 
+        .menu svg:hover{opacity: 100% }
+
+        
+        @media(max-width:500px) {
+          
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <img src="loadinglogo.gif" alt="Loading Doughnut" class="loading-logo">
+        <div class="loading-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+<div class="container" style="display: flex;justify-content: center;align-items: center;height: 90vh;">
+  <div id="content-home" class="menu-content active">
+    <a style="left: 5px;    box-shadow: inset 0 0.5px 0 #ffffffd2, inset 0 -4px 9px #ffffffb2;border: none;
+" class="helper-buttons" href="https://mfi0212.github.io/MFI/abt.hlp">Helper</a>
       <a style="right: 5px;" class="helper-button" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
    
-<div class="option">
-    <a href="https://mfi0212.github.io/MFI/accverify"><svg style="width: 20px;
-    height: 20px;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-width="1.5"><circle cx="12" cy="6" r="4"/><path d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5Z"/></g></svg>
-    <span>Account</span></a>
+    <div class="logo">
+      <img src="https://i.postimg.cc/SxwrHyLz/logo.png" alt="logo">
+    </div>
+    <h3>Interest for Different Amounts</h3>
+
+    <button id="currencyToggle" class="btn">Switch to USD ($)</button>
+    <div id="pricesList" class="prices"></div>
+
+    <p class="note">
+      These are not fixed interest rates, They change based on amount providers.<br><br>
+      <a id="stoexplore" href="https://mfi0212.github.io/swan/offer/offer">STO</a>
+    </p>
+  </div>
+
+  <div id="content-transfer" class="menu-content" style="margin: 230px auto auto auto;    padding: 20px;">
+    <h3>Apply for Money</h3>
+    <button class="btn"><a href="https://mfi0212.github.io/MFI/takemoney" style="text-decoration:none;color:#fff;">Take Money</a></button>
+    <p style="color:#aaa;margin:20px;">Wait a few hours after submitting, funds are arranged shortly.</p>
+    <button style="background: black;
+    box-shadow: 0px 0px 22px #0040ff;border: none;" class="btn"><a href="https://mfi0212.github.io/swan/home" style="text-decoration:none;color:#fff;">To borrow below 5k - Lendlink</a></button>
+  </div>
+
+  <div id="content-user" class="menu-content" style="margin: 280px auto auto auto;    padding: 20px;">
+    <h3>Premium</h3>
+    <p style="color:#aaa;">Get more benefits with our Premium service</p>
+    <button class="btn" style="background: rgba(255, 255, 255, 0.354);"><a href="https://mfi0212.github.io/MFI/premium" style="text-decoration:none;color:#000000;font-weight: 600;">Explore</a></button>
+  </div>
+
+  <div id="content-account" class="menu-content" style="margin: 280px auto auto auto;    padding: 20px;">
+    <h3>Account</h3>
+    <p style="color:#bbb;">Manage your personal details, activity & security.</p>
+    <button class="btn" onclick="openPopup('accountPopup')"><i class="fa-solid fa-user-gear"></i> Open Account</button>
+  </div>
 </div>
-  
 
+<div class="menu">
+  <a  class="active">
+    <svg onclick="showContent('content-home', this)" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><path fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="1.5" d="M15 18H9m12.636-5.042l-.279 1.937c-.487 3.388-.731 5.081-1.906 6.093C18.276 22 16.553 22 13.106 22h-2.212c-3.447 0-5.17 0-6.345-1.012c-1.175-1.012-1.419-2.705-1.906-6.093l-.279-1.937c-.38-2.637-.57-3.956-.029-5.083c.54-1.127 1.691-1.813 3.992-3.183l1.385-.825C9.8 2.622 10.846 2 12 2c1.154 0 2.199.622 4.288 1.867l1.385.825c2.3 1.37 3.451 2.056 3.992 3.183"/></svg>
+  </a>
+  <a >
+    <svg onclick="showContent('content-transfer', this)" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-width="1.5"><path stroke-linecap="round" d="M4.979 6.315C2.993 7.109 2 7.506 2 8s.993.89 2.979 1.685l2.808 1.123C9.773 11.604 10.767 12 12 12c1.234 0 2.227-.397 4.213-1.191l2.808-1.124C21.007 8.891 22 8.494 22 8s-.993-.89-2.979-1.685l-2.808-1.123C14.227 4.397 13.233 4 12 4c-.954 0-1.764.237-3 .712"/><path d="m5.766 10l-.787.315C2.993 11.109 2 11.507 2 12c0 .493.993.89 2.979 1.685l2.808 1.123C9.773 15.604 10.767 16 12 16c1.234 0 2.227-.397 4.213-1.191l2.808-1.124C21.007 12.891 22 12.493 22 12c0-.493-.993-.89-2.979-1.685L18.234 10"/><path stroke-linecap="round" d="M19.021 17.685C21.007 16.891 22 16.494 22 16c0-.493-.993-.89-2.979-1.685L18.234 14M5.766 14l-.787.315C2.993 15.109 2 15.507 2 16c0 .494.993.89 2.979 1.685l2.808 1.123C9.773 19.604 10.767 20 12 20c.954 0 1.764-.237 3-.712"/></g></svg>  
+  </a>
+  <a>
+    <svg  onclick="showContent('content-user', this)" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><g fill="none"><path stroke="#ffffff" stroke-linecap="round" stroke-width="1.5" d="M17.713 8c.024.158.06.29.12.413c.148.311.42.538.963.992l.495.413c1.911 1.598 2.867 2.397 2.688 3.342c-.18.946-1.374 1.412-3.765 2.344l-.618.241c-.68.265-1.02.398-1.274.647c-.255.249-.395.586-.677 1.261l-.257.614c-.992 2.375-1.488 3.563-2.434 3.717c-.946.155-1.715-.826-3.254-2.788l-.398-.507c-.438-.558-.656-.836-.962-.994c-.306-.157-.665-.176-1.382-.213l-.654-.033c-2.524-.13-3.786-.195-4.192-1.045c-.405-.85.314-1.922 1.753-4.067l.373-.555c.408-.61.613-.914.679-1.26c.065-.347-.016-.696-.177-1.393l-.147-.635C4.024 6.039 3.74 4.81 4.436 4.13c.695-.68 1.91-.362 4.338.275l.628.164c.69.181 1.035.271 1.382.215c.346-.057.655-.254 1.272-.648l.563-.36c2.173-1.387 3.26-2.08 4.095-1.65c.518.266.727.857.825 1.873"/><path fill="#ffffff" d="M19.53 18.47a.75.75 0 1 0-1.06 1.06l1.06-1.06Zm.94 3.06a.75.75 0 1 0 1.06-1.06l-1.06 1.06Zm-2-2l2 2l1.06-1.06l-2-2l-1.06 1.06Z"/></g></svg>
+  </a>
+  <a>
+    <svg  onclick="showContent('content-account', this)" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-width="1.5"><circle cx="12" cy="6" r="4"/><path stroke-linecap="round" d="M19.997 18c.003-.164.003-.331.003-.5c0-2.485-3.582-4.5-8-4.5s-8 2.015-8 4.5S4 22 12 22c2.231 0 3.84-.157 5-.437"/></g></svg>  
+  </a>
+</div>
 
+<div class="popup" id="interestPopup">
+  <div class="popup-content">
+    <h3 style="    color: #00b5ff;">Interest Details</h3>
+    <p id="popup-content"></p>
+    <button class="btn btn-gold close-btn" onclick="closePopup('interestPopup')">Close</button>
+  </div>
+</div>
 
-  <script>
-    // document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener("DOMContentLoaded", () => {
-            const loadingOverlay = document.getElementById("loadingOverlay");
-            setTimeout(() => {
-                loadingOverlay.classList.add("hidden");
-            }, 3000);
-        });
+<div class="popup" id="accountPopup">
+  <div class="popup-content">
+    <h3 style="color: #00b5ff;">Account</h3>
+    <p>We are redirecting you to visit your account...!</p>
+    <button class="btn btn-gold close-btn" onclick="closePopup('accountPopup')"><a href="https://mfi0212.github.io/MFI/accverify">Ok, visit</a></button>
+  </div>
+</div>
 
-    document.addEventListener("DOMContentLoaded", function () {
-        let helperButton = document.querySelector(".helper-button");
-        helperButton.classList.add("animated-border");
-        setTimeout(() => {
-            helperButton.classList.remove("animated-border");
-        }, 10000000);
-    });
-    
-    const modal = document.getElementById('passwordModal');
-    const passwordInput = document.getElementById('passwordInput');
-    const messageDiv = document.getElementById('message');
-    const verifyButton = document.getElementById('verifyButton');
+<script>
+  // document.addEventListener('contextmenu', e => e.preventDefault());
+function showContent(id, el){
+  document.querySelectorAll('.menu-content').forEach(sec=>sec.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.menu a').forEach(a=>a.classList.remove('active'));
+  el.classList.add('active');
+}
 
-    verifyButton.addEventListener('click', () => {
-        const enteredPassword = passwordInput.value.trim();
+function openPopup(id){ document.getElementById(id).style.display='flex'; }
+function closePopup(id){ document.getElementById(id).style.display='none'; }
 
-        const user = users.find(user => user.password === enteredPassword);
+const loadingOverlay = document.getElementById("loadingOverlay");
+setTimeout(() => {
+    loadingOverlay.classList.add("hidden");
+}, 3000);
 
-        if (user) {
-            const currentDate = new Date();
-            const currentUTC = new Date(Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()));
+const exchangeRate = 113.86 / 10000;
+let currentCurrency = localStorage.getItem('currency') || 'INR';
+const data = [
+  { amount: 10000, interest: 2500 },
+  { amount: 11000, interest: 2600 },
+  { amount: 12000, interest: 2700 },
+  { amount: 13000, interest: 2800 },
+  { amount: 14000, interest: 2900 },
+  { amount: 15000, interest: 3000 }
+];
+const pricesList = document.getElementById("pricesList");
+const toggleBtn  = document.getElementById("currencyToggle");
 
-            const startDateParts = user.startDate.split("-");
-            const startDateUTC = new Date(Date.UTC(
-                parseInt(startDateParts[0]),
-                parseInt(startDateParts[1]) - 1,
-                parseInt(startDateParts[2])
-            ));
+function updateToggleButton() {
+  toggleBtn.textContent = currentCurrency === 'INR' 
+    ? 'Switch to USD ($)' 
+    : 'Switch to INR (₹)';
+}
 
-            let daysElapsed = Math.floor((currentUTC - startDateUTC) / (1000 * 60 * 60 * 24));
-            daysElapsed = Math.max(0, daysElapsed);
+function renderPrices(){
+  pricesList.innerHTML = "";
+  data.forEach(item => {
+    let amount = item.amount;
+    let interest = item.interest;
+    const symbol = currentCurrency === 'USD' ? '$' : '₹';
 
-            const additionalAmount = daysElapsed * user.dailyRate;
-            const totalAmount = user.plan + additionalAmount;
+    if (currentCurrency === 'USD') {
+      amount   = (amount   * exchangeRate).toFixed(2);
+      interest = (interest * exchangeRate).toFixed(2);
+    }
 
-            localStorage.setItem('userDetails', JSON.stringify({
-                name: user.name,
-                plan: user.plan,
-                daysElapsed: daysElapsed,
-                additionalAmount: additionalAmount,
-                totalAmount: totalAmount,
-                takenFor: user.takenFor
-            }));
+    const div = document.createElement("div");
+    div.className = "price-card";
+    div.innerHTML = `Interest for <span>${symbol}${amount}</span> → <span>${symbol}${interest}</span>`;
+    div.onclick = () => showInterestPopup(item.amount, item.interest);
+    pricesList.appendChild(div);
+  });
+}
 
-            setTimeout(() => {
-                window.location.href = "user-details.html";
-            }, 300);
-        } 
-        else {
-            messageDiv.textContent = "Incorrect password. Try again.";
-            messageDiv.style.color = "red";
-        }
-    });
+function showInterestPopup(baseAmount, baseInterest){
+  const symbol = currentCurrency === 'USD' ? '$' : '₹';
+  let amount = baseAmount;
+  let interest = baseInterest;
+  let total = amount + interest;
 
-    document.addEventListener("click", () => {
-        const customMenu = document.querySelector(".custom-menu");
-        if (customMenu) customMenu.style.display = "none";
-    });
-  </script>
+  if (currentCurrency === 'USD') {
+    amount   = (amount   * exchangeRate).toFixed(2);
+    interest = (interest * exchangeRate).toFixed(2);
+    total    = (parseFloat(amount) + parseFloat(interest)).toFixed(2);
+  }
 
+  document.getElementById("popup-content").innerHTML =
+    `Borrow <b>${symbol}${amount}</b> for 1 month.<br>
+     Interest: <b>${symbol}${interest}</b><br>
+     Total Repay: <b>${symbol}${total}</b>`;
+  openPopup('interestPopup');
+}
+
+toggleBtn.addEventListener("click", () => {
+  currentCurrency = currentCurrency === 'INR' ? 'USD' : 'INR';
+  localStorage.setItem('currency', currentCurrency);
+  updateToggleButton();
+  renderPrices();
+});
+
+updateToggleButton();
+renderPrices();
+</script>
 </body>
 </html>
