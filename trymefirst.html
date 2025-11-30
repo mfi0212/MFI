@@ -266,7 +266,7 @@ ease;
     font-size: 11px;
     cursor: pointer;
         margin-top: 35px;
-transition: all 0.3s ease;}
+transition: all 0.3s ease-in-out;}
         .add-link-btn:hover{
               transform: scale(1.05); 
         }
@@ -535,7 +535,7 @@ div#popupContent {
     backdrop-filter: blur(5px);
 box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff3d;
     border: 1px solid rgba(255, 255, 255, 0.2);
-transition: all 1s ease-in-out;}
+transition: all 0.5s ease;}
         .purpose-input:hover{
               transform: scale(1.05); 
         }
@@ -562,13 +562,7 @@ transition: all 1s ease-in-out;}
     justify-content: center;
     gap: 10px;
     align-items: center;background: linear-gradient(0deg, #000000 8%, transparent);
-     transition: all 0.3s ease-in-out;
-        }
-         #bottomNav .nav-item:hover{
-              transform: scale(1); 
-        }
-        #bottomNav .nav-item:active{
-              transform: scale(0.95); 
+     
         }
         .nav-item { 
            display: flex;
@@ -586,7 +580,13 @@ transition: all 1s ease-in-out;}
     max-width: 135px;
     backdrop-filter: blur(6px);
     box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffff3d;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);transition: all 0.3s ease;
+        }
+        .nav-item:hover{
+              transform: scale(1.05); 
+        }
+        .nav-item:active{
+              transform: scale(0.95); 
         }
         .nav-item.active { color:#00fff2; }
         .nav-item i { font-size:15px; }
