@@ -128,12 +128,12 @@ ease;    margin: 10px;
     font-weight: 100;
     color: #ffffffbf;
     font-size: 14px;
-    box-shadow: inset 0 0.5px 0 #ffffff47, inset 0 -4px 9px #ffffff29;
+    box-shadow: inset 0 0.5px 0 #ffffff26, inset 0 -4px 9px #ffffff1f;
     border: 1px solid rgba(255, 255, 255, 0.2);
         } 
         .price-card:hover{
           transform: scale(1.01);
-    background: rgb(38 38 38);
+    background: rgba(255, 255, 255, 0.187);
     font-size: 16px;
         } 
         .price-card span{color: #00aeff;
@@ -231,8 +231,17 @@ ease;    margin: 10px;
         .menu svg{width: 23px;
     height: 25px;
     cursor: pointer;
-    opacity: 30%;} 
+    opacity: 30%; 
+    transition: all 0.3s ease;}
+        .menu svg:hover{
+              transform: scale(1.1); 
+        }
+        .menu svg:active{
+              transform: scale(0.80); 
+        } 
         .menu svg:hover{opacity: 100% }
+
+        
         @media(max-width:500px) {
           
         }
