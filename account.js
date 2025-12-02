@@ -1,940 +1,641 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BS&MFI | Take Money</title>
-    <link rel="icon" href="https://i.ibb.co/ZpVQQ2Kp/mfi-logo.png" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&display=swap');
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Red Hat Display", sans-serif;
-            letter-spacing: 0.2px;
-        }
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: white;
-            padding: 20px;
-        }
-        .blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(100px);
-    opacity: 63%;
-    animation: float 18s infinite 
-ease-in-out;
-}.blob1 {
-    width: 300px;
-    height: 300px;
-    background: #0046ff;
-    top: -10%;
-    right: 0%;
-}
-.blob2 {
-    width: 300px;
-    height: 300px;
-    background: #00a6ff;
-    bottom: -10%;
-    left: 0%;
-}
-        #form {
-            width: 91%;
-            max-width: 400px;
-            text-align: center;
-            position: fixed;
-            display: none;
-        }
-        * {
-            -webkit-tap-highlight-color: transparent;
-        }
-        body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #0045ff;
-            position: fixed;
-            top: 20px;
-            right: 20px;
-        }
-        .theme-toggle {
-            position: fixed;
-            cursor: pointer;
-            background: linear-gradient(
-180deg, #16202a, #141618);
-            padding: 8px;
-            border-radius: 15px;
-            display: flex;
-            gap: 15px;
-            
-            justify-content: center;
-            align-items: baseline;
-            z-index: 1000;
-            top: 10px;
-            right: 10px;
-            display: none;
-        }
-        .theme-toggle a {
-            color: white;
-            text-decoration: none;
-        }
-        h1 {
-            font-size: 29px;
-            color: #0045ff;
-            margin-bottom: 0px;
-            font-weight: 900;
-        }
-        p.subtitle {
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-            display: none;
-        }
-        .form-group.active {
-            display: block;
-        }
-        label {
-            display: block;
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        input[type="text"],
-        input[type="password"],
-        input[type="number"],
-        input[type="email"] {
-           width: 100%;
-    padding: 13px;
-    border: 1px solid #0000004b;
-    border-radius: 15px;
-    font-size: 16px;
-    outline: none;
-    text-align: center;
-    background: transparent;
-        transition: all 0.3s ease;
-    }
-        input:hover{
-              transform: scale(1);
-        }
-        input:active{
-              transform: scale(0.90); 
-        } 
-        input:focus {
-            border: 1px solid #000000;
-        }
-        .notice{
-            transition: all 0.3s ease;
-        }
-.notice:hover{
-              transform: scale(1);
-        }
-        .notice:active{
-              transform: scale(0.90); 
-        } 
+// document.addEventListener('contextmenu', e => e.preventDefault());
 
-        input[readonly] {
-            background-color: #f0f0f0;
-            cursor: not-allowed;
-        }
-        .radio-group label {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin: 15px;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #0045ff;
-            color: white;
-            border: none;
-            border-radius: 15px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        button:hover{
-              transform: scale(1.05);
-              background-color: #003ab6;
-        }
-        button:active{
-              transform: scale(0.90); 
-        } 
-        button#cancel-button {
-            background-color: #0000000f;
-            color: #333;
-            margin-top: 20px;transition: all 0.3s ease;
-        }
-        button#cancel-button:hover{
-              transform: scale(1.05);
-               background-color: #00000046;
-        }
-        button#cancel-button:active{
-              transform: scale(0.90); 
-        } 
-       
-        .button-group {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-        }
-        .info-text {
-            color: #1c1c1ccf;
-            font-size: 12px;
-            bottom: 20px;
-            line-height: 1.5;
-            position: fixed;
-            width: 90%;
-            max-width: 400px;
-            font-weight: 600;
-        }
-        .error-message {
-           color: #ff0000;
-    font-size: 13px;
-    margin: 5px 0 15px 0;
-    display: none;
-        }
-        input.error {
-            border-color: #ff0000;
-        }
-        .submitting-message {
-            display: none;
-            background-color: #002886;
-            color: white;
-            padding: 10px 25px;
-            font-size: 14px;
-            width: 100%;
-            font-weight: 600;
-            position: fixed;
-            top: 0%;
-            left: 0px;
-        }
-        #sleeping-message {
-            display: none;
-            text-align: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: blue;
-            z-index: 2000;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            
-        }
-        #sleeping-message img {
-            width: 140px;
-        }
-        #sleeping-message p {
-            font-size: 16px;
-            color: white;
-            font-weight: 400;
-            max-width: 90%;
-            letter-spacing: 0.3px;
-            line-height: 25px;
-        }
-        .rorabot,.upp{
-            display: flex
-        ;
-            animation: bounceDot 5s infinite;
-            justify-content: center;
-        }
-        .upp{
-            animation: bounceDot2 5s infinite;
-            display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-        }
-        @keyframes bounceDot2 {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-15px);
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
-        @keyframes bounceDot {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-15px);
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
-        .gamerecom{
-            animation: trygame 5s infinite;
-        }
-        @keyframes trygame {
-            0% {
-                opacity: 0%;
-                transform: translateX(0);
-            }
-            50% {
-                opacity: 100%;
-                transform: translateX(-8px);
-            }
-            100% {
-                opacity: 0%;
-                transform: translateX(-15px);
-            }
-        }
-        #popup {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1500;
-            text-align: center;
-            padding: 0px;
-        }
-        #popup-content {
-    padding: 20px;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 500px;
-        }
-        #popup-content h2 {
-            font-size: 28px;
-    color: #0045ff;
-    font-weight: 900;
-        }
-        #popup-content label {
-            font-size: 14px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
-            display: block;
-        }
-        #popup-content input[type="number"] {
-            margin-bottom: 15px;
-        }
-        #interest-display {
-            font-size: 16px;
-            color: #333;
-            margin: 5px 0 15px 0 ;
-            font-weight: 600;
-            display: none;
-        }
-        #popup-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: space-between;
-        }
-        #popup-cancel {
-            background-color: #cccccc40;
-            color: #333;
-        }
-        #popup-cancel:hover {
-            background-color: #bbbbbb59;
-        }
-        #agree-section {
-            margin: 15px 0;
-            font-size: 14px;
-            color: #333;
-            text-align: left;
-        }
-        #agree-section label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        #ineligible-message {
-            display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(0 0 0 / 89%);
-    z-index: 3000;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    backdrop-filter: blur(5px);
-        }
-        #ineligible-message p {
-            font-size: 15px;
-    max-width: 100%;
-    font-weight: 800;
-    color: red;
-    letter-spacing: 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-        }
-        #ineligible-message button {
-            margin-top: 20px;
-    padding: 9px;
-    background-color: white;
-    color: black;
-    border: none;
-    border-radius: 100px;
-    cursor: pointer;
-    width: 100px;
-    font-weight: 800;
-        }
-    </style>
-</head>
-<body>
+
+
+// for(let i=0;i<15;i++){
+//     const b=document.createElement("div");b.className="bulb";
+//     const dur=6+Math.random()*5;
+//     b.style.animationDuration=dur+"s";
+//     b.style.animationDelay=Math.random()*dur+"s";
+//     document.getElementById("lights").appendChild(b);
+// }
+// const bulbs = document.querySelectorAll('.bulb');
+
+document.getElementById("candy").onclick = () => document.getElementById("panel").classList.toggle("show");
+
+const modeSelect = document.getElementById("mode");
+const singleColorRow = document.getElementById("singleColorRow");
+const singleColorInput = document.getElementById("singleColor");
+
+modeSelect.onchange = function() {
+    if(this.value === "single") {
+        singleColorRow.style.display = "flex";
+        applySingleColor();
+    } else {
+        singleColorRow.style.display = "none";
+        startMode();
+    }
+};
+singleColorInput.oninput = applySingleColor;
+
+function getSpeedDelay() {
+    const val = document.getElementById("speed").value;
+    return Math.round(2000 - val * 19); 
+}
+document.getElementById("speed").oninput = updateAllSpeeds;
+
+let modeInt = null, twinkleInt = null, discoInt = null;
+
+const modes = {
+    "Classic Red & Green": ["#c00","#0a0"],
+    "Warm White": ["#fff7e0","#ffe0b3"],
+    "Multicolor Rainbow": ["#f00","#0f0","#00f","#ff0","#f0f","#0ff"],
+    "Candy Red & white": ["#ffffffff","#ff0000ff"],
+    "Ice Blue Winter": ["#000dffff","#0091ffff"],
+    "Golden Elegance": ["#ffc400ff","#ffffffff"]
+};
+
+function startMode() {
+    clearInterval(modeInt); clearInterval(discoInt);
+    document.getElementById("disco").textContent = "Disco OFF";
+
+    const colors = modes[modeSelect.value];
+    let i = 0;
+    modeInt = setInterval(() => {
+        const c = colors[i++ % colors.length];
+        bulbs.forEach(b => { b.style.background = c; b.style.boxShadow = `0 0 30px 8px ${c}`; b.style.opacity = 1; });
+    }, getSpeedDelay());
+}
+
+function applySingleColor() {
+    clearInterval(modeInt); clearInterval(discoInt);
+    document.getElementById("disco").textContent = "Disco OFF";
+    const c = singleColorInput.value;
+    bulbs.forEach(b => {
+        b.style.background = c;
+        b.style.boxShadow = `0 0 20px 8px ${c}`;
+        b.style.opacity = 1;
+    });
+}
+
+document.getElementById("twinkle").onclick = function() {
+    if(twinkleInt){ clearInterval(twinkleInt); twinkleInt=null; this.textContent="Twinkle OFF"; bulbs.forEach(b=>b.style.opacity=1); }
+    else { this.textContent="Twinkle ON"; startTwinkle(); }
+};
+function startTwinkle() {
+    clearInterval(twinkleInt);
+    twinkleInt = setInterval(() => {
+        const b = bulbs[Math.floor(Math.random()*bulbs.length)];
+        b.style.opacity = 0.25;
+        setTimeout(() => b.style.opacity = 1, 100 + Math.random()*200);
+    }, getSpeedDelay() * 0.7);
+}
+
+document.getElementById("disco").onclick = function() {
+    if(discoInt){ clearInterval(discoInt); discoInt=null; this.textContent="Disco OFF"; (modeSelect.value==="single"?applySingleColor():startMode()); }
+    else { this.textContent="Disco ON"; clearInterval(modeInt); startDisco(); }
+};
+function startDisco() {
+    clearInterval(discoInt);
+    discoInt = setInterval(() => {
+        bulbs.forEach(b => {
+            const h = Math.random()*360;
+            const c = `hsl(${h},100%,62%)`;
+            b.style.background = c;
+            b.style.boxShadow = `0 0 20px 10px ${c}`;
+            b.style.opacity = 1;
+        });
+    }, getSpeedDelay());
+}
+
+function updateAllSpeeds() {
+    if(modeInt && modeSelect.value !== "single") { clearInterval(modeInt); startMode(); }
+    if(discoInt) { clearInterval(discoInt); startDisco(); }
+    if(twinkleInt) { clearInterval(twinkleInt); startTwinkle(); }
+}
+
+// let snowInt;
+// document.getElementById("snow").oninput = function(){
+//     clearInterval(snowInt);
+//     const delay = 500 - this.value * 4.5;
+//     snowInt = setInterval(() => {
+//         const s=document.createElement("div");s.className="snow";
+//         s.style.left=Math.random()*100+"vw";
+//         s.style.animationDuration=(4+Math.random()*7)+"s";
+//         document.body.appendChild(s);
+//         setTimeout(()=>s.remove(),14000);
+//     }, delay);
+// };
+// document.getElementById("snow").oninput();
+
+document.addEventListener("click", e => {
+    if(e.target.closest("#panel") || e.target.id==="candy") return;
+    const col = getComputedStyle(bulbs[Math.floor(Math.random()*bulbs.length)]).backgroundColor;
+    document.body.style.transition = "background 1.6s ease";
+    document.body.style.background = `radial-gradient(circle at ${e.clientX}px ${e.clientY}px, ${col}70, #000 75%)`;
+});
+
+startMode();
+ document.addEventListener("DOMContentLoaded", function () {
+        let helperButton = document.querySelector(".helper-button");
+        helperButton.classList.add("animated-border");
+        setTimeout(() => {
+            helperButton.classList.remove("animated-border");
+        }, 10000000);
+    });
+const USD_RATE = 87.85;
+let currentCurrency = localStorage.getItem('currency') || 'INR';
+let currentUser = null, currentLoanIndex = null, loanChart = null, calendarMonth = new Date();
+const PINNED_KEY = 'pinnedView';
+let pendingLink = null;
+let filteredLoans = [];
+
+const usersDB = {
+    "Mahesh888*": {
+        name: "Mahesh Muthinti",
+        coins: 300,
+        loans: [
+            { planDate: "29-09-2025", endDate: "14-12-2025(Extended to 30 days)", interest: 1380, takenAmount: 4720, takenFrom: "MLLD", fineRate: 40 },
+            { planDate: "25-05-2025", endDate: "02-12-2025(Extended to 15 days)", interest: 657, takenAmount: 5740, takenFrom: "Delayit offer", fineRate: 50 },
+        ],
+        links: [],
+        emote: "https://i.pinimg.com/736x/d7/b9/48/d7b948ff970f7d92ee265072da06fd07.jpg"
+    },
+};
+
+function loadUserData() {
+    const savedData = JSON.parse(localStorage.getItem('userData') || '{}');
     
-  <div class="blob blob1"></div>
-  <div class="blob blob2"></div>
-    <div id="sleeping-message">
-        <div class="rorabot">
-            <span style=" position: absolute;
-    top: -8px;
-    color: #ffffffe8;
-    font-weight: 800;
-    rotate: 7.5deg;
-    right: 35px;
-    font-size: 13px;
-">BS&MFI</span>
-            <img src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/66ebe91825c953334f391e0f_Clyde.png" alt="Sleeping GIF">
-        </div>
-        <div class="bot" style="display : flex; justify-content: center; align-items: baseline;">
-                <img style="width: 16px; position: relative; top: -2px; left: 3px;" src="https://static-cdn.jtvnw.net/badges/v1/3267646d-33f0-4b17-b3df-f923a41db1d0/2" alt="">
-                <span style='font-size: 13px; color: white; padding: 5px 8px; border-radius: 10px; position: relative; top: -5px;'>BsRora (<i style='position: relative; right: 0px;' class="fa-solid fa-robot"></i>)</span>
-            </div>
-        <p>Amount providers are not available right now, Visit again at 6 am tomorrow...!<br>or <br> <a style="margin: 40px;color: white;" href="https://blackswan19.github.io/golden/FM/game2">Try Snake Game</a></p>
-        <div class="gamerecom">
-            <img style="margin-top: -30px;
-            position: absolute;
-            margin-left: -130px;
-            width: 85px;" src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6707965570be866462c0e936_Mask%20group%20(6).webp" alt="">
-        </div>
-    </div>
-    <div id="ineligible-message">
-        <p>We found you have not cleared the previous borrowed amount/amounts, Try to clear the amount/amounts that you have taken first.<br><br> Until that's done, you're not able to take any new amounts..!</p>
-         <div class="upp">
-            <span style=" 
-    margin-top: 40px;   rotate: 6deg;
-    position: relative;
-    left: 12px;
-    top: 9px;
-">BsRora(Bot)</span>
-            <img width="130px" src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6707a0ea5ddb44cae1dd6b29_clyde_pose_02%201.webp" alt="">
-        </div>
-        <button id="ineligible-close">OK</button>
-    </div>
-    <div id="popup">
-        <div id="popup-content">
-            <h2>BS&MFI</h2>
-            <p class="subtitle">Interest check</p>
-            <label>Amount you want to take <span style="color: red;">*</span></label>
-            <input type="number" id="popup-amount" min="1" required />
-            <div class="error-message" id="popup-amount-error">Enter a valid amount</div>
-            <div id="interest-display"></div>
-            <div id="popup-buttons">
-                <button id="popup-cancel">Cancel</button>
-                <button id="popup-apply">Apply Now</button>
-            </div>
-
-            <div class="notice" style="background-color: #d9d9d900;
-                    color: #000000b5;
-                    border-radius: 23px;
-                    padding: 18px;
-                    font-size: 13px;
-                    font-weight: 600;
-                    margin-top: 20px;
-                    border: solid 1.5px #808080ad;display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-                ">
-                <div class="bothead" style="background: #151515;
-    padding: 8px 11px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: max-content;
-    gap: 5px;
-    border-radius: 100px;
-    margin: -5px 0 -10px 0;">
-                    <img style="    width: 16px;
-    position: relative;" src="https://static-cdn.jtvnw.net/badges/v1/3267646d-33f0-4b17-b3df-f923a41db1d0/2" alt="">
-                    <span style='font-size: 12px;
-    color: white;
-    border-radius: 10px;'>BsRora (<i class="fa-solid fa-robot"></i>)
-                    </span>
-                </div>
-                <br>
-                <span> If you borrow more then the limit you will be not allowed to take any amounts from any services.</span>
-            </div>
-        </div>
-    </div>
-    <form id="form" method="POST">
-        <a href="https://blackswan19.github.io/BS/bslends">
-            <div class="theme-toggle">
-            <img style="width: 25px;" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0" alt="">
-        </div></a>
-        <div class="form-group" data-step="1">
-            <h1>BS&MFI</h1>
-            <p class="subtitle">Services take money form</p>
-            <label>Enter your name <span style="color: red;">*</span></label>
-            <input autofocus type="text" autocomplete="off" name="Name" required />
-            <div class="error-message" id="name-error">Try to enter your name</div>
-        </div>
-        <div class="form-group" data-step="2">
-            <h1>BS&MFI</h1>
-            <p class="subtitle">Services take money form</p>
-            <label>Enter your password <span style="color: red;">*</span> <strong style="color: #ff6c00;">(Don't use zeros)</strong></label>
-            <input type="text" autocomplete="off" name="Password" required />
-            <div class="error-message" id="password-error">Password cannot contain zeros</div>
-        </div>
-        <div class="form-group" data-step="3">
-            <h1>BS&MFI</h1>
-            <p class="subtitle">Services take money form</p>
-            <label>Enter your phone number <span style="color: red;">*</span></label>
-            <input type="number" autocomplete="off" name="Phone number" required />
-            <div class="error-message" id="phone-error">Try to enter a valid 10-digit phone number</div>
-        </div>
-        <div class="form-group" data-step="4">
-            <h1>BS&MFI</h1>
-            <p class="subtitle">Select an option</p>
-            <label>Amount you are taking from? <span style="color: red;">*</span></label>
-            <div class="radio-group">
-                <label><input type="radio" name="Taking in" value="Lendlink" required /> Lendlink [BsLends]</label>
-                <label><input type="radio" name="Taking in" value="Golden" /> Golden [BsLends]</label>
-                <label><input type="radio" name="Taking in" value="MLending" /> MLending [Myootive]</label>
-                <label><input type="radio" name="Taking in" value="Mlld" /> MLLD [Myootive]</label>
-            </div>
-            <div class="error-message" id="taking-in-error">Try to select an option</div>
-        </div>
-        <div class="form-group" data-step="5">
-            <h1>BS&MFI</h1><script src="changable.js"></script>
-            <p class="subtitle">Services take money form</p>
-            <label>How much amount you like to take? <span style="color: red;">*</span></label>
-            <input type="number" autocomplete="off" name="Amount" required min="1" readonly />
-            <label>Interest amount <span style="color: red;">*</span></label>
-            <input type="number" autocomplete="off" name="Interest" id="interest-input" required readonly />
-            <div class="error-message" id="amount-error">Try to enter a valid amount</div>
-        </div>
-        <div class="form-group" data-step="6">
-            <h1>BS&MFI</h1>
-            <p class="subtitle">Services take money form</p>
-            <label>In how many days you will return the amount? <span style="color: red;">*</span></label>
-            <input type="number" autocomplete="off" name="Days" required min="1" />
-            <div class="error-message" id="days-error">Try to enter a valid number of days</div>
-        </div>
-        <div class="form-group" data-step="7">
-            <h1>BS&MFI</h1>
-            <p class="subtitle">Select an option</p>
-            <label>Is the amount you're taking an offer? <span style="color: red;">*</span></label>
-            <div class="radio-group">
-                <label><input type="radio" name="offer or not" value="yes" required /> Yes</label>
-                <label><input type="radio" name="offer or not" value="no" /> No</label>
-            </div>
-            <div class="error-message" id="offer-error">Try to select an option</div>
-        </div>
-        <div class="form-group" data-step="8">
-            <h1>BS&MFI</h1>
-            <p class="subtitle">Agreement</p>
-            <div id="agree-section">
-                <p>If I don't repay the amount which I'm taking now, You can complaint to the police, Or you can come to my house do whatever you want.</p>
-                <label>Enter your name <span style="color: red;">*</span></label>
-                <input type="text" autocomplete="off" name="AgreementName" id="agreement-name" required />
-                <div class="error-message" id="agreement-name-error">Try to enter your name</div>
-                <label><input type="checkbox" id="agree-checkbox" name="Agreed" /> Agreed</label>
-                <div class="error-message" id="agree-error">You must agree to the terms to proceed</div>
-            </div>
-            <br>
-            <span style="background-color: #000000; color: white; border-radius: 30px; padding: 10px 25px; font-size: 12px; font-weight: 600;">
-                NOTE: Wait few minutes after clicking on SUBMIT.
-            </span>
-            <span class="submitting-message" id="submitting-message">Submitting...</span>
-        </div>
-        <div class="button-group">
-            <button type="button" id="next-button">Continue</button>
-            <button type="submit" id="submit-button" style="display: none;">Submit</button>
-        </div>
-        <div class="info-text">
-            To provide the amount, we need to collect the amount first. It takes few hours to arrange the amount, So be patience during this time to get the amount.
-            <button type="button" id="cancel-button">Cancel</button>
-        </div>
-        <input type="hidden" name="InterestPercentage" id="interest-percentage-input" />
-    </form>
-    <script>
-     function getDailyInterestRate() {
-    const today = new Date().toISOString().slice(0, 10);
-    let hash = 5381;
-    for (let i = 0; i < today.length; i++) {
-        hash = ((hash << 5) + hash + today.charCodeAt(i)) | 0;
-    }
-    const rate = 22 + (Math.abs(hash) % 7);
-    return rate;
-}
-
-        function calculateInterest(amount, percentage) {
-            return Math.round((amount * percentage) / 100);
-        }
-
-        const form = document.getElementById("form");
-        const steps = form.querySelectorAll('.form-group');
-        const nextButton = document.getElementById("next-button");
-        const submitButton = document.getElementById("submit-button");
-        const cancelButton = document.getElementById("cancel-button");
-        const submittingMessage = document.getElementById("submitting-message");
-        const popup = document.getElementById("popup");
-        const popupAmountInput = document.getElementById("popup-amount");
-        const popupAmountError = document.getElementById("popup-amount-error");
-        const interestDisplay = document.getElementById("interest-display");
-        const popupApply = document.getElementById("popup-apply");
-        const popupCancel = document.getElementById("popup-cancel");
-        const interestInput = document.getElementById("interest-input");
-        const interestPercentageInput = document.getElementById("interest-percentage-input");
-        const agreeCheckbox = document.getElementById("agree-checkbox");
-        const agreementNameInput = document.getElementById("agreement-name");
-        const ineligibleMessage = document.getElementById("ineligible-message");
-        const ineligibleClose = document.getElementById("ineligible-close");
-        let currentStep = 1;
-        let selectedInterest = null;
-        let selectedInterestPercentage = null;
-
-        function showPopup() {
-            popup.style.display = "flex";
-            form.style.display = "none";
-            const themeToggle = document.querySelector(".theme-toggle");
-            themeToggle.style.display = "none";
-            interestDisplay.style.display = "none";
-            popupAmountInput.value = "";
-            interestInput.value = "";
-            interestPercentageInput.value = "";
-            popupApply.textContent = "Apply Now";
-        }
-
-        popupAmountInput.addEventListener('input', () => {
-            const amount = parseFloat(popupAmountInput.value);
-            if (amount > 0) {
-                clearError(popupAmountInput, 'popup-amount-error');
-                form.querySelector('input[name="Amount"]').value = amount;
-                selectedInterestPercentage = getDailyInterestRate();
-                selectedInterest = calculateInterest(amount, selectedInterestPercentage);
-                interestDisplay.textContent = `Interest for the amount : ${selectedInterest} (${selectedInterestPercentage}%)`;
-                interestDisplay.style.display = "block";
-                interestInput.value = selectedInterest;
-                interestPercentageInput.value = selectedInterestPercentage;
-                popupApply.textContent = `${selectedInterest} ₹, Apply now`;
-            } else {
-                interestDisplay.style.display = "none";
-                interestInput.value = "";
-                interestPercentageInput.value = "";
-                popupApply.textContent = "Apply Now";
-            }
-        });
-
-        popupApply.addEventListener('click', () => {
-            const amount = parseFloat(popupAmountInput.value);
-            if (amount <= 0 || isNaN(amount)) {
-                showError(popupAmountInput, 'popup-amount-error', 'Enter a valid amount');
-                return;
-            }
-            popup.style.display = "none";
-            form.style.display = "block";
-            const themeToggle = document.querySelector(".theme-toggle");
-            themeToggle.style.display = "flex";
-            showStep(currentStep);
-        });
-
-        popupCancel.addEventListener('click', () => {
-            window.history.back();
-        });
-
-        function showStep(step) {
-            steps.forEach(s => s.classList.remove('active'));
-            form.querySelector(`[data-step="${step}"]`).classList.add('active');
-            nextButton.style.display = step < steps.length ? 'block' : 'none';
-            submitButton.style.display = step === steps.length ? 'block' : 'none';
-        }
-
-        showPopup();
-
-        nextButton.addEventListener('click', () => {
-            if (validateStep(currentStep)) {
-                if (currentStep === 2) {
-                    const password = form.querySelector('input[name="Password"]').value.trim();
-                    if (blockedPasswords.includes(password)) {
-                        ineligibleMessage.style.display = "flex";
-                        return;
-                    }
-                }
-                currentStep++;
-                if (currentStep <= steps.length) {
-                    showStep(currentStep);
-                }
-            }
-        });
-
-        ineligibleClose.addEventListener('click', () => {
-            ineligibleMessage.style.display = "none";
-            window.history.back();
-        });
-
-        cancelButton.addEventListener('click', () => {
-            window.history.back();
-        });
-
-        function showError(input, errorId, messageText) {
-            const errorElement = document.getElementById(errorId);
-            if (input) input.classList.add('error');
-            errorElement.textContent = messageText;
-            errorElement.style.display = 'block';
-        }
-
-        function clearError(input, errorId) {
-            const errorElement = document.getElementById(errorId);
-            if (input) input.classList.remove('error');
-            errorElement.style.display = 'none';
-        }
-
-        function validateStep(step) {
-            let isValid = true;
-            const currentStepElement = form.querySelector(`[data-step="${step}"]`);
-            const input = currentStepElement.querySelector('input:not([type="radio"]):not([type="checkbox"])');
-            const radios = currentStepElement.querySelectorAll('input[type="radio"]');
-            const checkbox = currentStepElement.querySelector('input[type="checkbox"]');
-
-            if (input) {
-                if (input.name === 'Name' && !input.value.trim()) {
-                    showError(input, 'name-error', 'Try to enter your name');
-                    isValid = false;
-                } else if (input.name === 'Password') {
-                    if (!input.value) {
-                        showError(input, 'password-error', 'Try to enter a password');
-                        isValid = false;
-                    } else if (input.value.includes('0')) {
-                        showError(input, 'password-error', 'Password cannot contain zeros');
-                        isValid = false;
-                    } else {
-                        clearError(input, 'password-error');
-                    }
-                } else if (input.name === 'Phone number') {
-                    const phoneRegex = /^\d{10}$/;
-                    if (!input.value || !phoneRegex.test(input.value)) {
-                        showError(input, 'phone-error', 'Try to enter a valid 10-digit phone number');
-                        isValid = false;
-                    } else {
-                        clearError(input, 'phone-error');
-                    }
-                } else if (input.name === 'Amount' || input.name === 'Interest') {
-                    if (!input.value || input.value <= 0) {
-                        showError(input, 'amount-error', 'Try to enter a valid amount');
-                        isValid = false;
-                    } else {
-                        clearError(input, 'amount-error');
-                    }
-                } else if (input.name === 'Days') {
-                    if (!input.value || input.value <= 0) {
-                        showError(input, 'days-error', 'Try to enter a valid number of days');
-                        isValid = false;
-                    } else {
-                        clearError(input, 'days-error');
-                    }
-                } else if (input.name === 'AgreementName' && !input.value.trim()) {
-                    showError(input, 'agreement-name-error', 'Try to enter your name');
-                    isValid = false;
-                }
-            } else if (radios.length > 0) {
-                const checked = currentStepElement.querySelector('input[type="radio"]:checked');
-                const errorId = radios[0].name === 'Taking in' ? 'taking-in-error' : 'offer-error';
-                if (!checked) {
-                    showError(null, errorId, 'Try to select an option');
-                    isValid = false;
-                } else {
-                    clearError(null, errorId);
-                }
-            }
-
-            if (step === steps.length && checkbox) {
-                if (!checkbox.checked) {
-                    showError(null, 'agree-error', 'You must agree to the terms to proceed');
-                    isValid = false;
-                } else {
-                    clearError(null, 'agree-error');
-                }
-            }
-
-            return isValid;
-        }
-
-        const inputs = form.querySelectorAll('input:not([type="checkbox"])');
-        inputs.forEach(input => {
-            input.addEventListener('input', () => {
-                if (input.name === 'Name' && input.value.trim()) {
-                    clearError(input, 'name-error');
-                } else if (input.name === 'Password' && !input.value.includes('0')) {
-                    clearError(input, 'password-error');
-                } else if (input.name === 'Phone number' && /^\d{10}$/.test(input.value)) {
-                    clearError(input, 'phone-error');
-                } else if (input.name === 'Days' && input.value > 0) {
-                    clearError(input, 'days-error');
-                } else if (input.name === 'AgreementName' && input.value.trim()) {
-                    clearError(input, 'agreement-name-error');
-                }
-            });
-        });
-
-        form.querySelectorAll('input[type="radio"]').forEach(radio => {
-            radio.addEventListener('change', () => {
-                if (radio.name === 'Taking in') {
-                    clearError(null, 'taking-in-error');
-                } else if (radio.name === 'offer or not') {
-                    clearError(null, 'offer-error');
-                }
-            });
-        });
-
-        agreeCheckbox.addEventListener('change', () => {
-            if (agreeCheckbox.checked) {
-                clearError(null, 'agree-error');
-            }
-        });
-
-        form.addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            if (validateStep(currentStep)) {
-                submitButton.disabled = true;
-                submitButton.style.opacity = '0.6';
-                submittingMessage.style.display = 'block';
-
-                const formData = new FormData(this);
-                const keyValuePairs = [];
-                for (const pair of formData.entries()) {
-                    keyValuePairs.push(pair[0] + "=" + pair[1]);
-                }
-                const formDataString = keyValuePairs.join("&");
-
-                fetch(
-                    "https://script.google.com/macros/s/AKfycbxIlao67g-XSHBVoSvYzofopgSa7_7_l9qstp4SxrdqMWCutnasBtQjdLn_aUWdsZvShw/exec",
-                    {
-                        redirect: "follow",
-                        method: "POST",
-                        body: formDataString,
-                        headers: {
-                            "Content-Type": "text/plain;charset=utf-8",
-                        },
-                    }
-                )
-                .then(response => {
-                    if (response.ok) {
-                        return response.text();
-                    } else {
-                        throw new Error("Submission failed");
-                    }
-                })
-                .then(data => {
-                    alert("Details submitted successfully!");
-                    form.reset();
-                    agreeCheckbox.checked = false;
-                    currentStep = 1;
-                    showStep(currentStep);
-                    submitButton.disabled = false;
-                    submitButton.style.opacity = '1';
-                    submittingMessage.style.display = 'none';
-                    showPopup();
-                })
-                .catch(error => {
-                    alert("An error occurred while submitting the form.");
-                    console.error(error);
-                    submitButton.disabled = false;
-                    submitButton.style.opacity = '1';
-                    submittingMessage.style.display = 'none';
+    for (let pin in usersDB) {
+        const saved = savedData[pin];
+        if (saved) {
+            usersDB[pin].links = saved.links || [];
+            usersDB[pin].emote = saved.emote || usersDB[pin].emote;
+            if (saved.purposes) {
+                saved.purposes.forEach((p, i) => {
+                    if (usersDB[pin].loans[i]) usersDB[pin].loans[i].purpose = p;
                 });
             }
-        });
+        }
+    }
+}
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const customMenu = document.querySelector(".custom-menu");
+function saveUserData() {
+    const data = {};
+    for (let pin in usersDB) {
+        data[pin] = {
+            links: usersDB[pin].links,
+            emote: usersDB[pin].emote,
+            purposes: usersDB[pin].loans.map(l => l.purpose || "")
+        };
+    }
+    localStorage.setItem('userData', JSON.stringify(data));
+}
 
-            document.addEventListener("click", () => {
-                if (customMenu) {
-                    customMenu.style.display = "none";
-                }
-            });
+function formatMoney(amount) {
+    const val = currentCurrency === 'USD' ? (amount / USD_RATE).toFixed(2) : amount;
+    const symbol = currentCurrency === 'USD' ? '$' : '₹';
+    return `${symbol}${parseFloat(val).toLocaleString()}`;
+}
 
-            function checkTimeRestriction() {
-                const now = new Date();
-                const hours = now.getHours();
-                const minutes = now.getMinutes();
-                const timeInMinutes = hours * 60 + minutes;
-                const startRestriction = 22 * 60 + 30;
-                // const startRestriction = 9 * 60 + 30; // 10:30 PM
-                const endRestriction = 6 * 60; // 6:00 AM
+function updateCurrencyUI() {
+    document.getElementById('currencyLabel').textContent = currentCurrency;
+    document.querySelector('#currencySwitch i').className = 
+        currentCurrency === 'USD' ? 'fa-solid fa-dollar-sign' : 'fa-solid fa-indian-rupee-sign';
+}
 
-                const sleepingMessage = document.getElementById("sleeping-message");
-                const form = document.getElementById("form");
-                const themeToggle = document.querySelector(".theme-toggle");
-                const popup = document.getElementById("popup");
+function toggleCurrency() {
+    currentCurrency = currentCurrency === 'INR' ? 'USD' : 'INR';
+    localStorage.setItem('currency', currentCurrency);
+    updateCurrencyUI();
+    if (currentUser) {
+        renderAmountButtons();
+        if (currentLoanIndex !== null) displayLoanDetails(currentUser.loans[currentLoanIndex], currentLoanIndex);
+        showTotalPopup();
+        if (document.getElementById('graphContainer').style.display === 'block') renderChart();
+        updateCoinsDisplay();
+    }
+}
 
-                if (timeInMinutes >= startRestriction || timeInMinutes < endRestriction) {
-                    sleepingMessage.style.display = "flex";
-                    form.style.display = "none";
-                    themeToggle.style.display = "none";
-                    popup.style.display = "none";
-                } else {
-                    sleepingMessage.style.display = "none";
-                    popup.style.display = "flex";
-                    form.style.display = "none";
-                    themeToggle.style.display = "flex";
-                }
-            }
+function updateCoinsDisplay() {
+    if (currentUser && document.getElementById('userCoinsDisplay')) {
+        document.getElementById('userCoinsDisplay').textContent = currentUser.coins.toLocaleString();
+    }
+}
 
-            checkTimeRestriction();
-            setInterval(checkTimeRestriction, 60000);
-        });
-         document.addEventListener("DOMContentLoaded", () => {
-            const customMenu = document.querySelector(".custom-menu");
+document.addEventListener('DOMContentLoaded', () => {
+    loadUserData();
+    updateCurrencyUI();
+    document.getElementById('currencySwitch').onclick = toggleCurrency;
+    const saved = localStorage.getItem('lastPassword');
+    if (saved) setTimeout(() => document.getElementById("userPassword").value = saved, 300);
+});
 
-            document.addEventListener("contextmenu", (event) => {
-                event.preventDefault();
-                if (customMenu) {
-                    customMenu.style.display = "block";
-                    customMenu.style.top = `${event.pageY}px`;
-                    customMenu.style.left = `${event.pageX}px`;
-                }
-            });
+document.getElementById("submitBtn").onclick = () => {
+    const input = document.getElementById("userPassword").value.trim();
+    const user = usersDB[input];
+    const err = document.getElementById("error-message");
 
-            document.addEventListener("click", () => {
-                if (customMenu) {
-                    customMenu.style.display = "none";
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+    if (user) {
+        localStorage.setItem('lastPassword', input);
+        currentUser = user;
+        filteredLoans = [...user.loans];
+
+        document.getElementById("userName").textContent = user.name;
+        document.getElementById("userEmote").src = user.emote;
+        updateCoinsDisplay();
+        renderLinks();
+        renderAmountButtons();
+        if (user.loans.length) displayLoanDetails(user.loans[0], 0);
+
+        document.getElementById("userInfoModal").style.display = "block";
+        document.getElementById("passwordContainer").style.display = "none";
+        err.textContent = "";
+
+        const pinned = localStorage.getItem(PINNED_KEY) || 'list';
+        switchView(pinned, false);
+        updateNavActive(pinned);
+    } else {
+        err.textContent = "Invalid password!";
+    }
+};
+
+function showTotalPopup() {
+    const now = new Date();
+    let base = 0, interest = 0, overdue = 0;
+
+    currentUser.loans.forEach(loan => {
+        base += loan.takenAmount;
+        interest += loan.interest;
+        const cleanEnd = loan.endDate.split('(')[0].trim();
+        const end = new Date(cleanEnd.split('-').reverse().join('-'));
+        if (now > end) {
+            const days = Math.ceil((now - end) / 86400000);
+            overdue += days * loan.fineRate;
+        }
+    });
+
+    const total = base + interest + overdue;
+
+    document.getElementById("totalContent").innerHTML = `
+        <p>Taken amount : <strong>${formatMoney(base)}</strong></p>
+        <p style='margin-bottom: 20px;'>Total Interest : <strong>${formatMoney(interest)}</strong></p>
+        ${overdue > 0 ? `<p style="color:#ff4444;margin-bottom: 20px;">Overdue Fine : <strong style='color: #ff4444;'>${formatMoney(overdue)}</strong></p>` : ''}
+        <hr>
+        <p style="font-size: 22px;margin-top: 22px;margin-bottom: 10px;">Total to Return: <strong>${formatMoney(total)}</strong></p>
+    `;
+    document.getElementById("totalPopup").style.display = "block";
+}
+
+function closeTotalPopup() { document.getElementById("totalPopup").style.display = "none"; }
+
+function displayLoanDetails(loan, index) {
+    currentLoanIndex = index;
+    const now = new Date();
+    const cleanEndDate = loan.endDate.split('(')[0].trim();
+    const endDate = new Date(cleanEndDate.split('-').reverse().join('-'));
+    const daysLeft = Math.ceil((endDate - now) / 86400000);
+    let overdueFine = daysLeft < 0 ? Math.abs(daysLeft) * loan.fineRate : 0;
+    const totalPayable = loan.takenAmount + loan.interest + overdueFine;
+
+    // New: Calculate Days Elapsed since loan was taken
+    const [d, m, y] = loan.planDate.split('-').map(Number);
+    const takenDate = new Date(y, m - 1, d);
+    const daysElapsed = Math.floor((now - takenDate) / 86400000);
+
+    document.querySelectorAll(".amount-btn").forEach(b => b.classList.remove("active"));
+    const btns = document.getElementById("amountButtons").children;
+    if (btns[filteredLoans.indexOf(loan)]) btns[filteredLoans.indexOf(loan)].classList.add("active");
+
+    document.getElementById("loanDetails").innerHTML = `
+        <div class="loan-entry">
+            <div class="details">
+                <div class="leftflow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><g fill="none"><circle cx="11.5" cy="5.5" r="2.5" stroke="#ffffff" stroke-width="1.5"/><path stroke="#ffffff" stroke-linecap="round" stroke-width="1.5" d="M9 16.5s-.426 1.62-1 2.5c-.603.925-2 2-2 2"/><path fill="#ffffff" d="m10.21 11.901l.746.075l-.746-.075Zm-.069.686l-.746-.075l.746.075Zm8.436-2.734l-.48-.576l.48.576Zm.903.223a.75.75 0 0 0-.96-1.152l.96 1.152Zm-8.276 4.677l-.397.636l.397-.636Zm.333.208l.398-.636l-.398.636Zm2.72 4.432l.747-.067l-.747.067Zm-.604 1.674a.75.75 0 1 0 1.494-.134l-1.494.134ZM13 10.5l-.386.643a.75.75 0 0 0 .05.028L13 10.5Zm-3.536 1.326l-.069.686l1.492.15l.07-.686l-1.493-.15Zm9.593-1.397l.423-.353l-.96-1.152l-.424.353l.96 1.152Zm-8.25 4.96l.333.208l.795-1.272l-.333-.208l-.795 1.272Zm2.703 4.07l.143 1.608l1.494-.134l-.143-1.607l-1.494.133Zm-.845-8.288a5.878 5.878 0 0 0 6.392-.742l-.96-1.152a4.378 4.378 0 0 1-4.762.552l-.67 1.342Zm-1.525 4.426a5.086 5.086 0 0 1 2.37 3.862l1.494-.133a6.586 6.586 0 0 0-3.07-5.001l-.794 1.272Zm-1.745-3.085a3.036 3.036 0 0 0 1.412 2.877l.795-1.272a1.536 1.536 0 0 1-.715-1.455l-1.492-.15Zm1.561-.536a1.098 1.098 0 0 1 1.658-.833l.772-1.286c-1.634-.98-3.733.073-3.922 1.97l1.492.149Z"/><path stroke="#ffffff" stroke-linecap="round" stroke-width="1.5" d="M19 14V7m0 14v-3"/></g></svg>    
+                    <h3 style="margin:25px 0;font-weight:600;font-size:15px;">Purpose</h3>
+                </div>
+                <input type="text" class="purpose-input" placeholder="Eg : Shopping.." value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
+            </div>
+            <div class="details">
+                <div class="leftflow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-width="1.5"><path d="M8.796 6.64a2.718 2.718 0 1 1 3.845-3.844l2.563 2.563a2.719 2.719 0 0 1-3.845 3.845L8.796 6.64Z"/><path d="M14 4s-.225 1.168-1.529 2.471C11.167 7.775 10 8 10 8"/><path stroke-linecap="round" d="M4 21.388h2.26c1.01 0 2.033.106 3.016.308a14.85 14.85 0 0 0 5.33.118m-.93-3.297c.12-.014.235-.03.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.887 1.887 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075m-5.544-1.229a8.176 8.176 0 0 1-.11.012m.11-.012a.998.998 0 0 0 .427-.24a1.492 1.492 0 0 0 .126-2.134a1.9 1.9 0 0 0-.45-.367c-2.797-1.669-7.15-.398-9.779 1.467m9.676 1.274a.524.524 0 0 1-.11.012m0 0a9.274 9.274 0 0 1-1.814.004"/></g></svg>
+                    <h3 style="margin:25px 0;font-weight:600;font-size:15px;">Taken From</h3>
+                </div>
+                <p>${loan.takenFrom}</p>
+            </div>
+            <div class="details">
+                <div class="leftflow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffffff"><g fill="none" stroke="#ffffffff" stroke-width="1.5"><path stroke-linecap="round" d="M7 4V2.5M17 4V2.5"/><circle cx="16.5" cy="16.5" r="1.5"/><path stroke-linecap="round" d="M21.5 9H10.75M2 9h3.875M14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14v-2c0-3.771 0-5.657 1.172-6.828C4.343 4 6.229 4 10 4h4c3.771 0 5.657 0 6.828 1.172C22 6.343 22 8.229 22 12v2c0 3.771 0 5.657-1.172 6.828c-.653.654-1.528.943-2.828 1.07"/></g></svg>
+                    <h3 style="margin:25px 0;font-weight:600;font-size:15px;">Taken Date</h3>
+                </div>
+                <p>${loan.planDate}</p>
+            </div>
+            <div class="details">
+                <div class="leftflow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9.5 14.4l1.429 1.6l3.571-4"/><path d="M2 12c0-4.714 0-7.071 1.464-8.536c1.241-1.24 3.123-1.43 6.536-1.46M22 12c0-4.714 0-7.071-1.465-8.536c-1.24-1.24-3.122-1.43-6.535-1.46"/><path d="M10 22c-2.8 0-4.2 0-5.27-.545a5 5 0 0 1-2.185-2.185C2 18.2 2 16.8 2 14c0-2.8 0-4.2.545-5.27A5 5 0 0 1 4.73 6.545C5.8 6 7.2 6 10 6h4c2.8 0 4.2 0 5.27.545a5 5 0 0 1 2.185 2.185C22 9.8 22 11.2 22 14c0 2.8 0 4.2-.545 5.27a5 5 0 0 1-2.185 2.185C18.2 22 16.8 22 14 22"/></g></svg>
+                    <h3 style="margin:25px 0;font-weight:600;font-size:15px;">Return Date</h3>
+                </div>
+                <p style="color:${daysLeft <= 2 ? '#ff4000ff' : daysLeft <= 6 ? '#ffca00' : '#00b900ff'};"> ${cleanEndDate}</p>
+            </div>
+            <div class="details">
+                <div class="leftflow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff">
+                        <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="9"/>
+                            <path d="M12 7v5l3 3"/>
+                        </g>
+                    </svg>
+                    <h3 style="margin:25px 0;font-weight:600;font-size:15px;">Days Elapsed</h3>
+                </div>
+                <p>${daysElapsed} day${daysElapsed === 1 ? '' : 's'}${daysElapsed > 90 ? '' : daysElapsed > 60 ? '' : ''}</p>
+            </div>
+            <div class="details">
+                <div class="leftflow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.07 1.464-8.535C4.705 2.224 6.587 2.035 10 2.005M22 12c0-4.714 0-7.07-1.465-8.535c-1.24-1.241-3.122-1.43-6.535-1.46"/><path d="M10 22c-2.8 0-4.2 0-5.27-.545a5 5 0 0 1-2.185-2.185C2 18.2 2 16.8 2 14c0-2.8 0-4.2.545-5.27A5 5 0 0 1 4.73 6.545C5.8 6 7.2 6 10 6h4c2.8 0 4.2 0 5.27.545a5 5 0 0 1 2.185 2.185C22 9.8 22 11.2 22 14c0 2.8 0 4.2-.545 5.27a5 5 0 0 1-2.185 2.185C18.2 22 16.8 22 14 22"/><path stroke-linejoin="round" d="M12 11v6m0 0l2.5-2.5M12 17l-2.5-2.5"/></g></svg>
+                    <h3 style="margin:25px 0;font-weight:600;font-size:15px;">Amount Taken</h3>
+                </div>
+                <p>${formatMoney(loan.takenAmount)}</p>
+            </div>
+
+            <div class="details">
+                <div class="leftflow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m7 14l2.293-2.293a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 0 1.414 0L17 10m0 0v2.5m0-2.5h-2.5"/><path d="M22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464c.974.974 1.3 2.343 1.41 4.536"/></g></svg>
+                    <h3 style="margin:25px 0;font-weight:600;font-size:15px;">Interest</h3>
+                </div>
+                <p>${formatMoney(loan.interest)}</p>
+            </div>
+
+            <div class="details">
+                ${overdueFine > 0 ? `
+                    <div class="leftflow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><g fill="none"><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l2.5 2.5"/><path fill="#ffffff" d="m5.604 5.604l-.53-.53l.53.53ZM4.338 6.871l-.75.003a.75.75 0 0 0 .746.747l.004-.75Zm2.542.762a.75.75 0 1 0 .007-1.5l-.007 1.5ZM5.075 4.321a.75.75 0 0 0-1.5.008l1.5-.008ZM3.75 12a.75.75 0 0 0-1.5 0h1.5Zm13.125 8.445a.75.75 0 1 0-.75-1.298l.75 1.298Zm2.272-4.32a.75.75 0 1 0 1.298.75l-1.298-.75ZM5.14 5.07a.75.75 0 1 0 1.056 1.066L5.14 5.071Zm13.722.067c-3.82-3.82-9.993-3.859-13.788-.064l1.06 1.06c3.2-3.199 8.423-3.18 11.668.065l1.06-1.061ZM5.074 5.074L3.808 6.34l1.06 1.06l1.267-1.265l-1.061-1.061Zm-.74 2.547l2.546.012l.007-1.5l-2.545-.012l-.008 1.5Zm.754-.754L5.075 4.32l-1.5.008l.013 2.545l1.5-.007ZM12 3.75A8.25 8.25 0 0 1 20.25 12h1.5A9.75 9.75 0 0 0 12 2.25v1.5Zm0 16.5A8.25 8.25 0 0 1 3.75 12h-1.5A9.75 9.75 0 0 0 12 21.75v-1.5Zm4.125-1.103A8.209 8.209 0 0 1 12 20.25v1.5c1.775 0 3.44-.475 4.875-1.305l-.75-1.298ZM20.25 12a8.209 8.209 0 0 1-1.103 4.125l1.298.75A9.708 9.708 0 0 0 21.75 12h-1.5ZM6.196 6.137A8.221 8.221 0 0 1 12 3.75v-1.5a9.721 9.721 0 0 0-6.86 2.821l1.056 1.066Z"/></g></svg>
+                        <h3 style="margin:25px 0;font-weight:600;font-size:15px;">Overdue Fine</h3>
+                    </div>
+                    <p style='color: #ff4444;'>${formatMoney(overdueFine)} 
+                        <small>(${Math.abs(daysLeft)} days)</small>
+                    </p>` : ''}
+            </div>
+
+            <hr>
+            <div class="totaldetails">
+                <svg style='width: 30px;height: 30px;margin-top: 25px;opacity: 80%;' xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-width="1.5"><path d="M17.414 10.414C18 9.828 18 8.886 18 7c0-1.886 0-2.828-.586-3.414m0 6.828C16.828 11 15.886 11 14 11h-4c-1.886 0-2.828 0-3.414-.586m10.828 0Zm0-6.828C16.828 3 15.886 3 14 3h-4c-1.886 0-2.828 0-3.414.586m10.828 0Zm-10.828 0C6 4.172 6 5.114 6 7c0 1.886 0 2.828.586 3.414m0-6.828Zm0 6.828ZM13 7a1 1 0 1 1-2 0a1 1 0 0 1 2 0Z"/><path stroke-linecap="round" d="M18 6a3 3 0 0 1-3-3m3 5a3 3 0 0 0-3 3M6 6a3 3 0 0 0 3-3M6 8a3 3 0 0 1 3 3M4 21.388h2.26c1.01 0 2.033.106 3.016.308a14.85 14.85 0 0 0 5.33.118m-.93-3.297c.12-.014.235-.03.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.887 1.887 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075m-5.544-1.229a8.176 8.176 0 0 1-.11.012m.11-.012a.998.998 0 0 0 .427-.24a1.492 1.492 0 0 0 .126-2.134a1.9 1.9 0 0 0-.45-.367c-2.797-1.669-7.15-.398-9.779 1.467m9.676 1.274a.524.524 0 0 1-.11.012m0 0a9.274 9.274 0 0 1-1.814.004"/></g></svg>
+                <h3 style="margin: 10px 0;font-weight: 600;font-size: 15px;color: #ffffff91;">Total amount to return</h3>
+                <p style="font-size:24px;color:${overdueFine > 0 ? '#ff4000ff' : '#00b900ff'};font-weight:bold;">
+                    ${formatMoney(totalPayable)}
+                </p>
+            </div>
+        </div>
+    `;
+}
+
+function updatePurpose(index, value) {
+    currentUser.loans[index].purpose = value.trim();
+    saveUserData();
+    renderAmountButtons();
+}
+
+function renderAmountButtons() {
+    const container = document.getElementById("amountButtons");
+    container.innerHTML = "";
+    filteredLoans.forEach((loan, i) => {
+        const originalIndex = currentUser.loans.indexOf(loan);
+        const btn = document.createElement("button");
+        btn.className = "amount-btn";
+        btn.innerHTML = `${formatMoney(loan.takenAmount)}<div class="purpose-tag">${loan.purpose || 'Set Purpose'}</div>`;
+        btn.onclick = () => { displayLoanDetails(loan, originalIndex); switchView('list', false); };
+        container.appendChild(btn);
+    });
+}
+
+function renderChart() {
+    const ctx = document.getElementById('loanChart').getContext('2d');
+    const now = new Date();
+    const labels = [], data = [], colors = [];
+
+    currentUser.loans.forEach((loan, i) => {
+        const clean = loan.endDate.split('(')[0].trim();
+        const end = new Date(clean.split('-').reverse().join('-'));
+        const daysLeft = Math.ceil((end - now) / 86400000);
+        let color = '#4CAF50';
+        if (daysLeft <= 2) color = '#F44336';
+        else if (daysLeft <= 6) color = '#FFCA28';
+
+        labels.push(`Loan ${i+1}`);
+        data.push(currentCurrency === 'USD' ? (loan.takenAmount / USD_RATE).toFixed(2) : loan.takenAmount);
+        colors.push(color);
+    });
+
+    if (loanChart) loanChart.destroy();
+    loanChart = new Chart(ctx, {
+        type: 'bar',
+        data: { labels, datasets: [{ data, backgroundColor: colors, borderWidth: 1.5 }] },
+        options: { responsive: true, plugins: { legend: { display: false } } }
+    });
+}
+
+function renderCalendar() {
+    const c = document.getElementById('calendarContainer');
+    const y = calendarMonth.getFullYear(), m = calendarMonth.getMonth();
+    const first = new Date(y, m, 1).getDay();
+    const days = new Date(y, m + 1, 0).getDate();
+    const today = new Date();
+
+    const dueMap = {};
+    currentUser.loans.forEach((loan, i) => {
+        const clean = loan.endDate.split('(')[0].trim();
+        const [d, mm, yy] = clean.split('-');
+        dueMap[`${d.padStart(2,'0')}-${mm.padStart(2,'0')}-${yy}`] = i;
+    });
+
+    let html = `<div style="text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    position: sticky;
+    top: -20px;
+    background: transparent;
+    padding: 0px;
+    backdrop-filter: blur(5px);
+    width: 100%;
+    margin-bottom: 20px;
+">
+        <span style="font-weight:600;color:#eee;">${calendarMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
+        <button class="move-asaid" onclick="prevMonth()"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="move-asaid" onclick="nextMonth()"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center;color:#888;font-weight:600;">
+        <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`;
+
+    for (let i = 0; i < first; i++) html += `<div></div>`;
+    for (let d = 1; d <= days; d++) {
+        const ds = `${String(d).padStart(2,'0')}-${String(m+1).padStart(2,'0')}-${y}`;
+        const idx = dueMap[ds];
+        let style = `border-radius:12px;cursor:${idx!==undefined?'pointer':'default'};transition:all .2s;`;
+        if (idx !== undefined) {
+            const end = new Date(currentUser.loans[idx].endDate.split('(')[0].trim().split('-').reverse().join('-'));
+            const daysLeft = Math.ceil((end - today) / 86400000);
+            let bg = '#4CAF50';
+            if (daysLeft <= 2) bg = '#F44336';
+            else if (daysLeft <= 6) bg = '#ffbf00ff';
+            style += `background:${bg};color:black;font-weight:bold;`;
+        }
+        if (ds === today.toLocaleDateString('en-GB').split('/').reverse().join('-')) {
+            style += `border:2px solid #00aaff;box-sizing:border-box;`;
+        }
+        html += `<div style="${style}" ${idx!==undefined?`onclick="showDatePopup(${idx})"`:''}>${d}</div>`;
+    }
+    html += `</div>`;
+    c.innerHTML = html;
+}
+
+function prevMonth() { calendarMonth.setMonth(calendarMonth.getMonth() - 1); renderCalendar(); }
+function nextMonth() { calendarMonth.setMonth(calendarMonth.getMonth() + 1); renderCalendar(); }
+
+function showDatePopup(idx) {
+    const loan = currentUser.loans[idx];
+    const cleanEnd = loan.endDate.split('(')[0].trim();
+    const daysLeft = Math.ceil((new Date(cleanEnd.split('-').reverse().join('-')) - new Date()) / 86400000);
+    document.getElementById('popupContent').innerHTML = `
+        <p style='color: #e2b325;font-weight: 600;'><strong>Taken Amount:</strong> ${formatMoney(loan.takenAmount)}</p>
+        <p style='color: #e2b325;font-weight: 600;'><strong>Purpose:</strong> ${loan.purpose || 'Not set'}</p>
+        <p style='color: #e2b325;font-weight: 600;'><strong>Return date :</strong> ${cleanEnd}</p>
+        <hr style='margin: 15px 0px;'>
+        <p style='color: #e2b325;font-weight: 600;    font-size: 20px;'><strong>Status:</strong> <span style="color:${daysLeft<=2?'#F44336':daysLeft<=6?'#FFCA28':'#4CAF50'}">
+            ${daysLeft > 0 ? daysLeft + ' days left' : 'Overdue'}
+        </span></p>
+        <button style="margin-top:15px;width:100%;padding:10px;background:#004fff;border-radius:20px;margin-bottom:-5px" onclick="goToList(${idx})">View Full</button>
+    `;
+    document.getElementById('datePopup').style.display = 'block';
+}
+
+function closeDatePopup() { document.getElementById('datePopup').style.display = 'none'; }
+function goToList(idx) { closeDatePopup(); switchView('list', true); displayLoanDetails(currentUser.loans[idx], idx); }
+
+function renderLinks() {
+    const c = document.getElementById("userLinks");
+    c.innerHTML = "";                     // clear previous content
+
+    if (!currentUser.links || currentUser.links.length === 0) {
+        // ---- No links → show a message ----
+        const emptyMsg = document.createElement("div");
+        emptyMsg.className = "user-link empty-message";
+        emptyMsg.innerHTML = `
+            <i class="fa-solid fa-info-circle"></i>
+            No links saved yet.
+        `;
+        c.appendChild(emptyMsg);
+        return;                           // stop here, nothing else to render
+    }
+
+    // ---- There are links → render them ----
+    currentUser.links.forEach((link, i) => {
+        const div = document.createElement("div");
+        div.className = "user-link";
+        div.innerHTML = `<i class="fa-solid fa-link"></i> ${link.title}`;
+        div.onclick = () => { 
+            pendingLink = {link, i}; 
+            document.getElementById("linkConfirmPopup").style.display = "block"; 
+        };
+        c.appendChild(div);
+    });
+}
+function addLink() {
+    const title = prompt("Link title:");
+    if (!title) return;
+    const url = prompt("URL:");
+    if (url && url.startsWith('http')) {
+        currentUser.links.push({title, url});
+        renderLinks();
+        saveUserData();
+    }
+}
+
+document.getElementById("linkYesBtn").onclick = () => {
+    window.open(pendingLink.link.url, '_blank');
+    document.getElementById("linkConfirmPopup").style.display = "none";
+};
+
+document.getElementById("linkDeleteBtn").onclick = () => {
+    currentUser.links.splice(pendingLink.i, 1);
+    renderLinks();
+    saveUserData();
+    document.getElementById("linkConfirmPopup").style.display = "none";
+};
+
+function openEmoteChooser() { document.getElementById("emoteChooser").style.display = "block"; }
+function closeEmoteChooser() { document.getElementById("emoteChooser").style.display = "none"; }
+function setUserEmote(src) {
+    currentUser.emote = src;
+    document.getElementById("userEmote").src = src;
+    saveUserData();
+    closeEmoteChooser();
+}
+
+function updateNavActive(view) {
+    document.querySelectorAll('.nav-item').forEach(n => {
+        n.classList.toggle('active', n.dataset.view === view);
+        const pin = n.querySelector('.toggle-pin');
+        const isOn = localStorage.getItem(PINNED_KEY) === n.dataset.view;
+        pin.className = `fa-solid fa-toggle-${isOn ? 'on' : 'off'} toggle-pin ${isOn ? 'on' : ''}`;
+    });
+}
+
+document.querySelectorAll('.nav-item').forEach(item => {
+    item.onclick = () => switchView(item.dataset.view, true);
+});
+
+document.querySelectorAll('.toggle-pin').forEach(pin => {
+    pin.onclick = (e) => {
+        e.stopPropagation();
+        const view = pin.closest('.nav-item').dataset.view;
+        if (localStorage.getItem(PINNED_KEY) === view) localStorage.removeItem(PINNED_KEY);
+        else localStorage.setItem(PINNED_KEY, view);
+        updateNavActive(document.querySelector('.nav-item.active')?.dataset.view || 'list');
+    };
+});
+
+function switchView(view, nav = true) {
+    document.getElementById('loanDetails').style.display = view === 'list' ? 'block' : 'none';
+    document.getElementById('graphContainer').style.display = view === 'graph' ? 'block' : 'none';
+    document.getElementById('calendarContainer').style.display = view === 'calendar' ? 'block' : 'none';
+    if (view === 'graph') renderChart();
+    if (view === 'calendar') renderCalendar();
+    if (nav) updateNavActive(view);
+}
+
+function closeModal() {
+    document.getElementById("userInfoModal").style.display = "none";
+    document.getElementById("passwordContainer").style.display = "flex";
+    saveUserData();
+    currentUser = null;
+}
+
+let searchOpen = false;
+function toggleSearch() {
+    const input = document.getElementById("searchInput");
+    const icon = document.getElementById("searchIcon");
+    searchOpen = !searchOpen;
+    input.classList.toggle("active", searchOpen);
+    icon.style.transform = searchOpen ? "rotate(90deg)" : "rotate(0deg)";
+    if (searchOpen) setTimeout(() => input.focus(), 300);
+    else { input.value = ""; filterLoans(); }
+}
+
+function filterLoans() {
+    const q = document.getElementById("searchInput").value.toLowerCase();
+    filteredLoans = currentUser.loans.filter(loan =>
+        loan.takenAmount.toString().includes(q) ||
+        (loan.purpose && loan.purpose.toLowerCase().includes(q)) ||
+        loan.takenFrom.toLowerCase().includes(q)
+    );
+    renderAmountButtons();
+}
+const coinSection = document.getElementById('coinSection');
+    const popupOverlay = document.getElementById('swanShopPopup');
+    const closeBtn = document.querySelector('.close-btn');
+
+    coinSection.addEventListener('click', () => {
+      popupOverlay.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      popupOverlay.classList.remove('active');
+    });
+
+    popupOverlay.addEventListener('click', (e) => {
+      if (e.target === popupOverlay) {
+        popupOverlay.classList.remove('active');
+      }
+    });
+
