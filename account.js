@@ -527,13 +527,16 @@ function renderCalendar() {
     gap: 10px;
     position: sticky;
     top: -20px;
-    background: transparent;
-    padding: 0px;
-    backdrop-filter: blur(5px);
+    background: #000000e0;
+    padding: 10px 10px 0px 15px;
     width: 100%;
     margin-bottom: 20px;
+    border-radius: 1000px;
 ">
-        <span style="font-weight:600;color:#eee;">${calendarMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
+        <span style="    font-weight: 600;
+    color: #eee;
+    position: relative;
+    top: -5px;">${calendarMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
         <button class="move-asaid" onclick="prevMonth()"><i class="fa-solid fa-chevron-left"></i></button>
         <button class="move-asaid" onclick="nextMonth()"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
