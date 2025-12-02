@@ -138,7 +138,9 @@ ease;    margin: 10px;
     color: #ffffffbf;
     font-size: 14px;
     box-shadow: inset 0 0.5px 0 #ffffff26, inset 0 -4px 9px #ffffff1f;
-        border: 1px solid rgb(255 255 255 / 9%);
+        border: 1px solid rgb(255 255 255 / 9%);    display: flex;
+    justify-content: center;
+    gap: 10px;
         } 
         .price-card:hover{
           transform: scale(1.01);
@@ -153,8 +155,8 @@ ease;    margin: 10px;
         .popup h3{margin-bottom:10px;} 
         .close-btn{margin-top:20px;} 
         .menu{ 
-      position: fixed;
-    bottom: 5px;
+       position: fixed;
+    bottom: 0px;
     max-width: 500px;
     display: flex;
     justify-content: space-around;
@@ -162,11 +164,9 @@ ease;    margin: 10px;
     backdrop-filter: blur(12px);
     z-index: 999;
     padding: 6px 5px;
-    width: 99%;
+    width: 100%;
     box-shadow: inset 0 10px 12px #ffffff29;
-    border: 1.5px solid rgb(255 255 255 / 15%);
-    border-radius: 25px;
-    margin: 2px 2px;
+    border-top: 1.5px solid rgb(255 255 255 / 16%);
         } 
         b {
     color: #e4c1a8;
@@ -195,14 +195,15 @@ ease;    margin: 10px;
         .note{ font-size:12.5px;color:#aaa;padding:20px; line-height: 20px; } 
 
         #stoexplore{ 
-    padding: 8px 20px;
+   padding: 8px 20px;
     text-decoration: none;
     border-radius: 30px;
     font-weight: 600;
     background: linear-gradient(45deg, #ff00ff, #0023ff);
     color: white;
-    box-shadow: inset 0 0.5px 0 #ffffff69, inset 0 -4px 9px #ffffffcf;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0.5px 0 #ffffff00, inset 0 0px 7px #ffffff99;
+    transition: all 0.3s 
+ease-in-out;;
          transition: all 0.3s ease-in-out;}
         #stoexplore:hover{
             transform: scale(1.05); 
