@@ -21,7 +21,7 @@
             margin: 0;
             padding: 0;
             
-        }:root { --gold: #0040ff; --dark: #0a0a0a; --card: rgba(20,20,20,0.6); --text: #eaeaea; --muted: #888; --glass: rgb(60 60 60); } 
+        }:root { --gold: #b8aa9ead; --dark: #0a0a0a; --card: rgba(20,20,20,0.6); --text: #eaeaea; --muted: #888; --glass: rgb(60 60 60); } 
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -169,11 +169,19 @@ ease;    margin: 10px;
         b {
     color: #ffe200;
 }
-        .menu a{ flex:1;text-align:center; color:var(--muted); padding:10px 0; transition:0.3s;display: flex;
+        .menu a{ flex: 1;
+    text-align: center;
+    color: #888888ad;
+    padding: 10px 0;
+    transition: 0.3s;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-size: 10px; } 
+    font-size: 10px;
+    font-weight: 500;
+    gap: 3px;
+} 
         .menu svg.active,.menu a:hover{
           color:var(--gold);} 
         .menu a i{font-size:20px;} 
@@ -284,7 +292,7 @@ ease;    margin: 10px;
 
     <p class="note">
       These are not fixed interest rates, They change based on amount providers.<br><br>
-      <a id="stoexplore" href="https://mfi0212.github.io/swan/offer/offer">STO</a>
+      <a id="stoexplore" href="https://mfi0212.github.io/swan/offer/offer">Visit STO</a>
     </p>
   </div>
 
