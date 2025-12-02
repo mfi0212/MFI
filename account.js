@@ -1,7 +1,4 @@
-// document.addEventListener('contextmenu', e => e.preventDefault());
-
-
-
+document.addEventListener('contextmenu', e => e.preventDefault());
 // for(let i=0;i<15;i++){
 //     const b=document.createElement("div");b.className="bulb";
 //     const dur=6+Math.random()*5;
