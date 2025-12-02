@@ -1,5 +1,4 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
-
 // for(let i=0;i<15;i++){
 //     const b=document.createElement("div");b.className="bulb";
 //     const dur=6+Math.random()*5;
@@ -167,7 +166,93 @@ function loadUserData() {
         }
     }
 }
+// Load saved background
+window.onload = () => {
+  const saved = localStorage.getItem('userBG');
+  if (saved === 'black') {
+    applyBlack();
+  } else if (saved) {
+    applyImage(saved, false); // false = no repeat
+  }
+};
 
+const fab = document.getElementById('fab');
+const sheet = document.getElementById('sheet');
+const overlay = document.getElementById('overlay');
+
+fab.onclick = () => {
+  sheet.classList.toggle('active');
+  overlay.classList.toggle('active');
+};
+
+overlay.onclick = () => {
+  sheet.classList.remove('active');
+  overlay.classList.remove('active');
+  document.getElementById('presetSection').style.display = 'none';
+  document.getElementById('uploadSection').style.display = 'none';
+};
+
+// Preset Wallpapers
+document.getElementById('presetBtn').onclick = () => {
+  const section = document.getElementById('presetSection');
+  section.style.display = section.style.display === 'block' ? 'none' : 'block';
+  document.getElementById('uploadSection').style.display = 'none';
+};
+
+document.querySelectorAll('.wallpaper-thumb').forEach(img => {
+  img.onclick = () => {
+    applyImage(img.src, false);
+    closeSheet();
+  };
+});
+
+// Upload Image
+document.getElementById('uploadBtn').onclick = () => {
+  const section = document.getElementById('uploadSection');
+  section.style.display = section.style.display === 'block' ? 'none' : 'block';
+  document.getElementById('presetSection').style.display = 'none';
+};
+
+document.getElementById('dropArea').onclick = () => {
+  document.getElementById('fileInput').click();
+};
+
+document.getElementById('fileInput').onchange = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      applyImage(ev.target.result, false);
+      closeSheet();
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+// Original Black
+document.getElementById('originalBtn').onclick = () => {
+  applyBlack();
+  closeSheet();
+};
+
+function applyImage(url, repeat = false) {
+  document.body.style.backgroundImage = `url(${url})`;
+  document.body.style.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
+  document.body.style.backgroundSize = 'cover';
+  document.body.style.backgroundPosition = 'center';
+  localStorage.setItem('userBG', url);
+}
+
+function applyBlack() {
+  document.body.style.background = '#000';
+  document.body.style.backgroundImage = 'none';
+  localStorage.setItem('userBG', 'black');
+}
+
+function closeSheet() {
+  sheet.classList.remove('active');
+  overlay.classList.remove('active');
+}
 function saveUserData() {
     const data = {};
     for (let pin in usersDB) {
