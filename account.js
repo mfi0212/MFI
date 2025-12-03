@@ -144,6 +144,7 @@ const usersDB = {
         loans: [
            { planDate: "25-05-2025", endDate: "05-12-2025(Extended to 15 days)", interest: 657, takenAmount: 5740, takenFrom: "Delayit offer", fineRate: 50 },
             { planDate: "29-09-2025", endDate: "14-12-2025(Extended to 30 days)", interest: 1380, takenAmount: 4720, takenFrom: "MLLD", fineRate: 40 },
+            { planDate: "03-12-2025", endDate: "02-01-2026", interest: 1705, takenAmount: 5500, takenFrom: "MLendings", fineRate: 40 },
         ],
         links: [],
         emote: "https://i.pinimg.com/736x/d7/b9/48/d7b948ff970f7d92ee265072da06fd07.jpg"
