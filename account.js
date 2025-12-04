@@ -1,4 +1,5 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
+
 // for(let i=0;i<15;i++){
 //     const b=document.createElement("div");b.className="bulb";
 //     const dur=6+Math.random()*5;
@@ -142,8 +143,8 @@ const usersDB = {
         name: "Mahesh Muthinti",
         coins: 300,
         loans: [
-           { planDate: "25-05-2025", endDate: "05-12-2025(Extended to 15 days)", interest: 657, takenAmount: 5740, takenFrom: "Delayit offer", fineRate: 50 },
             { planDate: "29-09-2025", endDate: "14-12-2025(Extended to 30 days)", interest: 1380, takenAmount: 4720, takenFrom: "MLLD", fineRate: 40 },
+            { planDate: "25-05-2025", endDate: "19-12-2025(Extended to 15 days)", interest: 1000, takenAmount: 6420, takenFrom: "Delayit offer", fineRate: 50 },
             { planDate: "03-12-2025", endDate: "02-01-2026", interest: 1705, takenAmount: 5500, takenFrom: "MLendings", fineRate: 40 },
         ],
         links: [],
