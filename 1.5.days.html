@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BS&MFI | Short Term Loan</title>
+    <link rel="icon" href="https://i.ibb.co/ZpVQQ2Kp/mfi-logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --white: #ffffff;
+      --black: #111111;
+      --gray: #555555;
+      --border: #e5e5e5;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.7;
+    }
+    .container { max-width: 900px; margin: 0 auto;padding: 10px;}
+
+    header {
+      text-align: center;
+      padding: 100px 20px 60px;
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.8rem;
+      font-weight: 500;
+      letter-spacing: -2px;
+      margin-bottom: 8px;
+    }
+    .tagline {
+      font-size: 1.1rem;
+      color: var(--gray);
+      letter-spacing: 1px;
+    }
+
+    .calculator {
+      background:#0000001a;
+      max-width: 520px;
+      margin: 0 auto 80px;
+      padding: 60px 50px;
+      border: 1px solid var(--border);    position: sticky;
+    top: 0px;
+    }
+    .calc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      color: var(--gray);
+      font-weight: 500;
+    }
+    input, select {
+      width: 100%;
+      padding: 14px 0;
+      border: none;
+      border-bottom: 1px solid #00000036;
+          font-size: 1.6rem;
+      font-weight: 500;
+      background: transparent;
+      margin-bottom: 30px;
+    }
+    select { font-size: 1.6rem; color: var(--black); }
+    input:focus, select:focus {
+      outline: none;
+      border-bottom-color: var(--black);
+    }
+    option{
+        font-size: 1.2rem;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 16px;
+      background: #0000006a;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+    button:hover { background: #002aff; }
+
+    .result {
+      margin-top: 50px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      display: none; /* hidden until button click */
+    }
+    .big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 500;
+      letter-spacing: -1px;
+    }
+
+    .note {
+      max-width: 520px;
+      margin: 0 auto 80px;
+      font-size: 0.95rem;
+      color: var(--gray);
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    footer {
+     text-align: center;
+    padding: 50px;
+    font-size: 0.9rem;
+    background: #0000001a;
+    color: black;
+    }
+
+    @media (max-width: 640px) {
+      .logo { font-size: 2.8rem; }
+      .calculator { padding: 50px 30px; }
+      .big { font-size: 3.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="logo">Short-Term Loan</div>
+      <p class="tagline">Power by BS&MFI/STO</p>
+    </header>
+
+    <div class="calculator">
+      <h2 class="calc-title">Calculate your loan</h2>
+
+      <label>Loan amount in ₹</label>
+      <input type="number" id="amount" placeholder="Enter amount here.." step="500" />
+
+      <label>Number of days</label>
+      <select id="days">
+        <option value="1">1 day</option>
+        <option value="2" selected>2 days</option>
+        <option value="3">3 days</option>
+        <option value="4">4 days</option>
+        <option value="5">5 days</option>
+      </select>
+
+      <button id="calcBtn">SHOW INTEREST NOW</button>
+
+      <div id="result" class="result">
+        <div style="margin-bottom:20px; color:var(--gray);display: none; font-size:0.95rem;">You receive today</div>
+        <div style="font-size:2.4rem; font-weight:600;display: none;">₹<span id="principal">0</span></div>
+
+        <div style="margin:30px 0 10px; color:var(--gray); font-size:0.95rem;">
+          Interest (<span id="rateText">2</span> × 1.18%)
+        </div>
+        <div style="font-size:1.9rem;">₹<span id="interest">0</span></div>
+
+        <div style="margin:40px 0 10px;display: none; color:var(--gray); font-size:0.95rem;">
+          Total to repay in <span id="daysText">2</span> <span id="dayLabel">days</span>
+        </div>
+        <div class="big" style="display: none;">₹<span id="total">0</span></div>
+      </div>
+    </div>
+
+    <p class="note">
+      1-5 days lends. Borrow only if you can repay on the due date.
+    </p>
+  </div>
+
+  <footer>
+    © BS&MFI. All rights reserved.
+  </footer>
+
+  <script>
+    const amountInput = document.getElementById('amount');
+    const daysSelect  = document.getElementById('days');
+    const resultDiv   = document.getElementById('result');
+    const principal   = document.getElementById('principal');
+    const interestEl  = document.getElementById('interest');
+    const totalEl     = document.getElementById('total');
+    const rateText    = document.getElementById('rateText');
+    const daysText    = document.getElementById('daysText');
+    const dayLabel    = document.getElementById('dayLabel');
+
+    document.getElementById('calcBtn').addEventListener('click', function() {
+      let amount = parseFloat(amountInput.value) || 0;
+      let days   = parseInt(daysSelect.value);
+
+      if (amount <= 0) {
+        resultDiv.style.display = 'none';
+        return;
+      }
+
+      const dailyRate = 0.0059;                 // 1.18% per day
+      const interest  = amount * dailyRate * days;
+      const total     = amount + interest;
+
+      // Update displayed values
+      principal.textContent = format(Math.round(amount));
+      interestEl.textContent = format(Math.round(interest));
+      totalEl.textContent    = format(Math.round(total));
+
+      rateText.textContent = days;
+      daysText.textContent = days;
+      dayLabel.textContent = days === 1 ? 'day' : 'days';
+
+      resultDiv.style.display = 'block';
+    });
+
+    // Hide result if amount is cleared
+    amountInput.addEventListener('input', () => {
+      if (!amountInput.value) resultDiv.style.display = 'none';
+    });
+
+    function format(num) {
+      return num.toLocaleString('en-IN');
+    }
+document.addEventListener('contextmenu', e => e.preventDefault());
+  </script>
+</body>
+</html>
