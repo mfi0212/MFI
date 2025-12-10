@@ -1,7 +1,7 @@
   const blockedPasswords = ["6275"];
 
  const specialRates = {
-            'Thu Dec 04 2025': 34
+            'Thu Dec 10 2025': 30
  };
 
      function getDailyInterestRate() {
@@ -13,6 +13,7 @@
     const rate = 20 + (Math.abs(hash) % 5);
     return rate;
 }
+
 
 
 
