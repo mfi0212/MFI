@@ -141,14 +141,14 @@ let filteredLoans = [];
 const usersDB = {
     "Mahesh888*": {
         name: "Mahesh Muthinti",
-        coins: 300,
+        coins: 500,
         loans: [
             { planDate: "29-09-2025", endDate: "14-12-2025(Extended to 30 days)", interest: 1380, takenAmount: 4720, takenFrom: "MLLD", fineRate: 40 },
             { planDate: "25-05-2025", endDate: "19-12-2025(Extended to 15 days)", interest: 1000, takenAmount: 6420, takenFrom: "Delayit offer", fineRate: 50 },
             { planDate: "03-12-2025", endDate: "02-01-2026", interest: 1705, takenAmount: 5500, takenFrom: "MLendings", fineRate: 40 },
         ],
         links: [],
-        emote: "totalmaybe.png"
+        emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
     },
 };
 
