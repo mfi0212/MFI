@@ -240,8 +240,8 @@ document.getElementById('originalBtn').onclick = () => {
 
 function applyImage(url, repeat = false) {
   document.body.style.backgroundImage = `url(${url})`;
-//   document.body.style.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
-//   document.body.style.backgroundSize = 'cover';
+  document.body.style.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
+  document.body.style.backgroundSize = '115%';
   document.body.style.backgroundPosition = 'center';
   localStorage.setItem('userBG', url);
 }
