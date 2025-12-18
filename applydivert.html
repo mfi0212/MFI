@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Take Money verify</title>
+<link rel="icon" href="https://i.ibb.co/213w1VQD/titlelogo.png" />
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --blue:#0b2c4d;
+    --light:#eef4fa;
+    --border:#cbd9e6;
+}
+* {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#ffffff;
+    font-family:'Inter',sans-serif;
+    color:var(--blue);
+}
+
+.card{
+width: 90%;
+    max-width: 380px;
+    padding: 20px;
+    text-align: center;
+}
+
+h1{
+  font-family: "Hahmlet", serif;
+    font-size: 36px;
+    font-weight: 600;
+    margin-top: 0px;color: #0000e2;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border:1.5px solid gray;
+    font-size:15px;
+    outline:none;
+    text-align: center;
+}
+
+input:focus{
+    border-color:#000000;
+}
+
+button{
+    width:100%;
+    margin-top:16px;
+    padding:14px;
+    background:#0000e600;
+    color:#0000e6;
+    border:solid 1.5px;
+    font-size:14px;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0000e6;
+    color: white;
+}
+
+#explore{
+    display:none;
+    margin-top:22px;
+}
+
+#explore a{
+    display: inline-block;
+    padding: 11px 28px;
+    color: white;
+    text-decoration: none;
+    background: #0000e2;
+}
+
+.error{
+    color:#b00020;
+    margin-top:14px;
+    font-size:14px;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+    <!-- <img style="width: 70%;" src="https://i.ibb.co/bjy8q1jz/bsmfi-logo.png" alt="BSMFI"> -->
+    <h1>BS&MFI</h1><br><p style="margin-top: -45px;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 5px;color: #0000e2;margin-bottom: 30px;">Take Money</p>
+
+    <input type="text" id="password" placeholder="Enter password">
+
+    <button onclick="go()">Go</button>
+
+    <div id="explore">
+        <a id="exploreLink">Explore</a>
+    </div>
+
+    <div class="error" id="error"></div>
+</div>
+
+<script>
+const accessRules = [
+  {
+    passwords: ["6275", "4211"],
+    url: "https://blackswan19.github.io/golden/FM/takemoney"
+  },
+  {
+    passwords: ["Mahesh888*", "Cherish@123"],
+    url: "https://mfi0212.github.io/MFI/takemoney"
+  }
+];
+document.addEventListener('contextmenu', e => e.preventDefault());
+const saved = localStorage.getItem("password");
+if(saved){
+  document.getElementById("password").value = saved;
+}
+
+function go(){
+  const pass = document.getElementById("password").value.trim();
+  const explore = document.getElementById("explore");
+  const error = document.getElementById("error");
+
+  explore.style.display = "none";
+  error.textContent = "";
+
+  for(const rule of accessRules){
+    if(rule.passwords.includes(pass)){
+      localStorage.setItem("password", pass);
+      document.getElementById("exploreLink").href = rule.url;
+      explore.style.display = "block";
+      return;
+    }
+  }
+
+  error.textContent = "Invalid password";
+}
+</script>
+
+</body>
+</html>
