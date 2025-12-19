@@ -151,6 +151,17 @@ const usersDB = {
         links: [],
         emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
     },
+    "0212": {
+        name: "Tony Montana",
+        coins: 1063,
+        loans: [
+            { planDate: "03-12-2025", endDate: "12-03-2026", interest: 2505, takenAmount: 8500, takenFrom: "Golden", fineRate: 40 },
+            { planDate: "03-12-2025", endDate: "12-03-2026", interest: 2505, takenAmount: 10500, takenFrom: "Golden", fineRate: 40 },
+            { planDate: "03-12-2025", endDate: "12-03-2026", interest: 2505, takenAmount: 18500, takenFrom: "Golden", fineRate: 40 },
+        ],
+        links: [],
+        emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
+    },
 };
 
 function loadUserData() {
