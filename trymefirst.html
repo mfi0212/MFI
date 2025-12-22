@@ -152,7 +152,7 @@ scrollbar-width: none;
     border: 1px solid rgba(255, 255, 255, 0.2);
         transition: all 0.3s ease;}
         .close-btn:hover{
-              transform: scale(1.05); 
+              transform: scale(1.03); 
         }
         .close-btn:active{
               transform: scale(0.90); 
@@ -199,7 +199,7 @@ scrollbar-width: none;
     border: 1px solid rgba(255, 255, 255, 0.2);
        transition: all 0.3s ease;backdrop-filter: blur(4px);}
         .currency-switch:hover{
-              transform: scale(1.05); 
+              transform: scale(1.03); 
         }
         .currency-switch:active{
               transform: scale(0.90); 
@@ -259,7 +259,7 @@ ease;
     border: 1px solid rgba(255, 255, 255, 0.2);
          transition: all 0.3s ease;}
         .user-links :hover{
-              transform: scale(1.05); 
+              transform: scale(1.03); 
         }
         .user-links :active{
               transform: scale(0.90); 
@@ -274,7 +274,7 @@ ease;
         margin-top: 35px;
 transition: all 0.3s ease-in-out;}
         .add-link-btn:hover{
-              transform: scale(1.05); 
+              transform: scale(1.03); 
         }
         .add-link-btn:active{
               transform: scale(0.90); 
@@ -305,7 +305,7 @@ ease;
     box-shadow: inset 0 1px 0 #ffffff0a, inset 0 -3px 10px #ffffff3d;
     border: 1px solid rgba(255, 255, 255, 0.2);}
         #searchIcon:hover{
-              transform: scale(1.05); 
+              transform: scale(1.03); 
         }
         #searchIcon:active{
               transform: scale(0.90); 
@@ -376,7 +376,7 @@ ease-in-out;
     box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff21;
     border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;}
         .amount-btn:hover{
-              transform: scale(1.05); 
+              transform: scale(1.03); 
         }
         .amount-btn:active{
               transform: scale(0.90); 
@@ -389,7 +389,7 @@ ease-in-out;
     height:32px;
     transition: all 0.3s ease;}
         .total-icon:hover{
-              transform: scale(1.05); 
+              transform: scale(1.03); 
         }
         .total-icon:active{
               transform: scale(0.90); 
@@ -406,10 +406,10 @@ ease-in-out;
     box-shadow: inset 0 0.5px 0 #ffc100a8, inset 0 -4px 9px #ffc800b3;
     transition: all 0.3s 
 ease;z-index: 1000;
-    color: #e8b801;
+    color: #e8b801;cursor: pointer;
  transition: all 0.3s ease;}
         #coinSection:hover{
-              transform: scale(1.05); 
+              transform: scale(1.03); 
         }
         #coinSection:active{
               transform: scale(0.90); 
@@ -431,7 +431,7 @@ ease;z-index: 1;
     border: 1px solid rgba(255, 255, 255, 0.2);
     }
         .offergift:hover{
-              transform: scale(1.05); 
+              transform: scale(1.03); 
         }
         .offergift:active{
               transform: scale(0.90); 
@@ -501,7 +501,7 @@ div#popupContent {
         #datePopup button:hover, 
         #linkConfirmPopup button:hover, 
         #emoteChooser button:hover{
-              transform: scale(1.05); 
+              transform: scale(1.03); 
         }
         #totalPopup button:active,
         #datePopup button:active,
@@ -554,7 +554,7 @@ div#popupContent {
     transition: all 0.6s ease-in-out;
         }
         .purpose-input:hover{
-              transform: scale(1.05); 
+              transform: scale(1.03); 
         }
         .purpose-input:focus{
              transform: scale(1.3) translateX(-20px);
@@ -750,8 +750,12 @@ cubic-bezier(0.4, 0, 0.2, 1);
     border: transparent;
     outline: solid 3px rgb(255 255 255 / 34%);
     outline-offset: 5px;
-}
-
+    transition: all 0.3s ease-in-out;
+    }
+       
+        .youtube-wrapper:active{
+              transform: scale(0.70); 
+        }
 .youtube-wrapper iframe {
       position: absolute;
     top: 0;
@@ -759,7 +763,12 @@ cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
     height: 100%;
     border: 0;
-}
+    transition: all 0.3s ease-in-out;
+    }
+         
+        .youtube-wrapper iframe:active{
+              transform: scale(0.70); 
+        }
         @media (max-width : 700px) {
               .fixed {
            position: fixed;
@@ -1074,7 +1083,7 @@ transition: all 0.5s ease;}
   }
   .wallpaper-thumb:hover {
     border-color: #fff;
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
 
   .upload-area {
@@ -1272,13 +1281,23 @@ transition: all 0.5s ease;}
         </div>
         <div class="pack-price">₹650.99</div>
       </div>
-
-      <a href="https://blackswan19.github.io/golden/FM/starspage"><button style="cursor: pointer;
+<style>
+    .explore-link{
+        cursor: pointer;
     width: 100%;
     border-radius: 100px;
     margin-bottom: 16px;
     background: #ffca00;
-    font-weight: 600;">Explore Stars</button></a>
+    font-weight: 600;transition: all 0.3s ease-in-out;
+    }
+            .explore-link:hover{
+              transform: scale(1.03); 
+        }
+        .explore-link:active{
+              transform: scale(0.90); 
+        } 
+</style>
+      <a href="https://blackswan19.github.io/golden/FM/starspage"><button class="explore-link"> Explore Stars</button></a>
     </div>
             </div>
 
@@ -1323,12 +1342,22 @@ transition: all 0.5s ease;}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
             </iframe>
         </div>
-        <div class="playlist" style="width: 100%;
-    text-align: center;">
-            <a href="https://www.yout-ube.com/watch?v=TFsZy9t-qDc&list=RD79EsaMCYo4o&start_radio=1"><button style="background: #00000000;
+        <style>.festivalexplo{
+        background: #00000000;
     color: white;
     padding: 10px 25px;
-    border-radius: 1000px;cursor: pointer;"> Christmas song playlist</button></a>
+    border-radius: 1000px;cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    }
+            .festivalexplo:hover{
+              transform: scale(1.03); 
+        }
+        .festivalexplo:active{
+              transform: scale(0.90); 
+        } </style>
+        <div class="playlist" style="width: 100%;
+    text-align: center;">
+            <a href="https://www.yout-ube.com/watch?v=TFsZy9t-qDc&list=RD79EsaMCYo4o&start_radio=1"><button class="festivalexplo"> Christmas song playlist</button></a>
         </div>
         <div id="loanDetails"></div>
         <div id="graphContainer" style="display:none;"><canvas id="loanChart"></canvas>
