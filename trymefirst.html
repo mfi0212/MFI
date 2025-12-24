@@ -186,7 +186,7 @@ ease;    margin: 15px;
     margin: 5px;
     gap: 2px;
     border-radius: 100px;
-    
+     border: 1px solid rgba(255, 255, 255, 0);
 } 
     p#popup-content {
     color: #ffffff80;
@@ -194,7 +194,28 @@ ease;    margin: 15px;
         /* .menu svg.active,.menu a:hover{
           color:#00fff2
         }  */
-        .menu a i{font-size:20px;} 
+        .menu a i{font-size:20px;}
+                .menu svg{
+          width: 18px;
+    height: 25px;
+    opacity: 100%;
+    }
+    .menu a,svg{
+      cursor: pointer;opacity: 50%; 
+      transition: all 0.2s ease;
+      color: white;
+    }
+        .menu a:hover{
+              transform: scale(1); 
+              opacity: 100%;
+              background-color: #ffffff0b;
+              box-shadow: inset 0 0.5px 0 #ffffff11, inset 0 -4px 9px #ffffff10;
+    border: 1px solid rgb(255 255 255 / 7%);
+        }
+        .menu a:active{
+              transform: scale(0.90); 
+        } 
+ 
         a{ color: white; text-decoration: none; } 
         .menu-content{ display: none; text-align: center; padding: 10px; } 
         .menu-content.active{display:block;} 
@@ -261,26 +282,6 @@ ease-in-out;;
     .menu-content p {
     font-size: 14px;
 }
-        .menu svg{
-          width: 18px;
-    height: 25px;
-    opacity: 100%;
-    }
-    .menu a,svg{
-      cursor: pointer;opacity: 50%; 
-      transition: all 0.2s ease;
-      color: white;
-    }
-        .menu a:hover{
-              transform: scale(1); 
-              opacity: 100%;
-              background-color: #ffffff0b;
-              box-shadow: inset 0 0.5px 0 #ffffff21, inset 0 -4px 9px #ffffff21;
-    border: 1px solid rgb(255 255 255 / 7%);
-        }
-        .menu a:active{
-              transform: scale(0.90); 
-        } 
 
         
         @media(max-width:500px) {
