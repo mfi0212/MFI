@@ -1,5 +1,4 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
-
 // for(let i=0;i<15;i++){
 //     const b=document.createElement("div");b.className="bulb";
 //     const dur=6+Math.random()*5;
@@ -8,7 +7,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 //     document.getElementById("lights").appendChild(b);
 // }
 // const bulbs = document.querySelectorAll('.bulb');
-
 document.getElementById("candy").onclick = () => document.getElementById("panel").classList.toggle("show");
 
 const modeSelect = document.getElementById("mode");
@@ -143,7 +141,7 @@ const usersDB = {
         name: "Mahesh Muthinti",
         coins: 63,
         loans: [
-            { planDate: "03-12-2025", endDate: "02-01-2026", interest: 1705, takenAmount: 5500, takenFrom: "MLendings", fineRate: 40 },
+            { planDate: "03-12-2025", endDate: "02-01-2026", interest: 1345, takenAmount: 5500, takenFrom: "MLendings", fineRate: 40 },
             { planDate: "29-09-2025", endDate: "12-01-2026(Extended to 30 days)", interest: 1600, takenAmount: 6100, takenFrom: "MLLD", fineRate: 40 },
             { planDate: "16-12-2025", endDate: "15-01-2026", interest: 1240, takenAmount: 4000, takenFrom: "Lendlink", fineRate: 40 },
             { planDate: "25-05-2025", endDate: "16-01-2026(Extended to 30 days)", interest: 660, takenAmount: 2420, takenFrom: "Delayit offer", fineRate: 50 },
@@ -727,5 +725,4 @@ const coinSection = document.getElementById('coinSection');
         popupOverlay.classList.remove('active');
       }
     });
-
 
