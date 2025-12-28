@@ -1,1 +1,532 @@
-no test...
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden</title>
+    <link rel="icon" href="https://i.ibb.co/N62DvBYh/titlepng.png">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mr+De+Haviland&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scrollbar-width: none;
+        }
+        :root { --gold: #000000; --dark: #0a0a0a; --card: rgba(20,20,20,0.6); --text: #eaeaea; --muted: #888; --glass: rgb(60 60 60); } 
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 10000000;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+         .loading-logo {
+            width: 260px;
+            height: auto;
+        }
+        .loading-dots {
+            display: flex;
+            position: fixed;
+            bottom: 100px;
+            align-items: center;
+            justify-content: center;
+        }
+        a{
+            text-decoration: none;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: rgb(0, 26, 255);
+            border-radius: 50%;
+            margin: 0 5px;
+            animation: bounceDot 1s ease-in-out infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounceDot {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+        ::-webkit-scrollbar { background-color: transparent; } 
+        body{ 
+            margin:0; 
+            background: black; 
+            color:var(--text); 
+            font-family:'Noto Sans',sans-serif; 
+            min-height:100vh; 
+            overflow-x:hidden; 
+            background-image: url('https://i.pinimg.com/736x/ee/dd/b6/eeddb65b860c9ff8096d30dd7f71badb.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        } 
+        .logo{
+          font-family: "Mr De Haviland", cursive;
+          font-size: 64px;
+          color: #e9d7ca;
+          filter: drop-shadow(0px 0px 11px rgba(245, 222, 179, 0.502));
+          margin-top: 20px; /* Starts right after top bar */
+        } 
+        h3{
+            color: var(--gold);
+            letter-spacing: 0px;
+            margin: 10px 0px;
+        } 
+        body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } 
+        .btn{
+            background: #ffffff00;
+            border: none;
+            color: var(--text);
+            padding: 9px 25px;
+            border-radius: 30px;
+            font-weight: 300;
+            cursor: pointer;
+            margin: 15px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px); 
+            box-shadow:inset 0 0.5px 0 #ffffff21, inset 0 -4px 9px #ffffff30;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn:hover{ transform: scale(1.05); }
+        .btn:active{ transform: scale(0.90); } 
+        .btn-gold{background:var(--gold);color:white;} 
+        .btn-gold:hover{filter:brightness(1.1);} 
+
+        .popup{ 
+            position:fixed; top:0;left:0; width:100%;height:100%; padding: 30px; display:none; align-items:center; justify-content:center; backdrop-filter:blur(8px); z-index:1000; animation:fadeIn 0.25s ease; 
+        } 
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}} 
+        .popup-content{ width: 100%; max-width: 400px; text-align: center; line-height: 40px; } 
+
+        .menu{ 
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            background: transparent;
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            padding: 6px 5px;
+            border-top: 1.5px solid rgba(255, 255, 255, 0.073);
+        } 
+
+        .menu a{
+            flex: 1;
+            text-align: center;
+            color: #888888ad;
+            padding: 3px 0;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 10px;
+            font-weight: 500;
+            margin: 5px;
+            gap: 2px;
+            border-radius: 100px;
+        } 
+
+        .menu svg{
+            width: 18px;
+            height: 25px;
+            opacity: 100%;
+        }
+        .menu a,svg{
+            cursor: pointer;
+            opacity: 50%; 
+            transition: all 0.2s ease;
+            color: white;
+        }
+        .menu a:hover{
+            opacity: 100%;
+    background-color: transparent;
+    box-shadow: inset 0 0.5px 0 #ffffff28, inset 0 -4px 9px #ffffff42;
+    border: 1px solid rgb(255 255 255 / 7%);
+        }
+        .menu a:active{ transform: scale(0.90); } 
+
+        /* Content sections */
+        .menu-content{ 
+            display: none;
+            text-align: center;
+            padding: 80px 20px 100px 20px; /* Top padding for top bar, bottom for menu */
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+        } 
+        .menu-content.active{display:block;} 
+
+        /* Special centering for Take Money & My Account sections */
+        #content-transfer .section-wrapper,
+        #content-account .section-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 160px); /* Full height minus top bar & bottom menu */
+        }
+
+        .note{
+           font-size: 15px;
+    color: #ffffff;
+    padding: 5px 0px 20px 0px;
+    line-height: 25px;
+        } 
+
+        #stoexplore{ 
+            padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    background: linear-gradient(132deg, #ff00eb, #0025ff);
+    color: white;
+    transition: all 0.3s ease-in-out;
+    box-shadow: inset 0 0.5px 0 #ffffff3b, inset 0 -5px 10px #ffffffd6;
+    border: 0px solid rgb(255 255 255);
+        }
+        #stoexplore:hover{ transform: scale(1.05); }
+        #stoexplore:active{ transform: scale(0.90); } 
+
+        .helper-button, .helper-buttons {
+            position: fixed;
+            top: env(safe-area-inset-top, 10px);
+            font-size: 13px;
+            background: #ffffff0a;
+            padding: 5px 15px;
+            border-radius: 60px;
+            color: #ffffff;
+            border: none;
+            z-index: 1000;
+            box-shadow: inset 0 0.5px 0 #ffffff21, inset 0 -4px 9px #ffffff30;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .helper-button:hover, .helper-buttons:hover{ transform: scale(1.05); }
+        .helper-button:active, .helper-buttons:active{ transform: scale(0.90); } 
+
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            max-width: 500px;
+            height: 60px;
+            background: #ffffff00;
+            backdrop-filter: blur(9px);
+            z-index: 998;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            padding-top: env(safe-area-inset-top);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0);
+            backdrop-filter: blur(30px) saturate(160%);
+            border-radius: 40px;
+            border: 1.5px solid rgb(255 255 255 / 17%);
+            padding: 25px 5px 5px 5px;
+            margin: 25px 0px;
+            box-shadow: inset 0 0.5px 0 #ffffff3b, inset 0 -7px 9px #ffffff38;
+            width: 100%;
+        }
+
+        .sponsor-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffd800;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sponsor-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 5px 0px;
+            padding: 0px 0px 0px 20px;
+            border-radius: 52px;
+        }
+
+        .sponsor-info h4 {
+                font-size: 15px;
+    font-weight: 600;
+    color: #ffffffcc;
+    text-align: left;
+
+        }
+
+        .sponsor-info p {
+            color: black;
+    margin-top: -2px;
+        }
+
+        .btn {
+            background: #ffffff00;
+            color: white;
+            border-radius: 120px;
+            font-size: 15px;
+            font-weight: 600;
+            border: solid 1.5px #ffffff38;
+            padding: 8px 23px;
+        }
+
+        .helper-buttons::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 60px;
+            background: linear-gradient(270deg,#ffffffad,#aa00ff,#ffd500, #ff0000,#003cff,#ea00ff,#00ff73,#ff6a00,#ffffff4d);
+            background-size: 400% 100%;
+            z-index: -1;
+            animation: color-move 3s linear infinite;
+        }
+        @keyframes color-move {
+            0% { background-position: 100% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        @media(max-width:500px) {
+            .logo { font-size: 56px; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <img src="loadinglogo.gif" alt="Loading Doughnut" class="loading-logo">
+        <div class="loading-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <!-- Fixed Top Bar -->
+    <div class="top-bar">
+        <a class="helper-buttons" href="https://mfi0212.github.io/MFI/abt.hlp" style="position: relative;">Helper</a>
+        <a class="helper-button" href="https://mfi0212.github.io/MFI/imlate" style="position: relative;">I'm late</a>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content-home" class="menu-content active">
+        <div class="logo">Golden</div>
+        <h3>Interest Details</h3>
+
+        <button id="currencyToggle" class="btn" style="display: none;">Switch to USD ($)</button>
+        <p class="note">The interest of us are not fixed, It changes based on amount providers.<br><br>
+            <a id="stoexplore" href="https://mfi0212.github.io/swan/offer/offer" style="font-size: 13px;">Visit STO</a>
+        </p>
+        <button style="background: #ffffff00; box-shadow: 0px 0px 22px #ffffffa3; border: none; padding: 6px 25px; font-weight: 400;" class="btn">
+            <a href="https://mfi0212.github.io/swan/home" style="text-decoration:none;color:#fff;">To borrow below 5k - Lendlink</a>
+        </button>
+  
+        <div class="glass-card">
+            <div class="sponsor-title">Our Partner</div>
+            <div class="sponsor-card">
+                <div class="sponsor-info">
+                    <h4>Lendlink-Mid</h4>
+                    <p>Earning Helper</p>
+                </div>
+                <a href="https://mfi0212.github.io/swan/lndlnk-mid"><button class="btn">Explore</button></a>
+            </div>
+        </div>
+        <a href="https://forms.gle/RzTJ8W9bwmm8DVj2A">
+            <button class="btn" style="color: white;
+    background-color: transparent;
+    padding: 7px 30px;
+    width: 90%;
+    font-weight: 500;
+    box-shadow: inset 0px 0px 20px;
+    border: solid 1.5px #ffffffd1;">
+                I have an issue here.!
+            </button>
+        </a>
+    </div>
+
+    <!-- Take Money Section - Vertically & Horizontally Centered -->
+    <div id="content-transfer" class="menu-content">
+        <div class="section-wrapper">
+            <h3>Apply for Money</h3>
+            <a href="https://mfi0212.github.io/MFI/takemoney"  style="display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    font-size: 14px;
+    font-weight: 400;"><button class="btn" style="display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-weight: 400;
+    padding: 8px;    gap: 5px;">
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <svg style="fill: white;
+    width: 23px;
+    opacity: 100%;
+    height: 23px;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 512 512"><path fill="#ffffff" d="M225.814 32.316c-3.955-.014-7.922-.01-11.9.007c-19.147.089-38.6.592-58.219 1.32l5.676 24.893c20.431-2.31 42.83-4.03 65.227-4.89c12.134-.466 24.194-.712 35.892-.65c35.095.183 66.937 3.13 87.77 11.202l8.908 3.454l-3.977 8.685c-29.061 63.485-35.782 124.732-31.228 184.826c2.248-71.318 31.893-134.75 70.81-216.068c-52.956-8.8-109.634-12.582-168.959-12.78zm28.034 38.79c-8.74.007-17.65.184-26.559.526c-41.672 1.6-83.199 6.49-110.264 12.096c30.233 56.079 54.69 112.287 70.483 167.082a71.934 71.934 0 0 1 5.894.045c4.018.197 7.992.742 11.875 1.59c-16.075-51.397-34.385-98.8-57.146-146.131l-5.143-10.694l11.686-2.068c29.356-5.198 59.656-7.21 88.494-7.219c1.922 0 3.84.007 5.748.024c18.324.16 35.984 1.108 52.346 2.535l11.054.965l-3.224 10.617c-18.7 61.563-22.363 127.678-11.79 190.582c.176.163.354.325.526.49c3.813-1.336 7.38-2.698 10.705-4.154c-8.254-67.394-4.597-136.923 26.229-209.201c-17.202-4.383-43.425-6.674-72.239-7.034a656.656 656.656 0 0 0-8.675-.05zm144.945 7.385c-30.956 65.556-52.943 118.09-56.547 174.803c20.038-66.802 58.769-126.685 102.904-165.158a602.328 602.328 0 0 0-46.357-9.645zM103.832 97.02c-18.76 3.868-37.086 8.778-54.812 15.562c8.626 7.48 24.22 21.395 43.14 39.889c8.708-8.963 17.589-17.818 26.852-25.87a1067.587 1067.587 0 0 0-15.18-29.581zm142.023 7.482c-13.62-.066-27.562.324-41.554 1.293c-1.468 13.682-9.56 26.482-19.225 39.07c15.431 36.469 28.758 73.683 40.756 113.194c18.375 5.42 36.554 11.827 51.28 19.504c-5.47-42.458-4.722-85.963 2.38-128.508c-12.885-13.31-19.597-28.09-20.135-44.34a621.48 621.48 0 0 0-13.502-.213zm182.018 26.985c-24.73 29.3-46.521 65.997-61.37 105.912c27.264-38.782 60.79-69.032 96.477-90.4a1318.664 1318.664 0 0 0-35.107-15.512zm-300.74 11.959c-14.594 13.188-29.014 29.017-44.031 44.097c32.289 19.191 59.791 41.918 82.226 67.66c1.393-.526 2.8-.999 4.215-1.43c-10.498-36.096-24.885-73.033-42.41-110.327zM360.52 268.198c-16.397 19.788-31.834 30.235-53.09 38.57c2.391 9.22-1.16 19.805-9.334 27.901c-4.808 4.761-10.85 10.188-19.684 13.715a62.896 62.896 0 0 0 3.9 2.127c12.364 6.17 34.207 4.18 54.5-5.049c20.23-9.2 38.302-25.092 45-41.191c3.357-9.05.96-13.77-4.917-20.692c-4.184-4.925-10.295-9.89-16.375-15.38zm-170.079.586c-10.715-.098-21.597 2.994-30.59 9.76c-12.79 9.623-22.65 26.784-22.738 55.934v.2l-.01.2c-2.92 61.381 1.6 89.7 10.555 105.065c7.904 13.562 21.05 20.054 40.28 31.994c.916-2.406 1.87-5.365 2.765-9.098c2.277-9.499 4.161-22.545 5.355-36.975c2.389-28.858 2.04-63.51-1.955-88.445l-2.111-13.19l13.016 2.995c31.615 7.273 49.7 8.132 60.2 6.28c10.502-1.854 14.061-5.523 20.221-11.624c5.79-5.732 5.682-7.795 4.456-11.021c-1.227-3.227-6.149-8.545-14.5-13.633c-16.703-10.176-45.085-19.611-71.614-26.647a53.988 53.988 0 0 0-13.33-1.795zm189.1 69.416c-10.013 9.754-22.335 17.761-35.277 23.647c-20.983 9.542-44.063 13.907-63.211 7.553c-6.76 2.516-10.687 5.407-12.668 7.8c-2.718 3.284-2.888 5.7-1.967 9.16c.92 3.46 3.665 7.568 7.059 10.524c3.393 2.956 7.426 4.492 8.959 4.564c46.794 2.222 67.046-11.207 92.277-26.783c7.358-4.542 10.174-13.743 9.469-22.931c-.353-4.594-1.69-8.911-3.233-11.63a9.009 9.009 0 0 0-1.408-1.904zm-166.187 9.096c2.727 25.068 2.772 54.314.642 80.053c-1.247 15.072-3.175 28.779-5.789 39.685c-1.137 4.746-2.388 8.954-3.9 12.659l146.697-6.465c-1.656-6.149-3.344-12.324-5.031-18.502a127.004 127.004 0 0 1-17.24 4.424l.044.73l-8.316.518c-5.121.614-10.452.953-15.983.992l-83.86 5.21l2.493-11.607c7.947-37.006 8.68-69.589 3.778-105.234a353.433 353.433 0 0 1-13.536-2.463zm31.972 4.684c3.948 31.933 3.473 62.41-2.406 95.2l19.264-1.196a39.44 39.44 0 0 1-6.1-14.778c-1.296-6.88-.575-14.538 3.926-20.87c.199-.281.414-.55.627-.821c-5.246-4.845-9.628-11.062-11.614-18.524c-2.114-7.944-.794-17.67 5.497-25.27c2.079-2.51 4.592-4.776 7.543-6.816c-2.61-2.08-4.898-4.285-6.874-6.582c-3.064.021-6.345-.093-9.863-.343zm132.666 41.785c-23.456 14.253-49.81 27.876-96.41 25.664a26.402 26.402 0 0 1-4.518-.615c-1.233.553-1.891 1.256-2.382 1.947c-.963 1.355-1.532 3.8-.909 7.113c1.248 6.627 7.525 13.889 13.37 14.569c41.385 4.813 69.979-8.726 87.341-24.477c8-7.258 8.068-11.9 6.89-16.951c-.59-2.523-1.89-4.969-3.382-7.25zm-6.683 49.062a114.657 114.657 0 0 1-8.547 4.86c1.65 6.051 3.304 12.102 4.937 18.154l19.92-3.572c-5.14-4.387-9.162-8.954-12.39-13.496c-1.442-2.029-2.713-4.001-3.92-5.946z"/></svg>
+                    Take Money
+                
+            </button></a>
+            <p style="color:#ffffff; margin:20px 0;">Wait few hours after submitting, funds are arranged shortly.</p>
+            <div class="glass-card">
+                <div class="sponsor-title">Our Partner</div>
+                <div class="sponsor-card">
+                    <div class="sponsor-info">
+                        <h4>Chloennaouii</h4>
+                        <p>Trusted funding</p>
+                    </div>
+                    <a href="https://mfi0212.github.io/MFI/cholennaouii.main"><button class="btn">Explore</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Account Section - Vertically & Horizontally Centered -->
+    <div id="content-account" class="menu-content">
+        <div class="section-wrapper">
+            <h3>My Account</h3>
+            <button class="btn" style="display: flex;
+    justify-content: center;
+    align-items: center;
+    width:75%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 400;gap: 10px;" onclick="openPopup('accountPopup')">
+                <svg xmlns="http://www.w3.org/2000/svg" style="width: 20px;    opacity: 100%;" viewBox="0 0 24 24" fill="#ffffff">
+                    <g fill="none" stroke="#ffffff" stroke-width="1.5">
+                        <circle cx="12" cy="9" r="3"/>
+                        <path stroke-linecap="round" d="M17.97 20c-.16-2.892-1.045-5-5.97-5s-5.81 2.108-5.97 5"/>
+                        <path stroke-linecap="round" d="M7 3.338A9.954 9.954 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/>
+                    </g>
+                </svg>
+                Open Account
+            </button>
+            <p style="color:#bbb; margin: 20px 0;">Manage your amount details like amount borrowed and return dates.</p>
+            <div class="glass-card">
+                <div class="sponsor-title">Our Partner</div>
+                <div class="sponsor-card">
+                    <div class="sponsor-info">
+                        <h4>BsGames</h4>
+                        <p>Lottery spiner</p>
+                    </div>
+                    <a href="https://blackswan19.github.io/golden/Bs%20Games/bsgames"><button class="btn">Explore</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Premium section (kept simple, not centered like others) -->
+    <div id="content-user" class="menu-content">
+        <h3>Premium</h3>
+        <p style="color:#aaa;">Get more benefits with our Premium service</p>
+        <button class="btn" style="background: rgba(255, 255, 255, 0.098);">
+            <a href="https://mfi0212.github.io/MFI/premium" style="text-decoration:none;color:#ffffff;font-weight: 600;">Explore</a>
+        </button>
+    </div>
+
+    <!-- Bottom Navigation Menu -->
+    <div class="menu">
+        <a onclick="showContent('content-home', this)" class="active">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="1.5" d="M15 18H9m12.636-5.042l-.279 1.937c-.487 3.388-.731 5.081-1.906 6.093C18.276 22 16.553 22 13.106 22h-2.212c-3.447 0-5.17 0-6.345-1.012c-1.175-1.012-1.419-2.705-1.906-6.093l-.279-1.937c-.38-2.637-.57-3.956-.029-5.083c.54-1.127 1.691-1.813 3.992-3.183l1.385-.825C9.8 2.622 10.846 2 12 2c1.154 0 2.199.622 4.288 1.867l1.385.825c2.3 1.37 3.451 2.056 3.992 3.183"/>
+            </svg>
+            Home page
+        </a>
+        <a onclick="showContent('content-transfer', this)">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" viewBox="0 0 24 24">
+                <g fill="none" stroke="#ffffff" stroke-width="1.5">
+                    <path stroke-linecap="round" d="M4.979 6.315C2.993 7.109 2 7.506 2 8s.993.89 2.979 1.685l2.808 1.123C9.773 11.604 10.767 12 12 12c1.234 0 2.227-.397 4.213-1.191l2.808-1.124C21.007 8.891 22 8.494 22 8s-.993-.89-2.979-1.685l-2.808-1.123C14.227 4.397 13.233 4 12 4c-.954 0-1.764.237-3 .712"/>
+                    <path d="m5.766 10l-.787.315C2.993 11.109 2 11.507 2 12c0 .493.993.89 2.979 1.685l2.808 1.123C9.773 15.604 10.767 16 12 16c1.234 0 2.227-.397 4.213-1.191l2.808-1.124C21.007 12.891 22 12.493 22 12c0-.493-.993-.89-2.979-1.685L18.234 10"/>
+                    <path stroke-linecap="round" d="M19.021 17.685C21.007 16.891 22 16.494 22 16c0-.493-.993-.89-2.979-1.685L18.234 14M5.766 14l-.787.315C2.993 15.109 2 15.507 2 16c0 .494.993.89 2.979 1.685l2.808 1.123C9.773 19.604 10.767 20 12 20c.954 0 1.764-.237 3-.712"/>
+                </g>
+            </svg>  
+            Take Money
+        </a>
+        <a onclick="showContent('content-account', this)">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" viewBox="0 0 24 24">
+                <g fill="none" stroke="#ffffff" stroke-width="1.5">
+                    <circle cx="12" cy="6" r="4"/>
+                    <path stroke-linecap="round" d="M19.997 18c.003-.164.003-.331.003-.5c0-2.485-3.582-4.5-8-4.5s-8 2.015-8 4.5S4 22 12 22c2.231 0 3.84-.157 5-.437"/>
+                </g>
+            </svg>  
+            My account
+        </a>
+    </div>
+
+    <!-- Popups -->
+    <div class="popup" id="interestPopup">
+        <div class="popup-content">
+            <h3 style="color: #00b5ff;">Interest Details</h3>
+            <p id="popup-content"></p>
+            <button class="btn btn-gold close-btn" onclick="closePopup('interestPopup')">Close</button>
+        </div>
+    </div>
+
+    <div class="popup" id="accountPopup">
+        <div class="popup-content">
+            <h3>Visit my account ?</h3>
+            <p>We are redirecting you to visit your account...!</p>
+            <button class="btn btn-gold close-btn">
+                <a href="https://mfi0212.github.io/MFI/accverify" style="color:white; text-decoration:none;">Ok, visit</a>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function showContent(id, el){
+            document.querySelectorAll('.menu-content').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.menu a').forEach(a => a.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function openPopup(id){ document.getElementById(id).style.display='flex'; }
+        function closePopup(id){ document.getElementById(id).style.display='none'; }
+
+        const loadingOverlay = document.getElementById("loadingOverlay");
+        setTimeout(() => {
+            loadingOverlay.classList.add("hidden");
+        }, 3000);
+    </script>
+</body>
+</html>
