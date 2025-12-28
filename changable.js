@@ -13,6 +13,7 @@ function getDailyInterestRate() {
   for (let i = 0; i < today.length; i++) {
     hash = ((hash << 5) + hash + today.charCodeAt(i)) | 0;
   }
-  const rate = 20 + (Math.abs(hash) % 5);
+  const rate = 28 + (Math.abs(hash) % 5);
   return rate;
 }
+
