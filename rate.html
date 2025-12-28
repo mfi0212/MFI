@@ -225,16 +225,16 @@
     line-height: 25px;} 
 
         #stoexplore{ 
-   padding: 8px 20px;
+          padding: 8px 20px;
     text-decoration: none;
     border-radius: 30px;
     font-weight: 600;
-    background: linear-gradient(45deg, #ff00ff, #0023ff);
+    background: linear-gradient(132deg, #be00dd, #002cff);
     color: white;
-    box-shadow: inset 0 0.5px 0 #ffffff00, inset 0 0px 7px #ffffff99;
-    transition: all 0.3s 
-ease-in-out;;
-         transition: all 0.3s ease-in-out;}
+    transition: all 0.3s ease-in-out;
+    box-shadow: inset 0 0.5px 0 #ffffff3b, inset 0 -5px 10px #ffffffb0;
+    border: 1px solid rgb(95 95 95);
+        }
         #stoexplore:hover{
             transform: scale(1.05); 
         }
@@ -433,11 +433,11 @@ ease-in-out;;
     <p class="note">The interest of us are not fixed, It changes based on amount providers.<br><br>
             <a id="stoexplore" href="https://mfi0212.github.io/swan/offer/offer">Visit STO</a>
     </p>
-    <button style="background: black;
+    <button style="background: #ffffff00;
     box-shadow: 0px 0px 22px #0040ff;
     border: none;
     margin-bottom: 40px;
-    padding: 6px 30px;
+    padding: 6px 25px;
     font-weight: 400;" class="btn"><a href="https://mfi0212.github.io/swan/home" style="text-decoration:none;color:#fff;">To borrow below 5k - Lendlink</a></button>
   
       <div class="glass-card">
@@ -531,7 +531,7 @@ ease-in-out;;
 </div>
 
 <script>
-  document.addEventListener('contextmenu', e => e.preventDefault());
+  // document.addEventListener('contextmenu', e => e.preventDefault());
 function showContent(id, el){
   document.querySelectorAll('.menu-content').forEach(sec=>sec.classList.remove('active'));
   document.getElementById(id).classList.add('active');
