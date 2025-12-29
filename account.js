@@ -1,4 +1,5 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
+
 // for(let i=0;i<15;i++){
 //     const b=document.createElement("div");b.className="bulb";
 //     const dur=6+Math.random()*5;
@@ -7,6 +8,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 //     document.getElementById("lights").appendChild(b);
 // }
 // const bulbs = document.querySelectorAll('.bulb');
+
 document.getElementById("candy").onclick = () => document.getElementById("panel").classList.toggle("show");
 
 const modeSelect = document.getElementById("mode");
@@ -528,7 +530,7 @@ function renderCalendar() {
     gap: 10px;
     position: sticky;
     top: -20px;
-    background: #000000e0;
+    background: #000000d4;
     padding: 10px 10px 0px 15px;
     width: 100%;
     margin-bottom: 20px;
