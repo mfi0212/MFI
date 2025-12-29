@@ -1,4 +1,4 @@
-// document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('contextmenu', e => e.preventDefault());
 
 // for(let i=0;i<15;i++){
 //     const b=document.createElement("div");b.className="bulb";
@@ -727,12 +727,23 @@ const coinSection = document.getElementById('coinSection');
         popupOverlay.classList.remove('active');
       }
     });
-        const toggle = document.getElementById('glowToggle');
+
+ const toggle = document.getElementById('glowToggle');
+        const body = document.body;
+        const savedState = localStorage.getItem('edgeGlowState');
+        if (savedState === 'on') {
+            toggle.checked = true;
+            body.classList.add('glow-on');
+        } else {
+            toggle.checked = false;
+            body.classList.remove('glow-on');
+        }
         toggle.addEventListener('change', function() {
             if (this.checked) {
-                document.body.classList.add('glow-on');
+                body.classList.add('glow-on');
+                localStorage.setItem('edgeGlowState', 'on');
             } else {
-                document.body.classList.remove('glow-on');
+                body.classList.remove('glow-on');
+                localStorage.setItem('edgeGlowState', 'off');
             }
         });
-        document.body.classList.add('glow-on');
