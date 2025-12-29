@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 
 // for(let i=0;i<15;i++){
 //     const b=document.createElement("div");b.className="bulb";
@@ -727,4 +727,12 @@ const coinSection = document.getElementById('coinSection');
         popupOverlay.classList.remove('active');
       }
     });
-
+        const toggle = document.getElementById('glowToggle');
+        toggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('glow-on');
+            } else {
+                document.body.classList.remove('glow-on');
+            }
+        });
+        document.body.classList.add('glow-on');
