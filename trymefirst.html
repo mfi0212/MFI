@@ -358,7 +358,73 @@ div#pricesList {
 
 <body>
     <style>
-        
+      
+        .toggle-container {
+            position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000000;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 5px 10px 5px 19px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    font-size: 13px;
+        }
+label.toggle-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+        .toggle-label {
+            font-size: 13px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .toggle-switch {
+            position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 16px;
+    margin-left: 12px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+              position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffffff8c;
+    transition: .4s;
+    border-radius: 34px;
+        }
+        .slider:before {
+          position: absolute;
+    content: "";
+    height: 18px;
+    width: 33px;
+    left: -6px;
+    bottom: -2px;
+    background-color: #ffffff00;
+    transition: .4s;
+    border-radius: 20px;
+    backdrop-filter: blur(19px);
+    border: solid 1.5px #ffffff78;
+        }
+        input:checked + .slider {
+            background-color: #004eff;
+        }
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
         .content {
             text-align: center;
             z-index: 10;
@@ -367,18 +433,20 @@ div#pricesList {
             background: rgba(0, 0, 0, 0.5);
             border-radius: 20px;
             backdrop-filter: blur(10px);
+            margin-top: 80px;
         }
-
         .content h1 {
             font-size: 3rem;
             margin-bottom: 20px;
         }
-
         .edge-glow {
-          position: fixed;
+           position: fixed;
     pointer-events: none;
     z-index: -1;
     opacity: 70%;
+        }
+        body.glow-on .edge-glow {
+            opacity: 1;
         }
         .edge-glow.top {
             top: -100px;
@@ -392,11 +460,8 @@ div#pricesList {
                 #0000ff, #4b0082, #8b00ff, #ff0000
             );
             filter: blur(90px);
-            /* opacity: 0.7; */
-            animation: flow 25s linear infinite;
+            animation: flow-top 25s linear infinite;
         }
-
-        /* Bottom edge */
         .edge-glow.bottom {
             bottom: -100px;
             left: 50%;
@@ -409,11 +474,8 @@ div#pricesList {
                 #0000ff, #4b0082, #8b00ff, #ff0000
             );
             filter: blur(90px);
-            /* opacity: 0.7; */
-            animation: flow 30s linear infinite reverse;
+            animation: flow-bottom 30s linear infinite reverse;
         }
-
-        /* Left edge */
         .edge-glow.left {
             left: -100px;
             top: 50%;
@@ -426,11 +488,8 @@ div#pricesList {
                 #00ff00, #ffff00, #ff7f00, #ff0000
             );
             filter: blur(90px);
-            /* opacity: 0.7; */
-            animation: flow 28s linear infinite;
+            animation: flow-left 28s linear infinite;
         }
-
-        /* Right edge */
         .edge-glow.right {
             right: -100px;
             top: 50%;
@@ -443,40 +502,40 @@ div#pricesList {
                 #0000ff, #4b0082, #8b00ff, #ff0000
             );
             filter: blur(90px);
-            /* opacity: 0.7; */
-            animation: flow 32s linear infinite reverse;
+            animation: flow-right 32s linear infinite reverse;
         }
-
-        @keyframes flow {
-            from { transform: translateX(-50%) rotate(0deg); }
-            to { transform: translateX(-50%) rotate(360deg); }
-        }
-
-        /* Adjust left/right animation to keep centering */
-        .edge-glow.left,
-        .edge-glow.right {
-            animation-name: flow-vertical;
-        }
-
-        @keyframes flow-vertical {
-            from { transform: translateY(-50%) rotate(0deg); }
-            to { transform: translateY(-50%) rotate(360deg); }
-        }
-
-        /* Subtle breathing pulse */
-        .edge-glow {
+        @keyframes flow-top { 0% { transform: translateX(-50%) rotate(0deg); } 100% { transform: translateX(-50%) rotate(360deg); } }
+        @keyframes flow-bottom { 0% { transform: translateX(-50%) rotate(0deg); } 100% { transform: translateX(-50%) rotate(360deg); } }
+        @keyframes flow-left { 0% { transform: translateY(-50%) rotate(0deg); } 100% { transform: translateY(-50%) rotate(360deg); } }
+        @keyframes flow-right { 0% { transform: translateY(-50%) rotate(0deg); } 100% { transform: translateY(-50%) rotate(360deg); } }
+        body.glow-on .edge-glow {
             animation: pulse 12s ease-in-out infinite alternate;
         }
 
         @keyframes pulse {
-            0% { opacity: 0.5; }
-            100% { opacity: 0.8; }
+            0% { opacity: 0.6; }
+            100% { opacity: 0.9; }
         }
-    </style>   
+    </style>
+</head>
+<body>
+    <div class="toggle-container">
+        <label class="toggle-label">
+            Fixed Glow
+            <div class="toggle-switch">
+                <input type="checkbox" id="glowToggle" checked>
+                <span class="slider"></span>
+            </div>
+        </label>
+    </div>
+
+    <!-- Edge glow layers -->
     <div class="edge-glow top"></div>
     <div class="edge-glow bottom"></div>
     <div class="edge-glow left"></div>
     <div class="edge-glow right"></div>
+
+   
     <div class="loading-overlay" id="loadingOverlay">
         <img src="loadinglogo.gif" alt="Loading Doughnut" class="loading-logo">
         <div class="loading-dots">
@@ -758,6 +817,17 @@ toggleBtn.addEventListener("click", () => {
 updateToggleButton();
 renderPrices();
 
-</script>
+    </script>
+    <script>
+        const toggle = document.getElementById('glowToggle');
+        toggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('glow-on');
+            } else {
+                document.body.classList.remove('glow-on');
+            }
+        });
+        document.body.classList.add('glow-on');
+    </script>
 </body>
 </html>
