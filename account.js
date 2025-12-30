@@ -727,23 +727,22 @@ const coinSection = document.getElementById('coinSection');
         popupOverlay.classList.remove('active');
       }
     });
-
- const toggle = document.getElementById('glowToggle');
-        const body = document.body;
-        const savedState = localStorage.getItem('edgeGlowState');
-        if (savedState === 'on') {
-            toggle.checked = true;
-            body.classList.add('glow-on');
-        } else {
-            toggle.checked = false;
-            body.classList.remove('glow-on');
+ const container = document.getElementById('glowContainer');
+        const toggle = document.getElementById('glowToggle');
+        const STORAGE_KEY = 'siriEdgeGlowState';
+        const savedState = localStorage.getItem(STORAGE_KEY);
+        let isOn = savedState === 'on';
+        function updateGlow() {
+            if (isOn) {
+                container.classList.add('on');
+            } else {
+                container.classList.remove('on');
+            }
+            toggle.checked = isOn;
         }
         toggle.addEventListener('change', function() {
-            if (this.checked) {
-                body.classList.add('glow-on');
-                localStorage.setItem('edgeGlowState', 'on');
-            } else {
-                body.classList.remove('glow-on');
-                localStorage.setItem('edgeGlowState', 'off');
-            }
+            isOn = toggle.checked;
+            localStorage.setItem(STORAGE_KEY, isOn ? 'on' : 'off');
+            updateGlow();
         });
+        updateGlow();
