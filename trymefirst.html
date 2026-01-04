@@ -57,28 +57,31 @@
         a{
             text-decoration: none;
         }
-        .dot {
-            width: 10px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.826);
-            border-radius: 50%;
-            margin: 0 5px;
-            animation: bounceDot 1s ease-in-out infinite;
-        }
+       .dot {
+    width: 160px;
+    height: 1.5px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 0px;
+    overflow: hidden;
+    position: relative;
+}
+.dot::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 100%;
+    background: rgba(255,255,255,0.9);
+    animation: pulse1 1.5s ease-in-out infinite;
+}
+@keyframes pulse1 {
+    0% { width: 0%; opacity: 0; left: 0; }
+    50% { width: 100%; opacity: 1; left: 0; }
+    100% { width: 0%; opacity: 0; left: 100%; }
+}
 
-        .dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
 
-        .dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
 
-        @keyframes bounceDot {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0); }
-        }
+
         ::-webkit-scrollbar { background-color: transparent; } 
         body{ 
             margin:0; 
@@ -582,8 +585,8 @@ div#pricesList {
         <img src="loadinglogo.png" alt="Loading Doughnut" class="loading-logo">
         <div class="loading-dots">
             <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
+            <!-- <div class="dot"></div>
+            <div class="dot"></div> -->
         </div>
     </div>
 
