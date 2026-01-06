@@ -507,7 +507,7 @@ div#popupContent {
     backdrop-filter: blur(15px);
     box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff21;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    animation: iosPopupIn 0.55s cubic-bezier(.22,1,.36,1) forwards;
+    animation: iosPopupIn 1s cubic-bezier(.22,1,.36,1) forwards;
     
     }
 
@@ -515,17 +515,20 @@ div#popupContent {
     0% {
         transform: translate(-50%, -48%) scale(0.7);
         opacity: 0;
-        width: 90%;    padding: 5px;
+        width: 10%;   
+        padding: 5px;
     }
     60% {
-        transform: translate(-50%, -3%) scale(1.07) skew(10);
+        transform: translate(-50%, -3%) scale(1.1);
         opacity: 1;
-        width: 105%;    padding: 30px;
+        width: 105%;    
+        padding: 30px;
     }
     100% {
         transform: translate(-50%, -3%) scale(1);
         opacity: 1;
-        width: 96%;    padding: 25px;
+        width: 96%;    
+        padding: 25px;
     }
 }
         #totalPopup h3, #datePopup h3, #linkConfirmPopup h3, #emoteChooser h3 { margin: 0 0 14px;
@@ -1034,7 +1037,7 @@ display: flex;
     height: 16px;
     margin-left: 15px;
         }
-
+        
         .switch input {
             opacity: 0;
             width: 0;
