@@ -507,8 +507,24 @@ div#popupContent {
     backdrop-filter: blur(15px);
     box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff21;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: iosPopupIn 0.55s cubic-bezier(.22,1,.36,1) forwards;
+    
     }
 
+@keyframes iosPopupIn {
+    0% {
+        transform: translate(-50%, -48%) scale(0.7);
+        opacity: 0;
+    }
+    60% {
+        transform: translate(-50%, -3%) scale(1.07);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -3%) scale(1);
+        opacity: 1;
+    }
+}
         #totalPopup h3, #datePopup h3, #linkConfirmPopup h3, #emoteChooser h3 { margin: 0 0 14px;
     color: #ffffff99;
     
@@ -590,11 +606,11 @@ div#popupContent {
               transform: scale(1.03); 
         }
         .purpose-input:focus{
-             transform: scale(1.3) translateX(-20px);
-    padding: 6px 10px;
+           transform: scale(1.3) translateX(-20px);
+    padding: 6px 15px;
     border-radius: 100px;
-    max-width: 140px;
-    font-size: 15px;
+    max-width: 130px;
+    font-size: 13px;
         }
         .purpose-input.animate {
     animation: liquidPress 0.7s cubic-bezier(.2,.8,.2,1);
