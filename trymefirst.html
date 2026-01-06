@@ -312,17 +312,17 @@ transition: all 0.3s ease-in-out;}
     padding: 0px 121px 0px 0px;
         }
         #searchIcon { 
-         font-size: 16px;
+            font-size: 16px;
     color: #ffffff;
     cursor: pointer;
-    transition: all 3s 
-ease;
+    transition: all 3s ease;
     position: relative;
-    background: #ffffff0f;
+    background: #ffffff00;
     padding: 12px;
     border-radius: 15px;
-    box-shadow: inset 0 1px 0 #ffffff0a, inset 0 -3px 10px #ffffff3d;
-    border: 1px solid rgba(255, 255, 255, 0.2);}
+    box-shadow: inset 0 1px 0 #ffffff0a, inset 0 -3px 10px #ffffff2e;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+        }
         #searchIcon:hover{
               transform: scale(1.03); 
         }
@@ -432,7 +432,8 @@ transition: all 0.3s ease;}
     transition: all 0.3s 
 ease;z-index: 1000;
     color: #e8b801;cursor: pointer;
- transition: all 0.3s ease;}
+ transition: all 0.3s ease;
+}
         #coinSection:hover{
               transform: scale(1.03); 
         }
@@ -607,6 +608,9 @@ div#popupContent {
     box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff21;
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.6s ease-in-out;
+        }
+        .purpose-input::placeholder{
+            color: rgba(255, 255, 255, 0.705);
         }
         .purpose-input:hover{
               transform: scale(1.03); 
@@ -904,11 +908,14 @@ display: flex;
       transition: all 0.3s ease;
           height: 100vh;
           scale: 0.95;
+          left: 50%;
     }
     .popup-overlay.active {
       opacity: 1;
       scale:1;
       visibility: visible;
+      animation: iosPopupIn 1s cubic-bezier(.22,1,.36,1) forwards;
+    
     }
 .issuebtn button {
             width: 100%;
@@ -1011,6 +1018,7 @@ display: flex;
     box-shadow: 0 0 20px rgb(122 122 122);
     left: 50%;
     transform: translate(-50%, 0%);
+    
         }
 
         .content h1 {
