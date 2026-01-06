@@ -368,10 +368,10 @@ ease-in-out;
         }
         /* h3{ color:#006fff; } */
         p { 
-            margin-bottom: 0px;
-    color: #b3b3b3;
+          margin-bottom: 0px;
+    color: white;
     font-weight: 500;
-    font-size: 15px;
+    font-size: 14px;
         }
         .details {
     display: flex;
@@ -507,7 +507,8 @@ div#popupContent {
     backdrop-filter: blur(15px);
     box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff21;
     border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+    }
+
         #totalPopup h3, #datePopup h3, #linkConfirmPopup h3, #emoteChooser h3 { margin: 0 0 14px;
     color: #ffffff99;
     
@@ -654,25 +655,28 @@ display: flex;
 }
         /* GRAPH & CALENDAR */
         #graphContainer, #calendarContainer {
-           background: transparent;
+          background: transparent;
     border-radius: 40px;
     padding: 30px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
     border: 1px solid #222;
-    max-width: 400px;
-    width: 100%;
     scrollbar-width: none;
-    transform: translateX(-50%);
     position: relative;
-    left: 50%;
-    max-height: 400px;
-    height: 255px;
+    left: 0%;
+    height: 250px;
     scrollbar-width: none;
     overflow: scroll;
     margin-top: 25px;
     box-shadow: inset 0 1px 0 #ffffff69, inset 0 -4px 9px #ffffff69;
     border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(15px);
+    transition: all 0.3s ease;
+}
+        #graphContainer:hover,#calendarContainer:hover{
+              transform: scale(1.03); 
+        }
+        #graphContainer:active,#calendarContainer:active{
+              transform: scale(0.90); 
         }
         #calendarContainer > div > div {
             color:#ddd; border-radius:13px; min-height:30px; display:flex;
