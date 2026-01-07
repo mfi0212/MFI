@@ -458,11 +458,12 @@ function displayLoanDetails(loan, index) {
                     ${formatMoney(totalPayable)}
                 </p>
             </div>
-            <a target="_blank" href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: rgb(160 0 0);
+            <a target="_blank" href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: rgb(255 0 0 / 69%);
     width: 100%;
     padding: 10px;
     margin-top: 30px;
-    font-size: 14px;" class="add-link-btn">I have an issue with my account.!</button></a>
+    font-size: 14px;
+    margin-bottom: 40px;" class="add-link-btn">I have an issue with my account.!</button></a>
         </div>
     `;
 }
