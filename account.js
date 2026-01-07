@@ -748,13 +748,3 @@ const coinSection = document.getElementById('coinSection');
             updateGlow();
         });
         updateGlow();
-
-  window.addEventListener('load', () => {
-    document.querySelector('.modal').classList.add('active');
-  });
-
-  function closeModal() {
-    const modal = document.querySelector('.modal');
-    modal.classList.remove('active');
-    setTimeout(() => modal.style.display = 'none', 1000);
-  }
