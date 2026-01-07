@@ -274,7 +274,7 @@ scrollbar-width: none;
     margin-top: 30px;
        }
         .user-links {
-         overflow: auto;
+        overflow: auto;
     display: flex;
     gap: 10px;
     align-items: center;
@@ -283,6 +283,7 @@ scrollbar-width: none;
     transition: all 0.3s ease;
     position: relative;
     top: -5px;
+    left: 10px;
          }
          
         .user-link { 
@@ -307,14 +308,15 @@ scrollbar-width: none;
         .user-links :active{
               transform: scale(0.90); 
         } 
-        .add-link-btn { background: #0026ff;
+        .add-link-btn {background: #0026ff;
     color: white;
     border: none;
-    padding: 6px 15px;
+    padding: 6px 20px;
     border-radius: 20px;
     font-size: 11px;
     cursor: pointer;
-transition: all 0.3s ease-in-out;}
+    transition: all 0.3s ease-in-out;
+    white-space: nowrap;}
         .add-link-btn:hover{
               transform: scale(1.03); 
         }
