@@ -645,16 +645,18 @@ div#popupContent {
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      opacity: 0;
+      opacity: 0.5;
       visibility: hidden;
       transition: all 1.5s ease-in-out;
           height: 100vh;
           scale: 0;
           top: -200%;
           border-radius: 1310px;
-transform: scale(0.5,0.5);background: rgb(255, 255, 255);
+transform: scale(0.5,0.5);background: rgba(255, 255, 255, 0.205);
+            border: solid #ffffff;
     }
     .popup-overlay.active {
+        border: solid #ffffff00;
       opacity: 1;
       height: 100vh;
       scale:1;
@@ -937,7 +939,7 @@ cubic-bezier(0.4, 0, 0.2, 1);
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      opacity: 0;
+      opacity: 0.5;
       visibility: hidden;
       transition: all 1.5s ease-in-out;
           height: 100vh;
@@ -947,8 +949,11 @@ cubic-bezier(0.4, 0, 0.2, 1);
           border-radius: 1300px;
           background: transparent;
           transform: scale(0,0);
+          padding: 100px;
+          border: solid #ffffff;
     }
     .popup-overlay.active {
+        border: solid #ffffff00;
       opacity: 1;
       height: 100vh;
       scale:1;
@@ -956,7 +961,7 @@ cubic-bezier(0.4, 0, 0.2, 1);
       background: rgb(0 0 0 / 70%);
       visibility: visible;
     border-radius: 0px;
-transform: scale(1,1);
+transform: scale(1,1);padding: 5px;
     }
 .bulb {
     width: 25px;
