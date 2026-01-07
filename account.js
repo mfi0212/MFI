@@ -758,5 +758,5 @@ const coinSection = document.getElementById('coinSection');
   function closeModal() {
     const modal = document.querySelector('.modal');
     modal.classList.remove('active');
-    setTimeout(() => modal.style.display = 'none', 1000); // hide after animation
+    setTimeout(() => modal.style.display = 'none', 1000);
   }
