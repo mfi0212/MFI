@@ -210,7 +210,7 @@ scrollbar-width: none;
         position: relative;
         left: 50%;
         width: 104%;
-        padding: 70px 50px 100px 50px;
+        padding: 70px 50px 120px 50px;
         backdrop-filter: blur(1px);
         }
        #userName:hover{
@@ -674,19 +674,20 @@ div#popupContent {
 }
 
      #bottomNav {
-           position: fixed;
+          position: fixed;
     bottom: 0;
     left: 0;
     border-radius: 0;
     padding: 15px 10px;
     display: flex;
     box-shadow: none;
-    z-index: 1;
+    z-index: 0;
     width: 100%;
     justify-content: center;
     gap: 10px;
     align-items: center;
-    background: linear-gradient(0deg, #000000e0 15%, transparent);
+    background: linear-gradient(0deg, #00000047 15%, transparent);
+    backdrop-filter: blur(5px);
         }
         .nav-item { 
 display: flex;
