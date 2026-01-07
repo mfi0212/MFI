@@ -638,7 +638,33 @@ div#popupContent {
         .emote-option:hover {
     background: #ffffff2f;z-index: 10000;}
 
-        /* LOAN CARD */
+        .popup-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 1.5s ease-in-out;
+          height: 100vh;
+          scale: 0;
+          top: -150%;
+          border-radius: 1310px;
+          background: transparent;
+transform: scale(0.5,0.5);
+    }
+    .popup-overlay.active {
+      opacity: 1;
+      height: 100vh;
+      scale:1;
+      top: 0%;
+      background: rgb(0 0 0 / 70%);
+      visibility: visible;
+    border-radius: 0px;
+transform: scale(1,1);
+    }
         .loan-entry { padding: 0px; border-radius:16px; position:relative; width:100%; }
         .purpose-input {
            padding: 8px;
@@ -905,7 +931,33 @@ cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
     padding: 60px 20px 58px 15px;
     backdrop-filter: blur(0px);
-}
+}.popup-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 1.5s ease-in-out;
+          height: 100vh;
+          scale: 0;
+          top: -150%;
+          border-radius: 1300px;
+          background: transparent;
+          transform: scale(0,0);
+    }
+    .popup-overlay.active {
+      opacity: 1;
+      height: 100vh;
+      scale:1;
+      top: 0%;
+      background: rgb(0 0 0 / 70%);
+      visibility: visible;
+    border-radius: 0px;
+transform: scale(1,1);
+    }
 .bulb {
     width: 25px;
     height: 25px;
@@ -941,28 +993,7 @@ display: flex;
      }
         }
     /* Popup overlay */
-    .popup-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgb(0 0 0 / 70%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-          height: 100vh;
-          scale: 0.95;
-          left: 50%;
-    }
-    .popup-overlay.active {
-      opacity: 1;
-      scale:1;
-      visibility: visible;
-      animation: iosPopupIn 1s cubic-bezier(.22,1,.36,1) forwards;
-    
-    }
+   
 .issuebtn button {
             width: 100%;
             position: relative;
