@@ -145,7 +145,7 @@ const usersDB = {
             
             { planDate: "16-12-2025", endDate: "15-01-2026", interest: 1240, takenAmount: 4000, takenFrom: "Lendlink", fineRate: 40 },
             { planDate: "25-05-2025", endDate: "16-01-2026(Extended to 30 days)", interest: 660, takenAmount: 2420, takenFrom: "Delayit offer", fineRate: 50 },
-{ planDate: "11-01-2026", endDate: "10-02-2026(Extended amount)", interest: 890, takenAmount: 2700, takenFrom: "Golden", fineRate: 50 },
+{ planDate: "11-01-2026", endDate: "10-02-2026(Extended amount)", interest: 670, takenAmount: 2700, takenFrom: "Golden", fineRate: 50 },
         ],
         links: [],
         emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
