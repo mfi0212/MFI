@@ -1,1 +1,935 @@
-no test...
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myootive | MLending</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="mfi.logo.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anta&family=Audiowide&family=Braah+One&family=Cardo:ital,wght@0,400;0,700;1,400&family=Comfortaa:wght@300..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Dongle&family=Dosis:wght@200..800&family=DotGothic16&family=Goldman:wght@400;700&family=Gruppo&family=Handjet:wght@100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Mandali&family=Michroma&family=Oxanium:wght@200..800&family=Pixelify+Sans:wght@400..700&family=Poiret+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Russo+One&family=Sarpanch:wght@400;500;600;700;800;900&family=Share+Tech&family=Space+Grotesk:wght@300..700&family=Stalinist+One&family=VT323&family=Zen+Dots&display=swap');
+
+:root {
+	--user-accent: #00aaff;
+	--telegram-accent: #0088cc;
+}
+
+* {
+	font-family: "Poppins", serif;
+	-webkit-tap-highlight-color: transparent;
+	scrollbar-width: none;
+	scrollbar-color: #696969 #131313;scrollbar-width: none;
+}
+
+
+        body {
+            background-color: black;
+            color: #ffffff;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 25px;
+            line-height: 30px;
+            letter-spacing: 0.4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* LIGHT THEME – FULLY REVISED */
+        body.light {
+            background-color: #fafafa;
+            color: #222222;
+        }
+
+        body.light h1,
+        body.light h2,
+        body.light h3 {
+            color: #0066cc;
+        }
+
+        body.light a {
+            color: #0066cc;
+        }
+
+        body.light a:hover {
+            color: #004499;
+        }
+
+        body.light .button {
+            color: #0066cc;
+            border-color: #0066cc;
+            background: transparent;
+        }
+
+        body.light .button:hover {
+            background: #0066cc;
+            color: #fff;
+            border-color: #0066cc;
+        }
+
+        
+
+        body.light .about {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 6px rgba(0,0,0,.05);
+        }
+
+        body.light p,
+        body.light li {
+            color: #555555;
+        }
+
+       
+        .date-container {
+            position: fixed;
+    top: 110px;
+    height: 30px;
+    overflow: hidden;
+    user-select: none;
+    z-index: 0;
+    border-radius: 0px;
+    background: #7676768c;
+    backdrop-filter: blur(5px);
+        }
+
+        body.curvy .date-container {
+            border-radius: 30px;
+        }
+
+        body.light #red_siren,
+        body.light #blue_siren {
+            opacity: .6;
+        }
+
+        body.light footer p {
+            color: #777777;
+        }
+
+        /* END LIGHT THEME FIXES */
+
+        body.telegram-dark {
+            background-color: #111920;
+            color: #ffffff;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-weight: 500;
+            color: #00aaff;
+        }
+
+        body.telegram-dark h1,
+        body.telegram-dark h2,
+        body.telegram-dark h3 {
+            color: var(--telegram-accent);
+        }
+
+        body.my-own h1,
+        body.my-own h2,
+        body.my-own h3 {
+            color: var(--user-accent);
+        }
+
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .about {
+            padding: 17px;
+            top: 135px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            border-radius: 0px;
+            background: #181819;
+            position: relative;
+            margin: 8px 0px;
+            border: none;
+        }
+
+        body.telegram-dark .about {
+            background: #1d2733;
+        }
+
+        body.my-own .about {
+            background: #161616;
+        }
+
+        body.curvy .about {
+            border-radius: 35px;
+        }
+
+        body.curvy .about .applybtn {
+            border-radius: 35px;
+        }
+
+        a {
+            color: #00aaff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #ffffff;
+        }
+
+        body.telegram-dark a {
+            color: var(--telegram-accent);
+        }
+
+        body.my-own a {
+            color: var(--user-accent);
+        }
+
+        body.my-own a:hover {
+            color: #ffffff;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: transparent;
+            color: #b6b6b6;
+            padding: 1px 20px;
+            text-decoration: none;
+            margin: 5px;
+            font-size: 14px;
+            border: solid 1.5px #b6b6b6;
+            border-radius: 0px;
+            font-weight: 500;
+        }
+
+        .button:hover {
+            text-decoration: none;
+            background-color: white;
+            color: black;
+            border: solid 1.5px white;
+        }
+
+        body.telegram-dark .button {
+            color: var(--telegram-accent);
+            border-color: var(--telegram-accent);
+            background: transparent;
+        }
+
+        body.telegram-dark .button:hover {
+            background-color: var(--telegram-accent);
+            color: #fff;
+            border-color: var(--telegram-accent);
+        }
+
+        body.my-own .button {
+            color: var(--user-accent);
+            border-color: var(--user-accent);
+        }
+
+        body.my-own .button:hover {
+            background-color: var(--user-accent);
+            color: #000;
+            border-color: var(--user-accent);
+        }
+
+        body.curvy .button {
+            border-radius: 100px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        p {
+            color: #959595;
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        body.telegram-dark p {
+            color: #a0a9b2;
+        }
+
+        body.my-own p {
+            color: #959595;
+        }
+
+        li {
+            font-size: 12px;
+            color: #a9a9a9;
+        }
+
+        body.telegram-dark li {
+            color: #a0a9b2;
+        }
+
+        body.my-own li {
+            color: #a9a9a9;
+        }
+
+        .copy-icon {
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 1.2em;
+        }
+
+        .copy-icon:hover {
+            background-color: #444;
+        }
+
+         .logo {
+            padding: 30px 0px 0px 0px;
+    text-align: center;
+    display: flex;
+    z-index: 100;
+    justify-content: center;
+    background: url('https://subs-image-assets.s3.us-west-2.amazonaws.com/turbo-landing-background.svg');
+    width: 45%;
+    position: fixed;
+    top: 0px;
+    font-size: 11px;
+    height: 55px;
+    backdrop-filter: blur(10px);
+    border-radius: 0px;
+    border-bottom: solid 2.5px #b0b0b091;
+                background-size: cover;
+    background-repeat: no-repeat;
+    background-size: 100%;
+        }
+
+        body.curvy .logo {
+            border-radius: 0px 0px 30px 30px;
+        }
+
+        body.light .logo {
+            border-bottom-color: #d2d2d2;
+            background: #f0f0f08e;
+            background: url('https://subs-image-assets.s3.us-west-2.amazonaws.com/turbo-landing-background.svg');
+    background-repeat: no-repeat;background-size: 100%;
+        }
+
+        body.telegram-dark .logo {
+            border-bottom-color: var(--telegram-accent);
+            background: #212d3b82;
+            background: url('https://subs-image-assets.s3.us-west-2.amazonaws.com/turbo-landing-background.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+        }
+
+        img#mdbglogo2 {
+            position: fixed;
+            width: 100%;
+            z-index: -1;
+            top: 0px;
+            left: 0px;
+            filter: blur(0px);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px;
+            }
+
+            .logo {
+                width: -webkit-fill-available;
+                border-bottom: solid 2.5px #b0b0b091;
+                background-size: 100%;
+            }
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #00003b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000000000000;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+         .loading-logo {
+            width: 300px;
+            height: auto;
+        }
+        .loading-dots {
+            display: flex;
+            position: fixed;
+            bottom: 100px;
+            align-items: center;
+            justify-content: center;
+        }
+        a{
+            text-decoration: none;
+        }
+       .dot {
+    width: 160px;
+    height: 1.5px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 0px;
+    overflow: hidden;
+    position: relative;
+}
+.dot::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 100%;
+    background: rgba(255,255,255,0.9);
+    animation: pulse1 1.5s ease-in-out infinite;
+}
+@keyframes pulse1 {
+    0% { width: 0%; opacity: 0; left: 0; }
+    50% { width: 100%; opacity: 1; left: 0; }
+    100% { width: 0%; opacity: 0; left: 100%; }
+}
+
+        .applybtn {
+            background: rgb(105 105 105);
+            color: #ffffff;
+            border: none;
+            border-radius: 0px;
+            padding: 8px 21px;
+            font-weight: 400;
+        }
+
+        .applybtn:hover {
+            padding: 9px 22px;
+        }
+
+        body.curvy .applybtn {
+            border-radius: 35px;
+        }
+
+        body.telegram-dark .applybtn {
+            background: #696969;
+            color: #ffffff;
+        }
+
+        body.my-own .applybtn {
+            background: rgb(19, 19, 19);
+            color: #ffffff;
+        }
+
+        .applybtn:hover {
+            text-decoration: none;
+        }
+
+        .theme-button {
+            position: fixed;
+            bottom: 47.5px;
+            right: 20px;
+            background-color: #696969;
+            color: #fff;
+            border: none;
+            border-radius: 0px;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 500;
+            font-weight: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        body.curvy .theme-button {
+            border-radius: 50%;
+        }
+
+        .theme-button.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .theme-button.active {
+            transform: rotate(90deg);
+        }
+
+        .style-button {
+            position: fixed;
+            bottom: 104px;
+            right: 30px;
+            background-color: #696969;
+            color: #fff;
+            border: none;
+            border-radius: 0px;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 10px;
+            z-index: 998;
+            font-weight: 400;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        body.curvy .style-button {
+            border-radius: 50%;
+        }
+
+        .style-button.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .theme-popup {
+            position: fixed;
+            bottom: 145px;
+            right: 20px;
+            background-color: #4f4f4f;
+            border-radius: 0px;
+            padding: 7px 8px;
+            display: none;
+            flex-direction: column;
+            z-index: 999;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        body.curvy .theme-popup {
+            border-radius: 18px;
+        }
+
+        .theme-popup-mini {
+            color: #00aaff;
+            font-weight: 500;
+            background: #000000;
+            padding: 0px 15px;
+            border-radius: 0px;
+            text-align: center;
+            font-size: 14px;
+            color: #00aaff;
+            font-weight: 600;
+        }
+
+        body.curvy .theme-popup-mini {
+            border-radius: 10px;
+        }
+		.curvestyler{
+			border-radius: 0px;
+		}
+		body.curvy .curvestyler{
+			border-radius: 25px 25px 0px 0px;
+		}
+        .theme-popup.open {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .theme-option {
+            background-color: transparent;
+            color: #fff;
+            border: none;
+            padding: 6px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .color-picker {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .color-picker input[type="color"] {
+            width: 30px;
+            height: 30px;
+            border: none;
+            padding: 0;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .container {
+            position: fixed;
+            bottom: 0px;
+            width: 95%;
+            display: flex;
+            justify-content: center;
+            filter: blur(40px);
+            z-index: 500;
+        }
+
+        .sirens {
+            width: 200px;
+            height: 40px;
+            float: left;
+        }
+
+        #red_siren {
+            border-radius: 50px 0px 0px 50px;
+            background-color: transparent;
+            animation: red_light 500ms infinite ease-in-out;
+            z-index: 100;
+        }
+
+        #blue_siren {
+            border-radius: 0px 50px 50px 0px;
+            background-color: transparent;
+            animation: blue_light 500ms infinite ease-in-out;
+            z-index: 100;
+        }
+
+        #white_siren {
+            background-color: blue;
+            box-shadow: 0px 0px 10px orangered, 0px 0px 10px orangered, 0px 0px 50px orangered, 0px 0px 80px orangered;
+        }
+
+        @keyframes red_light {
+            from {
+                background-color: orangered;
+                box-shadow: 0px 0px 10px orangered, 0px 0px 20px orangered, 0px 0px 30px orangered, 0px 0px 30px orangered, 0px 0px 50px orangered, 0px 0px 60px orangered, 0px 0px 70px orangered, 0px 0px 80px orangered, 0px 0px 90px orangered, 0px 0px 100px orangered, 0px 0px 120px orangered;
+            }
+
+            to {
+                background-color: red;
+            }
+        }
+
+        @keyframes blue_light {
+            from {
+                background-color: rgb(255, 221, 0);
+            }
+
+            to {
+                background-color: rgb(255, 221, 0);
+                box-shadow: 0px 0px 10px rgb(255, 221, 0), 0px 0px 20px rgb(255, 221, 0), 0px 0px 30px rgb(255, 221, 0), 0px 0px 40px rgb(255, 221, 0), 0px 0px 50px rgb(255, 221, 0), 0px 0px 60px rgb(255, 221, 0), 0px 0px 70px rgb(255, 221, 0), 0px 0px 80px rgb(255, 221, 0), 0px 0px 120px rgb(255, 221, 0);
+            }
+        }
+
+        .issuebtn button {
+            width: 100%;
+            padding: 10px;
+            background: red;
+            color: white;
+            border: none;
+            font-size: 14px;
+            border-radius: 0px;
+            cursor: pointer;
+        }
+
+        body.curvy .issuebtn button {
+            border-radius: 35px;
+        }
+
+        .sponserimges {
+           display: flex;
+    gap: 15px;
+    margin-bottom: -28px;
+        }
+        img.sponserimg {
+    opacity: 60%;
+}
+img.sponserimg:hover{
+    opacity: 100%;
+}
+        body.curvy .sponserimg{
+    border-radius: 20px;
+}
+        .fa-xmark {
+            width: 26px;
+            height: 26px;
+            fill: white;
+            font-weight: 100;
+        }
+
+
+        .date-slider {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            animation: scroll-up 7s linear infinite;
+        }
+
+        .date-text,
+        .day-text {
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 30px;
+            text-align: right;
+            white-space: nowrap;
+            width: 100px;
+            text-align: center;
+        }
+
+        @keyframes scroll-up {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-120px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+         <div class="servicename" style="position: fixed;
+    top: 10px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    background: #ffffff24;
+    padding:0px 15px;
+    border-radius: 100px;
+    color: #ffffff;
+    font-weight: 300;">
+            Myootive Service
+        </div>
+        <img src="loadinglogo.png" alt="Loading Doughnut" class="loading-logo">
+        <div class="loading-dots">
+            <div class="dot"></div>
+            <!-- <div class="dot"></div>
+            <div class="dot"></div> -->
+        </div>
+    </div>
+
+    <div class="logo">
+        <p>
+            <img id="mdbglogo2" style="filter: blur(0px);" src="headbg.png" alt="">
+            <h1>MLending</h1> By Myootive
+        </p>
+    </div>
+
+    <div class="about" style="align-items: center; padding: 17px; max-width: 600px;">
+        <a href="https://mfi0212.github.io/MFI/starpre" style="color: white; text-decoration: none; cursor: pointer;">
+            <button class="applybtn" style="border: none; outline: none; color: white; background-image: linear-gradient(45deg, rgb(255 169 0), rgb(255 0 198), #5b5bff, #56ffcc); width: 100%; font-size: 14px; cursor: pointer; padding: 10px; margin-bottom: 10px;">
+                Explore Premium
+            </button>
+        </a>
+        <br>
+        <h2 style="text-align: center; font-size: 11px; margin: 0px; font-weight: 400; opacity: 80%; color: revert;">Sponsored by</h2>
+        <div class="sponserimges">
+            <a onclick="alert('We are redirecting you to Programs page..!')" href="https://mfi0212.github.io/swan/offer/programs">
+                <img class="sponserimg" style="width: 100%; padding: 0px; max-width: 400px; margin-bottom: -9px; margin-top: 10px;" src="sponser_program.png" alt="">
+            </a>
+             <a onclick="alert('We are redirecting you to Chloennaouii page..!')" href="https://mfi0212.github.io/MFI/cholennaouii.main">
+                <img class="sponserimg" style="width: 100%; padding: 0px; max-width: 400px; margin-bottom: -9px; margin-top: 10px;" src="choenna_sponser.jpg" alt="">
+             </a>
+            <a onclick="alert('We are redirecting you to Stars page..!')" href="https://blackswan19.github.io/golden/FM/starspage">
+                <img class="sponserimg" style="width: 100%; padding: 0px; max-width: 400px; margin-bottom: -9px; margin-top: 10px;" src="sponser_star.png" alt="">
+            </a>
+        </div>
+        <br>
+        <!-- <div class="newsponser">
+                <a onclick="alert('We are redirecting you to Chloennaouii page..!')" href="https://mfi0212.github.io/MFI/cholennaouii.main"><img class="applybtn" style="width: 94.5%; max-width: 600px; background: transparent; padding: 0px;" src="choenna_sponser.jpg" alt=""></a>
+            </div> -->
+    </div>
+    <div class="about">
+        <h2 style="    margin: 5px;
+">Wait few hours!</h2>
+        <p>To provide the amount, we need to collect the amount first. It takes few hours to arrange the amount, so be patient during this time to get the amount.</p>
+    </div>
+    <div class="about" style="padding: 20px 17px; text-align: center;">
+        <h2 style="margin: 0px;">Check details</h2>
+        <p>Click here to check details like interest and etc...</p>
+        <a href="https://blackswan19.github.io/golden/FM/accverify" class="button">Check my account</a>
+    </div>
+
+    <div class="about" style="text-align: left;">
+        <h3 style="padding: 0px 25px;">Follow these steps..!</h3>
+        <ol>
+            <li>Click on "Take money"</li>
+            <li>Fill out the form.</li>
+            <li>Wait a few hours.</li>
+            <li>Get funds from your coordinator.</li>
+            <li>Check details like interest and etc... in "My Account."</li>
+            <li>Repay on time.</li>
+            <li>Are you late to return? Say 2 days before we will extend the date (or) Extra fees apply.</li>
+            <li>Pay on time for future loans.</li>
+        </ol>
+    </div>
+
+    <div class="about" style="padding: 20px 17px; text-align: center;">
+        <h2 style="margin: 0px;">Any issue</h2>
+        <p>Click here to submit the issue you are facing....</p>
+        <div class="issuebtn">
+            <a target="_blank" href="https://forms.gle/RzTJ8W9bwmm8DVj2A">
+                <button>I have an issue here.!</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="about" style="padding: 20px 17px; text-align: center;">
+        <h2 style="margin: 0px;">Borrow limit</h2>
+        <p>Click here to take the amounts below ₹5,000....</p>
+        <a href="https://blackswan19.github.io/golden/FM/mlld" class="button">MLLD site</a>
+    </div>
+
+    <div class="about curvestyler" style="padding-bottom: 100px;">
+        <h2>I'm late</h2>
+        <p>If you are <span class="highlight">late in returning the amount</span>, the interest will <span class="highlight">automatically increased for every 2,3 days based on the amount</span>.</p>
+        <p>Contact us if you think you'll be late so we can help you.</p>
+    </div>
+
+    <footer>
+        <p style="font-size: 10px; padding: 10px; text-align: center;">
+            <a style="text-decoration: none; color: white;">By Myootive</a>
+            <link rel="stylesheet" href="lightning.css">
+        </p>
+    </footer>
+
+    <div class="applybtn" style="text-align: center; position:fixed; bottom: 47px;">
+        <a style="color: white; text-decoration: none;" onclick="alert('We are redirecting you to taking form.')" href="https://blackswan19.github.io/golden/FM/takemoney">
+            Take money
+        </a>
+    </div>
+
+    <button class="theme-button" id="themeButton">
+        <i class="fa-solid fa-gear"></i>
+        <svg class="fa-solid fa-xmark" style="display: none;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+            <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+        </svg>
+    </button>
+
+    <div class="cursebtn">
+        <button class="style-button" id="styleButton">S</button>
+    </div>
+
+    <div class="theme-popup" id="themePopup">
+        <span class="theme-popup-mini">Select theme</span>
+        <button class="theme-option" onclick="setTheme('dark')">Dark</button>
+        <button class="theme-option" onclick="setTheme('light')">Light</button>
+        <button class="theme-option" onclick="setTheme('telegram-dark')">Classic</button>
+    </div>
+
+    <div class="date-container">
+        <div style="color: white; font-weight: 300;" class="date-slider" id="main-slider">
+            <div class="date-text"></div>
+            <div class="day-text"></div>
+            <div class="date-text"></div>
+            <div class="day-text"></div>
+            <div class="date-text"></div>
+            <div class="day-text"></div>
+            <div class="date-text"></div>
+            <div class="day-text"></div>
+        </div>
+    </div>
+
+    <!-- <div class="container">
+        <div id="red_siren" class="sirens"></div>
+        <div id="white_siren" class="sirens"></div>
+        <div id="blue_siren" class="sirens"></div>
+    </div> -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loadingOverlay = document.getElementById("loadingOverlay");
+            const themeButton = document.getElementById("themeButton");
+            const styleButton = document.getElementById("styleButton");
+            const themePopup = document.getElementById("themePopup");
+            const gearIcon = themeButton.querySelector(".fa-gear");
+            const xIcon = themeButton.querySelector(".fa-xmark");
+
+            setTimeout(() => {
+                loadingOverlay.classList.add("hidden");
+                themeButton.classList.add("visible");
+                styleButton.classList.add("visible");
+            }, 5000);
+            themeButton.addEventListener("click", () => {
+                const isOpen = themePopup.classList.contains("open");
+                themePopup.classList.toggle("open");
+                themeButton.classList.toggle("active");
+                gearIcon.style.display = isOpen ? "block" : "none";
+                xIcon.style.display = isOpen ? "none" : "block";
+            });
+            styleButton.addEventListener("click", () => {
+                const isCurvy = document.body.classList.contains("curvy");
+                document.body.classList.toggle("curvy");
+                styleButton.textContent = isCurvy ? "S" : "V";
+                localStorage.setItem("edgeStyle", isCurvy ? "sharp" : "curvy");
+            });
+            window.setTheme = function(theme) {
+                document.body.classList.remove("dark", "light", "telegram-dark", "my-own");
+                document.body.classList.add(theme);
+                localStorage.setItem("theme", theme);
+                themePopup.classList.remove("open");
+                themeButton.classList.remove("active");
+                gearIcon.style.display = "block";
+                xIcon.style.display = "none";
+            };
+            const savedTheme = localStorage.getItem("theme") || "dark";
+            if (savedTheme === "my-own") {
+                const accentColor = localStorage.getItem("user-accent") || "#00aaff";
+                document.documentElement.style.setProperty("--user-accent", accentColor);
+            }
+            setTheme(savedTheme);
+            const savedEdgeStyle = localStorage.getItem("edgeStyle") || "curvy";
+            if (savedEdgeStyle === "curvy") {
+                document.body.classList.add("curvy");
+                styleButton.textContent = "V";
+            } else {
+                styleButton.textContent = "S";
+            }
+            const today = new Date();
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const day = days[today.getDay()];
+            const date = `${String(today.getDate()).padStart(2, '0')}-${String(today.getMonth() + 1).padStart(2, '0')}-${today.getFullYear()}`;
+
+            document.querySelectorAll('.day-text').forEach(el => el.textContent = day);
+            document.querySelectorAll('.date-text').forEach(el => el.textContent = date);
+        });
+		 document.addEventListener("DOMContentLoaded", () => {
+            const customMenu = document.querySelector(".custom-menu");
+
+            // document.addEventListener("contextmenu", (event) => {
+            //     event.preventDefault();
+            //     if (customMenu) {
+            //         customMenu.style.display = "block";
+            //         customMenu.style.top = `${event.pageY}px`;
+            //         customMenu.style.left = `${event.pageX}px`;
+            //     }
+            // });
+
+            document.addEventListener("click", () => {
+                if (customMenu) {
+                    customMenu.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
