@@ -140,7 +140,7 @@ let filteredLoans = [];
 const usersDB = {
     "Mahesh888*": {
         name: "Mahesh Muthinti",
-        coins: 693,
+        coins: 585,
         loans: [
             
             { planDate: "16-12-2025", endDate: "15-01-2026", interest: 1240, takenAmount: 4000, takenFrom: "Lendlink", fineRate: 40 },
