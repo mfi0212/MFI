@@ -1,4 +1,4 @@
-// document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('contextmenu', e => e.preventDefault());
 
 // for(let i=0;i<15;i++){
 //     const b=document.createElement("div");b.className="bulb";
@@ -142,10 +142,7 @@ const usersDB = {
         name: "Mahesh Muthinti",
         coins: 585,
         loans: [
-            
-            { planDate: "16-12-2025", endDate: "15-01-2026", interest: 1240, takenAmount: 4000, takenFrom: "Lendlink", fineRate: 40 },
-            { planDate: "25-05-2025", endDate: "16-01-2026", interest: 660, takenAmount: 2420, takenFrom: "Delayit offer", fineRate: 50 },
-            { planDate: "11-01-2026", endDate: "10-02-2026", interest: 670, takenAmount: 2700, takenFrom: "Golden", fineRate: 50 },
+            { planDate: "11-01-2026", endDate: "10-02-2026", interest: 690, takenAmount: 3000, takenFrom: "Golden", fineRate: 50 },
         ],
         links: [],
         emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
