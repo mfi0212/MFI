@@ -143,7 +143,7 @@ const usersDB = {
         coins: 595,
         loans: [
             { planDate: "11-01-2026", endDate: "10-02-2026", interest: 690, takenAmount: 3000, takenFrom: "Golden", fineRate: 50 },
-            // { planDate: "14-01-2026", endDate: "13-02-2026", interest: 2551, takenAmount: 12000, takenFrom: "Golden", fineRate: 50 },
+            { planDate: "14-01-2026", endDate: "13-02-2026", interest: 2661, takenAmount: 12000, takenFrom: "Golden", fineRate: 50 },
         ],
         links: [],
         emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
