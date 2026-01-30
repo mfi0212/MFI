@@ -149,7 +149,7 @@ const usersDB = {
         links: [],
         emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
     },
-     "Mahesh888*": {
+     "0212": {
         name: "Tony Montana",
         coins: 1000,
         loans: [
@@ -759,3 +759,4 @@ const coinSection = document.getElementById('coinSection');
             updateGlow();
         });
         updateGlow();
+
