@@ -195,12 +195,12 @@ box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 3px 9px #ffffff38;
         } 
         .fixed {
         position: fixed;
-    top: 60px;
+    top: 80px;
     left: 10px;
     width: 100%;
     z-index: 10;
     border: 1.5px solid #ffffff1f;
-    padding: 15px 0px 0px 15px;
+    padding: 5px 0px 0px 15px;
     border-radius: 25px;
     max-height: 280px;
     height: fit-content;
@@ -209,7 +209,7 @@ box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 3px 9px #ffffff38;
     border: 1px solid rgb(255 255 255 / 13%);
         }
         .scroll {
-            top: 200px;
+            top: 180px;
         transform: translateX(-50%);
         position: relative;
         left: 50%;
@@ -383,13 +383,13 @@ box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 3px 9px #ffffff38;
        display: flex;
         gap: 10px;
         overflow-x: auto;
+        overflow-y: hidden;
         white-space: nowrap;
         transition: transform .4s ease;
         margin-left: -15px;
         scrollbar-width: none;
-        width: 100%;
         margin-right: 20px;
-        padding: 10px 60px 0px 0px;
+        padding: 10px 10px 0px 0px;
         }
         /* h3{ color:#006fff; } */
         p { 
@@ -915,21 +915,19 @@ cubic-bezier(0.4, 0, 0.2, 1);
         }
         @media (max-width : 700px) {
               .fixed {
-          position: fixed;
+         position: fixed;
         top: 70px;
         left: 10px;
         width: 95%;
         z-index: 10;
-        padding: 15px 0px 0px 15px;
-        border-radius: 25px;
+        border-radius: 35px;
         }
       .scroll {
-    top: 215px;
     transform: translateX(-50%);
     position: relative;
     left: 50%;
     width: 100%;
-    padding: 60px 20px 58px 15px;
+    padding: 60px 20px 58px 13px;
     backdrop-filter: blur(0px);
 }.popup-overlay {
       position: fixed;
@@ -974,11 +972,10 @@ display: flex;
         gap: 10px;
         overflow-x: auto;
         white-space: nowrap;
-        padding: 10px 45px 0px 9px;
+        padding: 10px 10px 0px 0px;
         transition: transform .4s ease;
         margin-left: -20px;
         scrollbar-width: none;
-        width: 100%;
     }
      @media (max-width : 380px) {
          .amount-buttons {
@@ -986,7 +983,6 @@ display: flex;
             gap: 10px;
             overflow-x: auto;
             white-space: nowrap;
-            padding: 10px 30px 0px 0px;
             transition: transform .4s ease;
             margin-left: -15px;
             scrollbar-width: none;
@@ -1586,7 +1582,7 @@ transition: all 0.5s ease;}
     width: 15%;
 " src="https://www.animatedimages.org/data/media/358/animated-christmas-wreath-image-0090.gif" alt="">
    </div>
-           <h3 style="text-decoration:underline;margin:0;font-weight:500;font-size:12px;text-align:left;color:#ffffff82;">Borrower</h3>
+           <h3 style="display: none;">Borrower</h3>
             <div class="profile-container">
                 <div class="user-name-container">
                     <img id="userEmote" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0" onclick="openEmoteChooser()">
