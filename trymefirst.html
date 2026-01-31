@@ -121,7 +121,23 @@ scrollbar-width: none;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
              transition: all 0.3s ease;
              z-index: 1000;
-        }
+        }.topoptions {
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 5px;
+    background: #ffffff29;
+    padding: 5px 14px;
+    border-radius: 100px;
+    width: 95%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    max-width: 400px;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border: solid 1.5px #ffffff26;
+}
         #submitBtn:hover { transform: scale(1.1); }
   #submitBtn:active { transform: scale(0.98); }
 
@@ -131,13 +147,14 @@ scrollbar-width: none;
     font-size: 11px;
     line-height: 16px;
     position: fixed;
-    bottom: 15px;
+    bottom: 5px;
     color: #ffffff;
     padding: 9px 25px;
-    border-radius: 100px;
-    width: 90%;
+    border-radius: 25px 25px 9px 9px;
+    width: 97%;
     max-width: 400px;
-    background: rgba(255, 255, 255, 0.2);    backdrop-filter: blur(4px);
+    background: rgb(255 255 255 / 20%);
+    backdrop-filter: blur(10px);
         }
 
         /* MODAL */
@@ -159,9 +176,7 @@ scrollbar-width: none;
      @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
      
         .close-btn {
-            position: fixed;
-            top: 12px;
-    left: 10px;
+           
             color: #e0e0e0;
             font-size: 16px;
             cursor: pointer;
@@ -178,21 +193,20 @@ scrollbar-width: none;
               transform: scale(0.90); 
         } 
         .fixed {
-         position: fixed;
-    top: 0;
-    padding: 60px 0px 5px 20px;
-    left: 0;
-    width: 100%;
-    background: transparent;
-    z-index: 10;
-    border-bottom: 1.5px solid #ffffff1f;
+          position: fixed;
+        top: 60px;
+        left: 10px;
+        width: 100%;
+        z-index: 10;
+        border: 1.5px solid #ffffff1f;
+        padding: 15px 0px 0px 15px;
+        border-radius: 25px;
     max-height: 280px;
     box-shadow: -26px 25px 25px #000000a6, 26px 25px 25px #000000a6;
-    height: fit-content;
-    background-image: url('https://i.pinimg.com/originals/61/3c/aa/613caa566ee4a8cbf8bb5aefcea2ae73.gif');
+    height: fit-content;backdrop-filter: blur(10px);
         }
         .scroll {
-            top: 185px;
+            top: 200px;
         transform: translateX(-50%);
         position: relative;
         left: 50%;
@@ -202,18 +216,16 @@ scrollbar-width: none;
         }
        #userName:hover{
         transition: 0.5s ease-in-out;
-        color: transparent;
-        background: linear-gradient(90deg, transparent, rgb(255, 255, 255), #ffffff, transparent);
-        background-size: 200% 100%;
-        animation: shimmer 5s linear infinite;
-        background-clip: text;
+                  color: transparent;
+    background: linear-gradient(90deg, transparent, rgb(255, 255, 255), #ffffff, transparent);
+    background-size: 200% 100%;
+    animation: shimmer 5s linear infinite;
+    background-clip: text;
        }
         @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
      
         .currency-switch {
-            position: fixed;
-   top: 15px;
-    right: 10px;
+           
     background: #ffffff09;
     color: #ffffffd4;
     border: none;
@@ -225,7 +237,7 @@ scrollbar-width: none;
     display: flex;
     align-items: center;
     gap: 6px;    box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff21;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);margin-bottom: 0px;
        transition: all 0.3s ease;backdrop-filter: blur(4px);}
         .currency-switch:hover{
               transform: scale(1.03); 
@@ -534,7 +546,7 @@ div#popupContent {
     border-radius: 40px;
     max-width: 450px;
     width: 96%;
-    z-index: 2000000;
+    z-index: 20000;
     text-align: left;
     font-size: 14.5px;
     line-height: 1.7;
@@ -653,7 +665,7 @@ transform: scale(1,1);
     }
         .loan-entry { padding: 0px; border-radius:16px; position:relative; width:100%; }
         .purpose-input {
-           padding: 8px;
+           padding: 8px 10px;
     margin: 2px 0;
     background: #ffffff00;
     border: none;
@@ -900,17 +912,18 @@ cubic-bezier(0.4, 0, 0.2, 1);
         }
         @media (max-width : 700px) {
               .fixed {
-           position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
+          position: fixed;
+        top: 60px;
+        left: 10px;
+        width: 95%;
         z-index: 10;
-        border-bottom: 1.5px solid #ffffff1f;
-        padding: 60px 0px 0px 15px;
+        border: 1.5px solid #ffffff1f;
+        padding: 15px 0px 0px 15px;
         box-shadow: 0px 25px 25px #000000a6;
+        border-radius: 25px;
         }
       .scroll {
-    top: 180px;
+    top: 200px;
     transform: translateX(-50%);
     position: relative;
     left: 50%;
@@ -1031,9 +1044,6 @@ display: flex;
     gap: 6px;
 }
 .topdec{
-    /* display: none; */
-}
-.videoyoutube{
     display: none;
 }
     .pack {
@@ -1079,13 +1089,9 @@ text-align: center;
     z-index: 10000;
     border-radius: 47px;
     backdrop-filter: blur(10px);
-    position: fixed;
-    top: 15px;
     background: #000000;
     padding: 5px 10px 5px 20px;
    border: solid 1px #ffffff21;
-    left: 50%;
-    transform: translate(-50%, 0%);
         }
 
         .content h1 {
@@ -1274,38 +1280,25 @@ text-align: center;
         <div class="edge-glow right"></div>
     </div>
 
-    <div class="content">
-        <div class="toggle-switch">
-            <label>Fixed Glow</label>
-            <label class="switch">
-                <input type="checkbox" id="glowToggle">
-                <span class="slider"></span>
-            </label>
-        </div>
-    </div>
+    
    <div class="topdec" style="
     z-index: 100000;
-    "><img style="width: 100%;    width: 100%;
+    ">
+    <img style="width: 100%;
     position: fixed;
-    top: 0px;
-    left: 0px;
-" src="https://www.animatedimages.org/data/media/1071/animated-christmas-decoration-image-0050.gif" alt="">
-     <img style="position: fixed;
     bottom: 0px;
-    width: 100%;
-    left: 0px;" src="https://vincentloy.wordpress.com/wp-content/uploads/2025/01/latern1.gif" alt="">
+    left: 0px;" src="https://www.animatedimages.org/data/media/1081/animated-christmas-line-image-0129.gif" alt="">
+        
+            <img style="width: 100%;
+    rotate: 180deg;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;" src="https://www.animatedimages.org/data/media/333/animated-christmas-tree-decorations-image-0047.gif" alt="">
         </div>
          <div class="topdec" style="position: fixed;
     top: -3px;
-    z-index: 100000;
-    display: flex;
-    align-items: center;
-    justify-content: center;">
-            <img style="width: 30%;max-width: 400px;" src="https://i.pinimg.com/originals/9d/97/7b/9d977b3a6c08ff473ac6c38f2a15acd7.gif" alt="">
-            <img style="width: 30%;max-width: 400px;" src="https://i.pinimg.com/originals/9d/97/7b/9d977b3a6c08ff473ac6c38f2a15acd7.gif" alt="">
-            <img style="width: 30%;max-width: 400px;" src="https://i.pinimg.com/originals/9d/97/7b/9d977b3a6c08ff473ac6c38f2a15acd7.gif" alt="">
-            <img style="width: 30%;max-width: 400px;" src="https://i.pinimg.com/originals/9d/97/7b/9d977b3a6c08ff473ac6c38f2a15acd7.gif" alt="">
-            <!-- <img style="width: 20%;max-width: 400px;" src="https://i.pinimg.com/originals/9d/97/7b/9d977b3a6c08ff473ac6c38f2a15acd7.gif" alt=""> -->
+    z-index: 100000;">
+            <img style="width: 100%;" src="https://www.animatedimages.org/data/media/333/animated-christmas-tree-decorations-image-0032.gif" alt="">
         </div>
     <div id="passwordContainer">
         
@@ -1314,11 +1307,10 @@ text-align: center;
             <img style="width: 100%;" src="https://www.animatedimages.org/data/media/1071/animated-christmas-decoration-image-0050.gif" alt="">
         </div>
         <div class="decoration topdec">
-            <img style="width: 64%;
+            <img style="width: 450px;
     position: fixed;
-    top: 70px;
-    object-fit: cover;
-    right: -15px;" src="https://i.pinimg.com/originals/2d/bc/b8/2dbcb8c31d6194e0cb80cd8ce5db2980.gif" alt="">
+    top: 0px;
+    object-fit: cover;    left: 0px;" src="https://i.ibb.co/pvVBN7cr/tread.png" alt="">
         </div>
         <h2 style="font-weight: 400;
     font-size: 9px;
@@ -1333,9 +1325,9 @@ margin:15px;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBo
         <div class="treee topdec" style="width: 100%;
     position: fixed;
     bottom: 12%;
-    left: 50%;
+    left: 47.8%;
     transform: translate(-50%, 0%);">
-            <img style="width: 85px;" src="https://www.gifcen.com/wp-content/uploads/2022/01/chinese-new-year-2022-gif-5.gif" alt="">
+            <img style="width: 85px;" src="https://media.tenor.com/Mreg30jYSooAAAAi/christmas-tree-christmas-lights.gif" alt="">
         </div>
         <div class="notice">You should return the money before the return date, If not additional interest will be charged.</div>
     </div>
@@ -1347,9 +1339,7 @@ margin:15px;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBo
     </div>
  <style>
     .fab {
-    position: fixed;
-    top: 15px;
-    left: 55px;
+   
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1493,9 +1483,7 @@ transition: all 0.5s ease;}
 </style>
 </head>
 <body>
-<div class="fab" id="fab">
-  <svg style="width: 15px;height: 15px;" xmlns="http://www.w3.org/2000/svg" width="36px" height="36px" viewBox="0 0 24 24" fill="#ffffff"><g fill="#ffffff"><path d="M15.72 7.349a1.86 1.86 0 1 1-3.72 0a1.86 1.86 0 0 1 3.72 0Zm6.28.405c0-.374 0-.642-.037-.878a3.023 3.023 0 0 0-1.315-2.047c-.078-.052-.177.016-.164.109c.1.744.117 1.627.12 2.59v8.944c-.003.964-.02 1.847-.12 2.591c-.013.093.086.16.164.109a3.023 3.023 0 0 0 1.315-2.047c.037-.236.037-.504.037-.878V7.754Zm-18.605.06a51.83 51.83 0 0 1 .002-.465c.004-.894.025-1.714.12-2.411c.012-.093-.087-.16-.165-.109a3.023 3.023 0 0 0-1.315 2.047C2 7.112 2 7.38 2 7.754v8.492c0 .374 0 .642.037.878a3.022 3.022 0 0 0 1.315 2.047c.078.052.177-.016.164-.109c-.094-.697-.115-1.517-.12-2.41a88.883 88.883 0 0 1 0-.466V7.814Z"/><path fill-rule="evenodd" d="M16.085 2.108C15.28 2 14.253 2 12.981 2H11.02c-1.272 0-2.298 0-3.104.108c-.838.113-1.543.354-2.103.914c-.56.56-.8 1.265-.913 2.102c-.108.806-.108 1.832-.108 3.104v7.544c0 1.272 0 2.298.108 3.104c.113.837.354 1.542.913 2.102c.56.56 1.265.801 2.103.914C8.72 22 9.747 22 11.019 22h1.962c1.272 0 2.298 0 3.104-.108c.838-.113 1.543-.354 2.103-.914c.56-.56.8-1.265.913-2.102c.108-.806.108-1.832.108-3.104V8.228c0-1.272 0-2.298-.108-3.104c-.113-.837-.354-1.542-.913-2.102c-.56-.56-1.265-.801-2.103-.914Zm.723 14.522l.987 1.04c.018-.536.019-1.175.019-1.95V8.28c0-1.336-.002-2.267-.096-2.97c-.092-.683-.26-1.044-.517-1.302c-.258-.257-.619-.425-1.302-.517c-.702-.094-1.633-.096-2.969-.096h-1.86c-1.335 0-2.267.002-2.97.096c-.682.092-1.043.26-1.3.517c-.258.258-.426.62-.518 1.302c-.094.703-.096 1.634-.096 2.97v4.624l.003-.003c.917-.941 2.336-.877 3.184.118l2.94 3.448c.236.276.545.289.783.093l.204-.169c1.076-.886 2.552-.77 3.508.24Z" clip-rule="evenodd"/></g></svg>
-</div>
+
 
 <div class="overlay" id="overlay"></div>
 
@@ -1506,6 +1494,9 @@ transition: all 0.5s ease;}
   <div class="option" id="presetBtn">Use Preset Wallpaper</div>
   <div id="presetSection" style="display:none;">
        <div class="wallpaper-grid">
+      <!-- <img class="wallpaper-thumb" src="https://i.ibb.co/PZZsK47s/2.jpg" alt="Wallpaper 6">
+      <img class="wallpaper-thumb" src="https://i.ibb.co/JjMGYshQ/3.jpg" alt="Wallpaper 6">
+      <img class="wallpaper-thumb" src="https://i.ibb.co/MywDKVT7/4.jpg" alt="Wallpaper 6"> -->
       <img class="wallpaper-thumb" src="http://i.pinimg.com/1200x/6c/c2/f0/6cc2f0cebf6052dcfbe71864d85ffeaa.jpg" alt="Wallpaper 6">
       <img class="wallpaper-thumb" src="https://i.pinimg.com/1200x/39/e9/4d/39e94ddce22f8eac25d2f8b0f1831394.jpg" alt="Wallpaper 6">
       <img class="wallpaper-thumb" src="https://i.pinimg.com/1200x/3d/d0/fd/3dd0fdd3607bc3fdd5f5e28fa991c660.jpg" alt="Wallpaper 6">
@@ -1568,20 +1559,47 @@ transition: all 0.5s ease;}
     </div>
 </div>
 
-        <span><i class="fa-solid fa-arrow-left close-btn" onclick="closeModal()"></i></span>
 
-        <!-- CURRENCY SWITCH -->
-        <button class="currency-switch" id="currencySwitch">
+
+
+
+
+
+
+<div class="topoptions">
+            <span><i class="fa-solid fa-arrow-left close-btn" onclick="closeModal()"></i></span>
+        <div class="fab" id="fab">
+  <svg style="width: 15px;height: 15px;" xmlns="http://www.w3.org/2000/svg" width="36px" height="36px" viewBox="0 0 24 24" fill="#ffffff"><g fill="#ffffff"><path d="M15.72 7.349a1.86 1.86 0 1 1-3.72 0a1.86 1.86 0 0 1 3.72 0Zm6.28.405c0-.374 0-.642-.037-.878a3.023 3.023 0 0 0-1.315-2.047c-.078-.052-.177.016-.164.109c.1.744.117 1.627.12 2.59v8.944c-.003.964-.02 1.847-.12 2.591c-.013.093.086.16.164.109a3.023 3.023 0 0 0 1.315-2.047c.037-.236.037-.504.037-.878V7.754Zm-18.605.06a51.83 51.83 0 0 1 .002-.465c.004-.894.025-1.714.12-2.411c.012-.093-.087-.16-.165-.109a3.023 3.023 0 0 0-1.315 2.047C2 7.112 2 7.38 2 7.754v8.492c0 .374 0 .642.037.878a3.022 3.022 0 0 0 1.315 2.047c.078.052.177-.016.164-.109c-.094-.697-.115-1.517-.12-2.41a88.883 88.883 0 0 1 0-.466V7.814Z"/><path fill-rule="evenodd" d="M16.085 2.108C15.28 2 14.253 2 12.981 2H11.02c-1.272 0-2.298 0-3.104.108c-.838.113-1.543.354-2.103.914c-.56.56-.8 1.265-.913 2.102c-.108.806-.108 1.832-.108 3.104v7.544c0 1.272 0 2.298.108 3.104c.113.837.354 1.542.913 2.102c.56.56 1.265.801 2.103.914C8.72 22 9.747 22 11.019 22h1.962c1.272 0 2.298 0 3.104-.108c.838-.113 1.543-.354 2.103-.914c.56-.56.8-1.265.913-2.102c.108-.806.108-1.832.108-3.104V8.228c0-1.272 0-2.298-.108-3.104c-.113-.837-.354-1.542-.913-2.102c-.56-.56-1.265-.801-2.103-.914Zm.723 14.522l.987 1.04c.018-.536.019-1.175.019-1.95V8.28c0-1.336-.002-2.267-.096-2.97c-.092-.683-.26-1.044-.517-1.302c-.258-.257-.619-.425-1.302-.517c-.702-.094-1.633-.096-2.969-.096h-1.86c-1.335 0-2.267.002-2.97.096c-.682.092-1.043.26-1.3.517c-.258.258-.426.62-.518 1.302c-.094.703-.096 1.634-.096 2.97v4.624l.003-.003c.917-.941 2.336-.877 3.184.118l2.94 3.448c.236.276.545.289.783.093l.204-.169c1.076-.886 2.552-.77 3.508.24Z" clip-rule="evenodd"/></g></svg>
+</div>
+<div class="content">
+        <div class="toggle-switch">
+            <label>Fixed Glow</label>
+            <label class="switch">
+                <input type="checkbox" id="glowToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+<button class="currency-switch" id="currencySwitch">
             <i class="fa-solid fa-dollar-sign"></i> <span id="currencyLabel">USD</span>
         </button>
+</div>
+
+
+
+
+
+
+        <!-- CURRENCY SWITCH -->
+        
 
         <div class="fixed">
                <div class="topdec">
-    <img style="position: fixed;
-    top: 38px;
-    right: -25px;
-    width: 28%;
-" src="https://i.pinimg.com/originals/1f/d3/ac/1fd3acf4a378b1e2536a4f86fc023b1a.gif" alt="">
+    <img style="    position: fixed;
+    top: 0px;
+    right: 100px;
+    width: 15%;
+" src="https://www.animatedimages.org/data/media/358/animated-christmas-wreath-image-0090.gif" alt="">
    </div>
            <h3 style="text-decoration:underline;margin:0;font-weight:500;font-size:12px;text-align:left;color:#ffffff82;">Borrower</h3>
             <div class="profile-container">
@@ -1676,16 +1694,10 @@ cursor: pointer;
     left: 0px;
     top: 0px;
     opacity: 40%;" src="Floodlights Flashing 1080p.mp4" loop muted autoplay></video>
-             <!-- <video class="topdec" style="position: fixed;
+             <video class="topdec" style="position: fixed;
     z-index: -10000;
     left: 0px;
-    top: 0px;height: -webkit-fill-available;" src="https://static.vecteezy.com/system/resources/previews/033/113/154/mp4/light-bulb-string-on-black-background-christmas-lights-colour-free-video.mp4" loop muted autoplay></video> -->
-                 <!-- <img  style="position: fixed;
-    z-index: -10000;
-    left: 0px;
-    top: 0px;
-    width: 100%;" src="https://i.pinimg.com/originals/61/3c/aa/613caa566ee4a8cbf8bb5aefcea2ae73.gif" alt=""> -->
-    
+    top: 0px;height: -webkit-fill-available;" src="https://static.vecteezy.com/system/resources/previews/033/113/154/mp4/light-bulb-string-on-black-background-christmas-lights-colour-free-video.mp4" loop muted autoplay></video>
                  <video class="topdec " style="position: fixed;
     z-index: -10000;
     bottom: 20%;
@@ -1696,38 +1708,35 @@ cursor: pointer;
             
         <div class="scroll">
         
-        <div class="videoyoutube">
-            <div class="youtube-wrapper">
-                <span style="display: flex;justify-content: center;align-items: center;font-size: 15px;height: fit-content;margin: 0px auto;background: rgba(255, 255, 255, 0.171);">Power by BsFesta</span>
-                <iframe 
-                    src="https://www.yout-ube.com/embed/F1itSKJLWQY?si=BcX2HofzV5SmnHPD"
-                    title="YouTube video player"
-                    allowfullscreen
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
-                </iframe>
-            </div>
-            <style>
-            .festivalexplo{
-                background: #ffffff00;
-                color: white;
-                padding: 10px 35px;
-                border-radius: 1000px;
-                cursor: pointer;
-                transition: all 0.3s ease-in-out;
-                border: solid 1.5px #ffffff5e;
-                filter: drop-shadow(0px 0px 10px black);
-                }
-                .festivalexplo:hover{
-                transform: scale(1.03); 
-            }
-            .festivalexplo:active{
-                transform: scale(0.90); 
-            } </style>
-            <div class="playlist topdec" style="width: 100%;
-        text-align: center;">
-                <a href="https://www.yout-ube.com/watch?v=TFsZy9t-qDc&list=RD79EsaMCYo4o&start_radio=1"><button class="festivalexplo"> Christmas song playlist</button></a>
-            </div>
+        <div class="youtube-wrapper topdec">
+            <span style="display: flex;justify-content: center;align-items: center;font-size: 15px;height: fit-content;margin: 0px auto;background: rgba(255, 255, 255, 0.171);">Power by BsFesta</span>
+            <iframe 
+                src="https://www.yout-ube.com/embed/F1itSKJLWQY?si=BcX2HofzV5SmnHPD"
+                title="YouTube video player"
+                allowfullscreen
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+            </iframe>
+        </div>
+        <style>.festivalexplo{
+       background: #ffffff00;
+    color: white;
+    padding: 10px 35px;
+    border-radius: 1000px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: solid 1.5px #ffffff5e;
+    filter: drop-shadow(0px 0px 10px black);
+    }
+            .festivalexplo:hover{
+              transform: scale(1.03); 
+        }
+        .festivalexplo:active{
+              transform: scale(0.90); 
+        } </style>
+        <div class="playlist topdec" style="width: 100%;
+    text-align: center;">
+            <a href="https://www.yout-ube.com/watch?v=TFsZy9t-qDc&list=RD79EsaMCYo4o&start_radio=1"><button class="festivalexplo"> Christmas song playlist</button></a>
         </div>
         <div id="loanDetails"></div>
         <div id="graphContainer" style="display:none;"><canvas id="loanChart"></canvas>
