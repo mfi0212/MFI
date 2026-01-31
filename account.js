@@ -149,19 +149,7 @@ const usersDB = {
         links: [],
         emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
     },
-    "0212": {
-        name: "Tony",
-        coins: 0,
-        loans: [
-            { planDate: "11-01-2026", endDate: "10-02-2026", interest: 690, takenAmount: 3000, takenFrom: "Golden", fineRate: 50 },
-            { planDate: "14-01-2026", endDate: "13-02-2026", interest: 2661, takenAmount: 12000, takenFrom: "Golden", fineRate: 50 },
-            { planDate: "25-01-2026", endDate: "24-02-2026", interest: 1085, takenAmount: 3500, takenFrom: "Golden", fineRate: 50 },
-            { planDate: "25-01-2026", endDate: "24-02-2026", interest: 1085, takenAmount: 3500, takenFrom: "Golden", fineRate: 50 },
-            { planDate: "25-01-2026", endDate: "24-02-2026", interest: 1085, takenAmount: 3500, takenFrom: "Golden", fineRate: 50 },
-        ],
-        links: [],
-        emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
-    },
+   
 };
 
 function loadUserData() {
@@ -470,7 +458,8 @@ function displayLoanDetails(loan, index) {
                 <p style="font-size:24px;color:${overdueFine > 0 ? '#ff4000ff' : '#00b900ff'};font-weight:bold;">
                     ${formatMoney(totalPayable)}
                 </p>
-                 <a target="_blank" href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: rgb(255 0 0 / 69%);
+                 <a target="_blank" style="width: 100%;
+    max-width: 350px;"  href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: rgb(255 0 0 / 69%);
     padding: 10px 20px;
     margin-top: 30px;
     font-size: 13px;" class="add-link-btn">I have an issue with my account.!</button></a>
@@ -543,18 +532,14 @@ function renderCalendar() {
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    position: sticky;
-    top: -20px;
-    background: #000000d4;
-    padding: 10px 10px 0px 15px;
+    background: #ffffff36;
     width: 100%;
     margin-bottom: 20px;
-    border-radius: 1000px;
+    border-radius: 1008px;
+    padding: 5px 5px 5px 20px;
 ">
         <span style="    font-weight: 600;
-    color: #eee;
-    position: relative;
-    top: -5px;">${calendarMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
+    color: #eee;">${calendarMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
         <button class="move-asaid" onclick="prevMonth()"><i class="fa-solid fa-chevron-left"></i></button>
         <button class="move-asaid" onclick="nextMonth()"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
