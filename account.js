@@ -149,17 +149,6 @@ const usersDB = {
         links: [],
         emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
     },
-    "0212": {
-        name: "Tony mantana",
-        coins: 0,
-        loans: [
-            { planDate: "15-01-2026", endDate: "15-02-2026", interest: 2690, takenAmount: 13000, takenFrom: "Golden", fineRate: 50 },
-            { planDate: "14-01-2026", endDate: "13-02-2026", interest: 3261, takenAmount: 14000, takenFrom: "Golden", fineRate: 50 },
-            { planDate: "25-01-2026", endDate: "24-02-2026", interest: 2085, takenAmount: 4500, takenFrom: "Golden", fineRate: 50 },
-        ],
-        links: [],
-        emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
-    },
 };
 
 function loadUserData() {
@@ -762,4 +751,5 @@ const coinSection = document.getElementById('coinSection');
             updateGlow();
         });
         updateGlow();
+
 
