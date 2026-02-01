@@ -357,7 +357,9 @@ function showTotalPopup() {
         <p style='margin-bottom: 20px;'>Total Interest : <strong>${formatMoney(interest)}</strong></p>
         ${overdue > 0 ? `<p style="color:#ff4444;margin-bottom: 20px;">Overdue Fine : <strong style='color: #ff4444;'>${formatMoney(overdue)}</strong></p>` : ''}
         <hr>
-        <p style="font-size: 22px;margin-top: 22px;margin-bottom: 10px;">Total to Return: <strong>${formatMoney(total)}</strong></p>
+        <p style="font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: -5px;">Total to Return: <strong>${formatMoney(total)}</strong></p>
     `;
     document.getElementById("totalPopup").style.display = "block";
 }
@@ -578,11 +580,16 @@ function showDatePopup(idx) {
         <p style='color: #e2b325;font-weight: 600;'><strong>Taken Amount:</strong> ${formatMoney(loan.takenAmount)}</p>
         <p style='color: #e2b325;font-weight: 600;'><strong>Purpose:</strong> ${loan.purpose || 'Not set'}</p>
         <p style='color: #e2b325;font-weight: 600;'><strong>Return date :</strong> ${cleanEnd}</p>
-        <hr style='margin: 15px 0px;'>
+        <hr style='margin: 0px;'>
         <p style='color: #e2b325;font-weight: 600;    font-size: 20px;'><strong>Status:</strong> <span style="color:${daysLeft<=2?'#F44336':daysLeft<=6?'#FFCA28':'#4CAF50'}">
             ${daysLeft > 0 ? daysLeft + ' days left' : 'Overdue'}
         </span></p>
-        <button style="margin-top:15px;width:100%;padding:8px;background:#004fff;border-radius:20px;margin-bottom:-5px" onclick="goToList(${idx})">View Full</button>
+        <button style="width: 100%;
+    padding: 8px;
+    background: #004fff;
+    border-radius: 20px;
+    margin-bottom: -5px;
+    margin-top: 5px;" onclick="goToList(${idx})">View Full</button>
     `;
     document.getElementById('datePopup').style.display = 'block';
 }
