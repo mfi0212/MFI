@@ -458,8 +458,7 @@ function displayLoanDetails(loan, index) {
                 <p style="font-size:24px;color:${overdueFine > 0 ? '#ff4000ff' : '#00b900ff'};font-weight:bold;">
                     ${formatMoney(totalPayable)}
                 </p>
-                 <a target="_blank" style="width: 100%;
-    max-width: 350px;"  href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: rgb(255 0 0 / 69%);
+                 <a target="_blank"  href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: rgb(255 0 0 / 69%);
     padding: 10px 20px;
     margin-top: 30px;
     font-size: 13px;" class="add-link-btn">I have an issue with my account.!</button></a>
