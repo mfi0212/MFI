@@ -121,24 +121,7 @@ scrollbar-width: none;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
              transition: all 0.3s ease;
              z-index: 1000;
-        }.topoptions {
- display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 11px;
-    background: #ffffff00;
-    padding: 5px 10px 5px 6px;
-    border-radius: 100px;
-    width: 95%;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    max-width: 400px;
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 3px 9px #ffffff38;
-    border: 1px solid rgb(255 255 255 / 13%);
-}
+        }
         #submitBtn:hover { transform: scale(1.1); }
   #submitBtn:active { transform: scale(0.98); }
 
@@ -148,14 +131,13 @@ box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 3px 9px #ffffff38;
     font-size: 11px;
     line-height: 16px;
     position: fixed;
-    bottom: 5px;
+    bottom: 15px;
     color: #ffffff;
     padding: 9px 25px;
-    border-radius: 25px 25px 9px 9px;
-    width: 97%;
+    border-radius: 100px;
+    width: 90%;
     max-width: 400px;
-    background: rgb(255 255 255 / 20%);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.2);    backdrop-filter: blur(4px);
         }
 
         /* MODAL */
@@ -194,22 +176,21 @@ box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 3px 9px #ffffff38;
               transform: scale(0.90); 
         } 
         .fixed {
-        position: fixed;
-    top: 80px;
-    left: 10px;
+         position: fixed;
+    top: 0;
+    padding: 60px 0px 5px 20px;
+    left: 0;
     width: 100%;
+    background: transparent;
     z-index: 10;
-    border: 1.5px solid #ffffff1f;
-    padding: 5px 0px 0px 15px;
-    border-radius: 25px;
+    border-bottom: 1.5px solid #ffffff1f;
     max-height: 280px;
-    height: fit-content;
-    backdrop-filter: blur(10px);
-    box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff4a;
-    border: 1px solid rgb(255 255 255 / 13%);
+    box-shadow: -26px 25px 25px #000000a6, 26px 25px 25px #000000a6;
+    height: fit-content;backdrop-filter: blur(7px);
+    /* background-image: url('https://i.pinimg.com/originals/61/3c/aa/613caa566ee4a8cbf8bb5aefcea2ae73.gif'); */
         }
         .scroll {
-            top: 180px;
+            top: 185px;
         transform: translateX(-50%);
         position: relative;
         left: 50%;
@@ -219,16 +200,16 @@ box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 3px 9px #ffffff38;
         }
        #userName:hover{
         transition: 0.5s ease-in-out;
-                  color: transparent;
-    background: linear-gradient(90deg, transparent, rgb(255, 255, 255), #ffffff, transparent);
-    background-size: 200% 100%;
-    animation: shimmer 5s linear infinite;
-    background-clip: text;
+        color: transparent;
+        background: linear-gradient(90deg, transparent, rgb(255, 255, 255), #ffffff, transparent);
+        background-size: 200% 100%;
+        animation: shimmer 5s linear infinite;
+        background-clip: text;
        }
         @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
      
         .currency-switch {
-           
+         margin: 0px;
     background: #ffffff09;
     color: #ffffffd4;
     border: none;
@@ -240,7 +221,7 @@ box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 3px 9px #ffffff38;
     display: flex;
     align-items: center;
     gap: 6px;    box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff21;
-    border: 1px solid rgba(255, 255, 255, 0.2);margin-bottom: 0px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
        transition: all 0.3s ease;backdrop-filter: blur(4px);}
         .currency-switch:hover{
               transform: scale(1.03); 
@@ -276,7 +257,7 @@ box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 3px 9px #ffffff38;
     margin-top: 30px;
        }
         .user-links {
-      overflow: auto;
+       overflow: auto;
     display: flex;
     gap: 10px;
     align-items: center;
@@ -285,8 +266,6 @@ box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 3px 9px #ffffff38;
     position: relative;
     top: -5px;
     left: 5px;
-    width: 70%;
-    border-radius: 100px;
          }
          
         .user-link { 
@@ -327,16 +306,17 @@ box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 3px 9px #ffffff38;
               transform: scale(0.90); 
         } 
 
+        /* SEARCH + AMOUNT BUTTONS */
         .search-container {
-display: flex;
+       display: flex;
     align-items: center;
     gap: 10px;
     transition: all .4s ease;
     position: relative;
     top: -13px;
     height: 50px;
-    width: 98%;
-    padding: 0px 0px 0px 0px;justify-content: space-between;
+    width: 140%;
+    padding: 0px 121px 0px 0px;
         }
         #searchIcon { 
             font-size: 16px;
@@ -350,6 +330,23 @@ display: flex;
     box-shadow: inset 0 1px 0 #ffffff0a, inset 0 -3px 10px #ffffff2e;
     border: 1px solid rgba(255, 255, 255, 0.2);
         }
+        .topoptions {
+display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 10px;
+    background: #ffffff00;
+    padding: 5px 10px 5px 6px;
+    border-radius: 100px;
+    width: 98%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    max-width: 400px;
+    z-index: 1000;
+    /* backdrop-filter: blur(10px); */
+    box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -3px 9px #ffffff38;
+}
         #searchIcon:hover{
               transform: scale(1.03); 
         }
@@ -384,14 +381,13 @@ display: flex;
        display: flex;
         gap: 10px;
         overflow-x: auto;
-        overflow-y: hidden;
         white-space: nowrap;
         transition: transform .4s ease;
         margin-left: -15px;
         scrollbar-width: none;
-        /* margin-right: 20px; */
-        padding: 10px 10px 0px 0px;background: linear-gradient(-39deg, black, transparent 43%);
-        border-radius: 0px 10px 30px 11px;
+        width: 100%;
+        margin-right: 20px;
+        padding: 10px 60px 0px 0px;
         }
         /* h3{ color:#006fff; } */
         p { 
@@ -492,6 +488,7 @@ ease;z-index: 1000;
         }    
 .offergift {
        position: fixed;
+    bottom: 65px;
     left: 10px;
     z-index: 100;
     background: #ffffff0f;
@@ -527,7 +524,7 @@ ease;z-index: 1000;
         #totalContent p{ text-align:center; }
         .total-icon svg { fill:white; width:19px; }
         button.move-asaid {
-           padding: 5px 14px;
+            padding: 5px 14px;
     background: #ffffff1f;
     outline: none;
     border: none;
@@ -539,28 +536,34 @@ div#popupContent {
     text-align: center;
 }
         #totalPopup, #datePopup, #linkConfirmPopup, #emoteChooser {
-          display: none;
+           display: none;
     position: fixed;
     bottom: 0%;
     left: 50%;
     scale: 1;
     transform: translate(-50%, -4%);
-    background: transparent;
+    background: #11111100;
     color: #e0e0e0;
     padding: 25px;
-    border-radius: 45px;
+    border-radius: 40px;
     max-width: 450px;
     width: 96%;
     z-index: 2000000;
     text-align: left;
     font-size: 14.5px;
     line-height: 1.7;
-    backdrop-filter: blur(20px);
-    box-shadow: inset 0 0.5px 0 #ffffff12, inset 0 -4px 9px #ffffff4f;
+    backdrop-filter: blur(40px);
+    box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff21;
     border: 1.5px solid rgba(255, 255, 255, 0.137);
-    animation: iosPopupIn 1s cubic-bezier(.22, 1, .36, 1) forwards;
+    animation: iosPopupIn 1s cubic-bezier(.22,1,.36,1) forwards;
+    
     }
-
+.optiononeser {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+}
 @keyframes iosPopupIn {
     0% {
         transform: translate(-50%, -48%) scale(0.7);
@@ -669,15 +672,15 @@ transform: scale(1,1);
     }
         .loan-entry { padding: 0px; border-radius:16px; position:relative; width:100%; }
         .purpose-input {
-          padding: 7px;
+          padding: 6px;
     margin: 2px 0;
     background: #ffffff00;
     border: none;
-    border-radius: 13px;
+    border-radius: 12px;
     color: white;
-    font-size: 12px;
+    font-size: 13px;
     outline: none;
-    max-width: 105px;
+    max-width: 110px;
     text-align: end;
     backdrop-filter: blur(5px);
     box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff21;
@@ -691,40 +694,45 @@ transform: scale(1,1);
               transform: scale(1.03); 
         }
         .purpose-input:focus{
-           transform: scale(1.3) translateX(-20px);
+          transform: scale(1.3) translateX(-20px);
     padding: 6px 15px;
     border-radius: 100px;
     max-width: 130px;
-    font-size: 13px;text-align: justify;
+    font-size: 13px;
+    text-align: justify;
         }
         .purpose-input.animate {
     animation: liquidPress 0.7s cubic-bezier(.2,.8,.2,1);
 }
 
      #bottomNav {
-     position: fixed;
+          position: fixed;
     bottom: 0;
-    right: 0;
     left: 0;
     border-radius: 0;
-    padding: 10px;
+    padding: 15px 10px;
     display: flex;
     box-shadow: none;
     z-index: 0;
+    width: 100%;
+    justify-content: center;
     gap: 10px;
-    justify-content: right;
     align-items: center;
+    background: linear-gradient(0deg, #000000a9 15%, transparent);
+    /* backdrop-filter: blur(5px); */
         }
         .nav-item { 
 display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 5px;
     color: #ffffff;
     font-size: 11px;
     cursor: pointer;
-    padding: 10px 16px;
+    padding: 10px 15px;
     border-radius: 46px;
+    width: 100%;
     text-align: center;
+    justify-content: space-around;
     max-width: 135px;
     backdrop-filter: blur(3px);
     box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff52;
@@ -911,14 +919,17 @@ cubic-bezier(0.4, 0, 0.2, 1);
         }
         @media (max-width : 700px) {
               .fixed {
-        position: fixed;
-        top: 70px;
-        left: 3.5px;
-        width: 98%;
+           position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
         z-index: 10;
-        border-radius: 35px;
+        border-bottom: 1.5px solid #ffffff1f;
+        padding: 60px 0px 0px 15px;
+        box-shadow: 0px 25px 25px #000000a6;
         }
       .scroll {
+    top: 180px;
     transform: translateX(-50%);
     position: relative;
     left: 50%;
@@ -968,10 +979,11 @@ display: flex;
         gap: 10px;
         overflow-x: auto;
         white-space: nowrap;
-        padding: 10px 10px 0px 0px;
+        padding: 10px 45px 0px 9px;
         transition: transform .4s ease;
         margin-left: -20px;
         scrollbar-width: none;
+        width: 100%;
     }
      @media (max-width : 380px) {
          .amount-buttons {
@@ -979,23 +991,12 @@ display: flex;
             gap: 10px;
             overflow-x: auto;
             white-space: nowrap;
+            padding: 10px 30px 0px 0px;
             transition: transform .4s ease;
             margin-left: -15px;
             scrollbar-width: none;
-        }.user-links {
-      overflow: auto;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    padding: 5px 3px;
-    transition: all 0.3s ease;
-    position: relative;
-    top: -5px;
-    left: 5px;
-    width: 70%;
-    border-radius: 100px;
-    /* background: linear-gradient(-35deg, #000000, transparent 45%); */
-         }
+            width: 100%;
+        }
      }
         }
     /* Popup overlay */
@@ -1051,6 +1052,9 @@ display: flex;
 .topdec{
     display: none;
 }
+.videoyoutube{
+    display: none;
+}
     .pack {
       border-radius: 30px;
     padding: 10px;
@@ -1092,8 +1096,9 @@ display: flex;
         .content {
 text-align: center;
     z-index: 10000;
-    border-radius: 8px 8px 15px 15px;
-    background: rgb(255 255 255 / 20%);
+    border-radius: 47px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.2);
     padding: 5px 10px 5px 20px;
         }
 
@@ -1283,25 +1288,31 @@ text-align: center;
         <div class="edge-glow right"></div>
     </div>
 
-    
+   
    <div class="topdec" style="
     z-index: 100000;
-    ">
-    <img style="width: 100%;
+    "><img style="width: 100%;    width: 100%;
     position: fixed;
+    top: 0px;
+    left: 0px;
+" src="https://www.animatedimages.org/data/media/1071/animated-christmas-decoration-image-0050.gif" alt="">
+     <img style="position: fixed;
     bottom: 0px;
-    left: 0px;" src="https://www.animatedimages.org/data/media/1081/animated-christmas-line-image-0129.gif" alt="">
-        
-            <img style="width: 100%;
-    rotate: 180deg;
-    position: fixed;
-    bottom: 0px;
-    left: 0px;" src="https://www.animatedimages.org/data/media/333/animated-christmas-tree-decorations-image-0047.gif" alt="">
+    width: 100%;
+    left: 0px;" src="https://vincentloy.wordpress.com/wp-content/uploads/2025/01/latern1.gif" alt="">
         </div>
          <div class="topdec" style="position: fixed;
     top: -3px;
     z-index: 100000;">
-            <img style="width: 100%;" src="https://www.animatedimages.org/data/media/333/animated-christmas-tree-decorations-image-0032.gif" alt="">
+        <div class="decorationimag" style=" display: flex;
+    align-items: center;
+    justify-content: center;">
+            <img style="width: 30%;max-width: 400px;" src="https://i.pinimg.com/originals/9d/97/7b/9d977b3a6c08ff473ac6c38f2a15acd7.gif" alt="">
+            <img style="width: 30%;max-width: 400px;" src="https://i.pinimg.com/originals/9d/97/7b/9d977b3a6c08ff473ac6c38f2a15acd7.gif" alt="">
+            <img style="width: 30%;max-width: 400px;" src="https://i.pinimg.com/originals/9d/97/7b/9d977b3a6c08ff473ac6c38f2a15acd7.gif" alt="">
+            <img style="width: 30%;max-width: 400px;" src="https://i.pinimg.com/originals/9d/97/7b/9d977b3a6c08ff473ac6c38f2a15acd7.gif" alt="">
+            
+        </div>
         </div>
     <div id="passwordContainer">
         
@@ -1310,10 +1321,11 @@ text-align: center;
             <img style="width: 100%;" src="https://www.animatedimages.org/data/media/1071/animated-christmas-decoration-image-0050.gif" alt="">
         </div>
         <div class="decoration topdec">
-            <img style="width: 450px;
+            <img style="width: 64%;
     position: fixed;
-    top: 0px;
-    object-fit: cover;    left: 0px;" src="https://i.ibb.co/pvVBN7cr/tread.png" alt="">
+    top: 70px;
+    object-fit: cover;
+    right: -15px;" src="https://i.pinimg.com/originals/2d/bc/b8/2dbcb8c31d6194e0cb80cd8ce5db2980.gif" alt="">
         </div>
         <h2 style="font-weight: 400;
     font-size: 9px;
@@ -1328,17 +1340,21 @@ margin:15px;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBo
         <div class="treee topdec" style="width: 100%;
     position: fixed;
     bottom: 12%;
-    left: 47.8%;
+    left: 50%;
     transform: translate(-50%, 0%);">
-            <img style="width: 85px;" src="https://media.tenor.com/Mreg30jYSooAAAAi/christmas-tree-christmas-lights.gif" alt="">
+            <img style="width: 85px;" src="https://www.gifcen.com/wp-content/uploads/2022/01/chinese-new-year-2022-gif-5.gif" alt="">
         </div>
         <div class="notice">You should return the money before the return date, If not additional interest will be charged.</div>
     </div>
     <div id="userInfoModal" class="modal">
-
+    <div class="offergift">
+        <a style="display: flex;" onclick="alert('Welcome to BsLends a service from BS&MFI Services')" ><img style="width: 33px;
+    border-radius: 9px;
+    padding: 0px;" src="mfi.gif" alt=""></a>
+    </div>
  <style>
+
     .fab {
-   
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1482,24 +1498,7 @@ transition: all 0.5s ease;}
 </style>
 </head>
 <body>
-<div class="topoptions">
-            <span><i class="fa-solid fa-arrow-left close-btn" onclick="closeModal()"></i></span>
-        <div class="fab" id="fab">
-  <svg style="width: 15px;height: 15px;" xmlns="http://www.w3.org/2000/svg" width="36px" height="36px" viewBox="0 0 24 24" fill="#ffffff"><g fill="#ffffff"><path d="M15.72 7.349a1.86 1.86 0 1 1-3.72 0a1.86 1.86 0 0 1 3.72 0Zm6.28.405c0-.374 0-.642-.037-.878a3.023 3.023 0 0 0-1.315-2.047c-.078-.052-.177.016-.164.109c.1.744.117 1.627.12 2.59v8.944c-.003.964-.02 1.847-.12 2.591c-.013.093.086.16.164.109a3.023 3.023 0 0 0 1.315-2.047c.037-.236.037-.504.037-.878V7.754Zm-18.605.06a51.83 51.83 0 0 1 .002-.465c.004-.894.025-1.714.12-2.411c.012-.093-.087-.16-.165-.109a3.023 3.023 0 0 0-1.315 2.047C2 7.112 2 7.38 2 7.754v8.492c0 .374 0 .642.037.878a3.022 3.022 0 0 0 1.315 2.047c.078.052.177-.016.164-.109c-.094-.697-.115-1.517-.12-2.41a88.883 88.883 0 0 1 0-.466V7.814Z"/><path fill-rule="evenodd" d="M16.085 2.108C15.28 2 14.253 2 12.981 2H11.02c-1.272 0-2.298 0-3.104.108c-.838.113-1.543.354-2.103.914c-.56.56-.8 1.265-.913 2.102c-.108.806-.108 1.832-.108 3.104v7.544c0 1.272 0 2.298.108 3.104c.113.837.354 1.542.913 2.102c.56.56 1.265.801 2.103.914C8.72 22 9.747 22 11.019 22h1.962c1.272 0 2.298 0 3.104-.108c.838-.113 1.543-.354 2.103-.914c.56-.56.8-1.265.913-2.102c.108-.806.108-1.832.108-3.104V8.228c0-1.272 0-2.298-.108-3.104c-.113-.837-.354-1.542-.913-2.102c-.56-.56-1.265-.801-2.103-.914Zm.723 14.522l.987 1.04c.018-.536.019-1.175.019-1.95V8.28c0-1.336-.002-2.267-.096-2.97c-.092-.683-.26-1.044-.517-1.302c-.258-.257-.619-.425-1.302-.517c-.702-.094-1.633-.096-2.969-.096h-1.86c-1.335 0-2.267.002-2.97.096c-.682.092-1.043.26-1.3.517c-.258.258-.426.62-.518 1.302c-.094.703-.096 1.634-.096 2.97v4.624l.003-.003c.917-.941 2.336-.877 3.184.118l2.94 3.448c.236.276.545.289.783.093l.204-.169c1.076-.886 2.552-.77 3.508.24Z" clip-rule="evenodd"/></g></svg>
-</div>
-<div class="content">
-        <div class="toggle-switch">
-            <label>Fixed Glow</label>
-            <label class="switch">
-                <input type="checkbox" id="glowToggle">
-                <span class="slider"></span>
-            </label>
-        </div>
-    </div>
-<button class="currency-switch" id="currencySwitch">
-            <i class="fa-solid fa-dollar-sign"></i> <span id="currencyLabel">USD</span>
-        </button>
-</div>
+
 
 <div class="overlay" id="overlay"></div>
 
@@ -1510,9 +1509,6 @@ transition: all 0.5s ease;}
   <div class="option" id="presetBtn">Use Preset Wallpaper</div>
   <div id="presetSection" style="display:none;">
        <div class="wallpaper-grid">
-      <!-- <img class="wallpaper-thumb" src="https://i.ibb.co/PZZsK47s/2.jpg" alt="Wallpaper 6">
-      <img class="wallpaper-thumb" src="https://i.ibb.co/JjMGYshQ/3.jpg" alt="Wallpaper 6">
-      <img class="wallpaper-thumb" src="https://i.ibb.co/MywDKVT7/4.jpg" alt="Wallpaper 6"> -->
       <img class="wallpaper-thumb" src="http://i.pinimg.com/1200x/6c/c2/f0/6cc2f0cebf6052dcfbe71864d85ffeaa.jpg" alt="Wallpaper 6">
       <img class="wallpaper-thumb" src="https://i.pinimg.com/1200x/39/e9/4d/39e94ddce22f8eac25d2f8b0f1831394.jpg" alt="Wallpaper 6">
       <img class="wallpaper-thumb" src="https://i.pinimg.com/1200x/3d/d0/fd/3dd0fdd3607bc3fdd5f5e28fa991c660.jpg" alt="Wallpaper 6">
@@ -1576,15 +1572,40 @@ transition: all 0.5s ease;}
 </div>
 
 
+
+
+        <div class="topoptions">
+           <div class="optiononeser">
+                <span><i class="fa-solid fa-arrow-left close-btn" onclick="closeModal()"></i></span>
+                <div class="fab" id="fab">
+                    <svg style="width: 15px;height: 15px;" xmlns="http://www.w3.org/2000/svg" width="36px" height="36px" viewBox="0 0 24 24" fill="#ffffff"><g fill="#ffffff"><path d="M15.72 7.349a1.86 1.86 0 1 1-3.72 0a1.86 1.86 0 0 1 3.72 0Zm6.28.405c0-.374 0-.642-.037-.878a3.023 3.023 0 0 0-1.315-2.047c-.078-.052-.177.016-.164.109c.1.744.117 1.627.12 2.59v8.944c-.003.964-.02 1.847-.12 2.591c-.013.093.086.16.164.109a3.023 3.023 0 0 0 1.315-2.047c.037-.236.037-.504.037-.878V7.754Zm-18.605.06a51.83 51.83 0 0 1 .002-.465c.004-.894.025-1.714.12-2.411c.012-.093-.087-.16-.165-.109a3.023 3.023 0 0 0-1.315 2.047C2 7.112 2 7.38 2 7.754v8.492c0 .374 0 .642.037.878a3.022 3.022 0 0 0 1.315 2.047c.078.052.177-.016.164-.109c-.094-.697-.115-1.517-.12-2.41a88.883 88.883 0 0 1 0-.466V7.814Z"/><path fill-rule="evenodd" d="M16.085 2.108C15.28 2 14.253 2 12.981 2H11.02c-1.272 0-2.298 0-3.104.108c-.838.113-1.543.354-2.103.914c-.56.56-.8 1.265-.913 2.102c-.108.806-.108 1.832-.108 3.104v7.544c0 1.272 0 2.298.108 3.104c.113.837.354 1.542.913 2.102c.56.56 1.265.801 2.103.914C8.72 22 9.747 22 11.019 22h1.962c1.272 0 2.298 0 3.104-.108c.838-.113 1.543-.354 2.103-.914c.56-.56.8-1.265.913-2.102c.108-.806.108-1.832.108-3.104V8.228c0-1.272 0-2.298-.108-3.104c-.113-.837-.354-1.542-.913-2.102c-.56-.56-1.265-.801-2.103-.914Zm.723 14.522l.987 1.04c.018-.536.019-1.175.019-1.95V8.28c0-1.336-.002-2.267-.096-2.97c-.092-.683-.26-1.044-.517-1.302c-.258-.257-.619-.425-1.302-.517c-.702-.094-1.633-.096-2.969-.096h-1.86c-1.335 0-2.267.002-2.97.096c-.682.092-1.043.26-1.3.517c-.258.258-.426.62-.518 1.302c-.094.703-.096 1.634-.096 2.97v4.624l.003-.003c.917-.941 2.336-.877 3.184.118l2.94 3.448c.236.276.545.289.783.093l.204-.169c1.076-.886 2.552-.77 3.508.24Z" clip-rule="evenodd"/></g></svg>
+                </div>
+           </div>
+            <div class="content">
+                <div class="toggle-switch">
+                    <label>Fixed Glow</label>
+                    <label class="switch">
+                        <input type="checkbox" id="glowToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            <button class="currency-switch" id="currencySwitch">
+                <i class="fa-solid fa-dollar-sign"></i> <span id="currencyLabel">USD</span>
+            </button>
+        </div>
+
+
+
         <div class="fixed">
                <div class="topdec">
-    <img style="    position: fixed;
-    top: 0px;
-    right: 100px;
-    width: 15%;
-" src="https://www.animatedimages.org/data/media/358/animated-christmas-wreath-image-0090.gif" alt="">
+    <img style="position: fixed;
+    top: 38px;
+    right: -25px;
+    width: 28%;
+" src="https://i.pinimg.com/originals/1f/d3/ac/1fd3acf4a378b1e2536a4f86fc023b1a.gif" alt="">
    </div>
-           <h3 style="display: none;">Borrower</h3>
+           <h3 style="text-decoration:underline;margin:0;font-weight:500;font-size:12px;text-align:left;color:#ffffff82;">Borrower</h3>
             <div class="profile-container">
                 <div class="user-name-container">
                     <img id="userEmote" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0" onclick="openEmoteChooser()">
@@ -1677,10 +1698,16 @@ cursor: pointer;
     left: 0px;
     top: 0px;
     opacity: 40%;" src="Floodlights Flashing 1080p.mp4" loop muted autoplay></video>
-             <video class="topdec" style="position: fixed;
+             <!-- <video class="topdec" style="position: fixed;
     z-index: -10000;
     left: 0px;
-    top: 0px;height: -webkit-fill-available;" src="https://static.vecteezy.com/system/resources/previews/033/113/154/mp4/light-bulb-string-on-black-background-christmas-lights-colour-free-video.mp4" loop muted autoplay></video>
+    top: 0px;height: -webkit-fill-available;" src="https://static.vecteezy.com/system/resources/previews/033/113/154/mp4/light-bulb-string-on-black-background-christmas-lights-colour-free-video.mp4" loop muted autoplay></video> -->
+                 <!-- <img  style="position: fixed;
+    z-index: -10000;
+    left: 0px;
+    top: 0px;
+    width: 100%;" src="https://i.pinimg.com/originals/61/3c/aa/613caa566ee4a8cbf8bb5aefcea2ae73.gif" alt=""> -->
+    
                  <video class="topdec " style="position: fixed;
     z-index: -10000;
     bottom: 20%;
@@ -1691,35 +1718,38 @@ cursor: pointer;
             
         <div class="scroll">
         
-        <div class="youtube-wrapper topdec">
-            <span style="display: flex;justify-content: center;align-items: center;font-size: 15px;height: fit-content;margin: 0px auto;background: rgba(255, 255, 255, 0.171);">Power by BsFesta</span>
-            <iframe 
-                src="https://www.yout-ube.com/embed/F1itSKJLWQY?si=BcX2HofzV5SmnHPD"
-                title="YouTube video player"
-                allowfullscreen
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
-            </iframe>
-        </div>
-        <style>.festivalexplo{
-       background: #ffffff00;
-    color: white;
-    padding: 10px 35px;
-    border-radius: 1000px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    border: solid 1.5px #ffffff5e;
-    filter: drop-shadow(0px 0px 10px black);
-    }
-            .festivalexplo:hover{
-              transform: scale(1.03); 
-        }
-        .festivalexplo:active{
-              transform: scale(0.90); 
-        } </style>
-        <div class="playlist topdec" style="width: 100%;
-    text-align: center;">
-            <a href="https://www.yout-ube.com/watch?v=TFsZy9t-qDc&list=RD79EsaMCYo4o&start_radio=1"><button class="festivalexplo"> Christmas song playlist</button></a>
+        <div class="videoyoutube">
+            <div class="youtube-wrapper">
+                <span style="display: flex;justify-content: center;align-items: center;font-size: 15px;height: fit-content;margin: 0px auto;background: rgba(255, 255, 255, 0.171);">Power by BsFesta</span>
+                <iframe 
+                    src="https://www.yout-ube.com/embed/F1itSKJLWQY?si=BcX2HofzV5SmnHPD"
+                    title="YouTube video player"
+                    allowfullscreen
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+                </iframe>
+            </div>
+            <style>
+            .festivalexplo{
+                background: #ffffff00;
+                color: white;
+                padding: 10px 35px;
+                border-radius: 1000px;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+                border: solid 1.5px #ffffff5e;
+                filter: drop-shadow(0px 0px 10px black);
+                }
+                .festivalexplo:hover{
+                transform: scale(1.03); 
+            }
+            .festivalexplo:active{
+                transform: scale(0.90); 
+            } </style>
+            <div class="playlist topdec" style="width: 100%;
+        text-align: center;">
+                <a href="https://www.yout-ube.com/watch?v=TFsZy9t-qDc&list=RD79EsaMCYo4o&start_radio=1"><button class="festivalexplo"> Christmas song playlist</button></a>
+            </div>
         </div>
         <div id="loanDetails"></div>
         <div id="graphContainer" style="display:none;"><canvas id="loanChart"></canvas>
@@ -1742,18 +1772,12 @@ cursor: pointer;
     </div>
 
         <div id="bottomNav">
-             <div class="offergift">
-        <a style="display: flex;" onclick="alert('Welcome to BsLends a service from BS&MFI Services')" ><img style="width: 33px;
-    border-radius: 9px;
-    padding: 0px;" src="mfi.gif" alt=""></a>
-    </div>
            <div class="nav-item" data-view="graph"><?xml version="1.0" encoding="UTF-8"?>
-            
                 <div class="iconbotm">
                     <svg style="   height: 18px;
                         fill: #ffffff;
                         width: 18px;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-width="1.5"><path stroke-linecap="round" d="M10 21h12M2 21h4M5 9v5.5c0 .935 0 1.402.201 1.75a1.5 1.5 0 0 0 .549.549C6.098 17 6.565 17 7.5 17s1.402 0 1.75-.201a1.5 1.5 0 0 0 .549-.549c.201-.348.201-.815.201-1.75v-9c0-.935 0-1.402-.201-1.75a1.5 1.5 0 0 0-.549-.549C8.902 3 8.435 3 7.5 3s-1.402 0-1.75.201a1.5 1.5 0 0 0-.549.549c-.161.28-.193.636-.2 1.25"/><path d="M16.5 17c-.935 0-1.402 0-1.75-.201a1.5 1.5 0 0 1-.549-.549C14 15.902 14 15.435 14 14.5v-6c0-.935 0-1.402.201-1.75a1.5 1.5 0 0 1 .549-.549C15.098 6 15.565 6 16.5 6s1.402 0 1.75.201a1.5 1.5 0 0 1 .549.549C19 7.098 19 7.565 19 8.5v6c0 .935 0 1.402-.201 1.75a1.5 1.5 0 0 1-.549.549c-.348.201-.815.201-1.75.201Z"/></g></svg>
-                    <!-- <span>Graph</span> -->
+                    <span>Graph</span>
                 </div>
                 <i class="fa-solid fa-toggle-off toggle-pin" data-view="graph"></i>
             </div>
@@ -1762,7 +1786,7 @@ cursor: pointer;
                     <svg style="    height: 18px;
                     fill: #ffffffbf;
                     width: 18px;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-width="1.5"><path stroke-linecap="round" d="M10.5 14H17M7 14h.5M7 10.5h.5m-.5 7h.5m3-7H17m-6.5 7H17"/><path d="M8 3.5A1.5 1.5 0 0 1 9.5 2h5A1.5 1.5 0 0 1 16 3.5v1A1.5 1.5 0 0 1 14.5 6h-5A1.5 1.5 0 0 1 8 4.5v-1Z"/><path stroke-linecap="round" d="M21 16c0 2.829 0 4.243-.879 5.122C19.243 22 17.828 22 15 22H9c-2.828 0-4.243 0-5.121-.878C3 20.242 3 18.829 3 16v-3m13-8.998c2.175.012 3.353.109 4.121.877C21 5.758 21 7.172 21 10v2M8 4.002c-2.175.012-3.353.109-4.121.877c-.769.768-.865 1.946-.877 4.121"/></g></svg>
-                    <!-- <span>List</span> -->
+                    <span>List</span>
                 </div>
                 <i class="fa-solid fa-toggle-on toggle-pin on" data-view="list"></i>
             </div>
@@ -1771,7 +1795,7 @@ cursor: pointer;
                     <svg style="    height: 18px;
                     fill: #ffffffbf;
                     width: 18px;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="1.5"><path d="M10 4C6.229 4 4.343 4 3.172 5.172C2 6.343 2 8.229 2 12c0 3.771 0 5.657 1.172 6.828C4.343 20 6.229 20 10 20h1.5M14 4c3.771 0 5.657 0 6.828 1.172C21.892 6.235 21.99 7.886 22 11"/><path stroke-linejoin="round" d="M15.5 14v6m0 0l2-2m-2 2l-2-2m6.5 2v-6m0 0l2 2m-2-2l-2 2"/><path d="M10 16H6m-4-6h5m15 0H11"/></g></svg>
-                    <!-- <span>Calendar</span> -->
+                    <span>Calendar</span>
                 </div>
                 <i class="fa-solid fa-toggle-off toggle-pin" data-view="calendar"></i>
             </div>
