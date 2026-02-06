@@ -463,7 +463,8 @@ function displayLoanDetails(loan, index) {
                  <a target="_blank"  href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: rgb(255 0 0 / 69%);
     padding: 10px 20px;
     margin-top: 30px;
-    font-size: 13px;" class="add-link-btn">I have an issue with my account.!</button></a>
+    font-size: 13px;transition: all 0.3s ease; box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0px -2px  color-mix(in srgb, #ffffff73 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -2px 0px -2px  color-mix(in srgb, #ffffff7d calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px  color-mix(in srgb, #ffffff85 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+border: solid 1px #ffffff3b;" class="add-link-btn">I have an issue with my account.!</button></a>
             </div>
         </div>
     `;
@@ -533,14 +534,29 @@ function renderCalendar() {
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    background: #ffffff36;
+    background: #ffffff24;
     width: 100%;
     margin-bottom: 20px;
     border-radius: 1008px;
     padding: 5px 5px 5px 20px;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0px -2px 
+ color-mix(in srgb, #ffffff73 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -2px 0px -2px 
+ color-mix(in srgb, #ffffff7d calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff85 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff3b;
 ">
-        <span style="    font-weight: 600;
-    color: #eee;">${calendarMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
+        <span style="font-weight: 600;
+    color: #eee;
+    font-size: 16px;
+    letter-spacing: 0px;">${calendarMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
         <button class="move-asaid" onclick="prevMonth()"><i class="fa-solid fa-chevron-left"></i></button>
         <button class="move-asaid" onclick="nextMonth()"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
