@@ -246,8 +246,11 @@ transition: all 0.3s ease;}
             z-index: 10;
         }
         .title {
-         color: #ffffff80;
-    font-weight: 500;
+        font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #ffcc00;
     }
      @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
      
@@ -652,21 +655,21 @@ div#popupContent {
         #totalPopup, #datePopup, #linkConfirmPopup, #emoteChooser {
           display: none;
     position: fixed;
-    bottom: 0%;
+    bottom: -3px;
     left: 50%;
     scale: 1;
     transform: translate(-50%, -4%);
     background: transparent;
     color: #e0e0e0;
     padding: 25px;
-    border-radius: 45px;
+    border-radius: 45px 45px 20px 20px;
     max-width: 450px;
     width: 96%;
     z-index: 2000000;
     text-align: left;
     font-size: 14.5px;
     line-height: 1.7;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(15px);
     box-shadow: inset 0 0.5px 0 #ffffff12, inset 0 -4px 9px #ffffff4f;
     border: 1.5px solid rgba(255, 255, 255, 0.137);
     animation: iosPopupIn 1s cubic-bezier(.22, 1, .36, 1) forwards; box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0px -2px  color-mix(in srgb, #ffffff73 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -2px 0px -2px  color-mix(in srgb, #ffffff7d calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px  color-mix(in srgb, #ffffff85 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
@@ -712,7 +715,7 @@ border: solid 1px #ffffff3b;
     border-radius: 22px;
     cursor: pointer;
     width: 100%;
-    font-size: 16px;
+    font-size: 15px;
   transition: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 2px 0px -2px  color-mix(in srgb, #ffffff73 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -2px 0px -2px  color-mix(in srgb, #ffffff7d calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px  color-mix(in srgb, #ffffff85 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 border: solid 1px #ffffff3b;}
         #totalPopup button:hover, 
@@ -1004,9 +1007,11 @@ cubic-bezier(0.4, 0, 0.2, 1);
 }
     #panel.show{opacity:1;visibility:visible;transform:translateX(-50%) scale(1);}
 
-    .title{font-size: 28px;
+    .title{font-size: 14px;
     font-weight: 600;
-    margin: 0px 0px 20px 0px;}
+    margin-bottom: 20px;
+    text-align: center;
+    color: #ffcc00;}
 .youtube-wrapper {
  position: relative;
     opacity: 80%;
@@ -1519,7 +1524,7 @@ border: solid 1px #ffffff3b;
    position: fixed;
     bottom: 7px;
     right: 0;
-    backdrop-filter: blur(50px);
+    backdrop-filter: blur(15px);
     border-radius: 30px;
     max-height: 80vh;
     overflow-y: auto;
@@ -1548,29 +1553,21 @@ border: solid 1px #ffffff3b;
     margin: 0 auto 20px;
   }
 
-  .title {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-
   .option {
         padding: 10px;
-    background: rgb(255 255 255 / 17%);
-    border-radius: 14px;
+    border-radius: 104px;
     margin-bottom: 10px;
     cursor: pointer;
     transition: 0.3s;
     font-size: 13px;
-    text-align: center;
+    text-align: center;background: rgba(255, 255, 255, 0.183);
 transition: all 0.5s ease;    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0px -2px  color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -2px 0px -2px  color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px  color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);;
     border: solid 1px #ffffff3b;}
          .option:hover{
-              transform: scale(1); background: rgb(255 255 255 / 31%);
+              transform: scale(1); background: rgba(255, 255, 255, 0.096);
         }
          .option:active{
-              transform: scale(0.90); 
+              transform: scale(0.98); 
         }
   /* Wallpaper Grid */
   .wallpaper-grid {
@@ -1951,16 +1948,16 @@ cursor: pointer;
     <div id="totalPopup">
         <h3>Wallet Balance</h3>
         <div id="totalContent"></div>
-        <button onclick="closeTotalPopup()"  style="margin-bottom:-5px" >Close</button>
+        <button onclick="closeTotalPopup()"  style="margin-bottom:0px;margin-top: 20px;background-color: red;" >Close Now</button>
     </div>
 
     <div id="datePopup">
-        <i class="fa-solid fa-xmark" style="position: absolute;
+        <!-- <i class="fa-solid fa-xmark" style="position: absolute;
     top: 25px;
     right: 25px;
     cursor: pointer;
     color: #aaa;
-    font-size: 16px;    z-index: 10000;" onclick="closeDatePopup()"></i>
+    font-size: 16px;    z-index: 10000;" onclick="closeDatePopup()"></i> -->
         <h3>Amount details</h3>
         <div id="popupContent"></div>
     </div>
