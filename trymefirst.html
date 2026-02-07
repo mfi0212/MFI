@@ -425,10 +425,7 @@ display: flex;
     top: -13px;
     height: 50px;
     width: 98%;
-    padding: 0px 0px 0px 5px;
-    justify-content: space-between;
-    background: #ffffff24;
-    border-radius: 25px 25px 25px 25px;
+    padding: 0px 0px 0px 0px;justify-content: space-between;
         }
         #searchIcon { 
             font-size: 16px;
@@ -438,7 +435,7 @@ display: flex;
     position: relative;
     background: #ffffff00;
     padding: 12px;
-    border-radius: 105px;
+    border-radius: 15px;
     box-shadow: inset 0 1px 0 #ffffff0a, inset 0 -3px 10px #ffffff2e;
     box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px  color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 border:solid 1px #ffffff14;
@@ -475,16 +472,18 @@ border:solid 1px #ffffff14;
         }
         .amount-buttons { 
        display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    transition: transform .4s ease;
-    margin-left: -25px;
-    scrollbar-width: none;
-    border-radius: 183px;
-    padding: 15px 5px 5px 5px;
-    }
+        gap: 10px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        transition: transform .4s ease;
+        margin-left: -15px;
+        scrollbar-width: none;
+        /* margin-right: 20px; */
+        padding: 10px 10px 0px 0px;background: linear-gradient(-39deg, black, transparent 43%);
+        border-radius: 0px 10px 30px 11px;
+        }
+        /* h3{ color:#006fff; } */
        
         .details {
    display: flex;
@@ -1136,7 +1135,9 @@ display: flex;
         gap: 10px;
         overflow-x: auto;
         white-space: nowrap;
+        padding: 10px 10px 0px 0px;
         transition: transform .4s ease;
+        margin-left: -20px;
         scrollbar-width: none;
     }
      @media (max-width : 380px) {
@@ -1146,6 +1147,7 @@ display: flex;
             overflow-x: auto;
             white-space: nowrap;
             transition: transform .4s ease;
+            margin-left: -15px;
             scrollbar-width: none;
         }.user-links {
       overflow: auto;
