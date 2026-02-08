@@ -607,7 +607,7 @@ function showDatePopup(idx) {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    margin-top: 10px;
+    margin-top: 0px;
     margin-bottom: -10px;">
     <button style="width: 100%;
     padding: 8px;
