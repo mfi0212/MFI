@@ -603,17 +603,21 @@ function showDatePopup(idx) {
         <p style='color: #e2b325;font-weight: 600;    font-size: 20px;'><strong>Status:</strong> <span style="color:${daysLeft<=2?'#F44336':daysLeft<=6?'#FFCA28':'#4CAF50'}">
             ${daysLeft > 0 ? daysLeft + ' days left' : 'Overdue'}
         </span></p>
-        <button style="width: 100%;
+        <div class="detailbuttons" style="display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+    margin-bottom: -10px;">
+    <button style="width: 100%;
     padding: 8px;
     background: #0026ff;
-    border-radius: 20px;
-    margin-bottom: -5px;
-    margin-top: 10px;" onclick="goToList(${idx})">View Full Details</button>
+    border-radius: 20px;" onclick="goToList(${idx})">View Full Details</button>
     <button onclick="closeDatePopup()" style="width: 100%;
     padding: 8px;
     background: #ff0000;
-    border-radius: 20px;
-    margin-bottom:0px;margin-top: 20px;background-color: red;" onclick="goToList(${idx})">Close Now</button>
+    border-radius: 20px;background-color: red;" onclick="goToList(${idx})">Close Now</button>
+</div>
     `;
     document.getElementById('datePopup').style.display = 'block';
 }
