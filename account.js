@@ -142,10 +142,11 @@ const usersDB = {
         name: "Mahesh Muthinti",
         coins: 1380,
         loans: [
-            { planDate: "11-01-2026", endDate: "10-02-2026", interest: 690, takenAmount: 3000, takenFrom: "Lendlink", fineRate: 50 },
             { planDate: "14-01-2026", endDate: "13-02-2026", interest: 2661, takenAmount: 12500, takenFrom: "Golden", fineRate: 50 },
             { planDate: "25-01-2026", endDate: "24-02-2026", interest: 1085, takenAmount: 4500, takenFrom: "Lendlink", fineRate: 50 },
             { planDate: "09-02-2026", endDate: "11-03-2026", interest: 340, takenAmount: 2000, takenFrom: "Lendlink", fineRate: 50 },
+            { planDate: "11-01-2026", endDate: "11-03-2026", interest: 690, takenAmount: 3690, takenFrom: "Lendlink", fineRate: 50 },
+            
         ],
         links: [],
         emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
