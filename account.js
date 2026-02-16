@@ -487,7 +487,7 @@ function displayLoanDetails(loan, index) {
     left: 50%;
     position: relative;
     transform: translate(-50%, 0%);
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     margin-top: 10px;" class="add-link-btn">I have an issue with my account.!</button></a>
         </div>
     `;
