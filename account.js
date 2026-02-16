@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 
 // for(let i=0;i<15;i++){
 //     const b=document.createElement("div");b.className="bulb";
@@ -687,8 +687,9 @@ function renderCalendar() {
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    width: 100%;
+    width: 92%;
     margin-bottom: 20px;
+    margin-top: 5px;
     border-radius: 1008px;
     padding: 5px 5px 5px 20px;
     transition: all 0.3s ease;
@@ -705,6 +706,9 @@ function renderCalendar() {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff14;
     background: #ffffff14;
+    transform: translate(-50%, 0);
+    left: 50%;
+    position: relative;
 ">
         <span style="font-weight: 600;
     color: #eee;
