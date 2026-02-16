@@ -733,10 +733,10 @@ function renderCalendar() {
         if (idx !== undefined) {
             const end = new Date(currentUser.loans[idx].endDate.split('(')[0].trim().split('-').reverse().join('-'));
             const daysLeft = Math.ceil((end - today) / 86400000);
-            let bg = '#4CAF50';
-            if (daysLeft <= 2) bg = '#F44336';
-            else if (daysLeft <= 6) bg = '#ffbf00ff';
-            style += `background:${bg};color:black;font-weight:bold;`;
+            let bg = '#00bb06';
+            if (daysLeft <= 2) bg = '#ff1100';
+            else if (daysLeft <= 6) bg = '#ffbf00';
+            style += `background:${bg};color:white;font-weight:bold;`;
         }
         if (ds === today.toLocaleDateString('en-GB').split('/').reverse().join('-')) {
             style += `border:2px solid #00aaff;box-sizing:border-box;`;
