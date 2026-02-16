@@ -495,41 +495,19 @@ function renderAmountButtons() {
     });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Global to track hidden loans (by original index)
-let hiddenLoans = new Set(); // e.g. Set([0, 2]) means loan 0 and 2 are hidden
+let hiddenLoans = new Set();
 
 function renderChart() {
     const ctx = document.getElementById('loanChart').getContext('2d');
     const now = new Date();
-    
+
     const visibleLabels = [];
     const visibleData = [];
     const colors = [];
-    const loanIndices = []; // maps chart segment index → original loan index
+    const loanIndices = [];
 
     currentUser.loans.forEach((loan, originalIdx) => {
-        if (hiddenLoans.has(originalIdx)) return; // skip hidden ones
+        if (hiddenLoans.has(originalIdx)) return;
 
         const clean = loan.endDate.split('(')[0].trim();
         const end = new Date(clean.split('-').reverse().join('-'));
@@ -539,7 +517,7 @@ function renderChart() {
         if (daysLeft <= 2) color = '#ff1100';
         else if (daysLeft <= 6) color = '#ffbf00';
 
-        const amount = currentCurrency === 'USD' 
+        const amount = currentCurrency === 'USD'
             ? Number((loan.takenAmount / USD_RATE).toFixed(2))
             : Number(loan.takenAmount);
 
@@ -549,7 +527,10 @@ function renderChart() {
         loanIndices.push(originalIdx);
     });
 
-    if (loanChart) loanChart.destroy();
+    if (loanChart) {
+        loanChart.destroy();
+        loanChart = null;
+    }
 
     loanChart = new Chart(ctx, {
         type: 'doughnut',
@@ -565,33 +546,28 @@ function renderChart() {
         },
         options: {
             responsive: true,
-            cutout: '42%',                // thicker ring
+            cutout: '42%',
             plugins: {
-                legend: { display: false }, // we use custom list below instead
+                legend: { display: false },
                 tooltip: {
                     backgroundColor: 'rgba(30,30,40,0.95)',
                     titleColor: '#fff',
                     bodyColor: '#ddd',
                     padding: 12
                 }
-            },
-            onClick: (e, elements) => {
-                if (!elements.length) return;
-                const chartIdx = elements[0].index;
-                const realIdx = loanIndices[chartIdx];
-                showDatePopup(realIdx); // direct details on segment click (optional)
             }
+    
         }
     });
 
-    renderLoanList(); // refresh the bottom list
+    renderLoanList();
 }
 
 function renderLoanList() {
     const container = document.getElementById('loans-list-container');
     if (!container) return;
 
-    container.innerHTML = ''; // clear previous
+    container.innerHTML = '';
 
     currentUser.loans.forEach((loan, idx) => {
         const isHidden = hiddenLoans.has(idx);
@@ -599,8 +575,8 @@ function renderLoanList() {
         const row = document.createElement('div');
         row.className = 'loan-row' + (isHidden ? ' hidden-loan' : '');
 
-        const daysLeft = calculateDaysLeft(loan.endDate); // helper below
-        const amount = currentCurrency === 'USD' 
+        const daysLeft = calculateDaysLeft(loan.endDate);
+        const amount = currentCurrency === 'USD'
             ? (loan.takenAmount / USD_RATE).toFixed(2)
             : loan.takenAmount;
 
@@ -614,16 +590,26 @@ function renderLoanList() {
             </div>
             <div class="loan-actions">
                 <button class="btn-hide" data-idx="${idx}">
-                    ${isHidden ? '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 2048 2048"><path fill="#ffffff" d="M1024 768q79 0 149 30t122 82t83 123t30 149q0 80-30 149t-82 122t-123 83t-149 30q-80 0-149-30t-122-82t-83-122t-30-150q0-79 30-149t82-122t122-83t150-30zm0 640q53 0 99-20t82-55t55-81t20-100q0-53-20-99t-55-82t-81-55t-100-20q-53 0-99 20t-82 55t-55 81t-20 100q0 53 20 99t55 82t81 55t100 20zm0-1152q143 0 284 35t266 105t226 170t166 234q40 83 61 171t21 181h-128q0-118-36-221t-99-188t-150-152t-185-113t-209-70t-217-24q-108 0-217 24t-208 70t-186 113t-149 152t-100 188t-36 221H0q0-92 21-180t61-172q64-132 165-233t227-171t266-104t284-36z"/></svg>' : '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 2048 2048"><path fill="#ffffff" d="m74 292l90-90l1630 1629l-91 91l-457-457q-54 35-105 53t-117 18q-80 0-150-30t-122-82t-82-122t-30-150q0-65 18-116t53-106L391 610Q266 715 197 851t-69 301H0q0-91 21-179t60-170t94-153t126-130L74 292zm694 860q0 53 20 99t55 82t81 55t100 20q36 0 67-9t62-27l-349-349q-17 31-26 62t-10 67zm328-245L963 774l30-4q15-2 31-2q79 0 149 30t122 82t83 123t30 149q0 15-2 30t-4 31l-133-133q-42-131-173-173zm952 245h-128q0-118-36-221t-99-188t-150-152t-185-113t-208-70t-218-24q-98 0-192 19t-185 56l-98-98q116-53 231-79t244-26q144 0 285 35t265 105t226 170t166 234q40 82 61 171t21 181z"/></svg>'}
+                    ${isHidden 
+                        ? '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 2048 2048"><path fill="#ffffff" d="M1024 768q79 0 149 30t122 82t83 123t30 149q0 80-30 149t-82 122t-123 83t-149 30q-80 0-149-30t-122-82t-83-122t-30-150q0-79 30-149t82-122t122-83t150-30zm0 640q53 0 99-20t82-55t55-81t20-100q0-53-20-99t-55-82t-81-55t-100-20q-53 0-99 20t-82 55t-55 81t-20 100q0 53 20 99t55 82t81 55t100 20zm0-1152q143 0 284 35t266 105t226 170t166 234q40 83 61 171t21 181h-128q0-118-36-221t-99-188t-150-152t-185-113t-209-70t-217-24q-108 0-217 24t-208 70t-186 113t-149 152t-100 188t-36 221H0q0-92 21-180t61-172q64-132 165-233t227-171t266-104t284-36z"/></svg>'
+                        : '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 2048 2048"><path fill="#ffffff" d="m74 292l90-90l1630 1629l-91 91l-457-457q-54 35-105 53t-117 18q-80 0-150-30t-122-82t-82-122t-30-150q0-65 18-116t53-106L391 610Q266 715 197 851t-69 301H0q0-91 21-179t60-170t94-153t126-130L74 292zm694 860q0 53 20 99t55 82t81 55t100 20q36 0 67-9t62-27l-349-349q-17 31-26 62t-10 67zm328-245L963 774l30-4q15-2 31-2q79 0 149 30t122 82t83 123t30 149q0 15-2 30t-4 31l-133-133q-42-131-173-173zm952 245h-128q0-118-36-221t-99-188t-150-152t-185-113t-208-70t-218-24q-98 0-192 19t-185 56l-98-98q116-53 231-79t244-26q144 0 285 35t265 105t226 170t166 234q40 82 61 171t21 181z"/></svg>'
+                    }
                 </button>
-                <button class="btn-details" data-idx="${idx}"><svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-width="1.5"><path stroke-linecap="round" d="M10 16.5H6m2-3H6"/><path d="M14 15c0-.943 0-1.414.293-1.707C14.586 13 15.057 13 16 13c.943 0 1.414 0 1.707.293c.293.293.293.764.293 1.707c0 .943 0 1.414-.293 1.707C17.414 17 16.943 17 16 17c-.943 0-1.414 0-1.707-.293C14 16.414 14 15.943 14 15Z"/><path stroke-linecap="round" d="M22 12c0-3.771 0-5.657-1.172-6.828C19.657 4 17.771 4 14 4h-4C6.229 4 4.343 4 3.172 5.172C2 6.343 2 8.229 2 12c0 3.771 0 5.657 1.172 6.828C4.343 20 6.229 20 10 20h4c3.771 0 5.657 0 6.828-1.172c.654-.653.943-1.528 1.07-2.828M2 10h5m15 0H11"/></g></svg></button>
+                <button class="btn-details" data-idx="${idx}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff">
+                        <g fill="none" stroke="#ffffff" stroke-width="1.5">
+                            <path stroke-linecap="round" d="M10 16.5H6m2-3H6"/>
+                            <path d="M14 15c0-.943 0-1.414.293-1.707C14.586 13 15.057 13 16 13c.943 0 1.414 0 1.707.293c.293.293.293.764.293 1.707c0 .943 0 1.414-.293 1.707C17.414 17 16.943 17 16 17c-.943 0-1.414 0-1.707-.293C14 16.414 14 15.943 14 15Z"/>
+                            <path stroke-linecap="round" d="M22 12c0-3.771 0-5.657-1.172-6.828C19.657 4 17.771 4 14 4h-4C6.229 4 4.343 4 3.172 5.172C2 6.343 2 8.229 2 12c0 3.771 0 5.657 1.172 6.828C4.343 20 6.229 20 10 20h4c3.771 0 5.657 0 6.828-1.172c.654-.653.943-1.528 1.07-2.828M2 10h5m15 0H11"/>
+                        </g>
+                    </svg>
+                </button>
             </div>
         `;
 
         container.appendChild(row);
     });
 
-    // Add event listeners once
     container.querySelectorAll('.btn-hide').forEach(btn => {
         btn.addEventListener('click', () => {
             const idx = parseInt(btn.dataset.idx);
@@ -632,7 +618,7 @@ function renderLoanList() {
             } else {
                 hiddenLoans.add(idx);
             }
-            renderChart(); // full re-render (chart + list)
+            renderChart();
         });
     });
 
@@ -642,59 +628,20 @@ function renderLoanList() {
             showDatePopup(idx);
         });
     });
-
     container.querySelectorAll('.btn-edit').forEach(btn => {
         btn.addEventListener('click', () => {
             const idx = parseInt(btn.dataset.idx);
-            showEditPopup(idx); // ← implement this function yourself
-            // Example: open modal to edit loan.takenAmount, endDate, etc.
+            showEditPopup(idx);
         });
     });
 }
 
-// Helper
 function calculateDaysLeft(endDateStr) {
     const clean = endDateStr.split('(')[0].trim();
     const end = new Date(clean.split('-').reverse().join('-'));
     const now = new Date();
     return Math.ceil((end - now) / 86400000);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function renderCalendar() {
     const c = document.getElementById('calendarContainer');
