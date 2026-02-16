@@ -483,7 +483,7 @@ function displayLoanDetails(loan, index) {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff3b;
-    width: 97%;
+    width: 80%;
     left: 50%;
     position: relative;
     transform: translate(-50%, 0%);
