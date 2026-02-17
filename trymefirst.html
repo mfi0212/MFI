@@ -194,7 +194,7 @@ body {
     text-decoration: none;
     font-weight: 500;
     transition: background 0.3s;
-    width: 40%;
+    width: 100%;
     border-radius: 10px;
         }
 
@@ -421,19 +421,19 @@ margin: 0px 0px 20px 0px;
             
             const dailyFeeRate = totalFeeRate / referenceDays;
             const fee = amount * dailyFeeRate * days;
-            let feeDisplay = `Extension Fee: <span class="highlight">${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>`;
+            let feeDisplay = `Extension Fee : <span class="highlight">${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>`;
 
             if (currentDate >= OFFER_START_DATE && currentDate <= OFFER_END_DATE) {
                 const discountedFee = fee * 0.8;
-                feeDisplay = `Extension Fee: <span class="strikethrough">${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span> <span class="offer">${discountedFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>`;
+                feeDisplay = `Extension Fee : <span class="strikethrough">${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span> <span class="offer">${discountedFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>`;
             }
 
             document.getElementById('result').innerHTML = `
-                Amount to Extend: <span class="highlight">${amount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span><br>
-                Number of Days: <span class="highlight">${days}</span><br>
+              
                 ${feeDisplay}<br>
                 <a href="https://forms.gle/9URS1LAqd3iB8qDUA" class="apply-btn">Apply Now</a>
-            `;
+            `;  // Amount Extending : <span class="highlight">${amount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span><br>
+                // Days Extending : <span class="highlight">${days}</span><br>
         }
 
         document.addEventListener("DOMContentLoaded", () => {
