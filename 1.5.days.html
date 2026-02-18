@@ -1,5 +1,6 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <title>BS&MFI | Short Term Loan</title> <link rel="icon" href="mfi.logo.png" /> <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"> <style> :root { --white: #ffffff; --black: #111111; --gray: #555555; --border: #e5e5e5; } * { margin:0; padding:0; box-sizing:border-box;scrollbar-width: none; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--black); line-height: 1.7; } .container { max-width: 900px; margin: 0 auto;padding: 10px;} header { text-align: center; padding: 100px 20px 60px; } .logo { font-family: 'Cormorant Garamond', serif; font-size: 4.8rem; font-weight: 500; letter-spacing: -2px; margin-bottom: 8px; } .tagline { font-size: 15px; color: var(--gray); } .calculator { background:#0000001a; max-width: 520px; margin: 0 auto 80px; padding: 60px 50px; border: 1px solid var(--border); position: sticky; } .calc-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; text-align: center; margin-bottom: 40px; } label { display: block; margin-bottom: 8px; font-size: 0.95rem; color: var(--gray); font-weight: 500; } input, select { width: 100%; padding: 14px 0; border: none; border-bottom: 1px solid #00000036; font-size: 1.6rem; font-weight: 500; background: transparent; margin-bottom: 30px; } select { font-size: 1.6rem; color: var(--black); } input:focus, select:focus { outline: none; border-bottom-color: var(--black); } option{ font-size: 1.2rem; } button { margin-top: 20px; width: 100%; padding: 16px; background: #0000006a; color: white; border: none; font-size: 1rem; font-weight: 500; letter-spacing: 1px; cursor: pointer; } button:hover { background: #002aff; } .result { padding-top: 40px; border-top: 1px solid var(--border); text-align: center; display: none; } .big { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 500; letter-spacing: -1px; } .note { max-width: 520px; margin: 0 auto 80px; font-size: 0.95rem; color: var(--gray); line-height: 1.7; text-align: center; } footer { text-align: center; padding: 15px; font-size: 12px; background: #e5e5e575; color: #292929; letter-spacing: 0px; } @media (max-width: 640px) { .logo { font-size: 2.8rem; } .calculator { padding: 50px 30px; } .big { font-size: 3.2rem; } } </style> </head> <body> <div class="container"> <header> <div class="logo">Short Term Loan</div> <p class="tagline">BS&MFI/STO</p> </header> <div class="calculator"> <h2 class="calc-title">Calculate</h2> <label>Loan amount in ₹</label> <input type="number" id="amount" placeholder="Enter amount here.." step="500" /> <label>Number of days</label> <select id="days"> <option value="1">1 day</option> <option value="2" selected>2 days</option> <option value="3">3 days</option> <option value="4">4 days</option> <option value="5">5 days</option> </select> <button id="calcBtn">SHOW INTEREST NOW</button> <div id="result" class="result"> <div style="margin-bottom:20px; color:var(--gray);display: none; font-size:0.95rem;">You receive today</div> <div style="font-size:2.4rem; font-weight:600;display: none;">₹<span id="principal">0</span></div> <div style="margin:30px 0 10px; color:var(--gray); font-size:0.95rem;"> Interest (<span id="rateText">2</span> × 1.18%) </div> <div style="font-size:1.9rem;">₹<span id="interest">0</span></div> <div style="margin:40px 0 10px;display: none; color:var(--gray); font-size:0.95rem;"> Total to repay in <span id="daysText">2</span> <span id="dayLabel">days</span> </div> <div class="big" style="display: none;">₹<span id="total">0</span></div> </div> </div> <p class="note"> Short Term Loan a service from STO an 1-5 days amount lenders. </p> </div> <footer> © BS&MFI. All rights reserved. </footer>
-<script>
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <title>Short Term Loan – BS&MFI</title> <link rel="icon" href="mfi.logo.png" /> <style> :root { --bg: #ffffff; --surface: #f6f6f6; --text: #000000; --text-sec: #606060; --border: #e0e0e0; --accent: #0088cc; /* Telegram primary */ --accent-h: #0077bb; --accent-l: #3399ff; --danger: #ff3b30; } @media (prefers-color-scheme: dark) { :root { --bg: #0f0f0f; --surface: #1a1a1a; --text: #e0e0e0; --text-sec: #a0a0a0; --border: #333333; --accent: #3399ff; --accent-h: #2a88ee; --accent-l: #66aaff; } } * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent;scrollbar-width: none; } body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100dvh; padding:5px; } .container { max-width: 480px; margin: 0 auto; } header { text-align: center; padding: 60px 0 40px; } .logo { font-size: 2.4rem; font-weight: 600; letter-spacing: -0.5px; } .tagline { font-size: 0.95rem; color: var(--text-sec); margin-top: 6px; } .calculator { background: var(--surface); border-radius: 15px; padding: 32px 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); } .calc-title { font-size: 1.5rem; font-weight: 600; text-align: center; margin-bottom: 32px; } label { display: block; font-size: 0.9rem; font-weight: 500; color: var(--text-sec); margin-bottom: 8px; } input, select { width: 100%; padding: 10px; font-size: 15px; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: var(--text); margin-bottom: 24px; transition: border-color 0.2s; } input:focus, select:focus { outline: none; background-color: rgba(255, 255, 255, 0.135); } select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2 4L6 8L10 4' stroke='%23606060' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; background-size: 12px; padding-right: 40px; } button { width: 100%; padding: 10px; font-size: 1.05rem; font-weight: 500; color: white; background: var(--accent); border: none; border-radius: 9px; cursor: pointer; transition: background 0.2s; } button:hover { background: var(--accent-h); } .result { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); text-align: center; display: none; margin-bottom: -10px; } .result-row { margin-bottom: 10px; background: #ffffff12; padding: 10px 0px; border-radius: 10px; } .result-label { font-size: 0.9rem; color: var(--text-sec); margin-bottom: 6px; } .result-value { font-size: 1.1rem; font-weight: 600; } .result-interest { font-size: 1.4rem; font-weight: 500; } .big-total { font-size: 3.2rem; font-weight: 700; letter-spacing: -1px; color: var(--accent); } .note { margin: 20px auto; max-width: 480px; font-size: 0.9rem; color: var(--text-sec); text-align: center; line-height: 1.6; } footer { text-align: center; padding: 24px 0; font-size: 0.8rem; color: var(--text-sec); } @media (max-width: 500px) { .calculator { padding: 25px 20px; } .logo { font-size: 2.1rem; } .big-total { font-size: 2.8rem; } } </style> </head> <body> <div class="container"> <header> <div class="logo">Short Term Loan</div> <p class="note"> Quick amounts for 1 to 5 days.<br> Powered by STO. </p> </header> <div class="calculator"> <div class="calc-title">Loan Calculator</div> <label>Loan Amount (₹)</label> <input type="number" id="amount" placeholder="Enter amount here..." step="500" min="100" /> <label>Duration</label> <select id="days"> <option value="1">1 day</option> <option value="2" selected>2 days</option> <option value="3">3 days</option> <option value="4">4 days</option> <option value="5">5 days</option> </select> <button id="calcBtn">Calculate Interest</button> <div id="result" class="result"> <div class="result-row"> <div class="result-label">You receive today</div> <div class="result-value">₹<span id="principal">—</span></div> </div> <div class="result-row"> <div class="result-label">Interest for <span id="rateText">—</span></div> <div class="result-interest">₹<span id="interest">—</span></div> </div> <div class="result-row"> <div class="result-label">Total to repay</div> <div class="big-total">₹<span id="total">—</span></div> <div style="margin-top:6px;font-size:0.95rem;color:var(--text-sec);"> After <span id="daysText">—</span> <span id="dayLabel">day</span> </div> </div> </div> </div> </div> <footer> ©STO | BS&MFI. All rights reserved. </footer>
+ <script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
     const amountInput = document.getElementById('amount');
     const daysSelect  = document.getElementById('days');
     const resultDiv   = document.getElementById('result');
@@ -10,7 +11,7 @@
     const daysText    = document.getElementById('daysText');
     const dayLabel    = document.getElementById('dayLabel');
 
-    document.getElementById('calcBtn').addEventListener('click', function() {
+    document.getElementById('calcBtn').addEventListener('click', () => {
       let amount = parseFloat(amountInput.value) || 0;
       let days   = parseInt(daysSelect.value);
 
@@ -19,17 +20,17 @@
         return;
       }
 
-      const dailyRate = 0.0090;                
-      const interest  = amount * dailyRate * days;
-      const total     = amount + interest;
+      const dailyRate = 0.009;
+      const interest  = Math.round(amount * dailyRate * days);
+      const total     = Math.round(amount + interest);
 
-      principal.textContent = format(Math.round(amount));
-      interestEl.textContent = format(Math.round(interest));
-      totalEl.textContent    = format(Math.round(total));
+      principal.textContent   = amount.toLocaleString('en-IN');
+      interestEl.textContent  = interest.toLocaleString('en-IN');
+      totalEl.textContent     = total.toLocaleString('en-IN');
 
-      rateText.textContent = days;
-      daysText.textContent = days;
-      dayLabel.textContent = days === 1 ? 'day' : 'days';
+      rateText.textContent   = days;
+      daysText.textContent   = days;
+      dayLabel.textContent   = days === 1 ? 'day' : 'days';
 
       resultDiv.style.display = 'block';
     });
@@ -37,12 +38,6 @@
     amountInput.addEventListener('input', () => {
       if (!amountInput.value) resultDiv.style.display = 'none';
     });
-
-    function format(num) {
-      return num.toLocaleString('en-IN');
-    }
-document.addEventListener('contextmenu', e => e.preventDefault());
   </script>
 </body>
 </html>
-
