@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BS&MFI | Delay It</title>
+    <title>BS&MFI | Split Half Pay</title>
     <link rel="icon" href="mfi.logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,9 +110,9 @@
             font-size: 10px;
             color: #ffffff5e;
             max-width: 707px;
-            margin: -5px auto;
+            margin: -20px auto;
             font-weight: 300;
-            letter-spacing: 2px;
+            letter-spacing: 5px;
             text-transform: uppercase;
         }
 
@@ -284,6 +284,7 @@
             width: 100%;
             border-radius: 8px;
             text-align: center;
+            padding: 12px 0;
         }
 
         .apply-btn:hover {
@@ -323,7 +324,6 @@
             color: #0021ff;
             text-align: justify;
         }
-
 
         .section p, .section li {
             font-size: 14px;
@@ -424,68 +424,51 @@
                 </div>
             </div>
 
-            <h1>Delay It</h1>
-            <p>Return date extender</p>
+            <h1>Split Half Pay</h1>
+            <p>Flexible Repayment</p>
         </header>
 
         <div class="limited-offer" id="limitedOffer">
-            Get 20% Off Your Extension Fee
+            Get 20% Off Your Split Fee
             <div class="timer" id="countdown"></div>
         </div>
 
         <div class="section">
             <h2>About Us</h2>
-            <p>Delay It by BS&MFI Solutions helps to extend your payment deadlines with transparent fees. Our service provides the flexibility you need to manage your returns.</p>
+            <p>With Split half pay, you can pay half of the total amount and extend the remaining half with a flexibility while ensuring smooth repayment.</p>
         </div>
 
         <div class="section">
-            <h2>How Delay It works?</h2>
+            <h2>How It Works</h2>
             <ul>
-                <li>You can extend the return date of the amount.</li>
-                <li>Transparent fees with no hidden costs.</li>
-                <li>Fast extend process.</li>
+                <li>Paying 50% of the amount now and split the remaining 50% in instalments</li>
+                <li>Fast approval and simple process</li>
             </ul>
         </div>
 
         <div class="calculator" id="delaycalculate">
-            <h2>Calculate your fee here</h2>
+            <h2>Calculate your split fee</h2>
             <div class="form-group">
-                <input type="number" id="amount" placeholder="Enter amount here...">
+                <input type="number" id="amount" placeholder="Total amount (₹)">
             </div>
             <div class="form-group">
-                <input type="number" id="days" min="15" max="30" placeholder="Enter no. of days...">
+                <input type="number" id="splits" min="2" max="5" placeholder="Number of splits (2–5)">
             </div>
             <button class="calculate" onclick="calculateFee()">Calculate Fee</button>
             <div id="result"></div>
         </div>
 
-        <div class="note">Note: The extension fee must be paid before applying for Delay It. If not, we can't provide the extension.</div>
+        <div class="note">Note: The split fee must be paid upfront along with the first 50%. This allows you to split the remaining amount.</div>
 
         <div class="section">
             <h2>FAQ's</h2>
             <div class="faq-item">
-                <h3>What is the minimum amount I can extend?</h3>
-                <p>The minimum amount is 500₹.</p>
+                <h3>What is the minimum amount I can split?</h3>
+                <p>The minimum total amount is 2000₹.</p>
             </div>
             <div class="faq-item">
-                <h3>How is the fee calculated?</h3>
-                <p>The fee is calculated as 4.2% of the amount and number of days.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Can I apply for multiple extensions?</h3>
-                <p>Yes, multiple extensions are possible, subject to approval, with each having its own fee.</p>
-            </div>
-            <div class="faq-item">
-                <h3>If I have today return date can I extend today?</h3>
-                <p>No, you can't extend if today is your return date, you can only extend before the return date.</p>
-            </div>
-            <div class="faq-item">
-                <h3>No. of days I can extend?</h3>
-                <p>You can extend your amount between 15–30 days.</p>
-            </div>
-            <div class="faq-item">
-                <h3>I can't extend my return date more than 30 days?</h3>
-                <p>Yes, you can extend more than 30 days but it depends upon your membership type.</p>
+                <h3>Can I choose different number of splits?</h3>
+                <p>Yes — you can select between 2 to 8 splits.</p>
             </div>
         </div>
 
@@ -495,7 +478,7 @@
     </div>
 
     <script>
-        // ─── Theme toggle ───────────────────────────────────────
+         document.addEventListener('contextmenu', e => e.preventDefault());
         const themeToggle = document.getElementById('themeToggle');
         const sunIcon = '<i class="fa-regular fa-sun"></i>';
         const moonIcon = '<i class="fa-regular fa-moon"></i>';
@@ -524,25 +507,16 @@
             setTheme(!isLightNow);
         });
 
-        // ─── Improved Back Button ─────────────────────────────────
         document.getElementById('backButton').addEventListener('click', function() {
             if (document.referrer && document.referrer !== window.location.href) {
-                // Try to go back if we have a meaningful referrer
                 window.history.back();
             } else if (window.history.length > 1) {
-                // Fallback: still try history.back() if browser history exists
                 window.history.back();
             } else {
-                // Most reliable fallback for mobile / messengers / new tabs
-                window.location.href = '/';           // ← change to your real home page if needed
-                // Examples:
-                // window.location.href = 'https://yourdomain.com';
-                // window.location.href = 'index.html';
-                // window.close();                    // only works if opened by script
+                window.location.href = '/';
             }
         });
 
-        // ─── Offer & Calculator logic ─────────────────────────────
         const OFFER_START_DATE = new Date('2025-10-20T00:00:00');
         const OFFER_END_DATE   = new Date('2025-10-20T23:59:59');
 
@@ -577,41 +551,53 @@
         }
 
         function calculateFee() {
-            const amount = parseFloat(document.getElementById('amount').value) || 0;
-            const days = parseInt(document.getElementById('days').value) || 0;
-            const totalFeeRate = 0.042;
-            const referenceDays = 30;
-            const currentDate = new Date();
+    const totalAmount = parseFloat(document.getElementById('amount').value) || 0;
+    const splits = parseInt(document.getElementById('splits').value) || 0;
 
-            if (amount < 500 || isNaN(amount)) {
-                document.getElementById('result').innerHTML = '<span style="color: #ff3b30;">Enter a valid amount (minimum 500)</span>';
-                return;
-            }
+    if (totalAmount < 2000 || isNaN(totalAmount)) {
+        document.getElementById('result').innerHTML = 
+            '<span style="color: #ff3b30;">Enter a valid amount (minimum ₹500)</span>';
+        return;
+    }
 
-            if (days < 15 || days > 30 || isNaN(days)) {
-                document.getElementById('result').innerHTML = '<span style="color: #ff3b30;">Extension period must be 15–30 days.</span>';
-                return;
-            }
+    // Validation for number of splits (now 1 to 8)
+    if (splits < 1 || splits > 8 || isNaN(splits)) {
+        document.getElementById('result').innerHTML = 
+            '<span style="color: #ff3b30;">Number of splits must be between 1 and 8.</span>';
+        return;
+    }
 
-            const dailyFeeRate = totalFeeRate / referenceDays;
-            const fee = amount * dailyFeeRate * days;
+    const halfAmount = totalAmount / 2;
+    const remainingAmount = halfAmount;
+    const extraInstalments = splits - 1;           // number of additional payments after the first half
+    const feeRatePerExtraSplit = 0.042;
+    const fee = remainingAmount * feeRatePerExtraSplit * extraInstalments;
 
-            let feeDisplay = `Extension Fee: <span class="highlight">₹${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>`;
+    let feeDisplay = `Split Fee: <span class="highlight">₹${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>`;
 
-            if (currentDate >= OFFER_START_DATE && currentDate <= OFFER_END_DATE) {
-                const discountedFee = fee * 0.8;
-                feeDisplay = `
-                    Extension Fee: 
-                    <span class="strikethrough">₹${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span> 
-                    <span class="offer">₹${discountedFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
-                `;
-            }
+    const currentDate = new Date();
+    if (currentDate >= OFFER_START_DATE && currentDate <= OFFER_END_DATE) {
+        const discountedFee = fee * 0.8;
+        feeDisplay = `
+            Split Fee: 
+            <span class="strikethrough">₹${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span> 
+            <span class="offer">₹${discountedFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+            <small> (20% off – limited offer)</small>
+        `;
+    }
+    if (splits === 1) {
+        feeDisplay = `No split fee for 1 split (pay half now + half later)`;
+    }
 
-            document.getElementById('result').innerHTML = `
-                ${feeDisplay}<br>
-                <a href="https://forms.gle/9URS1LAqd3iB8qDUA" class="apply-btn" target="_blank">Apply Now</a>
-            `;
-        }
+    document.getElementById('result').innerHTML = `
+        ${feeDisplay}
+       
+    `; // <strong>Your plan (${splits} splits):</strong><br>
+        // • Pay now: ₹${halfAmount.toLocaleString('en-US', {minimumFractionDigits: 2})} + split fee<br>
+        // • Remaining ₹${remainingAmount.toLocaleString('en-US', {minimumFractionDigits: 2})} <br>
+        //   → split into ${extraInstalments} more payment${extraInstalments === 1 ? '' : 's'}<br><br>
+        // <a href="https://forms.gle/9URS1LAqd3iB8qDUA" class="apply-btn" target="_blank">Apply for Split Half Pay</a>
+}
 
         document.addEventListener("DOMContentLoaded", () => {
             manageOfferDisplay();
