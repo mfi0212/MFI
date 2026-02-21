@@ -806,10 +806,9 @@ function goToList(idx) { closeDatePopup(); switchView('list', true); displayLoan
 
 function renderLinks() {
     const c = document.getElementById("userLinks");
-    c.innerHTML = "";                     // clear previous content
+    c.innerHTML = "";                
 
     if (!currentUser.links || currentUser.links.length === 0) {
-        // ---- No links → show a message ----
         const emptyMsg = document.createElement("div");
         emptyMsg.className = "user-link empty-message";
         emptyMsg.innerHTML = `
@@ -817,10 +816,8 @@ function renderLinks() {
             No links saved yet.
         `;
         c.appendChild(emptyMsg);
-        return;                           // stop here, nothing else to render
+        return;                          
     }
-
-    // ---- There are links → render them ----
     currentUser.links.forEach((link, i) => {
         const div = document.createElement("div");
         div.className = "user-link";
@@ -844,7 +841,7 @@ function addLink() {
 }
 
 document.getElementById("linkYesBtn").onclick = () => {
-    window.open(pendingLink.link.url, '_blank');
+    window.open(pendingLink.link.url, '_parent');
     document.getElementById("linkConfirmPopup").style.display = "none";
 };
 
