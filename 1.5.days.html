@@ -1,45 +1,195 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <title>Short Term Loan – BS&MFI</title> <link rel="icon" href="mfi.logo.png" /> <style> :root { --bg: #ffffff; --surface: #f6f6f6; --text: #000000; --text-sec: #606060; --border: #e0e0e0; --accent: #0088cc; --accent-h: #0077bb; --accent-l: #3399ff; --danger: #ff3b30; } @media (prefers-color-scheme: dark) { :root { --bg: #000000; --surface: #181819; --text: #e0e0e0; --text-sec: #a0a0a0; --border: #333333; --accent: #3399ff; --accent-h: #2a88ee; --accent-l: #66aaff; } } * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent;scrollbar-width: none; } body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100dvh; padding:5px; } .container { max-width: 480px; margin: 0 auto; } header { text-align: center; padding: 60px 0 40px; } .logo { font-size: 2.4rem; font-weight: 600; letter-spacing: -0.5px; } .tagline { font-size: 0.95rem; color: var(--text-sec); margin-top: 6px; } .calculator { background: var(--surface); border-radius: 15px; padding: 32px 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); } .calc-title { font-size: 1.5rem; font-weight: 600; text-align: center; margin-bottom: 32px; } label { display: block; font-size: 0.9rem; font-weight: 500; color: var(--text-sec); margin-bottom: 8px; } input, select { width: 100%; padding: 10px; font-size: 15px; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: var(--text); margin-bottom: 24px; transition: border-color 0.2s; } input:focus, select:focus { outline: none; background-color: rgba(255, 255, 255, 0.135); } select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2 4L6 8L10 4' stroke='%23606060' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; background-size: 12px; padding-right: 40px; } button { width: 100%; padding: 10px; font-size: 1.05rem; font-weight: 500; color: white; background: var(--accent); border: none; border-radius: 9px; cursor: pointer; transition: background 0.2s; } button:hover { background: var(--accent-h); } .result { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); text-align: center; display: none; margin-bottom: -10px; } .result-row { margin-bottom: 10px; background: #ffffff12; padding: 10px 0px; border-radius: 10px; } .result-label { font-size: 0.9rem; color: var(--text-sec); margin-bottom: 6px; } .result-value { font-size: 1.1rem; font-weight: 600; } .result-interest { font-size: 1.4rem; font-weight: 500; } .big-total { font-size: 3.2rem; font-weight: 700; letter-spacing: -1px; color: var(--accent); } .note { margin: 20px auto; max-width: 480px; font-size: 0.9rem; color: var(--text-sec); text-align: center; line-height: 1.6; } footer { text-align: center; padding: 24px 0; font-size: 0.8rem; color: var(--text-sec); } @media (max-width: 500px) { .calculator { padding: 25px 20px; } .logo { font-size: 2.1rem; } .big-total { font-size: 2.8rem; } } </style> </head> <body> <div class="container"> <header> <div class="logo">Short Term Loan</div> <p class="note"> Quick amounts for 1 to 5 days.<br> Powered by STO. </p> </header> <div class="calculator"> <div class="calc-title">Loan Calculator</div> <label>Loan Amount (₹)</label> <input type="number" id="amount" placeholder="Enter amount here..." step="500" min="100" /> <label>Duration</label> <select id="days"> <option value="1">1 day</option> <option value="2" selected>2 days</option> <option value="3">3 days</option> <option value="4">4 days</option> <option value="5">5 days</option> </select> <button id="calcBtn">Calculate Interest</button> <div id="result" class="result"> <div class="result-row"> <div class="result-label">You receive today</div> <div class="result-value">₹<span id="principal">—</span></div> </div> <div class="result-row"> <div class="result-label">Interest for <span id="rateText">—</span></div> <div class="result-interest">₹<span id="interest">—</span></div> </div> <div class="result-row"> <div class="result-label">Total to repay</div> <div class="big-total">₹<span id="total">—</span></div> <div style="margin-top:6px;font-size:0.95rem;color:var(--text-sec);"> After <span id="daysText">—</span> <span id="dayLabel">day</span> </div> </div> <button><a href="https://forms.gle/vXeHF8bwrdykgeN18" style="color: white;text-decoration: none;">Apply Now</a></button> </div> </div> </div> <footer> ©STO | BS&MFI. All rights reserved. </footer>
-<script>
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    const amountInput = document.getElementById('amount');
-    const daysSelect  = document.getElementById('days');
-    const resultDiv   = document.getElementById('result');
-    const principal   = document.getElementById('principal');
-    const interestEl  = document.getElementById('interest');
-    const totalEl     = document.getElementById('total');
-    const rateText    = document.getElementById('rateText');
-    const daysText    = document.getElementById('daysText');
-    const dayLabel    = document.getElementById('dayLabel');
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <title>BS&MFI | Short Term Loan</title> <link rel="icon" type="image/x-icon" href="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg"> <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <link rel="icon" href="mfi.logo.png" /> <style> * { margin:0; padding:0; box-sizing:border-box; scrollbar-width: none; } body { font-family: system-ui, -apple-system, sans-serif; background: #000000; color: #ddd; min-height: 100vh; padding: 70px 0 45px; }* { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } body.light { background: #f8f9fa; color: #111; } .header { position: fixed; top: 0; left: 0; right: 0; padding: 12px 16px 0px 16px; z-index: 100; background: black; border-radius: 0px 0px 40px 40px; } body.light .header { background: #fff; border-color: #ddd; color: #000; } .header h3 { padding: 10px 0px; font-weight: 700; } .search-container { position: relative; } #searchPassword { width: 100%; padding: 10px 10px 10px 45px; background: #181818; border-radius: 33px; color: white; font-size: 14px; margin-top: 15px; display: flex; justify-content: center; align-items: center; border: none;outline: none; } body.light #searchPassword { background: #fff; border-color: #ccc; color: #000; } .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #777; font-size: 14px; } .section { padding: 0 15px; margin-top: 60px;} .section-title { font-size: 17px; font-weight: 600; margin: 20px 0 12px; color: #aaa; } body.light .section-title { color: #555; } .card { background: #181818; border-radius: 15px; padding: 16px; margin-bottom: -40px; } body.light .card { background: #fff; border-color: #ddd; box-shadow: 0 2px 8px rgba(0,0,0,0.08); } .loan-item { background: #181818; border: none; border-radius: 15px; padding: 14px; margin-bottom: 12px; font-size: 15px; } body.light .loan-item { background: #f9f9f9; border-color: #ddd; } .status-line { display: flex; justify-content: space-between; margin: 6px 0; font-size: 15px; } .status-line b { color: #ffffffeb; } body.light .status-line b { color: #00796b; } .total-line { font-size: 18px; font-weight: bold; color: #007aff; margin-top: 15px; text-align: center; background: #ffffff14; padding: 6px; border-radius: 100px; } .apply-btn { margin-top: 14px; background: #007aff; color: white; border: none; padding: 12px; border-radius: 80px; font-weight: 600; cursor: pointer; width: 100%; } .apply-btn:hover { background: #007bffc3; } .input-row input:focus{ background-color: #80808042; } input[type="number"], input[type="text"] { flex: 1; padding: 10px 15px; background: transparent; border-radius: 0px; color: white; font-size: 14px; width: 105%; margin: 5px 0px; border: none; border-bottom: solid 1px #ffffff2b; outline: none; } body.light input { background: #fff; border-color: #ccc; color: #000; } .disabled-note { color: #ff9800; font-size: 13px; margin-top: 6px; } b { font-weight: 500; color: #ffffff; } #interestResult { font-size: 15px; font-weight: 400; margin-top: 10px; color: #ffffff9c; line-height: 25px; } .avatar { width: 48px; height: 48px; background: #00c4b4; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; } .powerby { position: fixed; bottom: 0; left: 0; right: 0; background: #000; color: #aaa; text-align: center; padding: 8px; font-size: 11px; border-top: 1px solid #222; } .theme-btn { position: fixed; top: 12px; right: 16px; background: #444; color: white; border: none; padding: 6px 10px; border-radius: 6px; cursor: pointer; z-index: 101; } body.light .theme-btn { background: #ddd; color: #000; } </style> </head> <body> <div class="header"> <h3>Short Term Loan</h3> <div class="search-container"> <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span> <input type="text" id="searchPassword" placeholder="Enter code..." maxlength="4" autocomplete="off"/> </div> </div> <div class="section" id="interestSection" style="display:none;"> <div class="section-title">Calculate Interest</div> <div class="card"> <div class="input-row"> <input type="number" id="calcAmount" placeholder="Amount (₹)" min="1000" /> <input type="number" id="calcDays" placeholder="Days" min="1" /> </div> <div id="daysNote" class="disabled-note" style="display:none;"> Your plan is fixed at 15 days (cannot change) </div> <div id="interestResult"></div> <button class="apply-btn" id="applyBtn">Apply Now</button> </div> </div> <div class="section" id="loanSection" style="display:none;"> <div class="section-title">Your Amount Details</div> <div id="loanList"></div> </div> <div class="powerby"> ©STO | BS&MFI. All rights reserved. </div>
+  <script>
+    const TODAY = new Date();
 
-    document.getElementById('calcBtn').addEventListener('click', () => {
-      let amount = parseFloat(amountInput.value) || 0;
-      let days   = parseInt(daysSelect.value);
+    const users = {
+      "6275": {
+        name: "Srikanth Kath",
+        avatar: "SK",
+        maxDays: 15,
+        dailyRatePercent: 2,         
+        loans: [
+          {
+            takenAmount: 3000,
+            interest: 900,
+            planDate: "25-11-2025",
+            endDate: "10-12-2025",
+            takenFrom: "MLending Duplicate",
+            fineRate: 46
+          },
+          {
+            takenAmount: 6000,
+            interest: 900,
+            planDate: "25-11-2025",
+            endDate: "10-12-2025",
+            takenFrom: "MLending Duplicate",
+            fineRate: 46
+          }
+        ]
+      },
+      "0212": {
+        name: "Demo User",
+        avatar: "DU",
+        maxDays: 10,
+        dailyRatePercent: 25 / 30,
+        loans: [
+          {
+            takenAmount: 5000,
+            interest: 750,
+            planDate: "05-02-2026",
+            endDate: "20-02-2026",
+            takenFrom: "Quick Loan AP",
+            fineRate: 50
+          }
+        ]
+      }
+    };
+document.addEventListener('contextmenu', e => e.preventDefault());
+    const passwordInput   = document.getElementById("searchPassword");
+    const loanSection     = document.getElementById("loanSection");
+    const loanList        = document.getElementById("loanList");
+    const interestSection = document.getElementById("interestSection");
+    const calcAmount      = document.getElementById("calcAmount");
+    const calcDays        = document.getElementById("calcDays");
+    const daysNote        = document.getElementById("daysNote");
+    const interestResult  = document.getElementById("interestResult");
+    const applyBtn        = document.getElementById("applyBtn");
 
-      if (amount <= 0) {
-        resultDiv.style.display = 'none';
+    let currentUser = null;
+
+    function daysOverdue(endDateStr) {
+      const [d, m, y] = endDateStr.split('-').map(Number);
+      const due = new Date(y, m-1, d);
+      if (TODAY <= due) return 0;
+      return Math.ceil((TODAY - due) / (1000 * 60 * 60 * 24));
+    }
+
+    function unlockUser(pass) {
+      const user = users[pass];
+      if (!user) {
+        loanSection.style.display = "none";
+        interestSection.style.display = "none";
         return;
       }
 
-      const dailyRate = 0.009;
-      const interest  = Math.round(amount * dailyRate * days);
-      const total     = Math.round(amount + interest);
+      currentUser = user;
 
-      principal.textContent   = amount.toLocaleString('en-IN');
-      interestEl.textContent  = interest.toLocaleString('en-IN');
-      totalEl.textContent     = total.toLocaleString('en-IN');
+      loanSection.style.display = "block";
+      interestSection.style.display = "block";
 
-      rateText.textContent   = days;
-      daysText.textContent   = days;
-      dayLabel.textContent   = days === 1 ? 'day' : 'days';
+      loanList.innerHTML = "";
+      user.loans.forEach(loan => {
+        const overdueDays = daysOverdue(loan.endDate);
+        const overdueFine = overdueDays * loan.fineRate;
+        const total = loan.takenAmount + loan.interest + overdueFine;
 
-      resultDiv.style.display = 'block';
+        const div = document.createElement("div");
+        div.className = "loan-item";
+        div.innerHTML = `
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+            <div class="avatar">${user.avatar}</div>
+            <div style="flex:1;">
+              <div><b>${user.name}</b></div>
+              <div style="color:#888; font-size:13px;">${loan.takenFrom}</div>
+            </div>
+          </div>
+
+          <div class="status-line">
+            <span>Amount:</span> <b>₹${loan.takenAmount}</b>
+          </div>
+          <div class="status-line">
+            <span>Interest:</span> <b>₹${loan.interest}</b>
+          </div>
+          ${overdueDays > 0 ? `
+          <div class="status-line" style="color:#ff3636;">
+            <span>Overdue (${overdueDays} days):</span> <b>₹${overdueFine}</b>
+          </div>` : ''}
+          <div style="margin-top:20px; color:#aaa; font-size:13px; text-align:center;">
+            ${loan.planDate} → ${loan.endDate}
+          </div>
+          <div class="total-line">
+            Total: ₹${total}
+          </div>
+        `;
+        loanList.appendChild(div);
+      });
+
+      calcDays.disabled = false;
+      calcDays.value = "";
+      calcDays.min = "1";
+      calcDays.max = user.maxDays;
+      daysNote.style.display = "none";
+      const hint = document.createElement("div");
+      hint.style.cssText = "font-size:13px; color:#aaa; margin:8px 0;";
+      hint.textContent = `Maximum allowed: ${user.maxDays} days`;
+      interestSection.querySelector(".card").insertBefore(hint, calcDays.nextSibling);
+
+      updateInterest();
+    }
+
+    function updateInterest() {
+      if (!currentUser) return;
+
+      const amt = parseFloat(calcAmount.value) || 0;
+      let days = parseInt(calcDays.value) || 0;
+
+      if (days > currentUser.maxDays) {
+        days = currentUser.maxDays;
+        calcDays.value = currentUser.maxDays;
+      }
+      if (days < 1) days = 1;
+
+      if (amt < 1000 || days < 1) {
+        interestResult.innerHTML = "";
+        return;
+      }
+
+      const rate = currentUser.dailyRatePercent / 100;
+      const interest = Math.round(amt * rate * days);
+      const total = amt + interest;
+
+      interestResult.innerHTML = `
+        Interest: <b>${interest} </b>rupees <br>
+        Total to repay: <b>${total} </b>rupees
+      `;
+    }
+
+    passwordInput.addEventListener("input", () => {
+      const val = passwordInput.value.trim();
+      if (val.length === 4) {
+        unlockUser(val);
+      } else {
+        loanSection.style.display = "none";
+        interestSection.style.display = "none";
+        currentUser = null;
+      }
     });
 
-    amountInput.addEventListener('input', () => {
-      if (!amountInput.value) resultDiv.style.display = 'none';
-    });
-  </script>
+    calcAmount.addEventListener("input", updateInterest);
+    calcDays.addEventListener("input", updateInterest);
+    calcDays.addEventListener("change", updateInterest);
+    applyBtn.onclick = () => {
+      if (!currentUser) return;
+
+      let amt = calcAmount.value.trim();
+      let days = calcDays.value.trim();
+
+      amt = parseFloat(amt);
+      days = parseInt(days);
+
+      if (isNaN(amt) || amt < 1000) {
+        alert("Please enter amount ≥ ₹1000");
+        return;
+      }
+      if (isNaN(days) || days < 1 || days > currentUser.maxDays) {
+        alert(`Please enter days between 1 and ${currentUser.maxDays}`);
+        return;
+      }
+
+      alert(`Application submitted!\n\nCode: ${passwordInput.value}\nAmount: ₹${amt}\nDays: ${days}\n\n(Replace this alert with WhatsApp / form link)`);
+
+  
+    };
+</script>
 </body>
 </html>
-
-
