@@ -367,11 +367,11 @@ body:has(input[value="dim"]:checked) {
     display: flex;
     gap: 10px;
     align-items: center;
-    padding: 5px 8px 5px 5px;
+    padding: 5px 12px 5px 5px;
     transition: all 0.3s ease;
     position: relative;
     top: -5px;
-    left: 5px;
+    left: 10px;
          }
          
         .user-link { 
@@ -437,15 +437,16 @@ body:has(input[value="dim"]:checked) {
 
         /* SEARCH + AMOUNT BUTTONS */
         .search-container {
-       display: flex;
+     display: flex;
     align-items: center;
     gap: 10px;
     transition: all .4s ease;
     position: relative;
     top: -13px;
     height: 50px;
-    width: 140%;
-    padding: 0px 121px 0px 0px;
+    width: 100%;
+    padding: 0px 0px 0px 0px;
+    justify-content: space-between;
         }
         #searchIcon { 
           font-size: 16px;
@@ -518,15 +519,13 @@ display: flex;
         }
         .amount-buttons { 
        display: flex;
-        gap: 10px;
-        overflow-x: auto;
-        white-space: nowrap;
-        transition: transform .4s ease;
-        margin-left: -15px;
-        scrollbar-width: none;
-        width: 100%;
-        margin-right: 20px;
-        padding: 10px 10px 0px 0px;
+    gap: 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+    transition: transform .4s ease;
+    scrollbar-width: none;
+    margin-right: 20px;
+    padding: 10px 0px 0px 0px;
         }
         /* h3{ color:#006fff; } */
         p { 
@@ -934,7 +933,7 @@ display: flex;
     border-radius: 46px;
     width: 100%;
     text-align: center;
-    justify-content: space-around;
+    justify-content: space-between;
     max-width: 135px;
     backdrop-filter: blur(3px);
     transition: all 0.3s ease;
@@ -1188,29 +1187,12 @@ transform: scale(1,1);padding: 5px;
     animation: sway linear infinite;
     transform-origin: center top;
 }     .amount-buttons {
-display: flex;
-        gap: 10px;
-        overflow-x: auto;
-        white-space: nowrap;
-        
-        transition: transform .4s ease;
-        margin-left: -20px;
-        scrollbar-width: none;
+         margin-left: -22px;
         width: 100%;
+        margin-right: 0px;
+        padding: 10px 10px 0px 0px;
     }
-     @media (max-width : 380px) {
-         .amount-buttons {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            white-space: nowrap;
-            
-            transition: transform .4s ease;
-            margin-left: -15px;
-            scrollbar-width: none;
-            width: 100%;
-        }
-     }
+    
         }
     /* Popup overlay */
    
