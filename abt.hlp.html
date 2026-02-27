@@ -6,6 +6,12 @@
     <title>BS&MFI | Helper</title>
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
@@ -14,7 +20,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: "Red Hat Display", sans-serif;
-        }* {
+        }* {scrollbar-width: none;
             -webkit-tap-highlight-color: transparent;
         }
         body {
@@ -62,13 +68,12 @@ ease-in-out;z-index: -10;
         }
         h1, h2, h4 {
             color: #000000;
-            margin: 16px 0px;
+            margin: 15px 0px 5px 0px;font-family: "Hahmlet", serif;
         }
         .service, .faq {
-            margin: 20px 0;
+           margin: 20px 0;
     padding: 12px;
-    background: #bcbcbc14;
-    border-radius: 5px;
+    background: #ffffff38;
         }
         .question {
             cursor: pointer;
@@ -97,7 +102,7 @@ ease-in-out;z-index: -10;
     transform: scaleY(0);
     transform-origin: top;
     transition: max-height 0.6s ease-in-out, opacity 0.4s ease-in-out, transform 0.4s ease-in-out, padding 0.3s ease-in-out;
-    background: #eeeeee;
+    background: #ffffff;
     padding: 0 10px;
     text-align: left;
 }
@@ -249,22 +254,7 @@ h4 {
                 openIcon = icon;
             }
         }
-        document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
 
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
-
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
     </script>
     
 </body>
