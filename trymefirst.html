@@ -26,7 +26,15 @@
       --accent-dark: #0021ff;
       --border: #2a2a35;
     }
-
+* {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
     * {
       margin: 0;scrollbar-width: none;
       padding: 0;font-family: "Noto Sans", sans-serif;
@@ -190,7 +198,7 @@ footer{
 <div class="container">
 
   <div class="header">
-    <h1>BS&MFI</h1>
+    <h1>BS&MFI Search</h1>
   </div>
 
   <div class="search-box">
@@ -209,7 +217,6 @@ footer{
 </div>
 
 <script>
-// ────────────────────────────────────────────────
 const siteGroups = [
     {
     heading: "Return Management",
@@ -253,8 +260,7 @@ const siteGroups = [
     ]
   }
 ];
-
-// ────────────────────────────────────────────────
+document.addEventListener('contextmenu', e => e.preventDefault());
 function getColor(name) {
   let hash = 0;
   for (let i = 0; i < name.length; i++) {
@@ -371,7 +377,6 @@ function renderFiltered(query = "") {
   noResults.style.display = found ? "none" : "block";
 }
 
-// ────────────────────────────────────────────────
 renderAll();
 
 document.getElementById("searchInput").addEventListener("input", e => {
