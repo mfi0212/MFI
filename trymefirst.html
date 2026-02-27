@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BS&MFI Search</title>
+  <title>BS&MFI Services</title>
     <link rel="icon" href="mfi.logo.png" />
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
        <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,7 +48,28 @@
       min-height: 100vh;
       padding: 10px;
     }
-
+  .blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 63%;
+    animation: float 18s infinite 
+ease-in-out;
+}.blob1 {
+   width: 300px;
+    height: 300px;;
+    top: -10%;
+    right: 0%;
+    z-index: 10000;
+    background: #0046ff;
+}
+.blob2 {
+    width: 300px;
+    height: 300px;
+    background: #00a6ff;
+    bottom: -10%;
+    left: 0%;
+}
     .container {
       max-width: 680px;
       margin: 0 auto;
@@ -194,11 +215,12 @@ footer{
   </style>
 </head>
 <body>
-
+ <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
 <div class="container">
 
   <div class="header">
-    <h1>BS&MFI Search</h1>
+    <h1>BS&MFI Services</h1>
   </div>
 
   <div class="search-box">
