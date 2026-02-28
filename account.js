@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+//document.addEventListener('contextmenu', e => e.preventDefault());
 
 // for(let i=0;i<15;i++){
 //     const b=document.createElement("div");b.className="bulb";
@@ -149,12 +149,12 @@ const usersDB = {
         links: [],
         emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
     },
-"0212": {
-        name: "Tony Montana",
+    "0212": {
+        name: "Tony Mantana",
         coins: 4000,
         loans: [
-             { planDate: "09-02-2026", endDate: "02-03-2026", interest: 340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
-        ],
+             { planDate: "09-02-2026", endDate: "02-03-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
+            ],
         links: [],
         emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
     },
