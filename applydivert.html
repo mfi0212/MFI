@@ -4,18 +4,12 @@ const defaultURL = "https://blackswan19.github.io/golden/FM/takemoney";
 document.addEventListener('contextmenu', e => e.preventDefault());
 const accessRules = [
   {
-    passwords: ["6275", "4211", "9919"],
-    url: "https://blackswan19.github.io/golden/FM/takemoney"
-  },
-  {
-    passwords: ["Mahesh888*", "Cherish@123"],
+    passwords: ["Mahesh888*"],
     url: "https://mfi0212.github.io/MFI/takemoney"
   }
 ];
-
 function go() {
   const pass = document.getElementById("password").value.trim();
-
   for (const rule of accessRules) {
     if (rule.passwords.includes(pass)) {
       window.location.href = rule.url;
