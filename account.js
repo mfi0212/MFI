@@ -146,11 +146,14 @@ const usersDB = {
             { planDate: "14-01-2026", endDate: "14-03-2026", interest: 2850, takenAmount: 15230, takenFrom: "Golden", fineRate: 50 },
             { planDate: "14-02-2026", endDate: "16-03-2026", interest: 1880, takenAmount: 9500, takenFrom: "Golden", fineRate: 50 },
         ],
+        links: [],
+        emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
+    },
 "0212": {
         name: "Tony Montana",
         coins: 4000,
         loans: [
-             { planDate: "09-02-2026", endDate: "01-03-2026", interest: 340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "02-03-2026", interest: 340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
         ],
         links: [],
         emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
