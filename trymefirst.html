@@ -1,1 +1,695 @@
-no test...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BS&MFI | Delay It</title>
+    <link rel="icon" href="mfi.logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Noto Sans", sans-serif;
+            scrollbar-width: none;
+            letter-spacing: 0.1px;
+            scroll-behavior: smooth;
+        }
+
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            line-height: 1.7;
+            transition: background-color 0.4s, color 0.4s;
+        }
+
+        body.light {
+            background-color: #f6f6f6;
+            color: #1d1d1f;
+        }
+
+        .container {
+            max-width: 650px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 5px;
+        }
+
+        header {
+            text-align: center;
+            padding: 120px 0px 40px 0px;
+            position: sticky;
+            top: -45px;
+        }
+        header img {
+            width: 90px;
+            border-radius: 55px;
+        }
+
+        .header-controls {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            padding: 20px 10px;
+        }
+
+        .theme-btn, .back-btn {
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            box-shadow: inset -2px -1px 0px -1px rgb(108 108 108 / 96%), inset 2px 1px 0px -1px rgb(108 108 108 / 96%);
+            background: #181818;
+            color: white;
+            border-radius: 100px;
+            width: 40px;
+            height: 40px;
+        }
+
+        body.light .theme-btn,
+        body.light .back-btn{
+            background: #ffffff;
+            color: rgb(0, 0, 0);
+            box-shadow: inset -2px -1px 0px -1px rgba(0, 0, 0, 0.468), inset 2px 1px 0px -1px rgba(0, 0, 0, 0.509);
+        }
+
+        .limited-offer {
+            display: none;
+            text-align: center;
+            padding: 24px;
+            background: #1100ff;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 500;
+            margin: 40px 0 60px;
+            max-width: 800px;
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .limited-offer.show {
+            display: block;
+        }
+
+        .timer {
+            font-size: 16px;
+            margin-top: 12px;
+            opacity: 0.9;
+        }
+
+        .calculator {
+            padding: 5px;
+    text-align: center;
+    margin: 0 5px -5px 5px;
+        }
+
+        body.light .calculator {
+            background: #ffffff;
+        }
+
+        .nextsection {
+            backdrop-filter: blur(20px);
+        }
+
+        .calculator h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0021ff;
+            text-align: justify;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+            margin-left: 0;
+            margin-right: -20px;
+            text-align: left;
+        }
+
+        label {
+            display: none;
+        }
+
+        input {
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-bottom: 1px solid #313131;
+            border-radius: 0;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.733);
+            background: transparent;
+            transition: border-color, background 0.3s;
+        }
+
+        body.light input {
+            color: #222;
+            border-bottom: 1px solid #ccc;
+            background: #fff;
+        }
+
+        input:focus {
+            border-bottom: 1px solid #4f4f4f;
+            outline: none;
+            background: #ffffff26;
+        }
+
+        body.light input:focus {
+            border-bottom: 1px solid #999;
+            background: #e1e1e1;
+        }
+
+        button.calculate {
+           background: #7b7b7b9e;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 15px;
+    width: 98%;
+    border-radius: 33px;
+    margin-bottom: -10px;box-shadow: inset -2px 0px 0px -1px rgb(255 255 255 / 36%), inset 2px 0px 0px -1px rgb(255 255 255 / 46%);
+ }
+
+        button.calculate:hover {
+            background: #7b7b7bd7;
+        }
+
+        #result, #modalResult {
+            margin: 15px 0 0 0;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.733);
+            line-height: 40px;
+        }
+
+        body.light #result, body.light #modalResult {
+            color: #333;
+        }
+
+        .highlight {
+            color: #1100ff;
+            font-weight: 600;
+        }
+
+        .strikethrough {
+            text-decoration: line-through;
+            color: #888888;
+        }
+
+        .offer {
+            color: #1100ff;
+            font-weight: 600;
+        }
+
+        body.light .offer {
+            color: #0066ff;
+        }
+
+        .apply-btn {
+            display: inline-block;
+    margin-top: 10px;
+    background: #0029ff;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s;
+    width: 100%;
+    border-radius: 27px;
+    text-align: center;
+    padding: 8px;
+    box-shadow: inset -2px -1px 0px -1px rgb(255 255 255 / 36%), inset 2px 1px 0px -1px rgb(255 255 255 / 46%);
+        }
+
+        .apply-btn:hover {
+            background: #0c00cc;
+        }
+
+        .note {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #555559;
+            font-style: italic;
+            padding: 10px;
+        }
+
+        body.light .note {
+            color: #666;
+        }
+
+        .section {
+            margin: 0 5px 12px 5px;
+            text-align: center;
+            padding: 15px 20px;
+            background: #181818;
+            color: white;
+            border-radius: 15px;
+        }
+
+        body.light .section {
+            background: #ffffff;
+            color: #222;
+        }
+
+        .section h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #0021ff;
+            text-align: justify;
+        }
+
+        .section p, .section li {
+            font-size: 14px;
+            max-width: 800px;
+            color: #ffffff5e;
+            text-align: left;
+        }
+
+        body.light .section p,
+        body.light .section li {
+            color: #555;
+        }
+
+        .section ul {
+            list-style: none;
+            max-width: 800px;
+            margin: -15px 0 10px 0;
+            text-align: left;
+        }
+
+        .section li {
+            margin-bottom: -28px;
+            position: relative;
+            padding: 20px 0 20px 25px;
+            line-height: 19px;
+        }
+
+        .section li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #1100ff;
+            font-weight: bold;
+        }
+
+        body.light .section li::before {
+            color: #0066ff;
+        }
+
+        .faq-item {
+            margin-top: 20px;
+            text-align: left;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+
+        .faq-item h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 3px;
+            color: #ffffffde;
+        }
+
+        body.light .faq-item h3 {
+            color: #4a4a4a;
+        }
+
+        footer {
+            text-align: center;
+            padding: 0 0 11px 0;
+            color: gray;
+            font-size: 13px;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        /* ──────────────────────────────────────────────── */
+        /* Only new styles needed for sticky button + modal */
+        /* Everything else is unchanged from your original   */
+        /* ──────────────────────────────────────────────── */
+
+        .sticky-calculator-btn {
+position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    border: none;
+    padding: 10px 32px;
+    font-size: 15px;
+    font-weight: 400;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: none;
+    box-shadow: inset -2px -1px 0px -1px rgb(255 255 255 / 36%), inset 2px 1px 0px -1px rgb(255 255 255 / 46%);
+    background: #0029ff;
+        }
+
+        .sticky-calculator-btn:hover {
+            background: #0c00cc;
+        }
+
+        .modal {
+            display: none;
+    position: fixed;
+    inset: 0;
+    background: rgb(0 0 0 / 19%);
+    align-items: end;
+    justify-content: center;
+    padding-bottom: 75px;
+    backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+              background: #1f1f1f;
+    width: 95%;
+    max-width: 480px;
+    border-radius: 30px;
+    padding: 20px;
+    position: relative;
+        }
+
+        body.light .modal-content {
+            background: #ffffff;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 32px;
+            color: #777;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        body.light .modal-close {
+            color: #999;
+        }
+
+        #modalResult {
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        @media (max-width: 780px) {
+            .calculator h2 {
+                font-size: 17px;
+                margin-bottom: 10px;
+                padding: 0;
+            }
+            .form-group {
+                margin-bottom: 10px;
+                max-width: 500px;
+                margin-left: 0;
+                margin-right: -20px;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container"> 
+        <div class="header-controls">
+            <button class="back-btn" id="backButton" title="Go Back">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <div class="themes">
+                <button class="theme-btn" id="themeToggle" title="Toggle theme">
+                    <i class="fa-regular fa-sun"></i>
+                </button>
+            </div>
+        </div>
+
+        <header>
+            <div class="logoarea">
+                <img src="mfi.gif" alt="">
+                <h1>Delay It</h1>
+                <p>Return date extender</p>
+            </div>
+        </header>
+
+        <div class="nextsection">
+            <div class="limited-offer" id="limitedOffer">
+                Get 20% Off Your Extension Fee
+                <div class="timer" id="countdown"></div>
+            </div>
+
+            <div class="section">
+                <h2>About Us</h2>
+                <p>Delay It by BS&MFI Solutions helps to extend your payment deadlines with transparent fees. Our service provides the flexibility you need to manage your returns.</p>
+            </div>
+
+            <div class="section">
+                <h2>How Delay It works?</h2>
+                <ul>
+                    <li>You can extend the return date of the amount.</li>
+                    <li>Transparent fees with no hidden costs.</li>
+                    <li>Fast extend process.</li>
+                </ul>
+            </div>
+
+            <!-- Calculator section removed here -->
+
+            <div class="note">Note: The extension fee must be paid before applying for Delay It. If not, we can't provide the extension.</div>
+
+            <div class="section">
+                <h2>FAQ's</h2>
+                <div class="faq-item">
+                    <h3>What is the minimum amount I can extend?</h3>
+                    <p>The minimum amount is 500₹.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How is the fee calculated?</h3>
+                    <p>The fee is calculated as 4.2% of the amount and number of days.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I apply for multiple extensions?</h3>
+                    <p>Yes, multiple extensions are possible, subject to approval, with each having its own fee.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>If I have today return date can I extend today?</h3>
+                    <p>No, you can't extend if today is your return date, you can only extend before the return date.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>No. of days I can extend?</h3>
+                    <p>You can extend your amount between 15–30 days.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>I can't extend my return date more than 30 days?</h3>
+                    <p>Yes, you can extend more than 30 days but it depends upon your membership type.</p>
+                </div>
+            </div>
+
+            <footer>
+                BS&MFI Solutions. All Rights Reserved.
+            </footer>
+        </div>
+    </div>
+
+    <!-- Sticky button to open calculator -->
+    <button class="sticky-calculator-btn" id="openCalculatorBtn">Calculate Fee</button>
+
+    <!-- Modal with calculator -->
+    <div class="modal" id="calculatorModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            
+            <div class="calculator" style="margin:0; box-shadow:none; background:transparent;">
+                <h2>Calculate your fee here</h2>
+                <div class="form-group">
+                    <input type="number" id="modal_amount" placeholder="Enter amount here...">
+                </div>
+                <div class="form-group">
+                    <input type="number" id="modal_days" min="15" max="30" placeholder="Enter no. of days...">
+                </div>
+                <button class="calculate" onclick="calculateFee()">Calculate Fee</button>
+                <div id="modalResult"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = '<i class="fa-regular fa-sun"></i>';
+        const moonIcon = '<i class="fa-regular fa-moon"></i>';
+
+        function setTheme(isLight) {
+            if (isLight) {
+                document.body.classList.add('light');
+                themeToggle.innerHTML = moonIcon;
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.body.classList.remove('light');
+                themeToggle.innerHTML = sunIcon;
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            setTheme(true);
+        } else {
+            setTheme(false);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isLightNow = document.body.classList.contains('light');
+            setTheme(!isLightNow);
+        });
+
+        // Back button
+        document.getElementById('backButton').addEventListener('click', function() {
+            if (document.referrer && document.referrer !== window.location.href) {
+                window.history.back();
+            } else if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = '/';
+            }
+        });
+
+        // Offer timer
+        const OFFER_START_DATE = new Date('2025-10-20T00:00:00');
+        const OFFER_END_DATE   = new Date('2025-10-20T23:59:59');
+
+        function manageOfferDisplay() {
+            const countdownElement = document.getElementById('countdown');
+            const limitedOffer = document.getElementById('limitedOffer');
+
+            function updateCountdown() {
+                const currentDate = new Date();
+                if (currentDate < OFFER_START_DATE || currentDate > OFFER_END_DATE) {
+                    limitedOffer.classList.remove('show');
+                    return;
+                }
+
+                const timeDiff = OFFER_END_DATE - currentDate;
+                if (timeDiff <= 0) {
+                    limitedOffer.classList.remove('show');
+                    clearInterval(countdownInterval);
+                    return;
+                }
+
+                const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+                countdownElement.innerHTML = `Offer ends in ${hours}h ${minutes}m ${seconds}s`;
+                limitedOffer.classList.add('show');
+            }
+
+            updateCountdown();
+            const countdownInterval = setInterval(updateCountdown, 1000);
+        }
+
+        // Calculator function (used in modal now)
+        function calculateFee() {
+            const amount = parseFloat(document.getElementById('modal_amount').value) || 0;
+            const days = parseInt(document.getElementById('modal_days').value) || 0;
+            const totalFeeRate = 0.042;
+            const referenceDays = 30;
+            const currentDate = new Date();
+
+            const resultDiv = document.getElementById('modalResult');
+
+            if (amount < 500 || isNaN(amount)) {
+                resultDiv.innerHTML = '<span style="color: #ff3b30;">Enter a valid amount (minimum 500)</span>';
+                return;
+            }
+
+            if (days < 15 || days > 30 || isNaN(days)) {
+                resultDiv.innerHTML = '<span style="color: #ff3b30;">Extension period must be 15–30 days.</span>';
+                return;
+            }
+
+            const dailyFeeRate = totalFeeRate / referenceDays;
+            const fee = amount * dailyFeeRate * days;
+
+            let feeDisplay = `Extension Fee: <span class="highlight">₹${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>`;
+
+            if (currentDate >= OFFER_START_DATE && currentDate <= OFFER_END_DATE) {
+                const discountedFee = fee * 0.8;
+                feeDisplay = `
+                    Extension Fee: 
+                    <span class="strikethrough">₹${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span> 
+                    <span class="offer">₹${discountedFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                `;
+            }
+
+            resultDiv.innerHTML = `
+                ${feeDisplay}<br>
+                <a href="https://forms.gle/9URS1LAqd3iB8qDUA" class="apply-btn">Apply Now</a>
+            `;
+        }
+
+        // Modal open/close
+        const modal = document.getElementById('calculatorModal');
+        const openBtn = document.getElementById('openCalculatorBtn');
+        const closeBtn = document.getElementById('closeModal');
+
+        openBtn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+            document.getElementById('modalResult').innerHTML = ''; // clear previous result
+            document.getElementById('modal_amount').value = '';
+            document.getElementById('modal_days').value = '';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            manageOfferDisplay();
+        });
+    </script>
+</body>
+</html>
