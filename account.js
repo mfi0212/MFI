@@ -153,7 +153,7 @@ const usersDB = {
         name: "Tony Mantana",
         coins: 4000,
         loans: [
-             { planDate: "09-02-2026", endDate: "06-03-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "07-03-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
             ],
         links: [],
         emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
