@@ -249,7 +249,7 @@ function checkAndShowRepaymentReminders() {
 function showRepaymentReminderPopup(reminder) {
     const { dueDate, totalAmount, count } = reminder;
     const name = currentUser.name.split(" ")[0] || currentUser.name;
-    const loansText = count > 1 ? `(${count} loans)` : '';
+    const loansText = count > 2 ? `(${count} loans)` : '';
 
     const modal = document.createElement("div");
     modal.className = "reminder-modal";
@@ -1054,4 +1054,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 10000000);
     }
 });
+
 
