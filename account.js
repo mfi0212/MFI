@@ -212,23 +212,29 @@ function saveUserData() {
     localStorage.setItem('userData', JSON.stringify(data));
 }
 
+// === REPLACE YOUR EXISTING checkAndShowRepaymentReminders() FUNCTION WITH THIS UPDATED VERSION ===
+
 function checkAndShowRepaymentReminders() {
     if (!currentUser || !currentUser.loans?.length) return;
 
     const now = new Date();
+    now.setHours(0, 0, 0, 0);                    // normalize to start of day
+
     const remindersByDueDate = {};
 
     currentUser.loans.forEach((loan, idx) => {
         const end = parseDate(loan.endDate);
-        const reminderDate = new Date(end);
-        reminderDate.setDate(end.getDate() - 2);
+        end.setHours(0, 0, 0, 0);
 
-        if (
-            now.getFullYear() === reminderDate.getFullYear() &&
-            now.getMonth()  === reminderDate.getMonth()  &&
-            now.getDate()   === reminderDate.getDate()
-        ) {
-            const dueStr = loan.endDate;
+        // NEW LOGIC: Start reminder 3 days before due date
+        const reminderStartDate = new Date(end);
+        reminderStartDate.setDate(end.getDate() - 3);
+
+        // Show popup from 3 days before due date AND CONTINUE showing every day
+        // (including due date + every day after if the loan amount is still displayed)
+        if (now >= reminderStartDate) {
+            const dueStr = loan.endDate.split('(')[0].trim();
+
             if (!remindersByDueDate[dueStr]) {
                 remindersByDueDate[dueStr] = {
                     dueDate: dueStr,
@@ -241,6 +247,7 @@ function checkAndShowRepaymentReminders() {
         }
     });
 
+    // Show one popup per unique due date (grouped like before)
     Object.values(remindersByDueDate).forEach(rem => {
         showRepaymentReminderPopup(rem);
     });
@@ -1054,5 +1061,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 10000000);
     }
 });
-
-
