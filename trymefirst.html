@@ -954,21 +954,36 @@ transform: scale(1,1);
     animation: liquidPress 0.7s cubic-bezier(.2,.8,.2,1);
 }
 
+    
      #bottomNav {
-   position: fixed;
+    position: fixed;
     bottom: 25px;
     border-radius: 0;
+    padding: 5px;
     display: flex;
     box-shadow: none;
     z-index: 0;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row-reverse;
-    width: 100%;
-    left: 50%;
-    max-width: 325px;
+    width: 85%;
+    left: 50%;    max-width: 325px;
     transform: translate(-50%, 0%);
-    gap: 10px;
+    background: #ffffff00;
+    border-radius: 1000px;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;
+    backdrop-filter: blur(5px);
         }
         .sectionoptions {
     display: flex;
@@ -1094,7 +1109,7 @@ display: flex;
     color: #ffffff;
     font-size: 11px;
     cursor: pointer;
-    padding: 10px 12px;
+    padding: 12px 16px;
     border-radius: 46px;
     text-align: center;
     max-width: 135px;
@@ -1238,9 +1253,9 @@ svg#Layer_7 {
     stroke: orange;
 }
 #bottomNav svg{
-  height: 15px;
+  height: 16px;
     fill: #ffffff;
-    width: 15px;
+    width: 16px;
     stroke: #00000000;
 }
 
@@ -2427,7 +2442,6 @@ cursor: pointer;
     border-radius: 30px;
     padding: 0px;" src="mfi.gif" alt=""></a>
             </div>
-            <div class="sectionoptions">
                 <div class="nav-item" data-view="graph"><?xml version="1.0" encoding="UTF-8"?>
                     <div class="iconbotm">
                     <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M12.3,10.178a4.989,4.989,0,0,0,.363.671L23.525,8.688A11.962,11.962,0,0,0,8.216.621Z"/><path d="M12.631,13.742a7.008,7.008,0,0,1-2.169-2.773L6.377,1.406A11.991,11.991,0,1,0,20.889,20.032Z"/><path d="M14.365,12.549l7.741,5.9A11.916,11.916,0,0,0,24,12a12.055,12.055,0,0,0-.081-1.351Z"/></svg>
@@ -2446,7 +2460,7 @@ cursor: pointer;
                     </div>
                     <i class="fa-solid fa-toggle-off toggle-pin" data-view="calendar"></i>
                 </div>
-            </div>
+            
         </div>
     </div>
 
