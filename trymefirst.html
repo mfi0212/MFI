@@ -198,17 +198,16 @@ display: flex;
     align-items: center;
     position: fixed;
     top: 10px;
-    background: linear-gradient(
-180deg, #7b7b7b57, #00000047 70%);
-    padding: 5px 10px 5px 6px;
-    border-radius: 100px;
+    background: linear-gradient(180deg, #7b7b7b57, #00000000 70%);
+    padding: 10px 10px 43px 10px;
+    border-radius: 30px 30px 0 0;
     width: 99%;
     left: 50%;
     transform: translate(-50%, 0%);
     max-width: 450px;
-    backdrop-filter: blur(5px);
-    z-index: 1000;
-    transition: all 0.3s ease;
+    backdrop-filter: blur(9px);
+    z-index: 1;
+    box-shadow: 0px -30px 12px #000000a8;
 }
         #submitBtn:hover { transform: scale(1.1); }
   #submitBtn:active { transform: scale(0.98); }
@@ -523,17 +522,17 @@ display: flex;
     padding: 9px 10px;
         }
         .amount-buttons { 
-       display: flex;
-        gap: 10px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        white-space: nowrap;
-        transition: transform .4s ease;
-        margin-left: -15px;
-        scrollbar-width: none;
-        /* margin-right: 20px; */
-        padding: 10px 10px 0px 0px;
-        border-radius: 0px 10px 32px 0px;
+          display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    transition: transform .4s ease;
+    margin-left: -15px;
+    scrollbar-width: none;
+    /* margin-right: 20px; */
+    padding: 10px 10px 0px 0px;
+    border-radius: 30px 10px 32px 30px;
         }
         /* h3{ color:#006fff; } */
        
@@ -687,8 +686,9 @@ display: flex;
     border: solid 1px #ffffff00;
     }.premium-search {
       position: fixed;
-    bottom: 75px;
-    right: 15px;
+        bottom: 65px;
+    right: 10px;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -944,20 +944,23 @@ transform: scale(1,1);
 
      #bottomNav {
     position: fixed;
-    bottom: 25px;
+    bottom: 20px;
     border-radius: 0;
-    padding: 5px 5px 5px 5px;
     display: flex;
     box-shadow: none;
     z-index: 0;
     justify-content: space-between;
     align-items: center;
     flex-direction: row-reverse;
-    width: 85%;
-    left: 50%;    max-width: 325px;
+    width: 100%;
+    left: 50%;
+    max-width: 325px;
     transform: translate(-50%, 0%);
-    background: #ffffff00;
-    border-radius: 1000px;
+    gap: 8px;
+        }
+        .sectionoptions {
+    display: flex;
+    gap: 8px;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
  color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
@@ -971,7 +974,9 @@ transform: scale(1,1);
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
     backdrop-filter: blur(5px);
-        }
+    border-radius: 1000px;
+    padding: 8px;
+}
         .reminder-modal {
    position: fixed;
     background: rgba(0, 0, 0, 0);
@@ -1528,7 +1533,7 @@ display: flex;
         gap: 10px;
         overflow-x: auto;
         white-space: nowrap;
-        padding: 10px 10px 0px 5px;
+        padding: 10px 10px 0px 10px;
         transition: transform .4s ease;
         margin-left: -25px;
         scrollbar-width: none;
@@ -1536,12 +1541,12 @@ display: flex;
      @media (max-width : 380px) {
         
          .amount-buttons {
-            display: flex;
+           display: flex;
             gap: 10px;
             overflow-x: auto;
             white-space: nowrap;
             transition: transform .4s ease;
-            margin-left: -15px;
+            margin-left: -30px;
             scrollbar-width: none;
         }.user-links {
      overflow: auto;
@@ -1633,14 +1638,23 @@ display: flex;
     font-size: 15px;}
     .pack-bonus { font-size: 12px; color: #e8b801; margin-top: 4px; }
     .details svg {
-width: 32px;
-    height: 32px;
+    width: 33px;
+    height: 33px;
     background: transparent;
     padding: 8px;
-    border-radius: 12px;
+    border-radius: 13px;
     border: none;
-    box-shadow: inset -2px -1px 0px -1px rgb(108 108 108 / 54%), inset 2px 1px 0px -1px rgb(108 108 108 / 54%);
-
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 }
     .leftflow {
 display: flex;
@@ -1650,7 +1664,17 @@ display: flex;
     padding: 3px 15px 3px 3px;
     border-radius: 30px 40px 40px 31px;
     background: linear-gradient(270deg, #7b7b7b2b, #00000066 70%);
-    box-shadow: inset -2px -1px 0px -1px rgb(108 108 108 / 54%), inset 2px 1px 0px -1px rgb(108 108 108 / 54%);
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 }
 
         .content {
@@ -2401,25 +2425,27 @@ cursor: pointer;
         <div id="bottomNav">
             <div class="offergift">
                 <a style="display: flex;" onclick="alert('Welcome to BsLends a service from BS&MFI Services')" >
-                <img style="width: 33px;border-radius: 30px;padding: 0px;" src="mfi.gif" alt=""></a>
+                <img style="width: 38px;border-radius: 30px;padding: 0px;" src="mfi.gif" alt=""></a>
             </div>
-           <div class="nav-item" data-view="graph"><?xml version="1.0" encoding="UTF-8"?>
-                <div class="iconbotm">
-                   <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M12.3,10.178a4.989,4.989,0,0,0,.363.671L23.525,8.688A11.962,11.962,0,0,0,8.216.621Z"/><path d="M12.631,13.742a7.008,7.008,0,0,1-2.169-2.773L6.377,1.406A11.991,11.991,0,1,0,20.889,20.032Z"/><path d="M14.365,12.549l7.741,5.9A11.916,11.916,0,0,0,24,12a12.055,12.055,0,0,0-.081-1.351Z"/></svg>
+            <div class="sectionoptions">
+                <div class="nav-item" data-view="graph"><?xml version="1.0" encoding="UTF-8"?>
+                    <div class="iconbotm">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M12.3,10.178a4.989,4.989,0,0,0,.363.671L23.525,8.688A11.962,11.962,0,0,0,8.216.621Z"/><path d="M12.631,13.742a7.008,7.008,0,0,1-2.169-2.773L6.377,1.406A11.991,11.991,0,1,0,20.889,20.032Z"/><path d="M14.365,12.549l7.741,5.9A11.916,11.916,0,0,0,24,12a12.055,12.055,0,0,0-.081-1.351Z"/></svg>
+                    </div>
+                    <i class="fa-solid fa-toggle-off toggle-pin" data-view="graph"></i>
                 </div>
-                <i class="fa-solid fa-toggle-off toggle-pin" data-view="graph"></i>
-            </div>
-            <div class="nav-item active" data-view="list"><?xml version="1.0" encoding="UTF-8"?>
-                <div class="iconbotm">
-                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M18.5,0H5.5C2.47,0,0,2.47,0,5.5v13c0,3.03,2.47,5.5,5.5,5.5h13c3.03,0,5.5-2.47,5.5-5.5V5.5c0-3.03-2.47-5.5-5.5-5.5Zm2.5,18.5c0,1.38-1.12,2.5-2.5,2.5H5.5c-1.38,0-2.5-1.12-2.5-2.5V5.5c0-1.38,1.12-2.5,2.5-2.5h13c1.38,0,2.5,1.12,2.5,2.5v13ZM5,6.5c0-.83,.67-1.5,1.5-1.5H14.5c.83,0,1.5,.67,1.5,1.5s-.67,1.5-1.5,1.5H6.5c-.83,0-1.5-.67-1.5-1.5Zm14,5.5c0,.83-.67,1.5-1.5,1.5H6.5c-.83,0-1.5-.67-1.5-1.5s.67-1.5,1.5-1.5h11c.83,0,1.5,.67,1.5,1.5Zm-9,5.5c0,.83-.67,1.5-1.5,1.5h-2c-.83,0-1.5-.67-1.5-1.5s.67-1.5,1.5-1.5h2c.83,0,1.5,.67,1.5,1.5Z"/></svg>
+                <div class="nav-item active" data-view="list"><?xml version="1.0" encoding="UTF-8"?>
+                    <div class="iconbotm">
+                        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M18.5,0H5.5C2.47,0,0,2.47,0,5.5v13c0,3.03,2.47,5.5,5.5,5.5h13c3.03,0,5.5-2.47,5.5-5.5V5.5c0-3.03-2.47-5.5-5.5-5.5Zm2.5,18.5c0,1.38-1.12,2.5-2.5,2.5H5.5c-1.38,0-2.5-1.12-2.5-2.5V5.5c0-1.38,1.12-2.5,2.5-2.5h13c1.38,0,2.5,1.12,2.5,2.5v13ZM5,6.5c0-.83,.67-1.5,1.5-1.5H14.5c.83,0,1.5,.67,1.5,1.5s-.67,1.5-1.5,1.5H6.5c-.83,0-1.5-.67-1.5-1.5Zm14,5.5c0,.83-.67,1.5-1.5,1.5H6.5c-.83,0-1.5-.67-1.5-1.5s.67-1.5,1.5-1.5h11c.83,0,1.5,.67,1.5,1.5Zm-9,5.5c0,.83-.67,1.5-1.5,1.5h-2c-.83,0-1.5-.67-1.5-1.5s.67-1.5,1.5-1.5h2c.83,0,1.5,.67,1.5,1.5Z"/></svg>
+                    </div>
+                    <i class="fa-solid fa-toggle-on toggle-pin on" data-view="list"></i>
                 </div>
-                <i class="fa-solid fa-toggle-on toggle-pin on" data-view="list"></i>
-            </div>
-            <div class="nav-item" data-view="calendar"><?xml version="1.0" encoding="UTF-8"?>
-                <div class="iconbotm">
-                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M13,8h5v4h-5v-4ZM4,12v-4H0v4H4Zm0,2H0v4H4v-4Zm9,10h5v-4h-5v4Zm-2-4H6v4h5v-4Zm9-2h4v-4h-4v4ZM6,12h5v-4H6v4Zm-2,8H.1c.4,1.96,1.94,3.5,3.9,3.9v-3.9Zm7-6H6v4h5v-4Zm9,6v3.9c1.96-.4,3.5-1.94,3.9-3.9h-3.9Zm3.9-14c-.46-2.28-2.48-4-4.9-4h-1V1c0-.55-.45-1-1-1s-1,.45-1,1v1H8V1c0-.55-.45-1-1-1s-1,.45-1,1v1h-1C2.59,2,.57,3.72,.1,6H23.9ZM13,14v4h5v-4h-5Zm7-6v4h4v-4h-4Z"/></svg>
+                <div class="nav-item" data-view="calendar"><?xml version="1.0" encoding="UTF-8"?>
+                    <div class="iconbotm">
+                        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M13,8h5v4h-5v-4ZM4,12v-4H0v4H4Zm0,2H0v4H4v-4Zm9,10h5v-4h-5v4Zm-2-4H6v4h5v-4Zm9-2h4v-4h-4v4ZM6,12h5v-4H6v4Zm-2,8H.1c.4,1.96,1.94,3.5,3.9,3.9v-3.9Zm7-6H6v4h5v-4Zm9,6v3.9c1.96-.4,3.5-1.94,3.9-3.9h-3.9Zm3.9-14c-.46-2.28-2.48-4-4.9-4h-1V1c0-.55-.45-1-1-1s-1,.45-1,1v1H8V1c0-.55-.45-1-1-1s-1,.45-1,1v1h-1C2.59,2,.57,3.72,.1,6H23.9ZM13,14v4h5v-4h-5Zm7-6v4h4v-4h-4Z"/></svg>
+                    </div>
+                    <i class="fa-solid fa-toggle-off toggle-pin" data-view="calendar"></i>
                 </div>
-                <i class="fa-solid fa-toggle-off toggle-pin" data-view="calendar"></i>
             </div>
         </div>
     </div>
