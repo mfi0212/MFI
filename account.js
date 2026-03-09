@@ -143,8 +143,8 @@ const usersDB = {
         loans: [
             { planDate: "14-01-2026", endDate: "14-03-2026", interest: 2850, takenAmount: 15230, takenFrom: "Golden", fineRate: 50 },
             { planDate: "14-02-2026", endDate: "16-03-2026", interest: 1880, takenAmount: 9500, takenFrom: "Golden", fineRate: 50 },
-            { planDate: "09-02-2026", endDate: "08-04-2026", interest: 812, takenAmount: 2800, takenFrom: "Lendlink", fineRate: 50 },
-            { planDate: "11-01-2026", endDate: "09-04-2026", interest: 1270, takenAmount: 4380, takenFrom: "Lendlink", fineRate: 50 },
+            { planDate: "09-02-2026", endDate: "08-04-2026", interest: 700, takenAmount: 2800, takenFrom: "Lendlink", fineRate: 50 },
+            { planDate: "11-01-2026", endDate: "09-04-2026", interest: 1100, takenAmount: 4380, takenFrom: "Lendlink", fineRate: 50 },
             
         ],
         links: [],
