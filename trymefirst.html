@@ -521,7 +521,7 @@ button.theme-btn {
     let currentTab = 0;
     let isDarkMode = true;
     const tabNames = ["Delay It Calculater", "Split Pay Calculater", "Buy Limit Calculater", "Pre-Saver", "Lendlink - Mid"];
-    const fees = [4.5, 5.2, 3.2, null, null];
+    const fees = [4.5, 5.2, 6.2, null, null];
     const googleFormUrl = "https://forms.gle/YOUR_GOOGLE_FORM_LINK_HERE";
     // document.addEventListener('contextmenu', e => e.preventDefault());
     const tabContents = {
@@ -840,7 +840,7 @@ button.theme-btn {
               <label style="display:block; font-size:0.75rem; text-align: center; color:var(--text2); margin-bottom:1rem; letter-spacing:1px;">AMOUNT TO PROCESS</label>
               <div class="amount-box">
                 <span style="font-size:2.25rem; color:#888;">$</span>
-                <input id="amount-input" type="number" value="1000"
+                <input id="amount-input" type="number" placeholder='Amount...'
                        style="flex:1; background:transparent; border: none; font-size:2.75rem; font-weight:500; outline:none; padding:0 1rem; color:var(--text);">
               </div>
             </div>
@@ -848,16 +848,16 @@ button.theme-btn {
             <div class="calc-result" style="display:flex; flex-direction:column; gap:1.25rem; font-size:0.875rem;">
               <div style="display:none; justify-content:space-between;">
                 <span class="text-secondary">Base amount</span>
-                <span id="base-amount" style="font-weight:500;">$1,000.00</span>
+                <span id="base-amount" style="font-weight:500;"></span>
               </div>
               <div style="display:flex; justify-content:space-between;">
                 <span class="text-secondary">${tabNames[currentTab]} fee (${rate}%)</span>
-                <span id="fee-amount" style="font-weight: 600; color: #ff6600; font-size: 16px;">$45.00</span>
+                <span id="fee-amount" style="font-weight: 600; color: #ff6600; font-size: 16px;"></span>
               </div>
               <div style="height:1px; background:#333; display: none;"></div>
               <div style="display:none; justify-content:space-between; font-size:1.25rem; font-weight:600;">
                 <span>Total</span>
-                <span id="total-amount" class="accent">$1,045.00</span>
+                <span id="total-amount" class="accent"></span>
               </div>
             </div>
             
@@ -939,12 +939,12 @@ button.theme-btn {
 
     window.onload = () => {
       switchTab(0);
-      console.log('%c✅ BS & MFI — Full pure CSS version (NO Tailwind CDN)', 'color:#0000ff; font-weight:600');
+      console.log('%cBS & MFI — Full pure CSS version (NO Tailwind CDN)', 'color:#0000ff; font-weight:600');
     };    function goBack() {
       if (window.history.length > 1) {
         window.history.back();
       } else {
-        alert("✅ Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
+        alert(" Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
       }
     }
   </script>
