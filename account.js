@@ -270,8 +270,7 @@ function showRepaymentReminderPopup(reminder) {
                 <p>Mr. ${name} you have <strong>${formatMoney(totalAmount)}</strong> to return on <br><strong>${dueDate}</strong>${loansText}. Return before the end date or extra charges will be added.</p>
             </div>
             <div class="reminder-actions">
-                <button class="reminder-btn delay"  data-action="delay"><a href="https://mfi0212.github.io/swan/offer/delayit">Delay It</a></button>
-                <button class="reminder-btn split"  data-action="split"><a href="https://mfi0212.github.io/swan/offer/split">Split Half pay</a></button>
+                <button class="reminder-btn delay"  data-action="delay"><a href="https://mfi0212.github.io/swan/offer/solution">Explore Solutions</a></button>
             </div>
         </div>
     `;
@@ -283,10 +282,7 @@ function showRepaymentReminderPopup(reminder) {
         const action = btn.dataset.action;
 
         if (action === 'delay') {
-            alert("We are redirecting you to Delay it page..!");
-        }
-        else if (action === 'split') {
-            alert("We are redirecting you to Split Half Pay page..!");
+            alert("We are redirecting you to BS&MFI Solutions page..!");
         }
         else if (action === 'close') {
             modal.remove();
