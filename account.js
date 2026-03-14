@@ -138,7 +138,7 @@ let loanChart = null;
 
 const usersDB = {
     "Mahesh888*": {
-        name: "Mahesh Muthinti",
+        name: "Mahesh Muthinti ⚡",
         coins: 0,
         loans: [
             { planDate: "14-02-2026", endDate: "16-03-2026", interest: 1880, takenAmount: 9500, takenFrom: "Golden", fineRate: 50 },
@@ -151,7 +151,7 @@ const usersDB = {
         emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
     },
     "0212": {
-        name: "Tony Mantana ⚡",
+        name: "Tony Mantana",
         coins: 4000,
         loans: [
              { planDate: "09-02-2026", endDate: "08-03-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
