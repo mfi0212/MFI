@@ -173,7 +173,7 @@ input {
 
     .track {
       background: rgb(255 255 255 / 7%);
-      border-radius: 14px;
+      border-radius: 30px;
       padding: 20px 20px 5px 20px;
       height: max-content;
       transition: all 0.2s;
@@ -220,9 +220,9 @@ select {
     outline: none;
     border: none;
 }p#confirmMessage {
-    width: 405px;
-    text-overflow: ellipsis;
+        text-overflow: ellipsis;
     overflow: hidden;
+    width: 200px;
 }button#fullscreenBtn {
     rotate: 319deg;
 }
@@ -369,7 +369,7 @@ button:hover{
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.676);
-      z-index: 1500;
+      z-index: 1500000000000;
       display: none;
       align-items: center;
       justify-content: center;
@@ -378,17 +378,18 @@ button:hover{
 
     .modal-content {
       background: #1a1a1a;
-    border-radius: 20px;
+    border-radius: 40px;
     padding: 0px 15px 15px 15px;
     width: 100%;
-    max-width: 440px;
+    max-width: fit-content;
     color: #f5f5f7;
     max-height: 85vh;
     overflow-y: auto;
     text-align: center;
     }
 .modal-content button{
-  text-decoration: none;
+ text-decoration: none;
+    width: 100%;
 }
     @media (min-width: 768px) {
       .menu-btn { display: none; }
@@ -424,6 +425,7 @@ button:hover{
 }
 #currentSongDisplay{
       width: 300px;
+        text-align: center;
 }.controls button{
   font-size: 18px;
 }.progress-container{
@@ -448,7 +450,7 @@ button:hover{
     flex-direction: column;
     font-size: 13px;
 }.audio-container {
-        height: 200px;
+        height: 200px;border-radius: 40px 40px 0px 0px;
       }
     }
 
@@ -599,8 +601,8 @@ button:hover{
     <h3>Confirm</h3>
     <p id="confirmMessage"></p>
     <div style="display:flex;gap:12px;margin-top:20px;justify-content: center;">
-      <button id="confirmYes" style="background:#00c851;color:white;padding:10px 20px;border-radius:8px;">Yes</button>
-      <button id="confirmNo" style="background:#ff3b30;color:white;padding:10px 20px;border-radius:8px;">No</button>
+      <button id="confirmYes" style="background:#00c851;color:white;padding:10px 20px;border-radius:80px;">Yes</button>
+      <button id="confirmNo" style="background:#ff3b30;color:white;padding:10px 20px;border-radius:80px;">No</button>
     </div>
   </div>
 </div>
