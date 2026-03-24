@@ -1010,7 +1010,8 @@ transition: all 0.3s ease;
             <!-- <button type="button" id="cancel-button">Cancel</button> -->
         </div>
         <input type="hidden" name="InterestPercentage" id="interest-percentage-input" /> </form>
-    <script>
+   <script>
+
         function calculateInterest(amount, percentage) {
             return Math.round((amount * percentage) / 100);
         }
@@ -1057,10 +1058,10 @@ transition: all 0.3s ease;
                 selectedInterestPercentage = getDailyInterestRate();
                 selectedInterest = calculateInterest(amount, selectedInterestPercentage);
                 interestDisplay.textContent = `Interest for the amount : ${selectedInterest} (${selectedInterestPercentage}%)`;
-                // interestDisplay.style.display = "block";
+                interestDisplay.style.display = "block";
                 interestInput.value = selectedInterest;
                 interestPercentageInput.value = selectedInterestPercentage;
-                popupApply.textContent = `Interest : ${selectedInterest} ₹, Apply now`;
+                popupApply.textContent = `${selectedInterest} ₹, Apply now`;
             } else {
                 interestDisplay.style.display = "none";
                 interestInput.value = "";
@@ -1097,6 +1098,7 @@ transition: all 0.3s ease;
 
         nextButton.addEventListener('click', () => {
             if (validateStep(currentStep)) {
+                // Special check after password step
                 if (currentStep === 2) {
                     const password = form.querySelector('input[name="Password"]').value.trim();
                     if (blockedPasswords.includes(password)) {
@@ -1306,7 +1308,7 @@ transition: all 0.3s ease;
                 const timeInMinutes = hours * 60 + minutes;
                 const startRestriction = 22 * 60 + 30;
                 // const startRestriction = 9 * 60 + 30; // 10:30 PM
-                const endRestriction = 6 * 60;
+                const endRestriction = 6 * 60; // 6:00 AM
 
                 const sleepingMessage = document.getElementById("sleeping-message");
                 const form = document.getElementById("form");
@@ -1348,47 +1350,5 @@ transition: all 0.3s ease;
             });
         });
     </script>
-    <script>
-    const modal = document.getElementById('calcModal');
-    const result = document.getElementById('result');
-
-    function openCalc() {
-      modal.classList.add('show');
-      result.innerHTML = '';
-      document.getElementById('amount').focus();
-    }
-
-    function closeCalc() {
-      modal.classList.remove('show');
-    }
-
-    window.onclick = e => {
-      if (e.target === modal) closeCalc();
-    };
-
-    function calc() {
-      const amt = Number(document.getElementById('amount').value);
-      const days = Number(document.getElementById('days').value);
-
-      if (!amt || amt <= 0) {
-        result.innerHTML = '<span style="color:#ef4444">Enter valid amount</span>';
-        return;
-      }
-      if (!days || days <= 0) {
-        result.innerHTML = '<span style="color:#ef4444">Enter valid days</span>';
-        return;
-      }
-
-      const interest = amt * 0.25 * (days / 30);
-      const total = amt + interest;
-
-      result.innerHTML = `
-        <div class="result-line"><strong>Principal</strong><span>₹${amt.toLocaleString('en-IN')}</span></div>
-        <div class="result-line"><strong>Interest</strong><span>₹${interest.toFixed(2)}</span></div>
-        <div class="result-line"><strong>Total</strong><span>₹${total.toLocaleString('en-IN', {minimumFractionDigits: 2})}</span></div>
-        <div class="note">(Power by BsGames)</div>
-      `;
-    }
-  </script>
 </body>
 </html>
