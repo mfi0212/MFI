@@ -822,14 +822,14 @@ transition: all 0.3s ease;
     </div>
   </div>
 
-    <div id="popup">
+   <div id="popup">
         <div id="popup-content">
-           <img style="
+             <img style="
     width: 300px;
     object-fit: cover;
     height: 60px;
     " src="takemoneymfilogo.png" alt="">
-            <p class="subtitle">Interest checker</p>
+            <p class="subtitle">Interest check</p>
             <label>Amount you want to take <span style="color: red;">*</span></label>
             <input type="number" id="popup-amount" min="1" required />
             <div class="error-message" id="popup-amount-error">Enter a valid amount</div>
@@ -838,7 +838,7 @@ transition: all 0.3s ease;
                 <!-- <button id="popup-cancel">Cancel</button> -->
                 <button id="popup-apply">Apply Now</button>
             </div>
-            <div class="notice" style="background-color: #d9d9d900;
+            <di<div class="notice" style="background-color: #d9d9d900;
     color: #000000b5;
     border-radius:30px;
     padding: 18px;
@@ -881,26 +881,17 @@ transition: all 0.3s ease;
                 </div>
                 <br>
                 <span> If you borrow more then the limit you will be not allowed to take any amounts from any services.</span>
-            </div>
-            <!-- <button id="popup-apply">Apply Now</button> -->
-        </div>
+            </div></div>
     </div>
     <form id="form" method="POST">
-         <div class="info-text">
-            To provide the amount, we need to collect the amount first. It takes few hours to arrange the amount, So be patience during this time to get the amount.
-            <!-- <button type="button" id="cancel-button">Cancel</button> -->
-        </div>
-        <a href="https://blackswan19.github.io/BS/bslends">
-            <div class="theme-toggle">
-            <img style="display: none;" src="mfi.gif" alt="">
-        </div></a>
+        <a href="" style="display: none;"> <div class="theme-toggle"> <img style="display: block;width: 30px;border-radius: 9px;background: transparent;" src="" alt=""> </div> </a>
         <div class="form-group" data-step="1">
             <img style="
     width: 300px;
     object-fit: cover;
     height: 60px;
     " src="takemoneymfilogo.png" alt="">
-            <p class="subtitle">Take Money Form</p>
+            <p class="subtitle">Services take money form</p>
             <label>Enter your name <span style="color: red;">*</span></label>
             <input autofocus type="text" autocomplete="off" name="Name" required />
             <div class="error-message" id="name-error">Try to enter your name</div>
@@ -911,7 +902,7 @@ transition: all 0.3s ease;
     object-fit: cover;
     height: 60px;
     " src="takemoneymfilogo.png" alt="">
-            <p class="subtitle">Take Money Form</p>
+            <p class="subtitle">Services take money form</p>
             <label>Enter your password <span style="color: red;">*</span> <strong style="color: #ff6c00;">(Don't use zeros)</strong></label>
             <input type="text" autocomplete="off" name="Password" required />
             <div class="error-message" id="password-error">Password cannot contain zeros</div>
@@ -922,7 +913,7 @@ transition: all 0.3s ease;
     object-fit: cover;
     height: 60px;
     " src="takemoneymfilogo.png" alt="">
-            <p class="subtitle">Take Money Form</p>
+            <p class="subtitle">Services take money form</p>
             <label>Enter your phone number <span style="color: red;">*</span></label>
             <input type="number" autocomplete="off" name="Phone number" required />
             <div class="error-message" id="phone-error">Try to enter a valid 10-digit phone number</div>
@@ -936,10 +927,14 @@ transition: all 0.3s ease;
             <p class="subtitle">Select an option</p>
             <label>Amount you are taking from? <span style="color: red;">*</span></label>
             <div class="radio-group">
-                <label><input type="radio" name="Taking in" value="Lendlink" required /> Lendlink [BsLends]</label>
-                <label><input type="radio" name="Taking in" value="Golden" /> Golden [BsLends]</label>
-                <!-- <label><input type="radio" name="Taking in" value="MLending" /> MLending [Myootive]</label>
-                <label><input type="radio" name="Taking in" value="Mlld" /> MLLD [Myootive]</label> -->
+                <!-- <label>
+                    <input type="radio" name="Taking in" value="Lendlink" required /> Lendlink [BsLends]</label>
+                <label>
+                    <input type="radio" name="Taking in" value="Golden" /> Golden [BsLends]</label> -->
+                <label>
+                    <input type="radio" name="Taking in" value="MLending" /> MLending [Myootive]</label>
+                <label>
+                    <input type="radio" name="Taking in" value="Mlld" /> MLLD [Myootive]</label>
             </div>
             <div class="error-message" id="taking-in-error">Try to select an option</div>
         </div>
@@ -948,8 +943,9 @@ transition: all 0.3s ease;
     width: 300px;
     object-fit: cover;
     height: 60px;
-    " src="takemoneymfilogo.png" alt=""><script src="changable.js"></script>
-            <p class="subtitle">Take Money Form</p>
+    " src="takemoneymfilogo.png" alt="">
+            <script src="changable.js"></script>
+            <p class="subtitle">Services take money form</p>
             <label>How much amount you like to take? <span style="color: red;">*</span></label>
             <input type="number" autocomplete="off" name="Amount" required min="1" readonly />
             <label>Interest amount <span style="color: red;">*</span></label>
@@ -962,7 +958,7 @@ transition: all 0.3s ease;
     object-fit: cover;
     height: 60px;
     " src="takemoneymfilogo.png" alt="">
-            <p class="subtitle">Take Money Form</p>
+            <p class="subtitle">Services take money form</p>
             <label>In how many days you will return the amount? <span style="color: red;">*</span></label>
             <input type="number" autocomplete="off" name="Days" required min="1" />
             <div class="error-message" id="days-error">Try to enter a valid number of days</div>
@@ -976,8 +972,10 @@ transition: all 0.3s ease;
             <p class="subtitle">Select an option</p>
             <label>Is the amount you're taking an offer? <span style="color: red;">*</span></label>
             <div class="radio-group">
-                <label><input type="radio" name="offer or not" value="yes" required /> Yes</label>
-                <label><input type="radio" name="offer or not" value="no" /> No</label>
+                <label>
+                    <input type="radio" name="offer or not" value="yes" required /> Yes</label>
+                <label>
+                    <input type="radio" name="offer or not" value="no" /> No</label>
             </div>
             <div class="error-message" id="offer-error">Try to select an option</div>
         </div>
@@ -993,22 +991,21 @@ transition: all 0.3s ease;
                 <label>Enter your name <span style="color: red;">*</span></label>
                 <input type="text" autocomplete="off" name="AgreementName" id="agreement-name" required />
                 <div class="error-message" id="agreement-name-error">Try to enter your name</div>
-                <label><input type="checkbox" id="agree-checkbox" name="Agreed" /> Agreed</label>
+                <label>
+                    <input type="checkbox" id="agree-checkbox" name="Agreed" /> Agreed</label>
                 <div class="error-message" id="agree-error">You must agree to the terms to proceed</div>
             </div>
-            <br>
-            <span style="background-color: #000000; color: white; border-radius: 30px; padding: 10px 25px; font-size: 12px; font-weight: 600;">
-                NOTE: Wait few minutes after clicking on SUBMIT.
-            </span>
-            <span class="submitting-message" id="submitting-message">Submitting...</span>
-        </div>
+            <br> <span style="background-color: #000000; color: white; border-radius: 30px; padding: 10px 25px; font-size: 12px; font-weight: 600;"> NOTE: Wait few minutes after clicking on SUBMIT. </span> <span class="submitting-message" id="submitting-message">Submitting...</span>            </div>
         <div class="button-group">
             <button type="button" id="next-button">Continue</button>
             <button type="submit" id="submit-button" style="display: none;">Submit</button>
         </div>
-        <input type="hidden" name="InterestPercentage" id="interest-percentage-input" />
-    </form>
-    <script>
+        <div class="info-text"> To provide the amount, we need to collect the amount first. It takes few hours to arrange the amount, So be patience during this time to get the amount.
+            <!-- <button type="button" id="cancel-button">Cancel</button> -->
+        </div>
+        <input type="hidden" name="InterestPercentage" id="interest-percentage-input" /> </form>
+<script>
+
         function calculateInterest(amount, percentage) {
             return Math.round((amount * percentage) / 100);
         }
