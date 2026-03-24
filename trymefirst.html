@@ -104,7 +104,7 @@ ease-in-out;z-index: -10;
         .theme-toggle {
            position: fixed;
     cursor: pointer;
-    background: #00000033;
+    background: transparent;
     padding: 5px;
     border-radius: 13px;
     display: flex;
@@ -208,6 +208,8 @@ button.secondary {
     display: flex;
     justify-content: center;
     align-items: center;
+}button.secondary:hover{
+background: transparent;
 }
        .radio-group label {
     display: flex;
@@ -236,7 +238,7 @@ transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 15px;
     width: 100%;
     text-align: center;
     }header img {
@@ -465,7 +467,7 @@ transition: all 0.3s ease;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 105vh;
             z-index: 1500;
             text-align: center;
             padding: 0px;
@@ -713,8 +715,9 @@ transition: all 0.3s ease;
     color: white;
     border: none;
     border-radius: 46px;
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 400;
+
     cursor: pointer;margin-top: 20px;
     transition: all 0.3s ease;}
         
@@ -766,7 +769,7 @@ transition: all 0.3s ease;
       <div class="logosection">
         <div class="logos">BS&MFI</div>
           <!-- <button class="calc-btn" onclick="document.getElementById('calcModal').style.display='flex'">Calculator</button> -->
-          <button class="calc-btnss">Take Money</button>
+          <span class="calc-btnss">Take Money</span>
       </div>
       <img onclick="alert('Welcome to Take Money from BS&MFI Services')" src="mfi.gif" alt="">
 </header>
@@ -815,16 +818,16 @@ transition: all 0.3s ease;
     <div class="modal-content">
       <span class="close" onclick="closeCalc()">&times;</span>
         <h2>Fixed interest</h2>
-        <span>The Fixed interest is for specific members who claim the offers (or) Gifts will get this Fixed interest for certain period of time</span>
+        <span>The fixed interest is available only to specific members who claim the offers or gifts. Eligible members will receive this fixed interest for a certain period of time.</span>
       <!-- <button class="btn-calc" onclick="calc()">Calculate</button> -->
-      <a href=""><button class="btn-calc">Explore Fixed Interest form</button></a>
+      <a href=""><button class="btn-calc">Explore Now</button></a>
       <!-- <div id="result">Interest details here</div> -->
     </div>
   </div>
 
-    <div id="popup">
+   <div id="popup">
         <div id="popup-content">
-           <img style="
+             <img style="
     width: 300px;
     object-fit: cover;
     height: 60px;
@@ -881,19 +884,13 @@ transition: all 0.3s ease;
                 </div>
                 <br>
                 <span> If you borrow more then the limit you will be not allowed to take any amounts from any services.</span>
-            </div>
-            <!-- <button id="popup-apply">Apply Now</button> -->
-        </div>
+            </div></div>
     </div>
     <form id="form" method="POST">
-         <div class="info-text">
-            To provide the amount, we need to collect the amount first. It takes few hours to arrange the amount, So be patience during this time to get the amount.
-            <button type="button" id="cancel-button">Cancel</button>
-        </div>
-        <a href="https://blackswan19.github.io/BS/bslends">
-            <div class="theme-toggle">
-            <img style="display: none;" src="mfi.gif" alt="">
-        </div></a>
+        <a href="">
+            <div class="theme-toggle"> <img style="width: 30px;
+    border-radius: 9px;background-color: transparent;" src="" alt=""> </div>
+        </a>
         <div class="form-group" data-step="1">
             <img style="
     width: 300px;
@@ -911,7 +908,7 @@ transition: all 0.3s ease;
     object-fit: cover;
     height: 60px;
     " src="takemoneymfilogo.png" alt="">
-            <p class="subtitle">Take Money Form</p>
+            <p class="subtitle">Services take money form</p>
             <label>Enter your password <span style="color: red;">*</span> <strong style="color: #ff6c00;">(Don't use zeros)</strong></label>
             <input type="text" autocomplete="off" name="Password" required />
             <div class="error-message" id="password-error">Password cannot contain zeros</div>
@@ -922,9 +919,9 @@ transition: all 0.3s ease;
     object-fit: cover;
     height: 60px;
     " src="takemoneymfilogo.png" alt="">
-            <p class="subtitle">Take Money Form</p>
+            <p class="subtitle">Services take money form</p>
             <label>Enter your phone number <span style="color: red;">*</span></label>
-            <input type="number" autocomplete="off" name="PhoneNumber" required />
+            <input type="number" autocomplete="off" name="Phone number" required />
             <div class="error-message" id="phone-error">Try to enter a valid 10-digit phone number</div>
         </div>
         <div class="form-group" data-step="4">
@@ -936,10 +933,14 @@ transition: all 0.3s ease;
             <p class="subtitle">Select an option</p>
             <label>Amount you are taking from? <span style="color: red;">*</span></label>
             <div class="radio-group">
-                <label><input type="radio" name="TakingIn" value="Lendlink" required /> Lendlink [BsLends]</label>
-                <label><input type="radio" name="TakingIn" value="Golden" /> Golden [BsLends]</label>
-                <!-- <label><input type="radio" name="Taking in" value="MLending" /> MLending [Myootive]</label>
-                <label><input type="radio" name="Taking in" value="Mlld" /> MLLD [Myootive]</label> -->
+                <!-- <label>
+                    <input type="radio" name="Taking in" value="Lendlink" required /> Lendlink [BsLends]</label>
+                <label>
+                    <input type="radio" name="Taking in" value="Golden" /> Golden [BsLends]</label> -->
+                <label>
+                    <input type="radio" name="Taking in" value="Golden" /> Golden (BsLends)</label>
+                <label>
+                    <input type="radio" name="Taking in" value="Lendlink" /> Lendlink (BsLends)</label>
             </div>
             <div class="error-message" id="taking-in-error">Try to select an option</div>
         </div>
@@ -948,8 +949,9 @@ transition: all 0.3s ease;
     width: 300px;
     object-fit: cover;
     height: 60px;
-    " src="takemoneymfilogo.png" alt=""><script src="changable.js"></script>
-            <p class="subtitle">Take Money Form</p>
+    " src="takemoneymfilogo.png" alt="">
+            <script src="changable.js"></script>
+            <p class="subtitle">Services take money form</p>
             <label>How much amount you like to take? <span style="color: red;">*</span></label>
             <input type="number" autocomplete="off" name="Amount" required min="1" readonly />
             <label>Interest amount <span style="color: red;">*</span></label>
@@ -962,7 +964,7 @@ transition: all 0.3s ease;
     object-fit: cover;
     height: 60px;
     " src="takemoneymfilogo.png" alt="">
-            <p class="subtitle">Take Money Form</p>
+            <p class="subtitle">Services take money form</p>
             <label>In how many days you will return the amount? <span style="color: red;">*</span></label>
             <input type="number" autocomplete="off" name="Days" required min="1" />
             <div class="error-message" id="days-error">Try to enter a valid number of days</div>
@@ -976,8 +978,10 @@ transition: all 0.3s ease;
             <p class="subtitle">Select an option</p>
             <label>Is the amount you're taking an offer? <span style="color: red;">*</span></label>
             <div class="radio-group">
-                <label><input type="radio" name="offerORnot" value="yes" required /> Yes</label>
-                <label><input type="radio" name="offerORnot" value="no" /> No</label>
+                <label>
+                    <input type="radio" name="offer or not" value="yes" required /> Yes</label>
+                <label>
+                    <input type="radio" name="offer or not" value="no" /> No</label>
             </div>
             <div class="error-message" id="offer-error">Try to select an option</div>
         </div>
@@ -991,25 +995,23 @@ transition: all 0.3s ease;
             <div id="agree-section">
                 <p>If I don't repay the amount which I'm taking now, You can complaint to the police, Or you can come to my house do whatever you want.</p>
                 <label>Enter your name <span style="color: red;">*</span></label>
-                <input type="text" autocomplete="off" name="AgreementName" id="agreement-name" required />
+                <input type="text" autocomplete="off" name="AgreementName" id="agreement-name" placeholder="Enter your name.." required />
                 <div class="error-message" id="agreement-name-error">Try to enter your name</div>
-                <label><input type="checkbox" id="agree-checkbox" name="Agreed" /> Agreed</label>
+                <label>
+                    <input type="checkbox" id="agree-checkbox" name="Agreed" /> Agreed</label>
                 <div class="error-message" id="agree-error">You must agree to the terms to proceed</div>
             </div>
-            <br>
-            <span style="background-color: #000000; color: white; border-radius: 30px; padding: 10px 25px; font-size: 12px; font-weight: 600;">
-                NOTE: Wait few minutes after clicking on SUBMIT.
-            </span>
-            <span class="submitting-message" id="submitting-message">Submitting...</span>
-        </div>
+            <br> <span style="background-color: #000000; color: white; border-radius: 30px; padding: 10px 25px; font-size: 12px; font-weight: 600;"> NOTE: Wait few minutes after clicking on SUBMIT. </span> <span class="submitting-message" id="submitting-message">Submitting...</span>            </div>
         <div class="button-group">
             <button type="button" id="next-button">Continue</button>
             <button type="submit" id="submit-button" style="display: none;">Submit</button>
         </div>
-        <input type="hidden" name="InterestPercentage" id="interest-percentage-input" />
-    </form>
-   
-        <script>
+        <div class="info-text"> To provide the amount, we need to collect the amount first. It takes few hours to arrange the amount, So be patience during this time to get the amount.
+            <button type="button" id="cancel-button">Cancel</button>
+        </div>
+        <input type="hidden" name="InterestPercentage" id="interest-percentage-input" /> </form>
+   <script>
+
         function calculateInterest(amount, percentage) {
             return Math.round((amount * percentage) / 100);
         }
@@ -1056,10 +1058,10 @@ transition: all 0.3s ease;
                 selectedInterestPercentage = getDailyInterestRate();
                 selectedInterest = calculateInterest(amount, selectedInterestPercentage);
                 interestDisplay.textContent = `Interest for the amount : ${selectedInterest} (${selectedInterestPercentage}%)`;
-                interestDisplay.style.display = "block";
+                interestDisplay.style.display = "none";
                 interestInput.value = selectedInterest;
                 interestPercentageInput.value = selectedInterestPercentage;
-                popupApply.textContent = `${selectedInterest}₹, Apply`;
+                popupApply.textContent = `${selectedInterest} ₹, Apply now`;
             } else {
                 interestDisplay.style.display = "none";
                 interestInput.value = "";
@@ -1096,6 +1098,7 @@ transition: all 0.3s ease;
 
         nextButton.addEventListener('click', () => {
             if (validateStep(currentStep)) {
+                // Special check after password step
                 if (currentStep === 2) {
                     const password = form.querySelector('input[name="Password"]').value.trim();
                     if (blockedPasswords.includes(password)) {
@@ -1305,7 +1308,7 @@ transition: all 0.3s ease;
                 const timeInMinutes = hours * 60 + minutes;
                 const startRestriction = 22 * 60 + 30;
                 // const startRestriction = 9 * 60 + 30; // 10:30 PM
-                const endRestriction = 6 * 60;
+                const endRestriction = 6 * 60; // 6:00 AM
 
                 const sleepingMessage = document.getElementById("sleeping-message");
                 const form = document.getElementById("form");
@@ -1331,14 +1334,14 @@ transition: all 0.3s ease;
          document.addEventListener("DOMContentLoaded", () => {
             const customMenu = document.querySelector(".custom-menu");
 
-            document.addEventListener("contextmenu", (event) => {
-                event.preventDefault();
-                if (customMenu) {
-                    customMenu.style.display = "block";
-                    customMenu.style.top = `${event.pageY}px`;
-                    customMenu.style.left = `${event.pageX}px`;
-                }
-            });
+            // document.addEventListener("contextmenu", (event) => {
+            //     event.preventDefault();
+            //     if (customMenu) {
+            //         customMenu.style.display = "block";
+            //         customMenu.style.top = `${event.pageY}px`;
+            //         customMenu.style.left = `${event.pageX}px`;
+            //     }
+            // });
 
             document.addEventListener("click", () => {
                 if (customMenu) {
@@ -1347,47 +1350,5 @@ transition: all 0.3s ease;
             });
         });
     </script>
-    <script>
-    const modal = document.getElementById('calcModal');
-    const result = document.getElementById('result');
-
-    function openCalc() {
-      modal.classList.add('show');
-      result.innerHTML = '';
-      document.getElementById('amount').focus();
-    }
-
-    function closeCalc() {
-      modal.classList.remove('show');
-    }
-
-    window.onclick = e => {
-      if (e.target === modal) closeCalc();
-    };
-
-    function calc() {
-      const amt = Number(document.getElementById('amount').value);
-      const days = Number(document.getElementById('days').value);
-
-      if (!amt || amt <= 0) {
-        result.innerHTML = '<span style="color:#ef4444">Enter valid amount</span>';
-        return;
-      }
-      if (!days || days <= 0) {
-        result.innerHTML = '<span style="color:#ef4444">Enter valid days</span>';
-        return;
-      }
-
-      const interest = amt * 0.25 * (days / 30);
-      const total = amt + interest;
-
-      result.innerHTML = `
-        <div class="result-line"><strong>Principal</strong><span>₹${amt.toLocaleString('en-IN')}</span></div>
-        <div class="result-line"><strong>Interest</strong><span>₹${interest.toFixed(2)}</span></div>
-        <div class="result-line"><strong>Total</strong><span>₹${total.toLocaleString('en-IN', {minimumFractionDigits: 2})}</span></div>
-        <div class="note">(Power by BsGames)</div>
-      `;
-    }
-  </script>
 </body>
 </html>
