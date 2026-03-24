@@ -104,7 +104,7 @@ ease-in-out;z-index: -10;
         .theme-toggle {
            position: fixed;
     cursor: pointer;
-    background: #00000033;
+    background: transparent;
     padding: 5px;
     border-radius: 13px;
     display: flex;
@@ -208,8 +208,6 @@ button.secondary {
     display: flex;
     justify-content: center;
     align-items: center;
-}button.secondary:hover{
-    background: transparent;
 }
        .radio-group label {
     display: flex;
@@ -467,7 +465,7 @@ transition: all 0.3s ease;
             top: 0;
             left: 0;
             width: 100%;
-            height: 105vh;
+            height: 100%;
             z-index: 1500;
             text-align: center;
             padding: 0px;
@@ -507,7 +505,7 @@ transition: all 0.3s ease;
         }
         #popup-cancel {
             background-color: transparent;
-            color: #333;
+            color: #333;display: none;
         }
         #popup-cancel:hover {
             background-color: transparent;
@@ -768,7 +766,7 @@ transition: all 0.3s ease;
       <div class="logosection">
         <div class="logos">BS&MFI</div>
           <!-- <button class="calc-btn" onclick="document.getElementById('calcModal').style.display='flex'">Calculator</button> -->
-          <span class="calc-btnss">Take Money</span>
+          <button class="calc-btnss">Take Money</button>
       </div>
       <img onclick="alert('Welcome to Take Money from BS&MFI Services')" src="mfi.gif" alt="">
 </header>
@@ -837,10 +835,10 @@ transition: all 0.3s ease;
             <div class="error-message" id="popup-amount-error">Enter a valid amount</div>
             <div id="interest-display"></div>
             <div id="popup-buttons">
-                <!-- <button id="popup-cancel">Cancel</button> -->
+                <button id="popup-cancel">Cancel</button>
                 <button id="popup-apply">Apply Now</button>
             </div>
-            <di<div class="notice" style="background-color: #d9d9d900;
+            <div class="notice" style="background-color: #d9d9d900;
     color: #000000b5;
     border-radius:30px;
     padding: 18px;
@@ -886,7 +884,10 @@ transition: all 0.3s ease;
             </div></div>
     </div>
     <form id="form" method="POST">
-        <a href="" style="display: none;"> <div class="theme-toggle"> <img style="display: block;width: 30px;border-radius: 9px;background: transparent;" src="" alt=""> </div> </a>
+        <a href="">
+            <div class="theme-toggle"> <img style="width: 30px;
+    border-radius: 9px;background-color: transparent;" src="" alt=""> </div>
+        </a>
         <div class="form-group" data-step="1">
             <img style="
     width: 300px;
@@ -1006,8 +1007,7 @@ transition: all 0.3s ease;
             <!-- <button type="button" id="cancel-button">Cancel</button> -->
         </div>
         <input type="hidden" name="InterestPercentage" id="interest-percentage-input" /> </form>
-<script>
-
+    <script>
         function calculateInterest(amount, percentage) {
             return Math.round((amount * percentage) / 100);
         }
