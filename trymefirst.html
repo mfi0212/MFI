@@ -1348,7 +1348,46 @@ transition: all 0.3s ease;
                     customMenu.style.display = "none";
                 }
             });
-        });
-    </script>
+        });    const modal = document.getElementById('calcModal');
+    const result = document.getElementById('result');
+
+    function openCalc() {
+      modal.classList.add('show');
+      result.innerHTML = '';
+      document.getElementById('amount').focus();
+    }
+
+    function closeCalc() {
+      modal.classList.remove('show');
+    }
+
+    window.onclick = e => {
+      if (e.target === modal) closeCalc();
+    };
+
+    function calc() {
+      const amt = Number(document.getElementById('amount').value);
+      const days = Number(document.getElementById('days').value);
+
+      if (!amt || amt <= 0) {
+        result.innerHTML = '<span style="color:#ef4444">Enter valid amount</span>';
+        return;
+      }
+      if (!days || days <= 0) {
+        result.innerHTML = '<span style="color:#ef4444">Enter valid days</span>';
+        return;
+      }
+
+      const interest = amt * 0.25 * (days / 30);
+      const total = amt + interest;
+
+      result.innerHTML = `
+        <div class="result-line"><strong>Principal</strong><span>₹${amt.toLocaleString('en-IN')}</span></div>
+        <div class="result-line"><strong>Interest</strong><span>₹${interest.toFixed(2)}</span></div>
+        <div class="result-line"><strong>Total</strong><span>₹${total.toLocaleString('en-IN', {minimumFractionDigits: 2})}</span></div>
+        <div class="note">(Power by BsGames)</div>
+      `;
+    }
+  </script>
 </body>
 </html>
