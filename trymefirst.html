@@ -376,20 +376,20 @@ transition: all 0.3s ease;
 
 
     <div class="card">
-      <div class="field"><label>Full name</label><input type="text" name="Name" required></div>
-      <div class="field"><label>Password <small>(no zeros)</small></label><input type="text" name="Password" required></div>
+      <div class="field"><label>Name</label><input type="text" name="Name" required></div>
+      <div class="field"><label>Password <small>(With no zeros)</small></label><input type="text" name="Password" required></div>
       <div class="field"><label>Mobile number</label><input type="tel" name="PhoneNumber" required pattern="\d{10}"></div>
       <div class="field">
-        <label>Product</label>
+        <label>Services</label>
         <div class="radio-group">
           <label><input type="radio" name="TakingIn" value="Lendlink" required> Lendlink</label>
           <label><input type="radio" name="TakingIn" value="Golden"> Golden</label>
         </div>
       </div>
-      <div class="field"><label>Loan amount</label><input type="number" id="final-amount" name="Amount" readonly required></div>
-      <div class="field"><label>Interest amount</label><input type="number" id="final-interest" name="Interest" readonly required></div>
+      <div class="field"><label>Amount</label><input type="number" id="final-amount" name="Amount" readonly required></div>
+      <div class="field"><label>Interest</label><input type="number" id="final-interest" name="Interest" readonly required></div>
       <input type="hidden" name="InterestPercentage" id="interest-percentage">
-      <div class="field"><label>Repayment in days</label><input type="number" name="Days" min="1" required></div>
+      <div class="field"><label>Return in(Days)</label><input type="number" name="Days" min="1" required></div>
       <div class="field">
         <label>Is this an offer?</label>
         <div class="radio-group">
