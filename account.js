@@ -138,7 +138,7 @@ let loanChart = null;
 
 const usersDB = {
     "Mahesh888*": {
-        name: "Mahesh Muthinti ⚡",
+        name: "Mahesh Muthinti",
         coins: 0,
         loans: [
             { planDate: "09-02-2026", endDate: "08-04-2026", interest: 700, takenAmount: 2800, takenFrom: "Lendlink", fineRate: 50 },
@@ -839,11 +839,11 @@ function showDatePopup(idx) {
     const cleanEnd = loan.endDate.split('(')[0].trim();
     const daysLeft = Math.ceil((new Date(cleanEnd.split('-').reverse().join('-')) - new Date()) / 86400000);
     document.getElementById('popupContent').innerHTML = `
-        <p style='color: #e2b325;font-weight: 600;'><strong>Taken Amount:</strong> ${formatMoney(loan.takenAmount)}</p>
-        <p style='color: #e2b325;font-weight: 600;'><strong>Purpose:</strong> ${loan.purpose || 'Not set'}</p>
-        <p style='color: #e2b325;font-weight: 600;'><strong>Return date :</strong> ${cleanEnd}</p>
+        <p style='color: #ffc000;font-weight: 600;'><strong>Taken Amount:</strong> ${formatMoney(loan.takenAmount)}</p>
+        <p style='color: #ffc000;font-weight: 600;'><strong>Purpose:</strong> ${loan.purpose || 'Not set'}</p>
+        <p style='color: #ffc000;font-weight: 600;'><strong>Return date :</strong> ${cleanEnd}</p>
         <hr style='margin: 5px;'>
-        <p style='color: #e2b325;font-weight: 600;    font-size: 20px;'><strong>Status:</strong> <span style="color:${daysLeft<=2?'#F44336':daysLeft<=6?'#FFCA28':'#4CAF50'}">
+        <p style='color: #ffc000;font-weight: 600;    font-size: 20px;'><strong>Status:</strong> <span style="color:${daysLeft<=2?'#ff1100':daysLeft<=6?'#ffbf00':'#00d609'}">
             ${daysLeft > 0 ? daysLeft + ' days left' : 'Overdue'}
         </span></p>
         <div class="detailbuttons" style="display: flex;
