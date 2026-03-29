@@ -164,6 +164,16 @@ renderAll();
 document.getElementById("searchInput").addEventListener("input", e => {
   renderFiltered(e.target.value);
 });
+     function goBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        alert(" Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
+      }
+    }
+document.getElementById("searchInput").addEventListener("input", e => {
+  renderFiltered(e.target.value);
+});
 </script>
 
 </body>
