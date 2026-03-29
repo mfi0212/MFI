@@ -90,16 +90,56 @@ body:has(input[value="dim"]:checked) {
     }
 
     .header {
-      padding: 0px;
     text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;    position: sticky;
+    top: 10px;    z-index: 10000; transition: all 0.3s ease;
     }
-
+.header:hover{
+              transform: scale(1.03); 
+        }
+        .header:active{
+              transform: scale(0.90); 
+        } 
     .header h1 {
-      font-weight: 600;
-    color: #ffffffa6;
-    font-size: 20px;
-    padding: 15px 0 0 0;
+      font-weight: 700;
+    cursor: pointer;
+    border-radius: 99px;
+    background: transparent;
+    color: white;
+    font-size: 16px;
+    transition: all 0.3s ease;
     }
+   .logo span {
+    font-size: 10px;
+    font-weight: 200;
+    color: #ffffff7d;
+}.logo {
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;
+    backdrop-filter: blur(3px) url(#switcher) saturate(var(--saturation));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0px;
+    border-radius: 100px;
+    padding: 5px;
+    width: 140px;
+}
 .search-box img {
   width: 45px;
     height: 45px;
@@ -325,7 +365,10 @@ footer{
 <div class="container">
 
   <div class="header">
-    <h1>BS&MFI Services</h1>
+    <div class="logo">
+      <h1>BS&MFI</h1>
+      <span>Services</span>
+    </div>
   </div>
   <div id="sectionsContainer"></div>
 
