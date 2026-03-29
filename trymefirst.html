@@ -165,9 +165,9 @@ box-shadow: inset 0 0 0 1px
     padding: 4px 25px;
 
 }
-.search-box img {
-  width: 45px;
-    height: 45px;
+.header img {
+      width: 42px;
+    height: 42px;
     border-radius: 35px;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
@@ -186,10 +186,10 @@ box-shadow: inset 0 0 0 1px
     justify-content: center;
     align-items: center;
 transition: all 0.3s ease;}
-        .search-box img:hover{
+        .header img:hover{
               transform: scale(1.03); 
         }
-        .search-box img:active{
+        .header img:active{
               transform: scale(0.90); 
         } 
     .search-box {
@@ -252,7 +252,7 @@ transition: all 0.3s ease;}
     align-items: center;
     backdrop-filter: blur(3px);
     padding: 4px;
-    width: 75%;
+    width: 85%;
     transition: all 0.2s;
 }       .searchcontainer:active{
               transform: scale(0.90);
@@ -397,6 +397,7 @@ footer{
       <h1>BS&MFI</h1>
       <span>Search Sites</span>
     </div>
+    <img onclick="alert('Welcome to BS&MFI Services')" src="mfi.gif" alt="">
   </div>
   <div id="sectionsContainer"></div>
 
@@ -408,7 +409,6 @@ footer{
       <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
       <input type="text" id="searchInput" placeholder="Search here..." autocomplete="off"/>
     </div>
-    <img onclick="alert('Welcome to BS&MFI Services')" src="mfi.gif" alt="">
   </div>
  
 </div>
