@@ -148,7 +148,7 @@ const usersDB = {
             
         ],
         links: [],
-        emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
+        emote: "https://i.pinimg.com/originals/bb/c2/a3/bbc2a39b80d283dc936d426be1868e3c.gif"
     },
     "0212": {
         name: "Tony Mantana",
