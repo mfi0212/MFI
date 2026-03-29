@@ -128,17 +128,17 @@ transition: all 0.3s ease;}
               transform: scale(0.90); 
         } 
     .search-box {
-         margin: 0 -25px 0px -5px;
+            margin: 0 -25px 0px -5px;
     position: sticky;
     bottom: 10px;
-    width: 103%;
+    width: 100%;
     display: flex;
     border-radius: 30px 30px 0px 0px;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     z-index: 1;
     transition: all 0.3s ease;
-    gap: 10px;
+    gap: 0px;
 
          }
        
@@ -168,7 +168,7 @@ transition: all 0.3s ease;}
     position: relative;
     }
 .searchcontainer {
-    box-shadow: inset 0 0 0 1px 
+   box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
  color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
  color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
@@ -186,8 +186,15 @@ transition: all 0.3s ease;}
     align-items: center;
     backdrop-filter: blur(3px);
     padding: 2px;
-    width: 80%;
-}
+    width: 70%;
+    transition: all 0.2s;
+}       .searchcontainer:active{
+              transform: scale(0.90);
+             
+    }
+    .searchcontainer:focus{
+       background-color: white; 
+    }
   .section {
     margin-bottom: 32px;
     border-top: solid #ffffff1c 1.2px;
@@ -319,9 +326,6 @@ footer{
   <div class="header">
     <h1>BS&MFI Services</h1>
   </div>
-   <footer>
-    © BS&MFI. All rights reserved.
-  </footer>
   <div id="sectionsContainer"></div>
 
   <div class="no-results" id="noResults">
