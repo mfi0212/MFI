@@ -182,7 +182,28 @@ box-shadow: inset 0 0 0 1px
     .theme-btn {
       transition: all 0.3s;
     }
-    
+button.btn-close {
+    background: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    border-radius: 100px;
+    margin: -30px 0 15px 0;
+    font-size: 15px;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;
+}
     main {
     flex: 1;
     overflow-y: auto;
@@ -595,15 +616,32 @@ footer {
     width: 100%;
     border: solid 2px;
     background: transparent;
-    color: #0000ff;
     font-weight: 600;
-    padding: 6px;
+    background: #007a66;
+    padding: 9px;
     border-radius: 30px;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
     transition: all 0.2s;
     margin-bottom: 20px;
-    transition: all 0.3s ease;}
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
         .btn-secondary:hover{
               transform: scale(1.03); 
         }
@@ -611,13 +649,13 @@ footer {
               transform: scale(0.90); 
         } 
     .btn-secondary svg{
-    fill: #0000ff;
+    fill: black;
     width: 20px;
     height: 20px;
 
     }    .btn-secondary a {
     text-decoration: none;
-    color: blue;
+    color: black;
 }
     
     .btn-secondary a:hover>.btn-secondary:hover {
@@ -697,7 +735,7 @@ footer {
     <div onclick="event.stopImmediatePropagation()" class="modal-content">
       <div class="modal-header">
         <h2 id="modal-title" style="font-size:1.25rem; font-weight:600;">Calculator</h2>
-        <p onclick="hideModal()" class="popup_close"><i class="fa-solid fa-xmark"></i></p>
+        <!-- <p onclick="hideModal()" class="popup_close"><i class="fa-solid fa-xmark"></i></p> -->
       </div>
       <div id="modal-content" class="modal-body"></div>
       <footer>© BS&MFI Solutions. All Rights Reserved.</footer>
@@ -1068,7 +1106,8 @@ footer {
         Apply Now
       </a>
     </button>
-</div>
+    </div>
+    <button onclick="hideModal()" class="btn-close">Close Now</button>    
           </div>
         `;
         calculateFee();
@@ -1083,6 +1122,8 @@ footer {
             <a href="https://forms.gle/rtcayowFYw48u94PA">
               <button class="btn-primary">Pre-Save Now</button>
             </a>
+            
+    <button onclick="hideModal()" class="btn-close">Close Now</button>  
           </div>
         `;
     } 
@@ -1098,6 +1139,8 @@ footer {
             <a href="https://mfi0212.github.io/swan/lndlnk-mid">
               <button class="btn-primary" style="margin-top:3rem;">Explore Now</button>
             </a>
+            
+    <button onclick="hideModal()" class="btn-close">Close Now</button>  
           </div>
         `;
     }
