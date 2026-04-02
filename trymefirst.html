@@ -149,6 +149,9 @@ transition: all 0.3s ease;}
         button.btn-primary:active{
               transform: scale(0.90); 
         } 
+        a{
+            text-decoration: none;
+        }
     header button {
 box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
@@ -236,7 +239,15 @@ transition: all 0.3s ease;}
         }
         button.theme-btn:active{
               transform: scale(0.90); 
-        } 
+        } .bottomtop {
+    position: fixed;
+    bottom: 90px;
+    z-index: 40;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
 button.theme-btn h6{
   font-weight: 100;font-size: 10px;
     color: #ffffff7a;
@@ -367,20 +378,17 @@ footer {
     }
     
     .apply-btn {
-    position: fixed;
-    bottom: 90px;
-    z-index: 40;
-    width: max-content;
     background-color: #0d00f8bd;
     color: white;
     font-weight: 500;
-    font-size: 13px;
-    padding: 12px 20px;
+    font-size: 14px;
+    padding: 10px;
     border-radius: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;cursor: pointer;
+    gap: 5px;
+    cursor: pointer;
     transition: all 0.2s;
     border: none;
     max-width: 400px;
@@ -409,7 +417,37 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 10px;
-}
+}.exclamation {
+        color: rgb(255 255 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;
+    backdrop-filter: blur(1px);
+    padding: 10px;
+    border-radius: 100px;
+    background: #ff0000;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-size: 14px;    border: none;
+
+}.exclamation:hover{
+              transform: scale(1.03); 
+        }
+        .exclamation:active{
+              transform: scale(0.90); 
+        } 
     .card {
       background-color: var(--card);
       border-radius: 16px;
@@ -705,10 +743,14 @@ display: flex;
 
   <main id="main-content"></main>
 
-  <button onclick="showPopup()" class="apply-btn">
+ <div class="bottomtop">
+     <button onclick="showPopup()" class="apply-btn">
     <i class="fa-regular fa-compass"></i>
-   Click here to Explore / Apply Now
+   Click to Explore / Apply Now
   </button>
+   <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform"><p class="exclamation">I've Issue</p></a>
+  
+ </div>
 
   <nav class="nav">
     <div class="nav-container">
