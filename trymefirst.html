@@ -149,7 +149,7 @@ box-shadow: inset 0 0 0 1px
               transform: scale(0.90); 
         } 
 .exclamation {
-    color: rgb(255 255 255);
+        color: rgb(255 255 255);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -166,9 +166,12 @@ box-shadow: inset 0 0 0 1px
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
     backdrop-filter: blur(1px);
-   padding: 9px;
+    padding: 10px;
     border-radius: 100px;
-    background: #ff0000ba; transition: all 0.3s ease;
+    background: #ff0000ba;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-size: 13px;
 }.exclamation:hover{
               transform: scale(1.03); 
         }
@@ -491,7 +494,29 @@ footer{
     <div class="searchcontainer">
       <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
       <input type="text" id="searchInput" placeholder="Search here..." autocomplete="off"/>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform"><p class="exclamation">Issue</p></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform"><p class="exclamation">Issue Form    color: rgb(255 255 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;
+    backdrop-filter: blur(1px);
+    padding: 10px;
+    border-radius: 100px;
+    background: #ff0000ba;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-size: 13px;</p></a>
     </div>
   </div>
  
