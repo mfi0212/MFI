@@ -420,7 +420,12 @@ flex: 1;
     margin: 0 auto;
         } 
         .menu-content.active{display:block;} 
-
+.menu-content svg{
+    width: 20px;
+    height: 18px;
+    fill: #ffffffd6;
+    opacity: 100%;
+}
         
         #content-transfer .section-wrapper,
         #content-account .section-wrapper, 
@@ -1004,15 +1009,12 @@ font-size: 13px;
     padding: 9px;
     font-size: 14px;
     font-weight: 400;
-    gap: 10px;
+        gap: 5px;
+
     max-width: 150px;" onclick="openPopup('accountPopup')">
-                <svg xmlns="http://www.w3.org/2000/svg" style="width: 20px;    opacity: 100%;" viewBox="0 0 24 24" fill="#ffffff">
-                    <g fill="none" stroke="#ffffff" stroke-width="1.5">
-                        <circle cx="12" cy="9" r="3"/>
-                        <path stroke-linecap="round" d="M17.97 20c-.16-2.892-1.045-5-5.97-5s-5.81 2.108-5.97 5"/>
-                        <path stroke-linecap="round" d="M7 3.338A9.954 9.954 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/>
-                    </g>
-                </svg>
+                <?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="m12,0C5.383,0,0,5.383,0,12s5.383,12,12,12,12-5.383,12-12S18.617,0,12,0Zm-4,21.164v-.164c0-2.206,1.794-4,4-4s4,1.794,4,4v.164c-1.226.537-2.578.836-4,.836s-2.774-.299-4-.836Zm9.925-1.113c-.456-2.859-2.939-5.051-5.925-5.051s-5.468,2.192-5.925,5.051c-2.47-1.823-4.075-4.753-4.075-8.051C2,6.486,6.486,2,12,2s10,4.486,10,10c0,3.298-1.605,6.228-4.075,8.051Zm-5.925-15.051c-2.206,0-4,1.794-4,4s1.794,4,4,4,4-1.794,4-4-1.794-4-4-4Zm0,6c-1.103,0-2-.897-2-2s.897-2,2-2,2,.897,2,2-.897,2-2,2Z"/></svg>
+
                 Open Account
             </button>
             <p style="color:#bbb; margin: 20px 0;font-size: 14px;">Manage your amount details like amount borrowed and return dates.</p>
