@@ -135,7 +135,27 @@ body:has(input[value="dim"]:checked) {
   --glass-reflex-light: 0.7;
   
   --saturation: 200%;
-}
+}.partner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: transparent;
+    margin: 10px;
+    border-radius: 30px;
+    padding: 10px 0 0 0;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;}
         .loading-overlay.hidden {
             opacity: 0;
             pointer-events: none;
@@ -227,7 +247,7 @@ h3 {
     border-radius: 30px;
     font-weight: 300;
     cursor: pointer;
-    margin: 5px 15px 15px 15px;
+    margin: 15px;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
     box-shadow: inset 0 0 0 1px 
@@ -506,18 +526,13 @@ flex: 1;
         }
 
         .sponsor-title {
-          font-size: 16px;
+         font-size: 16px;
     font-weight: 800;
-    color: #ffffffcc;
-    text-align: justify;
-    margin-bottom: -25px;
-        }
+    color: #00f5ff;
+}
 
         .sponsor-card {
-          display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0px;
+          margin: 0px;
     border-radius: 52px;
     padding: 0px;
         }
@@ -903,41 +918,50 @@ font-size: 13px;
         <div class="section-wrapper">
             <h3>Our Partners</h3>
             <div class="glass-card">
-                <div class="sponsor-title">Lendlink-Mid</div>
-                <div class="sponsor-card">
-                    <div class="sponsor-info">
-                        <h4>& Earning Helper</h4>
+                <div class="partner">
+                    <div class="sponsor-title">Lendlink-Mid</div>
+                    <div class="sponsor-card">
+                        <div class="sponsor-info">
+                            <h4>& Earning Helper</h4>
+                        </div>
+                        <a href="https://mfi0212.github.io/swan/lndlnk-mid"><button class="btn">Explore</button></a>
                     </div>
-                    <a href="https://mfi0212.github.io/swan/lndlnk-mid"><button class="btn">Explore</button></a>
                 </div>
-        
-                <div class="sponsor-title">BsGames</div>
-                <div class="sponsor-card">
-                    <div class="sponsor-info">
-                        <h4>&  Lottery spiner</h4>
+                <div class="partner">
+                    <div class="sponsor-title">BsGames</div>
+                    <div class="sponsor-card">
+                        <div class="sponsor-info">
+                            <h4>&  Lottery spiner</h4>
+                        </div>
+                        <a href="https://blackswan19.github.io/golden/Bs%20Games/bsgames"><button class="btn">Explore</button></a>
                     </div>
-                    <a href="https://blackswan19.github.io/golden/Bs%20Games/bsgames"><button class="btn">Explore</button></a>
                 </div>
-                <div class="sponsor-title">Chloennaouii</div>
-                <div class="sponsor-card">
-                    <div class="sponsor-info">
-                        <h4>& Trusted funding</h4>
+                <div class="partner">
+                    <div class="sponsor-title">Chloennaouii</div>
+                    <div class="sponsor-card">
+                        <div class="sponsor-info">
+                            <h4>& Trusted funding</h4>
+                        </div>
+                        <a href="https://mfi0212.github.io/MFI/cholennaouii.main"><button class="btn">Explore</button></a>
                     </div>
-                    <a href="https://mfi0212.github.io/MFI/cholennaouii.main"><button class="btn">Explore</button></a>
                 </div>
-                <div class="sponsor-title">Pre-Saver</div>
-                <div class="sponsor-card">
-                    <div class="sponsor-info">
-                        <h4>& Pre save the offers</h4>
+                <div class="partner">
+                    <div class="sponsor-title">Pre-Saver</div>
+                    <div class="sponsor-card">
+                        <div class="sponsor-info">
+                            <h4>& Pre save the offers</h4>
+                        </div>
+                        <a href="https://mfi0212.github.io/swan/offer/solution"><button class="btn">Explore</button></a>
                     </div>
-                    <a href="https://mfi0212.github.io/swan/offer/solution"><button class="btn">Explore</button></a>
                 </div>
+                <div class="partner">
                 <div class="sponsor-title">Buy Limit</div>
-                <div class="sponsor-card">
-                    <div class="sponsor-info">
-                        <h4>& Buy Limit if you cross the limit</h4>
+                    <div class="sponsor-card">
+                        <div class="sponsor-info">
+                            <h4>& Buy Limit if you cross the limit</h4>
+                        </div>
+                        <a href="https://mfi0212.github.io/swan/offer/solution"><button class="btn">Explore</button></a>
                     </div>
-                    <a href="https://mfi0212.github.io/swan/offer/solution"><button class="btn">Explore</button></a>
                 </div>
             </div>
         </div>
