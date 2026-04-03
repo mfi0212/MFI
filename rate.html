@@ -146,8 +146,8 @@ startBtn?.addEventListener("click", async () => {
             });
         }
         const duration = audio.duration;
-        const minPlay = 0;
-        const maxPlay = Math.min(0, duration);
+        const minPlay = 5;
+        const maxPlay = Math.min(8, duration);
         stopTime = Math.random() * (maxPlay - minPlay) + minPlay;
         progressFill.style.width = "0%";
         audioStatus.textContent = "0% • Loading...";
