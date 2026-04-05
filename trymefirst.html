@@ -64,7 +64,7 @@ h1 {
 
 }
 .spclevntsec {
-    background: linear-gradient(100deg, #a0ff9d, #76c2ff, hsl(317.54deg 100% 76.01%));
+    /* background: linear-gradient(100deg, #a0ff9d, #76c2ff, hsl(317.54deg 100% 76.01%)); */
     padding: 30px 0;
 }
 .grid{
@@ -74,8 +74,19 @@ h1 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 50px;
+    position: relative;
+    z-index: 10000;
 }
 
+    .floating-eggs {
+      position: absolute;
+      font-size: 2.5rem;
+      animation: float 6s infinite ease-in-out;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(15deg); }
+    }
 .house{
   cursor:pointer;
 }
@@ -199,6 +210,11 @@ h1:nth-child(1){
     <p class="subtitle">By<br>BS&MFI House</p>
 </header>
 <div class="spclevntsec">
+  <div class="floating-eggs" style="top: 80px; left: 10%; animation-delay: 0s;">🥚</div>
+    <div class="floating-eggs" style="top: 150px; right: 15%; animation-delay: 2s;">🐣</div>
+    <div class="floating-eggs" style="top: 300px; left: 20%; animation-delay: 4s;">🐰</div>
+    <div class="floating-eggs" style="top: 220px; right: 25%; animation-delay: 1.5s;">🌷</div>
+
   <h1 style="
     color: #ff3ada;
     text-decoration: underline 1.5px #1c1c1c;
@@ -244,27 +260,27 @@ h1:nth-child(1){
 
   <div class="house" onclick="openModal('SEM-001','₹800','40 Swans / rent')">
     <img src="mansions/14.jpeg">
-    <span>Residence 01</span>
+    <span>Swan Residence 01</span>
   </div>
 
   <div class="house" onclick="openModal('SEM-003','900','50 Swans / rent')">
     <img src="mansions/1.jpeg">
-    <span>Residence 02</span>
+    <span>Swan Residence 02</span>
   </div>
 
   <div class="house" onclick="openModal('SEM-005','₹1000','60 Swans / rent')">
     <img src="mansions/6.jpeg">
-    <span>Residence 03</span>
+    <span>Swan Residence 03</span>
   </div>
 
   <div class="house" onclick="openModal('SEM-007','₹2000','70 Swans / rent')">
     <img src="mansions/13.jpeg">
-    <span>Residence 04</span>
+    <span>Swan Residence 04</span>
   </div>
 
   <div class="house" onclick="openModal('SEM-009','₹3000','80 Swans / rent')">
     <img src="mansions/11.jpeg">
-    <span>Residence 05</span>
+    <span>Swan Residence 05</span>
   </div>
 </section>
 
@@ -284,32 +300,32 @@ h1:nth-child(1){
 <section class="grid">
   <div class="house" onclick="openModal('SSEM-004','₹750','30 Swans / rent | 05 Stash')">
     <img src="mansions/15.jpeg">
-    <span>Residence 01</span>
+    <span>Stash Residence 01</span>
   </div>
 
   <div class="house" onclick="openModal('SSEM-002','₹850','40 Swans / rent | 06 Stash')">
     <img src="mansions/7.jpeg">
-    <span>Residence 02</span>
+    <span>Stash Residence 02</span>
   </div>
 
   <div class="house" onclick="openModal('SSEM-004','₹950','50 Swan / rent | 07 Stash')">
     <img src="mansions/8.jpeg">
-    <span>Residence 03</span>
+    <span>Stash Residence 03</span>
   </div>
 
   <div class="house" onclick="openModal('SSEM-006','₹1500','60 Swans / rent | 08 Stash')">
     <img src="mansions/9.jpeg">
-    <span>Residence 04</span>
+    <span>Stash Residence 04</span>
   </div>
 
   <div class="house" onclick="openModal('SSEM-008','₹2500','70 Swans / rent | 09 Stash')">
     <img src="mansions/12.jpeg">
-    <span>Residence 05</span>
+    <span>Stash Residence 05</span>
   </div>
 
   <div class="house" onclick="openModal('SSEM-010','₹3500','80 Swans / rent | 10 Stash')">
     <img src="mansions/10.jpeg">
-    <span>Residence 06</span>
+    <span>Stash Residence 06</span>
   </div>
 </section>
 
