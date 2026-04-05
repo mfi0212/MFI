@@ -80,7 +80,7 @@ h1 {
 
 .house img{
       width: 100%;
-    /* height: 340px; */
+    height: 350px;
     object-fit: cover;
     border: 1px solid var(--line);
     transition: transform .4s ease;
@@ -140,19 +140,20 @@ h1 {
 }
 
 .close{
-  margin-top:35px;
-  background:none;
-  border:1px solid var(--ink);
-  padding:12px;
-  width:100%;
-  cursor:pointer;
-  letter-spacing:1px;
-  font-size:12px;    color: #1c1c1c;
-
+ margin-top: 15px;
+    background: none;
+    border: 1px solid var(--ink);
+    padding: 12px;
+    width: 100%;
+    cursor: pointer;
+    letter-spacing: 1px;
+    font-size: 12px;
+    color: #1c1c1c;
+    margin-bottom: 15px;
 }
 .options {
     position: sticky;
-    bottom: 15px;
+    bottom: 5px;
     display: flex;
     justify-content: center;
     align-items: end;
@@ -188,80 +189,84 @@ h1 {
   <h1>BsMansion</h1>
     <p class="subtitle">By<br>BS&MFI House</p>
 </header>
-
+<div class="spclevntsec">
+  <h1 style="
+    color: #ff3ada;
+    text-decoration: underline 1.5px #1c1c1c;
+    text-underline-position: under;
+">Easter<span style="font-style: italic;    color: #1c1c1c;
+">Mansions</span></h1>
+<section class="grid">
+   <div class="house" onclick="openModal('EMH-001','₹500','10 Swans / rent | 1 Stash')">
+    <img src="mansions/4.jpeg">
+    <span>Easter Residence 01</span>
+  </div>
+     <div class="house" onclick="openModal('EMH-002','₹550','15 Swans / rent | 2 Stash')">
+    <img src="mansions/2.jpeg">
+    <span>Easter Residence 02</span>
+  </div>
+     <div class="house" onclick="openModal('EMH-003','₹600','20 Swans / rent | 3 Stash')">
+    <img src="mansions/5.jpeg">
+    <span>Easter Residence 03</span>
+  </div>
+     <div class="house" onclick="openModal('EMH-004','₹650','25 Swans / rent | 4 Stash')">
+    <img src="mansions/3.jpeg">
+    <span>Easter Residence 04</span>
+  </div>
+</section>
+</div>
 <section class="grid">
   <!-- Houses -->
-  <div class="house" onclick="openModal('H-001','₹350','20 Swans / rent | 1 Stash')">
+  <div class="house" onclick="openModal('H-001','₹750','30 Swans / rent | 5 Stash')">
     <img src="mansions/1.jpeg">
     <span>Residence 01</span>
   </div>
 
-  <div class="house" onclick="openModal('H-002','₹400','25 Swans / rent | 2 Stash')">
-    <img src="mansions/2.jpeg">
+  <div class="house" onclick="openModal('H-002','₹800','40 Swans / rent | 6 Stash')">
+    <img src="mansions/6.jpeg">
     <span>Residence 02</span>
   </div>
 
-  <div class="house" onclick="openModal('H-003','450','30 Swans / rent | 3 Stash')">
-    <img src="mansions/3.jpeg">
+  <div class="house" onclick="openModal('H-003','850','45 Swans / rent | 7 Stash')">
+    <img src="mansions/7.jpeg">
     <span>Residence 03</span>
   </div>
 
-  <div class="house" onclick="openModal('H-004','₹500','35 Swan / rent | 4 Stash')">
-    <img src="mansions/4.jpeg">
+  <div class="house" onclick="openModal('H-004','₹900','50 Swan / rent | 8 Stash')">
+    <img src="mansions/14.jpeg">
     <span>Residence 04</span>
   </div>
 
-  <div class="house" onclick="openModal('H-005','₹1000','40 Swans / rent | 5 Stash')">
-    <img src="mansions/5.jpeg">
+  <div class="house" onclick="openModal('H-005','₹1000','55 Swans / rent | 10 Stash')">
+    <img src="mansions/8.jpeg">
     <span>Residence 05</span>
   </div>
 
-  <div class="house" onclick="openModal('H-006','₹1500','45 Swans / rent | 6 Stash')">
-    <img src="mansions/6.jpeg">
+  <div class="house" onclick="openModal('H-006','₹1500','60 Swans / rent | 11 Stash')">
+    <img src="mansions/9.jpeg">
     <span>Residence 06</span>
   </div>
 
-  <div class="house" onclick="openModal('H-007','₹2000','50 Swans / rent | 7 Stash')">
-    <img src="mansions/7.jpeg">
+  <div class="house" onclick="openModal('H-007','₹2000','65 Swans / rent | 12 Stash')">
+    <img src="mansions/13.jpeg">
     <span>Residence 07</span>
   </div>
 
-  <div class="house" onclick="openModal('H-008','₹2500','55 Swans / rent | 8 Stash')">
-    <img src="mansions/8.jpeg">
+  <div class="house" onclick="openModal('H-008','₹2500','70 Swans / rent | 13 Stash')">
+    <img src="mansions/12.jpeg">
     <span>Residence 08</span>
   </div>
 
-  <div class="house" onclick="openModal('H-009','₹3000','60 Swans / rent | 9 Stash')">
-    <img src="mansions/9.jpeg">
+  <div class="house" onclick="openModal('H-009','₹3000','75 Swans / rent | 14 Stash')">
+    <img src="mansions/11.jpeg">
     <span>Residence 09</span>
   </div>
 
-  <div class="house" onclick="openModal('H-010','₹3500','65 Swans / rent | 10 Stash')">
+  <div class="house" onclick="openModal('H-010','₹3500','80 Swans / rent | 15 Stash')">
     <img src="mansions/10.jpeg">
     <span>Residence 10</span>
   </div>
 </section>
-<div class="spclevntsec">
-  <h1>EasterMansions</h1>
-<section class="grid">
-   <div class="house" onclick="openModal('EMH-010','₹640','36 Swans / rent | 4 Stash')">
-    <img src="mansions/11.jpeg">
-    <span>Residence 11</span>
-  </div>
-     <div class="house" onclick="openModal('EMH-009','₹740','37 Swans / rent | 4 Stash')">
-    <img src="mansions/12.jpeg">
-    <span>Residence 12</span>
-  </div>
-     <div class="house" onclick="openModal('EMH-009','₹840','38 Swans / rent | 4 Stash')">
-    <img src="mansions/13.jpeg">
-    <span>Residence 13</span>
-  </div>
-     <div class="house" onclick="openModal('EMH-009','₹940','39 Swans / rent | 4 Stash')">
-    <img src="mansions/14.jpeg">
-    <span>Residence 14</span>
-  </div>
-</section>
-</div>
 <div class="options">
     <a href="https://mfi0212.github.io/MFI/mansion.account"><button class="close">MY ACCOUNT</button></a>
     <a href="https://forms.gle/NoGVEy8XYfGZmHCZA"><button class="close">BUY MANSION</button></a>
@@ -290,8 +295,9 @@ h1 {
       <span>Earn & Stash</span>
       <span id="earn"></span>
     </div>
-
     <button class="close" onclick="closeModal()">CLOSE</button>
+    <span style="    font-size: 12px;
+    line-height: 0px;">Note : If you rent the Mansion with 4 stash, it will be split equally between you and the rental person. This means if you have 4 stashes, 2 will be used by you and the other 2 will be used by the person renting from you.</span>
   </div>
 </div>
 
