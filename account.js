@@ -813,7 +813,7 @@ function renderCalendar() {
     border: solid 1px #ffffff00;
     background: #0020ff;
 ">
-<a class="calndarCntnrbtn" href='https://blackswan19.github.io/bscrop/reminder.html'><button>Date Note</button></a>
+<a class="calndarCntnrbtn" onclick="alert('This feature is coming soon..')"><button>Date Note</button></a>
  <span style="font-weight: 600;
     color: #eee;
     font-size: 16px;
