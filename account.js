@@ -788,13 +788,13 @@ function renderCalendar() {
 
     let html = `<div style="text-align: center;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
-    width: 95%;
+    width: 100%;
     margin-bottom: 20px;
     margin-top: 5px;
     border-radius: 1008px;
-    padding: 5px 5px 5px 20px;
+    padding: 5px;
     transition: all 0.3s ease;
     transform: translate(-50%, 0);
     left: 50%;filter: saturate(2);
