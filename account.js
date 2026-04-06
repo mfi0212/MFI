@@ -139,7 +139,7 @@ let loanChart = null;
 const usersDB = {
     "Mahesh888*": {
         name: "Mahesh Muthinti ⚡",
-        coins: 0,
+        coins: 1000,
         loans: [
             { planDate: "09-02-2026", endDate: "08-04-2026", interest: 700, takenAmount: 2800, takenFrom: "Lendlink", fineRate: 50 },
             { planDate: "11-01-2026", endDate: "09-04-2026", interest: 1100, takenAmount: 4380, takenFrom: "Lendlink", fineRate: 50 },
@@ -788,7 +788,7 @@ function renderCalendar() {
 
     let html = `<div style="text-align: center;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     width: 95%;
     margin-bottom: 20px;
@@ -797,7 +797,7 @@ function renderCalendar() {
     padding: 5px 5px 5px 20px;
     transition: all 0.3s ease;
     transform: translate(-50%, 0);
-    left: 50%;
+    left: 50%;filter: saturate(2);
     position: relative;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
@@ -813,7 +813,8 @@ function renderCalendar() {
     border: solid 1px #ffffff00;
     background: #0020ff;
 ">
-        <span style="font-weight: 600;
+<a class="calndarCntnrbtn" href='https://blackswan19.github.io/bscrop/reminder.html'><button>Date Note</button></a>
+ <span style="font-weight: 600;
     color: #eee;
     font-size: 16px;
     letter-spacing: 0px;">${calendarMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
@@ -830,7 +831,8 @@ function renderCalendar() {
     padding: 15px;
     border-radius: 31px;
     margin-top: -15px;">
-        <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`;
+        <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`
+        ;
 
     for (let i = 0; i < first; i++) html += `<div></div>`;
     for (let d = 1; d <= days; d++) {
