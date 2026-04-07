@@ -140,7 +140,8 @@ const usersDB = {
     "Mahesh888*": {
         name: "Mahesh Muthinti ⚡",
         coins: 0,
-        loans: [
+        loans: [
+
             { planDate: "11-01-2026", endDate: "09-04-2026", interest: 1100, takenAmount: 4380, takenFrom: "Lendlink", fineRate: 50 },
             { planDate: "14-01-2026", endDate: "12-04-2026", interest: 4733, takenAmount: 18080, takenFrom: "Golden", fineRate: 50 },
             { planDate: "14-02-2026", endDate: "14-04-2026", interest: 3357, takenAmount: 11380, takenFrom: "Golden", fineRate: 50 },
@@ -812,8 +813,9 @@ function renderCalendar() {
     border: solid 1px #ffffff00;
     background: #0020ff;
 ">
-<a class="calndarCntnrbtn" onclick="alert('This feature is coming soon..')"><button>Date Note</button></a>
- <span style="font-weight: 600;
+
+<a class="calndarCntnrbtn" href='https://blackswan19.github.io/bscrop/reminder.html'><button>Date Note</button></a>
+<span style="font-weight: 600;
     color: #eee;
     font-size: 16px;
     letter-spacing: 0px;">${calendarMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
