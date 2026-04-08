@@ -142,10 +142,10 @@ const usersDB = {
         coins: 0,
         loans: [
 
-            { planDate: "11-01-2026", endDate: "09-04-2026", interest: 1100, takenAmount: 4380, takenFrom: "Lendlink", fineRate: 50 },
             { planDate: "14-01-2026", endDate: "12-04-2026", interest: 4733, takenAmount: 18080, takenFrom: "Golden", fineRate: 50 },
             { planDate: "14-02-2026", endDate: "14-04-2026", interest: 3357, takenAmount: 11380, takenFrom: "Golden", fineRate: 50 },
-            { planDate: "09-02-2026", endDate: "07-05-2026", interest: 700, takenAmount: 2800, takenFrom: "Lendlink", fineRate: 50 },
+            { planDate: "09-02-2026", endDate: "07-05-2026", interest: 875, takenAmount: 3500, takenFrom: "Lendlink", fineRate: 50 },
+            { planDate: "11-01-2026", endDate: "08-05-2026", interest: 1370, takenAmount: 5480, takenFrom: "Golden", fineRate: 50 },
         ],
         links: [],
         emote: "https://i.pinimg.com/originals/bb/c2/a3/bbc2a39b80d283dc936d426be1868e3c.gif"
