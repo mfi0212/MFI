@@ -108,8 +108,12 @@ h1 {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
+    border: solid 1px #ffffff00;  transition: all 0.3s ease;
 }
+
+.like-btn:hover{ transform: scale(1.03); }
+.like-btn:active{ transform: scale(0.92); }
+
 #like-btn-img{
    width: 40px;
     height: 40px;
