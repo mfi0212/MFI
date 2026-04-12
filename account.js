@@ -592,7 +592,9 @@ function showTotalPopup() {
     document.getElementById("totalContent").innerHTML = `
         <p>Taken amount : <strong>${formatMoney(base)}</strong></p>
         <p style='margin-bottom: 20px;'>Total Interest : <strong>${formatMoney(interest)}</strong></p>
-        ${overdue > 0 ? `<p style="color:#ff4444;margin-bottom: 20px;">Overdue Fine : <strong style='color: #ff4444;'>${formatMoney(overdue)}</strong></p>` : ''}
+        ${overdue > 0 ? `<p style="color: #ff5858;
+    margin: -17px 0 0 0;
+    font-size: 16px;">Overdue Fine : <strong style='color: #ff0000;'>${formatMoney(overdue)}</strong></p>` : ''}
         <hr>
         <p style="font-size: 20px; margin-top: 10px; margin-bottom: -5px;">Total to Return: <strong>${formatMoney(total)}</strong></p>
     `;
