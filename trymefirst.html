@@ -161,10 +161,10 @@ h1:nth-child(1){
 }
 
 .modal{
-    /* background: #ffffff78;  */
+   background: #ffffff4d;
     width: 98%;
     max-width: 520px;
-    padding: 35px;
+    padding: 35px;text-align: center;
     border-radius: 0px;
     animation: rise .4s ease;
     box-shadow: inset 0 0 0 1px 
@@ -204,16 +204,30 @@ h1:nth-child(1){
 }
 
 .close{
- margin-top: 15px;
-    background: none;
-    border: 1px solid var(--ink);
-    padding: 12px;
+margin-top: 15px;
+    background: red;
+    border: none;
+    padding: 10px;
     width: 100%;
     cursor: pointer;
     letter-spacing: 1px;
-    font-size: 12px;
-    color: #1c1c1c;
+    font-size: 15px;
+    text-transform: capitalize;
+    color: white;
     margin-bottom: 15px;
+    border-radius: 100px;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;
 }
 .options {
    position: sticky;
@@ -259,10 +273,10 @@ h1:nth-child(1){
     font-size: 11px;
     padding: 10px;
 }
-.close:hover{
+/* .close:hover{
     background-color: #1c1c1c;
     color: white;
-}
+} */
 </style>
 </head>
 <body>
@@ -390,7 +404,7 @@ h1:nth-child(1){
       <span>Get </span>
       <span id="earn"></span>
     </div>
-    <button class="close" onclick="closeModal()">CLOSE</button>
+    <button class="close" onclick="closeModal()">Close Now</button>
     <p>NOTE : 1 Stash - 1 Offer</p>
   </div>
 </div>
