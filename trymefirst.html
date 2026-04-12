@@ -236,7 +236,13 @@ margin-top: 30px;
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
-}
+ transition: all 0.3s ease;}
+        .close:hover{
+              transform: scale(1.03); 
+        }
+        .close:active{
+              transform: scale(0.90); 
+        } 
 .options {
    position: sticky;
     bottom: 5px;
