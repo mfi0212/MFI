@@ -126,7 +126,7 @@ h1 {
 }
 
 .house img{
-  width: 100%;
+    width: 100%;
   height: 350px;
   filter: saturate(2);
   object-fit: cover;
@@ -435,7 +435,7 @@ function renderLikedMansions() {
     div.className = 'house';
     div.innerHTML = `
       <button class="like-btn" onclick="toggleLike('${m.id}', event)">
-        <img src="${likeIcon}" alt="like">
+        <img id="like-btn-img" src="${likeIcon}" alt="like">
       </button>
       <img src="${m.img}" onclick="openModal('${m.id}','${m.price}','${m.earn}')">
       <span onclick="openModal('${m.id}','${m.price}','${m.earn}')">${m.name}</span>
