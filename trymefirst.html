@@ -162,12 +162,12 @@ h1:nth-child(1){
 }
 
 .modal{
-   background: #0000004d;
+  background: #0000004d;
     color: white;
-    width: 98%;
+    width: 95%;
     max-width: 520px;
-    padding: 35px;text-align: center;
-    border-radius: 0px;
+    padding: 20px;
+    text-align: center;
     animation: rise .4s ease;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
@@ -182,7 +182,8 @@ h1:nth-child(1){
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
     backdrop-filter: blur(10px);
-    border-radius: 50px;
+    border-radius: 45px;
+    margin-bottom: 10px;
 }
 
 @keyframes rise{
@@ -206,7 +207,7 @@ h1:nth-child(1){
 }
 
 .close{
-margin-top: 15px;
+margin-top: 30px;
     background: red;
     border: none;
     padding: 10px;
@@ -215,7 +216,7 @@ margin-top: 15px;
     font-size: 15px;
     text-transform: capitalize;
     color: white;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     border-radius: 100px;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
@@ -405,8 +406,8 @@ margin-top: 15px;
       <span>Get </span>
       <span id="earn"></span>
     </div>
+    <p style="color: rgb(255, 196, 0);">NOTE : 1 Stash - 1 Offer</p>
     <button class="close" onclick="closeModal()">Close Now</button>
-    <p>NOTE : 1 Stash - 1 Offer</p>
   </div>
 </div>
 
