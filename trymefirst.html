@@ -109,7 +109,7 @@ body:has(input[value="dark"]:checked) {
     border: solid 1px #ffffff00;
     border-radius: 45px;
     margin-bottom: 30px;
-        }
+        } 
 
         .minimal-input {
            font-family: 'Poppins', sans-serif;
@@ -139,7 +139,13 @@ body:has(input[value="dark"]:checked) {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
     border-radius: 100px;
+        transition: all 0.3s ease;}
+        .minimal-input:hover{
+              transform: scale(1.03); 
         }
+        .minimal-input:active{
+              transform: scale(0.90); 
+        } 
 
 
         .btn-hermes {
@@ -167,7 +173,13 @@ body:has(input[value="dark"]:checked) {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
     border-radius: 1000px;
+     transition: all 0.3s ease;}
+        .btn-hermes:hover{
+              transform: scale(1.03); 
         }
+        .btn-hermes:active{
+              transform: scale(0.90); 
+        } 
 svg#Layer_1 {
     width: 20px;
     height: 20px;
@@ -223,7 +235,13 @@ svg#Outline {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+transition: all 0.3s ease;}
+        .userslide:hover{
+              transform: scale(1.03); 
+        }
+        .userslide:active{
+              transform: scale(0.90); 
+        } 
        .switch {
     color: var(--hermes-orange);
     cursor: pointer;
@@ -243,7 +261,13 @@ svg#Outline {
     border: solid 1px #ffffff00;
     border-radius: 100px;
     padding: 10px;
-}
+transition: all 0.3s ease;}
+        .switch:hover{
+              transform: scale(1.03); 
+        }
+        .switch:active{
+              transform: scale(0.90); 
+        } 
 
         .swan-big {
             font-size: 6.5rem;
@@ -339,7 +363,13 @@ svg#Outline {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
-}
+transition: all 0.3s ease;}
+        .options button:hover{
+              transform: scale(1.03); 
+        }
+        .options button:active{
+              transform: scale(0.90); 
+        } 
     </style>
 </head>
 <body>
@@ -371,11 +401,11 @@ svg#Outline {
         <div id="dash" class="hidden">
 
             <div class="header">
-                <div class="userslide">
+                <a href="https://mfi0212.github.io/MFI/mansion.account"><div class="userslide">
                     <p>⚡</p>
                     <span class="user" id="username">USER_01</span>
                     <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M15.4,9.88,10.81,5.29a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42L14,11.29a1,1,0,0,1,0,1.42L9.4,17.29a1,1,0,0,0,1.41,1.42l4.59-4.59A3,3,0,0,0,15.4,9.88Z"/></svg>
-                </div>
+                </div></a>
                 <span class="switch" onclick="logout()"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M11.476,15a1,1,0,0,0-1,1v3a3,3,0,0,1-3,3H5a3,3,0,0,1-3-3V5A3,3,0,0,1,5,2H7.476a3,3,0,0,1,3,3V8a1,1,0,0,0,2,0V5a5.006,5.006,0,0,0-5-5H5A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H7.476a5.006,5.006,0,0,0,5-5V16A1,1,0,0,0,11.476,15Z"/><path d="M22.867,9.879,18.281,5.293a1,1,0,1,0-1.414,1.414l4.262,4.263L6,11a1,1,0,0,0,0,2H6l15.188-.031-4.323,4.324a1,1,0,1,0,1.414,1.414l4.586-4.586A3,3,0,0,0,22.867,9.879Z"/></svg></span>
             </div>
 
@@ -503,7 +533,7 @@ svg#Outline {
             const pass = passInput.value.trim();
 
             if (!pass) {
-                alert("Please enter a password.");
+                alert("Enter a password first.");
                 passInput.focus();
                 return;
             }
@@ -511,7 +541,7 @@ svg#Outline {
             currentUser = findUserByPassword(pass);
 
             if (!currentUser) {
-                alert("Invalid password. Please try again.");
+                alert("Invalid password. Try again.");
                 passInput.value = '';
                 passInput.focus();
                 return;
