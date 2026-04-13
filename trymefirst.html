@@ -352,7 +352,7 @@ p {
 	background: linear-gradient(90deg, transparent, rgb(255, 255, 255), #ffffff, transparent);
 	background-size: 200% 100%;
 	animation: shimmer 4.1s linear infinite;
-	background-clip: text;
+	background-clip: text;font-weight: 200;
 }
 
 @keyframes shimmer {
@@ -710,25 +710,29 @@ a {
 }
 
 #coinSection {
-	border-radius: 11px;
-	padding: 3px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 3px;
-	font-weight: 550;
-	font-size: 13px;
-	margin-left: 0px;
-	box-shadow: inset 0 5px 0 0 #ffc10000, inset 0 -3px 11px 0 #ffc80091;
-	transition: all 0.3s ease;
-	z-index: 1000;
-	color: #e8b801;
-	cursor: pointer;
-	transition: all 0.3s ease;
-	border: solid 1.5px #ffc1007d;
-	background: #ffc20012;
+	border-radius: 13px;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    font-weight: 100;
+    font-size: 15px;
+    margin-left: 0px;
+    box-shadow: inset 0 5px 0 0 #ffc10000, inset 0 -3px 11px 0 #ffc80091;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    color: #e8b801;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: solid 1.5px #ffc1007d;
+    background: #ffc20012;
 }
-
+div#coinSection svg {
+   width: 20px;
+    height: 20px;
+    fill: #ffc100;
+}
 #coinSection:hover {
 	transform: scale(1.03);
 }
@@ -2306,10 +2310,7 @@ input:checked+.slider:before {
   .bottom-sheet::-webkit-scrollbar-thumb {
     background: rgba(255,255,255,0.3);
     border-radius: 3px;
-  }div#coinSection svg {
-    width: 15px;
-    height: 15px;
-}.optiononeser {
+  }.optiononeser {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2413,7 +2414,7 @@ input:checked+.slider:before {
     stroke: transparent;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M240-200q-49.85 0-84.92-35.08Q120-270.15 120-320v-320q0-49.85 35.08-84.92Q190.15-760 240-760h480q49.85 0 84.92 35.08Q840-689.85 840-640v320q0 49.85-35.08 84.92Q769.85-200 720-200H240Zm0-420h480q23.54 0 43.92 8.08 20.39 8.07 36.08 23.69V-640q0-33-23.5-56.5T720-720H240q-33 0-56.5 23.5T160-640v51.77q15.69-15.62 36.08-23.69Q216.46-620 240-620Zm-78.62 109.23 453.47 110.31q7.46 2 15.3.38 7.85-1.61 13.54-6.84l149-126q-8.69-21.16-28.38-34.12Q744.62-580 720-580H240q-30.62 0-52.81 19.65-22.19 19.66-25.81 49.58Z"/></svg>
                         </div>
                          <a href="https://blackswan19.github.io/golden/FM/starspage"><div id="coinSection">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><path fill="#e8b801" d="M9.153 5.408C10.42 3.136 11.053 2 12 2c.947 0 1.58 1.136 2.847 3.408l.328.588c.36.646.54.969.82 1.182c.28.213.63.292 1.33.45l.636.144c2.46.557 3.689.835 3.982 1.776c.292.94-.546 1.921-2.223 3.882l-.434.507c-.476.557-.715.836-.822 1.18c-.107.345-.071.717.001 1.46l.066.677c.253 2.617.38 3.925-.386 4.506c-.766.582-1.918.051-4.22-1.009l-.597-.274c-.654-.302-.981-.452-1.328-.452c-.347 0-.674.15-1.329.452l-.595.274c-2.303 1.06-3.455 1.59-4.22 1.01c-.767-.582-.64-1.89-.387-4.507l.066-.676c.072-.744.108-1.116 0-1.46c-.106-.345-.345-.624-.821-1.18l-.434-.508c-1.677-1.96-2.515-2.941-2.223-3.882c.293-.941 1.523-1.22 3.983-1.776l.636-.144c.699-.158 1.048-.237 1.329-.45c.28-.213.46-.536.82-1.182l.328-.588Z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m325-676.31 104.31-138.84q9.69-12.93 22.73-18.89Q465.08-840 480-840q14.92 0 27.96 5.96 13.04 5.96 22.73 18.89L635-676.31l160.77 54.69q21.38 7.24 32.92 24.12 11.54 16.88 11.54 37.5 0 9.69-2.73 19t-9.19 18L722.92-380.08l4 153.23q1 28.08-18.77 47.47Q688.38-160 662.54-160q.31 0-18.16-2.23L480-210.69l-164.38 48.46q-5 2-9.47 2.11-4.46.12-8.69.12-26.61 0-46-19.38-19.38-19.39-18.38-47.47l4-154.23L131.92-523q-6.46-8.69-9.19-18-2.73-9.31-2.73-19 0-20.38 11.81-37.65T165-622.38l160-53.93Zm25.15 34.39-171.69 57.84q-11.54 3.85-15.77 15.77-4.23 11.93 3.46 21.93l111.7 153.61-4.77 166.39q-.77 13.07 9.23 20.76 10 7.7 22.31 3.85L480-252.15l175.38 51.38q12.31 3.85 22.31-3.85 10-7.69 9.23-20.76l-4.77-167.39 111.7-151.61q7.69-10 3.46-21.93-4.23-11.92-15.77-15.77l-171.69-59.84-110.62-147.31q-6.92-10-19.23-10t-19.23 10L350.15-641.92ZM480-499.23Z"/></svg>
                         <span id="userCoinsDisplay">0</span>
                     </div></a>
                     </div>
