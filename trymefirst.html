@@ -352,7 +352,11 @@ filter: saturate(2);
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
     filter: saturate(2);
-        }
+        } 
+        .price-card span {
+    color: #00f5ff;
+    font-weight: 500;
+}
         .price-card:hover{ transform: scale(1.03); }
         .price-card:active{ transform: scale(0.90); } 
         .popup{ 
@@ -565,11 +569,8 @@ filter: saturate(2);
         .glass-card {
             border-radius: 45px;
     padding: 0px;
-    margin: 15px 0px;
-    background: linear-gradient(0deg, #ffffff1a, transparent);
     display: grid;
     width: 100%;
-    padding: 15px 0;
 
         }
 
