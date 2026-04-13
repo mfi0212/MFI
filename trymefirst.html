@@ -233,7 +233,7 @@ h3 {
 	color: #ffd800;
 	letter-spacing: 0px;
 	margin: 10px 0px;
-	font-weight: 800;
+	font-weight: 500;
 	font-size: 18px;
 }
 .sponsor-card .btn{
@@ -243,7 +243,7 @@ h3 {
 }
         body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } 
         .btn{
-                background: #ffffff00;
+               background: #ffffff00;
     color: var(--text);
     padding: 10px;
     border-radius: 30px;
@@ -264,7 +264,8 @@ h3 {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
-filter: saturate(2);
+    filter: saturate(2);
+    font-size: 15px;
         }
         .btn:hover{ transform: scale(1.05); }
         .btn:active{ transform: scale(0.90); } 
@@ -321,12 +322,12 @@ filter: saturate(2);
     background: rgba(255, 255, 255, 0.11);
 } */
 .price-card {
-  padding: 9px 0px;
+ padding: 10px;
     margin: 10px 0px;
     border-radius: 100px;
     transition: all 0.3s ease;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 15px;
     color: #ffffffbf;
     font-weight: 400;
     box-shadow: inset 0 0 0 1px 
@@ -341,7 +342,7 @@ filter: saturate(2);
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
-filter: saturate(2);
+    filter: saturate(2);
         }
         .price-card:hover{ transform: scale(1.03); }
         .price-card:active{ transform: scale(0.90); } 
@@ -457,10 +458,11 @@ filter: saturate(2);
         }
 
         .note{
-            font-size: 14px;
-    color: #aaa;
+          font-size: 14px;
+    color: #ffffffa8;
     padding: 5px;
     line-height: 25px;
+    font-weight: 100;
         } 
 
         #stoexplore{ 
@@ -603,7 +605,7 @@ filter: saturate(1);
         }
 
         @media(max-width:500px) {
-            .logo { font-size: 56px; }
+            .logo { font-size: 65px; }
         }
     </style>
 </head>
@@ -890,10 +892,10 @@ filter: saturate(1);
                     <div class="logo">Golden</div>
             <h3 style=" color: #ffd800;
     letter-spacing: 0px;
-    margin: -20px 0 0 15px;
+    margin: -25px 0 0 15px;
     font-weight: 500;
     font-size: 11px;">By BsLends</h3>
-            <button id="currencyToggle" class="btn">Switch to USD ($)</button>
+            <button id="currencyToggle" class="btn">USD ($)</button>
             <h3 style="margin-top: 20px;">Our Interest</h3>
         <p class="note">The interest of us are not fixed, It changes based on amount providers.<br><br>
             <div id="pricesList" class="prices"></div>
@@ -1195,8 +1197,8 @@ const pricesList = document.getElementById("pricesList");
 const toggleBtn  = document.getElementById("currencyToggle");
 function updateToggleButton() {
   toggleBtn.textContent = currentCurrency === 'INR' 
-    ? 'Switch to USD ($)' 
-    : 'Switch to INR (₹)';
+    ? 'USD ($)' 
+    : 'INR (₹)';
 }
 function renderPrices(){
   pricesList.innerHTML = "";
