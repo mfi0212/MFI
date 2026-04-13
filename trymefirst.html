@@ -210,7 +210,12 @@ body:has(input[value="dim"]:checked) {
     50% { width: 100%; opacity: 1; left: 0; }
     100% { width: 0%; opacity: 0; left: 100%; }
 }
-
+.maindecisionopt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
 button#currencyToggle {
     margin-top: 30px;
 }
@@ -366,7 +371,7 @@ button.btn.btn-gold.close-btn {
    display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 5px;margin: 0;
     padding: 5px;
 }
         .menu{ 
@@ -1173,14 +1178,23 @@ Borrow
         <div class="popup-content">
             <h3>Visit my account ?</h3>
             <p style="font-size: 15px;margin-top: -10px;">We are redirecting you to visit your account...!</p>
-            <button class="btn btn-gold close-btn">
-                <a href="https://mfi0212.github.io/MFI/accverify" style="color:white; text-decoration:none;">Ok, visit</a>
-            </button>
-            <a href="" style="color: black;
-    background: white;
-    padding: 10px 20px;
-    border-radius: 1000px;
-    font-size: 13px;">Go to Homepage</a>
+            <div class="maindecisionopt">
+                 <button class="btn btn-gold close-btn">
+                    <a href="https://mfi0212.github.io/MFI/accverify" style="color: white;
+                        text-decoration: none;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 5px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
+                        <span>Visit</span>
+                    </a>
+                </button>
+                <button class="btn btn-gold close-btn"style="color: black;
+                        background: white;">
+                    <a href="" style="color: black;">Go to Homepage</a>
+                </button>
+            </div>
         </div>
     </div>
 
