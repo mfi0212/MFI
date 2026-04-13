@@ -523,21 +523,22 @@ filter: saturate(2);
         .helper-button:active, .helper-buttons:active{ transform: scale(0.90); } 
 
         .top-bar {
-           position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    max-width: 500px;
-    height: 60px;
-    z-index: 998;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 10px;
-    padding-top: env(safe-area-inset-top);
-    left: 50%;
-    transform: translateX(-50%);
-    flex-direction: row-reverse;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            max-width: 500px;
+            height: 60px;
+            /* background: #ffffff00; */
+            /* backdrop-filter: blur(2px); */
+            z-index: 998;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            padding-top: env(safe-area-inset-top);
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .glass-card {
