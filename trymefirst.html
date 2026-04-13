@@ -98,7 +98,7 @@ svg {
     color: #fff;
     padding: 8px;
     text-align: center;
-    width: 75%;    font-weight: 100;
+    width: 80%;    font-weight: 100;
 	outline: none;
 	max-width: 300px;
 	margin: 0px 0px 25px 0px;
@@ -674,21 +674,30 @@ a {
 }
 
 .total-icon {
-	box-shadow: inset 0 0.5px 0 #ffffff33, inset 0 -4px 9px #ffffff3d;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-	color: #ffffff99;
-	border-radius: 12px;
-	z-index: 1000;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 15px;
-	cursor: pointer;
-	background: #ffffff08;
-	width: 32px;
-	height: 32px;
-	transition: all 0.3s ease;
+	box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;
+    color: #ffffff99;
+    border-radius: 12px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    cursor: pointer;
+    background: #ffffff08;
+    width: 35px;
+    height: 35px;
+    transition: all 0.3s ease;
 }
 
 .total-icon:hover {
@@ -2124,7 +2133,7 @@ input:checked+.slider:before {
             </g>
         </svg>
         <input type="text" id="userPassword" placeholder="Enter here....">
-        <button id="submitBtn">Verify <svg style="background: #ffffff63;
+        <button id="submitBtn">Verify Now<svg style="background: #ffffff63;
     border-radius: 9px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="m547.69-267.69-28.31-28.77L682.92-460H200v-40h482.92L519.38-663.54l28.31-28.77L760-480 547.69-267.69Z"/></svg></button>
         <br>
         <p id="error-message"></p>
@@ -2398,16 +2407,10 @@ input:checked+.slider:before {
                     <div class="user-name-container"> <img id="userEmote" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0" onclick="openEmoteChooser()"> <span id="userName" style="font-size:19px;"></span>
                         <div class="total-icon"
                         onclick="showTotalPopup()">
-                            <svg id="Layer_1" style="width: 22px; height: 22px; fill: #ffffffbd; stroke: transparent;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff">
-                                <g fill="none" stroke="#ffffff">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 8h4" />
-                                    <path stroke-width="1.5" d="M20.833 9h-2.602C16.446 9 15 10.343 15 12s1.447 3 3.23 3h2.603c.084 0 .125 0 .16-.002c.54-.033.97-.432 1.005-.933c.002-.032.002-.071.002-.148v-3.834c0-.077 0-.116-.002-.148c-.036-.501-.465-.9-1.005-.933C20.959 9 20.918 9 20.834 9Z"
-                                    />
-                                    <path stroke-width="1.5" d="M20.965 9c-.078-1.872-.328-3.02-1.137-3.828C18.657 4 16.771 4 13 4h-3C6.229 4 4.343 4 3.172 5.172C2 6.343 2 8.229 2 12c0 3.771 0 5.657 1.172 6.828C4.343 20 6.229 20 10 20h3c3.771 0 5.657 0 6.828-1.172c.809-.808 1.06-1.956 1.137-3.828"
-                                    />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.991 12h.01" />
-                                </g>
-                            </svg>
+                            <svg id="Layer_1" style="width: 26px;
+    height: 26px;
+    fill: #ffffffbd;
+    stroke: transparent;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M240-200q-49.85 0-84.92-35.08Q120-270.15 120-320v-320q0-49.85 35.08-84.92Q190.15-760 240-760h480q49.85 0 84.92 35.08Q840-689.85 840-640v320q0 49.85-35.08 84.92Q769.85-200 720-200H240Zm0-420h480q23.54 0 43.92 8.08 20.39 8.07 36.08 23.69V-640q0-33-23.5-56.5T720-720H240q-33 0-56.5 23.5T160-640v51.77q15.69-15.62 36.08-23.69Q216.46-620 240-620Zm-78.62 109.23 453.47 110.31q7.46 2 15.3.38 7.85-1.61 13.54-6.84l149-126q-8.69-21.16-28.38-34.12Q744.62-580 720-580H240q-30.62 0-52.81 19.65-22.19 19.66-25.81 49.58Z"/></svg>
                         </div>
                          <a href="https://blackswan19.github.io/golden/FM/starspage"><div id="coinSection">
                         <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><path fill="#e8b801" d="M9.153 5.408C10.42 3.136 11.053 2 12 2c.947 0 1.58 1.136 2.847 3.408l.328.588c.36.646.54.969.82 1.182c.28.213.63.292 1.33.45l.636.144c2.46.557 3.689.835 3.982 1.776c.292.94-.546 1.921-2.223 3.882l-.434.507c-.476.557-.715.836-.822 1.18c-.107.345-.071.717.001 1.46l.066.677c.253 2.617.38 3.925-.386 4.506c-.766.582-1.918.051-4.22-1.009l-.597-.274c-.654-.302-.981-.452-1.328-.452c-.347 0-.674.15-1.329.452l-.595.274c-2.303 1.06-3.455 1.59-4.22 1.01c-.767-.582-.64-1.89-.387-4.507l.066-.676c.072-.744.108-1.116 0-1.46c-.106-.345-.345-.624-.821-1.18l-.434-.508c-1.677-1.96-2.515-2.941-2.223-3.882c.293-.941 1.523-1.22 3.983-1.776l.636-.144c.699-.158 1.048-.237 1.329-.45c.28-.213.46-.536.82-1.182l.328-.588Z"/></svg>
