@@ -215,14 +215,14 @@ i.fa-solid.fa-arrow-right {
 h3 {
 	color: #ffffff94;
    font-weight: 300;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 p {
 	margin-bottom: 2px;
     color: #ffffff;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 #error-message {
@@ -759,7 +759,7 @@ svg.serchareicon {
     align-items: center;
     justify-content: center;
     gap: 3px;
-    font-weight: 500;
+    font-weight: 900;
     font-size: 14px;
     margin-left: 0px;
     box-shadow: inset 0 5px 0 0 #ffc10000, inset 0 -3px 11px 0 #ffc100bd;
@@ -851,20 +851,33 @@ input {
 }
 
 button.move-asaid {
-	padding: 3px 15px;
-	background: transparent;
-	outline: none;
-	border: none;
-	color: white;
-	outline: none;
-	border: none;
-	border-radius: 1000px;
-	margin: 0px;
-	cursor: pointer;
-	transition: all 0.3s ease;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 3px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-	filter: saturate(2);
+	padding: 3px 8px;
+    background: #ffffff2e;
+    outline: none;
+    border: none;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 1000px;
+    margin: 0px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 3px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    /* border: solid 1px #ffffff00; */
+    filter: saturate(2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 button.move-asaid:hover {
@@ -883,11 +896,14 @@ button.move-asaid:active {
 }
 
 .graphsays {
-	display: flex;
-	font-size: 10px;
-	white-space: nowrap;
-	justify-content: center;
-	align-items: center;
+display: flex;
+    font-size: 12px;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    font-weight: 100;
+    color: #ffffffb8;
 }
 
 div#popupContent {
@@ -981,9 +997,11 @@ div#loanDetails {
 }
 
 .calndarCntnrbtn button {
-	margin-bottom: 0px;
-	border-radius: 15px;
-	cursor: pointer;
+	    margin-bottom: 0px;
+    border-radius: 105px;
+    cursor: pointer;
+    padding: 3px 5px;
+
 }
 
 #totalPopup button,
@@ -1586,16 +1604,16 @@ svg#Layer_7 {
 
 .loan-actions button {
 	border: none;
-	border-radius: 12px;
-	cursor: pointer;
-	transition: all 0.15s;
-	margin: 0px;
-	width: 30px;
-	height: 30px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 6px;
+    border-radius: 13px;
+    cursor: pointer;
+    transition: all 0.5s;
+    margin: 0px;
+    width: 33px;
+    height: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
 }
 
 .loan-actions button:hover {
@@ -1607,10 +1625,10 @@ svg#Layer_7 {
 }
 
 .loan-actions svg {
-	width: 15px;
-	height: 14px;
-	fill: #ffffffd6;
-	stroke: transparent;
+	width: 18px;
+    height: 18px;
+    fill: #ffffffd6;
+    stroke: transparent;
 }
 
 .btn-hide {
@@ -2191,7 +2209,7 @@ input:checked+.slider:before {
             </g>
         </svg>
         <input type="text" id="userPassword" placeholder="Enter here....">
-        <button id="submitBtn">Verify Now<svg style="background: #ffffff63;
+        <button id="submitBtn">Verify <svg style="background: #ffffff63;
     border-radius: 9px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="m547.69-267.69-28.31-28.77L682.92-460H200v-40h482.92L519.38-663.54l28.31-28.77L760-480 547.69-267.69Z"/></svg></button>
         <br>
         <p id="error-message"></p>
@@ -2582,14 +2600,12 @@ input:checked+.slider:before {
                                     <path d="M14.365,12.549l7.741,5.9A11.916,11.916,0,0,0,24,12a12.055,12.055,0,0,0-.081-1.351Z" />
                                 </svg>
                             </div> <i class="fa-solid fa-toggle-off toggle-pin" data-view="graph"></i> </div>
-                    <div class="nav-item active" data-view="list">
-                        <?xml version="1.0" encoding="UTF-8"?>
+                    	<div class="nav-item active" data-view="list">
                             <div class="iconbotm">
-                                <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512">
-                                    <path d="M18.5,0H5.5C2.47,0,0,2.47,0,5.5v13c0,3.03,2.47,5.5,5.5,5.5h13c3.03,0,5.5-2.47,5.5-5.5V5.5c0-3.03-2.47-5.5-5.5-5.5Zm2.5,18.5c0,1.38-1.12,2.5-2.5,2.5H5.5c-1.38,0-2.5-1.12-2.5-2.5V5.5c0-1.38,1.12-2.5,2.5-2.5h13c1.38,0,2.5,1.12,2.5,2.5v13ZM5,6.5c0-.83,.67-1.5,1.5-1.5H14.5c.83,0,1.5,.67,1.5,1.5s-.67,1.5-1.5,1.5H6.5c-.83,0-1.5-.67-1.5-1.5Zm14,5.5c0,.83-.67,1.5-1.5,1.5H6.5c-.83,0-1.5-.67-1.5-1.5s.67-1.5,1.5-1.5h11c.83,0,1.5,.67,1.5,1.5Zm-9,5.5c0,.83-.67,1.5-1.5,1.5h-2c-.83,0-1.5-.67-1.5-1.5s.67-1.5,1.5-1.5h2c.83,0,1.5,.67,1.5,1.5Z"
-                                    />
-                                </svg>
-                            </div> <i class="fa-solid fa-toggle-on toggle-pin on" data-view="list"></i> </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M100.78-60.78v-106h758.44v106H100.78Zm0-243.96v-106h758.44v106H100.78Zm0-244.52v-106h758.44v106H100.78Zm0-243.96v-106h758.44v106H100.78Z"/></svg>
+							</div> 
+							<i class="fa-solid fa-toggle-on toggle-pin on" data-view="list"></i> 
+						</div>
                     <div class="nav-item" data-view="calendar">
                         <?xml version="1.0" encoding="UTF-8"?>
                             <div class="iconbotm">
