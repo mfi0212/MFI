@@ -138,8 +138,8 @@ let loanChart = null;
 
 const usersDB = {
     "Mahesh888*": {
-        name: "Mahesh Muthinti ⚡",
-        coins: 1000,
+        name: "Mahesh Muthinti",
+        coins: 0,
         loans: [
 
             { planDate: "09-02-2026", endDate: "07-05-2026", interest: 875, takenAmount: 3500, takenFrom: "Lendlink", fineRate: 50 },
