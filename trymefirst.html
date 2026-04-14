@@ -87,10 +87,12 @@ a{
       color: var(--text-primary);
       min-height: 100vh;
           padding: 5px;
-}.exploreside {
+}
+.exploreside svg {
     position: relative;
-    right: 15px;
-    font-size: 12px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
 }
   div#sectionsContainer {
     padding-top: 100px;
@@ -106,13 +108,15 @@ a{
 
     }
 .mficolblogo{
-    width: 60px;
+   width: 60px;
     height: 60px;
     background: linear-gradient(45deg, #0021ffbd 34%, #00d0ffcc);
     position: relative;
     z-index: 100000;
     border: none;
-    padding: 5px;border-radius: 100px;
+    padding: 5px;
+    border-radius: 100px;
+    backdrop-filter: blur(1px);
 }
 .logo span svg {
     width: 18px;
@@ -189,7 +193,7 @@ box-shadow: inset 0 0 0 1px
     background: rgb(255 0 0 / 69%);
     transition: all 0.3s ease;
     white-space: nowrap;
-    font-size: 14px;    border: none;
+    font-size: 15px;    border: none;
 
 }.exclamation:hover{
               transform: scale(1.03); 
@@ -293,7 +297,7 @@ transition: all 0.3s ease;
 
 
     #searchInput {
-     padding: 10px 25px;
+    padding: 12px 15px;
     font-size: 17px;
     background: transparent;
     border: none;
@@ -335,10 +339,17 @@ transition: all 0.3s ease;
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
-    filter: saturate(2);    backdrop-filter: blur(5px);
+    filter: saturate(2);
+    backdrop-filter: blur(5px);
     border-radius: 100px;
-    padding: 14px;
-    }
+    padding: 6px;
+    width: 45px;
+    height: 45px;
+    }svg.serchareicon {
+    width: 40px;
+    height: 40px;
+    fill: #ffffffe3;
+}
 .searchcontainer {
     border-radius: 100px;
     display: flex;
@@ -455,7 +466,7 @@ display: flex;
 
     .site-info h3 {
      font-size: 16px;
-    font-weight: 600;
+        font-weight: 500;
     }
 
     .site-info p {
@@ -517,7 +528,7 @@ footer{
   </div>
    <div class="search-box">
     <div class="searchcontainer">
-      <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+      <span class="search-icon"><svg class="serchareicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-95.92 0-162.58-66.65-66.65-66.66-66.65-162.58 0-95.92 66.65-162.58 66.66-66.65 162.58-66.65 95.92 0 162.58 66.65 66.65 66.66 66.65 162.58 0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z"/></svg></span>
       <input type="text" id="searchInput" placeholder="Search here..." autocomplete="off"/>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform"><p class="exclamation">I've Issue</p></a>
     </div>
@@ -621,7 +632,7 @@ function renderAll() {
           <h3>${site.name}</h3>
         </div>
          <div class="exploreside">
-  <i class="fa-solid fa-chevron-right"></i>
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m320.23-107.69-42.54-42.54L607.46-480 277.69-809.77l42.54-42.54L692.54-480 320.23-107.69Z"/></svg>
  </div>
       `;
 
