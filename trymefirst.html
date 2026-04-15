@@ -381,10 +381,9 @@ p {
 	background: transparent;
     color: #ffffffd4;
     border: none;
-    padding: 10px;
+       padding: 8px;
     border-radius: 30px;
-    font-size: 18px;
-    height: 35px;
+    font-size: 16px;
     cursor: pointer;
     z-index: 10000;
     display: flex;
@@ -520,7 +519,9 @@ p {
 .user-links :active {
 	transform: scale(0.90);
 }
-
+.fa-solid, .fas{
+	font-weight: 100;
+}
 a {
 	text-decoration: none;
 	color: white;
@@ -2464,7 +2465,7 @@ input:checked+.slider:before {
                         <a href="https://mfi0212.github.io/MFI/bsmfi_search"><span>BS&MFI</span></a>
                     </div>
                 </div>
-                <button class="currency-switch" id="currencySwitch"> <i class="fa-solid fa-dollar-sign"></i> <span id="currencyLabel">Usd</span> </button>
+                <button class="currency-switch" id="currencySwitch"><span id="currencyLabel">Usd ($)</span>  <i style="display: none;" class="fa-solid fa-dollar-sign"></i> </button>
             </div>
             <div class="overlay" id="overlay"></div>
             <div class="bottom-sheet" id="sheet">
