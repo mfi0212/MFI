@@ -311,18 +311,23 @@ img.mfigif {
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 .bottombar {
-  background: linear-gradient(0deg, #000000d4, transparent);
+ background: linear-gradient(0deg, #000000d4, transparent);
     width: 95%;
     position: fixed;
     bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
     padding: 0 0 30px 0;
-    right: 0;border-radius: 30px 30px 0 0;
+    right: 0;
+    border-radius: 30px 30px 0 0;
     backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 430px;
 }
     .dock {
-    backdrop-filter: blur(5px);
+   backdrop-filter: blur(5px);
     border-radius: 30px;
     padding: 10px 15px;
     display: flex;
@@ -341,6 +346,8 @@ img.mfigif {
     border: solid 1px #ffffff00;
     filter: saturate(2);
     justify-content: space-evenly;
+    max-width: 800px;
+    width: 100%;
     }
 
     .dock-icon {
