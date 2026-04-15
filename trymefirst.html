@@ -383,14 +383,14 @@ p {
     border: none;
     padding: 10px;
     border-radius: 30px;
-    font-size: 20px;
+    font-size: 18px;
     height: 35px;
     cursor: pointer;
     z-index: 10000;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 3px;
     box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff21;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
@@ -408,7 +408,8 @@ p {
     margin-bottom: 0px;
     transition: all 0.3s ease;
     backdrop-filter: blur(4px);
-    text-transform: lowercase;
+    text-transform: capitalize;
+    font-weight: 100;
 }
 
 .currency-switch:hover {
@@ -681,20 +682,16 @@ svg.serchareicon {
 	color: #e0e0e0;
     border: none;
     border-radius: 38px;
-    padding: 4px 15px;
-    font-size: 14px;
-    filter: saturate(2);
+    padding: 3px 18px;
+    font-size: 15px;
     cursor: pointer;
     background: transparent;
-    border: 1.5px solid #ffffff3b;
     position: relative;
     text-align: center;
-    transition: all .3s ease;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff21;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
  color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
@@ -708,8 +705,8 @@ svg.serchareicon {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
     transition: all 0.3s ease;
-    font-weight: 400;
-    gap: 0px;
+    font-weight: 500;
+    gap: 2px;
 }
 
 .amount-btn:active {
@@ -949,9 +946,10 @@ canvas#loanChart {
 	scale: 1;
 	transform: translate(-50%, -4%);
 	background: transparent;
-	color: #e0e0e0;
-	padding: 25px;
-	border-radius: 45px;
+	corner-shape: squircle;
+    color: #e0e0e0;
+    padding: 25px;
+    border-radius: 80px;
 	max-width: 450px;
 	width: 96%;
 	z-index: 2000000;
@@ -1025,14 +1023,14 @@ div#loanDetails {
 #linkConfirmPopup button,
 #emoteChooser button {
 	margin-top: 14px;
-	background: #0020ff;
-	color: white;
-	border: none;
-	padding: 8px 16px;
-	border-radius: 22px;
-	cursor: pointer;
-	width: 100%;
-	font-size: 15px;
+    background: #0020ff;
+    color: white;
+    border: none;
+    padding: 7px;
+    border-radius: 22px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 17px;
 	transition: all 0.3s ease;
 	transition: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 2px 0px -2px color-mix(in srgb, #ffffff73 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -2px 0px -2px color-mix(in srgb, #ffffff7d calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff85 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 	border: solid 1px #ffffff00;
@@ -2432,7 +2430,7 @@ input:checked+.slider:before {
                         <a href="https://mfi0212.github.io/MFI/bsmfi_search"><span>BS&MFI</span></a>
                     </div>
                 </div>
-                <button class="currency-switch" id="currencySwitch"> <i class="fa-solid fa-dollar-sign"></i> <span id="currencyLabel">USD</span> </button>
+                <button class="currency-switch" id="currencySwitch"> <i class="fa-solid fa-dollar-sign"></i> <span id="currencyLabel">Usd</span> </button>
             </div>
             <div class="overlay" id="overlay"></div>
             <div class="bottom-sheet" id="sheet">
