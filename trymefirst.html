@@ -1,20 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify my account</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Balthazar&family=Della+Respira&family=Gantari:ital,wght@0,100..900;1,100..900&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
-    <style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iOS Home</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 * {
 	-webkit-tap-highlight-color: transparent;
@@ -51,821 +42,73 @@ body {
 	--saturation: 150%;
 }
 
-body:has(input[value="dark"]:checked) {
-	--c-glass: #bbbbbc;
-	--c-light: #fff;
-	--c-dark: #000;
-	--c-content: #e1e1e1;
-	--c-action: #03d5ff;
-	--c-bg: #1b1b1d;
-}
+    :root {
+      --bg: #0a0a0a;
+      --glass: rgba(30, 30, 40, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --text: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.75);
+    }
 
-* {
-	-webkit-tap-highlight-color: transparent;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
+    body {
+      height: 100vh;
+      overflow: hidden;
+      color: var(--text);
+      user-select: none;
+    }
 
-#passwordContainer {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	min-height: 100vh;
-	width: 100%;
-	text-align: center;
-	line-height: 15px;
-	position: fixed;
-	background: transparent;
+  
+a{
+  text-decoration: none;
+  color: white;
 }
-
-::-webkit-scrollbar {
-	background-color: transparent;
-}
-svg {
-    fill: white;
-}
-#userPassword {
-	font-size: 18px;
-    border-radius: 40px;
-    border: none;
-    background: #ffffff00;
-    color: #fff;
-    padding: 8px;
-    text-align: center;
-    width: 80%;    font-weight: 100;
-	outline: none;
-	max-width: 300px;
-	margin: 0px 0px 25px 0px;
-	backdrop-filter: blur(5px);
-	filter: drop-shadow(0px 0px 2px black);
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-	filter: saturate(2);
-	transition: all 0.3s ease;
-}
-
-#userPassword:active {
-	transform: scale(0.95);
-}
-
-#userPassword:focus {
-	background-color: #fff;
-	color: #000;
-}
-
-@keyframes liquidPress {
-	0% {
-		transform: scale(1, 1);
-	}
-
-	18% {
-		transform: scale(0.92, 0.88);
-	}
-
-	40% {
-		transform: scale(1.06, 1.1);
-	}
-
-	62% {
-		transform: scale(0.98, 0.96);
-	}
-
-	82% {
-		transform: scale(1.01, 1.02);
-	}
-
-	100% {
-		transform: scale(1, 1);
-	}
-}
-
-#submitBtn {
-	background-color: blue;
-    color: white;
-    border: none;
-    border-radius: 33px;
-    font-size: 15px;
-    cursor: pointer;
-    display: flex;
-    font-weight: 100;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-    z-index: 1000;
-    padding: 5px 8px;
-    display: flex;
-    gap: 5px;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-}
-
-i.fa-solid.fa-arrow-right {
-	padding: 6px;
-	background: #ffffff;
-	color: #000000;
-	border-radius: 1000px;
-	width: 44px;
-	transition: all 0.3s ease;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-}
-
-.topoptions {
-	display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0px;
-    padding: 15px 5px 50px 5px;
-    border-radius: 0px;
-    width: 99%;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    max-width: 450px;
-    backdrop-filter: blur(3px);
-    z-index: 1;
-    filter: saturate(2);
-    background: linear-gradient(180deg, #000000, transparent);
-}
-
-#submitBtn:hover {
-	transform: scale(1.1);
-}
-
-#submitBtn:active {
-	transform: scale(0.98);
-}
-
-h3 {
-	color: #ffffff94;
-   font-weight: 300;
-    font-size: 15px;
-}
-
-p {
-	margin-bottom: 2px;
-    color: #ffffff;
-    font-weight: 300;
-    font-size: 15px;
-}
-
-#error-message {
-	color: #ff0000;
-	font-size: 12px;
-	margin-top: 10px;
-}
-
-.notice {
-	font-weight: 100;
-    font-size: 13px;
-    line-height: 20px;
-    position: fixed;
-    bottom: 10px;
-    color: #ffffff;
-    padding: 10px;
-    width: 94%;
-    max-width: 400px;
-    background: transparent;
-    border-radius: 21px;
-    backdrop-filter: blur(5px);
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-}
-
-/* MODAL */
-.modal {
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: transparent;
-	overflow-y: auto;
-	z-index: 10;
-}
-
-.title {
-	font-size: 18px;
-	font-weight: 600;
-	margin-bottom: 15px;
-	text-align: center;
-	color: #ffcc00;
-}
-
-@keyframes shimmer {
-	0% {
-		background-position: 200% 0;
-	}
-
-	100% {
-		background-position: -200% 0;
-	}
-}
-
-.close-btn {
-	color: #e0e0e0;
-	cursor: pointer;
-	z-index: 11;
-	filter: saturate(2);
-	border-radius: 50px;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 40px;
-	height: 40px;
-	transition: all 0.3s ease;
-}
-
-.close-btn:hover {
-	transform: scale(1.03);
-}
-
-.close-btn:active {
-	transform: scale(0.90);
-}
-
-.fixed {
-	position: fixed;
-	top: 80px;
-	width: 99%;
-	max-width: 600px;
-	z-index: 10;
-	filter: saturate(2);
-	background: transparent;
-	border: 1.5px solid #ffffff1f;
-	padding: 5px 0px 0px 15px;
-	border-radius: 45px;
-	max-height: 280px;
-	height: fit-content;
-	box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff4a;
-	border: 1px solid rgb(255 255 255 / 13%);
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-	backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
-	-webkit-backdrop-filter: blur(3px) saturate(var(--saturation));
-	transform: translate(-50%, 0);
-	left: 50%;
-}
-
-.scroll {
-	top: 180px;
-	transform: translateX(-50%);
-	position: relative;
-	left: 50%;
-	width: 104%;
-	padding: 65px 50px 58px 50px;
-	border-radius: 50px;
-}
-
-#userName {
-	transition: 0.5s ease-in-out;
-	color: transparent;
-	background: linear-gradient(90deg, transparent, rgb(255, 255, 255), #ffffff, transparent);
-	background-size: 200% 100%;
-	animation: shimmer 4.1s linear infinite;
-	background-clip: text;font-weight: 400;
-}
-
-@keyframes shimmer {
-	0% {
-		background-position: 200% 0;
-	}
-
-	100% {
-		background-position: -200% 0;
-	}
-}
-
-.currency-switch {
-	background: transparent;
-    color: #ffffffd4;
-    border: none;
-    padding: 10px;
-    border-radius: 30px;
-    font-size: 17px;
-    height: 35px;
-    cursor: pointer;
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff21;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    filter: saturate(2);
-    margin-bottom: 0px;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(4px);
-}
-
-.currency-switch:hover {
-	transform: scale(1.03);
-}
-
-.currency-switch:active {
-	transform: scale(0.90);
-}
-
-.currency-switch i {
-	font-size: 16px;
-}
-
-/* PROFILE */
-.profile-container {
-	display: flex;
-	align-items: flex-start;
-	gap: 15px;
-	margin-bottom: 0;
-	flex-wrap: wrap;
-	flex-direction: column;
-}
-
-.user-name-container {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	margin-bottom: -30px;
-	padding-top: 15px;
-	justify-content: center;
-	width: 100%;
-	filter: saturate(2);
-	margin-left: -10px;
-}
-
-#userEmote {
-	width: 25px;
-    height: 25px;
-	cursor: pointer;
-	border-radius: 100px;
-	transition: transform .2s;
-	z-index: 1000;
-}
-
-#userEmote:hover {
-	transform: scale(1.1);
-}
-
-.linkadder {
-	width: 99%;
-	display: flex;
-	align-items: center;
-	gap: 5px;
-	margin-top: 30px;
-	padding: 0px 0px 0px 5px;
-}
-
-.user-links {
-	overflow: auto;
-	display: flex;
-	gap: 10px;
-	align-items: center;
-	padding: 5px 20px 5px 5px;
-	transition: all 0.3s ease;
-	position: relative;
-	top: -5px;
-	left: 5px;
-	width: 100%;
-	border-radius: 100px;
-}
-
-.user-link {
-	background: transparent;
-    white-space: nowrap;
-    color: #ffffffb3;
-    padding: 4px 7px;
-    border-radius: 200px;
-    font-size: 11px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    cursor: pointer;
-    font-weight: 100;
-    box-shadow: inset 0 1px 0 #ffffff0a, inset 0 -3px 10px #ffffff3d;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    filter: saturate(2);
-    transition: all 0.3s ease;
-    font-weight: 100;
-}
-
-.user-links :hover {
-	transform: scale(1.03);
-}
-
-.user-links :active {
-	transform: scale(0.90);
-}
-
-a {
-	text-decoration: none;
-	color: white;
-}
-
-.add-link-btn {
-	background: #0020ff;
-    color: white;
-    border: none;
-    border-radius: 101px;
-    font-size: 12px;
-    font-weight: 100;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    white-space: nowrap;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3px 5px;
-    gap: 1px;
-}
-svg.addsiteicon {
-    width: 20px;
-    height: 20px;
-}
-.add-link-btn:hover {
-	transform: scale(1.03);
-}
-
-.add-link-btn:active {
-	transform: scale(0.90);
-}
-
-.search-container {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	transition: all .4s ease;
-	position: relative;
-	top: -13px;
-	height: 50px;
-	width: 99.5%;
-	padding: 0px 5px 0px 0px;
-	justify-content: space-between;
-}
-
-#searchIcon {
-	color: #ffffffd6;
-    cursor: pointer;
-    transition: all 0.9s ease;
-    background: #ffffff00;
-    padding: 5px;
-    border-radius: 105px;
-    box-shadow: inset 0 1px 0 #ffffff0a, inset 0 -3px 10px #ffffff2e;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-div#totalContent p{
-	font-weight: 500;
-}
-svg.serchareicon {
-    width: 30px;
-    height: 30px;
-}
-#searchIcon:hover {
-	transform: scale(1.03);
-}
-
-#searchIcon:active {
-	transform: scale(0.90);
-}
-
-#searchInput {
-	width: 0;
-	padding: 0;
-	border: none;
-	background: transparent;
-	color: #e0e0e0;
-	font-size: 14px;
-	outline: none;
-	transition: all 0.8s ease-in-out;
-	overflow: hidden;
-	border-bottom: solid 1.5px #ffffff3d;
-	top: -5px;
-	position: relative;
-	left: -500px;
-	opacity: 0%;
-	margin-right: 15px;
-}
-
-#searchInput.active {
-	width: 110px;
-	left: 11px;
-	margin-right: 45px;
-	opacity: 100%;
-	padding: 9px 10px;
-}
-
-.amount-buttons {
-	display: flex;
-	gap: 10px;
-	overflow-x: auto;
-	overflow-y: hidden;
-	white-space: nowrap;
-	transition: transform .4s ease;
-	margin-left: -15px;
-	scrollbar-width: none;
-	/* margin-right: 20px; */
-	padding: 10px 10px 0px 0px;
-	border-radius: 30px 10px 32px 30px;
-}
-
-/* h3{ color:#006fff; } */
-.details {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	justify-content: space-between;
-	transition: all 0.3s ease;
-	padding: 20px 0px;
-	font-size: 14px;
-}
-
-.details:active {
-	transform: scale(0.95);
-	font-size: 20px;
-}
-
-.totaldetails {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-}
-
-.totaldetails {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-}
-
-.amount-btn {
-	color: #e0e0e0;
-    border: none;
-    border-radius: 38px;
-    padding: 4px 15px;
-    font-size: 14px;
-    filter: saturate(2);
-    cursor: pointer;
-    background: transparent;
-    border: 1.5px solid #ffffff3b;
-    position: relative;
-    text-align: center;
-    transition: all .3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff21;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    transition: all 0.3s ease;
-    font-weight: 400;
-    gap: 0px;
-}
-
-.amount-btn:active {
-	transform: scale(0.90);
-}
-
-.amount-btn.active {
-	background-color: #0020ff;
-	color: white;
-}
-
-.purpose-tag {
-	font-size: 9px;
-    color: #00e5ff;
-    margin-top: -1px;
-    white-space: nowrap;
+    /* Container */
+    .phone-frame {
+     width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    height: 100vh;
+    /* max-height: 812px; */
+    background: #000000;
     overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 80px;
+    position: relative;
+    }
+
+    /* Status Bar */
+    .status-bar {
+     padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
     font-weight: 100;
+    }
+div#status-time {
+    display: none;
 }
-
-.total-icon {
-	box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    color: #ffffff99;
-    border-radius: 13px;
-    z-index: 1000;
+    .searchdivert {
+    left: 50%;
+    padding: 1px 5px 1px 0;
+    transform: translate(-50%, 0);
+    position: fixed;
+    bottom: 120px;
+}
+    .search-bar {
+    border-radius: 18px;
+    background: rgb(255 255 255 / 8%);
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    cursor: pointer;
-    background: #ffffff08;
-    width: 35px;
-    height: 35px;
-    transition: all 0.3s ease;
-}
-
-.total-icon:hover {
-	transform: scale(1.03);
-	rotate: 90deg;
-}
-
-.total-icon:active {
-	transform: scale(0.90);
-}
-
-#coinSection {
-	border-radius: 12px;
-    padding: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    font-weight: 900;
-    font-size: 14px;
-    margin-left: 0px;
-    box-shadow: inset 0 5px 0 0 #ffc10000, inset 0 -3px 11px 0 #ffc100bd;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    color: #ffc100;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: solid 1.5px #ffc100bd;
-    background: #ffc20012;
-}
-div#coinSection svg {
- width: 15px;
-    height: 15px;
-    fill: #ffc100;
-}
-#coinSection:hover {
-	transform: scale(1.03);
-}
-
-#coinSection:active {
-	transform: scale(0.90);
-}
-
-.offergift {
-	background: #ffffff0f;
-	padding: 2px;
-	border-radius: 35px;
-	backdrop-filter: blur(3px);
-	box-shadow: 6px -8px 11px #00000069;
-	border: 1.5px solid rgba(255, 255, 255, 0.107);
-	transition: all 0.3s ease;
-	z-index: 1;
-	box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff38;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-}
-
-.premium-search {
-	position: fixed;
-	bottom: 75px;
-	right: 15px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 4px;
-	flex-direction: column;
-}
-
-.offergift:hover {
-	transform: scale(1.03);
-}
-
-.offergift:active {
-	transform: scale(0.90);
-}
-
-hr {
-	background: linear-gradient(45deg, transparent, #ffffff4f, transparent);
-	height: 1.5px;
-	outline: none;
-	border: none;
-}
-
-::placeholder {
-	color: rgba(255, 255, 255, 0.427);
-}
-
-input {
-	color: white;
-}
-
-#totalContent strong {
-	color: rgb(255, 204, 0);
-}
-
-#popupContent strong {
-	color: #ffffff85;
-	font-weight: 500;
-}
-
-#totalContent p {
-	text-align: center;
-}
-
-.total-icon svg {
-	fill: white;
-	width: 19px;
-}
-
-button.move-asaid {
-	padding: 3px 8px;
-    background: #ffffff2e;
-    outline: none;
-    border: none;
-    color: white;
-    outline: none;
-    border: none;
-    border-radius: 1000px;
-    margin: 0px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    width: fit-content;
+    padding: 1px 5px 1px 0;
+    font-size: 13px;
+    font-weight: 100;
+    gap: 0px;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 3px -2px 
  color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
@@ -877,1909 +120,575 @@ button.move-asaid {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    /* border: solid 1px #ffffff00; */
+    border: solid 1px #ffffff00;
     filter: saturate(2);
+    backdrop-filter: blur(10px);
+    color: white;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .search-bar:active {
+    transform: scale(0.82);
+}
+    svg.serchareicon {
+    width: 25px;
+    height: 25px;
+}
+svg {
+  width: 45px;
+    height: 45px;
+    padding: 3px;
+}
+
+div#notes-container {
+    padding: 0 20px 100px 20px;
+    height: 400px;
+    overflow-y: scroll;
+}
+img.mfigif {
+   width: 30px;
+    height: 30px;
+    border-radius: 100px;
+}
+.logo {
+ padding: 4px;
+    border-radius: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 6px;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 3px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    filter: saturate(2);
+}.logo svg {
+   width: 15px;
+    height: 15px;
+    margin-right: -3px;
+    margin-left: -6px;
 }
+    .search-bar input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: white;
+      flex: 1;
+      font-size: 17px;
+    }
 
-button.move-asaid:hover {
-	transform: scale(1.03);
-}
+    /* App Grid */
+    .app-grid {
+      display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px 15px;
+    padding: 0 15px 0 15px;
+    margin-bottom: 20px;
+    }
 
-button.move-asaid:active {
-	transform: scale(0.90);
-}
+    .app-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
 
-.graphsays span {
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 3px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-	filter: saturate(2);
-	border-radius: 7px;
-}
+    .app-item:active {
+      transform: scale(0.82);
+    }
 
-.graphsays {
-display: flex;
-    font-size: 12px;
-    white-space: nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: 2px;
-    font-weight: 100;
-    color: #ffffffb8;
-}
+    .app-icon {
+      width: 55px;
+    height: 55px;
+        border-radius: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      /* box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 3px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #000000; */box-shadow: inset 0.5px 0.5px 0px 0.1px #ffffff54, inset -1.5px -2.5px 0px -1.9px #ffffff54;
+    filter: saturate(2);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
 
-div#popupContent {
-	text-align: center;
-}
-
-canvas#loanChart {
-	display: block;
-	box-sizing: border-box;
-	height: 147.5px;
-	width: 295px;
-	transition: all 0.3s ease;
-	color: white;
-	padding: 55px;
-	margin-top: -40px;
-	margin-bottom: -40px;
-}
-
-#totalPopup,
-#datePopup,
-#linkConfirmPopup,
-#emoteChooser {
-	display: none;
-	position: fixed;
-	bottom: -3px;
-	left: 50%;
-	scale: 1;
-	transform: translate(-50%, -4%);
-	background: transparent;
-	color: #e0e0e0;
-	padding: 25px;
-	border-radius: 45px;
-	max-width: 450px;
-	width: 96%;
-	z-index: 2000000;
-	text-align: left;
-	font-size: 14.5px;
-	line-height: 1.7;
-	backdrop-filter: blur(15px);
-	box-shadow: inset 0 0.5px 0 #ffffff12, inset 0 -4px 9px #ffffff4f;
-	border: 1.5px solid rgba(255, 255, 255, 0.137);
-	animation: iosPopupIn 1s cubic-bezier(.22, 1, .36, 1) forwards;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-	filter: saturate(2);
-}
-
-@keyframes iosPopupIn {
-	0% {
-		transform: translate(-50%, -48%) scale(0.7);
-		opacity: 0;
-		width: 10%;
-		padding: 5px;
-	}
-
-	60% {
-		transform: translate(-50%, -3%) scale(1.1);
-		opacity: 1;
-		width: 105%;
-		padding: 30px;
-	}
-
-	100% {
-		transform: translate(-50%, -3%) scale(1);
-		opacity: 1;
-		width: 98%;
-		padding: 25px;
-	}
-}
-
-#totalPopup h3,
-#datePopup h3,
-#linkConfirmPopup h3,
-#emoteChooser h3 {
-	margin: 0 0 14px;
-	margin: -10px 0 14px 0;
-	color: #ffffff;
-	text-align: center;
-	font-size: 20px;
-	text-decoration: underline;
-	font-weight: 800;
-}
-
-div#loanDetails {
-	transform: translate(-50%, 0);
-	left: 50%;
-	filter: saturate(2);
-	max-width: 600px;
-	position: relative;
-	padding: 10px;
-}
-
-.calndarCntnrbtn button {
-	    margin-bottom: 0px;
-    border-radius: 105px;
+    .app-item:active .app-icon {
+      transform: scale(0.75);
+    }
+.adnotopt{
+  background: rgba(255, 255, 255, 0.1);
+    padding: 6px;
+    border-radius: 9999px;
+    font-size: 14px;
+    border: none;
+    color: white;
     cursor: pointer;
-    padding: 3px 5px;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-
-#totalPopup button,
-#datePopup button,
-#linkConfirmPopup button,
-#emoteChooser button {
-	margin-top: 14px;
-	background: #0020ff;
-	color: white;
-	border: none;
-	padding: 8px 16px;
-	border-radius: 22px;
-	cursor: pointer;
-	width: 100%;
-	font-size: 15px;
-	transition: all 0.3s ease;
-	transition: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 2px 0px -2px color-mix(in srgb, #ffffff73 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -2px 0px -2px color-mix(in srgb, #ffffff7d calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff85 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-	filter: saturate(2);
+.adnotopt:active {
+    transform: scale(0.82);
 }
+    .app-label {
+    margin-top: 8px;
+    font-size: 12px;
+    opacity: 0.9;
+    font-weight: 100;
+    }
 
-#totalPopup button {
-	transition: all 0.3s ease;
-}
+    /* Quick Notes */
+    .notes-section {
+      /* height: 50vh;
+    overflow: scroll; */
+    }
 
-#totalPopup button:hover {
-	transform: scale(1.03);
-}
+    .notes-header {
+      display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 0 20px;
+    }
 
-#totalPopup button:active {
-	transform: scale(0.90);
-}
+    .note-card {
+     background: transparent;
+    color: white;
+    border-radius: 30px;
+    padding: 10px 30px;
+    margin-bottom: 14px;
+    animation: notePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 3px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    filter: saturate(2);
+    }
 
-#linkConfirmPopup button {
-	transition: all 0.3s ease;
-}
-
-#linkConfirmPopup button:hover {
-	transform: scale(1.03);
-}
-
-#linkConfirmPopup button:active {
-	transform: scale(0.90);
-}
-
-#emoteChooser button {
-	transition: all 0.3s ease;
-}
-
-#emoteChooser button:hover {
-	transform: scale(1.03);
-}
-
-#emoteChooser button:active {
-	transform: scale(0.90);
-}
-
-#datePopup button {
-	transition: all 0.3s ease;
-}
-
-#datePopup button:hover {
-	transform: scale(1.03);
-}
-
-#datePopup button:active {
-	transform: scale(0.90);
-}
-
-.btn-yes {
-	background: #00ff88;
-	color: #000;
-}
-
-.btn-delete {
-	background: #ff4444;
-	color: white;
-}
-
-/* EMOTE CHOOSER */
-.emote-grid {
-	display: flex;
-	gap: 10px;
-	margin: 0;
-	flex-direction: column;
-	align-items: center;
-	height: 125px;
-	overflow-y: auto;
-	width: 100%;
-	scrollbar-width: thin;
-	scrollbar-color: rgba(255, 255, 255, 0.304) rgba(0, 0, 0, 0);
-	padding: 5px 0px 5px 0px
-}
-
-.emote-option {
-	width: 70px;
-	cursor: pointer;
-	transition: .2s;
-	padding: 10px;
-	margin: 0px 25px;
-	border-radius: 24px;
-}
-
-.emote-option:hover {
-	background: #ffffff2f;
-	z-index: 10000;
-}
-
-.popup-overlay {
-	position: fixed;
-	inset: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 9999;
-	opacity: 0;
-	visibility: hidden;
-	transition: all 0.5s ease-in-out;
-	height: 100vh;
-	scale: 0;
-	top: -200%;
-	border-radius: 1310px;
-	transform: scale(0.5, 0.5);
-	background: rgb(255, 255, 255);
-}
-
-.popup-overlay.active {
-	opacity: 1;
-	height: 100vh;
-	scale: 1;
-	top: 0%;
-	background: rgb(0 0 0 / 70%);
-	visibility: visible;
-	border-radius: 0px;
-	transform: scale(1, 1);
-}
-
-.loan-entry {
-	padding: 0px;
-	border-radius: 16px;
-	position: relative;
-	width: 100%;
-}
-
-.purpose-input {
-	padding: 8px 13px;
-	margin: 2px 5px;
-	background: #8f8f8f47;
-	border: none;
-	border-radius: 13px;
-	color: white;
-	font-size: 12px;
-	outline: none;
-	max-width: 110px;
-	text-align: justify;
-	backdrop-filter: blur(5px);
-	transition: all 0.3s ease-in-out;
-}
-
-.purpose-input::placeholder {
-	color: rgba(255, 255, 255, 0.705);
-}
-
-.purpose-input:hover {
-	transform: scale(1.03);
-}
-
-.purpose-input:focus {
-	transform: scale(1.3) translateX(-20px);
-	padding: 6px 15px;
-	border-radius: 100px;
-	max-width: 130px;
-	font-size: 13px;
-	text-align: justify;
-}
-
-.purpose-input.animate {
-	animation: liquidPress 0.7s cubic-bezier(.2, .8, .2, 1);
-}
-
-.bottomoptions {
-	width: 100%;
+    @keyframes notePop {
+      from { opacity: 0; transform: translateY(30px) scale(0.9); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+.bottombar {
+  background: linear-gradient(0deg, #000000d4, transparent);
+    width: 95%;
     position: fixed;
     bottom: 0px;
     left: 50%;
-    transform: translate(-50%, 0);
-    padding: 25px 0px;
-    display: flex;
-    max-width: 600px;
-    justify-content: center;
-    background: linear-gradient(0deg, black, transparent);
-}
-
-#bottomNav {
-	padding: 5px;
-	display: flex;
-	align-items: center;
-	flex-direction: row-reverse;
-	width: 83%;
-	justify-content: space-between;
-	background: #ffffff00;
-	filter: saturate(2);
-	border-radius: 1000px;
-	max-width: 320px;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-	backdrop-filter: blur(5px);
-	gap: 0px;
-}
-
-.sectionoptions {
-	display: flex;
-	gap: 5px;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-	backdrop-filter: blur(5px);
-	border-radius: 1000px;
-	padding: 5px;
-}
-
-.reminder-modal {
-	position: fixed;
-	background: rgba(0, 0, 0, 0);
-	display: flex;
-	justify-content: center;
-	z-index: 9999;
-	bottom: 20px;
-	max-width: 600px;
-	border-radius: 45px;
-	width: 97%;
-	box-shadow: 0px 30px 30px black;
-}
-
-.reminder-content {
-	background: #0000003d;
-	border-radius: 45px;
-	width: 100%;
-	backdrop-filter: blur(6px);
-	max-width: 550px;
-	padding: 5px;
-	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-	color: #eee;
-	position: relative;
-	text-align: center;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-}
-
-.reminder-content strong {
-	color: #ffaa00;
-}
-
-.reminder-header h2 {
-	margin: 0;
-	font-size: 1.4rem;
-	color: #a5d8ff;
-}
-
-.reminder-close-btn {
-	background: none;
-	border: none;
-	color: #ffffffbf;
-	font-size: 26px;
-	cursor: pointer;
-	font-weight: 100;
-	box-shadow: none;
-	position: absolute;
-	top: 2px;
-	right: 8px;
-}
-
-.reminder-body p {
-	margin: 10px 0 -10px 0;
-	line-height: 20px;
-	font-size: 14px;
-	padding: 20px 15px;
-	color: rgba(255, 255, 255, 0.89);
-}
-
-.reminder-actions {
-	display: flex;
-	gap: 0px;
-	margin-top: 10px;
-	justify-content: space-around;
-	width: 100%;
-	margin-bottom: 5px;
-}
-
-.reminder-btn {
-	padding: 10px 20px;
-	border: none;
-	border-radius: 38px;
-	font-size: 13px;
-	font-weight: 400;
-	cursor: pointer;
-	transition: all 0.2s;
-	width: 90%;
-	white-space: nowrap;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-}
-
-.reminder-btn:active {
-	transform: scale(0.85);
-}
-
-.reminder-btn.delay {
-	background: #ff7400;
-	color: white;
-}
-
-.reminder-btn.split {
-	background: #0e7500;
-	color: white;
-}
-
-.nav-item {
-	display: flex;
-    align-items: center;
-    gap: 15px;
-    color: #ffffff;
-    cursor: pointer;
-    padding: 11px 15px;
-    border-radius: 46px;
-    text-align: center;
-    box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff52;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    filter: saturate(2);
-    transition: all 0.2s ease;
-}
-
-.nav-item:active {
-	transform: scale(0.85);
-}
-
-.nav-item.active {
-	color: white;
-	box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff30;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-	filter: saturate(2);
-	background: #0020ff;
-}
-
-.nav-item i {
-	font-size: 15px;
-}
-
-.toggle-pin {
-	font-size: 15px;
-	color: #ffffff;
-	cursor: pointer;
-}
-
-.toggle-pin.on {
-	color: #ffffff;
-}
-
-.iconbotm {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 5px;
-}
-
-/* GRAPH & CALENDAR */
-#graphContainer,
-#calendarContainer {
-	background: #00000000;
-	border-radius: 55px;
-	padding: 25px 20px 20px 20px;
-	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
-	border: 1px solid #222;
-	scrollbar-width: none;
-	position: relative;
-	left: 0%;
-	filter: saturate(2);
-	scrollbar-width: none;
-	overflow: scroll;
-	margin-top: 25px;
-	width: 97%;
-	backdrop-filter: blur(10px) url(#switcher) saturate(var(--saturation));
-	box-shadow: inset 0 1px 0 #ffffff21, inset 0 -4px 9px #ffffff69;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-	transition: all 0.3s ease;
-	max-width: 600px;
-	left: 50%;
-	margin-bottom: 20px;
-	transform: translate(-50%, 0%);
-}
-
-.leftflow span {
-	margin: 0;
-}
-
-#calendarContainer>div>div {
-	color: #ddd;
-	border-radius: 58px;
-	min-height: 30px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-weight: 500;
-	font-size: 15px;
-	transition: all 0.3s ease;
-	background: #ffffff1a;
-}
-
-#calendarContainer>div>div:hover {
-	transform: scale(1.03);
-}
-
-#calendarContainer>div>div:active {
-	transform: scale(0.90);
-}
-
-#lights {
-	display: none;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height: 110px;
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	padding-top: 7px;
-	pointer-events: none;
-	z-index: 10000;
-	left: 0;
-}
-
-.bulb {
-	display: none;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background: #c00;
-	box-shadow: 0 0 60px 8px #c00;
-	position: relative;
-	animation: sway linear infinite;
-	transform-origin: center top;
-}
-
-.bulb::before {
-	content: '';
-	position: absolute;
-	top: -28px;
-	left: 50%;
-	width: 1px;
-	height: 31px;
-	background: linear-gradient(#555, #222);
-	transform: translateX(-50%);
-}
-
-@keyframes sway {
-
-	0%,
-	100% {
-		transform: translateX(0) rotate(-4deg);
-	}
-
-	25% {
-		transform: translateX(12px) rotate(4deg);
-	}
-
-	50% {
-		transform: translateX(0) rotate(5deg);
-	}
-
-	75% {
-		transform: translateX(-12px) rotate(-5deg);
-	}
-}svg#Layer_1 {
-    background-color: #8b0000;
-    fill: white;stroke: transparent;
-}
-
-svg#Layer_2 {
-    background-color: #5c0080;
-    fill: white;stroke: transparent;
-}
-
-svg#Layer_3 {
-    background-color: #860058;
-    fill: white;stroke: transparent;
-}
-
-svg#Layer_4 {
-    background-color: #006b10;
-    fill: white;stroke: transparent;
-}
-
-svg#Layer_5 {
-    background-color: #001166;
-    fill: white;stroke: transparent;
-}
-
-svg#Layer_6 {
-    background-color: #8b2600;
-    fill: white;stroke: transparent;
-}
-
-svg#Layer_7 {
-    background-color: #cc7a00;
-    fill: white;stroke: transparent;
-}
-#bottomNav svg {
-	height: 18px;
-    fill: #ffffff;
-    width: 18px;
-}
-
-.loans-list {
-	margin-top: 24px;
-	padding: 20px 15px;
-	margin-left: auto;
-	margin-right: auto;
-	background: linear-gradient(0deg, #ffffff1a, transparent);
-	border-radius: 40px;
-}
-
-.loan-row {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 20px;
-	padding: 0px 5px 0px 15px;
-}
-
-.loan-row.hidden-loan {
-	filter: opacity(30%);
-}
-
-.loan-row:last-child {
-	margin: 0px;
-}
-
-.loan-info {
-	display: flex;
-	flex-direction: column;
-	gap: 0px;
-}
-
-.loan-title {
-	font-weight: 400;
-	color: #e0e0ff;
-	font-size: 11px;
-}
-
-.loan-amount {
-	font-size: 15px;
-	color: #ffca00;
-	font-weight: 600;
-}
-
-.loan-days {
-	font-size: 0.9em;
-}
-
-.loan-days.safe {
-	display: none;
-}
-
-.loan-days.warning {
-	color: white;
-	font-size: 10px;
-	font-weight: 300;
-	background: rgb(255, 128, 0);
-	text-align: center;
-	border-radius: 7px;
-	margin: 2px -5px;
-}
-
-.loan-days.urgent {
-	color: white;
-	font-size: 10px;
-	font-weight: 300;
-	background: red;
-	text-align: center;
-	border-radius: 7px;
-	margin: 2px -5px;
-}
-
-.loan-actions {
-	display: flex;
-	gap: 10px;
-}
-
-.loan-actions button {
-	border: none;
-    border-radius: 13px;
-    cursor: pointer;
-    transition: all 0.5s;
-    margin: 0px;
-    width: 33px;
-    height: 33px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-}
-
-.loan-actions button:hover {
-	transform: scale(1.03);
-}
-
-.loan-actions button:active {
-	transform: scale(0.90);
-}
-
-.loan-actions svg {
-	width: 18px;
-    height: 18px;
-    fill: #ffffffd6;
-    stroke: transparent;
-}
-
-.btn-hide {
-	background: #ffffff54;
-	color: white;
-}
-
-.btn-details {
-	background: #0022ff00;
-	color: white;
-}
-
-.btn-edit {
-	background: #8900ff;
-	color: white;
-}
-
-canvas#loanChart {
-	transition: opacity 0.6s ease;
-}
-
-/* Optional — makes empty chart area look intentional */
-#loanChart-wrapper {
-	/* wrap your <canvas> in a div with this id if you want */
-	position: relative;
-}
-
-#loanChart-wrapper::after {
-	content: "No visible loans";
-	position: absolute;
-	inset: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: #666;
-	font-size: 1.1rem;
-	opacity: 0;
-	transition: opacity 0.6s ease;
-	pointer-events: none;
-}
-
-#loanChart-wrapper.empty::after {
-	opacity: 1;
-}
-
-input {
-	accent-color: white;
-}
-
-#panel {
-	position: fixed;
-	bottom: 130px;
-	left: 50%;
-	transform: translateX(-50%) scale(0.92);
-	background: rgba(255, 0, 0, 0.808);
-	backdrop-filter: blur(20px);
-	border-radius: 40px;
-	padding: 5px 0px 30px 0px;
-	width: 95%;
-	max-width: 450px;
-	border: 1px solid rgba(255, 255, 255, 0.08);
-	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-	text-align: center;
-	z-index: 9000;
-	opacity: 0;
-	visibility: hidden;
-	transition: all .4s cubic-bezier(0.4, 0, 0.2, 1);
-	transform: translateX(-50%) scale(1);
-	color: white;
-}
-
-.show select#mode,
-button {
-	padding: 10px;
-	border: none;
-	outline: none;
-	border-radius: 13px;
-	margin-bottom: 10px;
-	box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff6e;
-	border: 1px solid rgb(255 255 255);
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 3px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-	filter: saturate(2);
-}
-
-.empty-message {
-	font-style: italic;
-	text-align: center;
-}
-
-#panel.show {
-	opacity: 1;
-	visibility: visible;
-	transform: translateX(-50%) scale(1);
-}
-
-.title {
-	font-size: 14px;
-	font-weight: 600;
-	margin-bottom: 20px;
-	text-align: center;
-	color: #ffcc00;
-}
-
-.youtube-wrapper {
-	position: relative;
-	opacity: 80%;
-	width: 100%;
-	padding-bottom: 55%;
-	height: 0;
-	overflow: hidden;
-	border-radius: 22px;
-	margin: 30px 0px;
-	border: transparent;
-	outline: solid 3px rgb(255 255 255 / 34%);
-	outline-offset: 5px;
-	transition: all 0.3s ease-in-out;
-}
-
-.youtube-wrapper:active {
-	transform: scale(0.70);
-}
-
-.youtube-wrapper iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	border: 0;
-	transition: all 0.3s ease-in-out;
-}
-
-.youtube-wrapper iframe:active {
-	transform: scale(0.70);
-}
-
-@media (max-width : 700px) {
-	.fixed {
-		position: fixed;
-		top: 65px;
-		width: 99%;
-		z-index: 10;
-		border-radius: 40px;
-	}
-
-	.user-name-container {
-		display: flex;
-		align-items: center;
-		gap: 0px;
-		margin-bottom: -30px;
-		padding-top: 15px;
-		justify-content: space-evenly;
-		width: 100%;
-		margin-left: -10px;
-	}
-
-	.scroll {
-		transform: translateX(-50%);
-		position: relative;
-		left: 50%;
-		width: 100%;
-		padding: 45px 0px 85px 0px;
-		backdrop-filter: blur(5px);
-	}
-
-	.popup-overlay {
-		position: fixed;
-		inset: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		z-index: 9999;
-		opacity: 0;
-		visibility: hidden;
-		transition: all 0.9s ease-in-out;
-		height: 100vh;
-		scale: 0;
-		top: -200%;
-		background: rgb(255, 255, 255);
-		border-radius: 1300px;
-		transform: scale(0, 0);
-		padding: 100px;
-	}
-
-	.bulb {
-		width: 25px;
-		height: 25px;
-		border-radius: 50%;
-		background: #c00;
-		box-shadow: 0 0 60px 8px #c00;
-		position: relative;
-		animation: sway linear infinite;
-		transform-origin: center top;
-	}
-
-	.amount-buttons {
-		display: flex;
-		gap: 10px;
-		overflow-x: auto;
-		white-space: nowrap;
-		padding: 10px 10px 0px 10px;
-		transition: transform .4s ease;
-		margin-left: -25px;
-		scrollbar-width: none;
-	}
-
-	@media (max-width : 380px) {
-		.amount-buttons {
-			display: flex;
-			gap: 10px;
-			overflow-x: auto;
-			white-space: nowrap;
-			transition: transform .4s ease;
-			margin-left: -30px;
-			scrollbar-width: none;
-		}
-
-		.user-links {
-			overflow: auto;
-			overflow: auto;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    padding: 5px 15px 5px 0px;
-    transition: all 0.3s ease;
-    position: relative;
-    top: -5px;
-    left: 5px;
-    width: 82%;
-    border-radius: 30px 0 0 30px;
-		}
-	}
-}
-
-/* Popup overlay */
-.issuebtn button {
-	width: 100%;
-	position: relative;
-	left: -6px;
-	padding: 10px;
-	background: red;
-	color: white;
-	border: none;
-	font-size: 16px;
-	border-radius: 13px;
-	cursor: pointer;
-}
-
-.popup {
-	background: #00000091;
-	border-radius: 40px;
-	width: 94%;
-	max-width: 550px;
-	padding: 30px 20px 5px 20px;
-	border: none;
-	box-shadow: none;
-	box-shadow: inset 0px 0px 35px #ffffff9e;
-	transform: translate(-50%, 0%);
-	left: 50%;
-	position: fixed;
-	backdrop-filter: blur(42px);
-	outline: 2.5px solid #ffffff5c;
-	outline-offset: 5px;
-	border: none;
-}
-
-.popup-header {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: 20px;
-	font-size: 25px;
-	font-weight: 600;
-	color: #0020ff;
-}
-
-.popup-header span {
-	color: #fac600;
-	font-size: 18px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 6px;
-}
-
-.topdec {
-	display: none;
-}
-
-.pack {
-	border-radius: 30px;
-	padding: 10px;
-	margin-bottom: 10px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	transition: background 0.2s;
-}
-
-.pack-name {
-	font-weight: 600;
-	display: flex;
-	gap: 4px;
-}
-
-.popup svg {
-	width: 20px;
-	height: 20px;
-}
-
-.pack-price {
-	color: #ffffffab;
-	font-weight: 500;
-	font-size: 15px;
-}
-
-.pack-bonus {
-	font-size: 12px;
-	color: #e8b801;
-	margin-top: 4px;
-}
-
-.details svg {
-	width: 28px;
-    height: 28px;
-    background: transparent;
-    padding: 5px;
-    border-radius: 10px;
-	border: none;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-}
-
-.leftflow {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
-	padding: 0px;
-	border-radius: 30px 40px 40px 31px;
-}
-
-.content {
-	text-align: center;
-    z-index: 10000;
-    border-radius: 8px 8px 15px 15px;
-    background: #ffffff1f;
-    filter: saturate(2);
-    padding: 6px 8px 6px 15px;
-}
-
-.content h1 {
-	font-size: 3rem;
-	margin-bottom: 20px;
-}
-
-/* Toggle Switch Styles */
-.toggle-switch {
-	display: flex;
-    align-items: center;
-    font-size: 13px;
-    color: white;
-    gap: 5px;font-weight: 100;
-}
-.toggle-switch span {
-   color: white;
-    background: #ffffff26;
-    padding: 2px 5px;
-    border-radius: 26px;
-}
-.toggle-switch label {
-	cursor: pointer;
-}
-
-.switch {
-	position: relative;
-	display: inline-block;
-	width: 50px;
-	height: 16px;
-	margin-left: 15px;
-}
-
-.switch input {
-	opacity: 0;
-	width: 0;
-	height: 0;
-}
-
-/* The slider */
-.slider {
-	position: absolute;
-	cursor: pointer;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: rgb(255 255 255 / 0%);
-	transition: .4s;
-	border-radius: 34px;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 3px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff14;
-}
-
-.slider:active {
-	transform: scale(0.8);
-}
-
-.slider:before {
-	position: absolute;
-	content: "";
-	height: 20px;
-	width: 33px;
-	left: -7px;
-	bottom: -3.5px;
-	background-color: #ffffff00;
-	transition: .4s;
-	border-radius: 20px;
-	backdrop-filter: blur(1px);
-	border: solid 1.5px #ffffff4f;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 3px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff14;
-}
-
-input:checked+.slider {
-	background-color: #ffffff78;
-	/* Apple blue when ON */
-}
-
-input:checked+.slider:before {
-	transform: translateX(26px);
-}
-
-/* Glow container */
-.edge-glow-container {
-	position: fixed;
-	inset: 0;
-	pointer-events: none;
-	z-index: -1;
-	opacity: 0;
-	transition: opacity 0.8s ease;
-}
-
-.edge-glow-container.on {
-	opacity: 1;
-}
-
-.edge-glow {
-	position: fixed;
-	opacity: 100%;
-	pointer-events: none;
-}
-
-/* Top edge */
-.edge-glow.top {
-	top: -100px;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 200vw;
-	height: 200px;
-	background: conic-gradient(from 90deg at 50% 100%, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff, #ff0000);
-	filter: blur(60px);
-	animation: flow 25s linear infinite;
-}
-
-/* Bottom edge */
-.edge-glow.bottom {
-	bottom: -100px;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 200vw;
-	height: 200px;
-	background: conic-gradient(from -90deg at 50% 0%, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff, #ff0000);
-	filter: blur(60px);
-	animation: flow 30s linear infinite reverse;
-}
-
-/* Left edge */
-.edge-glow.left {
-	left: -100px;
-	top: 50%;
-	transform: translateY(-50%);
-	width: 200px;
-	height: 200vh;
-	background: conic-gradient(from 180deg at 100% 50%, #ff0000, #8b00ff, #4b0082, #0000ff, #00ff00, #ffff00, #ff7f00, #ff0000);
-	filter: blur(60px);
-	animation: flow-vertical 28s linear infinite;
-}
-
-/* Right edge */
-.edge-glow.right {
-	right: -100px;
-	top: 50%;
-	transform: translateY(-50%);
-	width: 200px;
-	height: 200vh;
-	background: conic-gradient(from 0deg at 0% 50%, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff, #ff0000);
-	filter: blur(60px);
-	animation: flow-vertical 32s linear infinite reverse;
-}
-
-@keyframes flow {
-	from {
-		transform: translateX(-50%) rotate(0deg);
-	}
-
-	to {
-		transform: translateX(-50%) rotate(360deg);
-	}
-}
-
-@keyframes flow-vertical {
-	from {
-		transform: translateY(-50%) rotate(0deg);
-	}
-
-	to {
-		transform: translateY(-50%) rotate(360deg);
-	}
-}
-
-/* .edge-glow-container.on .top { animation: flow 25s linear infinite, pulse 12s ease-in-out infinite alternate; } .edge-glow-container.on .bottom { animation: flow 30s linear infinite reverse, pulse 12s ease-in-out infinite alternate; } .edge-glow-container.on .left { animation: flow-vertical 28s linear infinite, pulse 12s ease-in-out infinite alternate; } .edge-glow-container.on .right { animation: flow-vertical 32s linear infinite reverse, pulse 12s ease-in-out infinite alternate; } */
-@keyframes pulse {
-	0% {
-		opacity: 0.5;
-	}
-
-	100% {
-		opacity: 0.8;
-	}
-}
-
-@media(max-width : 380px) {
-	.search-container {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		transition: all .4s ease;
-		position: relative;
-		top: -13px;
-		height: 50px;
-		width: 99.5%;
-		padding: 0px;
-		justify-content: space-between;
-	}
-}
-
-</style>
-</head>
-
-<body>
-    <div class="edge-glow-container" id="glowContainer">
-        <div class="edge-glow top"></div>
-        <div class="edge-glow bottom"></div>
-        <div class="edge-glow left"></div>
-        <div class="edge-glow right"></div>
-    </div>
-    <div class="topdec" style=" z-index: 100000; "><img style="width: 100%; width: 100%; position: fixed; top: 0px; left: 0px; " src="https://www.animatedimages.org/data/media/1071/animated-christmas-decoration-image-0050.gif" alt=""> <img style="position: fixed; bottom: 0px; width: 100%; left: 0px;"
-        src="https://vincentloy.wordpress.com/wp-content/uploads/2025/01/latern1.gif" alt="">
-        <marquee style="position: fixed; bottom: -12px; left: 0px; " behavior="" direction="left"><img style=" width: 30%; " src="https://i.giphy.com/oX8pTPoIMdffhatmg2.webp" alt=""></marquee>
-    </div>
-    <div class="topdec" style="position: fixed; top: -3px; z-index: 100000;">
-        <div class="decorationimag" style=" display: flex; align-items: center; justify-content: center;"> <img style="width: 30%;max-width: 400px;" src="https://i.pinimg.com/originals/9d/97/7b/9d977b3a6c08ff473ac6c38f2a15acd7.gif" alt=""> <img style="width: 30%;max-width: 400px;" src="https://i.pinimg.com/originals/9d/97/7b/9d977b3a6c08ff473ac6c38f2a15acd7.gif"
-            alt=""> <img style="width: 30%;max-width: 400px;" src="https://i.pinimg.com/originals/9d/97/7b/9d977b3a6c08ff473ac6c38f2a15acd7.gif" alt=""> <img style="width: 30%;max-width: 400px;" src="https://i.pinimg.com/originals/9d/97/7b/9d977b3a6c08ff473ac6c38f2a15acd7.gif"
-            alt=""> </div>
-    </div>
-    <div id="passwordContainer">
-        <div class="topdec" style="position: fixed; top: 0px;"> <img style="width: 100%;" src="https://www.animatedimages.org/data/media/1071/animated-christmas-decoration-image-0050.gif" alt=""> </div>
-        <div class="topdec" style="position: fixed; top: 0px;"> <img style="width: 100%;" src="https://www.animatedimages.org/data/media/1071/animated-christmas-decoration-image-0050.gif" alt=""> </div>
-        <div class="decoration topdec"> <img style="width: 64%; position: fixed; top: 70px; object-fit: cover; right: -15px;" src="https://i.pinimg.com/originals/2d/bc/b8/2dbcb8c31d6194e0cb80cd8ce5db2980.gif" alt=""> </div>
-        <h2 style="font-weight: 100;
-    font-size: 10px;
-    color: white;">Enter your pin</h2>
-        <svg style=" fill: white; width: 38px; height: 60px; margin:15px;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
-        xml:space="preserve" width="512" height="512">
-            <g>
-                <path d="M405.333,179.712v-30.379C405.333,66.859,338.475,0,256,0S106.667,66.859,106.667,149.333v30.379 c-38.826,16.945-63.944,55.259-64,97.621v128C42.737,464.214,90.452,511.93,149.333,512h213.333 c58.881-0.07,106.596-47.786,106.667-106.667v-128C469.278,234.971,444.159,196.657,405.333,179.712z M277.333,362.667 c0,11.782-9.551,21.333-21.333,21.333c-11.782,0-21.333-9.551-21.333-21.333V320c0-11.782,9.551-21.333,21.333-21.333 c11.782,0,21.333,9.551,21.333,21.333V362.667z M362.667,170.667H149.333v-21.333c0-58.91,47.756-106.667,106.667-106.667 s106.667,47.756,106.667,106.667V170.667z"
-                />
-            </g>
-        </svg>
-        <input type="text" id="userPassword" placeholder="Enter here....">
-        <button id="submitBtn">Verify <svg style="background: #ffffff63;
-    border-radius: 9px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="m547.69-267.69-28.31-28.77L682.92-460H200v-40h482.92L519.38-663.54l28.31-28.77L760-480 547.69-267.69Z"/></svg></button>
-        <br>
-        <p id="error-message"></p>
-        <div class="treee topdec" style="width: 100%; position: fixed; bottom: 12%; left: 50%; transform: translate(-50%, 0%);"> <img style="width: 85px;" src="https://www.gifcen.com/wp-content/uploads/2022/01/chinese-new-year-2022-gif-5.gif" alt=""> </div>
-        <div class="notice">You should return the money before the return date, If not additional interest will be charged.</div>
-    </div>
-    <div id="userInfoModal" class="modal">
-        <style>
-    .fab {
-   display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 999;
-    transition: all 0.3s ease;
-    width: 40px;
-    height: 40px;
-    filter: saturate(2);
-    background: transparent;
-    border-radius: 1000px;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-  }
-  .fab:hover { transform: scale(1.1); }
-  .fab:active { transform: scale(0.98); }
-
-  /* Bottom Sheet Popup */
-  .bottom-sheet {
-   position: fixed;
-    bottom: 7px;
-    right: 0;
-    backdrop-filter: blur(15px);
-    border-radius: 45px;
-    max-height: 80vh;
-    overflow-y: auto;
-    padding: 8px 15px;
-    color: white;
-    transform: translate(-50%, 0) scale(0.10) scaleY(1.5) scaleX(0.90);
-    transition: transform 0.5s;
-    z-index: 1000000;
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px  color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border:solid 1px #ffffff00;filter: saturate(2);
-    max-width: 433px;
-    width: 98%;
-    opacity: 0;
-    left: 50%;
-  }
-  .bottom-sheet.active {
-        opacity: 1;
-        transform: translate(-50%,0) scale(1) scaleY(1) scaleX(1);
-  }
-
-  .handle {
-    width: 40px;
-    height: 5px;
-    background: rgba(255,255,255,0.3);
-    border-radius: 3px;
-    margin: 0 auto 20px;
-  }
- .walpapoupopt {
-    display: flex;
-    scrollbar-width: none;
-    overflow: scroll;
-    white-space: nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
-    border-radius: 105px;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    padding: 5px;
-    margin: 0px 5px 15px 5px;
-}
-  .option {
-     padding: 6px 16px;
-    border-radius: 26px;
-    cursor: pointer;
-    font-size: 12px;
-    text-align: center;
-    transition: all 0.5s ease;
-}
-         .option:hover{
-              transform: scale(1); background: rgba(255, 255, 255, 0.16);
-        }
-         .option:active{
-              transform: scale(0.98); 
-        }
-  /* Wallpaper Grid */
-  .wallpaper-grid {
-        display: flex;
-    gap: 4px;
-    overflow: scroll;
-    padding: 10px;
-    scrollbar-width: none;
-    background: #ffffff1a;
+    transform: translateX(-50%);
+    padding: 0 0 30px 0;
+    right: 0;border-radius: 30px 30px 0 0;
+    backdrop-filter: blur(5px);
+}
+    .dock {
+    backdrop-filter: blur(5px);
     border-radius: 30px;
-    margin: 10px 0px;
-  }
-  .wallpaper-thumb {
-        width: 100%;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 21px;
-    cursor: pointer;
-    border: 3px solid transparent;
-    transition: 0.3s;
-  }
-  .wallpaper-thumb:hover {
-    border-color: #fff;
-    transform: scale(1.03);
-  }
-
-  .upload-area {
-   border: 2px dashed rgb(255 255 255 / 29%);
-    border-radius: 30px;
-    padding: 30px;
-    text-align: center;
-    margin-top: 15px;
-    cursor: pointer;
-    transition: 0.3s;
-    margin-bottom: 8px;
-  }
-  .upload-area:hover {
-    border-color: #fff;
-    background: rgba(255,255,255,0.05);
-  }
-
-  /* Overlay to close on outside tap */
-  .overlay {
-    position: fixed;
-    inset: 0;
-    background: transparent;
-    z-index: 998;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
-  }
-  .overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* Scrollbar styling (Webkit) */
-  .bottom-sheet::-webkit-scrollbar {
-    width: 6px;
-  }
-  .bottom-sheet::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .bottom-sheet::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.3);
-    border-radius: 3px;
-  }.optiononeser {
+    padding: 10px 15px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 7px;
-}
-</style>
-        </head>
-
-        <body>
-<div class="topoptions">
-                <div class="optiononeser">
-					<div class="close-btn" onclick="closeModal()">
-						<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M640-107.69 267.69-480 640-852.31l42.54 42.54L352.77-480l329.77 329.77L640-107.69Z"/></svg></div>
-					<div class="fab" id="download-receipt">
-						<svg style="width: 18px;
-    height: 18px;
-    fill: #ffffffd1;
-    stroke: transparent;" 
-							xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-							<path d="M19.95,5.54l-3.49-3.49c-1.32-1.32-3.08-2.05-4.95-2.05H7C4.24,0,2,2.24,2,5v14c0,2.76,2.24,5,5,5h10c2.76,0,5-2.24,5-5V10.49c0-1.87-.73-3.63-2.05-4.95Zm-1.41,1.41c.32,.32,.59,.67,.81,1.05h-4.34c-.55,0-1-.45-1-1V2.66c.38,.22,.73,.49,1.05,.81l3.49,3.49ZM7,2h4.51c.16,0,.33,0,.49,.02V7c0,1.65,1.35,3,3,3h4.98c.02,.16,.02,.32,.02,.49v4.58l-2.41-2.41c-.87-.87-2.28-.87-3.15,0l-2.27,2.27c-.09,.09-.23,.09-.32,0l-2.27-2.27c-.87-.87-2.28-.87-3.15,0l-2.44,2.44V5c0-1.65,1.35-3,3-3Zm10,20H7c-1.65,0-3-1.35-3-3v-1.07l3.86-3.86c.09-.09,.23-.09,.32,0l2.27,2.27c.87,.87,2.28,.87,3.15,0l2.27-2.27c.09-.09,.23-.09,.32,0l3.83,3.83v1.1c0,1.65-1.35,3-3,3Z"/>
-						</svg>
-                	</div>
-                    <div class="fab" id="fab" style="display: none;">
-                        <svg style="width: 18px;
-    height: 18px;
-    fill: #ffffffe0;
-    stroke: transparent;" xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512">
-                            <path d="M19.95,5.54l-3.49-3.49c-1.32-1.32-3.08-2.05-4.95-2.05H7C4.24,0,2,2.24,2,5v14c0,2.76,2.24,5,5,5h10c2.76,0,5-2.24,5-5V10.49c0-1.87-.73-3.63-2.05-4.95Zm-1.41,1.41c.32,.32,.59,.67,.81,1.05h-4.34c-.55,0-1-.45-1-1V2.66c.38,.22,.73,.49,1.05,.81l3.49,3.49ZM7,2h4.51c.16,0,.33,0,.49,.02V7c0,1.65,1.35,3,3,3h4.98c.02,.16,.02,.32,.02,.49v4.58l-2.41-2.41c-.87-.87-2.28-.87-3.15,0l-2.27,2.27c-.09,.09-.23,.09-.32,0l-2.27-2.27c-.87-.87-2.28-.87-3.15,0l-2.44,2.44V5c0-1.65,1.35-3,3-3Zm10,20H7c-1.65,0-3-1.35-3-3v-1.07l3.86-3.86c.09-.09,.23-.09,.32,0l2.27,2.27c.87,.87,2.28,.87,3.15,0l2.27-2.27c.09-.09,.23-.09,.32,0l3.83,3.83v1.1c0,1.65-1.35,3-3,3Z"
-                            />
-                        </svg>
-                    </div>
-
-                </div>
-
-                <div class="content" >
-                    <div class="toggle-switch">
-                        <label>Power by</label>
-                        <label style="display: none;" class="switch"><input type="checkbox" id="glowToggle"> <span class="slider"></span> </label>
-                        <a href="https://mfi0212.github.io/MFI/bsmfi_search"><span>BS&MFI</span></a>
-                    </div>
-                </div>
-                <button class="currency-switch" id="currencySwitch"> <i class="fa-solid fa-dollar-sign"></i> <span id="currencyLabel">USD</span> </button>
-            </div>
-            <div class="overlay" id="overlay"></div>
-            <div class="bottom-sheet" id="sheet">
-                <div class="handle"></div>
-                <div class="title">Choose Background</div>
-                <div class="walpapoupopt">
-                    <div class="option" id="presetBtn">Use Preset Wallpaper</div>
-                    <div class="option" id="uploadBtn">Upload Your Own Image</div>
-                    <div class="option" id="originalBtn">Original Black Background</div>
-                </div>
-                <div id="presetSection" style="display:none;">
-                    <div class="wallpaper-grid"> <img class="wallpaper-thumb" src="http://i.pinimg.com/1200x/6c/c2/f0/6cc2f0cebf6052dcfbe71864d85ffeaa.jpg" alt="Wallpaper 6"> <img class="wallpaper-thumb" src="https://i.pinimg.com/736x/da/61/65/da61658cab644e75812296f1850bcc93.jpg"
-                        alt="Wallpaper 6"> <img class="wallpaper-thumb" src="https://i.pinimg.com/1200x/3d/d0/fd/3dd0fdd3607bc3fdd5f5e28fa991c660.jpg" alt="Wallpaper 6"> <img class="wallpaper-thumb" src="http://i.pinimg.com/736x/d2/ae/c2/d2aec2b8f59fd63c9dff867d5fd1c557.jpg"
-                        alt="Wallpaper 6"> <img class="wallpaper-thumb" src="https://i.ibb.co/4ZDx00W3/c0d8541f82efc52aed82c3208e349c93.jpg" alt="Wallpaper 6"> <img class="wallpaper-thumb" src="https://i.ibb.co/JwG1yFKQ/c0d8541f82efc52aed82c3208e349c93.jpg"
-                        alt="Wallpaper 6"> </div>
-                </div>
-                <div id="uploadSection" style="display:none;">
-                    <div class="upload-area" id="dropArea">
-                        <p>Tap to select image</p>
-                        <input type="file" accept="image/*" id="fileInput" style="display:none;"> </div>
-                </div>
-            </div>
-            <div id="lights"></div> <i class="fa-solid fa-candy-cane" style="display: none;" id="candy"></i>
-            <div id="panel">
-                <div style="margin-top:20px;font-size:13px;">BS&MFI wishing you a very</div>
-                <div class="title">Happy Merry Christmas</div>
-                <select id="mode">
-                    <option>Multicolor Rainbow</option>
-                    <option>Golden Elegance</option>
-                    <option value="single">Single Color →</option>
-                    <option>Classic Red & Green</option>
-                    <option>Warm White</option>
-                    <option>Candy Red & white</option>
-                    <option>Ice Blue Winter</option>
-                </select>
-                <!-- Single color picker (shown only when "Single Color" is selected) -->
-                <div id="singleColorRow" class="color-row" style="display: flex; margin: 16px 0px; justify-content: center; gap: 10px; align-items: center;">
-                    <input type="color" id="singleColor" value="#ff0000"> <span style="font-size:14px;">Pick a color</span> </div>
-                <button id="twinkle">Twinkle OFF</button>
-                <button id="disco">Disco OFF</button>
-                <div style="margin:16px 0 8px;font-size:14px;">Light switch Speed</div>
-                <input style="height: 1px;" type="range" id="speed" min="1" max="100" value="50">
-                <div style="margin:16px 0 8px;font-size:14px;">Snow</div>
-                <input style="height: 1px;" type="range" id="snow" min="10" max="100" value="45">
-                <div class="pngchris"> <img style="position: absolute; bottom: 10px; right: 10px; width: 19%; filter: drop-shadow(6px -2px 5px #00000082);" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/christmas-tree.gif" alt=""> </div>
-            </div>
-            <div class="fixed">
-                <div class="topdec"> <img style="position: fixed; top: -20px; right: -15px; width: 26%; " src="https://i.pinimg.com/originals/1f/d3/ac/1fd3acf4a378b1e2536a4f86fc023b1a.gif" alt=""> </div>
-                <h3 style="display: none;">Borrower</h3>
-                <div class="profile-container">
-                    <div class="user-name-container"> <img id="userEmote" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0" onclick="openEmoteChooser()"> <span id="userName" style="font-size:19px;"></span>
-                        <div class="total-icon"
-                        onclick="showTotalPopup()">
-                            <svg style="width: 40px;
-    height: 25px;
-    position: relative;
-    stroke: transparent;
-    left: 0.5px;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff">
-                                <g fill="none" stroke="#ffffff">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 8h4" />
-                                    <path stroke-width="1.5" d="M20.833 9h-2.602C16.446 9 15 10.343 15 12s1.447 3 3.23 3h2.603c.084 0 .125 0 .16-.002c.54-.033.97-.432 1.005-.933c.002-.032.002-.071.002-.148v-3.834c0-.077 0-.116-.002-.148c-.036-.501-.465-.9-1.005-.933C20.959 9 20.918 9 20.834 9Z"
-                                    />
-                                    <path stroke-width="1.5" d="M20.965 9c-.078-1.872-.328-3.02-1.137-3.828C18.657 4 16.771 4 13 4h-3C6.229 4 4.343 4 3.172 5.172C2 6.343 2 8.229 2 12c0 3.771 0 5.657 1.172 6.828C4.343 20 6.229 20 10 20h3c3.771 0 5.657 0 6.828-1.172c.809-.808 1.06-1.956 1.137-3.828"
-                                    />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.991 12h.01" />
-                                </g>
-                            </svg>
-                        </div>
-                         <a href="https://blackswan19.github.io/golden/FM/starspage"><div id="coinSection">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><path fill="#e8b801" d="M9.153 5.408C10.42 3.136 11.053 2 12 2c.947 0 1.58 1.136 2.847 3.408l.328.588c.36.646.54.969.82 1.182c.28.213.63.292 1.33.45l.636.144c2.46.557 3.689.835 3.982 1.776c.292.94-.546 1.921-2.223 3.882l-.434.507c-.476.557-.715.836-.822 1.18c-.107.345-.071.717.001 1.46l.066.677c.253 2.617.38 3.925-.386 4.506c-.766.582-1.918.051-4.22-1.009l-.597-.274c-.654-.302-.981-.452-1.328-.452c-.347 0-.674.15-1.329.452l-.595.274c-2.303 1.06-3.455 1.59-4.22 1.01c-.767-.582-.64-1.89-.387-4.507l.066-.676c.072-.744.108-1.116 0-1.46c-.106-.345-.345-.624-.821-1.18l-.434-.508c-1.677-1.96-2.515-2.941-2.223-3.882c.293-.941 1.523-1.22 3.983-1.776l.636-.144c.699-.158 1.048-.237 1.329-.45c.28-.213.46-.536.82-1.182l.328-.588Z"/></svg>
-                        <span id="userCoinsDisplay">0</span>
-                    </div></a>
-                    </div>
-                    <div class="linkadder">
-                        <button class="add-link-btn" onclick="addLink()"><i class="fa-solid fa-plus"></i> Site</button>
-                        <div class="user-links" id="userLinks"></div>
-                    </div>
-                    <div class="popup-overlay" id="swanShopPopup" style="display: none;">
-                        <div class="popup">
-                            <div class="popup-header"> <span><svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><path fill="#e8b801" d="M9.153 5.408C10.42 3.136 11.053 2 12 2c.947 0 1.58 1.136 2.847 3.408l.328.588c.36.646.54.969.82 1.182c.28.213.63.292 1.33.45l.636.144c2.46.557 3.689.835 3.982 1.776c.292.94-.546 1.921-2.223 3.882l-.434.507c-.476.557-.715.836-.822 1.18c-.107.345-.071.717.001 1.46l.066.677c.253 2.617.38 3.925-.386 4.506c-.766.582-1.918.051-4.22-1.009l-.597-.274c-.654-.302-.981-.452-1.328-.452c-.347 0-.674.15-1.329.452l-.595.274c-2.303 1.06-3.455 1.59-4.22 1.01c-.767-.582-.64-1.89-.387-4.507l.066-.676c.072-.744.108-1.116 0-1.46c-.106-.345-.345-.624-.821-1.18l-.434-.508c-1.677-1.96-2.515-2.941-2.223-3.882c.293-.941 1.523-1.22 3.983-1.776l.636-.144c.699-.158 1.048-.237 1.329-.45c.28-.213.46-.536.82-1.182l.328-.588Z"/></svg> Stars</span>                                </div>
-                            <div class="pack">
-                                <div>
-                                    <div class="pack-name">100
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
-                                            <path fill="#e8b801" d="M9.153 5.408C10.42 3.136 11.053 2 12 2c.947 0 1.58 1.136 2.847 3.408l.328.588c.36.646.54.969.82 1.182c.28.213.63.292 1.33.45l.636.144c2.46.557 3.689.835 3.982 1.776c.292.94-.546 1.921-2.223 3.882l-.434.507c-.476.557-.715.836-.822 1.18c-.107.345-.071.717.001 1.46l.066.677c.253 2.617.38 3.925-.386 4.506c-.766.582-1.918.051-4.22-1.009l-.597-.274c-.654-.302-.981-.452-1.328-.452c-.347 0-.674.15-1.329.452l-.595.274c-2.303 1.06-3.455 1.59-4.22 1.01c-.767-.582-.64-1.89-.387-4.507l.066-.676c.072-.744.108-1.116 0-1.46c-.106-.345-.345-.624-.821-1.18l-.434-.508c-1.677-1.96-2.515-2.941-2.223-3.882c.293-.941 1.523-1.22 3.983-1.776l.636-.144c.699-.158 1.048-.237 1.329-.45c.28-.213.46-.536.82-1.182l.328-.588Z"
-                                            />
-                                        </svg>
-                                    </div>
-                                    <div class="pack-bonus">Get 20 extra Stars</div>
-                                </div>
-                                <div class="pack-price">₹100.00</div>
-                            </div>
-                            <div class="pack">
-                                <div>
-                                    <div class="pack-name">450
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
-                                            <path fill="#e8b801" d="M9.153 5.408C10.42 3.136 11.053 2 12 2c.947 0 1.58 1.136 2.847 3.408l.328.588c.36.646.54.969.82 1.182c.28.213.63.292 1.33.45l.636.144c2.46.557 3.689.835 3.982 1.776c.292.94-.546 1.921-2.223 3.882l-.434.507c-.476.557-.715.836-.822 1.18c-.107.345-.071.717.001 1.46l.066.677c.253 2.617.38 3.925-.386 4.506c-.766.582-1.918.051-4.22-1.009l-.597-.274c-.654-.302-.981-.452-1.328-.452c-.347 0-.674.15-1.329.452l-.595.274c-2.303 1.06-3.455 1.59-4.22 1.01c-.767-.582-.64-1.89-.387-4.507l.066-.676c.072-.744.108-1.116 0-1.46c-.106-.345-.345-.624-.821-1.18l-.434-.508c-1.677-1.96-2.515-2.941-2.223-3.882c.293-.941 1.523-1.22 3.983-1.776l.636-.144c.699-.158 1.048-.237 1.329-.45c.28-.213.46-.536.82-1.182l.328-.588Z"
-                                            />
-                                        </svg>
-                                    </div>
-                                    <div class="pack-bonus">Get 50 extra Stars</div>
-                                </div>
-                                <div class="pack-price">₹450.00</div>
-                            </div>
-                            <style>
-                                .explore-link{ cursor: pointer; width: 100%; border-radius: 100px; margin-bottom: 16px; background: white; font-weight: 500; transition: all 0.3s ease-in-out; color: black; } .explore-link:hover{ transform: scale(1.03); } .explore-link:active{ transform: scale(0.90); }
-                            </style>
-                            <a href="https://blackswan19.github.io/golden/FM/starspage">
-                                <button class="explore-link"> Explore Stars</button>
-                            </a>
-                        </div>
-                    </div>
-                     <div class="search-container"> 
-                        <div id="searchIcon" onclick="toggleSearch()">
-                            <svg class="serchareicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-95.92 0-162.58-66.65-66.65-66.66-66.65-162.58 0-95.92 66.65-162.58 66.66-66.65 162.58-66.65 95.92 0 162.58 66.65 66.65 66.66 66.65 162.58 0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z"/></svg>
-                        </div>
-                        <input type="text" id="searchInput" placeholder="Search here..." oninput="filterLoans()">
-                        <div class="amount-buttons" id="amountButtons"></div>
-                    </div>
-                </div>
-            </div>
-            <video class="topdec" style="position: fixed; width: 100%; filter: blur(5px); z-index: -10000; left: 0px; top: 0px; opacity: 40%;" src="Floodlights Flashing 1080p.mp4" loop muted autoplay></video>
-            <video class="topdec" style="position: fixed; z-index: -10000; left: 0px; top: -40px; height: 100%; opacity: 100%; border-radius: 43px; right: 0px;" src="https://static.vecteezy.com/system/resources/previews/033/113/154/mp4/light-bulb-string-on-black-background-christmas-lights-colour-free-video.mp4"
-            loop muted autoplay></video>
-            <video class="topdec " style="position: fixed; z-index: -10000; bottom: 20%; width: 250%; filter: blur(5px); transform: translate(-50%, 40%); left: 50%;" src="https://static.vecteezy.com/system/resources/previews/002/163/122/mp4/colorful-background-movement-of-bokeh-free-video.mp4"
-            loop muted autoplay></video>
-            <div class="scroll">
-                <!-- <div class="youtube-wrapper topdec"> <span style="display: flex;justify-content: center;align-items: center;font-size: 15px;height: fit-content;margin: 0px auto;background: rgba(255, 255, 255, 0.171);">Power by BsFesta</span> <iframe src="https://www.yout-ube.com/embed/F1itSKJLWQY?si=BcX2HofzV5SmnHPD" title="YouTube video player" allowfullscreen loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"> </iframe> </div> <style>.festivalexplo{ background: #ffffff00; color: white; padding: 10px 35px; border-radius: 1000px; cursor: pointer; transition: all 0.3s ease-in-out; border: solid 1.5px #ffffff5e; filter: drop-shadow(0px 0px 10px black); } .festivalexplo:hover{ transform: scale(1.03); } .festivalexplo:active{ transform: scale(0.90); } </style> <div class="playlist topdec" style="width: 100%; text-align: center;"> <a href="https://www.yout-ube.com/watch?v=TFsZy9t-qDc&list=RD79EsaMCYo4o&start_radio=1"><button class="festivalexplo"> Christmas song playlist</button></a> </div> -->
-                <div id="loanDetails"></div>
-                <div id="graphContainer" style="display:none;">
-                    <canvas id="loanChart" style="opacity: 1; transition: opacity 0.6s; display: block; box-sizing: border-box; height: 320.7px; width: 320.7px; margin-top: -50px; margin-bottom: -80px;"></canvas>
-                    <div class="explain" style="font-size: 12px; line-height: 35px; color: #ffffff8a; display: flex; align-items: center; gap: 20px; width: 100%; overflow: scroll; padding: 34px 0px 0px 0px;">
-                        <br>
-                        <div class="graphsays"><span style="background-color:#ff1100;padding:10px;width:10px;height:10px;float:left;left:-5px;position: relative;"></span> Near to return date
-                            <br>
-                        </div>
-                        <div class="graphsays"><span style="background-color:#0011ff;padding:10px;width:10px;height:10px;float:left;left:-5px;position: relative;"></span> Middle to return date
-                            <br>
-                        </div>
-                        <div class="graphsays"><span style="background-color:#ffbf00;padding:10px;width:10px;height:10px;float:left;left:-5px;position: relative;"></span> Far from return date
-                            <br>
-                        </div>
-                    </div>
-                    <div id="loans-list-container" class="loans-list"></div>
-                </div>
-                <div id="calendarContainer" style="display:none;"></div>
-                <!-- <div class="youtube-wrapper topdec"> <iframe src="https://www.youtube.com/embed/nv_2rz5BFDA?list=TLGG6heKRNpwk1QyNDExMjAyNQ" title="YouTube video player" allowfullscreen loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"> </iframe> </div> --></div>
-            <!-- <div class="premium-search"> <a href="https://mfi0212.github.io/MFI/bsmfi_search"><i style="position: relative;
-    z-index: 10000;color: #ffffff; background: #00000000; padding: 8px; border-radius: 100px; font-size: 14px; border: solid 1.5px #ffffff1f;box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent); border: solid 1px #ffffff00; backdrop-filter: blur(3px); filter: saturate(2); " class="fa-solid fa-list-ul"></i></a>
-                <a href="https://mfi0212.github.io/MFI/starpre" style="color: white; text-decoration: none; cursor: pointer;">
-                    <button class="applybtn" style="border: none;
-    outline: none;
-    color: white;
-    background-image: linear-gradient(45deg, rgb(255 169 0), rgb(255 0 198), #5b5bff, #56ffcc);
-    cursor: pointer;
-    padding: 9px;
-    border-radius: 100px;
+    gap: 24px;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 3px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;
     filter: saturate(2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 45px;
-    height: 45px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff">
-                            <g fill="#ffffff">
-                                <path d="M18.483 16.767A8.5 8.5 0 0 1 8.118 7.081a1.27 1.27 0 0 1-.113.097c-.28.213-.63.292-1.33.45l-.635.144c-2.46.557-3.69.835-3.983 1.776c-.292.94.546 1.921 2.223 3.882l.434.507c.476.557.715.836.822 1.18c.107.345.071.717-.001 1.46l-.066.677c-.253 2.617-.38 3.925.386 4.506c.766.582 1.918.052 4.22-1.009l.597-.274c.654-.302.981-.452 1.328-.452c.347 0 .674.15 1.329.452l.595.274c2.303 1.06 3.455 1.59 4.22 1.01c.767-.582.64-1.89.387-4.507l-.048-.487Z"
-                                />
-                                <path d="m9.153 5.408l-.328.588c-.36.646-.54.969-.82 1.182c.04-.03.077-.062.113-.097a8.5 8.5 0 0 0 10.366 9.686l-.02-.19c-.071-.743-.107-1.115 0-1.46c.107-.344.345-.623.822-1.18l.434-.507c1.677-1.96 2.515-2.941 2.222-3.882c-.292-.941-1.522-1.22-3.982-1.776l-.636-.144c-.699-.158-1.049-.237-1.33-.45c-.28-.213-.46-.536-.82-1.182l-.327-.588C13.58 3.136 12.947 2 12 2c-.947 0-1.58 1.136-2.847 3.408Z"
-                                opacity=".5" />
-                            </g>
-                        </svg>
-                    </button>
-                </a>
-            </div> -->
-            <div class="bottomoptions">
-                <div id="bottomNav">
-                    <div class="offergift">
-                        <a style="display: flex;" onclick="alert('Welcome to BsLends a service from BS&MFI Services')"> <img style="width: 33px; border-radius: 30px; padding: 0px;" src="mfi.gif" alt=""></a>
-                    </div>
-                    <div class="nav-item" data-view="graph">
-                        <?xml version="1.0" encoding="UTF-8"?>
-                            <div class="iconbotm">
-                                <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512">
-                                    <path d="M12.3,10.178a4.989,4.989,0,0,0,.363.671L23.525,8.688A11.962,11.962,0,0,0,8.216.621Z" />
-                                    <path d="M12.631,13.742a7.008,7.008,0,0,1-2.169-2.773L6.377,1.406A11.991,11.991,0,1,0,20.889,20.032Z" />
-                                    <path d="M14.365,12.549l7.741,5.9A11.916,11.916,0,0,0,24,12a12.055,12.055,0,0,0-.081-1.351Z" />
-                                </svg>
-                            </div> <i class="fa-solid fa-toggle-off toggle-pin" data-view="graph"></i> </div>
-                    	<div class="nav-item active" data-view="list">
-                            <div class="iconbotm">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M100.78-60.78v-106h758.44v106H100.78Zm0-243.96v-106h758.44v106H100.78Zm0-244.52v-106h758.44v106H100.78Zm0-243.96v-106h758.44v106H100.78Z"/></svg>
-							</div> 
-							<i class="fa-solid fa-toggle-on toggle-pin on" data-view="list"></i> 
-						</div>
-                    <div class="nav-item" data-view="calendar">
-                        <?xml version="1.0" encoding="UTF-8"?>
-                            <div class="iconbotm">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="512" height="512">
-                                    <path d="M13,8h5v4h-5v-4ZM4,12v-4H0v4H4Zm0,2H0v4H4v-4Zm9,10h5v-4h-5v4Zm-2-4H6v4h5v-4Zm9-2h4v-4h-4v4ZM6,12h5v-4H6v4Zm-2,8H.1c.4,1.96,1.94,3.5,3.9,3.9v-3.9Zm7-6H6v4h5v-4Zm9,6v3.9c1.96-.4,3.5-1.94,3.9-3.9h-3.9Zm3.9-14c-.46-2.28-2.48-4-4.9-4h-1V1c0-.55-.45-1-1-1s-1,.45-1,1v1H8V1c0-.55-.45-1-1-1s-1,.45-1,1v1h-1C2.59,2,.57,3.72,.1,6H23.9ZM13,14v4h5v-4h-5Zm7-6v4h4v-4h-4Z"
-                                    />
-                                </svg>
-                            </div> <i class="fa-solid fa-toggle-off toggle-pin" data-view="calendar"></i> </div>
-                </div>
-            </div>
-    </div>
-    <!-- POPUPS -->
-    <div id="totalPopup">
-        <h3>Wallet Balance</h3>
-        <div id="totalContent"></div>
-        <button onclick="closeTotalPopup()" style="margin-bottom:0px;margin-top: 20px;background-color: red;">Close Now</button>
-    </div>
-    <div id="datePopup">
-        <!-- <i class="fa-solid fa-xmark" style="position: absolute; top: 25px; right: 25px; cursor: pointer; color: #aaa; font-size: 16px; z-index: 10000;" onclick="closeDatePopup()"></i> -->
-        <h3>Amount details</h3>
-        <div id="popupContent"></div>
-    </div>
-    <div id="linkConfirmPopup">
-        <p id="linkConfirmText" style="text-align: center;font-size: 20px;">Do you like to visit (or) Delete this site..?</p>
-        <button class="btn-yes" id="linkYesBtn" style=" margin-bottom: 0px;">Visit</button>
-        <button style="color:white;background:rgb(176,0,0); margin-bottom: 0px;" class="btn-delete" id="linkDeleteBtn">Delete</button>
-    </div>
-    <div id="emoteChooser">
-        <h3>Choose Your Emote</h3>
-        <div class="emote-grid">
-            <div class="emote-grid"> <img class="emote-option" src="https://i.pinimg.com/originals/c6/4e/58/c64e58e0e2745147219d04097c20b026.gif" onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/a0/c7/da/a0c7dae2c0862003bf4dd621f50dcc52.gif"
-                onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/bf/36/76/bf3676d6107b8953decfb33ad16ebf9b.gif" onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
-                onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/bb/c2/a3/bbc2a39b80d283dc936d426be1868e3c.gif" onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_aa7da3b15c7d4a608b87665d33022f30/default/dark/2.0"
-                onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_500ba2d7450c45cf9392be301390e66c/default/dark/2.0" onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/9d/ea/79/9dea79194a3ba97d579f3ddaabbcd35a.gif"
-                onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/1b/e0/05/1be005a1c5defd26fe1256f450ce4522.gif" onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/14/17/73/141773658dd6e47f2b380b1f4884f122.gif"
-                onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/9a/52/11/9a521134306bb6f8cae5d40b625e88c7.gif" onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/15/70/84/157084787880c1ead98ec92332da7094.gif"
-                onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/a5/af/a7/a5afa79a074ee2f393084a7f3f919781.gif" onclick="setUserEmote(this.src)"> </div>
-        </div>
-        <button onclick="closeEmoteChooser()" style=" margin-bottom: 0px;background-color: red;">Close Now</button>
-    </div>
-    <script src="account.js">
-    </script>
-    <svg style="position:absolute;width:0;height:0"> </svg>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const downloadBtn = document.getElementById('download-receipt');
-    if (!downloadBtn) {
-        console.error("Button with id='download-receipt' NOT FOUND!");
-        return;
+    justify-content: space-evenly;
     }
-    console.log("✅ Receipt button initialized");
-    downloadBtn.addEventListener('click', function() {
-        if (!currentUser) {
-            alert("Login first!");
-            return;
-        }
-        const user = currentUser;
-        if (!user.loans || user.loans.length === 0) {
-            alert("No active loans found.");
-            return;
-        }
-        const baseHeight = 320;
-        const perLoanHeight = 148;
-        const footerHeight = 110;
-        const canvasHeight = baseHeight + (user.loans.length * perLoanHeight) + footerHeight;
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        const width = 850;
-        canvas.width = width;
-        canvas.height = canvasHeight;
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, width, canvasHeight);
-        let y = 80;
-        ctx.fillStyle = '#1a1a1a';
-        ctx.font = '600 42px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText('BsLends', width / 2, y);
-        y += 28;
-        ctx.fillStyle = '#666666';
-        ctx.font = '400 18px Arial';
-        ctx.fillText('Borrow Statement', width / 2, y);
-        y += 48;
-        ctx.textAlign = 'left';
-        ctx.fillStyle = '#1a1a1a';
-        ctx.font = '600 23px Arial';
-        ctx.fillText(user.name, 75, y);
-        y += 32;
-        ctx.font = '400 15px Arial';
-        ctx.fillStyle = '#555555';
-        ctx.fillText('Password • ' + (user === usersDB["0212"] ? "0212" : "BsPasgenerater"), 75, y);
-        y += 55;
-        ctx.fillStyle = '#1a1a1a';
-        ctx.font = '600 19px Arial';
-        ctx.fillText('Active Loans', 75, y);
-        y += 35;
-        user.loans.forEach((loan, i) => {
-            const total = loan.takenAmount + loan.interest;
-            ctx.strokeStyle = '#f0f0f0';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(75, y - 6);
-            ctx.lineTo(width - 75, y - 6);
-            ctx.stroke();
-            y += 28;
-            ctx.fillStyle = '#1a1a1a';
-            ctx.font = '600 18px Arial';
-            ctx.fillText(`Loan ${i + 1}`, 75, y);
-            y += 32;
-            ctx.font = '400 16.5px Arial';
-            ctx.fillStyle = '#444444';
-            ctx.fillText('Principal Amount', 75, y);
-            ctx.textAlign = 'right';
-            ctx.fillText(`₹${loan.takenAmount.toLocaleString('en-IN')}`, width - 75, y);
-            ctx.textAlign = 'left';
-            y += 28;
-            ctx.fillText('Interest', 75, y);
-            ctx.textAlign = 'right';
-            ctx.fillText(`₹${loan.interest.toLocaleString('en-IN')}`, width - 75, y);
-            ctx.textAlign = 'left';
-            y += 30;
-            ctx.fillStyle = '#1a1a1a';
-            ctx.font = '600 18px Arial';
-            ctx.fillText('Total Payable', 75, y);
-            ctx.textAlign = 'right';
-            ctx.fillStyle = '#d32f2f';
-            ctx.fillText(`₹${total.toLocaleString('en-IN')}`, width - 75, y);
-            ctx.textAlign = 'left';
-            y += 28;
-            ctx.fillStyle = '#555555';
-            ctx.font = '400 15.5px Arial';
-            ctx.fillText(`Due on ${loan.endDate}`, 75, y);
-            y += 52;
-        });
-        y += 35;
-        ctx.fillStyle = '#999999';
-        ctx.font = '400 14px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText('Power by BsBookpad', width / 2, y);
-        y += 28;
-        ctx.fillStyle = '#bbbbbb';
-        ctx.font = '400 13px Arial';
-        ctx.fillText('BsLends Services • Confidential', width / 2, y);
-        try {
-            const link = document.createElement('a');
-            link.download = user.name.replace(/[^a-zA-Z0-9]/g, '_') + '_BsLends_Statement.png';
-            link.href = canvas.toDataURL('image/png');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            console.log(`✅ Receipt downloaded successfully for ${user.name}`);
-        } catch (err) {
-            console.error("Download error:", err);
-            alert("Could not download. Try using Live Server instead of opening file directly.");
-        }
+
+    .dock-icon {
+    width: 55px;
+    height: 55px;
+        border-radius: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    fill: #ffffff;
+    background: linear-gradient(45deg, black, #727272);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 3px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    filter: saturate(2); */
+    box-shadow: inset 0.5px 0.5px 0px 0.1px #ffffff54, inset -1.5px -2.5px 0px -1.9px #ffffff54;
+    }
+.dock-icon:active {
+    transform: scale(0.82);
+}
+    /* Lock Screen */
+    #lock-screen {
+      position: absolute;
+    inset: 0;
+    z-index: 100;
+    background: linear-gradient(0deg, #000000, #000054);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.8s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    #lock-screen.unlocking {
+      transform: scale(0.88) translateY(-60px);
+      opacity: 0;
+    }
+
+    .lock-time {
+      font-size: 85px;
+    font-weight: 300;
+    margin-bottom: -30px;
+    text-align: center;
+    }
+
+    .lock-date {
+      font-size: 14px;
+    opacity: 0.8;
+    font-weight: 100;
+    }
+
+    .passcode-container {
+      margin-top: 60px;
+      width: 280px;
+    }
+
+    .passcode-input {
+     width: 100%;
+    border-radius: 18px;
+    padding: 10px;
+    font-size: 15px;
+    letter-spacing: 20px;
+    color: white;
+    outline: none;letter-spacing: 0px;
+    text-align: center;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;
+    filter: saturate(2);transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    background: transparent;
+    }
+.passcode-input:active {
+    transform: scale(0.82);
+}
+    .passcode-input:focus {
+      box-shadow: 0 0 0 3px rgb(255 255 255 / 20%);
+    }
+
+    #pass-error {
+      color: #ff6b6b;
+      text-align: center;
+      margin-top: 16px;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    /* Modal */
+    #app-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+    }
+
+    #app-modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      width: 320px;
+      border-radius: 28px;
+      padding: 32px 24px;
+      text-align: center;
+      transform: scale(0.7);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    #app-modal.show .modal-content {
+      transform: scale(1);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Lock Screen -->
+  <div id="lock-screen">
+    <div class="text-center">
+      <div id="lock-time" class="lock-time"></div>
+      <div id="lock-date" class="lock-date"></div>
+    </div>
+
+    <div class="passcode-container">
+      <input id="passcode" type="password" maxlength="9" inputmode="numeric"
+             class="passcode-input glass" placeholder="Enter PIN">
+      <div id="pass-error">Incorrect passcode</div>
+    </div>
+
+    <div style="position: absolute; bottom: 80px; font-size: 13px; opacity: 0.6;">
+      <span>↑ Slide up to unlock</span>
+    </div>
+  </div>
+
+  <div id="home-screen" class="phone-frame hidden">
+    <div class="status-bar glass">
+      <div id="status-time"></div>
+       <div class="logo">
+        <img class="mfigif" onclick="alert('Welcome to BS&MFI Services')" src="mfi.gif" alt="">
+        BsLends
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m320.23-107.69-42.54-42.54L607.46-480 277.69-809.77l42.54-42.54L692.54-480 320.23-107.69Z"/></svg>
+      </div>
+      <div id="status-date"></div>
+    </div>
+    <div class="app-grid">
+      <a href="https://mfi0212.github.io/swan/offer/solution"><div onclick="openApp(1)" class="app-item">
+      <div class="app-icon" style="background: linear-gradient(135deg, #f3d214, rgb(243 174 0))"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M414.62-255.38q-26.85 0-45.74-18.89Q350-293.15 350-320v-77.69q-51.62-33.62-80.81-86.93Q240-537.92 240-599.23q0-100.08 69.96-170.42Q379.92-840 480-840t170.04 69.96Q720-700.08 720-600q0 62.08-29.19 115.27T610-397.69V-320q0 26.85-18.88 45.73-18.89 18.89-45.74 18.89H414.62Zm0-40h130.76q10.77 0 17.7-6.93Q570-309.23 570-320v-98.92L594-436q40.23-28.77 63.12-71.88Q680-551 680-600q0-83-58.5-141.5T480-800q-83 0-141.5 58.5T280-600q0 49 22.88 92.12Q325.77-464.77 366-436l24 17.08V-320q0 10.77 6.92 17.69 6.93 6.93 17.7 6.93ZM406.92-120q-8.54 0-14.27-5.73T386.92-140v-20h186.16v20q0 8.54-5.73 14.27T553.08-120H406.92ZM480-600Z"/></svg></div>
+      <div class="app-label">Solutions</div>
+    </div></a>
+    <a href="https://mfi0212.github.io/MFI/abt.hlp"><div onclick="openApp(2)" class="app-item">
+      <div class="app-icon" style="background: linear-gradient(135deg, #d65321, #c33e58)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m341.31-312.31 138.69-63 138.69 63 5.77-5.77L480-667.69 335.54-318.08l5.77 5.77ZM480.13-120q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg></div>
+      <div class="app-label">Helper</div>
+    </div></a>
+    <a href="https://mfi0212.github.io/MFI/cholennaouii.main"><div onclick="openApp(3)" class="app-item">
+      <div class="app-icon" style="background: linear-gradient(135deg, #ff0000, #ff8d00);"><svg style="fill: white;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M459.42-122.73q-9.65-2.96-18.34-9.42l-33.7-24.47q-13.3-9.53-27.84-14.42-14.54-4.88-30.85-4.88H306q-21.47 0-38.14-12.72-16.66-12.71-23.32-32.9L231.31-262q-5-15.54-14.54-27.69-9.54-12.16-22.08-21.69l-34.46-24.47q-16.65-12.58-22.44-32.56-5.79-19.97.67-40.05l12.23-39.69q4.77-15.54 4.77-30.85 0-15.31-4.77-30.85l-12.23-40.69q-6.46-20.08-.67-40.05 5.79-19.98 22.44-32.56l34.46-24.47q12.54-9.53 22.08-22.07 9.54-12.54 14.54-28.08l13.23-39.69q6.66-20.19 23.32-32.9 16.67-12.72 38.14-12.72h42.69q16.16 0 31.16-4.38 15-4.39 28.3-13.92l32.93-25.47q8.69-6.46 18.34-9.42 9.66-2.96 20.2-2.96 10.53 0 20.57 2.96 10.04 2.96 17.96 9.42l34.47 25.47q13.3 9.53 27.84 13.92 14.54 4.38 30.85 4.38H654q21.47 0 38.14 12.72 16.66 12.71 23.32 32.9l13.23 38.92q5 15.31 13.66 28.35 8.65 13.04 21.96 22.57l34.46 24.47q16.53 12.58 22.99 32.56 6.47 19.97-.22 40.05l-13.23 41.46q-5 15.54-5 30.85 0 15.31 5 30.08l13.23 39.69q6.69 20.08.22 40.05-6.46 19.98-22.99 32.56l-34.46 24.47q-12.54 9.53-21.58 22.19-9.04 12.65-14.04 27.96l-13.23 39.69q-6.66 20.19-23.32 32.9-16.67 12.72-38.14 12.72h-42.69q-16.31 0-30.85 4.88-14.54 4.89-27.84 14.42l-33.7 24.47q-8.69 6.46-18.34 9.42-9.66 2.96-20.58 2.96-10.92 0-20.58-2.96ZM464-794.15q-8.23 6.23-16.85 12.23-8.61 6-16.84 12.23-17.93 12.92-39.35 19.77-21.42 6.84-43.27 6.84H305q-8.15 0-14.38 4.96-6.24 4.97-8.77 12.35-4 10.47-7 20.47-3 9.99-6.23 20.22-7.24 21.16-19.93 38.81-12.69 17.65-30.84 30.35-8.23 6.23-16.47 12.73-8.23 6.5-16.46 11.96-6.61 4.31-9.54 12.08-2.92 7.77-.38 15.92 2.82 10.39 6.12 19.85 3.29 9.45 6.11 19.84 6.46 21.39 6.46 43.54t-6.46 43.54q-2.82 10.8-6.11 20.61-3.3 9.82-6.12 20.62-1.77 7.38.38 14.88 2.16 7.5 8.77 11.81 8.23 6.23 16.85 12.23 8.62 6 16.85 12.23 17.92 13.7 30.73 31.35 12.8 17.65 20.04 38.81 3.23 10.23 6.61 19.84 3.39 9.62 6.62 19.85 2.53 7.38 9.27 12.35 6.73 4.96 14.88 4.96h41.69q22.69 0 43.69 6.84 21 6.85 39.16 19.77 8.23 6.23 16.84 12.73 8.62 6.5 16.85 12.73 6.39 4.08 13.85 4.73 7.46.66 13.61-3.19 9.77-5.46 18.39-12.73 8.61-7.27 17.61-14.27 18.16-12.69 39.36-19.65 21.21-6.96 43.26-6.96H653q8.15 0 14.77-4.96 6.61-4.97 9.15-12.35 3.23-10.23 6.62-19.85 3.38-9.61 6.61-19.84 7.23-21.39 19.66-38.93 12.42-17.53 30.57-31.23 9.26-7 18.52-13 9.25-6 17.48-13.77 5.85-5.07 8-12.19 2.16-7.11-.38-13.73l-6.23-19.73q-3-9.51-7-19.96-7.23-21.39-7.23-43.54t7.23-43.54l6.23-19.73q3-9.51 6-19.96 1.77-7.39 0-14.77t-8.38-12.46q-8.24-6.77-17.24-13l-18-12.46q-17.92-12.93-29.96-30.46-12.04-17.54-19.27-38.7-3.23-10.23-6.23-20.22-3-10-7-20.47-3.3-8.15-10.04-12.73-6.73-4.58-14.88-4.58h-41.69q-22.69 0-43.69-6.46-21-6.46-39.16-20.15-8.23-6.23-16.84-12.73-8.62-6.5-17.62-11.73-6.4-4.31-14.39-4.31T464-794.15Zm-71.62 142.07-81.3 80.54q-23.08 22.08-22.96 54.46.11 32.39 22.57 54.46 22.46 22.08 54.35 22.47 31.88.38 54.73-21.7l106.85-107.84q10.61-10.62 25.2-10.62 14.6 0 25.54 10.78 10.95 10.77 10.95 26.04 0 15.26-10.62 25.87l-79.38 80.39Q476.5-415 475.75-383.19t21.33 53.88q22.07 23.85 54.46 23.46 32.38-.38 54.69-23.46l27.62-27.38-28.54-28.54-27.62 27.38q-10.61 10.62-25.54 10.62-14.92 0-25.53-11.39-11.39-10.61-11.39-25.92 0-15.31 11.39-25.92l79.61-78.85q22.85-22.42 22.85-54.52 0-32.09-22.46-54.17-22.47-22.08-54.75-22.08-32.27 0-54.56 22.08L390.46-491.15q-10.61 10.61-25.54 10.61-14.92 0-25.54-10.61-10.61-10.62-10.61-25.89 0-15.27 11.38-26.73l79.77-79.77-27.54-28.54Zm86.85 172.85Z"/></svg></div>
+      <div class="app-label">Issue</div>
+    </div></a>
+    <a href="https://blackswan19.github.io/golden/FM/starspage"><div onclick="openApp(4)" class="app-item">
+      <div class="app-icon" style="background: linear-gradient(135deg, #365acb, #147ac9)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m325-676.31 104.31-138.84q9.69-12.93 22.73-18.89Q465.08-840 480-840q14.92 0 27.96 5.96 13.04 5.96 22.73 18.89L635-676.31l160.77 54.69q21.38 7.24 32.92 24.12 11.54 16.88 11.54 37.5 0 9.69-2.73 19t-9.19 18L722.92-380.08l4 153.23q1 28.08-18.77 47.47Q688.38-160 662.54-160q.31 0-18.16-2.23L480-210.69l-164.38 48.46q-5 2-9.47 2.11-4.46.12-8.69.12-26.61 0-46-19.38-19.38-19.39-18.38-47.47l4-154.23L131.92-523q-6.46-8.69-9.19-18-2.73-9.31-2.73-19 0-20.38 11.81-37.65T165-622.38l160-53.93Zm25.15 34.39-171.69 57.84q-11.54 3.85-15.77 15.77-4.23 11.93 3.46 21.93l111.7 153.61-4.77 166.39q-.77 13.07 9.23 20.76 10 7.7 22.31 3.85L480-252.15l175.38 51.38q12.31 3.85 22.31-3.85 10-7.69 9.23-20.76l-4.77-167.39 111.7-151.61q7.69-10 3.46-21.93-4.23-11.92-15.77-15.77l-171.69-59.84-110.62-147.31q-6.92-10-19.23-10t-19.23 10L350.15-641.92ZM480-499.23Z"/></svg></div>
+      <div class="app-label">Stars</div>
+    </div></a>
+    <a href="https://mfi0212.github.io/swan/lndlnk-mid"><div onclick="openApp(6)" class="app-item">
+      <div class="app-icon" style="background: linear-gradient(135deg, #2b9f73, #65a832)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M366.92-92.23q-46 0-80.57-27.85-34.58-27.84-47.66-71.38-12.15 20.23-33.57 30.96-21.43 10.73-45.12 10.73-41.77 0-70.88-29.23Q60-208.23 60-249.77q0-36.85 25.69-67.11 25.69-30.27 64.85-30.66-20.16-18.46-31.89-44.42T106.92-446q0-33.08 16.27-62.31 16.27-29.23 45.58-48.15 2.69 8.77 7.35 18.88 4.65 10.12 9.5 18.2-18.62 14.07-28.16 33.42-9.54 19.34-9.54 40.96 0 62.15 46 80.15 46 18 94.7 27.54l9 15.85q-11 32-17.85 54.11-6.85 22.12-6.85 40.89 0 37.69 27.27 65.58Q327.46-133 366.15-133q42.62 0 69.93-32.08 27.3-32.07 44.84-76.15 17.54-44.08 27.2-90.69 9.65-46.62 16.19-76.23l39.54 11q-8.23 39.61-19.7 92.23-11.46 52.61-32.65 99.73-21.19 47.11-55.46 80.04-34.27 32.92-89.12 32.92ZM160-189.77q24.69 0 42.35-17.65Q220-225.08 220-249.77t-17.65-42.35q-17.66-17.65-42.35-17.65t-42.35 17.65Q100-274.46 100-249.77t17.65 42.35q17.66 17.65 42.35 17.65Zm243.23-164.92q-40.61-36.39-74.27-68.04-33.65-31.65-57.96-62.08-24.31-30.42-37.65-60.84Q220-576.08 220-609q0-56.54 38.73-95.27T354-743q10.92 0 19.69 1.27 8.77 1.27 16.62 3.58-4.77-9.23-7.54-18.85-2.77-9.62-2.77-20.62 0-41.53 29.23-70.77 29.23-29.23 70.77-29.23 41.54 0 70.77 29.23Q580-819.15 580-777.62q0 11-2.77 20.5t-7.54 18.74q7.85-2.31 16.62-3.47Q595.08-743 606-743q45.38 0 79.31 25.81 33.92 25.81 46.54 65.88-9.54-1.46-21.27-1.46t-21.5 1.23q-10.85-23-32.81-37.23Q634.31-703 606-703q-37.31 0-59.5 19.35-22.19 19.34-57.73 60.65h-18.54q-36.54-42.54-58.73-61.27Q389.31-703 354-703q-40.46 0-67.23 26.77Q260-649.46 260-609q0 23 11.85 47.88 11.84 24.89 34.19 52.39 22.34 27.5 53.92 58.5 31.58 31 71.81 67l-28.54 28.54Zm119.12-380.58Q540-752.92 540-777.62q0-24.69-17.65-42.34-17.66-17.66-42.35-17.66t-42.35 17.66Q420-802.31 420-777.62q0 24.7 17.65 42.35 17.66 17.65 42.35 17.65t42.35-17.65Zm68.19 643.81q-14.31 0-28.12-2.92-13.8-2.93-26.88-9.77 5.61-7.08 11.23-16.85 5.61-9.77 10-18.08 8.69 3.93 17.77 5.39 9.08 1.46 17.77 1.46 38.92 0 66.57-27.89 27.66-27.88 27.66-66.57 0-19-6.85-40.62-6.84-21.61-17.84-53.61l9.77-15.85q49.69-9.54 95.19-27.92 45.5-18.39 45.5-80.54 0-48.46-34.12-71.85-34.11-23.38-76.81-23.38-40.46 0-94.15 13.69-53.69 13.69-124.08 37.15l-11-39.53q68.77-21.93 123.62-37.39Q650.62-582 697-582q60.54 0 107.92 35.62 47.39 35.61 47.39 101.15 0 28.08-11.35 52.88-11.34 24.81-31.5 44.81 39.16 1.16 64.85 30.66Q900-287.38 900-249.77q0 40.77-29.12 70.39-29.11 29.61-70.88 29.61-23.69 0-45.12-10.73-21.42-10.73-33.57-30.96-13.08 43.54-48.43 71.77-35.34 28.23-82.34 28.23Zm252.31-115.96Q860-225.08 860-249.77t-17.65-42.85q-17.66-18.15-42.35-18.15t-42.35 17.65Q740-275.46 740-250.77t18.15 42.85q18.16 18.15 42.85 18.15t41.85-17.65ZM160-249.77Zm320-527.85Zm320 526.85Z"/></svg></div>
+      <div class="app-label">Lendlink</div>
+    </div></a>
+    <a href="https://blackswan19.github.io/golden/Bs%20Games/bsgames"><div onclick="openApp(7)" class="app-item">
+      <div class="app-icon" style="background: linear-gradient(135deg, #d68613, #d65f26)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M597.23-398.77 631.69-524l-107.38-74.15-34.46 125.23 107.38 74.15ZM184.62-188.54l-16.85-7.54Q136-209.85 125-241.73q-11-31.89 3-62.12l56.62-121.38v236.69ZM360-129.23q-33 0-56.5-23.62-23.5-23.61-23.5-56.61v-189l88.54 243.23q3 7.77 5.77 13.88 2.77 6.12 7.77 12.12H360Zm174.46-38.85q-25.61 9.46-49.69-1.46-24.08-10.92-33.54-36.54L288.85-652q-9.47-25.62 1.84-49.58Q302-725.54 327.62-735L584-828.85q25.62-9.46 49.58 1.85 23.96 11.31 33.42 36.92l162.62 445.93q9.46 25.61-1.47 49.57-10.92 23.96-36.53 33.43l-257.16 93.07Zm-13.38-38.84L776.92-300q10-3.85 14.23-12.69 4.23-8.85.39-18.85L630.23-775.38q-3.85-10-12.69-14.24-8.85-4.23-18.85-.38l-255.61 93.08q-10 3.84-14.23 12.69t-.39 18.85l161.08 443.84q3.84 10 12.69 14.23t18.85.39ZM560-498.46Z"/></svg></div>
+      <div class="app-label">BsGames</div>
+    </div></a>
+ <a href="https://mfi0212.github.io/MFI/entrysheet"><div onclick="openApp(5)" class="app-item">
+      <div class="app-icon" style="background: linear-gradient(135deg, #a53f92, #7a4abf)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M460-300h40v-160h160v-40H500v-160h-40v160H300v40h160v160Zm20.13 180q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg></div>
+      <div class="app-label">Enterance</div>
+    </div></a>
+    <a href="https://mfi0212.github.io/MFI/bsmansion">
+      <div onclick="openApp(8)" class="app-item">
+        <div class="app-icon" style="background: linear-gradient(135deg, #ff6600, #000000);"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-515.38ZM200-200v-381.92l-95.85 71.15-23.92-31.46L480-840l400.77 297.54-24.15 31.69L480-790 240-611.38V-240h106.92v40H200Zm385.46 80L444.15-261.54l28.31-28.54 113 113 227-226L840-374.54 585.46-120Z"/></svg></div>
+        <div class="app-label">BsMansions</div>
+      </div>
+    </a>
+    </div>
+
+    <!-- Quick Notes -->
+    <div class="notes-section">
+      <div class="notes-header">
+        <h2 style="font-size: 20px; font-weight: 600;">Quick Notes</h2>
+        <button class="adnotopt" onclick="addNote()">
+          <svg style="width: 28px;
+    height: 28px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M460-460H240v-40h220v-220h40v220h220v40H500v220h-40v-220Z"/></svg> Add
+        </button>
+      </div>
+      <div id="notes-container"></div>
+    </div>
+
+
+    <div class="searchdivert">
+        <a href="https://mfi0212.github.io/MFI/bsmfi_search">
+          <div class="search-bar glass">
+            <svg class="serchareicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-95.92 0-162.58-66.65-66.65-66.66-66.65-162.58 0-95.92 66.65-162.58 66.66-66.65 162.58-66.65 95.92 0 162.58 66.65 66.65 66.66 66.65 162.58 0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z"/></svg>
+            <span>Search</span>
+          </div>
+      </a>
+    </div>
+    <div class="bottombar">
+      <div class="dock glass">
+      <a href="https://mfi0212.github.io/MFI/accverify"><div class="dock-icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M247.85-260.62q51-36.69 108.23-58.03Q413.31-340 480-340t123.92 21.35q57.23 21.34 108.23 58.03 39.62-41 63.73-96.84Q800-413.31 800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 66.69 24.12 122.54 24.11 55.84 63.73 96.84Zm146.88-234.11Q360-529.46 360-580t34.73-85.27Q429.46-700 480-700t85.27 34.73Q600-630.54 600-580t-34.73 85.27Q530.54-460 480-460t-85.27-34.73ZM480-120q-75.31 0-141-28.04t-114.31-76.65Q176.08-273.31 148.04-339 120-404.69 120-480t28.04-141q28.04-65.69 76.65-114.31 48.62-48.61 114.31-76.65Q404.69-840 480-840t141 28.04q65.69 28.04 114.31 76.65 48.61 48.62 76.65 114.31Q840-555.31 840-480t-28.04 141q-28.04 65.69-76.65 114.31-48.62 48.61-114.31 76.65Q555.31-120 480-120Zm108.85-59.35q53.53-19.34 92.53-52.96-39-31.31-90.23-49.5Q539.92-300 480-300q-59.92 0-111.54 17.81-51.61 17.81-89.84 49.88 39 33.62 92.53 52.96Q424.69-160 480-160q55.31 0 108.85-19.35Zm-52-343.8Q560-546.31 560-580t-23.15-56.85Q513.69-660 480-660t-56.85 23.15Q400-613.69 400-580t23.15 56.85Q446.31-500 480-500t56.85-23.15ZM480-580Zm0 350Z"/></svg></div></a>
+      <a href="https://mfi0212.github.io/MFI/applydivert"><div class="dock-icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M241.54-211.54Q138.31-243.15 89.92-322q-48.38-78.85-48.38-158t48.38-158q48.39-78.85 151.62-110.46V-706q-71 24-115.5 86t-44.5 140q0 78 44.5 140t115.5 86v42.46Zm320 11.54q-116.85 0-198.42-81.58-81.58-81.57-81.58-198.42t81.58-198.42Q444.69-760 561.54-760q54.46 0 103.61 19.62 49.16 19.61 87.77 55.15l-28.3 28.31q-32.24-29.93-73.43-46.5Q610-720 561.54-720q-100 0-170 70t-70 170q0 100 70 170t170 70q48.46 0 89.65-16.58 41.19-16.57 73.43-46.5l28.3 28.31q-38.61 35.54-87.77 55.15Q616-200 561.54-200Zm224.61-147.69L757.85-376l84-84h-315.7v-40h315.7l-84-84 28.3-28.31L918.46-480 786.15-347.69Z"/></svg></div></a>
+      <a href="https://mfi0212.github.io/MFI/starpre"><div class="dock-icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M306.92-119.23 468.46-400 160-436.15l450-404.62h44.62L489.23-559.23 800-523.85 350-119.23h-43.08Zm113.54-120.08 287.16-254.77-282.85-31.69L540.85-722 252.38-466.46l281.85 33.77-113.77 193.38ZM480-480.77Z"/></svg></div></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform"><div class="dock-icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M497.35-308.81q7.27-7.27 7.27-17.34 0-10.08-7.27-17.35-7.27-7.27-17.35-7.27-10.08 0-17.35 7.27-7.27 7.27-7.27 17.35 0 10.07 7.27 17.34t17.35 7.27q10.08 0 17.35-7.27ZM460-433.85h40v-240h-40v240Zm20 350.47L362.75-200H200v-162.75L83.38-480 200-597.25V-760h162.75L480-876.62 597.25-760H760v162.75L876.62-480 760-362.75V-200H597.25L480-83.38Zm0-56.62 100-100h140v-140l100-100-100-100v-140H580L480-820 380-720H240v140L140-480l100 100v140h140l100 100Zm0-340Z"/></svg></div></a>
+    </div>
+    </div>
+  </div>
+
+  
+
+  <script>
+    // Real-time Clock
+    function updateClock() {
+      const now = new Date();
+      
+      // Status bar
+      document.getElementById('status-time').textContent = 
+        now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }).replace(' AM', 'am').replace(' PM', 'pm');
+      
+      document.getElementById('status-date').textContent = 
+        now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+
+      // Lock screen
+      document.getElementById('lock-time').textContent = 
+        now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: false });
+      
+      document.getElementById('lock-date').textContent = 
+        now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    }
+
+    // Passwords
+    const correctPasswords = ["6275", "9919", "123456789"];
+    let notes = JSON.parse(localStorage.getItem('quickNotes')) || [];
+
+    const passInput = document.getElementById('passcode');
+    const errorEl = document.getElementById('pass-error');
+    const lockScreen = document.getElementById('lock-screen');
+    const homeScreen = document.getElementById('home-screen');
+
+    passInput.addEventListener('input', () => {
+      const val = passInput.value.trim();
+      if (val.length >= 4 && correctPasswords.includes(val)) {
+        unlockPhone();
+      } else if (val.length >= 9) {
+        errorEl.style.opacity = '1';
+        setTimeout(() => {
+          errorEl.style.opacity = '0';
+          passInput.value = '';
+        }, 1200);
+      }
     });
-});
-</script>
-</svg>
+
+    function unlockPhone() {
+      lockScreen.classList.add('unlocking');
+      setTimeout(() => {
+        lockScreen.style.display = 'none';
+        homeScreen.classList.remove('hidden');
+        renderNotes();
+      }, 700);
+    }
+
+    // Notepad
+    function renderNotes() {
+      const container = document.getElementById('notes-container');
+      container.innerHTML = '';
+      
+      notes.forEach((note, index) => {
+        const div = document.createElement('div');
+        div.className = 'note-card';
+        div.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <p style="font-size: 15.5px;
+    line-height: 1.4;
+    font-weight: 500;">${note.text}</p>
+            <button onclick="deleteNote(${index})" style="color: #ff0000;
+    font-size: 30px;
+    line-height: 1;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 100;">×</button>
+          </div>
+          <p style="font-size: 11px;
+    opacity: 0.6;
+    margin-top: 0px;
+    font-weight: 100;">
+            ${new Date(note.time).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}
+          </p>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function addNote() {
+      const text = prompt("Write your quick note:");
+      if (!text || !text.trim()) return;
+      
+      notes.unshift({
+        text: text.trim(),
+        time: Date.now()
+      });
+      
+      if (notes.length > 12) notes.pop();
+      localStorage.setItem('quickNotes', JSON.stringify(notes));
+      renderNotes();
+    }
+
+    function deleteNote(index) {
+      notes.splice(index, 1);
+      localStorage.setItem('quickNotes', JSON.stringify(notes));
+      renderNotes();
+    }
+
+    
+
+    function closeModal() {
+      const modal = document.getElementById('app-modal');
+      modal.classList.remove('show');
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 350);
+    }
+
+    // Initialize
+    window.onload = () => {
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      // Focus passcode
+      setTimeout(() => passInput.focus(), 600);
+
+      // Demo note
+      if (notes.length === 0) {
+        notes = [{ 
+          text: "Welcome to BsLends from BS&MFI Services", 
+          time: Date.now() 
+        }];
+      }
+    };
+  </script>
 </body>
 </html>
