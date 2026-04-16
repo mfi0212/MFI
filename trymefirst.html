@@ -1,732 +1,366 @@
 <!DOCTYPE html>
-<html lang="en" data-theme=se"dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BS&MFI Services</title>
-    <link rel="icon" href="mfi.logo.png" />
-          <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Android Home</title>
   <style>
- * { margin:0; padding:0; box-sizing:border-box;font-family: "Red Hat Display", sans-serif;letter-spacing: 0.5px;}
-    :root {
-      --bg-primary: #000000;
-      --bg-secondary: #17171c;
-      --bg-message: #1c1c24;
-      --text-primary: #ffffff;
-      --text-secondary: #a0a0b0;
-      --accent: #0021ff;
-      --accent-dark: #0021ff;
-      --border: #2a2a35;
-    }
-    body {
-  --c-glass: #bbbbbc;
-  --c-light: #fff;
-  --c-dark: #000;
-  
-  --c-content: rgb(255, 255, 255);
-  --c-action: #0052f5;
-  
-  --glass-reflex-dark: 1;
-  --glass-reflex-light: 1;
-  
-  --saturation: 150%;
-  
-  color: var(--c-content);
-}
-::placeholder{
-  color: rgb(179, 179, 179);
-}
-body:has(input[value="dark"]:checked) {
-  --c-glass: #bbbbbc;
-  --c-light: #fff;
-  --c-dark: #000;
-  
-  --c-content: #e1e1e1;
-  --c-action: #03d5ff;
-  
-  --c-bg: #1b1b1d;
-}
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-body:has(input[value="dim"]:checked) {
-  --c-light: #99deff;
-  --c-dark: #20001b;
-  --c-glass: hsl(335 250% 74% / 1);
-  
-  --c-content: #d5dbe2;
-  --c-action: #ff48a9;
-  
-  --c-bg: #152433;
-
-}
-a{
-  text-decoration: none;
-}
 * {
-            -webkit-tap-highlight-color: transparent;
-        }
-        body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
+	-webkit-tap-highlight-color: transparent;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', sans-serif;
+	scrollbar-width: none;letter-spacing: 0.5px;
+}
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #1e1e1e;
+      --primary: #8ab4f8;
+      --text: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+    }
+
     * {
-      margin: 0;scrollbar-width: none;
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
     body {
-      
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      min-height: 100vh;
-          padding: 5px;
-}
-.exploreside svg {
-    position: relative;
-    right: 20px;
-    width: 20px;
-    height: 20px;
-}
-  div#sectionsContainer {
-    padding-top: 100px;
-    max-width: 650px;
-    width: 100%;
-}
-    .container {
-          margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 600px;
-
+      font-family: 'Roboto', system-ui, sans-serif;
+      background: #111920;
+      height: 100vh;
+      overflow: hidden;
+      color: var(--text);
+      user-select: none;
     }
-.mficolblogo{
-   width: 60px;
-    height: 60px;
-    background: linear-gradient(45deg, #0021ffbd 34%, #00d0ffcc);
-    position: relative;
-    z-index: 100000;
-    border: none;
-	filter: saturate(2);
-    padding: 5px;
+svg {
+   fill: white;
+    width: 35px;
+    height: 35px;
+}
+.dock-icon svg {
+   background: #30455d5e;
     border-radius: 100px;
-    backdrop-filter: blur(2px);
+    padding: 10px;
+    width: 50px;
+    height: 50px;
 }
-.logo span svg {
-    width: 18px;
+a{
+  text-decoration: none;
 }
-    .header {
-   text-align: center;
-    cursor: pointer;
-    width: 100%;
-    transition: all 0.3s ease;
-    position: fixed;
-    top: 0;
+    .phone-frame {
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      height: 100vh;
+      max-height: 812px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Status Bar */
+    .status-bar {
+      height: 32px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 500;
+      color: white;
+    }
+
+    /* Search Bar */
+    .search-bar {
+    margin: 10px;
+    padding: 9px;
+    border-radius: 9999px;
+    background: #30455d5e;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 15px;
+    color: var(--text-secondary);
+    width: 85%;
+    }
+
+    .search-bar img {
+     width: 30px;
+    border-radius: 100px;
+    display: flex;
+    }
+
+    /* App Grid - Now right above bottom nav */
+    .app-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px 14px;
+    padding: 0 24px;
+    position: absolute;
+    bottom: 185px;
     left: 0;
     right: 0;
-    z-index: 50;
-    padding: 12px 7px;
-    display: flex;
-    align-items: self-start;
-    justify-content: space-between;
-    background: linear-gradient(180deg, black, transparent);
     }
-    .header button {
-box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    filter: saturate(2);
-    backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
-    width: 40px;
-    height: 40px;cursor: pointer;
+
+    .app-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .app-item:active {
+      transform: scale(0.88);
+    }
+
+    .app-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 9999px;
-    background: transparent;
+    width: 60px;
+    height: 60px;
+    border-radius: 100px;
+    border: solid 5px #1d2936;
+    }
+
+    .app-label {
+     margin-top: 8px;
+    font-size: 12px;
+    opacity: 0.9;
+    text-align: center;
     color: white;
-    font-size: 18px;
-   transition: all 0.3s ease;}
-
-        .header button:hover{
-              transform: scale(1.03); 
-        }
-        .header button:active{
-              transform: scale(0.90); 
-        } 
-.exclamation {
-       color: rgb(255 255 255);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    filter: saturate(2);
-    backdrop-filter: blur(1px);
-    padding: 11px;
-    border-radius: 100px;
-    background: rgb(255 0 0 / 69%);
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    font-size: 16px;
-    border: none;
-}
-.exclamation:hover{
-              transform: scale(1.03); 
-        }
-        .exclamation:active{
-              transform: scale(0.90); 
-        } 
-    .header h1 {
-          font-weight: 600;
-    cursor: pointer;
-    border-radius: 99px;
-    background: transparent;
-    color: #ffffffef;
-    font-size: 15px;
-    transition: all 0.3s ease;
+    font-weight: 100;
     }
-   .logo span {
-      padding: 5px;
-    font-size: 14px;
-    font-weight: 600;    position: relative;
-    top: -10px;
-    color: #ffffffbf;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    filter: saturate(2);
-    backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
-    border-radius: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}.logo {
-   display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 0px;
-    border-radius: 100px;
-    transition: all 0.3s ease;
-}
-  .logo:hover{
-              transform: scale(1.03); 
-        }
-        .logo:active{
-              transform: scale(0.90); 
-        } 
-.mfigif{
-      width: 42px;
-    height: 42px;
-    border-radius: 35px;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    filter: saturate(2);
-    padding: 3px;backdrop-filter: blur(5px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-transition: all 0.3s ease;
 
-}
-        .header img:hover{
-              transform: scale(1.03); 
-        }
-        .header img:active{
-              transform: scale(0.90); 
-        } 
-    .search-box {
-            position: fixed;
-    bottom: 0px;
+    /* Bottom Navigation */
+    .bottom-nav {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    justify-content: center;
+    align-items: center;
+    }.bottomicons {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    z-index: 1;
-    transition: all 0.3s ease;
-    gap: 0px;
-    padding: 0px 0 25px 0;
-    max-width: 600px;
-    background: linear-gradient(0deg, black, transparent);
-         }
-       
-
-
-    #searchInput {
-    padding: 12px 15px;
-    font-size: 17px;
-    background: transparent;
-    border: none;
-    border-radius: 37px;
-    color: var(--text-primary);
-    outline: none;
-    transition: all 0.2s;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    filter: saturate(2);
     width: 100%;
-    backdrop-filter: blur(5px);
-        } 
-
-    .search-icon {
-   color: rgb(179, 179, 179);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    filter: saturate(2);
-    backdrop-filter: blur(5px);
-    border-radius: 100px;
-    padding: 6px;
-    width: 45px;
-    height: 45px;
-    }svg.serchareicon {
-    width: 40px;
-    height: 40px;
-    fill: #ffffffe3;
 }
-.searchcontainer {
-    border-radius: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 90%;
-    gap: 10px;
-
-}      #searchInput:active{
-              transform: scale(0.95);
-             
-    }
-    #searchInput:focus{
-       background-color: white; 
-       color: #000;
-    }
-  .section {
-      position: relative;
-    padding: 3px;
-    width: 100%;
-    max-width: 600px;
-    }
-    .section:last-child{
-      margin-bottom: 85px;
+    .nav-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 27px;
+      color: white;
+      transition: transform 0.3s ease;
     }
 
-    .section h2 {
-          font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--accent);
-    margin-bottom: 10px;
-        padding: 5px;
-    margin-top: 5px;
+    .nav-icon:active {
+      transform: scale(0.85);
+    }
+
+    /* Lock Screen */
+    #lock-screen {
+      position: absolute;
+      inset: 0;
+      z-index: 100;
+      background: #111920;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #lock-screen.unlocking {
+      transform: scale(0.92) translateY(-40px);
+      opacity: 0;
+    }
+
+    .lock-time {
+       font-size: 92px;
+    font-weight: 100;
+    letter-spacing: 5px;
+    margin-bottom: 8px;
+    text-align: center;
+    transform: scaleY(2);
+    }
+
+    .lock-date {
+      font-size: 15px;
+    opacity: 50%;
+    font-weight: 100;
     text-align: center;
     }
 
-    .site-list {
-       padding: 5px;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    filter: saturate(2);
-    border-radius: 68px;
-    corner-shape: superellipse(2);
+    .fingerprint-hint {
+      margin-top: 80px;
+    font-size: 48px;
+    background: #003b57;
+    border-radius: 15px;
     }
 
-/* Only the very first site-list inside the very first section */
-.section:first-child .site-list:first-child {
-    border-radius: 80px;
-    corner-shape: superellipse(1.1);
-}
-   .site-item {
-display: flex;
-    align-items: center;
-    padding: 5px;
-    text-decoration: none;
-    opacity: 50%;
-    color: var(--text-primary);
-    transition: background 0.18s;
-    transition: all 0.3s ease;
-    margin: 5px;
-    width: 100%;
-}
-
-       .site-item:active{
-              transform: scale(0.98); }
-.site-item:hover{
-  opacity: 100%;
-}
-
-.site-item a:last-child{
-  padding: 10px;
-}
-    .letter-icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 10px;
-    color: rgb(255 255 255);
-    font-weight: 700;
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    text-transform: uppercase;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    filter: saturate(2);
-    backdrop-filter: blur(5px);
-    }
-
-    .site-info {
-   flex: 1;
-    min-width: 0;
-    padding: 8px 10px 8px 0;
-    border-bottom: solid 1px #ffffff45;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    }
-
-    .site-info h3 {
-     font-size: 16px;
-        font-weight: 500;
-    }
-
-    .site-info p {
-      font-size: 11px;
-    color: #ffffff8a;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-weight: 100;
-    }
-.section:first-child {
-    border: none;
-    margin-top: 25px;
-}
-
-    .no-results {
-      text-align: center;
-      padding: 80px 20px;
-      color: var(--text-secondary);
-      font-size: 1.1rem;
+    /* Modal */
+    #app-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
       display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
     }
-footer{
-  text-align: center;
-    font-size: 12px;
-    color: #ffffff85;
-    background: black;
-    position: sticky;
-    bottom: 0px;
-    padding: 5px 0px;
-}
-    @media (max-width: 500px) {
-      .letter-icon {
-        font-size: 1.25rem;
-      }
 
+    #app-modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #1e1e1e;
+      width: 320px;
+      border-radius: 28px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
     }
   </style>
 </head>
 <body>
-<div class="container">
 
-  <div class="header">
-    <button onclick="goBack()" class="back-btn">
-     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M640-107.69 267.69-480 640-852.31l42.54 42.54L352.77-480l329.77 329.77L640-107.69Z"/></svg>
-    </button>
-    <div class="logo">
-      <div class="mficolb">
-        <img class="mficolblogo" src="https://github.com/goforbg/telegram-emoji-gifs/blob/master/thunder.gif?raw=true" alt="">
+  <!-- Lock Screen -->
+  <div id="lock-screen">
+    <div class="text-center">
+      <div id="lock-time" class="lock-time"></div>
+      <div id="lock-date" class="lock-date"></div>
+    </div>
+    <div class="fingerprint-hint">🔒</div>
+    <div style="position: absolute; bottom: 100px; font-size: 14px; opacity: 0.6;">
+      Tap to unlock
+    </div>
+  </div>
+
+  <!-- Home Screen -->
+  <div id="home-screen" class="phone-frame hidden">
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <div id="status-time"></div>
+      <div style="display: flex; gap: 12px;display: none;">
+        <span>4G</span>
+        <span>92%</span>
       </div>
-      <span>BS&MFI Services<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m320.23-107.69-42.54-42.54L607.46-480 277.69-809.77l42.54-42.54L692.54-480 320.23-107.69Z"/></svg></span>
     </div>
-    <img class="mfigif" onclick="alert('Welcome to BS&MFI Services')" src="mfi.gif" alt="">
-  </div>
-  <div id="sectionsContainer"></div>
 
-  <div class="no-results" id="noResults">
-    Nothing found
-  </div>
-   <div class="search-box">
-    <div class="searchcontainer">
-      <span class="search-icon"><svg class="serchareicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-95.92 0-162.58-66.65-66.65-66.66-66.65-162.58 0-95.92 66.65-162.58 66.66-66.65 162.58-66.65 95.92 0 162.58 66.65 66.65 66.66 66.65 162.58 0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z"/></svg></span>
-      <input type="text" id="searchInput" placeholder="Search here..." autocomplete="off"/>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform"><p class="exclamation">I've Issue</p></a>
+
+   <div class="app-grid">
+      <a href="https://blackswan19.github.io/golden/FM/solution"><div onclick="openApp(1)" class="app-item">
+      <div class="app-icon" style="background: linear-gradient(135deg, #f3d214, rgb(243 174 0))"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M414.62-255.38q-26.85 0-45.74-18.89Q350-293.15 350-320v-77.69q-51.62-33.62-80.81-86.93Q240-537.92 240-599.23q0-100.08 69.96-170.42Q379.92-840 480-840t170.04 69.96Q720-700.08 720-600q0 62.08-29.19 115.27T610-397.69V-320q0 26.85-18.88 45.73-18.89 18.89-45.74 18.89H414.62Zm0-40h130.76q10.77 0 17.7-6.93Q570-309.23 570-320v-98.92L594-436q40.23-28.77 63.12-71.88Q680-551 680-600q0-83-58.5-141.5T480-800q-83 0-141.5 58.5T280-600q0 49 22.88 92.12Q325.77-464.77 366-436l24 17.08V-320q0 10.77 6.92 17.69 6.93 6.93 17.7 6.93ZM406.92-120q-8.54 0-14.27-5.73T386.92-140v-20h186.16v20q0 8.54-5.73 14.27T553.08-120H406.92ZM480-600Z"/></svg></div>
+      <div class="app-label">Solutions</div>
+    </div></a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform"><div onclick="openApp(3)" class="app-item">
+      <div class="app-icon" style="background: linear-gradient(135deg, #ff0000, #ff8d00);"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M497.35-308.81q7.27-7.27 7.27-17.34 0-10.08-7.27-17.35-7.27-7.27-17.35-7.27-10.08 0-17.35 7.27-7.27 7.27-7.27 17.35 0 10.07 7.27 17.34t17.35 7.27q10.08 0 17.35-7.27ZM460-433.85h40v-240h-40v240Zm20 350.47L362.75-200H200v-162.75L83.38-480 200-597.25V-760h162.75L480-876.62 597.25-760H760v162.75L876.62-480 760-362.75V-200H597.25L480-83.38Zm0-56.62 100-100h140v-140l100-100-100-100v-140H580L480-820 380-720H240v140L140-480l100 100v140h140l100 100Zm0-340Z"/></svg></div>
+      <div class="app-label">Issue</div>
+    </div></a>
+    <a href="https://blackswan19.github.io/golden/FM/starspage"><div onclick="openApp(4)" class="app-item">
+      <div class="app-icon" style="background: linear-gradient(135deg, #365acb, #147ac9)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m325-676.31 104.31-138.84q9.69-12.93 22.73-18.89Q465.08-840 480-840q14.92 0 27.96 5.96 13.04 5.96 22.73 18.89L635-676.31l160.77 54.69q21.38 7.24 32.92 24.12 11.54 16.88 11.54 37.5 0 9.69-2.73 19t-9.19 18L722.92-380.08l4 153.23q1 28.08-18.77 47.47Q688.38-160 662.54-160q.31 0-18.16-2.23L480-210.69l-164.38 48.46q-5 2-9.47 2.11-4.46.12-8.69.12-26.61 0-46-19.38-19.38-19.39-18.38-47.47l4-154.23L131.92-523q-6.46-8.69-9.19-18-2.73-9.31-2.73-19 0-20.38 11.81-37.65T165-622.38l160-53.93Zm25.15 34.39-171.69 57.84q-11.54 3.85-15.77 15.77-4.23 11.93 3.46 21.93l111.7 153.61-4.77 166.39q-.77 13.07 9.23 20.76 10 7.7 22.31 3.85L480-252.15l175.38 51.38q12.31 3.85 22.31-3.85 10-7.69 9.23-20.76l-4.77-167.39 111.7-151.61q7.69-10 3.46-21.93-4.23-11.92-15.77-15.77l-171.69-59.84-110.62-147.31q-6.92-10-19.23-10t-19.23 10L350.15-641.92ZM480-499.23Z"/></svg></div>
+      <div class="app-label">Stars</div>
+    </div></a>
+    <a href="https://blackswan19.github.io/golden/Bs%20Games/bsgames"><div onclick="openApp(7)" class="app-item">
+      <div class="app-icon" style="background: linear-gradient(135deg, #d68613, #d65f26)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M597.23-398.77 631.69-524l-107.38-74.15-34.46 125.23 107.38 74.15ZM184.62-188.54l-16.85-7.54Q136-209.85 125-241.73q-11-31.89 3-62.12l56.62-121.38v236.69ZM360-129.23q-33 0-56.5-23.62-23.5-23.61-23.5-56.61v-189l88.54 243.23q3 7.77 5.77 13.88 2.77 6.12 7.77 12.12H360Zm174.46-38.85q-25.61 9.46-49.69-1.46-24.08-10.92-33.54-36.54L288.85-652q-9.47-25.62 1.84-49.58Q302-725.54 327.62-735L584-828.85q25.62-9.46 49.58 1.85 23.96 11.31 33.42 36.92l162.62 445.93q9.46 25.61-1.47 49.57-10.92 23.96-36.53 33.43l-257.16 93.07Zm-13.38-38.84L776.92-300q10-3.85 14.23-12.69 4.23-8.85.39-18.85L630.23-775.38q-3.85-10-12.69-14.24-8.85-4.23-18.85-.38l-255.61 93.08q-10 3.84-14.23 12.69t-.39 18.85l161.08 443.84q3.84 10 12.69 14.23t18.85.39ZM560-498.46Z"/></svg></div>
+      <div class="app-label">BsGames</div>
+    </div></a>
     </div>
+
+    <div class="bottom-nav">
+      <div class="bottomicons">
+          <a href="https://blackswan19.github.io/golden/FM/accverify"><div class="dock-icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M247.85-260.62q51-36.69 108.23-58.03Q413.31-340 480-340t123.92 21.35q57.23 21.34 108.23 58.03 39.62-41 63.73-96.84Q800-413.31 800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 66.69 24.12 122.54 24.11 55.84 63.73 96.84Zm146.88-234.11Q360-529.46 360-580t34.73-85.27Q429.46-700 480-700t85.27 34.73Q600-630.54 600-580t-34.73 85.27Q530.54-460 480-460t-85.27-34.73ZM480-120q-75.31 0-141-28.04t-114.31-76.65Q176.08-273.31 148.04-339 120-404.69 120-480t28.04-141q28.04-65.69 76.65-114.31 48.62-48.61 114.31-76.65Q404.69-840 480-840t141 28.04q65.69 28.04 114.31 76.65 48.61 48.62 76.65 114.31Q840-555.31 840-480t-28.04 141q-28.04 65.69-76.65 114.31-48.62 48.61-114.31 76.65Q555.31-120 480-120Zm108.85-59.35q53.53-19.34 92.53-52.96-39-31.31-90.23-49.5Q539.92-300 480-300q-59.92 0-111.54 17.81-51.61 17.81-89.84 49.88 39 33.62 92.53 52.96Q424.69-160 480-160q55.31 0 108.85-19.35Zm-52-343.8Q560-546.31 560-580t-23.15-56.85Q513.69-660 480-660t-56.85 23.15Q400-613.69 400-580t23.15 56.85Q446.31-500 480-500t56.85-23.15ZM480-580Zm0 350Z"/></svg></div></a>
+          <a href="https://mfi0212.github.io/MFI/applydivert"><div class="dock-icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M241.54-211.54Q138.31-243.15 89.92-322q-48.38-78.85-48.38-158t48.38-158q48.39-78.85 151.62-110.46V-706q-71 24-115.5 86t-44.5 140q0 78 44.5 140t115.5 86v42.46Zm320 11.54q-116.85 0-198.42-81.58-81.58-81.57-81.58-198.42t81.58-198.42Q444.69-760 561.54-760q54.46 0 103.61 19.62 49.16 19.61 87.77 55.15l-28.3 28.31q-32.24-29.93-73.43-46.5Q610-720 561.54-720q-100 0-170 70t-70 170q0 100 70 170t170 70q48.46 0 89.65-16.58 41.19-16.57 73.43-46.5l28.3 28.31q-38.61 35.54-87.77 55.15Q616-200 561.54-200Zm224.61-147.69L757.85-376l84-84h-315.7v-40h315.7l-84-84 28.3-28.31L918.46-480 786.15-347.69Z"/></svg></div></a>
+          <a href="https://blackswan19.github.io/golden/FM/starpre"><div class="dock-icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M306.92-119.23 468.46-400 160-436.15l450-404.62h44.62L489.23-559.23 800-523.85 350-119.23h-43.08Zm113.54-120.08 287.16-254.77-282.85-31.69L540.85-722 252.38-466.46l281.85 33.77-113.77 193.38ZM480-480.77Z"/></svg></div></a>
+          <a href="https://blackswan19.github.io/golden/FM/bsmfi_search"><div class="dock-icon"><svg class="serchareicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-95.92 0-162.58-66.65-66.65-66.66-66.65-162.58 0-95.92 66.65-162.58 66.66-66.65 162.58-66.65 95.92 0 162.58 66.65 66.65 66.66 66.65 162.58 0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z"/></svg>
+            </div></a>
+        </div>
+        <div class="search-bar">
+          <span style="opacity: 0.7;"><img src="mfi.gif" alt=""></span>
+          <span>Myootive Services</span>
+        </div>
+     </div>
   </div>
 
-</div>
-
-<script>
-const siteGroups = [
-    {
-    heading: "Return Management",
-    sites: [
-      { name: "BS&MFI Solutions",      desc: "Return date extender",     url: "https://mfi0212.github.io/swan/offer/solution",      icon: "fab fa-youtube"       },
-      { name: "BsRora",      desc: "Return date extender",     url: "",      icon: "fab fa-youtube"       },
-]
-},
-{
-  heading: "New in & issue",
-  sites: [
-    { name: "Enterance Form", desc: "New members form",       url: "https://mfi0212.github.io/MFI/entrysheet", icon: "fas fa-code"         },
-    { name: "Helper",      desc: "I have issue form",           url: "https://mfi0212.github.io/MFI/abt.hlp",      icon: "fas fa-film"          },
-  ]
-},
-{
-  heading: "Offer & Earns",
-  sites: [
-    { name: "Lendlink-Mid",    desc: "Turn your money into income",        url: "https://mfi0212.github.io/swan/lndlnk-mid",    icon: "fas fa-book-open"     },
-    { name: "BsGames",       desc: "Exclusive rewards and benefits for BS&MFI members.",          url: "https://blackswan19.github.io/golden/Bs%20Games/bsgames",       icon: "fab fa-reddit"        },
-    { name: "Stars",       desc: "Interest reducer.",          url: "https://blackswan19.github.io/golden/FM/starspage",       icon: "fab fa-reddit"        },
-  ]
-},
-{
-  heading: "For VIPs Only Services",
-  sites: [
-      { name: "BsMansion",      desc: "Store offer to use after",              url: "https://mfi0212.github.io/MFI/bsmansion",  icon: "fas fa-robot"         },
-      { name: "Chloennaouii",    desc: "Discover Your Discount",                  url: "https://mfi0212.github.io/MFI/cholennaouii.main",    icon: "fab fa-instagram"     },
-    ]
-  },  
-  {
-    heading: "Services",
-    sites: [
-      { name: "All Services", desc: "All service from BS&MFI",       url: "https://blackswan19.github.io/BS/bslends", icon: "fas fa-code"         },
-      { name: "BsLends", desc: "A service from BS&MFI",       url: "https://mfi0212.github.io/MFI/rate", icon: "fas fa-code"         },
-      { name: "Myootive", desc: "A service from BS&MFI",       url: "https://blackswan19.github.io/golden/FM/themain", icon: "fas fa-code"         },
-      { name: "Vintage Lender(VIPs)", desc: "VIPs only site",       url: "", icon: "fas fa-code"         },
-      { name: "Short Term Loan",            desc: "Quick amounts for 1 to 15 days.",        url: "https://mfi0212.github.io/MFI/1.5.days",            icon: "fab fa-x-twitter"     },
-    ]
-  },
-   {
-    heading: "Collaboration",
-    sites: [
-      { name: "BsPsgenerater", desc: "Password generator",       url: "https://blackswan19.github.io/Educate/password", icon: "fas fa-code"         },
-      { name: "BsReminder", desc: "Date wise notes",       url: "https://blackswan19.github.io/bscrop/reminder", icon: "fas fa-code"         },
-      { name: "BsBookpad", desc: "Download the notes",       url: "https://blackswan19.github.io/Educate/bookpad", icon: "fas fa-code"         },
-      { name: "BsAdstoper", desc: "Ad blocker",       url: "https://blackswan19.github.io/Educate/stoper", icon: "fas fa-code"         },
-    ]
-  }
-];
-// document.addEventListener('contextmenu', e => e.preventDefault());
-function getColor(name) {
-  let hash = 0;
-  for (let i = 0; i < name.length; i++) {
-    hash = name.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  const hue = Math.abs(hash) % 360;
-  return `hsl(${hue}, 75%, 58%)`;
-}
-
-function getInitial(name) {
-  return name.trim()[0]?.toUpperCase() || "?";
-}
-
-function renderAll() {
-  const container = document.getElementById("sectionsContainer");
-  container.innerHTML = "";
-
-  siteGroups.forEach(group => {
-    const section = document.createElement("div");
-    section.className = "section";
-
-    const h2 = document.createElement("h2");
-    h2.textContent = group.heading;
-    section.appendChild(h2);
-
-    const list = document.createElement("div");
-    list.className = "site-list";
-
-    group.sites.forEach(site => {
-      const a = document.createElement("a");
-      a.href = site.url;
-      a.target = "_parent";
-      a.className = "site-item";
-
-      const bg = getColor(site.name);
-      const initial = getInitial(site.name);
-
-      a.innerHTML = `
-        <div class="letter-icon" style="background: ${bg};">${initial}</div>
-        <div class="site-info">
-          <h3>${site.name}</h3>
-        </div>
-         <div class="exploreside">
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m320.23-107.69-42.54-42.54L607.46-480 277.69-809.77l42.54-42.54L692.54-480 320.23-107.69Z"/></svg>
- </div>
-      `;
-
-      list.appendChild(a);
-    });
-
-    section.appendChild(list);
-    container.appendChild(section);
-  });
-}
-
-function renderFiltered(query = "") {
-  const q = query.toLowerCase().trim();
-  const container = document.getElementById("sectionsContainer");
-  const noResults = document.getElementById("noResults");
-
-  container.innerHTML = "";
-
-  if (!q) {
-    renderAll();
-    noResults.style.display = "none";
-    return;
-  }
-
-  let found = false;
-
-  siteGroups.forEach(group => {
-    const matches = group.sites.filter(s =>
-      s.name.toLowerCase().includes(q) ||
-      s.desc.toLowerCase().includes(q) ||
-      s.url.toLowerCase().includes(q)
-    );
-
-    if (!matches.length) return;
-
-    found = true;
-
-    const section = document.createElement("div");
-    section.className = "section";
-
-    const h2 = document.createElement("h2");
-    h2.textContent = group.heading;
-    section.appendChild(h2);
-
-    const list = document.createElement("div");
-    list.className = "site-list";
-
-    matches.forEach(site => {
-      const a = document.createElement("a");
-      a.href = site.url;
-      a.target = "_parent";
-      a.className = "site-item";
-
-      const bg = getColor(site.name);
-      const initial = getInitial(site.name);
-
-      a.innerHTML = `
-        <div class="letter-icon" style="background: ${bg};">${initial}</div>
-        <div class="site-info">
-          <h3>${site.name}</h3>
-          <p>${site.desc}</p>
-        </div>
-      `;
-
-      list.appendChild(a);
-    });
-
-    section.appendChild(list);
-    container.appendChild(section);
-  });
-
-  noResults.style.display = found ? "none" : "block";
-}
-
-renderAll();
- function goBack() {
-      if (window.history.length > 1) {
-        window.history.back();
-      } else {
-        alert(" Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
-      }
+  <script>
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('status-time').textContent =
+        now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })
+           .replace(' AM', 'am').replace(' PM', 'pm');
+      
+      document.getElementById('lock-time').textContent =
+        now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: false });
+      
+      document.getElementById('lock-date').textContent =
+        now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
     }
-document.getElementById("searchInput").addEventListener("input", e => {
-  renderFiltered(e.target.value);
-});
-</script>
 
+    const lockScreen = document.getElementById('lock-screen');
+    const homeScreen = document.getElementById('home-screen');
+
+    lockScreen.addEventListener('click', () => {
+      lockScreen.classList.add('unlocking');
+      setTimeout(() => {
+        lockScreen.style.display = 'none';
+        homeScreen.classList.remove('hidden');
+      }, 600);
+    });
+
+    function openApp(num) {
+      const modal = document.getElementById('app-modal');
+      const iconEl = document.getElementById('modal-icon');
+      const titleEl = document.getElementById('modal-title');
+
+      const apps = {
+        1: {icon: '💬', title: 'Messages'},
+        2: {icon: '📸', title: 'Camera'},
+        3: {icon: '🎵', title: 'Music'},
+        4: {icon: '🗺️', title: 'Maps'},
+        5: {icon: '🌤️', title: 'Weather'},
+        6: {icon: '📅', title: 'Calendar'},
+        7: {icon: '💰', title: 'Wallet'},
+        8: {icon: '🛒', title: 'Play Store'},
+        9: {icon: '☎️', title: 'Phone'},
+        10: {icon: '💬', title: 'Messages'},
+        11: {icon: '🌐', title: 'Chrome'},
+        12: {icon: '📷', title: 'Photos'}
+      };
+
+      const app = apps[num] || {icon: '⭐', title: 'App'};
+      iconEl.textContent = app.icon;
+      titleEl.textContent = app.title;
+      modal.style.display = 'flex';
+      setTimeout(() => modal.classList.add('show'), 10);
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('app-modal');
+      modal.classList.remove('show');
+      setTimeout(() => modal.style.display = 'none', 300);
+    }
+
+    window.onload = () => {
+      updateClock();
+      setInterval(updateClock, 1000);
+    };
+  </script>
 </body>
 </html>
