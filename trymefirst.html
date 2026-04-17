@@ -1276,10 +1276,10 @@ function showInterestPopup(baseAmount, baseInterest){
   }
 
   document.getElementById("popup-content").innerHTML =
-    `If you borrow <b>${symbol}${amount}</b> for 1 month.<br>
-     Interest will be: <b>${symbol}${interest}</b><br>
+    `Borrow <b>${symbol}${amount}</b> for 1 month.<br>
+     Interest : <b>${symbol}${interest}</b><br>
      <hr>
-     Total amount to return : <b>${symbol}${total}</b>`;
+     Total amount: <b>${symbol}${total}</b>`;
   openPopup('interestPopup');
 }
 document.addEventListener("DOMContentLoaded", () => {
