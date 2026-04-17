@@ -374,7 +374,9 @@ button.btn.btn-gold.close-btn {
     justify-content: center;
     align-items: center;
     gap: 5px;margin: 0;
-    padding: 5px 8px;
+    padding: 5px 8px;background-color: red;
+}button.btn.btn-gold.close-btn svg{
+    opacity: 100%;
 }
         .menu{ 
            margin: 0 auto;
@@ -678,8 +680,8 @@ filter: saturate(1);
             height: 0;
         }
 .premium-search {
-      position: fixed;
-    bottom: 95px;
+     position: fixed;
+    bottom: 100px;
     right: 15px;
     display: flex;
     justify-content: center;
@@ -912,13 +914,13 @@ filter: saturate(1);
             <!-- <a id="stoexplore" href="https://mfi0212.github.io/swan/offer/offer" style="font-size: 12px;">Visit STO</a> -->
             <a id="stoexplore" onclick="alert('Currently BsLends Service stopped offers..!')">Visit STO</a>
         </p>
-        <button style="    background: #ffffff00;
+        <button style="background: #ffffff00;
     margin-top: 35px;
-    box-shadow: 0px 0px 22px #ffffffa8;
+    box-shadow: 0px 0px 22px #ffffffcf;
     border: none;
-    padding: 7px;
-    font-weight: 300;
-    font-size: 13px;
+    padding: 8px;
+    font-weight: 100;
+    font-size: 14px;
 " class="btn">
             <a href="https://mfi0212.github.io/swan/home" style="text-decoration: none;
     color: #fff;">To borrow below 5k - Lendlink</a>
@@ -1190,10 +1192,10 @@ filter: saturate(2);
                 </button>
                 <button class="btn btn-gold close-btn"style="color: black;
                         background: white;">
-                    <a href="" style="color: black;    font-weight: 400;
+                    <a onclick="showContent('content-home', this), closePopup('accountPopup')" style="color: black;    font-weight: 400;
 ">Go to Homepage</a>
                 </button>
-            </div>
+                           </div>
         </div>
     </div>
 
