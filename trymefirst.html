@@ -301,7 +301,7 @@ b {
 p#popup-content {
     margin-bottom: 50px;
     font-size: 18px;
-    font-weight: 100;
+    font-weight: 400;
 }
 div#pricesList {
   backdrop-filter: blur(5px);
@@ -1279,7 +1279,7 @@ function showInterestPopup(baseAmount, baseInterest){
     `Borrow <b>${symbol}${amount}</b> for 1 month.<br>
      Interest : <b>${symbol}${interest}</b><br>
      <hr>
-     Total amount: <b>${symbol}${total}</b>`;
+     Total amount : <b>${symbol}${total}</b>`;
   openPopup('interestPopup');
 }
 document.addEventListener("DOMContentLoaded", () => {
