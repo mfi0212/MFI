@@ -125,8 +125,8 @@ function updateAllSpeeds() {
     if(twinkleInt) { clearInterval(twinkleInt); startTwinkle(); }
 }
 
-const USD_RATE = 87.85;
-let currentCurrency = localStorage.getItem('currency') || 'INR';
+const Usd_RATE = 87.85;
+let currentCurrency = localStorage.getItem('currency') || 'Inr';
 let currentUser = null;
 let currentLoanIndex = null;
 let calendarMonth = new Date();
@@ -174,8 +174,8 @@ function formatDateDDMMYYYY(date) {
 }
 
 function formatMoney(amount) {
-    const val = currentCurrency === 'USD' ? (amount / USD_RATE).toFixed(2) : amount;
-    const symbol = currentCurrency === 'USD' ? '$' : '₹';
+    const val = currentCurrency === 'Usd' ? (amount / Usd_RATE).toFixed(2) : amount;
+    const symbol = currentCurrency === 'Usd' ? '$' : '₹';
     return `${symbol}${parseFloat(val).toLocaleString()}`;
 }
 
@@ -270,7 +270,7 @@ function showRepaymentReminderPopup(reminder) {
                 <p>Mr. ${name} you have <strong>${formatMoney(totalAmount)}</strong> to return on <br><strong>${dueDate}</strong>${loansText}. Return before the end date or extra charges will be added.</p>
             </div>
             <div class="reminder-actions">
-                <button class="reminder-btn delay"  data-action="delay"><a href="https://mfi0212.github.io/swan/offer/solution">Explore Solutions</a></button>
+                <a href="https://mfi0212.github.io/swan/offer/solution"><button class="reminder-btn delay"  data-action="delay">Explore Solutions</button></a>
             </div>
         </div>
     `;
@@ -339,11 +339,11 @@ document.getElementById("submitBtn").onclick = () => {
 function updateCurrencyUI() {
     document.getElementById('currencyLabel').textContent = currentCurrency;
     document.querySelector('#currencySwitch i').className = 
-        currentCurrency === 'USD' ? 'fa-solid fa-dollar-sign' : 'fa-solid fa-indian-rupee-sign';
+        currentCurrency === 'Usd ($)' ? '' : '';
 }
 
 function toggleCurrency() {
-    currentCurrency = currentCurrency === 'INR' ? 'USD' : 'INR';
+    currentCurrency = currentCurrency === 'Inr (₹)' ? 'Usd ($)' : 'Inr (₹)';
     localStorage.setItem('currency', currentCurrency);
     updateCurrencyUI();
     if (currentUser) {
@@ -510,7 +510,10 @@ function displayLoanDetails(loan, index) {
             <div class="details">
                 ${overdueFine > 0 ? `
                     <div class="leftflow">
-                        <svg class="strokeadder"  style="background: #ff1414;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><g fill="none"><path  stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l2.5 2.5"/><path  d="m5.604 5.604l-.53-.53l.53.53ZM4.338 6.871l-.75.003a.75.75 0 0 0 .746.747l.004-.75Zm2.542.762a.75.75 0 1 0 .007-1.5l-.007 1.5ZM5.075 4.321a.75.75 0 0 0-1.5.008l1.5-.008ZM3.75 12a.75.75 0 0 0-1.5 0h1.5Zm13.125 8.445a.75.75 0 1 0-.75-1.298l.75 1.298Zm2.272-4.32a.75.75 0 1 0 1.298.75l-1.298-.75ZM5.14 5.07a.75.75 0 1 0 1.056 1.066L5.14 5.071Zm13.722.067c-3.82-3.82-9.993-3.859-13.788-.064l1.06 1.06c3.2-3.199 8.423-3.18 11.668.065l1.06-1.061ZM5.074 5.074L3.808 6.34l1.06 1.06l1.267-1.265l-1.061-1.061Zm-.74 2.547l2.546.012l.007-1.5l-2.545-.012l-.008 1.5Zm.754-.754L5.075 4.32l-1.5.008l.013 2.545l1.5-.007ZM12 3.75A8.25 8.25 0 0 1 20.25 12h1.5A9.75 9.75 0 0 0 12 2.25v1.5Zm0 16.5A8.25 8.25 0 0 1 3.75 12h-1.5A9.75 9.75 0 0 0 12 21.75v-1.5Zm4.125-1.103A8.209 8.209 0 0 1 12 20.25v1.5c1.775 0 3.44-.475 4.875-1.305l-.75-1.298ZM20.25 12a8.209 8.209 0 0 1-1.103 4.125l1.298.75A9.708 9.708 0 0 0 21.75 12h-1.5ZM6.196 6.137A8.221 8.221 0 0 1 12 3.75v-1.5a9.721 9.721 0 0 0-6.86 2.821l1.056 1.066Z"/></g></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" style='    background: red;
+    padding: 1px;
+    fill: white;
+    stroke: white;' height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m360.92-110.77-66.77-112.61-127.07-27.39 12.46-131.08L93.85-480l85.69-98.15-12.46-131.08 127.07-27.39 66.77-112.61L480-798.92l119.08-50.31 66.77 112.61 127.07 27.39-12.46 131.08L866.15-480l-85.69 98.15 12.46 131.08-127.07 27.39-66.77 112.61L480-161.08l-119.08 50.31ZM378-162l102-42.46L582.46-162 640-258l110-24.46L740-396l74-84-74-84.46L750-678l-110-24-58-96-102 42.46L377.54-798 320-702l-110 24 10 113.54L146-480l74 84-10 114 110 24 58 96Zm102-318Zm17.35 171.19q7.27-7.27 7.27-17.34 0-10.08-7.27-17.35-7.27-7.27-17.35-7.27-10.08 0-17.35 7.27-7.27 7.27-7.27 17.35 0 10.07 7.27 17.34t17.35 7.27q10.08 0 17.35-7.27ZM460-433.85h40v-240h-40v240Z"/></svg>
                         <h3>Overdue Fine</h3>
                     </div>
                     <p style='color: #ff4444;'>${formatMoney(overdueFine)} 
@@ -527,7 +530,7 @@ function displayLoanDetails(loan, index) {
         </g>
     </svg>
     
-    <h3 style="margin: 10px 0;font-weight: 600;font-size: 15px;color: #ffffff91;">
+    <h3 style="margin: 10px 0;">
         Total amount to return
     </h3>
     
@@ -545,7 +548,19 @@ function displayLoanDetails(loan, index) {
         ${formatMoney(totalPayable)}
     </p>
 </div>
-             <a target="_blank" href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: rgb(255 0 0 / 69%); padding: 10px; font-size: 13px; transition: all 0.3s ease; box-shadow: ... ; border: solid 1px #ffffff3b; width: 80%; left: 50%; max-width:300px; position: relative; transform: translate(-50%, 0%); margin-bottom: 10px; margin-top: 10px;" class="add-link-btn">I have an issue with my account.!</button></a>
+             <a target="_blank" href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: rgb(255 0 0 / 87%);
+    padding: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    border: solid 1px #ffffff3b;
+    width: 93%;
+    left: 50%;
+    max-width: 300px;
+    position: relative;
+    transform: translate(-50%, 0%);
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-weight: 400;" class="add-link-btn">I have an issue with my account.!</button></a>
         </div>
     `;
 }
@@ -623,8 +638,8 @@ function renderChart() {
         if (daysLeft <= 2) color = '#ff1100';
         else if (daysLeft <= 6) color = '#ffbf00';
 
-        const amount = currentCurrency === 'USD' 
-            ? Number((loan.takenAmount / USD_RATE).toFixed(2))
+        const amount = currentCurrency === 'Usd ($)' 
+            ? Number((loan.takenAmount / Usd_RATE).toFixed(2))
             : Number(loan.takenAmount);
 
         visibleLabels.push(`Loan ${originalIdx + 1} • ${daysLeft} days left`);
@@ -714,8 +729,8 @@ function renderLoanList() {
             }
 
             const daysLeft = calculateDaysLeft(loan.endDate);
-            const amount = currentCurrency === 'USD'
-                ? (loan.takenAmount / USD_RATE).toFixed(2)
+            const amount = currentCurrency === 'Usd'
+                ? (loan.takenAmount / Usd_RATE).toFixed(2)
                 : loan.takenAmount;
 
             row.innerHTML = `
@@ -730,7 +745,7 @@ function renderLoanList() {
                 <button class="btn-hide" data-idx="${idx}">
                     ${isHidden ? '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M607.5-372.5Q660-425 660-500t-52.5-127.5Q555-680 480-680t-127.5 52.5Q300-575 300-500t52.5 127.5Q405-320 480-320t127.5-52.5Zm-204-51Q372-455 372-500t31.5-76.5Q435-608 480-608t76.5 31.5Q588-545 588-500t-31.5 76.5Q525-392 480-392t-76.5-31.5ZM214-281.5Q94-363 40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200q-146 0-266-81.5ZM480-500Zm207.5 160.5Q782-399 832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280q113 0 207.5-59.5Z"/></svg>' : '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m644-428-58-58q9-47-27-88t-93-32l-58-58q17-8 34.5-12t37.5-4q75 0 127.5 52.5T660-500q0 20-4 37.5T644-428Zm128 126-58-56q38-29 67.5-63.5T832-500q-50-101-143.5-160.5T480-720q-29 0-57 4t-55 12l-62-62q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302Zm20 246L624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM222-624q-29 26-53 57t-41 67q50 101 143.5 160.5T480-280q20 0 39-2.5t39-5.5l-36-38q-11 3-21 4.5t-21 1.5q-75 0-127.5-52.5T300-500q0-11 1.5-21t4.5-21l-84-82Zm319 93Zm-151 75Z"/></svg>'}
                 </button>
-                <button class="btn-details" data-idx="${idx}"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M100.78-60.78v-106h758.44v106H100.78Zm0-243.96v-106h758.44v106H100.78Zm0-244.52v-106h758.44v106H100.78Zm0-243.96v-106h758.44v106H100.78Z"/></svg></button>
+                <button class="btn-details" data-idx="${idx}"> <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e3e3e3"><path d="M429.5-197.5q-19.6 0-32.55-12.68-12.95-12.68-12.95-32t13.13-33.07Q410.25-289 429.5-289h102q18.6 0 31.8 13.93 13.2 13.92 13.2 33.24T563.13-210q-13.38 12.5-32.63 12.5h-101Zm-163-238q-19.6 0-32.3-12.43-12.7-12.43-12.7-32t12.7-32.82Q246.9-526 266.5-526h426q19.6 0 32.8 13.43 13.2 13.42 13.2 32.99t-13.2 31.83q-13.2 12.25-32.8 12.25h-426ZM145-672q-19.6 0-32.3-13.18-12.7-13.18-12.7-32.5t13.38-32.57Q126.75-763.5 146-763.5h669.5q19.1 0 32.3 13.43 13.2 13.42 13.2 32.74T847.13-685q-13.88 13-32.63 13H145Z"/></svg></button>
             </div>
             `;
 
@@ -793,12 +808,13 @@ function renderCalendar() {
     align-items: center;
     width: 100%;
     margin-bottom: 20px;
-    margin-top: 5px;
+    margin-top: 0px;
     border-radius: 1008px;
-    padding:  5px 8px;;
+    padding: 5px 8px;
     transition: all 0.3s ease;
     transform: translate(-50%, 0);
-    left: 50%;filter: saturate(2);
+    left: 50%;
+    filter: saturate(2);
     position: relative;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
@@ -813,12 +829,13 @@ function renderCalendar() {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
     background: #0020ff;
+    padding: 8px;
 ">
 
 <a class="calndarCntnrbtn" href='https://blackswan19.github.io/bscrop/reminder.html'><button>Date Note</button></a>
 <span style="font-weight: 100;
     color: #eee;
-    font-size: 14px;
+    font-size: 17px;
     letter-spacing: 0px;">${calendarMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
         <button class="move-asaid" onclick="prevMonth()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M640-107.69 267.69-480 640-852.31l42.54 42.54L352.77-480l329.77 329.77L640-107.69Z"/></svg></button>
         <button class="move-asaid" onclick="nextMonth()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m320.23-107.69-42.54-42.54L607.46-480 277.69-809.77l42.54-42.54L692.54-480 320.23-107.69Z"/></svg></button>
@@ -830,9 +847,10 @@ function renderCalendar() {
     color: #888;
     font-weight: 600;
     background: linear-gradient(0deg, #ffffff1a, transparent);
-    padding: 15px;
-    border-radius: 31px;
-    margin-top: -15px;">
+    padding: 16px 15px;
+    border-radius: 60px;
+    margin-top: -15px;
+    corner-shape: squircle;">
         <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`
         ;
 
@@ -881,11 +899,11 @@ function showDatePopup(idx) {
     <button style="width: 100%;
     padding: 8px;
     background: #0026ff;
-    border-radius: 20px;" onclick="goToList(${idx})">View Full Details</button>
+    border-radius: 120px;" onclick="goToList(${idx})">Full Details</button>
     <button onclick="closeDatePopup()" style="width: 100%;
     padding: 8px;
     background: #ff0000;
-    border-radius: 20px;background-color: red;" onclick="goToList(${idx})">Close Now</button>
+    border-radius: 120px;background-color: red;" onclick="goToList(${idx})">Close Now</button>
 </div>
     `;
     document.getElementById('datePopup').style.display = 'block';
