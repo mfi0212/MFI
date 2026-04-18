@@ -1,1 +1,451 @@
-no test...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OLD LABS | Vintage Lenders</title>
+  <link rel="icon" href="sitelogo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --navy: #0b1829; --white: #ffffff; }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; scrollbar-width: none;}
+* {
+            -webkit-tap-highlight-color: transparent;scroll-behavior: smooth;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    body {
+      font-family: 'Libre Baskerville', serif;
+      background: var(--white);
+      color: var(--navy);
+      line-height: 1.75;
+      font-size: 17px;
+      letter-spacing: 0.3px;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--white);
+      border-bottom: 1px solid var(--navy);
+      padding: 0 5%;
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 90px;
+    }
+
+    .logo img { width: 200px; }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--navy);
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.9;
+      transition: opacity 0.3s;
+    }
+
+    .nav-links a:hover { opacity: 0.6; }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      width: 28px;
+      height: 20px;
+      position: relative;
+      z-index: 100001;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--navy);
+      position: absolute;
+      left: 0;
+      transition: all 0.35s ease;
+    }
+
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 9px; }
+
+    .hamburger.active span:nth-child(1) { top: 9px; transform: rotate(45deg); }
+    .hamburger.active span:nth-child(2) { top: 9px; transform: rotate(-45deg); }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      height: 100vh;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      transition: right 0.4s ease;
+      z-index: 100;
+    }
+
+    .mobile-menu.active { right: 0; }
+
+    .mobile-menu a {
+      font-family: 'Cinzel', serif;
+      font-size: 22px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+    }
+
+    .hero {
+      padding: 240px 5% 160px;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 48px;
+      font-weight: 500;
+      letter-spacing: 12px;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .hero p { font-size: 18px; margin-bottom: 3rem; opacity: 0.85; }
+
+    .cta {
+      background: transparent;
+      border: 1px solid var(--navy);
+      color: var(--navy);
+      padding: 14px 50px;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.4s;
+    }
+
+    .cta:hover { background: var(--navy); color: var(--white); }
+
+    .features {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 140px 5% 100px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 4rem;
+      text-align: center;
+    }
+
+    .card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .card p { font-size: 16px; opacity: 0.8; line-height: 1.7; }
+
+    .byline {
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+      padding: 120px 20px;
+      font-size: 17px;
+    }
+
+    .byline span {
+      font-family: 'Cinzel', serif;
+      font-size: 28px;
+      letter-spacing: 8px;
+      display: block;
+      margin-top: 8px;
+      text-transform: uppercase;
+    }
+
+    footer {
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+      padding: 3rem 5%;
+      font-size: 13px;
+      letter-spacing: 1px;
+      opacity: 0.8;
+    }
+
+    .modal {
+      display: none;
+position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgb(0 0 0 / 64%);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: var(--white);
+      padding: 40px;
+      border: 1px solid var(--navy);
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--navy);
+    }
+
+    .modal-content h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-content input {
+     width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid var(--navy);
+    font-family: 'Libre Baskerville', serif;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    }
+
+    .modal-content button {
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: 12px 32px;
+      margin-top: 10px;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    #account-details {
+      margin-top: 20px;
+      font-size: 16px;
+      line-height: 2;
+      text-align: left;
+      background: #f9f7f5;
+      padding: 20px;
+      border: 1px solid #ddd;
+          overflow-y: auto;
+        max-height: 200px;
+    scrollbar-width: thin;
+    }
+
+    .loan-item {
+      margin-bottom: 18px;
+      padding-bottom: 15px;
+      border-bottom: 1px dashed #ccc;
+    }
+
+    .loan-item:last-child { border-bottom: none; }
+
+    .total {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 2px solid var(--navy);
+    }
+
+    .error { color: #c0392b; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo"><img src="logo.png" alt="Vintage Lenders"></div>
+      <div class="nav-links">
+        <a href="">Home</a>
+        <a onclick="openModal('calculator-modal')">Calculator</a>
+        <a onclick="openModal('account-modal')">Account</a>
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#">Home</a>
+    <a href="#" onclick="openModal('calculator-modal'); toggleMenu()">Calculator</a>
+    <a href="#" onclick="openModal('account-modal'); toggleMenu()">Account</a>
+  </div>
+
+  <section class="hero">
+    <img style="    width: 295px;" src="logo.png" alt="Vintage Lenders">
+    <p>Personal business loans from ₹10,000 to ₹500,000. Extended privately and without ceremony.</p>
+    <a href="https://mfi0212.github.io/MFI/takemoney"><button class="cta">apply for amount</button></a>
+  </section>
+
+  <section class="features">
+    <div class="card"><h3>Premier Rates</h3><p>From 20% pd<br>Fixed. Transparent. Reserved.</p></div>
+    <div class="card"><h3>48-Hour Funding</h3><p>Arrange with in 48 hours.</p></div>
+  </section>
+
+  <div class="byline">
+    Quietly established by<br><span>BS&MFI</span>
+  </div>
+
+  <footer>© Vintage Lenders by OLD LABS<br>All rights reserved.</footer>
+
+  <!-- Calculator Modal -->
+  <div id="calculator-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('calculator-modal')">×</span>
+      <h2>Loan Calculator</h2>
+      <input type="number" id="loan-amount" placeholder="Enter amount (10,000 – 500,000)">
+      <button onclick="calculateInterest()">Calculate Interest</button>
+      <div style="    margin-top: 15px;" id="calc-result"></div>
+    </div>
+  </div>
+
+  <!-- Account Modal -->
+  <div id="account-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('account-modal')">×</span>
+      <h2>Account Access</h2>
+      <input type="password" id="account-password" placeholder="Enter your private password">
+      <button onclick="showAccountDetails()">Access Account</button>
+      <div id="account-details"></div>
+    </div>
+  </div>
+
+  <script>
+    // document.addEventListener('contextmenu', e => e.preventDefault());
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+      document.querySelector('.hamburger').classList.toggle('active');
+    }
+
+    function openModal(id) {
+      document.getElementById(id).style.display = 'flex';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+      if (id === 'calculator-modal') {
+        document.getElementById('loan-amount').value = '';
+        document.getElementById('calc-result').innerHTML = '';
+      }
+      if (id === 'account-modal') {
+        document.getElementById('account-password').value = '';
+        document.getElementById('account-details').innerHTML = '';
+      }
+    }
+
+    function calculateInterest() {
+      const amount = parseFloat(document.getElementById('loan-amount').value);
+      if (!amount || amount < 10000 || amount > 500000) {
+        document.getElementById('calc-result').innerHTML = '<span class="error">Enter amount between $10,000 – $500,000</span>';
+        return;
+      }
+      const interest = amount * 0.15;
+      document.getElementById('calc-result').innerHTML = `
+        Loan Amount: <strong>$${amount.toLocaleString()}</strong><br><br>
+        Total Interest (example): <strong>$${interest.toLocaleString()}</strong><br>
+        To Repay: <strong>$${(amount + interest).toLocaleString()}</strong>
+      `;
+    }
+
+    // MULTIPLE LOANS FOR ONE CLIENT
+    const clientDatabase = {
+      "sterling": {
+        name: "Reginald Sterling",
+        facilities: [
+          { id: "VL-2024-117", amount: 450000, purpose: "Mayfair Property Acquisition", date: "19 Nov 2024" },
+          { id: "VL-2025-003", amount: 680000, purpose: "Art Collection Expansion", date: "8 Jan 2025" },
+          { id: "VL-2025-029", amount: 420000, purpose: "Yacht Refit – Monaco", date: "3 Mar 2025" },
+          { id: "VL-2025-078", amount: 295000, purpose: "Vineyard Purchase – Bordeaux", date: "12 Jun 2025" }
+        ]
+      }
+    };
+
+    function showAccountDetails() {
+      const pwd = document.getElementById('account-password').value.trim().toLowerCase();
+      const div = document.getElementById('account-details');
+
+      if (!pwd) {
+        div.innerHTML = '<span class="error">Password required</span>';
+        return;
+      }
+
+      if (clientDatabase[pwd]) {
+        const client = clientDatabase[pwd];
+        let total = 0;
+        let html = `<strong>${client.name}</strong><br><small>Private Client • Established 2018</small><br><br><strong>Active Facilities</strong><hr style="border:0;border-top:1px solid #ccc;margin:15px 0">`;
+
+        client.facilities.forEach(f => {
+          total += f.amount;
+          const daily = (f.amount * 0.15 / 365).toFixed(2);
+          html += `
+            <div class="loan-item">
+              <strong>${f.id}</strong><br>
+              Amount: <strong>$${f.amount.toLocaleString()}</strong><br>
+              Purpose: ${f.purpose}<br>
+              Drawdown: ${f.date}<br>
+              <small>Daily interest @ 15% p.a.: $${daily}</small>
+            </div>
+          `;
+        });
+
+        html += `<div class="total">
+          Total Exposure: <strong>$${total.toLocaleString()}</strong>
+        </div>`;
+
+        div.innerHTML = html;
+      } else {
+        div.innerHTML = '<span class="error">Access denied. Invalid credentials.</span>';
+      }
+    }
+  </script>
+</body>
+</html>
