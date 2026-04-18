@@ -224,6 +224,8 @@ p {
     color: #ffffffe0;
     font-weight: 500;
     font-size: 16px;
+    display: flex;
+    justify-content: space-between;
 }
 
 #error-message {
@@ -940,6 +942,7 @@ display: flex;
 
 div#popupContent {
 	text-align: center;
+    line-height: 35px;
 }
 
 canvas#loanChart {
@@ -992,13 +995,12 @@ canvas#loanChart {
 #datePopup h3,
 #linkConfirmPopup h3,
 #emoteChooser h3 {
-	margin: 0 0 14px;
-	margin: -10px 0 14px 0;
-	color: #ffffff;
-	text-align: center;
-	font-size: 20px;
-	text-decoration: underline;
-	font-weight: 800;
+	margin: 10px 0 -10px 0;
+    color: #ffffff;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: underline;
+    font-weight: 800;
 }
 
 div#loanDetails {
@@ -2612,7 +2614,8 @@ width: 50px;
     </div>
     <div id="datePopup">
         <div class="datepopupframo">
-            <img style="width: 100px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/abacus.gif" alt=""><h3>Amount details</h3>
+            <img style="width: 100px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/abacus.gif" alt="">
+            <h3>Amount details</h3>
         </div>
         <div id="popupContent"></div>
     </div>
