@@ -1480,28 +1480,6 @@ display: flex;
 	left: 0;
 }
 
-.bulb {
-	display: none;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background: #c00;
-	box-shadow: 0 0 60px 8px #c00;
-	position: relative;
-	animation: sway linear infinite;
-	transform-origin: center top;
-}
-
-.bulb::before {
-	content: '';
-	position: absolute;
-	top: -28px;
-	left: 50%;
-	width: 1px;
-	height: 31px;
-	background: linear-gradient(#555, #222);
-	transform: translateX(-50%);
-}
 
 @keyframes sway {
 
@@ -2179,25 +2157,9 @@ input:checked+.slider:before {
 </head>
 
 <body>
-    <div class="edge-glow-container" id="glowContainer">
-        <div class="edge-glow top"></div>
-        <div class="edge-glow bottom"></div>
-        <div class="edge-glow left"></div>
-        <div class="edge-glow right"></div>
-    </div>
-    <div class="topdec" style=" z-index: 100000; "><img style="width: 100%; width: 100%; position: fixed; top: 0px; left: 0px; " src="https://www.animatedimages.org/data/media/1071/animated-christmas-decoration-image-0050.gif" alt=""> <img style="position: fixed; bottom: 0px; width: 100%; left: 0px;"
-        src="https://vincentloy.wordpress.com/wp-content/uploads/2025/01/latern1.gif" alt="">
-        <marquee style="position: fixed; bottom: -12px; left: 0px; " behavior="" direction="left"><img style=" width: 30%; " src="https://i.giphy.com/oX8pTPoIMdffhatmg2.webp" alt=""></marquee>
-    </div>
-    <div class="topdec" style="position: fixed; top: -3px; z-index: 100000;">
-        <div class="decorationimag" style=" display: flex; align-items: center; justify-content: center;"> <img style="width: 30%;max-width: 400px;" src="https://i.pinimg.com/originals/9d/97/7b/9d977b3a6c08ff473ac6c38f2a15acd7.gif" alt=""> <img style="width: 30%;max-width: 400px;" src="https://i.pinimg.com/originals/9d/97/7b/9d977b3a6c08ff473ac6c38f2a15acd7.gif"
-            alt=""> <img style="width: 30%;max-width: 400px;" src="https://i.pinimg.com/originals/9d/97/7b/9d977b3a6c08ff473ac6c38f2a15acd7.gif" alt=""> <img style="width: 30%;max-width: 400px;" src="https://i.pinimg.com/originals/9d/97/7b/9d977b3a6c08ff473ac6c38f2a15acd7.gif"
-            alt=""> </div>
-    </div>
+ 
+
     <div id="passwordContainer">
-        <div class="topdec" style="position: fixed; top: 0px;"> <img style="width: 100%;" src="https://www.animatedimages.org/data/media/1071/animated-christmas-decoration-image-0050.gif" alt=""> </div>
-        <div class="topdec" style="position: fixed; top: 0px;"> <img style="width: 100%;" src="https://www.animatedimages.org/data/media/1071/animated-christmas-decoration-image-0050.gif" alt=""> </div>
-        <div class="decoration topdec"> <img style="width: 64%; position: fixed; top: 70px; object-fit: cover; right: -15px;" src="https://i.pinimg.com/originals/2d/bc/b8/2dbcb8c31d6194e0cb80cd8ce5db2980.gif" alt=""> </div>
         <h2 style="font-weight: 100;
     font-size: 10px;
     color: white;">Enter your pin</h2>
@@ -2213,7 +2175,6 @@ input:checked+.slider:before {
     border-radius: 9px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="m547.69-267.69-28.31-28.77L682.92-460H200v-40h482.92L519.38-663.54l28.31-28.77L760-480 547.69-267.69Z"/></svg></button>
         <br>
         <p id="error-message"></p>
-        <div class="treee topdec" style="width: 100%; position: fixed; bottom: 12%; left: 50%; transform: translate(-50%, 0%);"> <img style="width: 85px;" src="https://www.gifcen.com/wp-content/uploads/2022/01/chinese-new-year-2022-gif-5.gif" alt=""> </div>
         <div class="notice">You should return the money before the return date, If not additional interest will be charged.</div>
     </div>
     <div id="userInfoModal" class="modal">
@@ -2442,7 +2403,7 @@ input:checked+.slider:before {
             </div>
             
             <div class="fixedcontnt">
-                <div class="topdec"> <img style="position: fixed; top: -20px; right: -15px; width: 26%; " src="https://i.pinimg.com/originals/1f/d3/ac/1fd3acf4a378b1e2536a4f86fc023b1a.gif" alt=""> </div>
+                
                 <h3 style="display: none;">Borrower</h3>
                 <div class="profile-container">
                     <div class="linkadder">
