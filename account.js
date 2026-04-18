@@ -1,130 +1,5 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
 
-// for(let i=0;i<15;i++){
-//     const b=document.createElement("div");b.className="bulb";
-//     const dur=6+Math.random()*5;
-//     b.style.animationDuration=dur+"s";
-//     b.style.animationDelay=Math.random()*dur+"s";
-//     document.getElementById("lights").appendChild(b);
-// }
-// const bulbs = document.querySelectorAll('.bulb');
-
-document.getElementById("candy").onclick = () => document.getElementById("panel").classList.toggle("show");
-
-const modeSelect = document.getElementById("mode");
-const singleColorRow = document.getElementById("singleColorRow");
-const singleColorInput = document.getElementById("singleColor");
-
-modeSelect.onchange = function() {
-    if(this.value === "single") {
-        singleColorRow.style.display = "flex";
-        applySingleColor();
-    } else {
-        singleColorRow.style.display = "none";
-        startMode();
-    }
-};
-singleColorInput.oninput = applySingleColor;
-
-function getSpeedDelay() {
-    const val = document.getElementById("speed").value;
-    return Math.round(2000 - val * 19); 
-}
-document.getElementById("speed").oninput = updateAllSpeeds;
-
-let modeInt = null, twinkleInt = null, discoInt = null;
-
-const modes = {
-    "Classic Red & Green": ["#c00","#0a0"],
-    "Warm White": ["#fff7e0","#ffe0b3"],
-    "Multicolor Rainbow": ["#f00","#0f0","#00f","#ff0","#f0f","#0ff"],
-    "Candy Red & white": ["#ffffffff","#ff0000ff"],
-    "Ice Blue Winter": ["#000dffff","#0091ffff"],
-    "Golden Elegance": ["#ffc400ff","#ffffffff"]
-};
-
-function startMode() {
-    clearInterval(modeInt); clearInterval(discoInt);
-    document.getElementById("disco").textContent = "Disco OFF";
-
-    const colors = modes[modeSelect.value];
-    let i = 0;
-    modeInt = setInterval(() => {
-        const c = colors[i++ % colors.length];
-        bulbs.forEach(b => { 
-            b.style.background = c; 
-            b.style.boxShadow = `0 0 30px 8px ${c}`; 
-            b.style.opacity = 1; 
-        });
-    }, getSpeedDelay());
-}
-
-function applySingleColor() {
-    clearInterval(modeInt); clearInterval(discoInt);
-    document.getElementById("disco").textContent = "Disco OFF";
-    const c = singleColorInput.value;
-    bulbs.forEach(b => {
-        b.style.background = c;
-        b.style.boxShadow = `0 0 20px 8px ${c}`;
-        b.style.opacity = 1;
-    });
-}
-
-document.getElementById("twinkle").onclick = function() {
-    if(twinkleInt){ 
-        clearInterval(twinkleInt); 
-        twinkleInt=null; 
-        this.textContent="Twinkle OFF"; 
-        bulbs.forEach(b=>b.style.opacity=1); 
-    }
-    else { 
-        this.textContent="Twinkle ON"; 
-        startTwinkle(); 
-    }
-};
-
-function startTwinkle() {
-    clearInterval(twinkleInt);
-    twinkleInt = setInterval(() => {
-        const b = bulbs[Math.floor(Math.random()*bulbs.length)];
-        b.style.opacity = 0.25;
-        setTimeout(() => b.style.opacity = 1, 100 + Math.random()*200);
-    }, getSpeedDelay() * 0.7);
-}
-
-document.getElementById("disco").onclick = function() {
-    if(discoInt){ 
-        clearInterval(discoInt); 
-        discoInt=null; 
-        this.textContent="Disco OFF"; 
-        (modeSelect.value==="single"?applySingleColor():startMode()); 
-    }
-    else { 
-        this.textContent="Disco ON"; 
-        clearInterval(modeInt); 
-        startDisco(); 
-    }
-};
-
-function startDisco() {
-    clearInterval(discoInt);
-    discoInt = setInterval(() => {
-        bulbs.forEach(b => {
-            const h = Math.random()*360;
-            const c = `hsl(${h},100%,62%)`;
-            b.style.background = c;
-            b.style.boxShadow = `0 0 20px 10px ${c}`;
-            b.style.opacity = 1;
-        });
-    }, getSpeedDelay());
-}
-
-function updateAllSpeeds() {
-    if(modeInt && modeSelect.value !== "single") { clearInterval(modeInt); startMode(); }
-    if(discoInt) { clearInterval(discoInt); startDisco(); }
-    if(twinkleInt) { clearInterval(twinkleInt); startTwinkle(); }
-}
-
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || 'Inr (₹)';
 let currentUser = null;
@@ -298,9 +173,9 @@ function showRepaymentReminderPopup(reminder) {
 
 function handleReminderAction(action) {
     if (action === 'delay') {
-        alert("Delay requested → Please implement date selection / fee logic here");
+        alert("Delay requested → Implement date selection / fee logic here");
     } else if (action === 'split') {
-        alert("Split payment requested → Please implement partial payment flow here");
+        alert("Split payment requested → Implement partial payment flow here");
     }
     document.querySelectorAll('.reminder-modal').forEach(m => m.remove());
 }
@@ -316,7 +191,7 @@ document.getElementById("submitBtn").onclick = () => {
         filteredLoans = [...user.loans];
 
         document.getElementById("userName").textContent = user.name;
-        document.getElementById("userEmote").src = user.emote;
+        document.getElementById("userEmote","userEmote2").src = user.emote;
         updateCoinsDisplay();
         renderLinks();
         renderAmountButtons();
@@ -947,7 +822,7 @@ function openEmoteChooser() { document.getElementById("emoteChooser").style.disp
 function closeEmoteChooser() { document.getElementById("emoteChooser").style.display = "none"; }
 function setUserEmote(src) {
     currentUser.emote = src;
-    document.getElementById("userEmote").src = src;
+    document.getElementById("userEmote","userEmote2").src = src;
     saveUserData();
     closeEmoteChooser();
 }
