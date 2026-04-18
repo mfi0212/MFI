@@ -315,15 +315,14 @@ p {
 .fixedcontnt {
 position: fixed;
     top: 75px;
-    corner-shape: squircle;
-    width: 98%;
+    corner-shape: superellipse(1.9);
+    width: 95%;
     max-width: 600px;
     z-index: 10;
     background: transparent;
-    border: 1.5px solid #ffffff1f;
-    padding: 5px 0 0 15px;
     border-radius: 75px;
-    max-height: 280px;filter: saturate(2);
+    max-height: 280px;
+    filter: saturate(2);
     height: fit-content;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
@@ -340,6 +339,7 @@ position: fixed;
     backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
     transform: translate(-50%, 0);
     left: 50%;
+    padding: 12px;
 }
 
 .scroll {
@@ -418,11 +418,9 @@ position: fixed;
 /* PROFILE */
 .profile-container {
 	display: flex;
-	align-items: flex-start;
-	gap: 15px;
-	margin-bottom: 0;
-	flex-wrap: wrap;
-	flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    flex-direction: column;
 }
 
 .user-name-container {
@@ -468,8 +466,6 @@ position: fixed;
     display: flex;
     align-items: center;
     gap: 5px;
-    margin-left: -5px;
-    margin-top: 15px;
     padding: 0px 0px 0px 5px;
 }
 
@@ -481,7 +477,6 @@ position: fixed;
 	padding: 5px 20px 5px 5px;
 	transition: all 0.3s ease;
 	position: relative;
-	top: -5px;
 	left: 5px;
 	width: 100%;
 	border-radius: 100px;
@@ -546,7 +541,7 @@ a {
     justify-content: center;
     align-items: center;
     padding: 3px 5px;
-    gap: 1px;
+    gap: 1px;margin: 0;
 }
 svg.addsiteicon {
     width: 20px;
@@ -641,19 +636,25 @@ svg.serchareicon {
 	opacity: 100%;
 	padding: 9px 10px;
 }
-
+.maincntnt2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
 .amount-buttons {
-	display: flex;
-	gap: 10px;
-	overflow-x: auto;
-	overflow-y: hidden;
-	white-space: nowrap;
-	transition: transform .4s ease;
-	margin-left: -15px;
-	scrollbar-width: none;
-	/* margin-right: 20px; */
-	padding: 10px 10px 0px 0px;
-	border-radius: 30px 10px 32px 30px;
+display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    transition: transform .4s ease;
+    margin-left: -15px;
+    scrollbar-width: none;
+    padding: 5px;
+    border-radius: 30px;
+    background: #ffffff26;
 }
 
 /* h3{ color:#006fff; } */
@@ -1822,7 +1823,7 @@ button {
         width: 100%;
         padding: 0px 0px 85px 0px;
         backdrop-filter: blur(5px);
-        top: 165px;
+        top: 175px;
 	}
 
 	.popup-overlay {
@@ -1856,14 +1857,8 @@ button {
 	}
 
 	.amount-buttons {
-		display: flex;
-		gap: 10px;
-		overflow-x: auto;
-		white-space: nowrap;
-		padding: 0px 10px 0px 10px;
-		transition: transform .4s ease;
+
 		margin-left: -25px;
-		scrollbar-width: none;
 	}
 
 	@media (max-width : 380px) {
@@ -1881,7 +1876,6 @@ margin-bottom: -5px;
     padding: 5px 15px 5px 0px;
     transition: all 0.3s ease;
     position: relative;
-    top: -5px;
     left: 5px;
     width: 82%;
     border-radius: 30px 0 0 30px;
@@ -2467,64 +2461,28 @@ input:checked+.slider:before {
                 <div class="topdec"> <img style="position: fixed; top: -20px; right: -15px; width: 26%; " src="https://i.pinimg.com/originals/1f/d3/ac/1fd3acf4a378b1e2536a4f86fc023b1a.gif" alt=""> </div>
                 <h3 style="display: none;">Borrower</h3>
                 <div class="profile-container">
-                    <div class="user-name-container">
-                        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        
-                       
-                    </div>
                     <div class="linkadder">
                         <button class="add-link-btn" onclick="addLink()">Add Site</button>
                         <div class="user-links" id="userLinks"></div>
                     </div>
-                    
-                     <div class="search-container"> 
-                        <div class="fab" id="download-receipt">
-						<svg style="width: 18px;
-    height: 18px;
-    fill: #ffffffd1;
-    stroke: transparent;" 
-							xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-							<path d="M19.95,5.54l-3.49-3.49c-1.32-1.32-3.08-2.05-4.95-2.05H7C4.24,0,2,2.24,2,5v14c0,2.76,2.24,5,5,5h10c2.76,0,5-2.24,5-5V10.49c0-1.87-.73-3.63-2.05-4.95Zm-1.41,1.41c.32,.32,.59,.67,.81,1.05h-4.34c-.55,0-1-.45-1-1V2.66c.38,.22,.73,.49,1.05,.81l3.49,3.49ZM7,2h4.51c.16,0,.33,0,.49,.02V7c0,1.65,1.35,3,3,3h4.98c.02,.16,.02,.32,.02,.49v4.58l-2.41-2.41c-.87-.87-2.28-.87-3.15,0l-2.27,2.27c-.09,.09-.23,.09-.32,0l-2.27-2.27c-.87-.87-2.28-.87-3.15,0l-2.44,2.44V5c0-1.65,1.35-3,3-3Zm10,20H7c-1.65,0-3-1.35-3-3v-1.07l3.86-3.86c.09-.09,.23-.09,.32,0l2.27,2.27c.87,.87,2.28,.87,3.15,0l2.27-2.27c.09-.09,.23-.09,.32,0l3.83,3.83v1.1c0,1.65-1.35,3-3,3Z"/>
-						</svg>
-                	</div>
+                    <div class="maincntnt2">
+                        
                         <div id="searchIcon" onclick="toggleSearch()">
                             <svg class="serchareicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-95.92 0-162.58-66.65-66.65-66.66-66.65-162.58 0-95.92 66.65-162.58 66.66-66.65 162.58-66.65 95.92 0 162.58 66.65 66.65 66.66 66.65 162.58 0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z"/></svg>
                         </div>
                         <input type="text" id="searchInput" placeholder="Search here..." oninput="filterLoans()">
                         <div class="amount-buttons" id="amountButtons"></div>
+                        <div class="fab" id="download-receipt">
+                            <svg style="width: 18px;
+                                height: 18px;
+                                fill: #ffffffd1;
+                                stroke: transparent;" 
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M19.95,5.54l-3.49-3.49c-1.32-1.32-3.08-2.05-4.95-2.05H7C4.24,0,2,2.24,2,5v14c0,2.76,2.24,5,5,5h10c2.76,0,5-2.24,5-5V10.49c0-1.87-.73-3.63-2.05-4.95Zm-1.41,1.41c.32,.32,.59,.67,.81,1.05h-4.34c-.55,0-1-.45-1-1V2.66c.38,.22,.73,.49,1.05,.81l3.49,3.49ZM7,2h4.51c.16,0,.33,0,.49,.02V7c0,1.65,1.35,3,3,3h4.98c.02,.16,.02,.32,.02,.49v4.58l-2.41-2.41c-.87-.87-2.28-.87-3.15,0l-2.27,2.27c-.09,.09-.23,.09-.32,0l-2.27-2.27c-.87-.87-2.28-.87-3.15,0l-2.44,2.44V5c0-1.65,1.35-3,3-3Zm10,20H7c-1.65,0-3-1.35-3-3v-1.07l3.86-3.86c.09-.09,.23-.09,.32,0l2.27,2.27c.87,.87,2.28,.87,3.15,0l2.27-2.27c.09-.09,.23-.09,.32,0l3.83,3.83v1.1c0,1.65-1.35,3-3,3Z"/>
+                            </svg>
+                	    </div>
                     </div>
+                    
                 </div>
             </div>
             <div class="scroll">
