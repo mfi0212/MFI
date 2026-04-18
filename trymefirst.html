@@ -931,28 +931,23 @@ canvas#loanChart {
 #linkConfirmPopup,
 #emoteChooser {
 	display: none;
-	position: fixed;
-	bottom: -3px;
-	left: 50%;
-	scale: 1;
-	transform: translate(-50%, -4%);
-	background: transparent;
-	corner-shape: squircle;
+    position: fixed;
+    bottom: -3px;
+    left: 50%;
+    scale: 1;
+    background: transparent;
+    corner-shape: squircle;
     color: #e0e0e0;
-    padding: 25px;
     border-radius: 80px;
-	max-width: 450px;
-	width: 96%;
-	z-index: 2000000;
-	text-align: left;
-	font-size: 14.5px;
-	line-height: 1.7;
-	backdrop-filter: blur(15px);
-	box-shadow: inset 0 0.5px 0 #ffffff12, inset 0 -4px 9px #ffffff4f;
-	border: 1.5px solid rgba(255, 255, 255, 0.137);
-	animation: iosPopupIn 1s cubic-bezier(.22, 1, .36, 1) forwards;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
+    max-width: 450px;
+    z-index: 2000000;
+    text-align: center;
+    font-size: 14.5px;
+    line-height: 1.7;
+    backdrop-filter: blur(15px);
+    animation: iosPopupIn 1s cubic-bezier(.22, 1, .36, 1) forwards;
+    background: #242424de;
+    box-shadow: inset 0.6px 0.6px 0px 0.5px #ffffff40, inset -2.5px -2.5px 0px -1.8px #ffffff47;
 }
 
 @keyframes iosPopupIn {
@@ -1356,7 +1351,7 @@ div#loanDetails {
 .nav-item {
 display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: 0;
     cursor: pointer;
     border-radius: 46px;
@@ -1391,25 +1386,16 @@ display: flex;
 }
 
 .nav-item i {
-	   font-size: 18px;
-    padding: 0px;
-    position: absolute;
-    bottom: -30px;
-    opacity: 40%;
-}
-.nav-item i:hover{
-    opacity: 100%;
-}
-.toggle-pin {
-	font-size: 15px;
-	color: #ffffff;
-	cursor: pointer;
+	    rotate: 270deg;
 }
 
-.toggle-pin.on {
-	color: #ffffff;
+.toggle-pin.on{
+	color: #0020ff;display: none; 
 }
-
+.toggle-pin.on>.iconbotm>.nav-item{
+	color: #0020ff;justify-content: center;
+      align-items: center;
+}
 .iconbotm {
 	display: flex;
     justify-content: center;
@@ -2499,29 +2485,7 @@ input:checked+.slider:before {
                 </div>
             </div>
             <div id="lights"></div> <i class="fa-solid fa-candy-cane" style="display: none;" id="candy"></i>
-            <div id="panel">
-                <div style="margin-top:20px;font-size:13px;">BS&MFI wishing you a very</div>
-                <div class="title">Happy Merry Christmas</div>
-                <select id="mode">
-                    <option>Multicolor Rainbow</option>
-                    <option>Golden Elegance</option>
-                    <option value="single">Single Color →</option>
-                    <option>Classic Red & Green</option>
-                    <option>Warm White</option>
-                    <option>Candy Red & white</option>
-                    <option>Ice Blue Winter</option>
-                </select>
-                <!-- Single color picker (shown only when "Single Color" is selected) -->
-                <div id="singleColorRow" class="color-row" style="display: flex; margin: 16px 0px; justify-content: center; gap: 10px; align-items: center;">
-                    <input type="color" id="singleColor" value="#ff0000"> <span style="font-size:14px;">Pick a color</span> </div>
-                <button id="twinkle">Twinkle OFF</button>
-                <button id="disco">Disco OFF</button>
-                <div style="margin:16px 0 8px;font-size:14px;">Light switch Speed</div>
-                <input style="height: 1px;" type="range" id="speed" min="1" max="100" value="50">
-                <div style="margin:16px 0 8px;font-size:14px;">Snow</div>
-                <input style="height: 1px;" type="range" id="snow" min="10" max="100" value="45">
-                <div class="pngchris"> <img style="position: absolute; bottom: 10px; right: 10px; width: 19%; filter: drop-shadow(6px -2px 5px #00000082);" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/christmas-tree.gif" alt=""> </div>
-            </div>
+            
             <div class="fixed">
                 <div class="topdec"> <img style="position: fixed; top: -20px; right: -15px; width: 26%; " src="https://i.pinimg.com/originals/1f/d3/ac/1fd3acf4a378b1e2536a4f86fc023b1a.gif" alt=""> </div>
                 <h3 style="display: none;">Borrower</h3>
@@ -2691,6 +2655,7 @@ width: 50px;
     </div>
     <!-- POPUPS -->
     <div id="totalPopup">
+        <img style="width: 100px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/folder.gif" alt="">
         <h3>Wallet Balance</h3>
         <div id="totalContent"></div>
         <button onclick="closeTotalPopup()" style="margin-bottom:-2px;margin-top: 20px;background-color: red;">Close Now</button>
