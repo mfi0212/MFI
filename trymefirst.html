@@ -708,7 +708,13 @@ svg.serchareicon {
     font-weight: 500;
     gap: 2px;
 }
-
+.wallettopsection {
+    margin: -17px;
+    background: linear-gradient(180deg, #00c0ff2e 50%, transparent);
+    padding: 30px 10px 55px 10px;
+    border-radius: 60px 60px 0px 0px;
+    corner-shape: squircle;
+}
 .amount-btn:active {
 	transform: scale(0.90);
 }
@@ -883,7 +889,33 @@ button.move-asaid {
 button.move-asaid:hover {
 	transform: scale(1.03);
 }
-
+.iconsinfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+}
+.icon svg {
+   width: 20px;
+    height: 20px;
+    background: transparent;
+}.iconname {
+    font-size: 11px;
+    font-weight: 100;
+}
+.icon {
+   background: #ffffff2b;
+    border-radius: 18px;
+    padding: 5px 0;
+    width: 100%;
+    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff2e, inset -2px -2.5px 0px -1.8px #ffffff2b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
 button.move-asaid:active {
 	transform: scale(0.90);
 }
@@ -2181,28 +2213,20 @@ input:checked+.slider:before {
     <div id="userInfoModal" class="modal">
         <style>
     .fab {
-   display: flex;
+  display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 999;
     transition: all 0.3s ease;
-   width: 43px;
+    width: 43px;
     height: 43px;
-    background: transparent;
     border-radius: 1000px;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
+    position: absolute;
+    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff75, inset -2px -2.5px 0px -1.8px #ffffff75;
+    top: 20px;
+    right: 20px;
+    background: #ffffff2b;
   }
   .fab:hover { transform: scale(1.1); }
   .fab:active { transform: scale(0.98); }
@@ -2357,20 +2381,12 @@ input:checked+.slider:before {
                 <div class="optiononeser">
 					<div class="close-btn" onclick="closeModal()">
 						<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M640-107.69 267.69-480 640-852.31l42.54 42.54L352.77-480l329.77 329.77L640-107.69Z"/></svg></div>
-					<div class="fab" id="download-receipt">
-						<svg style="width: 18px;
-    height: 18px;
-    fill: #ffffffd1;
-    stroke: transparent;" 
-							xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-							<path d="M19.95,5.54l-3.49-3.49c-1.32-1.32-3.08-2.05-4.95-2.05H7C4.24,0,2,2.24,2,5v14c0,2.76,2.24,5,5,5h10c2.76,0,5-2.24,5-5V10.49c0-1.87-.73-3.63-2.05-4.95Zm-1.41,1.41c.32,.32,.59,.67,.81,1.05h-4.34c-.55,0-1-.45-1-1V2.66c.38,.22,.73,.49,1.05,.81l3.49,3.49ZM7,2h4.51c.16,0,.33,0,.49,.02V7c0,1.65,1.35,3,3,3h4.98c.02,.16,.02,.32,.02,.49v4.58l-2.41-2.41c-.87-.87-2.28-.87-3.15,0l-2.27,2.27c-.09,.09-.23,.09-.32,0l-2.27-2.27c-.87-.87-2.28-.87-3.15,0l-2.44,2.44V5c0-1.65,1.35-3,3-3Zm10,20H7c-1.65,0-3-1.35-3-3v-1.07l3.86-3.86c.09-.09,.23-.09,.32,0l2.27,2.27c.87,.87,2.28,.87,3.15,0l2.27-2.27c.09-.09,.23-.09,.32,0l3.83,3.83v1.1c0,1.65-1.35,3-3,3Z"/>
-						</svg>
-                	</div>
+					
                     <div class="fab" id="fab" style="display: none;">
                         <svg style="width: 18px;
-    height: 18px;
-    fill: #ffffffe0;
-    stroke: transparent;" xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512">
+                            height: 18px;
+                            fill: #ffffffe0;
+                            stroke: transparent;" xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512">
                             <path d="M19.95,5.54l-3.49-3.49c-1.32-1.32-3.08-2.05-4.95-2.05H7C4.24,0,2,2.24,2,5v14c0,2.76,2.24,5,5,5h10c2.76,0,5-2.24,5-5V10.49c0-1.87-.73-3.63-2.05-4.95Zm-1.41,1.41c.32,.32,.59,.67,.81,1.05h-4.34c-.55,0-1-.45-1-1V2.66c.38,.22,.73,.49,1.05,.81l3.49,3.49ZM7,2h4.51c.16,0,.33,0,.49,.02V7c0,1.65,1.35,3,3,3h4.98c.02,.16,.02,.32,.02,.49v4.58l-2.41-2.41c-.87-.87-2.28-.87-3.15,0l-2.27,2.27c-.09,.09-.23,.09-.32,0l-2.27-2.27c-.87-.87-2.28-.87-3.15,0l-2.44,2.44V5c0-1.65,1.35-3,3-3Zm10,20H7c-1.65,0-3-1.35-3-3v-1.07l3.86-3.86c.09-.09,.23-.09,.32,0l2.27,2.27c.87,.87,2.28,.87,3.15,0l2.27-2.27c.09-.09,.23-.09,.32,0l3.83,3.83v1.1c0,1.65-1.35,3-3,3Z"
                             />
                         </svg>
@@ -2430,39 +2446,7 @@ input:checked+.slider:before {
                         <div class="user-links" id="userLinks"></div>
                     </div>
                     <div class="popup-overlay" id="swanShopPopup" style="display: none;">
-                        <div class="popup">
-                            <div class="popup-header"> <span><svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><path fill="#e8b801" d="M9.153 5.408C10.42 3.136 11.053 2 12 2c.947 0 1.58 1.136 2.847 3.408l.328.588c.36.646.54.969.82 1.182c.28.213.63.292 1.33.45l.636.144c2.46.557 3.689.835 3.982 1.776c.292.94-.546 1.921-2.223 3.882l-.434.507c-.476.557-.715.836-.822 1.18c-.107.345-.071.717.001 1.46l.066.677c.253 2.617.38 3.925-.386 4.506c-.766.582-1.918.051-4.22-1.009l-.597-.274c-.654-.302-.981-.452-1.328-.452c-.347 0-.674.15-1.329.452l-.595.274c-2.303 1.06-3.455 1.59-4.22 1.01c-.767-.582-.64-1.89-.387-4.507l.066-.676c.072-.744.108-1.116 0-1.46c-.106-.345-.345-.624-.821-1.18l-.434-.508c-1.677-1.96-2.515-2.941-2.223-3.882c.293-.941 1.523-1.22 3.983-1.776l.636-.144c.699-.158 1.048-.237 1.329-.45c.28-.213.46-.536.82-1.182l.328-.588Z"/></svg> Stars</span>                                </div>
-                            <div class="pack">
-                                <div>
-                                    <div class="pack-name">100
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
-                                            <path fill="#e8b801" d="M9.153 5.408C10.42 3.136 11.053 2 12 2c.947 0 1.58 1.136 2.847 3.408l.328.588c.36.646.54.969.82 1.182c.28.213.63.292 1.33.45l.636.144c2.46.557 3.689.835 3.982 1.776c.292.94-.546 1.921-2.223 3.882l-.434.507c-.476.557-.715.836-.822 1.18c-.107.345-.071.717.001 1.46l.066.677c.253 2.617.38 3.925-.386 4.506c-.766.582-1.918.051-4.22-1.009l-.597-.274c-.654-.302-.981-.452-1.328-.452c-.347 0-.674.15-1.329.452l-.595.274c-2.303 1.06-3.455 1.59-4.22 1.01c-.767-.582-.64-1.89-.387-4.507l.066-.676c.072-.744.108-1.116 0-1.46c-.106-.345-.345-.624-.821-1.18l-.434-.508c-1.677-1.96-2.515-2.941-2.223-3.882c.293-.941 1.523-1.22 3.983-1.776l.636-.144c.699-.158 1.048-.237 1.329-.45c.28-.213.46-.536.82-1.182l.328-.588Z"
-                                            />
-                                        </svg>
-                                    </div>
-                                    <div class="pack-bonus">Get 20 extra Stars</div>
-                                </div>
-                                <div class="pack-price">₹100.00</div>
-                            </div>
-                            <div class="pack">
-                                <div>
-                                    <div class="pack-name">450
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
-                                            <path fill="#e8b801" d="M9.153 5.408C10.42 3.136 11.053 2 12 2c.947 0 1.58 1.136 2.847 3.408l.328.588c.36.646.54.969.82 1.182c.28.213.63.292 1.33.45l.636.144c2.46.557 3.689.835 3.982 1.776c.292.94-.546 1.921-2.223 3.882l-.434.507c-.476.557-.715.836-.822 1.18c-.107.345-.071.717.001 1.46l.066.677c.253 2.617.38 3.925-.386 4.506c-.766.582-1.918.051-4.22-1.009l-.597-.274c-.654-.302-.981-.452-1.328-.452c-.347 0-.674.15-1.329.452l-.595.274c-2.303 1.06-3.455 1.59-4.22 1.01c-.767-.582-.64-1.89-.387-4.507l.066-.676c.072-.744.108-1.116 0-1.46c-.106-.345-.345-.624-.821-1.18l-.434-.508c-1.677-1.96-2.515-2.941-2.223-3.882c.293-.941 1.523-1.22 3.983-1.776l.636-.144c.699-.158 1.048-.237 1.329-.45c.28-.213.46-.536.82-1.182l.328-.588Z"
-                                            />
-                                        </svg>
-                                    </div>
-                                    <div class="pack-bonus">Get 50 extra Stars</div>
-                                </div>
-                                <div class="pack-price">₹450.00</div>
-                            </div>
-                            <style>
-                                .explore-link{ cursor: pointer; width: 100%; border-radius: 100px; margin-bottom: 16px; background: white; font-weight: 500; transition: all 0.3s ease-in-out; color: black; } .explore-link:hover{ transform: scale(1.03); } .explore-link:active{ transform: scale(0.90); }
-                            </style>
-                            <a href="https://blackswan19.github.io/golden/FM/starspage">
-                                <button class="explore-link"> Explore Stars</button>
-                            </a>
-                        </div>
+                        
                     </div>
                      <div class="search-container"> 
                         <div id="searchIcon" onclick="toggleSearch()">
@@ -2577,10 +2561,44 @@ width: 50px;
                 </div>
             </div>
     </div>
-    <!-- POPUPS -->
     <div id="totalPopup">
-        <img style="width: 100px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/folder.gif" alt="">
-        <h3>Wallet Balance</h3>
+        <div class="wallettopsection">
+            <div class="fab" id="download-receipt">
+						<svg style="width: 18px;
+    height: 18px;
+    fill: #ffffffd1;
+    stroke: transparent;" 
+							xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+							<path d="M19.95,5.54l-3.49-3.49c-1.32-1.32-3.08-2.05-4.95-2.05H7C4.24,0,2,2.24,2,5v14c0,2.76,2.24,5,5,5h10c2.76,0,5-2.24,5-5V10.49c0-1.87-.73-3.63-2.05-4.95Zm-1.41,1.41c.32,.32,.59,.67,.81,1.05h-4.34c-.55,0-1-.45-1-1V2.66c.38,.22,.73,.49,1.05,.81l3.49,3.49ZM7,2h4.51c.16,0,.33,0,.49,.02V7c0,1.65,1.35,3,3,3h4.98c.02,.16,.02,.32,.02,.49v4.58l-2.41-2.41c-.87-.87-2.28-.87-3.15,0l-2.27,2.27c-.09,.09-.23,.09-.32,0l-2.27-2.27c-.87-.87-2.28-.87-3.15,0l-2.44,2.44V5c0-1.65,1.35-3,3-3Zm10,20H7c-1.65,0-3-1.35-3-3v-1.07l3.86-3.86c.09-.09,.23-.09,.32,0l2.27,2.27c.87,.87,2.28,.87,3.15,0l2.27-2.27c.09-.09,.23-.09,.32,0l3.83,3.83v1.1c0,1.65-1.35,3-3,3Z"/>
+						</svg>
+                	</div>
+            <img style="width: 100px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/folder.gif" alt="">
+            <h3>Wallet Balance</h3>
+            <div class="iconsinfo">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path d="m17.797 15.266c-1.108 5.34-6.442 7.865-8.05 8.512-.211.081-.408.222-.745.222s-.574-.171-.806-.285c-1.922-.961-8.196-4.556-8.196-10.454v-4.597c0-1.967 1.254-3.705 3.122-4.324l5.563-1.845c.527-.174 1.09.111 1.264.634.174.524-.11 1.09-.634 1.264l-5.563 1.845c-1.048.347-1.751 1.322-1.751 2.426v4.597c0 4.709 5.333 7.78 7.047 8.643 1.428-.581 5.895-2.726 6.792-7.044.112-.541.643-.888 1.182-.776.541.112.888.642.776 1.182zm6.203-9.266c0 3.309-2.691 6-6 6s-6-2.691-6-6 2.691-6 6-6 6 2.691 6 6zm-2 0c0-2.206-1.794-4-4-4s-4 1.794-4 4 1.794 4 4 4 4-1.794 4-4zm-2.77-1.567-1.693 1.625c-.056.056-.146.055-.202 0l-.75-.735c-.395-.386-1.027-.379-1.414.015-.387.395-.38 1.028.015 1.414l.75.735c.416.407.96.609 1.503.609s1.084-.203 1.493-.606l1.683-1.616c.398-.382.412-1.016.029-1.414-.382-.397-1.015-.411-1.414-.028zm-11.237 4.567h2.015c.806 0 1.282.923.798 1.567-.127.168-.265.325-.406.476 1.444.681 2.601 2.308 2.601 3.966 0 1.098-.897 1.991-2 1.991h-4.001c-1.103 0-2-.893-2-1.991 0-1.658 1.156-3.285 2.601-3.966-.141-.151-.28-.308-.406-.476-.484-.644-.008-1.567.798-1.567zm3.007 6c0-1.134-1.164-2.295-2-2.295s-2 1.161-2 2.304z"/></svg>
+                    <div class="iconname">
+                        Total Amount
+                    </div>
+                </div>
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="512" height="512"><path d="M19,0H14a1,1,0,0,0,0,2h5a2.951,2.951,0,0,1,1.285.3L.293,22.293a1,1,0,1,0,1.414,1.414L21.7,3.715A2.951,2.951,0,0,1,22,5v5a1,1,0,0,0,2,0V5A5.006,5.006,0,0,0,19,0Z"/><path d="M6,10A4,4,0,1,0,2,6,4,4,0,0,0,6,10ZM6,4A2,2,0,1,1,4,6,2,2,0,0,1,6,4Z"/><path d="M18,14a4,4,0,1,0,4,4A4,4,0,0,0,18,14Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,18,20Z"/></svg>
+                    <div class="iconname">
+                        Total Interet
+                    </div>
+                </div>
+                <div class="icon">
+                  <?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24">
+  <path d="m18,24H4.394c-.97,0-1.83-.582-2.191-1.481-.361-.9-.143-1.916.559-2.587l8.293-7.932L2.761,4.068c-.701-.671-.92-1.686-.559-2.586s1.222-1.482,2.191-1.482h13.606c2.206,0,4,1.794,4,4,0,.552-.447,1-1,1s-1-.448-1-1c0-1.103-.897-2-2-2H4.394c-.213,0-.302.142-.336.227-.033.085-.067.249.086.396l9.048,8.654c.197.188.309.45.309.723s-.111.534-.309.723l-9.048,8.654c-.153.146-.119.312-.086.396.034.084.123.227.336.227h13.606c1.103,0,2-.897,2-2,0-.553.447-1,1-1s1,.447,1,1c0,2.206-1.794,4-4,4Z"/>
+</svg>
+
+                    <div class="iconname">
+                        Total Amount
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="totalContent"></div>
         <button onclick="closeTotalPopup()" style="margin-bottom:-2px;margin-top: 20px;background-color: red;">Close Now</button>
     </div>
