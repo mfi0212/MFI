@@ -126,7 +126,7 @@ function updateAllSpeeds() {
 }
 
 const Usd_RATE = 87.85;
-let currentCurrency = localStorage.getItem('currency') || 'Inr';
+let currentCurrency = localStorage.getItem('currency') || 'Inr (₹)';
 let currentUser = null;
 let currentLoanIndex = null;
 let calendarMonth = new Date();
