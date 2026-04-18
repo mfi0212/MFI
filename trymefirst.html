@@ -1189,7 +1189,13 @@ div#loanDetails {
 	font-size: 13px;
 	text-align: justify;
 }
-
+.datepopupframo {
+    margin: -17px;
+    background: linear-gradient(180deg, #19a8505e 50%, transparent);
+    padding: 30px 10px 55px 10px;
+    border-radius: 60px 60px 0px 0px;
+    corner-shape: squircle;
+}
 .purpose-input.animate {
 	animation: liquidPress 0.7s cubic-bezier(.2, .8, .2, 1);
 }
@@ -2605,8 +2611,9 @@ width: 50px;
         <button onclick="closeTotalPopup()" style="margin-bottom:-2px;margin-top: 20px;background-color: red;">Close Now</button>
     </div>
     <div id="datePopup">
-        <!-- <i class="fa-solid fa-xmark" style="position: absolute; top: 25px; right: 25px; cursor: pointer; color: #aaa; font-size: 16px; z-index: 10000;" onclick="closeDatePopup()"></i> -->
-        <h3>Amount details</h3>
+        <div class="datepopupframo">
+            <img style="width: 100px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/abacus.gif" alt=""><h3>Amount details</h3>
+        </div>
         <div id="popupContent"></div>
     </div>
     <div id="linkConfirmPopup">
