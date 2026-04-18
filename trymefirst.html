@@ -459,7 +459,7 @@ p {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
-    padding: 5px;
+    padding: 2px;
 }
 
 #userEmote:hover {
@@ -721,7 +721,7 @@ svg.serchareicon {
     justify-content: center;
     align-items: center;
     width: 100%;
-    gap: 5px;
+    gap: 0;
     flex-direction: column;
 }
 .amount-btn:active {
@@ -757,7 +757,7 @@ svg.serchareicon {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 10px;
     cursor: pointer;
     background: #ffffff2b;
     transition: all 0.3s ease;
@@ -770,25 +770,20 @@ svg.serchareicon {
 }
 
 #coinSection {
-    border-radius: 12px;
+        border-radius: 12px;
     padding: 2px 6px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 3px;
-    font-weight: 600;
-    font-size: 12px;
+    font-weight: 400;
+    font-size: 10px;
     margin-left: 0px;
     color: #000000;
     cursor: pointer;
     transition: all 0.3s ease;
     background: #ffc100;
 
-}
-div#coinSection svg {
- width: 15px;
-    height: 15px;
-    fill: #ffc100;
 }
 #coinSection:hover {
 	transform: scale(1.03);
@@ -1567,10 +1562,10 @@ svg#Layer_7 {
     width: 18px;
 }
 .afternamecontent{
-    display: flex;
+display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 }
 .loans-list {
 	margin-top: 24px;
@@ -2013,7 +2008,7 @@ button {
 .toggle-switch{
 	text-align: center;
     z-index: 10000;
-    width: 100%;
+    width: fit-content;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
  color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
@@ -2027,7 +2022,7 @@ button {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
     backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
-    padding: 0 0 5px 0;
+    padding: 5px 15px;
     border-radius: 100px;
 }
 
