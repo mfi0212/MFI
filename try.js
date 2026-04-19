@@ -785,11 +785,11 @@ function showDatePopup(idx) {
     <button style="width: 100%;
     padding: 8px;
     background: #0026ff;
-    border-radius: 200px;" onclick="goToList(${idx})">Full Details</button>
+    border-radius: 200px;" onclick="goToList(${idx})"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M442.31-280q-8.5 0-14.25-5.76t-5.75-14.27q0-8.51 5.75-14.24t14.25-5.73h74.61q8.5 0 14.25 5.76t5.75 14.27q0 8.51-5.75 14.24T516.92-280h-74.61Zm-150-180q-8.5 0-14.25-5.76t-5.75-14.27q0-8.51 5.75-14.24t14.25-5.73h374.61q8.5 0 14.25 5.76t5.75 14.27q0 8.51-5.75 14.24T666.92-460H292.31ZM180-640q-8.5 0-14.25-5.76T160-660.03q0-8.51 5.75-14.24T180-680h600q8.5 0 14.25 5.76t5.75 14.27q0 8.51-5.75 14.24T780-640H180Z"/></svg> Full Details</button>
     <button onclick="closeDatePopup()" style="width: 100%;
     padding: 8px;
     background: #ff0000;
-    border-radius: 200px;background-color: red;" onclick="goToList(${idx})">Close Now</button>
+    border-radius: 200px;background-color: red;" onclick="goToList(${idx})"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M256-213.85 213.85-256l224-224-224-224L256-746.15l224 224 224-224L746.15-704l-224 224 224 224L704-213.85l-224-224-224 224Z"/></svg> Close Now</button>
 </div>
     `;
     document.getElementById('datePopup').style.display = 'block';
