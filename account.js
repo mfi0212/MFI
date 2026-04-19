@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || 'Inr (₹)';
@@ -17,10 +17,11 @@ const usersDB = {
         coins: 0,
         loans: [
 
-            { planDate: "09-02-2026", endDate: "07-05-2026", interest: 875, takenAmount: 3500, takenFrom: "Lendlink", fineRate: 50 },
-            { planDate: "11-01-2026", endDate: "08-05-2026", interest: 1370, takenAmount: 5480, takenFrom: "Golden", fineRate: 50 },
-            { planDate: "14-01-2026", endDate: "11-05-2026", interest: 4220, takenAmount: 22813, takenFrom: "Golden", fineRate: 50 },
-            { planDate: "14-02-2026", endDate: "13-05-2026", interest: 2500, takenAmount: 10000, takenFrom: "Golden", fineRate: 50 },
+            { planDate: "09-02-2026", endDate: "07-05-2026", interest: 875, takenAmount: 3500, takenFrom: "Lendlink", fineRate: 35 },
+            { planDate: "11-01-2026", endDate: "08-05-2026", interest: 1370, takenAmount: 5480, takenFrom: "Golden", fineRate: 40 },
+            { planDate: "14-01-2026", endDate: "11-05-2026", interest: 4220, takenAmount: 22813, takenFrom: "Golden", fineRate: 65 },
+            { planDate: "14-02-2026", endDate: "13-05-2026", interest: 2500, takenAmount: 10000, takenFrom: "Golden", fineRate: 65 },
+            { planDate: "19-04-2026", endDate: "19-05-2026", interest: 300, takenAmount: 2000, takenFrom: "Lenlink", fineRate: 35 },
         ],
         links: [],
         emote: "https://i.pinimg.com/originals/bb/c2/a3/bbc2a39b80d283dc936d426be1868e3c.gif"
@@ -141,6 +142,7 @@ function showRepaymentReminderPopup(reminder) {
             <div class="reminder-header">
                 <button class="reminder-close-btn" title="Close reminder">×</button>
             </div>
+            <img style="width: 100px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/trumpet.gif" alt="">
             <div class="reminder-body">
                 <p>Mr. ${name} you have <strong>${formatMoney(totalAmount)}</strong> to return on <br><strong>${dueDate}</strong>${loansText}. Return before the end date or extra charges will be added.</p>
             </div>
@@ -385,10 +387,12 @@ function displayLoanDetails(loan, index) {
             <div class="details">
                 ${overdueFine > 0 ? `
                     <div class="leftflow">
-                        <svg class="strokeadder"  style="background: #ff1414;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><g fill="none"><path  stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l2.5 2.5"/><path  d="m5.604 5.604l-.53-.53l.53.53ZM4.338 6.871l-.75.003a.75.75 0 0 0 .746.747l.004-.75Zm2.542.762a.75.75 0 1 0 .007-1.5l-.007 1.5ZM5.075 4.321a.75.75 0 0 0-1.5.008l1.5-.008ZM3.75 12a.75.75 0 0 0-1.5 0h1.5Zm13.125 8.445a.75.75 0 1 0-.75-1.298l.75 1.298Zm2.272-4.32a.75.75 0 1 0 1.298.75l-1.298-.75ZM5.14 5.07a.75.75 0 1 0 1.056 1.066L5.14 5.071Zm13.722.067c-3.82-3.82-9.993-3.859-13.788-.064l1.06 1.06c3.2-3.199 8.423-3.18 11.668.065l1.06-1.061ZM5.074 5.074L3.808 6.34l1.06 1.06l1.267-1.265l-1.061-1.061Zm-.74 2.547l2.546.012l.007-1.5l-2.545-.012l-.008 1.5Zm.754-.754L5.075 4.32l-1.5.008l.013 2.545l1.5-.007ZM12 3.75A8.25 8.25 0 0 1 20.25 12h1.5A9.75 9.75 0 0 0 12 2.25v1.5Zm0 16.5A8.25 8.25 0 0 1 3.75 12h-1.5A9.75 9.75 0 0 0 12 21.75v-1.5Zm4.125-1.103A8.209 8.209 0 0 1 12 20.25v1.5c1.775 0 3.44-.475 4.875-1.305l-.75-1.298ZM20.25 12a8.209 8.209 0 0 1-1.103 4.125l1.298.75A9.708 9.708 0 0 0 21.75 12h-1.5ZM6.196 6.137A8.221 8.221 0 0 1 12 3.75v-1.5a9.721 9.721 0 0 0-6.86 2.821l1.056 1.066Z"/></g></svg>
+                        <svg class="strokeadder"  style="background: #ff0000;
+    padding: 2px;
+    fill: white;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M497.35-308.81q7.27-7.27 7.27-17.34 0-10.08-7.27-17.35-7.27-7.27-17.35-7.27-10.08 0-17.35 7.27-7.27 7.27-7.27 17.35 0 10.07 7.27 17.34t17.35 7.27q10.08 0 17.35-7.27ZM460-433.85h40v-240h-40v240Zm20 350.47L362.75-200H200v-162.75L83.38-480 200-597.25V-760h162.75L480-876.62 597.25-760H760v162.75L876.62-480 760-362.75V-200H597.25L480-83.38Zm0-56.62 100-100h140v-140l100-100-100-100v-140H580L480-820 380-720H240v140L140-480l100 100v140h140l100 100Zm0-340Z"/></svg>
                         <h3>Overdue Fine</h3>
                     </div>
-                    <p style='color: #ff4444;'>${formatMoney(overdueFine)} 
+                    <p style='color: #ff0000;'>${formatMoney(overdueFine)} 
                         <small>(${Math.abs(daysLeft)} days)</small>
                     </p>` : ''}
             </div>
@@ -411,16 +415,39 @@ function displayLoanDetails(loan, index) {
               font-family: 'Anton', sans-serif;
               letter-spacing: 4.5px;
               color: ${overdueFine > 0 
-                        ? '#ff4000ff' 
+                        ? '#ff0000' 
                         : daysLeft <= 2 
-                            ? '#ff1100' 
+                            ? '#ff0000' 
                             : daysLeft <= 6 
                                 ? '#ffbf00' 
                                 : '#00d423'};">
         ${formatMoney(totalPayable)}
     </p>
 </div>
-             <a target="_blank" href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: rgb(255 0 0 / 69%); padding: 10px; font-size: 13px; transition: all 0.3s ease; box-shadow: ... ; border: solid 1px #ffffff3b; width: 80%; left: 50%; max-width:300px; position: relative; transform: translate(-50%, 0%); margin-bottom: 10px; margin-top: 10px;" class="add-link-btn">I have an issue with my account.!</button></a>
+             <a target="_blank" href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: #ff0000;
+    padding: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    width: 80%;
+    left: 50%;
+    max-width: 300px;
+    position: relative;
+    transform: translate(-50%, 0%);
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-weight: 400;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;" class="add-link-btn">I have an issue with my account.!</button></a>
         </div>
     `;
 }
@@ -466,9 +493,11 @@ function showTotalPopup() {
     document.getElementById("totalContent").innerHTML = `
         <p>Taken amount : <strong>${formatMoney(base)}</strong></p>
         <p style='margin-bottom: 20px;'>Total Interest : <strong>${formatMoney(interest)}</strong></p>
-        ${overdue > 0 ? `<p style="color: #ff5858;
+        ${overdue > 0 ? `<p style="
     margin: -17px 0 0 0;
-    font-size: 16px;">Overdue Fine : <strong style='color: #ff0000;'>${formatMoney(overdue)}</strong></p>` : ''}
+    font-size: 16px;">Overdue Fine : <strong style='    color: #ff2424;
+    border-radius: 100px;
+    padding: 0 10px;'>${formatMoney(overdue)}</strong></p>` : ''}
         <hr>
         <p style="font-size: 20px; margin-top: 10px; margin-bottom: -5px;">Total to Return: <strong>${formatMoney(total)}</strong></p>
     `;
@@ -740,6 +769,7 @@ function showDatePopup(idx) {
     const cleanEnd = loan.endDate.split('(')[0].trim();
     const daysLeft = Math.ceil((new Date(cleanEnd.split('-').reverse().join('-')) - new Date()) / 86400000);
     document.getElementById('popupContent').innerHTML = `
+    
         <p style='color: #ffc000;font-weight: 600;'><strong>Taken Amount:</strong> ${formatMoney(loan.takenAmount)}</p>
         <p style='color: #ffc000;font-weight: 600;'><strong>Purpose:</strong> ${loan.purpose || 'Not set'}</p>
         <p style='color: #ffc000;font-weight: 600;'><strong>Return date :</strong> ${cleanEnd}</p>
