@@ -414,16 +414,39 @@ function displayLoanDetails(loan, index) {
               font-family: 'Anton', sans-serif;
               letter-spacing: 4.5px;
               color: ${overdueFine > 0 
-                        ? '#ff4000ff' 
+                        ? '#ff0000' 
                         : daysLeft <= 2 
-                            ? '#ff1100' 
+                            ? '#ff0000' 
                             : daysLeft <= 6 
                                 ? '#ffbf00' 
                                 : '#00d423'};">
         ${formatMoney(totalPayable)}
     </p>
 </div>
-             <a target="_blank" href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: rgb(255 0 0 / 69%); padding: 10px; font-size: 13px; transition: all 0.3s ease; box-shadow: ... ; border: solid 1px #ffffff3b; width: 80%; left: 50%; max-width:300px; position: relative; transform: translate(-50%, 0%); margin-bottom: 10px; margin-top: 10px;" class="add-link-btn">I have an issue with my account.!</button></a>
+             <a target="_blank" href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: #ff0000;
+    padding: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    width: 80%;
+    left: 50%;
+    max-width: 300px;
+    position: relative;
+    transform: translate(-50%, 0%);
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-weight: 400;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;" class="add-link-btn">I have an issue with my account.!</button></a>
         </div>
     `;
 }
