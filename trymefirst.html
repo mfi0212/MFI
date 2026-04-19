@@ -289,7 +289,6 @@ hr {
     filter: saturate(2);
     font-size: 15px;
         }
-        .btn:hover{ transform: scale(1.05); }
         .btn:active{ transform: scale(0.90); } 
         .btn-gold{background:var(--gold);color:white;} 
         .btn-gold:hover{filter:brightness(1.1);} 
@@ -393,9 +392,11 @@ button.btn.btn-gold.close-btn {
     align-items: center;
     gap: 5px;
     margin: 0;
-    padding: 5px;
     background-color: red;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    width: 88%;
+    font-size: 17px;
+    padding: 8px;
 }button.btn.btn-gold.close-btn svg{
     opacity: 100%;
 }
@@ -1196,7 +1197,7 @@ filter: saturate(1);
         <div class="popup-content">
             <h3>Interest Details</h3>
             <p id="popup-content"></p>
-            <button class="btn btn-gold close-btn" onclick="closePopup('interestPopup')"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M256-213.85 213.85-256l224-224-224-224L256-746.15l224 224 224-224L746.15-704l-224 224 224 224L704-213.85l-224-224-224 224Z"/></svg> Close</button>
+            <button class="btn btn-gold close-btn" onclick="closePopup('interestPopup')">Close Now</button>
         </div>
     </div>
 
@@ -1377,8 +1378,8 @@ startBtn?.addEventListener("click", async () => {
             });
         }
         const duration = audio.duration;
-        const minPlay = 5;
-        const maxPlay = Math.min(8, duration);
+        const minPlay = 0;
+        const maxPlay = Math.min(0, duration);
         stopTime = Math.random() * (maxPlay - minPlay) + minPlay;
         progressFill.style.width = "0%";
         audioStatus.textContent = "0% • Loading...";
