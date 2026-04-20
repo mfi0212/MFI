@@ -140,7 +140,7 @@ function showRepaymentReminderPopup(reminder) {
     modal.innerHTML = `
         <div class="reminder-content">
             <div class="reminder-header">
-                <button class="reminder-close-btn" title="Close reminder">×</button>
+                <button class="reminder-close-btn" title="Close reminder"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z"/></svg></button>
             </div>
             <img style="width: 100px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/trumpet.gif" alt="">
             <div class="reminder-body">
