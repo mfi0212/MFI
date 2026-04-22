@@ -406,7 +406,8 @@ function displayLoanDetails(loan, index) {
         </g>
     </svg>
     
-    <h3 style="margin: 10px 0;font-weight: 600;font-size: 15px;color: #ffffff91;">
+    <h3 style="    margin: 10px 0;
+    font-weight: 100;">
         Total amount to return
     </h3>
     
@@ -426,16 +427,14 @@ function displayLoanDetails(loan, index) {
 </div>
              <a target="_blank" href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: #ff0000;
     padding: 10px;
-    font-size: 15px;
+    font-size: 18px;
     transition: all 0.3s ease;
-    width: 80%;
     left: 50%;
-    max-width: 300px;
     position: relative;
     transform: translate(-50%, 0%);
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     margin-top: 10px;
-    font-weight: 400;
+    font-weight: 100;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
  color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
@@ -465,7 +464,7 @@ function renderAmountButtons() {
         const originalIndex = currentUser.loans.indexOf(loan);
         const btn = document.createElement("button");
         btn.className = "amount-btn";
-        btn.innerHTML = `${formatMoney(loan.takenAmount)}<div class="purpose-tag">${loan.purpose || 'Set Purpose'}</div>`;
+        btn.innerHTML = `${formatMoney(loan.takenAmount)}<div class="purpose-tag">${loan.purpose || 'Purpose'}</div>`;
         btn.onclick = () => { 
             displayLoanDetails(loan, originalIndex); 
             switchView('list', false); 
@@ -784,11 +783,9 @@ function showDatePopup(idx) {
     margin-top: 0px;
     margin-bottom: -10px;">
     <button style="width: 100%;
-    padding: 8px;
     background: #0026ff;
     border-radius: 200px;" onclick="goToList(${idx})"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M442.31-280q-8.5 0-14.25-5.76t-5.75-14.27q0-8.51 5.75-14.24t14.25-5.73h74.61q8.5 0 14.25 5.76t5.75 14.27q0 8.51-5.75 14.24T516.92-280h-74.61Zm-150-180q-8.5 0-14.25-5.76t-5.75-14.27q0-8.51 5.75-14.24t14.25-5.73h374.61q8.5 0 14.25 5.76t5.75 14.27q0 8.51-5.75 14.24T666.92-460H292.31ZM180-640q-8.5 0-14.25-5.76T160-660.03q0-8.51 5.75-14.24T180-680h600q8.5 0 14.25 5.76t5.75 14.27q0 8.51-5.75 14.24T780-640H180Z"/></svg> Full Details</button>
     <button onclick="closeDatePopup()" style="width: 100%;
-    padding: 8px;
     background: #ff0000;
     border-radius: 200px;background-color: red;" onclick="goToList(${idx})"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M256-213.85 213.85-256l224-224-224-224L256-746.15l224 224 224-224L746.15-704l-224 224 224 224L704-213.85l-224-224-224 224Z"/></svg> Close Now</button>
 </div>
@@ -985,4 +982,117 @@ document.addEventListener("DOMContentLoaded", function () {
             helperButton.classList.remove("animated-border");
         }, 10000000);
     }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const downloadBtn = document.getElementById('download-receipt');
+    if (!downloadBtn) {
+        console.error("Button with id='download-receipt' NOT FOUND!");
+        return;
+    }
+    console.log("✅ Receipt button initialized");
+    downloadBtn.addEventListener('click', function() {
+        if (!currentUser) {
+            alert("Login first!");
+            return;
+        }
+        const user = currentUser;
+        if (!user.loans || user.loans.length === 0) {
+            alert("No active loans found.");
+            return;
+        }
+        const baseHeight = 320;
+        const perLoanHeight = 148;
+        const footerHeight = 110;
+        const canvasHeight = baseHeight + (user.loans.length * perLoanHeight) + footerHeight;
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const width = 850;
+        canvas.width = width;
+        canvas.height = canvasHeight;
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, width, canvasHeight);
+        let y = 80;
+        ctx.fillStyle = '#1a1a1a';
+        ctx.font = '600 42px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('BsLends', width / 2, y);
+        y += 28;
+        ctx.fillStyle = '#666666';
+        ctx.font = '400 18px Arial';
+        ctx.fillText('Borrow Statement', width / 2, y);
+        y += 48;
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#1a1a1a';
+        ctx.font = '600 23px Arial';
+        ctx.fillText(user.name, 75, y);
+        y += 32;
+        ctx.font = '400 15px Arial';
+        ctx.fillStyle = '#555555';
+        ctx.fillText('Password • ' + (user === usersDB["0212"] ? "0212" : "BsPasgenerater"), 75, y);
+        y += 55;
+        ctx.fillStyle = '#1a1a1a';
+        ctx.font = '600 19px Arial';
+        ctx.fillText('Active Loans', 75, y);
+        y += 35;
+        user.loans.forEach((loan, i) => {
+            const total = loan.takenAmount + loan.interest;
+            ctx.strokeStyle = '#f0f0f0';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(75, y - 6);
+            ctx.lineTo(width - 75, y - 6);
+            ctx.stroke();
+            y += 28;
+            ctx.fillStyle = '#1a1a1a';
+            ctx.font = '600 18px Arial';
+            ctx.fillText(`Loan ${i + 1}`, 75, y);
+            y += 32;
+            ctx.font = '400 16.5px Arial';
+            ctx.fillStyle = '#444444';
+            ctx.fillText('Principal Amount', 75, y);
+            ctx.textAlign = 'right';
+            ctx.fillText(`₹${loan.takenAmount.toLocaleString('en-IN')}`, width - 75, y);
+            ctx.textAlign = 'left';
+            y += 28;
+            ctx.fillText('Interest', 75, y);
+            ctx.textAlign = 'right';
+            ctx.fillText(`₹${loan.interest.toLocaleString('en-IN')}`, width - 75, y);
+            ctx.textAlign = 'left';
+            y += 30;
+            ctx.fillStyle = '#1a1a1a';
+            ctx.font = '600 18px Arial';
+            ctx.fillText('Total Payable', 75, y);
+            ctx.textAlign = 'right';
+            ctx.fillStyle = '#d32f2f';
+            ctx.fillText(`₹${total.toLocaleString('en-IN')}`, width - 75, y);
+            ctx.textAlign = 'left';
+            y += 28;
+            ctx.fillStyle = '#555555';
+            ctx.font = '400 15.5px Arial';
+            ctx.fillText(`Due on ${loan.endDate}`, 75, y);
+            y += 52;
+        });
+        y += 35;
+        ctx.fillStyle = '#999999';
+        ctx.font = '400 14px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('Power by BsBookpad', width / 2, y);
+        y += 28;
+        ctx.fillStyle = '#bbbbbb';
+        ctx.font = '400 13px Arial';
+        ctx.fillText('BsLends Services • Confidential', width / 2, y);
+        try {
+            const link = document.createElement('a');
+            link.download = user.name.replace(/[^a-zA-Z0-9]/g, '_') + '_BsLends_Statement.png';
+            link.href = canvas.toDataURL('image/png');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            console.log(`✅ Receipt downloaded successfully for ${user.name}`);
+        } catch (err) {
+            console.error("Download error:", err);
+            alert("Could not download. Try using Live Server instead of opening file directly.");
+        }
+    });
 });
