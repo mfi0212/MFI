@@ -1970,8 +1970,9 @@ button {
     z-index: 10000;
     border-radius: 8px 8px 15px 15px;
     background: #ffffff1f;
-    
     padding: 6px 8px 6px 15px;
+    position: fixed;
+    top: 20px;
 }
 
 .content h1 {
@@ -2173,8 +2174,7 @@ input:checked+.slider:before {
 </style>
 </head>
 
-<body><div class="content" style="position: fixed;
-    top: 10px;">
+<body><div class="content">
                     <div class="toggle-switch">
                         <label>Power by</label>
                         <label style="display: none;" class="switch"><input type="checkbox" id="glowToggle"> <span class="slider"></span> </label>
@@ -2412,13 +2412,13 @@ input:checked+.slider:before {
                     </div>
 
                 </div>
-            <div class="content" >
+            <!-- <div class="content" >
                     <div class="toggle-switch">
                         <label>Power by</label>
                         <label style="display: none;" class="switch"><input type="checkbox" id="glowToggle"> <span class="slider"></span> </label>
                         <a href="https://mfi0212.github.io/MFI/bsmfi_search"><span>BS&MFI</span></a>
                     </div>
-                </div>
+                </div> -->
                 <button class="currency-switch" id="currencySwitch"><span id="currencyLabel">Usd ($)</span>  <i style="display: none;" class="fa-solid fa-dollar-sign"></i> </button>
             </div>
             <div class="overlay" id="overlay"></div>
