@@ -92,7 +92,7 @@ svg {
     height: 30px;
 }
 #userPassword {
-	font-size: 20px;
+	font-size: 18px;
     border-radius: 40px;
     border: none;
     background: #ffffff40;
@@ -147,7 +147,7 @@ svg {
 }
 #submitBtn {
 	background-color: blue;
-    font-size: 20px;
+    font-size: 18px;
     border-radius: 40px;
     color: #fff;
     padding: 10px;
@@ -2578,120 +2578,6 @@ width: 50px;
     <script src="account.js">
     </script>
     <svg style="position:absolute;width:0;height:0"> </svg>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const downloadBtn = document.getElementById('download-receipt');
-    if (!downloadBtn) {
-        console.error("Button with id='download-receipt' NOT FOUND!");
-        return;
-    }
-    console.log("✅ Receipt button initialized");
-    downloadBtn.addEventListener('click', function() {
-        if (!currentUser) {
-            alert("Login first!");
-            return;
-        }
-        const user = currentUser;
-        if (!user.loans || user.loans.length === 0) {
-            alert("No active loans found.");
-            return;
-        }
-        const baseHeight = 320;
-        const perLoanHeight = 148;
-        const footerHeight = 110;
-        const canvasHeight = baseHeight + (user.loans.length * perLoanHeight) + footerHeight;
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        const width = 850;
-        canvas.width = width;
-        canvas.height = canvasHeight;
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, width, canvasHeight);
-        let y = 80;
-        ctx.fillStyle = '#1a1a1a';
-        ctx.font = '600 42px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText('BsLends', width / 2, y);
-        y += 28;
-        ctx.fillStyle = '#666666';
-        ctx.font = '400 18px Arial';
-        ctx.fillText('Borrow Statement', width / 2, y);
-        y += 48;
-        ctx.textAlign = 'left';
-        ctx.fillStyle = '#1a1a1a';
-        ctx.font = '600 23px Arial';
-        ctx.fillText(user.name, 75, y);
-        y += 32;
-        ctx.font = '400 15px Arial';
-        ctx.fillStyle = '#555555';
-        ctx.fillText('Password • ' + (user === usersDB["0212"] ? "0212" : "BsPasgenerater"), 75, y);
-        y += 55;
-        ctx.fillStyle = '#1a1a1a';
-        ctx.font = '600 19px Arial';
-        ctx.fillText('Active Loans', 75, y);
-        y += 35;
-        user.loans.forEach((loan, i) => {
-            const total = loan.takenAmount + loan.interest;
-            ctx.strokeStyle = '#f0f0f0';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(75, y - 6);
-            ctx.lineTo(width - 75, y - 6);
-            ctx.stroke();
-            y += 28;
-            ctx.fillStyle = '#1a1a1a';
-            ctx.font = '600 18px Arial';
-            ctx.fillText(`Loan ${i + 1}`, 75, y);
-            y += 32;
-            ctx.font = '400 16.5px Arial';
-            ctx.fillStyle = '#444444';
-            ctx.fillText('Principal Amount', 75, y);
-            ctx.textAlign = 'right';
-            ctx.fillText(`₹${loan.takenAmount.toLocaleString('en-IN')}`, width - 75, y);
-            ctx.textAlign = 'left';
-            y += 28;
-            ctx.fillText('Interest', 75, y);
-            ctx.textAlign = 'right';
-            ctx.fillText(`₹${loan.interest.toLocaleString('en-IN')}`, width - 75, y);
-            ctx.textAlign = 'left';
-            y += 30;
-            ctx.fillStyle = '#1a1a1a';
-            ctx.font = '600 18px Arial';
-            ctx.fillText('Total Payable', 75, y);
-            ctx.textAlign = 'right';
-            ctx.fillStyle = '#d32f2f';
-            ctx.fillText(`₹${total.toLocaleString('en-IN')}`, width - 75, y);
-            ctx.textAlign = 'left';
-            y += 28;
-            ctx.fillStyle = '#555555';
-            ctx.font = '400 15.5px Arial';
-            ctx.fillText(`Due on ${loan.endDate}`, 75, y);
-            y += 52;
-        });
-        y += 35;
-        ctx.fillStyle = '#999999';
-        ctx.font = '400 14px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText('Power by BsBookpad', width / 2, y);
-        y += 28;
-        ctx.fillStyle = '#bbbbbb';
-        ctx.font = '400 13px Arial';
-        ctx.fillText('BsLends Services • Confidential', width / 2, y);
-        try {
-            const link = document.createElement('a');
-            link.download = user.name.replace(/[^a-zA-Z0-9]/g, '_') + '_BsLends_Statement.png';
-            link.href = canvas.toDataURL('image/png');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            console.log(`✅ Receipt downloaded successfully for ${user.name}`);
-        } catch (err) {
-            console.error("Download error:", err);
-            alert("Could not download. Try using Live Server instead of opening file directly.");
-        }
-    });
-});
-</script>
 </svg>
 </body>
 </html>
