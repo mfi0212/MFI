@@ -1,46 +1,39 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Happy Easter 2026 🐰✨</title> <style> @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Comic+Neue:wght@700&display=swap'); body { margin: 0; font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #ffebee, #e3f2fd, #f3e5f5); color: #333; overflow-x: hidden; padding: 5px; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .container { max-width: 900px; margin: 20px auto; text-align: center; padding: 2px; } .header { /* background: white; */ padding: 40px 20px; border-radius: 30px; /* box-shadow: 0 15px 40px rgba(255, 182, 193, 0.4); */ position: relative; overflow: hidden; } h1 { font-family: 'Comic Neue', cursive; font-size: 4rem; color: #00c6ff; margin: 10px 0; text-shadow: 2px -2px 0 #ffae00;position: relative; z-index: -1; } .subtitle { font-size: 17px; color: #4a148c; margin-bottom: 20px; } .floating-eggs { position: absolute; font-size: 2.5rem; animation: float 6s infinite ease-in-out; opacity: 0.9; } @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(15deg); } } .bunny { font-size: 5rem; animation: hop 1.5s infinite; } @keyframes hop { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-25px); } } .code-section { margin: 40px auto; padding: 40px; background: rgba(255,255,255,0.95); border-radius: 50px; box-shadow: 0 15px 40px rgba(255, 105, 180, 0.3); } input { padding: 12px; font-size: 16px; width: -webkit-fill-available; border: 2px solid #ffeb3b; border-radius: 50px; text-align: center; outline: none;font-family: 'Poppins', sans-serif; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); } button { padding: 12px; font-size: 16px; background: linear-gradient(45deg, #ff4081, #ff9800); color: white; border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 8px 20px rgba(255, 64, 129, 0.4); } button:hover { transform: scale(1.08); box-shadow: 0 12px 25px rgba(255, 64, 129, 0.5); } .success { display: none; margin-top: 30px; padding: 40px; background: linear-gradient(135deg, #4caf50, #8bc34a); color: white; border-radius: 30px; font-size: 1.5rem; box-shadow: 0 15px 40px rgba(76, 175, 80, 0.4); } .error { color: #d32f2f; margin-top: 15px; font-weight: bold; font-size: 1.2rem; } .decor { font-size: 25px; margin: 15px 0; } .music-btn { margin: 20px; padding: 12px 25px; background: #9c27b0; color: white; border: none; border-radius: 50px; cursor: pointer; font-size: 1.1rem; } </style> </head> <body> <div class="container"> <!-- Floating decorations --> <div class="floating-eggs" style="top: 80px; left: 10%; animation-delay: 0s;">🥚</div> <div class="floating-eggs" style="top: 150px; right: 15%; animation-delay: 2s;">🐣</div> <div class="floating-eggs" style="top: 300px; left: 20%; animation-delay: 4s;">🐰</div> <div class="floating-eggs" style="top: 220px; right: 25%; animation-delay: 1.5s;">🌷</div> <div class="header"> <div class="bunny">🐰</div> <h1>Happy Easter!</h1> <p class="subtitle">✨ Let’s Celebrate with Joy 🥚🌸</p> <div class="decor">🐣 🐇 🌷 🐣 🐇 🌷</div> </div> <div class="code-section" id="codeSection"> <h2 style="color:#d81b60;">Enter Your VIP Code</h2> <p style="font-size:25pxrem; color:#6a1b9a;">Happy Easter for you and your family.!</p> <input type="text" id="inviteCode" placeholder="Enter here..." maxlength="10" autocomplete="off"> <br><br> <button onclick="verifyCode()">Verify Now</button> <div id="errorMsg" class="error"></div> </div> <!-- Success Screen --> <div class="success" id="successScreen"> <h2>🎉 Welcome, Easter Friend! 🎉</h2> <p id="welcomeText" style="font-size:1.6rem;"></p> <div style="font-size:4rem; margin:20px 0;">🐰🥚🌷</div> <button onclick="showEasterContent()" style="background:white; color:#d81b60; font-size:1.4rem; padding:18px 40px;"> Enter the Easter Garden → </button> </div> <footer>© BS&MFI. All rights reserved.</footer> <!-- verify and redirect vip for main offer site -->
-  <script>
-
-    let musicPlaying = false;
-    const audio = document.getElementById('easterMusic');
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title> BS&MFI House | Quantam</title> <link rel="icon" href="onlyvipsitelogo.png" /> <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"> <style> body { margin: 0; font-family: 'Inter', sans-serif; background: #f8f8f6; color: #1a1a1a; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } header { text-align: center; padding: 30px 10px 10px; font-family: 'Playfair Display', serif; font-size: 30px; } span { font-size: 10px; font-family: 'Inter', sans-serif; display: block; } .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 25px; padding: 20px; } .card { text-align: center; } .card img { width: stretch; } .card h3 { margin: 12px 0 6px; font-weight: 500; font-size: 16px; } .price { color: #333; font-size: 14px; } button { width: 100%; margin-top: 12px; padding: 10px; border-radius: 10px; border: none; cursor: pointer; font-size: 13px; background: #111; color: #fff; transition: 0.2s; } button:hover { background: #000000be; } </style> </head> <body> <div class="helperbtm" style="position: fixed; top: 0; right: 0; background: #111111; color: white; padding: 5px 10px;"> <a onclick="alert('Helper:\n\nBuy a gift by sending the amount to your coordinator. Once the purchase is completed, the gift will be displayed in your account.\n\nHow it works:\n\nBuying a GIF allows you to sell it later when its price increases. When you sell, you earn stars, which can be used to reduce your interest rate when you borrow an amount.')">Help</a> </div> <header>Quantam <br><span>BS&MFI House</span> </header> <div class="container" id="giftContainer"></div>
+<script>
+const formLink = "https://forms.gle/nwhjN54BzxjXqzo48";
 document.addEventListener('contextmenu', e => e.preventDefault());
-    function toggleMusic() {
-      if (musicPlaying) {
-        audio.pause();
-      } else {
-        audio.play();
-      }
-      musicPlaying = !musicPlaying;
-    }
+const gifts = [
+  {id: 1, price: 190, gif: 'https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/seed-to-twig.gif'},
+  {id: 2, price: 310, gif: 'https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/seed-to-fat-tree.gif'},
+  {id: 3, price: 220, gif: 'https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/seed-to-sapling.gif'},
+  {id: 4, price: 380, gif: 'https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/palm-tree.gif'},
+];
 
-    function verifyCode() {
-      const codeInput = document.getElementById('inviteCode').value.trim().toUpperCase();
-      const errorMsg = document.getElementById('errorMsg');
-      const successScreen = document.getElementById('successScreen');
-      const codeSection = document.getElementById('codeSection');
+function renderGifts() {
+  const container = document.getElementById('giftContainer');
+  container.innerHTML = '';
 
-      if (validCodes.includes(codeInput)) {
-        errorMsg.textContent = '';
-        codeSection.style.display = 'none';
-        successScreen.style.display = 'block';
-        
-        document.getElementById('welcomeText').innerHTML = 
-          `Invitation Code <strong>${codeInput}</strong> Accepted!<br>
-           Welcome to our joyful Easter family celebration! 🐰🌷`;
-      } else {
-        errorMsg.textContent = '❌ Oops! Invalid code. Try again.';
-      }
-    }
+  gifts.forEach(gift => {
+    const div = document.createElement('div');
+    div.className = 'card';
 
-    function showEasterContent() {
-      document.getElementById('successScreen').style.display = 'none';
-      document.getElementById('festivalContent').style.display = 'block';
-    }
+    div.innerHTML = `
+      <img src="${gift.gif}">
+      <h3>Gift #${gift.id}</h3>
+      <div class="price">₹${gift.price}</div>
+      <button onclick="buyGift()">Buy Now</button>
+    `;
 
-    // Enter key support
-    document.getElementById('inviteCode').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') verifyCode();
-    });
-  </script>
+    container.appendChild(div);
+  });
+}
+
+function buyGift() {
+  window.open(formLink);
+}
+
+renderGifts();
+</script>
+
 </body>
 </html>
