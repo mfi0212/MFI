@@ -280,10 +280,6 @@ p {
 	transition: all 0.3s ease;
 }
 
-.close-btn:hover {
-	transform: scale(1.03);
-}
-
 .close-btn:active {
 	transform: scale(0.90);
 }
@@ -385,10 +381,6 @@ p {
     font-weight: 100;
 }
 
-.currency-switch:hover {
-	transform: scale(1.03);
-}
-
 .currency-switch:active {
 	transform: scale(0.90);
 }
@@ -428,9 +420,6 @@ p {
 	z-index: 1000;
 }
 
-#userEmote:hover {
-	transform: scale(1.1);
-}
 
 .linkadder {
 	width: 99%;
@@ -485,9 +474,6 @@ p {
     font-weight: 100;
 }
 
-.user-links :hover {
-	transform: scale(1.03);
-}
 
 .user-links :active {
 	transform: scale(0.90);
@@ -520,10 +506,6 @@ svg.addsiteicon {
     width: 20px;
     height: 20px;
 }
-.add-link-btn:hover {
-	transform: scale(1.03);
-}
-
 .add-link-btn:active {
 	transform: scale(0.90);
 }
@@ -575,9 +557,7 @@ svg.serchareicon {
     width: 30px;
     height: 30px;
 }
-#searchIcon:hover {
-	transform: scale(1.03);
-}
+
 
 #searchIcon:active {
 	transform: scale(0.90);
@@ -771,9 +751,7 @@ div#coinSection svg {
     height: 15px;
     fill: #ffc100;
 }
-#coinSection:hover {
-	transform: scale(1.03);
-}
+
 
 #coinSection:active {
 	transform: scale(0.90);
@@ -802,10 +780,6 @@ div#coinSection svg {
     align-items: center;
     gap: 0px;
     flex-direction: column;
-}
-
-.offergift:hover {
-	transform: scale(1.03);
 }
 
 .offergift:active {
@@ -868,9 +842,7 @@ button.move-asaid {
     gap: 50px;
     margin-bottom: 25px;
 }
-button.move-asaid:hover {
-	transform: scale(1.03);
-}
+
 .iconsinfo {
     display: flex;
     justify-content: center;
@@ -952,7 +924,7 @@ canvas#loanChart {
     z-index: 2000000;
     text-align: center;
     font-size: 14.5px;
-    line-height: 1.7;
+    line-height: 1.7;width: 98%;
     animation: iosPopupIn 0.1s cubic-bezier(.22, 1, .36, 1) forwards;
     background: #202020;
     transform: translate(-50%, -4%) scale(1);
@@ -961,13 +933,11 @@ canvas#loanChart {
 }
 
 @keyframes iosPopupIn {
-	0% {width: 0;
-		opacity: 0;
+	0% {opacity: 0;
 	}
 
 	100% {
 		opacity: 1;
-		width: 98%;
 		padding: 25px;
 	}
 }
@@ -1010,12 +980,12 @@ div#loanDetails {
     background: #0020ff;
     color: white;
     border: none;
-    padding: 8px;
-    border-radius: 22px;
+    padding: 10px;
+    border-radius: 202px;
     cursor: pointer;
     width: 100%;
     font-size: 18px;
-    font-weight: 500;display: flex;
+    font-weight: 100;display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px;
@@ -1027,10 +997,6 @@ div#loanDetails {
 	transition: all 0.3s ease;
 }
 
-#totalPopup button:hover {
-	transform: scale(1.03);
-}
-
 #totalPopup button:active {
 	transform: scale(0.90);
 }
@@ -1039,9 +1005,6 @@ div#loanDetails {
 	transition: all 0.3s ease;
 }
 
-#linkConfirmPopup button:hover {
-	transform: scale(1.03);
-}
 
 #linkConfirmPopup button:active {
 	transform: scale(0.90);
@@ -1063,9 +1026,6 @@ div#loanDetails {
 	transition: all 0.3s ease;
 }
 
-#datePopup button:hover {
-	transform: scale(1.03);
-}
 
 #datePopup button:active {
 	transform: scale(0.90);
@@ -1111,10 +1071,6 @@ div#loanDetails {
     border-radius: 26px;
 }
 
-.emote-option:hover {
-	background: #ffffff2f;
-	z-index: 10000;opacity: 100%;
-}
 
 .popup-overlay {
 	position: fixed;
@@ -1169,10 +1125,6 @@ div#loanDetails {
 
 .purpose-input::placeholder {
 	color: rgba(255, 255, 255, 0.705);
-}
-
-.purpose-input:hover {
-	transform: scale(1.03);
 }
 
 .purpose-input:focus {
@@ -1346,21 +1298,17 @@ div#loanDetails {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
 }
-
 .reminder-btn:active {
 	transform: scale(0.85);
 }
-
 .reminder-btn.delay {
 	background: #ff7400;
 	color: white;
 }
-
 .reminder-btn.split {
 	background: #0e7500;
 	color: white;
 }
-
 .nav-item {
 display: flex;
     align-items: center;
@@ -1472,9 +1420,6 @@ display: flex;
 	background: #ffffff1a;
 }
 
-#calendarContainer>div>div:hover {
-	transform: scale(1.03);
-}
 
 #calendarContainer>div>div:active {
 	transform: scale(0.90);
@@ -1614,10 +1559,6 @@ svg#Layer_7 {
     align-items: center;
     padding: 0px;
     background: #ffffff36;
-}
-
-.loan-actions button:hover {
-	transform: scale(1.03);
 }
 
 .loan-actions button:active {
@@ -2245,8 +2186,7 @@ input:checked+.slider:before {
     align-items: center;
     border: none;
   }
-  .fab:hover { transform: scale(1.1); }
-  .fab:active { transform: scale(0.98); }
+  .fab:active { transform: scale(0.90); }
 
   /* Bottom Sheet Popup */
   .bottom-sheet {
@@ -2313,9 +2253,7 @@ input:checked+.slider:before {
     text-align: center;
     transition: all 0.5s ease;
 }
-         .option:hover{
-              transform: scale(1); background: rgba(255, 255, 255, 0.16);
-        }
+       
          .option:active{
               transform: scale(0.98); 
         }
@@ -2354,10 +2292,7 @@ input:checked+.slider:before {
     transition: 0.3s;
     margin-bottom: 8px;
   }
-  .upload-area:hover {
-    border-color: #fff;
-    background: rgba(255,255,255,0.05);
-  }
+
 
   /* Overlay to close on outside tap */
   .overlay {
