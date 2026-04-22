@@ -87,7 +87,9 @@ body {
 	background-color: transparent;
 }
 svg {
-    fill: white;
+    fill: #ffffffb8;
+    width: 30px;
+    height: 30px;
 }
 #userPassword {
 	font-size: 20px;
@@ -565,28 +567,27 @@ svg.serchareicon {
 
 #searchInput {
 	width: 0;
-	padding: 0;
-	border: none;
-	background: transparent;
-	color: #e0e0e0;
-	font-size: 14px;
-	outline: none;
-	transition: all 0.8s ease-in-out;
-	overflow: hidden;
-	border-bottom: solid 1.5px #ffffff3d;
-	top: -5px;
-	position: relative;
-	left: -500px;
-	opacity: 0%;
-	margin-right: 15px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #ffffff;
+    font-size: 18px;
+    outline: none;
+    transition: all 0.8s ease-in-out;
+    overflow: hidden;
+    border-bottom: solid 1.5px #ffffff3d;
+    position: relative;
+    left: -100px;
+    opacity: 0%;
+    margin-right: 15px;
+    font-weight: 100;
 }
 
 #searchInput.active {
-	width: 110px;
-	left: 11px;
-	margin-right: 45px;
-	opacity: 100%;
-	padding: 9px 10px;
+	width: 150px;
+    left: 11px;
+    opacity: 100%;
+    padding: 5px 0;
 }
 
 .amount-buttons {
@@ -1162,7 +1163,6 @@ div#loanDetails {
 #bottomNav {
 	padding: 3px;
     display: flex;
-    filter: saturate(2);
     align-items: center;
     flex-direction: row-reverse;
     width: 85%;    max-width: 400px;
@@ -1215,7 +1215,6 @@ div#loanDetails {
     backdrop-filter: blur(6px);
     max-width: 550px;
     padding: 5px;
-    filter: saturate(2);
     background: #202020;
     color: #eee;
     position: relative;
@@ -1329,7 +1328,7 @@ display: flex;
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     width: -webkit-fill-available;
     padding: 5px;
 }
@@ -1888,7 +1887,7 @@ button {
 .details svg {
 	width: 30px;
     height: 30px;
-    filter: saturate(2);
+    
     background: transparent;
     padding: 6px;
     border-radius: 11px;
@@ -1999,7 +1998,6 @@ input:checked+.slider:before {
 .edge-glow-container {
 	position: fixed;
 	inset: 0;
-    filter: saturate(2);
 	pointer-events: none;
 	z-index: -1;
 	opacity: 0;
@@ -2465,7 +2463,7 @@ input:checked+.slider:before {
     cursor: pointer;
     border-radius: 100px;
     display: flex;
-    filter: saturate(2);
+    
     justify-content: center;
     align-items: center;
     width: 50px;    padding: 6px;
