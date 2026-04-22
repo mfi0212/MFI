@@ -26,17 +26,12 @@
 }
 
 body {
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
 	background-color: #000;
 	color: #e0e0e0;
-	
 }
 
 body {
@@ -604,21 +599,15 @@ svg.serchareicon {
 	border-radius: 30px 10px 32px 30px;
 }
 
-/* h3{ color:#006fff; } */
 .details {
 	display: flex;
 	align-items: center;
 	gap: 10px;
 	justify-content: space-between;
-	transition: all 0.3s ease;
 	padding: 20px 0px;
 	font-size: 14px;
 }
 
-.details:active {
-	transform: scale(0.95);
-	font-size: 20px;
-}
 
 .totaldetails {
 	display: flex;
@@ -759,10 +748,10 @@ div#coinSection svg {
 }
 
 .offergift {
-	background: #ffffff0f;
+	background: transparent;
 	padding: 2px;
 	border-radius: 35px;
-	backdrop-filter: blur(3px);
+	backdrop-filter: blur(px);
 	box-shadow: 6px -8px 11px #00000069;
 	border: 1.5px solid rgba(255, 255, 255, 0.107);
 	transition: all 0.3s ease;
@@ -1242,7 +1231,7 @@ div#loanDetails {
     left: 15px;
     width: 43px;
     height: 43px;
-    display: flex;
+    display: flex;transition: all 0.3s ease;
     justify-content: center;
     align-items: center;
     border-radius: 100px;
@@ -1252,6 +1241,9 @@ div#loanDetails {
 .reminder-close-btn svg{
     width: 30px;
     height: 30px;
+}
+.reminder-close-btn:active {
+	transform: scale(0.90);
 }
 .reminder-body p {
 	margin: -10px 0 10px 0;
@@ -1281,7 +1273,7 @@ div#loanDetails {
     cursor: pointer;
     font-size: 18px;
     font-weight: 100;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
     width: 90%;
     white-space: nowrap;
     box-shadow: inset 0 0 0 1px 
@@ -1363,6 +1355,7 @@ display: flex;
     gap: 4px;
     flex-direction: column;
     font-size: 10px;
+    font-weight: 100;
 }
 
 /* GRAPH & CALENDAR */
