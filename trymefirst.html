@@ -91,18 +91,17 @@ svg {
     fill: white;
 }
 #userPassword {
-	font-size: 19px;
+	font-size: 20px;
     border-radius: 40px;
     border: none;
     background: #ffffff40;
     color: #fff;
     padding: 10px;
     text-align: center;
-    width: 80%;
+    width: 100%;
     font-weight: 100;
     outline: none;
-    max-width: 300px;
-    margin: 25px 0px 25px 0px;
+    margin: 25px 0px 10px 0px;
     backdrop-filter: blur(5px);
     filter: drop-shadow(0px 0px 2px black);
     transition: all 0.3s ease;
@@ -142,21 +141,19 @@ svg {
 		transform: scale(1, 1);
 	}
 }
-
+.paswrdbtm {
+    width: 90%;
+}
 #submitBtn {
 	background-color: blue;
-    color: white;
-    z-index: 1000;
-   font-size: 19px;
+    font-size: 20px;
     border-radius: 40px;
-    border: none;
     color: #fff;
     padding: 10px;
+    width: 100%;
     text-align: center;
-    width: 80%;
     font-weight: 100;
     outline: none;
-    max-width: 300px;
     backdrop-filter: blur(5px);
     filter: drop-shadow(0px 0px 2px black);
     transition: all 0.3s ease;
@@ -202,11 +199,6 @@ i.fa-solid.fa-arrow-right {
     
     background: linear-gradient(180deg, #000000, transparent);
 }
-
-#submitBtn:hover {
-	transform: scale(1.1);
-}
-
 #submitBtn:active {
 	transform: scale(0.98);
 }
@@ -869,7 +861,13 @@ button.move-asaid {
     align-items: center;
     box-shadow: none;
 }
-
+.paswrdcontnt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 45px;
+}
 button.move-asaid:hover {
 	transform: scale(1.03);
 }
@@ -1097,7 +1095,13 @@ div#loanDetails {
 	scrollbar-color: rgba(255, 255, 255, 0.304) rgba(0, 0, 0, 0);
 	padding: 5px 0px 5px 0px
 }
-
+.paswrdtop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
 .emote-option {
 	width: 80px;
     cursor: pointer;
@@ -2185,30 +2189,34 @@ input:checked+.slider:before {
             alt=""> </div>
     </div>
     <div id="passwordContainer">
-        <div class="topdec" style="position: fixed; top: 0px;"> <img style="width: 100%;" src="https://www.animatedimages.org/data/media/1071/animated-christmas-decoration-image-0050.gif" alt=""> </div>
-        <div class="topdec" style="position: fixed; top: 0px;"> <img style="width: 100%;" src="https://www.animatedimages.org/data/media/1071/animated-christmas-decoration-image-0050.gif" alt=""> </div>
-        <div class="decoration topdec"> <img style="width: 64%; position: fixed; top: 70px; object-fit: cover; right: -15px;" src="https://i.pinimg.com/originals/2d/bc/b8/2dbcb8c31d6194e0cb80cd8ce5db2980.gif" alt=""> </div>
-        <svg style="fill: white;
-    width: 50px;
-    height: 50px;
-    margin: 15px;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
-        xml:space="preserve" width="512" height="512">
-            <g>
-                <path d="M405.333,179.712v-30.379C405.333,66.859,338.475,0,256,0S106.667,66.859,106.667,149.333v30.379 c-38.826,16.945-63.944,55.259-64,97.621v128C42.737,464.214,90.452,511.93,149.333,512h213.333 c58.881-0.07,106.596-47.786,106.667-106.667v-128C469.278,234.971,444.159,196.657,405.333,179.712z M277.333,362.667 c0,11.782-9.551,21.333-21.333,21.333c-11.782,0-21.333-9.551-21.333-21.333V320c0-11.782,9.551-21.333,21.333-21.333 c11.782,0,21.333,9.551,21.333,21.333V362.667z M362.667,170.667H149.333v-21.333c0-58.91,47.756-106.667,106.667-106.667 s106.667,47.756,106.667,106.667V170.667z"
-                />
-            </g>
-        </svg>
-        <h2 style="    font-weight: 100;
-    font-size: 25px;
-    color: white;
-    margin-bottom: 10px;">Verify My Account</h2>
-    <div class="notice">Enter password to see<br>your amount details.</div>
-    
-        <input type="text" id="userPassword" placeholder="Enter Password">
-        <button id="submitBtn">Continue</button>
-        <br>
-        <p id="error-message"></p>
-        <div class="treee topdec" style="width: 100%; position: fixed; bottom: 12%; left: 50%; transform: translate(-50%, 0%);"> <img style="width: 85px;" src="https://www.gifcen.com/wp-content/uploads/2022/01/chinese-new-year-2022-gif-5.gif" alt=""> </div>
+        <div class="paswrdcontnt">
+            <div class="paswrdtop">
+                <svg style="fill: black;
+    width: 60px;
+    height: 60px;
+    margin: 15px;
+    background: blue;
+    padding: 10px;
+    border-radius: 100px;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                    xml:space="preserve" width="512" height="512">
+                        <g>
+                            <path d="M405.333,179.712v-30.379C405.333,66.859,338.475,0,256,0S106.667,66.859,106.667,149.333v30.379 c-38.826,16.945-63.944,55.259-64,97.621v128C42.737,464.214,90.452,511.93,149.333,512h213.333 c58.881-0.07,106.596-47.786,106.667-106.667v-128C469.278,234.971,444.159,196.657,405.333,179.712z M277.333,362.667 c0,11.782-9.551,21.333-21.333,21.333c-11.782,0-21.333-9.551-21.333-21.333V320c0-11.782,9.551-21.333,21.333-21.333 c11.782,0,21.333,9.551,21.333,21.333V362.667z M362.667,170.667H149.333v-21.333c0-58.91,47.756-106.667,106.667-106.667 s106.667,47.756,106.667,106.667V170.667z"
+                            />
+                        </g>
+                    </svg>
+                    <h2 style="    font-weight: 100;
+                font-size: 25px;
+                color: white;
+                margin-bottom: 10px;">Verify My Account</h2>
+                <div class="notice">Enter password to see<br>your amount details.</div>
+            </div>  
+            <div class="paswrdbtm">
+                <input type="text" id="userPassword" placeholder="Enter Password">
+                <button id="submitBtn">Continue</button>
+                <br>
+                <p id="error-message"></p>
+            </div>
+        </div>
         <div class="notice" style="position: fixed;
     bottom: 15px;">You should return the money before the return date, If not additional interest will be charged.</div>
     </div>
