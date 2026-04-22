@@ -733,9 +733,10 @@ function renderCalendar() {
     color: #888;
     font-weight: 600;
     background: linear-gradient(0deg, #ffffff1a, transparent);
-    padding: 15px;
-    border-radius: 31px;
-    margin-top: -15px;">
+    padding: 20px;
+    margin-top: -15px;
+    corner-shape: squircle;
+    border-radius: 75px;">
         <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`
         ;
 
