@@ -289,6 +289,7 @@ p {
     height: 43px;
     transition: all 0.3s ease;
     box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
+    background: #ffffff1f;
 }
 
 .close-btn:active {
@@ -296,7 +297,7 @@ p {
 }
 
 .fixed-details{
-	position: fixed;
+	/* position: fixed;
     top: 80px;
     
     width: 98%;
@@ -326,7 +327,23 @@ p {
     backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
     -webkit-backdrop-filter: blur(3px) saturate(var(--saturation));
     transform: translate(-50%, 0);
+    left: 50%; */
+
+
+    position: fixed;
+    top: 80px;
+    width: 98%;
+    max-width: 600px;
+    background: transparent;
+    padding: 5px 0 0 15px;
+    border-radius: 45px;
+    max-height: 280px;
+    height: fit-content;
+    backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
+    transform: translate(-50%, 0);
     left: 50%;
+    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
+    background: #ffffff1f;
 }
 
 .scroll {
@@ -409,6 +426,7 @@ p {
     text-transform: capitalize;
     font-weight: 100;
     box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
+    background: #ffffff1f;
 
 }
 
