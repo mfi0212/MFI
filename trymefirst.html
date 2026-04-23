@@ -627,7 +627,7 @@ filter: saturate(2);
 
         .top-bar {
           position: fixed;
-    top: 20px;
+    top: 0;
     width: 100%;
     max-width: 500px;
     height: 60px;
@@ -636,9 +636,11 @@ filter: saturate(2);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 5px 50px 5px;
+    padding: 35px 10px 50px 9px;
     left: 50%;
     transform: translate(-50%, 0);
+    z-index: 10000000;
+    backdrop-filter: blur(1px);
         }
 
         .glass-card {
@@ -1509,4 +1511,4 @@ startBtn?.addEventListener("click", async () => {
 });
 </script>
 </body>
-</html>
+</html>x
