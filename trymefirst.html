@@ -363,16 +363,15 @@ display: flex;
 }
 
 .currency-switch {
-	    background: transparent;
+	 background: transparent;
     color: #ffffffd4;
     border-radius: 30px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     z-index: 10000;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 3px;
     box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff21;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
@@ -391,7 +390,8 @@ display: flex;
     backdrop-filter: blur(4px);
     text-transform: capitalize;
     font-weight: 100;
-
+    padding: 7px;
+    height: 45px;
 }
 
 .currency-switch:active {
@@ -455,7 +455,12 @@ display: flex;
 	margin-top: 10px;
 	padding: 0px 0px 0px 5px;
 }
-
+.amtrghtsidopt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
 .user-links {
 	overflow: auto;
 	display: flex;
@@ -2407,9 +2412,11 @@ input:checked+.slider:before {
                         
                     </div>
                      <div class="search-container"> 
-                        <button class="currency-switch" id="currencySwitch"><span id="currencyLabel">$</span>  <i style="display: none;" class="fa-solid fa-dollar-sign"></i> </button>
-                        <div id="searchIcon" onclick="toggleSearch()">
-                            <svg class="serchareicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-95.92 0-162.58-66.65-66.65-66.66-66.65-162.58 0-95.92 66.65-162.58 66.66-66.65 162.58-66.65 95.92 0 162.58 66.65 66.65 66.66 66.65 162.58 0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z"/></svg>
+                        <div class="amtrghtsidopt">
+                            <button class="currency-switch" id="currencySwitch"><span id="currencyLabel">$</span>  <i style="display: none;" class="fa-solid fa-dollar-sign"></i> </button>
+                            <div id="searchIcon" onclick="toggleSearch()">
+                                <svg class="serchareicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-95.92 0-162.58-66.65-66.65-66.66-66.65-162.58 0-95.92 66.65-162.58 66.66-66.65 162.58-66.65 95.92 0 162.58 66.65 66.65 66.66 66.65 162.58 0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z"/></svg>
+                            </div>
                         </div>
                         <input type="text" id="searchInput" placeholder="Search here..." oninput="filterLoans()">
                         <div class="amount-buttons" id="amountButtons"></div>
