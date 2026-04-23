@@ -282,7 +282,7 @@ p {
 }
 
 .fixed-details{
-	position: fixed;
+	/* position: fixed;
     top: 80px;
     
     width: 98%;
@@ -312,7 +312,21 @@ p {
     backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
     -webkit-backdrop-filter: blur(3px) saturate(var(--saturation));
     transform: translate(-50%, 0);
+    left: 50%; */
+
+    position: fixed;
+    top: 80px;
+    width: 98%;
+    max-width: 600px;
+    background: transparent;
+    padding: 5px 0 0 15px;
+    border-radius: 45px;
+    max-height: 280px;
+    height: fit-content;
+    backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
+    transform: translate(-50%, 0);
     left: 50%;
+    border: solid 1.5px #ffffff1a;
 }
 
 .scroll {
