@@ -1,7 +1,7 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
-let currentCurrency = localStorage.getItem('currency') || 'Inr (₹)';
+let currentCurrency = localStorage.getItem('currency') || '₹';
 let currentUser = null;
 let currentLoanIndex = null;
 let calendarMonth = new Date();
@@ -31,6 +31,7 @@ const usersDB = {
         coins: 4000,
         loans: [
              { planDate: "09-02-2026", endDate: "08-03-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "08-03-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
             ],
         links: [],
         emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
@@ -50,8 +51,8 @@ function formatDateDDMMYYYY(date) {
 }
 
 function formatMoney(amount) {
-    const val = currentCurrency === 'Usd (₹)' ? (amount / USD_RATE).toFixed(2) : amount;
-    const symbol = currentCurrency === 'Usd (₹)' ? '$' : '₹';
+    const val = currentCurrency === '$' ? (amount / USD_RATE).toFixed(2) : amount;
+    const symbol = currentCurrency === '$' ? '$' : '₹';
     return `${symbol}${parseFloat(val).toLocaleString()}`;
 }
 
@@ -216,11 +217,11 @@ document.getElementById("submitBtn").onclick = () => {
 function updateCurrencyUI() {
     document.getElementById('currencyLabel').textContent = currentCurrency;
     document.querySelector('#currencySwitch i').className = 
-        currentCurrency === 'Usd (₹)' ? '' : '';
+        currentCurrency === '$' ? '' : '';
 }
 
 function toggleCurrency() {
-    currentCurrency = currentCurrency === 'Inr (₹)' ? 'Usd (₹)' : 'Inr (₹)';
+    currentCurrency = currentCurrency === '₹' ? '$' : '₹';
     localStorage.setItem('currency', currentCurrency);
     updateCurrencyUI();
     if (currentUser) {
@@ -427,8 +428,8 @@ function displayLoanDetails(loan, index) {
     </p>
 </div>
              <a target="_blank" href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: #ff0000;
-    padding: 10px;
-    font-size: 18px;
+    padding: 8px 15px;
+    font-size: 16px;
     transition: all 0.3s ease;
     left: 50%;
     position: relative;
@@ -527,7 +528,7 @@ function renderChart() {
         if (daysLeft <= 2) color = '#ff1100';
         else if (daysLeft <= 6) color = '#ffbf00';
 
-        const amount = currentCurrency === 'Usd (₹)' 
+        const amount = currentCurrency === '$' 
             ? Number((loan.takenAmount / USD_RATE).toFixed(2))
             : Number(loan.takenAmount);
 
@@ -618,7 +619,7 @@ function renderLoanList() {
             }
 
             const daysLeft = calculateDaysLeft(loan.endDate);
-            const amount = currentCurrency === 'Usd (₹)'
+            const amount = currentCurrency === '$'
                 ? (loan.takenAmount / USD_RATE).toFixed(2)
                 : loan.takenAmount;
 
