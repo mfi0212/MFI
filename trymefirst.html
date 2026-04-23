@@ -363,10 +363,8 @@ display: flex;
 }
 
 .currency-switch {
-	background: transparent;
+	    background: transparent;
     color: #ffffffd4;
-    border: none;
-       padding: 8px;
     border-radius: 30px;
     font-size: 16px;
     cursor: pointer;
@@ -388,12 +386,12 @@ display: flex;
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
-    
     margin-bottom: 0px;
     transition: all 0.3s ease;
     backdrop-filter: blur(4px);
     text-transform: capitalize;
     font-weight: 100;
+
 }
 
 .currency-switch:active {
@@ -2373,8 +2371,6 @@ input:checked+.slider:before {
                         </div>
                 </div>
                 <img id="userEmote" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0" onclick="openEmoteChooser()"> 
-                            
-                <button style="display: none;" class="currency-switch" id="currencySwitch"><span id="currencyLabel">Usd ($)</span>  <i style="display: none;" class="fa-solid fa-dollar-sign"></i> </button>
             </div>
             <div class="overlay" id="overlay"></div>
             <div class="bottom-sheet" id="sheet">
@@ -2403,7 +2399,6 @@ input:checked+.slider:before {
                 <div class="topdec"> <img style="position: fixed; top: -20px; right: -15px; width: 26%; " src="https://i.pinimg.com/originals/1f/d3/ac/1fd3acf4a378b1e2536a4f86fc023b1a.gif" alt=""> </div>
                 <h3 style="display: none;">Borrower</h3>
                 <div class="profile-container">
-                   
                     <div class="linkadder">
                         <button class="add-link-btn" onclick="addLink()">Add Site</button>
                         <div class="user-links" id="userLinks"></div>
@@ -2412,6 +2407,7 @@ input:checked+.slider:before {
                         
                     </div>
                      <div class="search-container"> 
+                        <button class="currency-switch" id="currencySwitch"><span id="currencyLabel">$</span>  <i style="display: none;" class="fa-solid fa-dollar-sign"></i> </button>
                         <div id="searchIcon" onclick="toggleSearch()">
                             <svg class="serchareicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-95.92 0-162.58-66.65-66.65-66.66-66.65-162.58 0-95.92 66.65-162.58 66.66-66.65 162.58-66.65 95.92 0 162.58 66.65 66.65 66.66 66.65 162.58 0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z"/></svg>
                         </div>
