@@ -386,7 +386,7 @@ div#pricesList {
     max-width: 500px;
     text-align: center;
     line-height: 40px;
-    display: flex;padding: 20px 0 0 0;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -394,6 +394,22 @@ div#pricesList {
     border: solid 1.5px #ffffff1a;
     border-radius: 75px;
     corner-shape: squircle;} 
+    .intpopuptop {
+   width: 95%;
+    border-radius: 60px 60px 0 0;
+    corner-shape: squircle;
+    margin: 10px 0 0 0;
+    padding: 15px;
+    background: linear-gradient(180deg, #6c6c6c, #202020);
+}
+.acuntpopup {
+    width: 95%;
+    border-radius: 60px 60px 0 0;
+    corner-shape: squircle;
+    margin: 10px 0 0 0;
+    padding: 15px;
+    background: linear-gradient(180deg, #000000, #202020);
+}
 button.btn.btn-gold.close-btn {
   display: flex;
     justify-content: center;
@@ -1205,8 +1221,10 @@ filter: saturate(1);
     <!-- Popups -->
     <div class="popup" id="interestPopup">
         <div class="popup-content">
-            <img style="width: 100px;" src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Objects/Chart%20Increasing.webp" alt="">
-            <h3>Interest Details</h3>
+            <div class="intpopuptop">
+                <img style="width: 100px;" src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Objects/Chart%20Increasing.webp" alt="">
+                <h3>Interest Details</h3>
+            </div>
             <p id="popup-content"></p>
             <button class="btn btn-gold close-btn" onclick="closePopup('interestPopup')"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M256-213.85 213.85-256l224-224-224-224L256-746.15l224 224 224-224L746.15-704l-224 224 224 224L704-213.85l-224-224-224 224Z"/></svg> Close Now</button>
         </div>
@@ -1214,8 +1232,10 @@ filter: saturate(1);
 
     <div class="popup" id="accountPopup">
         <div class="popup-content">
-            <img style="width: 100px;" src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Objects/Briefcase.webp" alt="">
-            <h3>Visit my account ?</h3>
+            <div class="acuntpopup">
+                <img style="width: 100px;" src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Objects/Briefcase.webp" alt="">
+                <h3>Visit my account ?</h3>
+            </div>
             <p style="font-size: 15px;margin-top: -10px;">We are redirecting you to visit your account...!</p>
             <div class="maindecisionopt">
                  <button class="btn btn-gold close-btn" style="    background: var(--gold);" class="btn btn-gold close-btn">
@@ -1227,7 +1247,7 @@ filter: saturate(1);
     gap: 5px;
     padding: 0 2px;">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M382.81-258.69 175.08-466.42l40.04-40.04 167.69 167.88 362.27-362.27 39.84 40.04-402.11 402.12Z"/></svg>
-                        Redirect Now
+                        Redirect
                     </a>
                 </button>
                 <button class="btn btn-gold close-btn" onclick="closePopup('accountPopup')"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M256-213.85 213.85-256l224-224-224-224L256-746.15l224 224 224-224L746.15-704l-224 224 224 224L704-213.85l-224-224-224 224Z"/></svg> Close Now</button>
