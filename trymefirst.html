@@ -184,7 +184,7 @@ i.fa-solid.fa-arrow-right {
     align-items: center;
     position: fixed;
     top: 0px;
-    padding: 15px 5px 50px 5px;
+    padding: 55px 5px 50px 5px;
     border-radius: 0px;
     width: 99%;
     left: 50%;
@@ -281,18 +281,16 @@ p {
 	transform: scale(0.90);
 }
 
-.fixed-details{
+.fixed-details {
 	position: fixed;
-    top: 80px;
-    
-    width: 98%;
+top: 120px;
+    width: 96%;
     max-width: 600px;
     z-index: 10;
-    
     background: transparent;
     border: 1.5px solid #ffffff1f;
     padding: 5px 0 0 15px;
-    border-radius: 45px;
+    border-radius: 40px;
     max-height: 280px;
     height: fit-content;
     box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff4a;
@@ -314,24 +312,42 @@ p {
     transform: translate(-50%, 0);
     left: 50%;
 }
-
+.topmfilogo {
+    position: fixed;
+    top: 10px;
+    z-index: 100000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background: #4040407d;
+    border-radius: 100px;
+    padding: 3px 9px 3px 3px;
+    font-weight: 200;
+    font-size: 15px;
+}
 .scroll {
 	top: 180px;
 	transform: translateX(-50%);
 	position: relative;
 	left: 50%;
 	width: 104%;
-	padding: 65px 50px 58px 50px;
+	padding: 40px 50px 58px 50px;
 	border-radius: 50px;
 }
 
 #userName {
 	transition: 0.5s ease-in-out;
-	color: transparent;
-	background: linear-gradient(90deg, transparent, rgb(255, 255, 255), #ffffff, transparent);
-	background-size: 200% 100%;
-	animation: shimmer 4.1s linear infinite;
-	background-clip: text;font-weight: 400;
+    color: white;
+    background-clip: text;
+    font-weight: 500;
+    font-size: 15px;
+}
+.afternamecontent{
+display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 @keyframes shimmer {
@@ -345,18 +361,15 @@ p {
 }
 
 .currency-switch {
-	background: transparent;
+	 background: transparent;
     color: #ffffffd4;
-    border: none;
-       padding: 8px;
     border-radius: 30px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     z-index: 10000;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 3px;
     box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff21;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
@@ -370,12 +383,13 @@ p {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;
-    
     margin-bottom: 0px;
     transition: all 0.3s ease;
     backdrop-filter: blur(4px);
     text-transform: capitalize;
     font-weight: 100;
+    padding: 7px;
+    height: 45px;
 }
 
 .currency-switch:active {
@@ -409,12 +423,25 @@ p {
 }
 
 #userEmote {
-	width: 35px;
-    height: 35px;
-	cursor: pointer;
-	border-radius: 100px;
-	transition: transform .2s;
-	z-index: 1000;
+	width: 45px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: transform .2s;
+    z-index: 1000;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;
+    padding: 3px;
 }
 
 
@@ -423,10 +450,15 @@ p {
 	display: flex;
 	align-items: center;
 	gap: 5px;    margin-left: -5px;
-	margin-top: 30px;
+	margin-top: 10px;
 	padding: 0px 0px 0px 5px;
 }
-
+.amtrghtsidopt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
 .user-links {
 	overflow: auto;
 	display: flex;
@@ -687,79 +719,47 @@ svg.serchareicon {
     font-weight: 500;
 }
 .total-icon {
-	box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    color: #ffffff99;
+	color: #ffffffc4;
     border-radius: 13px;
     z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
+    font-size: 10px;
     cursor: pointer;
-    background: #ffffff08;
-    width: 35px;
-    height: 35px;
+    background: #ffffff2b;
     transition: all 0.3s ease;
+    font-weight: 300;
+    padding: 0px 5px;
 }
 
 .total-icon:active {
 	transform: scale(0.90);
 }
-
 #coinSection {
-	border-radius: 12px;
-    padding: 3px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 3px;
-    font-weight: 900;
-    font-size: 14px;
+    font-weight: 400;
+    font-size: 10px;
     margin-left: 0px;
-    box-shadow: inset 0 5px 0 0 #ffc10000, inset 0 -3px 11px 0 #ffc100bd;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    color: #ffc100;
+    color: #ffca00;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: solid 1.5px #ffc100bd;
-    background: #ffc20012;
 }
-div#coinSection svg {
- width: 15px;
-    height: 15px;
-    fill: #ffc100;
+#coinSection:hover {
+	transform: scale(1.03);
 }
-
 
 #coinSection:active {
 	transform: scale(0.90);
 }
-/* 
+
 .offergift {
-	background: transparent;
-	padding: 2px;
-	border-radius: 35px;
-	backdrop-filter: blur(px);
-	box-shadow: 6px -8px 11px #00000069;
-	border: 1.5px solid rgba(255, 255, 255, 0.107);
-	transition: all 0.3s ease;
-	z-index: 1;
-	box-shadow: inset 0 0.5px 0 #ffffff24, inset 0 -4px 9px #ffffff38;
-	box-shadow: inset 0 0 0 1px color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-	border: solid 1px #ffffff00;
-} */
+	display: none;
+}
 
 .premium-search {
 	position: fixed;
@@ -996,6 +996,14 @@ div#loanDetails {
 }
 
 
+.mincntatusr {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 0;
+    flex-direction: column;
+}
 #linkConfirmPopup button:active {
 	transform: scale(0.90);
 }
@@ -1198,7 +1206,7 @@ div#loanDetails {
 }
 
 .reminder-content {
-	border-radius: 35px;
+	border-radius: 30px;
     
     width: 100%;
     backdrop-filter: blur(6px);
@@ -1362,7 +1370,7 @@ display: flex;
 #graphContainer,
 #calendarContainer {
 	background: #00000000;
-    border-radius: 50px;
+    border-radius:100px;
     padding: 20px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
     border: 1px solid #222;
@@ -1462,7 +1470,7 @@ svg#Layer_7 {
     margin-left: auto;
     margin-right: auto;
     background: linear-gradient(0deg, #ffffff1a, transparent);
-    border-radius: 35px;
+    border-radius: 30px;
     
 }
 
@@ -1700,9 +1708,9 @@ button {
 }
 
 @media (max-width : 700px) {
-	.fixed-details{
+	.fixed {
 		position: fixed;
-		top: 70px;
+		top: 120px;
 		z-index: 10;
 	}
 
@@ -1897,12 +1905,12 @@ button {
 	border-radius: 30px 40px 40px 31px;
 }
 
-.bsmfilogotop{
+.content {
 	text-align: center;
     z-index: 10000;
-    border-radius: 30px;
+    border-radius: 8px 8px 15px 15px;
     background: #ffffff1f;
-    padding: 3px 5px 3px 3px;
+    padding: 6px 8px 6px 15px;
     position: fixed;
     top: 20px;
 }
@@ -1913,22 +1921,24 @@ button {
 }
 
 .toggle-switch {
-	display: flex;
-    align-items: center;
-    font-size: 13px;
-    color: white;
-    gap: 5px;
-    font-weight: 100;
-}
-.toggle-switch span {
-  color: white;
-    background: #ffffff26;
-    padding: 3px 5px;
-    border-radius: 26px;
-    font-size: 16px;
-}
-.toggle-switch label {
-	cursor: pointer;
+	text-align: center;
+    z-index: 10000;
+    width: fit-content;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;
+    backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
+    padding: 5px 25px;
+    border-radius: 100px;
 }
 
 .switch {
@@ -2106,17 +2116,13 @@ input:checked+.slider:before {
 </style>
 </head>
 
-<body><div class="bsmfilogotop">
-                    <div class="toggle-switch">
-                        <div class="offergift">
-                        <a style="display: flex;" onclick="alert('Welcome to BsLends a service from BS&MFI Services')"> 
-                            <img style="width: 30px;
+<body>
+    <div class="topmfilogo">
+       <a style="display: flex;" onclick="alert('Welcome to BsLends a service from BS&MFI Services')"> <img style="width: 25px;
     border-radius: 62px;" src="mfi.gif" alt=""></a>
-                    </div>
-                        <label style="display: none;" class="switch"><input type="checkbox" id="glowToggle"> <span class="slider"></span> </label>
-                        <a href="https://mfi0212.github.io/MFI/bsmfi_search"><span>BS&MFI</span></a>
-                    </div>
-                </div>
+        <label style="display: none;" class="switch"><input type="checkbox" id="glowToggle"> <span class="slider"></span> </label>
+        <a href="https://mfi0212.github.io/MFI/bsmfi_search"><span>BS&MFI</span></a>
+    </div>
     <div class="edge-glow-container" id="glowContainer">
         <div class="edge-glow top"></div>
         <div class="edge-glow bottom"></div>
@@ -2333,23 +2339,41 @@ input:checked+.slider:before {
 					
                     <div class="fab" id="fab" style="display: none;">
                         <svg style="width: 18px;
-                            height: 18px;
-                            fill: #ffffffe0;
-                            stroke: transparent;" xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512">
+    height: 18px;
+    fill: #ffffffe0;
+    stroke: transparent;" xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512">
                             <path d="M19.95,5.54l-3.49-3.49c-1.32-1.32-3.08-2.05-4.95-2.05H7C4.24,0,2,2.24,2,5v14c0,2.76,2.24,5,5,5h10c2.76,0,5-2.24,5-5V10.49c0-1.87-.73-3.63-2.05-4.95Zm-1.41,1.41c.32,.32,.59,.67,.81,1.05h-4.34c-.55,0-1-.45-1-1V2.66c.38,.22,.73,.49,1.05,.81l3.49,3.49ZM7,2h4.51c.16,0,.33,0,.49,.02V7c0,1.65,1.35,3,3,3h4.98c.02,.16,.02,.32,.02,.49v4.58l-2.41-2.41c-.87-.87-2.28-.87-3.15,0l-2.27,2.27c-.09,.09-.23,.09-.32,0l-2.27-2.27c-.87-.87-2.28-.87-3.15,0l-2.44,2.44V5c0-1.65,1.35-3,3-3Zm10,20H7c-1.65,0-3-1.35-3-3v-1.07l3.86-3.86c.09-.09,.23-.09,.32,0l2.27,2.27c.87,.87,2.28,.87,3.15,0l2.27-2.27c.09-.09,.23-.09,.32,0l3.83,3.83v1.1c0,1.65-1.35,3-3,3Z"
                             />
                         </svg>
                     </div>
 
                 </div>
-            <!-- <div class="content" >
-                    <div class="toggle-switch">
+
+                <div class="toggle-switch" >
+                    <div class="toggle-switchsss" style="display: none;">
                         <label>Power by</label>
                         <label style="display: none;" class="switch"><input type="checkbox" id="glowToggle"> <span class="slider"></span> </label>
                         <a href="https://mfi0212.github.io/MFI/bsmfi_search"><span>BS&MFI</span></a>
                     </div>
-                </div> -->
-                <button class="currency-switch" id="currencySwitch"><span id="currencyLabel">Usd ($)</span>  <i style="display: none;" class="fa-solid fa-dollar-sign"></i> </button>
+                        <div class="mincntatusr">
+                           <div class="useridentity">
+                             <span id="userName"></span>
+                           </div>
+                           <div class="afternamecontent">
+                                <div class="total-icon"onclick="showTotalPopup()">
+                                     View my Wallet
+                                </div>
+                                <div class="starssection">
+                                    <a href="https://blackswan19.github.io/golden/FM/starspage">
+                                        <div id="coinSection">
+                                            <span id="userCoinsDisplay">0</span> stars
+                                        </div> 
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <img id="userEmote" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0" onclick="openEmoteChooser()"> 
             </div>
             <div class="overlay" id="overlay"></div>
             <div class="bottom-sheet" id="sheet">
@@ -2378,17 +2402,6 @@ input:checked+.slider:before {
                 <div class="topdec"> <img style="position: fixed; top: -20px; right: -15px; width: 26%; " src="https://i.pinimg.com/originals/1f/d3/ac/1fd3acf4a378b1e2536a4f86fc023b1a.gif" alt=""> </div>
                 <h3 style="display: none;">Borrower</h3>
                 <div class="profile-container">
-                    <div class="user-name-container"> <img id="userEmote" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0" onclick="openEmoteChooser()"> <span id="userName" style="font-size:20px;"></span>
-                        <div class="total-icon"onclick="showTotalPopup()">
-                            <svg style="width: 40px;height: 25px;position: relative;stroke: transparent;left: 0.5px;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"> <g fill="none" stroke="#ffffff"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 8h4" /> <path stroke-width="1.5" d="M20.833 9h-2.602C16.446 9 15 10.343 15 12s1.447 3 3.23 3h2.603c.084 0 .125 0 .16-.002c.54-.033.97-.432 1.005-.933c.002-.032.002-.071.002-.148v-3.834c0-.077 0-.116-.002-.148c-.036-.501-.465-.9-1.005-.933C20.959 9 20.918 9 20.834 9Z" /> <path stroke-width="1.5" d="M20.965 9c-.078-1.872-.328-3.02-1.137-3.828C18.657 4 16.771 4 13 4h-3C6.229 4 4.343 4 3.172 5.172C2 6.343 2 8.229 2 12c0 3.771 0 5.657 1.172 6.828C4.343 20 6.229 20 10 20h3c3.771 0 5.657 0 6.828-1.172c.809-.808 1.06-1.956 1.137-3.828" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.991 12h.01" /> </g></svg>
-                        </div>
-                       <div class="starssection">
-						 	<a href="https://blackswan19.github.io/golden/FM/starspage"><div id="coinSection">
-							<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><path fill="#e8b801" d="M9.153 5.408C10.42 3.136 11.053 2 12 2c.947 0 1.58 1.136 2.847 3.408l.328.588c.36.646.54.969.82 1.182c.28.213.63.292 1.33.45l.636.144c2.46.557 3.689.835 3.982 1.776c.292.94-.546 1.921-2.223 3.882l-.434.507c-.476.557-.715.836-.822 1.18c-.107.345-.071.717.001 1.46l.066.677c.253 2.617.38 3.925-.386 4.506c-.766.582-1.918.051-4.22-1.009l-.597-.274c-.654-.302-.981-.452-1.328-.452c-.347 0-.674.15-1.329.452l-.595.274c-2.303 1.06-3.455 1.59-4.22 1.01c-.767-.582-.64-1.89-.387-4.507l.066-.676c.072-.744.108-1.116 0-1.46c-.106-.345-.345-.624-.821-1.18l-.434-.508c-1.677-1.96-2.515-2.941-2.223-3.882c.293-.941 1.523-1.22 3.983-1.776l.636-.144c.699-.158 1.048-.237 1.329-.45c.28-.213.46-.536.82-1.182l.328-.588Z"/></svg>
-							<span id="userCoinsDisplay">0</span>
-					   </div>
-                    </div></a>
-                    </div>
                     <div class="linkadder">
                         <button class="add-link-btn" onclick="addLink()">Add Site</button>
                         <div class="user-links" id="userLinks"></div>
@@ -2397,21 +2410,18 @@ input:checked+.slider:before {
                         
                     </div>
                      <div class="search-container"> 
-                        <div id="searchIcon" onclick="toggleSearch()">
-                            <svg class="serchareicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-95.92 0-162.58-66.65-66.65-66.66-66.65-162.58 0-95.92 66.65-162.58 66.66-66.65 162.58-66.65 95.92 0 162.58 66.65 66.65 66.66 66.65 162.58 0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z"/></svg>
+                        <div class="amtrghtsidopt">
+                            <button style="display: none;" class="currency-switch" id="currencySwitch"><span id="currencyLabel">$</span>  <i style="display: none;" class="fa-solid fa-dollar-sign"></i> </button>
+                            <div id="searchIcon" onclick="toggleSearch()">
+                                <svg class="serchareicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-95.92 0-162.58-66.65-66.65-66.66-66.65-162.58 0-95.92 66.65-162.58 66.66-66.65 162.58-66.65 95.92 0 162.58 66.65 66.65 66.66 66.65 162.58 0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z"/></svg>
+                            </div>
                         </div>
                         <input type="text" id="searchInput" placeholder="Search here..." oninput="filterLoans()">
                         <div class="amount-buttons" id="amountButtons"></div>
                     </div>
                 </div>
             </div>
-            <video class="topdec" style="position: fixed; width: 100%; filter: blur(5px); z-index: -10000; left: 0px; top: 0px; opacity: 40%;" src="Floodlights Flashing 1080p.mp4" loop muted autoplay></video>
-            <video class="topdec" style="position: fixed; z-index: -10000; left: 0px; top: -40px; height: 100%; opacity: 100%; border-radius: 43px; right: 0px;" src="https://static.vecteezy.com/system/resources/previews/033/113/154/mp4/light-bulb-string-on-black-background-christmas-lights-colour-free-video.mp4"
-            loop muted autoplay></video>
-            <video class="topdec " style="position: fixed; z-index: -10000; bottom: 20%; width: 250%; filter: blur(5px); transform: translate(-50%, 40%); left: 50%;" src="https://static.vecteezy.com/system/resources/previews/002/163/122/mp4/colorful-background-movement-of-bokeh-free-video.mp4"
-            loop muted autoplay></video>
             <div class="scroll">
-                <!-- <div class="youtube-wrapper topdec"> <span style="display: flex;justify-content: center;align-items: center;font-size: 15px;height: fit-content;margin: 0px auto;background: rgba(255, 255, 255, 0.171);">Power by BsFesta</span> <iframe src="https://www.yout-ube.com/embed/F1itSKJLWQY?si=BcX2HofzV5SmnHPD" title="YouTube video player" allowfullscreen loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"> </iframe> </div> <style>.festivalexplo{ background: #ffffff00; color: white; padding: 10px 35px; border-radius: 1000px; cursor: pointer; transition: all 0.3s ease-in-out; border: solid 1.5px #ffffff5e; filter: drop-shadow(0px 0px 10px black); } .festivalexplo:hover{ transform: scale(1.03); } .festivalexplo:active{ transform: scale(0.90); } </style> <div class="playlist topdec" style="width: 100%; text-align: center;"> <a href="https://www.yout-ube.com/watch?v=TFsZy9t-qDc&list=RD79EsaMCYo4o&start_radio=1"><button class="festivalexplo"> Christmas song playlist</button></a> </div> -->
                 <div id="loanDetails"></div>
                 <div id="graphContainer" style="display:none;">
                     <canvas id="loanChart" style="opacity: 1; transition: opacity 0.6s; display: block; box-sizing: border-box; height: 320.7px; width: 320.7px; margin-top: -50px; margin-bottom: -80px;"></canvas>
@@ -2476,6 +2486,11 @@ width: 50px;
     </div>
             <div class="bottomoptions">
                 <div id="bottomNav">
+                    <div class="offergift">
+                        <a style="display: flex;" onclick="alert('Welcome to BsLends a service from BS&MFI Services')"> <img style="width: 45px;
+    border-radius: 62px;
+    padding: 1px;" src="mfi.gif" alt=""></a>
+                    </div>
                     <div class="nav-item" data-view="graph">
                         <?xml version="1.0" encoding="UTF-8"?>
                             <div class="iconbotm">
