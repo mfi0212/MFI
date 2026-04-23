@@ -395,11 +395,11 @@ div#pricesList {
     border-radius: 75px;
     corner-shape: squircle;} 
     .intpopuptop {
-      width: 96%;
+     width: 96%;
     border-radius: 60px 60px 0 0;
     corner-shape: squircle;
     margin: 9px 0 0 0;
-    padding: 15px;
+    padding: 15px 10px 0 10px;
     background: linear-gradient(180deg, #6c6c6c, #202020 80%);
 }
 .acuntpopup {
@@ -540,6 +540,33 @@ filter: saturate(2);
     margin: 15px 25px 0 25px;
         } 
 
+.iconsinfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+}
+.icon svg {
+   width: 20px;
+    height: 20px;
+    background: transparent;
+    fill: white;
+}.iconname {
+    font-size: 11px;
+    font-weight: 100;
+}
+.icon {
+  background: #ffffff2b;
+    border-radius: 18px;
+    padding: 5px 0 0 0;
+    width: 100%;
+    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff2e, inset -2px -2.5px 0px -1.8px #ffffff2b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
         #stoexplore{ 
            padding: 7px;
     border-radius: 30px;
@@ -1224,6 +1251,29 @@ filter: saturate(1);
             <div class="intpopuptop">
                 <img style="width: 100px;" src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Objects/Chart%20Increasing.webp" alt="">
                 <h3>Interest Details</h3>
+                <div class="iconsinfo">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path d="m17.797 15.266c-1.108 5.34-6.442 7.865-8.05 8.512-.211.081-.408.222-.745.222s-.574-.171-.806-.285c-1.922-.961-8.196-4.556-8.196-10.454v-4.597c0-1.967 1.254-3.705 3.122-4.324l5.563-1.845c.527-.174 1.09.111 1.264.634.174.524-.11 1.09-.634 1.264l-5.563 1.845c-1.048.347-1.751 1.322-1.751 2.426v4.597c0 4.709 5.333 7.78 7.047 8.643 1.428-.581 5.895-2.726 6.792-7.044.112-.541.643-.888 1.182-.776.541.112.888.642.776 1.182zm6.203-9.266c0 3.309-2.691 6-6 6s-6-2.691-6-6 2.691-6 6-6 6 2.691 6 6zm-2 0c0-2.206-1.794-4-4-4s-4 1.794-4 4 1.794 4 4 4 4-1.794 4-4zm-2.77-1.567-1.693 1.625c-.056.056-.146.055-.202 0l-.75-.735c-.395-.386-1.027-.379-1.414.015-.387.395-.38 1.028.015 1.414l.75.735c.416.407.96.609 1.503.609s1.084-.203 1.493-.606l1.683-1.616c.398-.382.412-1.016.029-1.414-.382-.397-1.015-.411-1.414-.028zm-11.237 4.567h2.015c.806 0 1.282.923.798 1.567-.127.168-.265.325-.406.476 1.444.681 2.601 2.308 2.601 3.966 0 1.098-.897 1.991-2 1.991h-4.001c-1.103 0-2-.893-2-1.991 0-1.658 1.156-3.285 2.601-3.966-.141-.151-.28-.308-.406-.476-.484-.644-.008-1.567.798-1.567zm3.007 6c0-1.134-1.164-2.295-2-2.295s-2 1.161-2 2.304z"/></svg>
+                        <div class="iconname">
+                            Total Amount
+                        </div>
+                    </div>
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="512" height="512"><path d="M19,0H14a1,1,0,0,0,0,2h5a2.951,2.951,0,0,1,1.285.3L.293,22.293a1,1,0,1,0,1.414,1.414L21.7,3.715A2.951,2.951,0,0,1,22,5v5a1,1,0,0,0,2,0V5A5.006,5.006,0,0,0,19,0Z"/><path d="M6,10A4,4,0,1,0,2,6,4,4,0,0,0,6,10ZM6,4A2,2,0,1,1,4,6,2,2,0,0,1,6,4Z"/><path d="M18,14a4,4,0,1,0,4,4A4,4,0,0,0,18,14Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,18,20Z"/></svg>
+                        <div class="iconname">
+                            Total Interet
+                        </div>
+                    </div>
+                    <div class="icon">
+                    <?xml version="1.0" encoding="UTF-8"?>
+                        <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24">
+                        <path d="m18,24H4.394c-.97,0-1.83-.582-2.191-1.481-.361-.9-.143-1.916.559-2.587l8.293-7.932L2.761,4.068c-.701-.671-.92-1.686-.559-2.586s1.222-1.482,2.191-1.482h13.606c2.206,0,4,1.794,4,4,0,.552-.447,1-1,1s-1-.448-1-1c0-1.103-.897-2-2-2H4.394c-.213,0-.302.142-.336.227-.033.085-.067.249.086.396l9.048,8.654c.197.188.309.45.309.723s-.111.534-.309.723l-9.048,8.654c-.153.146-.119.312-.086.396.034.084.123.227.336.227h13.606c1.103,0,2-.897,2-2,0-.553.447-1,1-1s1,.447,1,1c0,2.206-1.794,4-4,4Z"/>
+                        </svg>
+                        <div class="iconname">
+                            Total Amount
+                        </div>
+                    </div>
+                </div>
             </div>
             <p id="popup-content"></p>
             <button class="btn btn-gold close-btn" onclick="closePopup('interestPopup')"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M256-213.85 213.85-256l224-224-224-224L256-746.15l224 224 224-224L746.15-704l-224 224 224 224L704-213.85l-224-224-224 224Z"/></svg> Close Now</button>
