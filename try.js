@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || 'Inr (₹)';
@@ -17,10 +17,11 @@ const usersDB = {
         coins: 0,
         loans: [
 
-            { planDate: "09-02-2026", endDate: "07-05-2026", interest: 875, takenAmount: 3500, takenFrom: "Lendlink", fineRate: 50 },
-            { planDate: "11-01-2026", endDate: "08-05-2026", interest: 1370, takenAmount: 5480, takenFrom: "Golden", fineRate: 50 },
-            { planDate: "14-01-2026", endDate: "11-05-2026", interest: 4220, takenAmount: 22813, takenFrom: "Golden", fineRate: 50 },
-            { planDate: "14-02-2026", endDate: "13-05-2026", interest: 2500, takenAmount: 10000, takenFrom: "Golden", fineRate: 50 },
+            { planDate: "09-02-2026", endDate: "07-05-2026", interest: 875, takenAmount: 3500, takenFrom: "Lendlink", fineRate: 35 },
+            { planDate: "11-01-2026", endDate: "08-05-2026", interest: 1370, takenAmount: 5480, takenFrom: "Golden", fineRate: 40 },
+            { planDate: "14-01-2026", endDate: "11-05-2026", interest: 4220, takenAmount: 22813, takenFrom: "Golden", fineRate: 65 },
+            { planDate: "14-02-2026", endDate: "13-05-2026", interest: 2500, takenAmount: 10000, takenFrom: "Golden", fineRate: 65 },
+            { planDate: "19-04-2026", endDate: "19-05-2026", interest: 300, takenAmount: 2000, takenFrom: "Lenlink", fineRate: 35 },
         ],
         links: [],
         emote: "https://i.pinimg.com/originals/bb/c2/a3/bbc2a39b80d283dc936d426be1868e3c.gif"
@@ -49,8 +50,8 @@ function formatDateDDMMYYYY(date) {
 }
 
 function formatMoney(amount) {
-    const val = currentCurrency === 'Usd (₹)' ? (amount / USD_RATE).toFixed(2) : amount;
-    const symbol = currentCurrency === 'Usd (₹)' ? '$' : '₹';
+    const val = currentCurrency === 'Usd ($)' ? (amount / USD_RATE).toFixed(2) : amount;
+    const symbol = currentCurrency === 'Usd ($)' ? '$' : '₹';
     return `${symbol}${parseFloat(val).toLocaleString()}`;
 }
 
@@ -139,7 +140,7 @@ function showRepaymentReminderPopup(reminder) {
     modal.innerHTML = `
         <div class="reminder-content">
             <div class="reminder-header">
-                <button class="reminder-close-btn" title="Close reminder">×</button>
+                <button class="reminder-close-btn" title="Close reminder"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z"/></svg></button>
             </div>
             <img style="width: 100px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/trumpet.gif" alt="">
             <div class="reminder-body">
@@ -215,11 +216,11 @@ document.getElementById("submitBtn").onclick = () => {
 function updateCurrencyUI() {
     document.getElementById('currencyLabel').textContent = currentCurrency;
     document.querySelector('#currencySwitch i').className = 
-        currentCurrency === 'Usd (₹)' ? '' : '';
+        currentCurrency === 'Usd ($)' ? '' : '';
 }
 
 function toggleCurrency() {
-    currentCurrency = currentCurrency === 'Inr (₹)' ? 'Usd (₹)' : 'Inr (₹)';
+    currentCurrency = currentCurrency === 'Inr (₹)' ? 'Usd ($)' : 'Inr (₹)';
     localStorage.setItem('currency', currentCurrency);
     updateCurrencyUI();
     if (currentUser) {
@@ -329,66 +330,57 @@ function displayLoanDetails(loan, index) {
         <div class="loan-entry">
             <div class="details" style="transform: none;">
                 <div class="leftflow">
-                  <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M12,7c-2.757,0-5,2.243-5,5s2.243,5,5,5,5-2.243,5-5-2.243-5-5-5Zm0,8c-1.654,0-3-1.346-3-3s1.346-3,3-3,3,1.346,3,3-1.346,3-3,3Zm12-4h-2.05c-.471-4.717-4.233-8.48-8.95-8.95V0h-2V2.05C6.283,2.52,2.52,6.283,2.05,11H0v2H2.05c.471,4.717,4.233,8.48,8.95,8.95v2.05h2v-2.05c4.717-.471,8.48-4.233,8.95-8.95h2.05v-2Zm-12,9c-4.411,0-8-3.589-8-8S7.589,4,12,4s8,3.589,8,8-3.589,8-8,8Z"/></svg>
-<h3>Purpose</h3>
+                   <img id="Layer_" src="https://cdn.jim-nielsen.com/ios/256/helm-for-app-store-connect-2025-12-04.png?rf=1024" alt="">
+                   <h3>Purpose</h3>
                 </div>
                 <input type="text" class="purpose-input" placeholder="Eg : Shopping.." value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
             </div>
             <div class="details">
                 <div class="leftflow">
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" id="Layer_2" data-name="Layer 1" viewBox="0 0 24 24">
-  <path d="m24,12c0,6.617-5.383,12-12,12S0,18.617,0,12,5.383,0,12,0c.553,0,1,.447,1,1s-.447,1-1,1C6.486,2,2,6.486,2,12s4.486,10,10,10,10-4.486,10-10c0-.553.447-1,1-1s1,.447,1,1ZM22,0h-4c-.553,0-1,.447-1,1s.447,1,1,1h2.586l-3.293,3.293c-.391.391-.391,1.023,0,1.414.195.195.451.293.707.293s.512-.098.707-.293l3.293-3.293v2.586c0,.553.447,1,1,1s1-.447,1-1V2c0-1.103-.897-2-2-2Zm-9,6c0-.553-.447-1-1-1s-1,.447-1,1v1c-1.654,0-3,1.346-3,3,0,1.359.974,2.51,2.315,2.733l3.04.506c.374.062.645.382.645.761,0,.552-.448,1-1,1h-2.268c-.356,0-.688-.191-.867-.501-.276-.479-.887-.643-1.366-.364-.478.276-.642.888-.364,1.366.534.925,1.53,1.499,2.598,1.499h.268v1c0,.553.447,1,1,1s1-.447,1-1v-1c1.654,0,3-1.346,3-3,0-1.359-.974-2.51-2.315-2.733l-3.04-.506c-.374-.062-.645-.382-.645-.761,0-.552.448-1,1-1h2.268c.356,0,.688.191.867.501.275.478.886.642,1.366.364.478-.276.642-.888.364-1.366-.534-.925-1.53-1.499-2.598-1.499h-.268v-1Z"/>
-</svg>
-
-
-<h3>Taken From</h3>
+                    <img id="Layer_" src="https://cdn.jim-nielsen.com/ios/256/rubyist-ruby-scripting-2026-02-11.png?rf=1024" alt="">
+                    <h3>Taken From</h3>
                 </div>
                 <p>${loan.takenFrom}</p>
             </div>
             <div class="details">
-                <div class="leftflow"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_3" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="m8,12h-2c-1.103,0-2,.897-2,2v2c0,1.103.897,2,2,2h2c1.103,0,2-.897,2-2v-2c0-1.103-.897-2-2-2Zm-2,4v-2h2v2s-2,0-2,0ZM19,2h-1v-1c0-.552-.447-1-1-1s-1,.448-1,1v1h-8v-1c0-.552-.447-1-1-1s-1,.448-1,1v1h-1C2.243,2,0,4.243,0,7v12c0,2.757,2.243,5,5,5h14c2.757,0,5-2.243,5-5V7c0-2.757-2.243-5-5-5Zm-14,2h14c1.654,0,3,1.346,3,3v1H2v-1c0-1.654,1.346-3,3-3Zm14,18H5c-1.654,0-3-1.346-3-3v-9h20v9c0,1.654-1.346,3-3,3Z"/></svg>
-<h3>Taken Date</h3>
+                <div class="leftflow">
+                   <img id="Layer_" src="https://cdn.jim-nielsen.com/ios/256/calendar-2025-10-20.png?rf=1024" alt=""> 
+                    <h3>Taken Date</h3>
                 </div>
                 <p>${loan.planDate}</p>
             </div>
             <div class="details">
                 <div class="leftflow">
-<svg xmlns="http://www.w3.org/2000/svg" id="Layer_4" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M19,2h-1V1c0-.552-.448-1-1-1s-1,.448-1,1v1H8V1c0-.552-.448-1-1-1s-1,.448-1,1v1h-1C2.243,2,0,4.243,0,7v12c0,2.757,2.243,5,5,5h14c2.757,0,5-2.243,5-5V7c0-2.757-2.243-5-5-5ZM5,4h14c1.654,0,3,1.346,3,3v1H2v-1c0-1.654,1.346-3,3-3Zm14,18H5c-1.654,0-3-1.346-3-3V10H22v9c0,1.654-1.346,3-3,3Zm-3-6c0,.552-.448,1-1,1h-6c-.552,0-1-.448-1-1s.448-1,1-1h6c.552,0,1,.448,1,1Z"/></svg>
-<h3>Return Date</h3>
+                    <img id="Layer_" src="https://cdn.jim-nielsen.com/ios/256/edits-an-instagram-app-2025-05-15.png?rf=1024" alt="">
+                    <h3>Return Date</h3>
                 </div>
                 <p style="color:${daysLeft <= 2 ? '#ff1100' : daysLeft <= 6 ? '#ffbf00' : '#00d423'};"> ${cleanEndDate}</p>
             </div>
             <div class="details">
                 <div class="leftflow">
-<svg xmlns="http://www.w3.org/2000/svg" id="Layer_5" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M17,10.039c-3.859,0-7,3.14-7,7,0,3.838,3.141,6.961,7,6.961s7-3.14,7-7c0-3.838-3.141-6.961-7-6.961Zm0,11.961c-2.757,0-5-2.226-5-4.961,0-2.757,2.243-5,5-5s5,2.226,5,4.961c0,2.757-2.243,5-5,5Zm1.707-4.707c.391,.391,.391,1.023,0,1.414-.195,.195-.451,.293-.707,.293s-.512-.098-.707-.293l-1-1c-.188-.188-.293-.442-.293-.707v-2c0-.552,.447-1,1-1s1,.448,1,1v1.586l.707,.707Zm5.293-10.293v2c0,.552-.447,1-1,1s-1-.448-1-1v-2c0-1.654-1.346-3-3-3H5c-1.654,0-3,1.346-3,3v1H11c.552,0,1,.448,1,1s-.448,1-1,1H2v9c0,1.654,1.346,3,3,3h4c.552,0,1,.448,1,1s-.448,1-1,1H5c-2.757,0-5-2.243-5-5V7C0,4.243,2.243,2,5,2h1V1c0-.552,.448-1,1-1s1,.448,1,1v1h8V1c0-.552,.447-1,1-1s1,.448,1,1v1h1c2.757,0,5,2.243,5,5Z"/></svg>
-
+                    <img id="Layer_" src="https://cdn.jim-nielsen.com/ios/256/teleprompter-2025-08-25.png?rf=1024" alt="">
                     <h3>Days Passed</h3>
                 </div>
                 <p>${daysElapsed} day${daysElapsed === 1 ? '' : 's'}</p>
             </div>
             <div class="details">
                 <div class="leftflow">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="Layer_6" data-name="Layer 1"><path d="m17.797 15.266c-1.108 5.34-6.442 7.865-8.05 8.512-.211.081-.408.222-.745.222s-.574-.171-.806-.285c-1.922-.961-8.196-4.556-8.196-10.454v-4.597c0-1.967 1.254-3.705 3.122-4.324l5.563-1.845c.527-.174 1.09.111 1.264.634.174.524-.11 1.09-.634 1.264l-5.563 1.845c-1.048.347-1.751 1.322-1.751 2.426v4.597c0 4.709 5.333 7.78 7.047 8.643 1.428-.581 5.895-2.726 6.792-7.044.112-.541.643-.888 1.182-.776.541.112.888.642.776 1.182zm6.203-9.266c0 3.309-2.691 6-6 6s-6-2.691-6-6 2.691-6 6-6 6 2.691 6 6zm-2 0c0-2.206-1.794-4-4-4s-4 1.794-4 4 1.794 4 4 4 4-1.794 4-4zm-2.77-1.567-1.693 1.625c-.056.056-.146.055-.202 0l-.75-.735c-.395-.386-1.027-.379-1.414.015-.387.395-.38 1.028.015 1.414l.75.735c.416.407.96.609 1.503.609s1.084-.203 1.493-.606l1.683-1.616c.398-.382.412-1.016.029-1.414-.382-.397-1.015-.411-1.414-.028zm-11.237 4.567h2.015c.806 0 1.282.923.798 1.567-.127.168-.265.325-.406.476 1.444.681 2.601 2.308 2.601 3.966 0 1.098-.897 1.991-2 1.991h-4.001c-1.103 0-2-.893-2-1.991 0-1.658 1.156-3.285 2.601-3.966-.141-.151-.28-.308-.406-.476-.484-.644-.008-1.567.798-1.567zm3.007 6c0-1.134-1.164-2.295-2-2.295s-2 1.161-2 2.304z"/></svg>
-                    <h3>Amount Taken</h3>
+                  <img id="Layer_" src="https://cdn.jim-nielsen.com/ios/256/cardhop-contacts-2025-12-08.png?rf=1024" alt="">
+                  <h3>Amount Taken</h3>
                 </div>
                 <p>${formatMoney(loan.takenAmount)}</p>
             </div>
             <div class="details">
                 <div class="leftflow">
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" id="Layer_7" viewBox="0 0 24 24" width="512" height="512"><path d="M19,0H14a1,1,0,0,0,0,2h5a2.951,2.951,0,0,1,1.285.3L.293,22.293a1,1,0,1,0,1.414,1.414L21.7,3.715A2.951,2.951,0,0,1,22,5v5a1,1,0,0,0,2,0V5A5.006,5.006,0,0,0,19,0Z"/><path d="M6,10A4,4,0,1,0,2,6,4,4,0,0,0,6,10ZM6,4A2,2,0,1,1,4,6,2,2,0,0,1,6,4Z"/><path d="M18,14a4,4,0,1,0,4,4A4,4,0,0,0,18,14Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,18,20Z"/></svg>
-<h3>Interest</h3>
+                    <img id="Layer_" src="https://cdn.jim-nielsen.com/ios/256/stocks-2025-08-05.png?rf=1024" alt="">
+                    <h3>Interest</h3>
                 </div>
                 <p>${formatMoney(loan.interest)}</p>
             </div>
             <div class="details">
                 ${overdueFine > 0 ? `
                     <div class="leftflow">
-                        <svg class="strokeadder"  style="background: #ff0000;
-    padding: 2px;
-    fill: white;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M497.35-308.81q7.27-7.27 7.27-17.34 0-10.08-7.27-17.35-7.27-7.27-17.35-7.27-10.08 0-17.35 7.27-7.27 7.27-7.27 17.35 0 10.07 7.27 17.34t17.35 7.27q10.08 0 17.35-7.27ZM460-433.85h40v-240h-40v240Zm20 350.47L362.75-200H200v-162.75L83.38-480 200-597.25V-760h162.75L480-876.62 597.25-760H760v162.75L876.62-480 760-362.75V-200H597.25L480-83.38Zm0-56.62 100-100h140v-140l100-100-100-100v-140H580L480-820 380-720H240v140L140-480l100 100v140h140l100 100Zm0-340Z"/></svg>
+                        <img id="Layer_" src="https://cdn.jim-nielsen.com/ios/256/pdf-search-2023-10-12.png?rf=1024" alt="">
                         <h3>Overdue Fine</h3>
                     </div>
                     <p style='color: #ff0000;'>${formatMoney(overdueFine)} 
@@ -398,14 +390,9 @@ function displayLoanDetails(loan, index) {
 
             <hr>
             <div class="totaldetails">
-    <svg style='width: 30px;height: 30px;margin-top: 25px;opacity: 80%;' xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
-        <g fill="none" stroke-width="1.5">
-            <path d="M17.414 10.414C18 9.828 18 8.886 18 7c0-1.886 0-2.828-.586-3.414m0 6.828C16.828 11 15.886 11 14 11h-4c-1.886 0-2.828 0-3.414-.586m10.828 0Zm0-6.828C16.828 3 15.886 3 14 3h-4c-1.886 0-2.828 0-3.414.586m10.828 0Zm-10.828 0C6 4.172 6 5.114 6 7c0 1.886 0 2.828.586 3.414m0-6.828Zm0 6.828ZM13 7a1 1 0 1 1-2 0a1 1 0 0 1 2 0Z"/>
-            <path stroke-linecap="round" d="M18 6a3 3 0 0 1-3-3m3 5a3 3 0 0 0-3 3M6 6a3 3 0 0 0 3-3M6 8a3 3 0 0 1 3 3M4 21.388h2.26c1.01 0 2.033.106 3.016.308a14.85 14.85 0 0 0 5.33.118m-.93-3.297c.12-.014.235-.03.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.887 1.887 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075m-5.544-1.229a8.176 8.176 0 0 1-.11.012m.11-.012a.998.998 0 0 0 .427-.24a1.492 1.492 0 0 0 .126-2.134a1.9 1.9 0 0 0-.45-.367c-2.797-1.669-7.15-.398-9.779 1.467m9.676 1.274a.524.524 0 0 1-.11.012m0 0a9.274 9.274 0 0 1-1.814.004"/>
-        </g>
-    </svg>
-    
-    <h3 style="margin: 10px 0;font-weight: 600;font-size: 15px;color: #ffffff91;">
+<img id="Layer_" src="" alt="">
+    <h3 style="    margin: 10px 0;
+    font-weight: 100;">
         Total amount to return
     </h3>
     
@@ -424,17 +411,15 @@ function displayLoanDetails(loan, index) {
     </p>
 </div>
              <a target="_blank" href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: #ff0000;
-    padding: 10px;
-    font-size: 15px;
+    padding: 8px 15px;
+    font-size: 16px;
     transition: all 0.3s ease;
-    width: 80%;
     left: 50%;
-    max-width: 300px;
     position: relative;
     transform: translate(-50%, 0%);
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     margin-top: 10px;
-    font-weight: 400;
+    font-weight: 100;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
  color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
@@ -464,7 +449,7 @@ function renderAmountButtons() {
         const originalIndex = currentUser.loans.indexOf(loan);
         const btn = document.createElement("button");
         btn.className = "amount-btn";
-        btn.innerHTML = `${formatMoney(loan.takenAmount)}<div class="purpose-tag">${loan.purpose || 'Set Purpose'}</div>`;
+        btn.innerHTML = `${formatMoney(loan.takenAmount)}<div class="purpose-tag">${loan.purpose || 'Purpose'}</div>`;
         btn.onclick = () => { 
             displayLoanDetails(loan, originalIndex); 
             switchView('list', false); 
@@ -526,7 +511,7 @@ function renderChart() {
         if (daysLeft <= 2) color = '#ff1100';
         else if (daysLeft <= 6) color = '#ffbf00';
 
-        const amount = currentCurrency === 'Usd (₹)' 
+        const amount = currentCurrency === 'Usd ($)' 
             ? Number((loan.takenAmount / USD_RATE).toFixed(2))
             : Number(loan.takenAmount);
 
@@ -617,7 +602,7 @@ function renderLoanList() {
             }
 
             const daysLeft = calculateDaysLeft(loan.endDate);
-            const amount = currentCurrency === 'Usd (₹)'
+            const amount = currentCurrency === 'Usd ($)'
                 ? (loan.takenAmount / USD_RATE).toFixed(2)
                 : loan.takenAmount;
 
@@ -633,7 +618,8 @@ function renderLoanList() {
                 <button class="btn-hide" data-idx="${idx}">
                     ${isHidden ? '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M607.5-372.5Q660-425 660-500t-52.5-127.5Q555-680 480-680t-127.5 52.5Q300-575 300-500t52.5 127.5Q405-320 480-320t127.5-52.5Zm-204-51Q372-455 372-500t31.5-76.5Q435-608 480-608t76.5 31.5Q588-545 588-500t-31.5 76.5Q525-392 480-392t-76.5-31.5ZM214-281.5Q94-363 40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200q-146 0-266-81.5ZM480-500Zm207.5 160.5Q782-399 832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280q113 0 207.5-59.5Z"/></svg>' : '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m644-428-58-58q9-47-27-88t-93-32l-58-58q17-8 34.5-12t37.5-4q75 0 127.5 52.5T660-500q0 20-4 37.5T644-428Zm128 126-58-56q38-29 67.5-63.5T832-500q-50-101-143.5-160.5T480-720q-29 0-57 4t-55 12l-62-62q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302Zm20 246L624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM222-624q-29 26-53 57t-41 67q50 101 143.5 160.5T480-280q20 0 39-2.5t39-5.5l-36-38q-11 3-21 4.5t-21 1.5q-75 0-127.5-52.5T300-500q0-11 1.5-21t4.5-21l-84-82Zm319 93Zm-151 75Z"/></svg>'}
                 </button>
-                <button class="btn-details" data-idx="${idx}"> <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e3e3e3"><path d="M429.5-197.5q-19.6 0-32.55-12.68-12.95-12.68-12.95-32t13.13-33.07Q410.25-289 429.5-289h102q18.6 0 31.8 13.93 13.2 13.92 13.2 33.24T563.13-210q-13.38 12.5-32.63 12.5h-101Zm-163-238q-19.6 0-32.3-12.43-12.7-12.43-12.7-32t12.7-32.82Q246.9-526 266.5-526h426q19.6 0 32.8 13.43 13.2 13.42 13.2 32.99t-13.2 31.83q-13.2 12.25-32.8 12.25h-426ZM145-672q-19.6 0-32.3-13.18-12.7-13.18-12.7-32.5t13.38-32.57Q126.75-763.5 146-763.5h669.5q19.1 0 32.3 13.43 13.2 13.42 13.2 32.74T847.13-685q-13.88 13-32.63 13H145Z"/></svg></button>
+                <button class="btn-details" data-idx="${idx}"> <img class="closesymbol" src="service-icons/details_icon.png" alt="">
+                                 </button>
              </div>
             `;
 
@@ -723,8 +709,8 @@ function renderCalendar() {
     color: #eee;
     font-size: 14px;
     letter-spacing: 0px;">${calendarMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
-        <button class="move-asaid" onclick="prevMonth()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M640-107.69 267.69-480 640-852.31l42.54 42.54L352.77-480l329.77 329.77L640-107.69Z"/></svg></button>
-        <button class="move-asaid" onclick="nextMonth()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m320.23-107.69-42.54-42.54L607.46-480 277.69-809.77l42.54-42.54L692.54-480 320.23-107.69Z"/></svg></button>
+        <button class="move-asaid" onclick="prevMonth()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m371.77-481 307.61 307.62q11.85 11.84 12.24 30.15.38 18.31-11.47 30.15-11.84 11.85-30.15 11.85t-30.15-11.85l-303.7-304.46q-13.69-13.69-19.65-30.11-5.96-16.43-5.96-33.35t5.96-33.35q5.96-16.42 19.65-30.11l303.7-303.69q11.84-11.85 29.77-12.23 17.92-.39 29.76 11.46 11.85 11.84 11.85 30.15t-11.85 30.15L371.77-481Z"/></svg></button>
+        <button class="move-asaid" onclick="nextMonth()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M595.46-481 287.85-788.62q-11.85-11.84-12.23-29.76-.39-17.93 11.46-29.77Q298.92-860 316.85-860q17.92 0 29.77 11.85l304.46 303.69q13.69 13.69 19.65 30.11 5.96 16.43 5.96 33.35t-5.96 33.35q-5.96 16.42-19.65 30.11l-303.7 303.69q-11.84 11.85-30.15 12.23-18.31.39-30.15-11.46-11.85-11.84-11.85-29.77 0-17.92 11.85-29.77L595.46-481Z"/></svg></button>
     </div>
     <div style="display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -732,10 +718,11 @@ function renderCalendar() {
     text-align: center;
     color: #888;
     font-weight: 600;
-    background: linear-gradient(0deg, #ffffff1a, transparent);
-    padding: 15px;
-    border-radius: 31px;
-    margin-top: -15px;">
+    background: linear-gradient(0deg, #ffffff1f, transparent);
+    padding: 20px;
+    margin-top: -15px;
+    corner-shape: squircle;
+    border-radius: 75px;">
         <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`
         ;
 
@@ -783,13 +770,11 @@ function showDatePopup(idx) {
     margin-top: 0px;
     margin-bottom: -10px;">
     <button style="width: 100%;
-    padding: 8px;
     background: #0026ff;
-    border-radius: 200px;" onclick="goToList(${idx})"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M442.31-280q-8.5 0-14.25-5.76t-5.75-14.27q0-8.51 5.75-14.24t14.25-5.73h74.61q8.5 0 14.25 5.76t5.75 14.27q0 8.51-5.75 14.24T516.92-280h-74.61Zm-150-180q-8.5 0-14.25-5.76t-5.75-14.27q0-8.51 5.75-14.24t14.25-5.73h374.61q8.5 0 14.25 5.76t5.75 14.27q0 8.51-5.75 14.24T666.92-460H292.31ZM180-640q-8.5 0-14.25-5.76T160-660.03q0-8.51 5.75-14.24T180-680h600q8.5 0 14.25 5.76t5.75 14.27q0 8.51-5.75 14.24T780-640H180Z"/></svg> Full Details</button>
+    border-radius: 200px;" onclick="goToList(${idx})"><img class="closesymbol" src="service-icons/details_icon.png" alt=""> Details</button>
     <button onclick="closeDatePopup()" style="width: 100%;
-    padding: 8px;
     background: #ff0000;
-    border-radius: 200px;background-color: red;" onclick="goToList(${idx})"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M256-213.85 213.85-256l224-224-224-224L256-746.15l224 224 224-224L746.15-704l-224 224 224 224L704-213.85l-224-224-224 224Z"/></svg> Close Now</button>
+    border-radius: 200px;background-color: red;" onclick="goToList(${idx})"><img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close Now</button>
 </div>
     `;
     document.getElementById('datePopup').style.display = 'block';
@@ -984,4 +969,117 @@ document.addEventListener("DOMContentLoaded", function () {
             helperButton.classList.remove("animated-border");
         }, 10000000);
     }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const downloadBtn = document.getElementById('download-receipt');
+    if (!downloadBtn) {
+        console.error("Button with id='download-receipt' NOT FOUND!");
+        return;
+    }
+    console.log("✅ Receipt button initialized");
+    downloadBtn.addEventListener('click', function() {
+        if (!currentUser) {
+            alert("Login first!");
+            return;
+        }
+        const user = currentUser;
+        if (!user.loans || user.loans.length === 0) {
+            alert("No active loans found.");
+            return;
+        }
+        const baseHeight = 320;
+        const perLoanHeight = 148;
+        const footerHeight = 110;
+        const canvasHeight = baseHeight + (user.loans.length * perLoanHeight) + footerHeight;
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const width = 850;
+        canvas.width = width;
+        canvas.height = canvasHeight;
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, width, canvasHeight);
+        let y = 80;
+        ctx.fillStyle = '#1a1a1a';
+        ctx.font = '600 42px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('BsLends', width / 2, y);
+        y += 28;
+        ctx.fillStyle = '#666666';
+        ctx.font = '400 18px Arial';
+        ctx.fillText('Borrow Statement', width / 2, y);
+        y += 48;
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#1a1a1a';
+        ctx.font = '600 23px Arial';
+        ctx.fillText(user.name, 75, y);
+        y += 32;
+        ctx.font = '400 15px Arial';
+        ctx.fillStyle = '#555555';
+        ctx.fillText('Password • ' + (user === usersDB["0212"] ? "0212" : "BsPasgenerater"), 75, y);
+        y += 55;
+        ctx.fillStyle = '#1a1a1a';
+        ctx.font = '600 19px Arial';
+        ctx.fillText('Active Loans', 75, y);
+        y += 35;
+        user.loans.forEach((loan, i) => {
+            const total = loan.takenAmount + loan.interest;
+            ctx.strokeStyle = '#f0f0f0';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(75, y - 6);
+            ctx.lineTo(width - 75, y - 6);
+            ctx.stroke();
+            y += 28;
+            ctx.fillStyle = '#1a1a1a';
+            ctx.font = '600 18px Arial';
+            ctx.fillText(`Loan ${i + 1}`, 75, y);
+            y += 32;
+            ctx.font = '400 16.5px Arial';
+            ctx.fillStyle = '#444444';
+            ctx.fillText('Principal Amount', 75, y);
+            ctx.textAlign = 'right';
+            ctx.fillText(`₹${loan.takenAmount.toLocaleString('en-IN')}`, width - 75, y);
+            ctx.textAlign = 'left';
+            y += 28;
+            ctx.fillText('Interest', 75, y);
+            ctx.textAlign = 'right';
+            ctx.fillText(`₹${loan.interest.toLocaleString('en-IN')}`, width - 75, y);
+            ctx.textAlign = 'left';
+            y += 30;
+            ctx.fillStyle = '#1a1a1a';
+            ctx.font = '600 18px Arial';
+            ctx.fillText('Total Payable', 75, y);
+            ctx.textAlign = 'right';
+            ctx.fillStyle = '#d32f2f';
+            ctx.fillText(`₹${total.toLocaleString('en-IN')}`, width - 75, y);
+            ctx.textAlign = 'left';
+            y += 28;
+            ctx.fillStyle = '#555555';
+            ctx.font = '400 15.5px Arial';
+            ctx.fillText(`Due on ${loan.endDate}`, 75, y);
+            y += 52;
+        });
+        y += 35;
+        ctx.fillStyle = '#999999';
+        ctx.font = '400 14px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('Power by BsBookpad', width / 2, y);
+        y += 28;
+        ctx.fillStyle = '#bbbbbb';
+        ctx.font = '400 13px Arial';
+        ctx.fillText('BsLends Services • Confidential', width / 2, y);
+        try {
+            const link = document.createElement('a');
+            link.download = user.name.replace(/[^a-zA-Z0-9]/g, '_') + '_BsLends_Statement.png';
+            link.href = canvas.toDataURL('image/png');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            console.log(`✅ Receipt downloaded successfully for ${user.name}`);
+        } catch (err) {
+            console.error("Download error:", err);
+            alert("Could not download. Try using Live Server instead of opening file directly.");
+        }
+    });
 });
