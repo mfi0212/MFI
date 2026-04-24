@@ -250,16 +250,17 @@ p {
 
 .close-btn {
 	color: #e0e0e0;
-	cursor: pointer;
-	z-index: 11;
-	border-radius: 50px;
-	box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    cursor: pointer;
+    z-index: 11;
+    border-radius: 50px;
     display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 43px;
-	height: 43px;
-	transition: all 0.3s ease;
+    justify-content: center;
+    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
+    background: #ffffff1f;
+    align-items: center;
+    width: 43px;
+    height: 43px;
+    transition: all 0.3s ease;
 }
 
 .close-btn:active {
@@ -313,10 +314,9 @@ p {
 }
 
 .currency-switch {
-	background: transparent;
     color: #ffffffd4;
     border: none;
-       padding: 8px;
+    padding: 8px;
     border-radius: 30px;
     font-size: 16px;
     cursor: pointer;
@@ -325,11 +325,13 @@ p {
     align-items: center;
     justify-content: center;
     gap: 3px;
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);margin-bottom: 0px;
+    margin-bottom: 0px;
     transition: all 0.3s ease;
     backdrop-filter: blur(3px);
     text-transform: capitalize;
     font-weight: 100;
+    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
+    background: #ffffff1f;
 }
 
 .currency-switch:active {
@@ -1006,11 +1008,10 @@ div#loanDetails {
 }
 
 .purpose-input {
-	padding: 9px;
+	padding: 5px 3px;
     margin: 2px 5px;
-    background: #8f8f8f47;
+    background: transparent;
     border: none;
-    border-radius: 14px;
     color: white;
     font-size: 13px;
     outline: none;
@@ -1018,6 +1019,7 @@ div#loanDetails {
     text-align: justify;
     backdrop-filter: blur(5px);
     transition: all 0.3s ease-in-out;
+    border-bottom: solid 1px #ffffff66;
 }
 
 .purpose-input::placeholder {
@@ -1026,11 +1028,14 @@ div#loanDetails {
 
 .purpose-input:focus {
 	transform: scale(1.3) translateX(-20px);
-	padding: 6px 15px;
-	border-radius: 100px;
-	max-width: 130px;
-	font-size: 13px;
-	text-align: justify;
+    padding: 6px 15px;
+    border-radius: 100px;
+    max-width: 130px;
+    font-size: 13px;
+    text-align: justify;
+    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
+    background: #212121;
+    border: none;
 }
 .datepopupframo {
    margin: -17px;
