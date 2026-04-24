@@ -241,11 +241,11 @@ button#currencyToggle {
           margin-top: 20px; /* Starts right after top bar */
         } 
 h3 {
-	color: #ffd800;
-	letter-spacing: 0px;
-	margin: 10px 0px;
-	font-weight: 600;
-	font-size: 20px;
+color: #ffd800;
+    letter-spacing: 0px;
+    margin: 10px 0 20px 0;
+    font-weight: 600;
+    font-size: 20px;
 }
 hr {
     height: 1px;
@@ -299,7 +299,7 @@ div#pricesList {
   backdrop-filter: blur(5px);
     border-radius: 40px;
     
-    padding: 5px 15px;
+    padding: 10px 15px;
     margin: 0 0 30px 0;
     width: 100%;
     overflow: scroll;
@@ -327,7 +327,7 @@ div#pricesList {
     border-radius: 100px;
     transition: all 0.3s ease;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 17px;
     color: #ffffffbf;
     font-weight: 100;
     background: #1f1f1f;
@@ -968,6 +968,49 @@ filter: saturate(1);
             <button id="currencyToggle" class="btn">USD ($)</button>
             <h3 style="margin-top: 20px;">Our Interest</h3>
         <p class="note">The interest of us are not fixed, It changes based on amount providers.<br><br>
+            <div class="prices">
+             <div class="about" style="display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    backdrop-filter: blur(5px);
+    border-radius: 45px;
+    padding: 15px;
+    margin: 0 0 30px 0;
+    width: 100%;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;
+    filter: saturate(2);">
+        <h3 style="padding: 0px 25px;">Follow these steps..!</h3>
+        <ol style="font-size: 15px;
+    color: #ffffffa1;
+    padding: 15px 37px;
+    line-height: 30px;
+    border-radius: 30px;
+    background: #1f1f1f;
+    font-weight: 100;text-align: start;">
+            <li>Click on "Borrow" section</li>
+            <li>Click on "Apply Now" option</li>
+            <li>Fill out the form.</li>
+            <li>Wait a few hours.</li>
+            <li>Get funds from your coordinator.</li>
+            <li>Check details like amounts,interest and etc... in "My Account."</li>
+            <li>Repay on time.</li>
+            <li>Are you late to return? Say 2 days before we will extend the date (or) Extra fees apply.</li>
+            <li>Pay on time for future loans.</li>
+        </ol>
+    </div>
+        </div>
             <div id="pricesList" class="prices"></div>
             <!-- <a id="stoexplore" href="https://mfi0212.github.io/swan/offer/offer" style="font-size: 12px;">Visit STO</a> -->
             <a id="stoexplore" onclick="alert('Currently BsLends Service stopped offers..!')">Visit STO</a>
@@ -1036,7 +1079,7 @@ filter: saturate(1);
     color: #ffffffa8;
     line-height: 25px;
     font-weight: 100;
-    margin: 15px 25px;">Wait few hours after submitting, funds are arranged shortly.</p>
+    margin: 15px 25px;">To provide the amount, we need to collect the amount first. It takes few hours to arrange the amount, so be patient during this time.</p>
         </div>
     </div>
 
