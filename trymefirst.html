@@ -210,9 +210,14 @@ p {
     font-size: 15px;
     line-height: 20px;
     padding: 10px;
-    width: 85%;
+    width: 90%;
     max-width: 400px;
     color: #ffffff82;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
 }
 
 /* MODAL */
@@ -742,7 +747,7 @@ button.move-asaid {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 50px;
+    gap: 30px;
     margin-bottom: 25px;
 }
 
@@ -978,6 +983,25 @@ img.closesymbol {
     margin: 0px 25px;
     border-radius: 26px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .popup-overlay {
@@ -1999,19 +2023,12 @@ input:checked+.slider:before {
     <div id="passwordContainer">
         <div class="paswrdcontnt">
             <div class="paswrdtop">
-                <svg style="fill: black;
-    width: 60px;
+                <img style="width: 60px;
     height: 60px;
     margin: 15px;
     background: blue;
-    padding: 10px;
-    border-radius: 100px;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
-                    xml:space="preserve" width="512" height="512">
-                        <g>
-                            <path d="M405.333,179.712v-30.379C405.333,66.859,338.475,0,256,0S106.667,66.859,106.667,149.333v30.379 c-38.826,16.945-63.944,55.259-64,97.621v128C42.737,464.214,90.452,511.93,149.333,512h213.333 c58.881-0.07,106.596-47.786,106.667-106.667v-128C469.278,234.971,444.159,196.657,405.333,179.712z M277.333,362.667 c0,11.782-9.551,21.333-21.333,21.333c-11.782,0-21.333-9.551-21.333-21.333V320c0-11.782,9.551-21.333,21.333-21.333 c11.782,0,21.333,9.551,21.333,21.333V362.667z M362.667,170.667H149.333v-21.333c0-58.91,47.756-106.667,106.667-106.667 s106.667,47.756,106.667,106.667V170.667z"
-                            />
-                        </g>
-                    </svg>
+    border-radius: 100px;"
+                    src="service-icons/account_user_icons.png" alt="">
                     <h2 style="    font-weight: 100;
                 font-size: 25px;
                 color: white;
@@ -2026,19 +2043,26 @@ input:checked+.slider:before {
             </div>
         </div>
         <div class="notice" style="position: fixed;
-    bottom: 15px;">You should return the money before the return date, If not additional interest will be charged.</div>
+    bottom: 15px;    text-align: left;
+    background: #3a3a3a;
+    border-radius: 25px;
+    font-size: 13px;
+    padding: 5px 19px;">
+        <img class="closesymbol" src="service-icons/time_icons@2x.png" alt="">
+        <span>You should return the money before the return date, If not additional interest will be charged.</span>
+    </div>
     </div>
     <div id="userInfoModal" class="modal">
         <style>
     .fab {
- cursor: pointer;
+cursor: pointer;
     transition: all 0.3s ease;
-    width: 43px;
-    height: 43px;
+    width: 45px;
+    height: 45px;
     border-radius: 1000px;
     position: absolute;
-    top: 20px;
-    right: 21px;
+    top: 22px;
+    right: 22px;
     background: #20202057;
     display: flex;
     justify-content: center;
@@ -2243,7 +2267,7 @@ input:checked+.slider:before {
                 <div class="profile-container">
                     <div class="user-name-container"> <img id="userEmote" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0" onclick="openEmoteChooser()"> <span id="userName" style="font-size:20px;"></span>
                         <div class="total-icon"onclick="showTotalPopup()">
-                            <svg style="width: 40px;height: 25px;position: relative;stroke: transparent;left: 0.5px;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"> <g fill="none" stroke="#ffffff"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 8h4" /> <path stroke-width="1.5" d="M20.833 9h-2.602C16.446 9 15 10.343 15 12s1.447 3 3.23 3h2.603c.084 0 .125 0 .16-.002c.54-.033.97-.432 1.005-.933c.002-.032.002-.071.002-.148v-3.834c0-.077 0-.116-.002-.148c-.036-.501-.465-.9-1.005-.933C20.959 9 20.918 9 20.834 9Z" /> <path stroke-width="1.5" d="M20.965 9c-.078-1.872-.328-3.02-1.137-3.828C18.657 4 16.771 4 13 4h-3C6.229 4 4.343 4 3.172 5.172C2 6.343 2 8.229 2 12c0 3.771 0 5.657 1.172 6.828C4.343 20 6.229 20 10 20h3c3.771 0 5.657 0 6.828-1.172c.809-.808 1.06-1.956 1.137-3.828" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.991 12h.01" /> </g></svg>
+                            <img class="closesymbol" src="service-icons/folder_icons.png" alt="">
                         </div>
                        <div class="starssection">
 						 	<a href="https://blackswan19.github.io/golden/FM/starspage"><div id="coinSection">
@@ -2332,7 +2356,7 @@ width: 50px;
                         <?xml version="1.0" encoding="UTF-8"?>
                             <div class="iconbotm">
                                <img class="closesymbol" src="service-icons/graph_icon.png" alt="">
-                                Graph
+                                List
                             </div> <i class="fa-solid fa-toggle-off toggle-pin" data-view="graph"></i> </div>
                     	<div class="nav-item active" data-view="list">
                             <div class="iconbotm">
@@ -2352,17 +2376,13 @@ width: 50px;
     </div>
     <div id="totalPopup">
         <div class="wallettopsection">
+            
             <div class="fab" id="download-receipt">
-						<svg style="width: 18px;
-    height: 18px;
-    fill: #ffffffd1;
-    stroke: transparent;" 
-							xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-							<path d="M19.95,5.54l-3.49-3.49c-1.32-1.32-3.08-2.05-4.95-2.05H7C4.24,0,2,2.24,2,5v14c0,2.76,2.24,5,5,5h10c2.76,0,5-2.24,5-5V10.49c0-1.87-.73-3.63-2.05-4.95Zm-1.41,1.41c.32,.32,.59,.67,.81,1.05h-4.34c-.55,0-1-.45-1-1V2.66c.38,.22,.73,.49,1.05,.81l3.49,3.49ZM7,2h4.51c.16,0,.33,0,.49,.02V7c0,1.65,1.35,3,3,3h4.98c.02,.16,.02,.32,.02,.49v4.58l-2.41-2.41c-.87-.87-2.28-.87-3.15,0l-2.27,2.27c-.09,.09-.23,.09-.32,0l-2.27-2.27c-.87-.87-2.28-.87-3.15,0l-2.44,2.44V5c0-1.65,1.35-3,3-3Zm10,20H7c-1.65,0-3-1.35-3-3v-1.07l3.86-3.86c.09-.09,.23-.09,.32,0l2.27,2.27c.87,.87,2.28,.87,3.15,0l2.27-2.27c.09-.09,.23-.09,.32,0l3.83,3.83v1.1c0,1.65-1.35,3-3,3Z"/>
-						</svg>
+						<img class="closesymbol" src="service-icons/print-icons.png" alt="">
+						
                 	</div>
             <img style="width: 100px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/folder.gif" alt="">
-            <h3>Wallet Balance</h3>
+            <h3>Amounts Folder</h3>
             <div class="iconsinfo">
                 <div class="icon">
                     <svg style="height: 23px;
