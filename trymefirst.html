@@ -179,8 +179,7 @@ i.fa-solid.fa-arrow-right {
     max-width: 450px;
     backdrop-filter: blur(10px);
     z-index: 1;
-    
-    background: linear-gradient(180deg, #000000, transparent);
+    background: linear-gradient(180deg, #000000 10%, transparent);
 }
 #submitBtn:active {
 	transform: scale(0.90);
@@ -250,17 +249,16 @@ p {
 
 .close-btn {
 	color: #e0e0e0;
-    cursor: pointer;
-    z-index: 11;
-    border-radius: 50px;
+	cursor: pointer;
+	z-index: 11;
+	border-radius: 50px;
+	box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     display: flex;
-    justify-content: center;
-    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
-    background: #ffffff1f;
-    align-items: center;
-    width: 43px;
-    height: 43px;
-    transition: all 0.3s ease;
+	justify-content: center;
+	align-items: center;
+	width: 43px;
+	height: 43px;
+	transition: all 0.3s ease;
 }
 
 .close-btn:active {
@@ -314,9 +312,10 @@ p {
 }
 
 .currency-switch {
+	background: transparent;
     color: #ffffffd4;
     border: none;
-    padding: 8px;
+       padding: 8px;
     border-radius: 30px;
     font-size: 16px;
     cursor: pointer;
@@ -325,13 +324,11 @@ p {
     align-items: center;
     justify-content: center;
     gap: 3px;
-    margin-bottom: 0px;
+    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);margin-bottom: 0px;
     transition: all 0.3s ease;
     backdrop-filter: blur(3px);
     text-transform: capitalize;
     font-weight: 100;
-    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
-    background: #ffffff1f;
 }
 
 .currency-switch:active {
@@ -365,15 +362,12 @@ p {
 }
 
 #userEmote {
-	width: 40px;
-    height: 40px;
-    cursor: pointer;
-    border-radius: 100px;
-    transition: transform 0.2s;
-    z-index: 1000;
-    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
-    background: #ffffff1f;
-    padding: 3px;
+	width: 35px;
+    height: 35px;
+	cursor: pointer;
+	border-radius: 100px;
+	transition: transform .2s;
+	z-index: 1000;
 }
 
 
@@ -471,12 +465,11 @@ svg.addsiteicon {
 	color: #ffffffd6;
     cursor: pointer;
     transition: all 0.9s ease;
+    background: #ffffff00;
     padding: 7px;
     border-radius: 105px;
-    width: 45px;
+    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);width: 45px;
     height: 45px;
-    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
-    background: #ffffff1f;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -531,7 +524,7 @@ svg.serchareicon {
 	scrollbar-width: none;
 	/* margin-right: 20px; */
 	padding: 10px 10px 0px 0px;
-	border-radius: 30px 10px 40px 30px;
+	border-radius: 30px 10px 32px 30px;
 }
 
 .details {
@@ -561,21 +554,21 @@ svg.serchareicon {
 .amount-btn {
 	color: #e0e0e0;
     border: none;
-    border-radius: 308px;
-       padding: 3px 20px;
+    border-radius: 38px;
+       padding: 4px 15px;
     font-size: 17px;
     cursor: pointer;
+    background: transparent;
     position: relative;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     transition: all 0.3s ease;
     font-weight: 500;
-    box-shadow: none;
-    gap: 3px;
-    background: #ffffff1f;
+    gap: 0px;
 }
 .wallettopsection {
   margin: -17px;
@@ -610,19 +603,19 @@ svg.serchareicon {
     font-weight: 500;
 }
 .total-icon {
-color: #ffffff99;
-    border-radius: 12px;
+box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    color: #ffffff99;
+    border-radius: 13px;
     z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 15px;
     cursor: pointer;
-    width: 33px;
-    height: 33px;
+    background: #ffffff08;
+    width: 35px;
+    height: 35px;
     transition: all 0.3s ease;
-    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
-    background: #ffffff1f;
 }
 
 .total-icon:active {
@@ -630,8 +623,9 @@ color: #ffffff99;
 }
 
 #coinSection {
-	  border-radius: 11px;
-    padding: 3px;
+	    border-radius: 12px;
+    padding: 4px;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1010,19 +1004,18 @@ div#loanDetails {
 }
 
 .purpose-input {
-	padding: 5px 3px;
+	padding: 9px;
     margin: 2px 5px;
-    background: transparent;
+    background: #8f8f8f47;
     border: none;
+    border-radius: 14px;
     color: white;
     font-size: 13px;
     outline: none;
-    max-width: unset;
+    max-width: 125px;
     text-align: justify;
     backdrop-filter: blur(5px);
     transition: all 0.3s ease-in-out;
-    border-bottom: solid 1px #ffffff66;
-    width: 120px;
 }
 
 .purpose-input::placeholder {
@@ -1031,14 +1024,11 @@ div#loanDetails {
 
 .purpose-input:focus {
 	transform: scale(1.3) translateX(-20px);
-    padding: 6px 15px;
-    border-radius: 100px;
-    max-width: 130px;
-    font-size: 13px;
-    text-align: justify;
-    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
-    background: #212121;
-    border: none;
+	padding: 6px 15px;
+	border-radius: 100px;
+	max-width: 130px;
+	font-size: 13px;
+	text-align: justify;
 }
 .datepopupframo {
    margin: -17px;
@@ -1068,12 +1058,12 @@ div#loanDetails {
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
-    width: 80%;    max-width: 400px;
+    width: 85%;    max-width: 400px;
     justify-content: space-between;
     background: transparent;   padding: 5px;
     border-radius: 1000px;
 box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
     gap: 5px;
 }
 
@@ -1199,10 +1189,10 @@ display: flex;
     cursor: pointer;
     border-radius: 46px;
     text-align: center;
+box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     transition: all 0.3s ease;
     width: -webkit-fill-available;
     padding: 5px;
-    background: #ffffff1f;
 }
 
 .nav-item:active {
@@ -1271,7 +1261,7 @@ box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-refle
 	font-weight: 500;
 	font-size: 15px;
 	transition: all 0.3s ease;
-	background: #ffffff1f;
+	background: #ffffff1a;
 }
 
 
@@ -1394,7 +1384,7 @@ svg#Layer_7 {
 .loan-actions {
 	display: flex;
     gap: 5px;
-    background: #ffffff1f;
+    background: #ffffff29;
     border-radius: 16px;
     padding: 5px;
 }
@@ -1412,7 +1402,7 @@ svg#Layer_7 {
     justify-content: center;
     align-items: center;
     padding: 0px;
-    background: #ffffff1f;
+    background: #ffffff36;
 }
 
 .loan-actions button:active {
@@ -1575,7 +1565,7 @@ box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-refle
 		position: relative;
 		left: 50%;
 		width: 100%;
-		padding: 45px 0px 85px 0px;
+		padding: 40px 0px 85px 0px;
 		backdrop-filter: blur(5px);
 	}
 
@@ -1781,7 +1771,7 @@ box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-refle
 }
 .toggle-switch span {
   color: white;
-    background: #ffffff1f;
+    background: #ffffff26;
     padding: 3px 5px;
     border-radius: 26px;
     font-size: 16px;
@@ -1954,7 +1944,7 @@ input:checked+.slider:before {
         position: relative;
         top: -15px;
         height: 50px;
-        width: 98%;
+        width: 97.5%;
         padding: 0px;
         justify-content: space-between;
     }
@@ -2294,13 +2284,23 @@ input:checked+.slider:before {
     border-radius: 100px;
     position: relative;
     z-index: 10000;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;
     backdrop-filter: blur(3px);
     opacity: 100%;
     width: 30px;
     height: 30px;
-    padding: 3px;
-    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
-    background: #ffffff1f;"class="serchareicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-95.92 0-162.58-66.65-66.65-66.66-66.65-162.58 0-95.92 66.65-162.58 66.66-66.65 162.58-66.65 95.92 0 162.58 66.65 66.65 66.66 66.65 162.58 0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z"/></svg></a>
+    padding: 3px;"class="serchareicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-95.92 0-162.58-66.65-66.65-66.66-66.65-162.58 0-95.92 66.65-162.58 66.66-66.65 162.58-66.65 95.92 0 162.58 66.65 66.65 66.66 66.65 162.58 0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z"/></svg></a>
         
     <a href="https://mfi0212.github.io/MFI/starpre" style="color: white; text-decoration: none; cursor: pointer;">
                          <button class="applybtn" style="border: none;
