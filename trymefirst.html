@@ -965,9 +965,11 @@ filter: saturate(1);
     <button id="currencyToggle" class="btn">USD ($)</button>
             <h3 style="margin-top: 20px;">Our Interest</h3>
         <p class="note">The interest of us are not fixed, It changes based on amount providers.<br><br>
-            <button style="background: #ffffff00;
-    margin: 30px 0;
-    box-shadow: 0px 0px 22px #ffffffcf;
+            <div id="pricesList" class="prices"></div>
+           </p>
+           <button style="    background: #ffffff00;
+    margin: 30px 0 0 0;
+    box-shadow: 0px 0px 22px #ffffff82;
     border: none;
     padding: 8px;
     font-weight: 100;
@@ -976,8 +978,6 @@ filter: saturate(1);
             <a href="https://mfi0212.github.io/swan/home" style="text-decoration: none;
     color: #fff;">To borrow below 5k - Lendlink</a>
         </button>
-            <div id="pricesList" class="prices"></div>
-           </p>
             <div class="prices" style="margin: 30px 0 0 0;">
              <div class="about" style="display: flex;
     justify-content: center;
@@ -1068,11 +1068,24 @@ filter: saturate(1);
                 Apply Now
             
             </button></a>
-            <p style="font-size: 14px;
-    color: #ffffffa8;
-    line-height: 25px;
+            <p style="font-size: 12px;
+    color: #ffffff80;
+    line-height: 15px;
     font-weight: 100;
-    margin: 15px 25px;">To provide the amount, we need to collect the amount first. It takes few hours to arrange the amount, so be patient during this time.</p>
+    margin: 30px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-align: start;
+    background: #404040e0;
+    padding: 10px;
+    border-radius: 34px;">
+    <img class="closesymbol" src="service-icons/time_icons@2x.png" alt="">
+        <span>
+            To provide the amount, we need to collect the amount first. It takes few hours to arrange the amount, so be patient during this time.
+        </span>
+        </p>
         </div>
     </div>
 
