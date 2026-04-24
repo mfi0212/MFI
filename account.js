@@ -50,8 +50,8 @@ function formatDateDDMMYYYY(date) {
 }
 
 function formatMoney(amount) {
-    const val = currentCurrency === 'Usd (₹)' ? (amount / USD_RATE).toFixed(2) : amount;
-    const symbol = currentCurrency === 'Usd (₹)' ? '$' : '₹';
+    const val = currentCurrency === 'Usd ($)' ? (amount / USD_RATE).toFixed(2) : amount;
+    const symbol = currentCurrency === 'Usd ($)' ? '$' : '₹';
     return `${symbol}${parseFloat(val).toLocaleString()}`;
 }
 
@@ -216,11 +216,11 @@ document.getElementById("submitBtn").onclick = () => {
 function updateCurrencyUI() {
     document.getElementById('currencyLabel').textContent = currentCurrency;
     document.querySelector('#currencySwitch i').className = 
-        currentCurrency === 'Usd (₹)' ? '' : '';
+        currentCurrency === 'Usd ($)' ? '' : '';
 }
 
 function toggleCurrency() {
-    currentCurrency = currentCurrency === 'Inr (₹)' ? 'Usd (₹)' : 'Inr (₹)';
+    currentCurrency = currentCurrency === 'Inr (₹)' ? 'Usd ($)' : 'Inr (₹)';
     localStorage.setItem('currency', currentCurrency);
     updateCurrencyUI();
     if (currentUser) {
@@ -527,7 +527,7 @@ function renderChart() {
         if (daysLeft <= 2) color = '#ff1100';
         else if (daysLeft <= 6) color = '#ffbf00';
 
-        const amount = currentCurrency === 'Usd (₹)' 
+        const amount = currentCurrency === 'Usd ($)' 
             ? Number((loan.takenAmount / USD_RATE).toFixed(2))
             : Number(loan.takenAmount);
 
@@ -618,7 +618,7 @@ function renderLoanList() {
             }
 
             const daysLeft = calculateDaysLeft(loan.endDate);
-            const amount = currentCurrency === 'Usd (₹)'
+            const amount = currentCurrency === 'Usd ($)'
                 ? (loan.takenAmount / USD_RATE).toFixed(2)
                 : loan.takenAmount;
 
