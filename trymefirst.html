@@ -611,13 +611,12 @@ a.helper-button svg{
         .helper-button:active, .helper-buttons:active{ transform: scale(0.90); } 
 
         .top-bar {
-          position: fixed;
+        position: fixed;
     top: 0;
     width: 100%;
     max-width: 500px;
     height: 60px;
-    background: linear-gradient(180deg, #000000, transparent 100%);
-    z-index: 998;
+    background: linear-gradient(180deg, #000000 20%, transparent);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -625,7 +624,6 @@ a.helper-button svg{
     left: 50%;
     transform: translate(-50%, 0);
     z-index: 10000000;
-    backdrop-filter: blur(1px);
         }
 
         .glass-card {
