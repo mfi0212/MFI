@@ -1,1 +1,680 @@
-no test...
+<!DOCTYPE html>
+<html lang="en" data-theme=se"dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BS&MFI Services</title>
+    <link rel="icon" href="mfi.logo.png" />
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+  <style>
+ * { margin:0; padding:0; box-sizing:border-box;font-family: "Red Hat Display", sans-serif;letter-spacing: 0.5px;}
+    :root {
+      --bg-primary: #000000;
+      --bg-secondary: #17171c;
+      --bg-message: #1c1c24;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0b0;
+      --accent: #0021ff;
+      --accent-dark: #0021ff;
+      --border: #2a2a35;
+    }
+    body {
+  --c-glass: #bbbbbc;
+  --c-light: #fff;
+  --c-dark: #000;
+  
+  --c-content: rgb(255, 255, 255);
+  --c-action: #0052f5;
+  
+  --glass-reflex-dark: 1;
+  --glass-reflex-light: 1;
+  
+  --saturation: 150%;
+  
+  color: var(--c-content);
+}
+::placeholder{
+  color: rgb(179, 179, 179);
+}
+body:has(input[value="dark"]:checked) {
+  --c-glass: #bbbbbc;
+  --c-light: #fff;
+  --c-dark: #000;
+  
+  --c-content: #e1e1e1;
+  --c-action: #03d5ff;
+  
+  --c-bg: #1b1b1d;
+}
+
+body:has(input[value="dim"]:checked) {
+  --c-light: #99deff;
+  --c-dark: #20001b;
+  --c-glass: hsl(335 250% 74% / 1);
+  
+  --c-content: #d5dbe2;
+  --c-action: #ff48a9;
+  
+  --c-bg: #152433;
+
+}
+a{
+  text-decoration: none;
+}
+* {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    * {
+      margin: 0;scrollbar-width: none;
+      box-sizing: border-box;
+    }
+
+    body {
+      
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+          padding: 5px;
+}
+.exploreside svg {
+    position: relative;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+}
+  div#sectionsContainer {
+    padding-top: 100px;
+    max-width: 650px;
+    width: 100%;
+}
+    .container {
+          margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+
+    }
+.mficolblogo{
+   width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #0021ffbd 34%, #00d0ffcc);
+    position: relative;
+    z-index: 100000;
+    border: none;
+	filter: saturate(2);
+    padding: 5px;
+    border-radius: 100px;
+    backdrop-filter: blur(2px);
+}
+.logo span svg {
+    width: 18px;
+}
+    .header {
+   text-align: center;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 15px 7px;
+    display: flex;
+    align-items: self-start;
+    justify-content: space-between;
+    background: linear-gradient(180deg, black, transparent);
+    }
+    .header button {
+border: none;
+    filter: saturate(2);
+    backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
+    width: 43px;
+    height: 43px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    color: white;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
+    background: #ffffff1f;}
+
+        .header button:hover{
+              transform: scale(1.03); 
+        }
+        .header button:active{
+              transform: scale(0.90); 
+        } 
+.exclamation {
+       color: rgb(255 255 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;
+    filter: saturate(2);
+    backdrop-filter: blur(1px);
+    padding: 11px;
+    border-radius: 100px;
+    background: rgb(255 0 0 / 69%);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-size: 16px;
+    border: none;
+}
+.exclamation:hover{
+              transform: scale(1.03); 
+        }
+        .exclamation:active{
+              transform: scale(0.90); 
+        } 
+    .header h1 {
+          font-weight: 600;
+    cursor: pointer;
+    border-radius: 99px;
+    background: transparent;
+    color: #ffffffef;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    }
+   .logo span {
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    position: relative;
+    top: -10px;
+    color: #ffffffbf;
+    border: solid 1px #ffffff00;
+    filter: saturate(2);
+    backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
+    background: #ffffff1f;
+}.logo {
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0px;
+    border-radius: 100px;
+    transition: all 0.3s ease;
+}
+  .logo:hover{
+              transform: scale(1.03); 
+        }
+        .logo:active{
+              transform: scale(0.90); 
+        } 
+.mfigif{
+    width: 43px;
+    height: 43px;
+    border-radius: 35px;
+    border: none;
+    filter: saturate(2);
+    padding: 3px;
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
+    background: #ffffff1f;
+}
+        .header img:hover{
+              transform: scale(1.03); 
+        }
+        .header img:active{
+              transform: scale(0.90); 
+        } 
+    .search-box {
+            position: fixed;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 1;
+    transition: all 0.3s ease;
+    gap: 0px;
+    padding: 0px 0 25px 0;
+    max-width: 600px;
+    background: linear-gradient(0deg, black, transparent);
+         }
+       
+
+
+    #searchInput {
+    padding: 12px 15px;
+    font-size: 17px;
+    background: transparent;
+    border: none;
+    border-radius: 37px;
+    color: var(--text-primary);
+    outline: none;
+    transition: all 0.2s;
+    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
+    background: #ffffff1f;
+    filter: saturate(2);
+    width: 100%;
+    backdrop-filter: blur(5px);
+        } 
+
+    .search-icon {
+   color: rgb(179, 179, 179);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
+    background: #ffffff1f;
+    filter: saturate(2);
+    backdrop-filter: blur(5px);
+    border-radius: 100px;
+    padding: 6px;
+    width: 45px;
+    height: 45px;
+    }svg.serchareicon {
+    width: 40px;
+    height: 40px;
+    fill: #ffffffe3;
+}
+.searchcontainer {
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 90%;
+    gap: 10px;
+
+}      #searchInput:active{
+              transform: scale(0.95);
+             
+    }
+    #searchInput:focus{
+       background-color: white; 
+       color: #000;
+    }
+  .section {
+      position: relative;
+    padding: 3px;
+    width: 100%;
+    max-width: 600px;
+    }
+    .section:last-child{
+      margin-bottom: 85px;
+    }
+
+    .section h2 {
+          font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 10px;
+        padding: 5px;
+    margin-top: 5px;
+    text-align: center;
+    }
+
+    .site-list {
+      padding: 9px;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;
+    filter: saturate(2);
+    border-radius: 40px;
+    }
+
+   .site-item {
+display: flex;
+    align-items: center;
+    padding: 5px;
+    text-decoration: none;
+    opacity: 50%;
+    color: var(--text-primary);
+    transition: background 0.18s;
+    transition: all 0.3s ease;
+    margin: 5px;
+    width: 100%;
+}
+
+       .site-item:active{
+              transform: scale(0.98); }
+.site-item:hover{
+  opacity: 100%;
+}
+
+.site-item a:last-child{
+  padding: 10px;
+}
+    .letter-icon {
+   width: 35px;
+    height: 35px;
+    border-radius: 13px;
+    color: rgb(255 255 255);
+    font-weight: 700;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    text-transform: uppercase;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;
+    filter: saturate(2);
+    backdrop-filter: blur(5px);
+    }
+
+    .site-info {
+   flex: 1;
+    min-width: 0;
+    padding: 8px 10px 8px 0;
+    border-bottom: solid 1px #ffffff45;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    }
+
+    .site-info h3 {
+     font-size: 18px;
+        font-weight: 500;
+    }
+
+    .site-info p {
+      font-size: 11px;
+    color: #ffffff8a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 100;
+    }
+.section:first-child {
+    border: none;
+    margin-top: 25px;
+}
+
+    .no-results {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      display: none;
+    }
+footer{
+  text-align: center;
+    font-size: 12px;
+    color: #ffffff85;
+    background: black;
+    position: sticky;
+    bottom: 0px;
+    padding: 5px 0px;
+}
+    @media (max-width: 500px) {
+      .letter-icon {
+        font-size: 1.25rem;
+      }
+
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <button onclick="goBack()" class="back-btn">
+     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M640-107.69 267.69-480 640-852.31l42.54 42.54L352.77-480l329.77 329.77L640-107.69Z"/></svg>
+    </button>
+    <div class="logo">
+      <div class="mficolb">
+        <img class="mficolblogo" src="https://github.com/goforbg/telegram-emoji-gifs/blob/master/thunder.gif?raw=true" alt="">
+      </div>
+      <span>BS&MFI Services<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m320.23-107.69-42.54-42.54L607.46-480 277.69-809.77l42.54-42.54L692.54-480 320.23-107.69Z"/></svg></span>
+    </div>
+    <img class="mfigif" onclick="alert('Welcome to BS&MFI Services')" src="mfi.gif" alt="">
+  </div>
+  <div id="sectionsContainer"></div>
+
+  <div class="no-results" id="noResults">
+    Nothing found
+  </div>
+   <div class="search-box">
+    <div class="searchcontainer">
+      <span class="search-icon"><svg class="serchareicon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-95.92 0-162.58-66.65-66.65-66.66-66.65-162.58 0-95.92 66.65-162.58 66.66-66.65 162.58-66.65 95.92 0 162.58 66.65 66.65 66.66 66.65 162.58 0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z"/></svg></span>
+      <input type="text" id="searchInput" placeholder="Search here..." autocomplete="off"/>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform"><p class="exclamation">I've Issue</p></a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const siteGroups = [
+    {
+    heading: "Return Management",
+    sites: [
+      { name: "BS&MFI Solutions",      desc: "Return date extender",     url: "https://mfi0212.github.io/swan/offer/solution",      icon: "fab fa-youtube"       },
+      { name: "BsRora - Atdo",      desc: "Return date extender",     url: "",      icon: "fab fa-youtube"       },
+]
+},
+{
+  heading: "New in & issue",
+  sites: [
+    { name: "Enterance Form", desc: "New members form",       url: "https://mfi0212.github.io/MFI/entrysheet", icon: "fas fa-code"         },
+    { name: "Helper",      desc: "I have issue form",           url: "https://mfi0212.github.io/MFI/abt.hlp",      icon: "fas fa-film"          },
+  ]
+},
+{
+  heading: "Offer & Earns",
+  sites: [
+    { name: "Lendlink-Mid",    desc: "Turn your money into income",        url: "https://mfi0212.github.io/swan/lndlnk-mid",    icon: "fas fa-book-open"     },
+    { name: "BsGames",       desc: "Exclusive rewards and benefits for BS&MFI members.",          url: "https://blackswan19.github.io/golden/Bs%20Games/bsgames",       icon: "fab fa-reddit"        },
+    { name: "Stars",       desc: "Interest reducer.",          url: "https://blackswan19.github.io/golden/FM/starspage",       icon: "fab fa-reddit"        },
+  ]
+},
+{
+  heading: "For VIPs Only Services",
+  sites: [
+      { name: "BsMansion",      desc: "Store offer to use after",              url: "https://mfi0212.github.io/MFI/bsmansion",  icon: "fas fa-robot"         },
+      { name: "Chloennaouii",    desc: "Discover Your Discount",                  url: "https://mfi0212.github.io/MFI/cholennaouii.main",    icon: "fab fa-instagram"     },
+    ]
+  },  
+  {
+    heading: "Services",
+    sites: [
+      { name: "All Services", desc: "All service from BS&MFI",       url: "https://blackswan19.github.io/BS/bslends", icon: "fas fa-code"         },
+      { name: "BsLends", desc: "A service from BS&MFI",       url: "https://mfi0212.github.io/MFI/rate", icon: "fas fa-code"         },
+      { name: "Myootive", desc: "A service from BS&MFI",       url: "https://blackswan19.github.io/golden/FM/themain", icon: "fas fa-code"         },
+      { name: "Vintage Lender(VIPs)", desc: "VIPs only site",       url: "", icon: "fas fa-code"         },
+      { name: "Short Term Loan",            desc: "Quick amounts for 1 to 15 days.",        url: "https://mfi0212.github.io/MFI/1.5.days",            icon: "fab fa-x-twitter"     },
+    ]
+  },
+   {
+    heading: "Collaboration",
+    sites: [
+      { name: "BsPsgenerater", desc: "Password generator",       url: "https://blackswan19.github.io/Educate/password", icon: "fas fa-code"         },
+      { name: "BsReminder", desc: "Date wise notes",       url: "https://blackswan19.github.io/bscrop/reminder", icon: "fas fa-code"         },
+      { name: "BsBookpad", desc: "Download the notes",       url: "https://blackswan19.github.io/Educate/bookpad", icon: "fas fa-code"         },
+      { name: "BsAdstoper", desc: "Ad blocker",       url: "https://blackswan19.github.io/Educate/stoper", icon: "fas fa-code"         },
+    ]
+  }
+];
+// document.addEventListener('contextmenu', e => e.preventDefault());
+function getColor(name) {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const hue = Math.abs(hash) % 360;
+  return `hsl(${hue}, 75%, 58%)`;
+}
+
+function getInitial(name) {
+  return name.trim()[0]?.toUpperCase() || "?";
+}
+
+function renderAll() {
+  const container = document.getElementById("sectionsContainer");
+  container.innerHTML = "";
+
+  siteGroups.forEach(group => {
+    const section = document.createElement("div");
+    section.className = "section";
+
+    const h2 = document.createElement("h2");
+    h2.textContent = group.heading;
+    section.appendChild(h2);
+
+    const list = document.createElement("div");
+    list.className = "site-list";
+
+    group.sites.forEach(site => {
+      const a = document.createElement("a");
+      a.href = site.url;
+      a.target = "_parent";
+      a.className = "site-item";
+
+      const bg = getColor(site.name);
+      const initial = getInitial(site.name);
+
+      a.innerHTML = `
+        <div class="letter-icon" style="background: ${bg};">${initial}</div>
+        <div class="site-info">
+          <h3>${site.name}</h3>
+        </div>
+         <div class="exploreside">
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m320.23-107.69-42.54-42.54L607.46-480 277.69-809.77l42.54-42.54L692.54-480 320.23-107.69Z"/></svg>
+ </div>
+      `;
+
+      list.appendChild(a);
+    });
+
+    section.appendChild(list);
+    container.appendChild(section);
+  });
+}
+
+function renderFiltered(query = "") {
+  const q = query.toLowerCase().trim();
+  const container = document.getElementById("sectionsContainer");
+  const noResults = document.getElementById("noResults");
+
+  container.innerHTML = "";
+
+  if (!q) {
+    renderAll();
+    noResults.style.display = "none";
+    return;
+  }
+
+  let found = false;
+
+  siteGroups.forEach(group => {
+    const matches = group.sites.filter(s =>
+      s.name.toLowerCase().includes(q) ||
+      s.desc.toLowerCase().includes(q) ||
+      s.url.toLowerCase().includes(q)
+    );
+
+    if (!matches.length) return;
+
+    found = true;
+
+    const section = document.createElement("div");
+    section.className = "section";
+
+    const h2 = document.createElement("h2");
+    h2.textContent = group.heading;
+    section.appendChild(h2);
+
+    const list = document.createElement("div");
+    list.className = "site-list";
+
+    matches.forEach(site => {
+      const a = document.createElement("a");
+      a.href = site.url;
+      a.target = "_parent";
+      a.className = "site-item";
+
+      const bg = getColor(site.name);
+      const initial = getInitial(site.name);
+
+      a.innerHTML = `
+        <div class="letter-icon" style="background: ${bg};">${initial}</div>
+        <div class="site-info">
+          <h3>${site.name}</h3>
+          <p>${site.desc}</p>
+        </div>
+      `;
+
+      list.appendChild(a);
+    });
+
+    section.appendChild(list);
+    container.appendChild(section);
+  });
+
+  noResults.style.display = found ? "none" : "block";
+}
+
+renderAll();
+ function goBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        alert(" Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
+      }
+    }
+document.getElementById("searchInput").addEventListener("input", e => {
+  renderFiltered(e.target.value);
+});
+</script>
+
+</body>
+</html>
