@@ -133,12 +133,12 @@ body:has(input[value="dim"]:checked) {
 display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 0;
-    filter: saturate(2);
+    margin: 10px;
+    filter: saturate(2);border-radius: 100px;
     transition: all 0.3s ease;
 } 
 .partner:active{
-transform: scale(0.90);
+transform: scale(0.90);background-color: rgba(255, 255, 255, 0.381);
 }
         .loading-overlay.hidden {
             opacity: 0;
@@ -576,7 +576,7 @@ filter: saturate(2);
         }
         #stoexplore:hover{ transform: scale(1.05); }
         #stoexplore:active{ transform: scale(0.90); } 
-.helper-button {
+.helper-button{
    display: flex;
     justify-content: center;
     align-items: center;
@@ -588,6 +588,7 @@ filter: saturate(2);
     border-bottom: solid 1.5px #ffffff21;
     padding: 10px;
 }
+        .helper-button svg:active{ transform: scale(0.90); } 
      .helper-buttons {   
   font-weight: 500;
     z-index: 1000;
@@ -606,31 +607,7 @@ filter: saturate(2);
     border-bottom: solid 1.5px #ffffff21;
     color: #fff;
 }
-        a.helper-button {
-           width: 45px;
-    height: 45px;
-    padding: 0%;
-    
-  backdrop-filter: blur(2px);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;transition: all 0.3s ease;
- background: rgb(255 255 255 / 6%);
-    color: #fff;
-    border-top: solid 1.5px #ffffff21;
-    border-bottom: solid 1.5px #ffffff21;
-  color: #fff;
-}
-
-
-a.helper-button svg{
-      fill: #ffffff;
-    width: 28px;
-    height: 28px;
-}
-        .helper-button:hover, .helper-buttons:hover{ transform: scale(1.05); }
-        .helper-button:active, .helper-buttons:active{ transform: scale(0.90); } 
+       .helper-buttons:active{ transform: scale(1.2);background-color: rgba(255, 255, 255, 0.381); } 
 
         .top-bar {
        position: fixed;
