@@ -148,8 +148,11 @@ transform: scale(0.90);
     white-space: nowrap;
 }
  .partner-explore-btn button{
-  width: fit-content;
-    padding: 8px;
+width: fit-content;
+    background: #292929;
+    border-right: solid 2px #ffffff91;
+    border-left: solid 2px #ffffff91;
+    padding: 6px 10px;
     font-size: 15px;
 }
          .loading-logo {
@@ -269,7 +272,6 @@ hr {
     font-size: 17px;
     border: none;
     background: rgba(255, 255, 255, 0.06);
-    box-shadow: inset 0 1px 1px rgb(255 255 255 / 5%), 0 4px 12px rgb(0 0 0 / 40%);
     color: #fff;
     border-top: solid 1.5px #ffffff21;
     border-bottom: solid 1.5px #ffffff21;
@@ -346,8 +348,8 @@ div#pricesList {
     font-size: 13px;
 }
         @keyframes fadeIn{from{opacity:0}to{opacity:1}} 
-        .popup-content{ width: 100%;
-   width: 100%;
+        .popup-content{
+            width: 100%;
     max-width: 500px;
     text-align: center;
     line-height: 40px;
@@ -355,21 +357,24 @@ div#pricesList {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: #161616;
-    border-radius: 50px;} 
+    background: transparent;
+    border-radius: 50px;
+    backdrop-filter: blur(15px);
+    border: solid 1.5px #ffffff1c;
+        } 
     .intpopuptop {
-  width: 95%;
-    border-radius: 40px 40px 0 0;
-    margin: 8px 0 0 0;
-    padding: 15px 10px 0 10px;
-    background: linear-gradient(180deg, #494949, #161616 80%);
+  width: 97%;
+    border-radius: 45px 45px 0 0;
+    margin: 5px 0 0 0;
+    padding: 15px 5px 0 5px;
+    background: linear-gradient(180deg, #3e3e3e, #16161600 80%);
 }
 .acuntpopup {
-    width: 95%;
-    border-radius: 40px 40px 0 0;
-    margin: 8px 0 0 0;
-    padding: 15px 10px 0 10px;
-    background: linear-gradient(180deg, #000000, #161616);
+     width: 97%;
+    border-radius: 45px 45px 0 0;
+    margin: 5px 0 0 0;
+    padding: 15px 5px 0 5px;
+    background: linear-gradient(180deg, #202020, #00000000);
 }
 button.btn.btn-gold.close-btn {
   display: flex;
@@ -549,8 +554,8 @@ filter: saturate(2);
     justify-content: center;
     align-items: center;
     flex-direction: column;
-   box-shadow:inset 0.6px 0.6px 0px 0.1px #ffffff3b, inset -0.6px -0.6px 0px -0.1px #ffffff3b;
-    background: #ffffff1f;
+    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff52, inset -0.6px -0.6px 0px -0.1px #ffffff52;
+    background: #202020;
 }
         #stoexplore{ 
            padding: 7px;
@@ -991,7 +996,7 @@ text-align: center;
     font-size: 11px;">By BsLends</h3>
     <button id="currencyToggle" class="btn">USD ($)</button>
             <h3 style="margin-top: 20px;">Our Interest</h3>
-        <p class="note"><svg class="closesymbol" xmlns="http://www.w3.org/2000/svg" id="Layer_7" viewBox="0 0 24 24" width="512" height="512"><path d="M19,0H14a1,1,0,0,0,0,2h5a2.951,2.951,0,0,1,1.285.3L.293,22.293a1,1,0,1,0,1.414,1.414L21.7,3.715A2.951,2.951,0,0,1,22,5v5a1,1,0,0,0,2,0V5A5.006,5.006,0,0,0,19,0Z"/><path d="M6,10A4,4,0,1,0,2,6,4,4,0,0,0,6,10ZM6,4A2,2,0,1,1,4,6,2,2,0,0,1,6,4Z"/><path d="M18,14a4,4,0,1,0,4,4A4,4,0,0,0,18,14Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,18,20Z"/></svg>
+        <p class="note"><svg class="closesymbol" style="width: 50px;" xmlns="http://www.w3.org/2000/svg" id="Layer_7" viewBox="0 0 24 24" width="512" height="512"><path d="M19,0H14a1,1,0,0,0,0,2h5a2.951,2.951,0,0,1,1.285.3L.293,22.293a1,1,0,1,0,1.414,1.414L21.7,3.715A2.951,2.951,0,0,1,22,5v5a1,1,0,0,0,2,0V5A5.006,5.006,0,0,0,19,0Z"/><path d="M6,10A4,4,0,1,0,2,6,4,4,0,0,0,6,10ZM6,4A2,2,0,1,1,4,6,2,2,0,0,1,6,4Z"/><path d="M18,14a4,4,0,1,0,4,4A4,4,0,0,0,18,14Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,18,20Z"/></svg>
 The interest of us are not fixed, It changes based on amount providers. Check the interest rate in Take Money then continue the applying process.
            </p>
 <div id="pricesList" class="prices"></div>
@@ -1389,8 +1394,8 @@ const pricesList = document.getElementById("pricesList");
 const toggleBtn  = document.getElementById("currencyToggle");
 function updateToggleButton() {
   toggleBtn.textContent = currentCurrency === 'INR' 
-    ? 'USD ($)' 
-    : 'INR (₹)';
+    ? 'Usd ($)' 
+    : 'Inr (₹)';
 }
 function renderPrices(){
   pricesList.innerHTML = "";
