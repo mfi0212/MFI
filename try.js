@@ -734,11 +734,12 @@ function renderCalendar() {
     text-align: center;
     color: #888;
     font-weight: 600;
-    background: linear-gradient(0deg, #ffffff1f, transparent);
     padding: 20px;
-    margin-top: -15px;
-    corner-shape: squircle;
-    border-radius: 75px;">
+    margin-top: -10px;
+    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.06);
+    border-top: solid 1.5px #ffffff0d;
+    border-bottom: solid 1.5px #ffffff0d;">
         <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`
         ;
 
