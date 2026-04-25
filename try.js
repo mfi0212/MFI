@@ -1,4 +1,4 @@
-// document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || 'Inr (₹)';
@@ -330,57 +330,67 @@ function displayLoanDetails(loan, index) {
         <div class="loan-entry">
             <div class="details" style="transform: none;">
                 <div class="leftflow">
-                   <img id="Layer_" src="https://cdn.jim-nielsen.com/ios/256/helm-for-app-store-connect-2025-12-04.png?rf=1024" alt="">
-                   <h3>Purpose</h3>
+                  <?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M12,7c-2.757,0-5,2.243-5,5s2.243,5,5,5,5-2.243,5-5-2.243-5-5-5Zm0,8c-1.654,0-3-1.346-3-3s1.346-3,3-3,3,1.346,3,3-1.346,3-3,3Zm12-4h-2.05c-.471-4.717-4.233-8.48-8.95-8.95V0h-2V2.05C6.283,2.52,2.52,6.283,2.05,11H0v2H2.05c.471,4.717,4.233,8.48,8.95,8.95v2.05h2v-2.05c4.717-.471,8.48-4.233,8.95-8.95h2.05v-2Zm-12,9c-4.411,0-8-3.589-8-8S7.589,4,12,4s8,3.589,8,8-3.589,8-8,8Z"/></svg>
+<h3>Purpose</h3>
                 </div>
                 <input type="text" class="purpose-input" placeholder="Eg : Shopping.." value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
             </div>
             <div class="details">
                 <div class="leftflow">
-                    <img id="Layer_" src="https://cdn.jim-nielsen.com/ios/256/rubyist-ruby-scripting-2026-02-11.png?rf=1024" alt="">
-                    <h3>Taken From</h3>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" id="Layer_2" data-name="Layer 1" viewBox="0 0 24 24">
+  <path d="m24,12c0,6.617-5.383,12-12,12S0,18.617,0,12,5.383,0,12,0c.553,0,1,.447,1,1s-.447,1-1,1C6.486,2,2,6.486,2,12s4.486,10,10,10,10-4.486,10-10c0-.553.447-1,1-1s1,.447,1,1ZM22,0h-4c-.553,0-1,.447-1,1s.447,1,1,1h2.586l-3.293,3.293c-.391.391-.391,1.023,0,1.414.195.195.451.293.707.293s.512-.098.707-.293l3.293-3.293v2.586c0,.553.447,1,1,1s1-.447,1-1V2c0-1.103-.897-2-2-2Zm-9,6c0-.553-.447-1-1-1s-1,.447-1,1v1c-1.654,0-3,1.346-3,3,0,1.359.974,2.51,2.315,2.733l3.04.506c.374.062.645.382.645.761,0,.552-.448,1-1,1h-2.268c-.356,0-.688-.191-.867-.501-.276-.479-.887-.643-1.366-.364-.478.276-.642.888-.364,1.366.534.925,1.53,1.499,2.598,1.499h.268v1c0,.553.447,1,1,1s1-.447,1-1v-1c1.654,0,3-1.346,3-3,0-1.359-.974-2.51-2.315-2.733l-3.04-.506c-.374-.062-.645-.382-.645-.761,0-.552.448-1,1-1h2.268c.356,0,.688.191.867.501.275.478.886.642,1.366.364.478-.276.642-.888.364-1.366-.534-.925-1.53-1.499-2.598-1.499h-.268v-1Z"/>
+</svg>
+
+
+<h3>Taken From</h3>
                 </div>
                 <p>${loan.takenFrom}</p>
             </div>
             <div class="details">
-                <div class="leftflow">
-                   <img id="Layer_" src="https://cdn.jim-nielsen.com/ios/256/calendar-2025-10-20.png?rf=1024" alt=""> 
-                    <h3>Taken Date</h3>
+                <div class="leftflow"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_3" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="m8,12h-2c-1.103,0-2,.897-2,2v2c0,1.103.897,2,2,2h2c1.103,0,2-.897,2-2v-2c0-1.103-.897-2-2-2Zm-2,4v-2h2v2s-2,0-2,0ZM19,2h-1v-1c0-.552-.447-1-1-1s-1,.448-1,1v1h-8v-1c0-.552-.447-1-1-1s-1,.448-1,1v1h-1C2.243,2,0,4.243,0,7v12c0,2.757,2.243,5,5,5h14c2.757,0,5-2.243,5-5V7c0-2.757-2.243-5-5-5Zm-14,2h14c1.654,0,3,1.346,3,3v1H2v-1c0-1.654,1.346-3,3-3Zm14,18H5c-1.654,0-3-1.346-3-3v-9h20v9c0,1.654-1.346,3-3,3Z"/></svg>
+<h3>Taken Date</h3>
                 </div>
                 <p>${loan.planDate}</p>
             </div>
             <div class="details">
                 <div class="leftflow">
-                    <img id="Layer_" src="https://cdn.jim-nielsen.com/ios/256/edits-an-instagram-app-2025-05-15.png?rf=1024" alt="">
-                    <h3>Return Date</h3>
+<svg xmlns="http://www.w3.org/2000/svg" id="Layer_4" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M19,2h-1V1c0-.552-.448-1-1-1s-1,.448-1,1v1H8V1c0-.552-.448-1-1-1s-1,.448-1,1v1h-1C2.243,2,0,4.243,0,7v12c0,2.757,2.243,5,5,5h14c2.757,0,5-2.243,5-5V7c0-2.757-2.243-5-5-5ZM5,4h14c1.654,0,3,1.346,3,3v1H2v-1c0-1.654,1.346-3,3-3Zm14,18H5c-1.654,0-3-1.346-3-3V10H22v9c0,1.654-1.346,3-3,3Zm-3-6c0,.552-.448,1-1,1h-6c-.552,0-1-.448-1-1s.448-1,1-1h6c.552,0,1,.448,1,1Z"/></svg>
+<h3>Return Date</h3>
                 </div>
                 <p style="color:${daysLeft <= 2 ? '#ff1100' : daysLeft <= 6 ? '#ffbf00' : '#00d423'};"> ${cleanEndDate}</p>
             </div>
             <div class="details">
                 <div class="leftflow">
-                    <img id="Layer_" src="https://cdn.jim-nielsen.com/ios/256/teleprompter-2025-08-25.png?rf=1024" alt="">
+<svg xmlns="http://www.w3.org/2000/svg" id="Layer_5" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M17,10.039c-3.859,0-7,3.14-7,7,0,3.838,3.141,6.961,7,6.961s7-3.14,7-7c0-3.838-3.141-6.961-7-6.961Zm0,11.961c-2.757,0-5-2.226-5-4.961,0-2.757,2.243-5,5-5s5,2.226,5,4.961c0,2.757-2.243,5-5,5Zm1.707-4.707c.391,.391,.391,1.023,0,1.414-.195,.195-.451,.293-.707,.293s-.512-.098-.707-.293l-1-1c-.188-.188-.293-.442-.293-.707v-2c0-.552,.447-1,1-1s1,.448,1,1v1.586l.707,.707Zm5.293-10.293v2c0,.552-.447,1-1,1s-1-.448-1-1v-2c0-1.654-1.346-3-3-3H5c-1.654,0-3,1.346-3,3v1H11c.552,0,1,.448,1,1s-.448,1-1,1H2v9c0,1.654,1.346,3,3,3h4c.552,0,1,.448,1,1s-.448,1-1,1H5c-2.757,0-5-2.243-5-5V7C0,4.243,2.243,2,5,2h1V1c0-.552,.448-1,1-1s1,.448,1,1v1h8V1c0-.552,.447-1,1-1s1,.448,1,1v1h1c2.757,0,5,2.243,5,5Z"/></svg>
+
                     <h3>Days Passed</h3>
                 </div>
                 <p>${daysElapsed} day${daysElapsed === 1 ? '' : 's'}</p>
             </div>
             <div class="details">
                 <div class="leftflow">
-                  <img id="Layer_" src="https://cdn.jim-nielsen.com/ios/256/cardhop-contacts-2025-12-08.png?rf=1024" alt="">
-                  <h3>Amount Taken</h3>
+                    <?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M14.648,5.493c.873-.701,1.772-1.643,2.228-2.789,.238-.598,.161-1.277-.205-1.816-.377-.556-1.002-.888-1.671-.888h-6c-.669,0-1.294,.332-1.671,.888-.366,.539-.442,1.218-.205,1.816,.456,1.145,1.355,2.088,2.228,2.789C4.696,7.221,1,13.159,1,18c0,3.309,2.691,6,6,6h10c3.309,0,6-2.691,6-6,0-4.841-3.696-10.779-8.352-12.507Zm.369-3.528c-.516,1.297-2.094,2.393-3.019,2.91-.923-.513-2.495-1.6-2.999-2.875l6.018-.035Zm1.982,20.035H7c-2.206,0-4-1.794-4-4,0-5.243,4.71-11,9-11s9,5.757,9,11c0,2.206-1.794,4-4,4Zm-5,0c-.552,0-1-.448-1-1v-1h-.268c-1.068,0-2.063-.574-2.598-1.499-.276-.478-.113-1.089,.365-1.366,.476-.277,1.089-.114,1.366,.365,.178,.308,.511,.5,.867,.5h2.268c.551,0,1-.449,1-1,0-.378-.271-.698-.644-.76l-3.042-.507c-1.341-.223-2.315-1.373-2.315-2.733,0-1.654,1.346-3,3-3v-1c0-.552,.448-1,1-1s1,.448,1,1v1h.268c1.067,0,2.063,.575,2.598,1.5,.276,.478,.113,1.089-.365,1.366-.477,.277-1.089,.114-1.366-.365-.179-.309-.511-.5-.867-.5h-2.268c-.551,0-1,.449-1,1,0,.378,.271,.698,.644,.76l3.042,.507c1.341,.223,2.315,1.373,2.315,2.733,0,1.654-1.346,3-3,3v1c0,.552-.448,1-1,1Z"/></svg>
+<h3>Amount Taken</h3>
                 </div>
                 <p>${formatMoney(loan.takenAmount)}</p>
             </div>
             <div class="details">
                 <div class="leftflow">
-                    <img id="Layer_" src="https://cdn.jim-nielsen.com/ios/256/stocks-2025-08-05.png?rf=1024" alt="">
-                    <h3>Interest</h3>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" id="Layer_7" viewBox="0 0 24 24" width="512" height="512"><path d="M19,0H14a1,1,0,0,0,0,2h5a2.951,2.951,0,0,1,1.285.3L.293,22.293a1,1,0,1,0,1.414,1.414L21.7,3.715A2.951,2.951,0,0,1,22,5v5a1,1,0,0,0,2,0V5A5.006,5.006,0,0,0,19,0Z"/><path d="M6,10A4,4,0,1,0,2,6,4,4,0,0,0,6,10ZM6,4A2,2,0,1,1,4,6,2,2,0,0,1,6,4Z"/><path d="M18,14a4,4,0,1,0,4,4A4,4,0,0,0,18,14Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,18,20Z"/></svg>
+<h3>Interest</h3>
                 </div>
                 <p>${formatMoney(loan.interest)}</p>
             </div>
             <div class="details">
                 ${overdueFine > 0 ? `
                     <div class="leftflow">
-                        <img id="Layer_" src="https://cdn.jim-nielsen.com/ios/256/pdf-search-2023-10-12.png?rf=1024" alt="">
+                        <svg class="strokeadder"  style="background: #ff0000;
+    padding: 2px;
+    fill: white;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M497.35-308.81q7.27-7.27 7.27-17.34 0-10.08-7.27-17.35-7.27-7.27-17.35-7.27-10.08 0-17.35 7.27-7.27 7.27-7.27 17.35 0 10.07 7.27 17.34t17.35 7.27q10.08 0 17.35-7.27ZM460-433.85h40v-240h-40v240Zm20 350.47L362.75-200H200v-162.75L83.38-480 200-597.25V-760h162.75L480-876.62 597.25-760H760v162.75L876.62-480 760-362.75V-200H597.25L480-83.38Zm0-56.62 100-100h140v-140l100-100-100-100v-140H580L480-820 380-720H240v140L140-480l100 100v140h140l100 100Zm0-340Z"/></svg>
                         <h3>Overdue Fine</h3>
                     </div>
                     <p style='color: #ff0000;'>${formatMoney(overdueFine)} 
@@ -390,7 +400,13 @@ function displayLoanDetails(loan, index) {
 
             <hr>
             <div class="totaldetails">
-<img id="Layer_" src="" alt="">
+    <svg style='width: 30px;height: 30px;margin-top: 25px;opacity: 80%;' xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
+        <g fill="none" stroke-width="1.5">
+            <path d="M17.414 10.414C18 9.828 18 8.886 18 7c0-1.886 0-2.828-.586-3.414m0 6.828C16.828 11 15.886 11 14 11h-4c-1.886 0-2.828 0-3.414-.586m10.828 0Zm0-6.828C16.828 3 15.886 3 14 3h-4c-1.886 0-2.828 0-3.414.586m10.828 0Zm-10.828 0C6 4.172 6 5.114 6 7c0 1.886 0 2.828.586 3.414m0-6.828Zm0 6.828ZM13 7a1 1 0 1 1-2 0a1 1 0 0 1 2 0Z"/>
+            <path stroke-linecap="round" d="M18 6a3 3 0 0 1-3-3m3 5a3 3 0 0 0-3 3M6 6a3 3 0 0 0 3-3M6 8a3 3 0 0 1 3 3M4 21.388h2.26c1.01 0 2.033.106 3.016.308a14.85 14.85 0 0 0 5.33.118m-.93-3.297c.12-.014.235-.03.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.887 1.887 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075m-5.544-1.229a8.176 8.176 0 0 1-.11.012m.11-.012a.998.998 0 0 0 .427-.24a1.492 1.492 0 0 0 .126-2.134a1.9 1.9 0 0 0-.45-.367c-2.797-1.669-7.15-.398-9.779 1.467m9.676 1.274a.524.524 0 0 1-.11.012m0 0a9.274 9.274 0 0 1-1.814.004"/>
+        </g>
+    </svg>
+    
     <h3 style="    margin: 10px 0;
     font-weight: 100;">
         Total amount to return
