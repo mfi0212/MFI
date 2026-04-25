@@ -592,14 +592,19 @@ filter: saturate(2);
     align-items: center;
     gap: 25px;
     border-radius: 9999px;
-    transition: all 0.3s ease;
     background: rgb(255 255 255 / 6%);
     border-top: solid 1.5px #ffffff21;
     border-bottom: solid 1.5px #ffffff21;
     padding: 10px;
 }
+.helper-button,
+.helper-button svg,
+.helper-button img{
+    transition: all 0.3s ease;
+}
         .helper-button:active{ transform: scale(0.90); } 
         .helper-button svg:active{ transform: scale(0.70); } 
+        .helper-button img:active{ transform: scale(0.70); } 
      .helper-buttons {   
   font-weight: 500;
     z-index: 1000;
