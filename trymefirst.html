@@ -216,9 +216,16 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    gap: 10px;border-radius: 35px;
     text-align: center;
+    transition: all 0.3s ease;
 }
+
+.notice:active {
+	transform: scale(0.90);
+    border-radius: 90px;
+}
+
 
 /* MODAL */
 .modal {
@@ -616,7 +623,13 @@ color: #e0e0e0;
 }
 .wallettopsection {
   margin: -15px;
-    background: linear-gradient(180deg, #6c6c6c, #191919 70%);
+    background: linear-gradient(180deg, #494949, #161616 80%);
+    padding: 30px 10px 55px 10px;
+    border-radius: 40px 40px 0px 0px;
+}
+.datepopupframo {
+   margin: -15px;
+    background: linear-gradient(180deg, #000000, #161616 80%);
     padding: 30px 10px 55px 10px;
     border-radius: 40px 40px 0px 0px;
 }
@@ -775,11 +788,11 @@ button.move-asaid {
     box-shadow: none;
 }
 .paswrdcontnt {
-   display: flex;
+   display: flex;    max-width: 350px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 30px;
+    gap: 30px;width: 100%;
     margin-bottom: 25px;
 }
 
@@ -866,7 +879,7 @@ canvas#loanChart {
     font-size: 14.5px;padding: 25px;
     line-height: 1.7;width: 98%;
     animation: iosPopupIn 0.1s cubic-bezier(.22, 1, .36, 1) forwards;
-    background: #191919;
+    background: #161616;
     transform: translate(-50%, -4%) scale(1);
     box-shadow: 0 0 0 1000px #00000085;
 }
@@ -1103,12 +1116,7 @@ img.closesymbol {
     background: #212121;
     border: none;
 }
-.datepopupframo {
-   margin: -15px;
-    background: linear-gradient(180deg, #000000, #191919 70%);
-    padding: 30px 10px 55px 10px;
-    border-radius: 40px 40px 0px 0px;
-}
+
 .purpose-input.animate {
 	animation: liquidPress 0.7s cubic-bezier(.2, .8, .2, 1);
 }
@@ -2061,11 +2069,9 @@ input:checked+.slider:before {
     <div id="passwordContainer">
         <div class="paswrdcontnt">
             <div class="paswrdtop">
-                <img style="width: 60px;
-    height: 60px;
-    margin: 15px;
-    background: blue;
-    border-radius: 100px;"
+                <img style="width: 80px;
+    height: 80px;
+    margin: 0 0 15px 0;"
                     src="service-icons/account_user_icons.png" alt="">
                     <h2 style="    font-weight: 100;
                 font-size: 25px;
@@ -2075,17 +2081,31 @@ input:checked+.slider:before {
             </div>  
             <div class="paswrdbtm">
                 <input type="text" id="userPassword" placeholder="Enter Password">
-                <button id="submitBtn">Verify & Continue</button>
+                <button id="submitBtn" style="    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;"><img class="closesymbol" src="service-icons/done_icon.png" alt=""> Continue</button>
                 <br>
                 <p id="error-message"></p>
             </div>
         </div>
-        <div class="notice" style="position: fixed;
-    bottom: 15px;    text-align: left;
-    background: #3a3a3a;
-    border-radius: 25px;
-    font-size: 13px;
-    padding: 5px 19px;">
+        <div class="notice" style="font-size: 14px;
+    color: #ffffff91;
+    line-height: 21px;
+    font-weight: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-align: start;
+    padding: 15px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.06);
+    border-top: solid 1.5px #ffffff0d;
+    border-bottom: solid 1.5px #ffffff0d;
+    position: fixed;
+    bottom: 25px;">
         <img class="closesymbol" src="service-icons/time_icons@2x.png" alt="">
         <span>You should return the money before the return date, If not additional interest will be charged.</span>
     </div>
@@ -2459,7 +2479,7 @@ width: 50px;
             </div>
         </div>
         <div id="totalContent"></div>
-        <button onclick="closeTotalPopup()" style="margin-bottom:-2px;margin-top: 20px;background-color: red;"><img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close Now</button>
+        <button onclick="closeTotalPopup()" style="margin-bottom:-2px;margin-top: 20px;background-color: blue;"><img class="closesymbol" src="service-icons/done_icon.png" alt=""> Ok</button>
     </div>
     <div id="datePopup">
         <div class="datepopupframo">
