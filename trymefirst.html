@@ -576,7 +576,18 @@ filter: saturate(2);
         }
         #stoexplore:hover{ transform: scale(1.05); }
         #stoexplore:active{ transform: scale(0.90); } 
-
+.helper-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    background: rgb(255 255 255 / 6%);
+    border-top: solid 1.5px #ffffff21;
+    border-bottom: solid 1.5px #ffffff21;
+    padding: 10px;
+}
      .helper-buttons {   
   font-weight: 500;
     z-index: 1000;
@@ -622,19 +633,20 @@ a.helper-button svg{
         .helper-button:active, .helper-buttons:active{ transform: scale(0.90); } 
 
         .top-bar {
-        position: fixed;
+       position: fixed;
     top: 0;
     width: 100%;
     max-width: 500px;
     height: 60px;
-    background:linear-gradient(180deg, #000000 45%, transparent);
+    background: linear-gradient(180deg, #000000 45%, transparent);
     display: flex;
     justify-content: space-between;
     align-items: center;
-       padding: 15px 8px 0px 8px;
+    padding: 15px 8px 0px 8px;
     left: 50%;
     transform: translate(-50%, 0);
     z-index: 10000000;
+    flex-direction: row-reverse;
         }
 
         .glass-card {
@@ -964,7 +976,14 @@ text-align: center;
         </div>
     </div>
     <div class="top-bar">
-        <a class="helper-button" href="https://mfi0212.github.io/MFI/imlate" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m352.46-85.39-71.38-120.3-135.54-29.7 13.23-139.53L66.93-480l91.84-105.08-13.23-139.53 135.54-29.7 71.38-120.3L480-820.46l127.54-54.15 71.38 120.3 135.54 29.7-13.23 139.53L893.07-480l-91.84 105.08 13.23 139.53-135.54 29.7-71.38 120.3L480-139.54 352.46-85.39ZM378-162l102-43.23L583.23-162 640-258l110-25.23L740-396l74-84-74-85.23L750-678l-110-24-58-96-102 43.23L376.77-798 320-702l-110 24 10 112.77L146-480l74 84-10 114 110 24 58 96Zm102-318Zm22.92 179.85q9.39-9.39 9.39-22.93T502.92-346q-9.38-9.38-22.92-9.38-13.54 0-22.92 9.38-9.39 9.38-9.39 22.92 0 13.54 9.39 22.93 9.38 9.38 22.92 9.38 13.54 0 22.92-9.38ZM450-436.92h60v-240h-60v240Z"/></svg></a>    
+       <div class="helper-button" >
+            <a href="https://mfi0212.github.io/MFI/imlate" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m352.46-85.39-71.38-120.3-135.54-29.7 13.23-139.53L66.93-480l91.84-105.08-13.23-139.53 135.54-29.7 71.38-120.3L480-820.46l127.54-54.15 71.38 120.3 135.54 29.7-13.23 139.53L893.07-480l-91.84 105.08 13.23 139.53-135.54 29.7-71.38 120.3L480-139.54 352.46-85.39ZM378-162l102-43.23L583.23-162 640-258l110-25.23L740-396l74-84-74-85.23L750-678l-110-24-58-96-102 43.23L376.77-798 320-702l-110 24 10 112.77L146-480l74 84-10 114 110 24 58 96Zm102-318Zm22.92 179.85q9.39-9.39 9.39-22.93T502.92-346q-9.38-9.38-22.92-9.38-13.54 0-22.92 9.38-9.39 9.38-9.39 22.92 0 13.54 9.39 22.93 9.38 9.38 22.92 9.38 13.54 0 22.92-9.38ZM450-436.92h60v-240h-60v240Z"/></svg></a>   
+            <a href="https://mfi0212.github.io/MFI/starpre"><svg style="opacity: 100%;
+    width: 34px;
+    height: 34px;
+    fill: white;
+    margin: -20px -9px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m435.04-243.96 188.54-237.77H472.85l26.61-225.42-178.54 276.5h147.23l-33.11 186.69ZM384-142.35l48-259.38H271.23L532.5-814.19h7.5l-35.23 303.54h174.65L392-142.35h-8Zm88.5-333.15Z"/></svg></a> 
+       </div>
         <div class="bsmfilogotop">
             <div class="toggle-switch">
                 <div class="offergift">
@@ -1241,25 +1260,6 @@ The interest of us are not fixed, It changes based on amount providers. Check th
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     background: #ffffff1f;"class="serchareicon" src="service-icons/Service_finder_icons.png" alt=""></a>
-
-    <a href="https://mfi0212.github.io/MFI/starpre" style="display: contents;color: white; text-decoration: none; cursor: pointer;">
-                         <button class="applybtn" style="border: none;
-    color: white;
-    background-image: linear-gradient(45deg, rgb(255 169 0), rgb(255 0 198), #5b5bff, #56ffcc);
-    cursor: pointer;
-    border-radius: 100px;
-    filter: saturate(2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;">
-                                    <svg style="opacity: 100%;
-    width: 35px;
-    height: 35px;
-    fill: white;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m435.04-243.96 188.54-237.77H472.85l26.61-225.42-178.54 276.5h147.23l-33.11 186.69ZM384-142.35l48-259.38H271.23L532.5-814.19h7.5l-35.23 303.54h174.65L392-142.35h-8Zm88.5-333.15Z"/></svg>
- </a>
-
     </div>
     <div class="btmoptn">
         <div class="menu">
