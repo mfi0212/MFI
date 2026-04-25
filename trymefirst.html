@@ -596,9 +596,7 @@ filter: saturate(2);
         #stoexplore:active{ transform: scale(0.90); } 
 
         .helper-button, .helper-buttons {
-     font-size: 17px;
-    padding: 7px;
-    border-radius: 60px;
+    
     color: #ffffff;
     font-weight: 500;
     z-index: 1000;
@@ -606,8 +604,9 @@ filter: saturate(2);
     text-decoration: none;
     display: flex;
     justify-content: center;
-    align-items: center;backdrop-filter: blur(5px);
-   box-shadow: inset 0 0 0 1px 
+    align-items: center;
+    backdrop-filter: blur(5px);
+    box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 0.7px 0.5px 0.5px 0.02px 
  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -1px -1px 0.5px -0.7px 
  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px 
@@ -619,11 +618,18 @@ filter: saturate(2);
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     background: #ffffff1f;
+    padding: 10px 15px;
+    border-radius: 9999px;
+    font-size: 16px;
+    color: #e5e5e5;
 }
         a.helper-button {
-width: 43px;
-    backdrop-filter: blur(5px);
-    height: 43px;
+width: 44px;padding: 0%;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 a.helper-button svg{
       fill: #ffffff;
