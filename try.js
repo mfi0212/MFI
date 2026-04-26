@@ -140,11 +140,11 @@ function showRepaymentReminderPopup(reminder) {
     modal.innerHTML = `
         <div class="reminder-content">
             <div class="reminder-header">
-                <button class="reminder-close-btn" title="Close reminder"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z"/></svg></button>
+                <button class="reminder-close-btn" title="Close reminder"><img class="closesymbol" src="service-icons/close_icon.png" alt=""></button>
             </div>
             <img style="width: 100px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/trumpet.gif" alt="">
             <div class="reminder-body">
-                <p>Mr. ${name} you have <strong>${formatMoney(totalAmount)}</strong> to return on <br><strong>${dueDate}</strong>${loansText}. Return before the end date or extra charges will be added.</p>
+                <p>Mr. ${name} you have <strong>${formatMoney(totalAmount)}</strong> to return on <strong>${dueDate}</strong>${loansText}. Return before the end date or extra charges will be added.</p>
             </div>
             <div class="reminder-actions">
                 <button class="reminder-btn delay"  data-action="delay"><a href="https://mfi0212.github.io/swan/offer/solution">Explore Solutions</a></button>
@@ -426,7 +426,8 @@ function displayLoanDetails(loan, index) {
         ${formatMoney(totalPayable)}
     </p>
 </div>
-             <a target="_blank" href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: #ff0000;
+             <a target="_blank" style='position: sticky;
+    bottom: 100px;' href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: #ff0000;
     padding: 8px 15px;
     font-size: 16px;
     transition: all 0.3s ease;
@@ -447,7 +448,7 @@ function displayLoanDetails(loan, index) {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;" class="add-link-btn">I have an issue with my account.!</button></a>
+    border: solid 1px #ffffff00;" class="add-link-btn">I'm facing an issue...!</button></a>
         </div>
     `;
 }
@@ -599,7 +600,7 @@ function renderLoanList() {
     const container = document.getElementById('loans-list-container');
     if (!container) return;
 
-    container.style.transition = 'opacity 0.4s ease';
+    container.style.transition = 'opacity 0.4s ease, all 0.3s ease-in-out';
     container.style.opacity = '0';
 
     setTimeout(() => {
