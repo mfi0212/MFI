@@ -362,6 +362,9 @@ transition: all 0.3s ease;
 .mainexordel  a {
     display: contents;
 }
+.mainexordel button{
+    filter: none;
+}
         .logosection:hover{
               transform: scale(1);
         }
@@ -639,41 +642,35 @@ transition: all 0.3s ease;
     height: 45px;
     transition: all 0.3s ease;
     }
-.calc-btn:hover{
-              background-color: transparent;
-        }
         .calc-btn:active{
               transform: scale(0.90); 
         } 
 
     .modal {
 position: fixed;
-    inset: 0;
-    background: #00000096;
     display: none;
-    align-items: end;
-    justify-content: center;
-    z-index: 10000000000;
-    padding-bottom: 10px;
+    top: 0;
+    z-index: 100000000;
     }
 
     .modal.show {
       display: flex;
+    justify-content: center;
+    align-items: center;
     }
 
     .modal-content {
-    width: 96%;
+    width: 95%;
     max-width: 500px;
-    padding: 30px 25px;
+    padding: 30px 25px 25px 25px;
     text-align: center;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(50px);
     border-radius: 50px;
-    line-height: 29px;
-    font-size: 17px;
+    line-height: 25px;
+    font-size: 15px;
     font-weight: 400;
-    color: #ffffff8a;
-    background: #202020;
-    border: solid 1.5px #ffffff2e;
+    color: black;
+    background: #00000029;
     }
 
     .close {
@@ -757,13 +754,17 @@ position: fixed;
     color: white;
     border: none;
     border-radius: 46px;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 400;
     cursor: pointer;
     margin-top: 10px;
     transition: all 0.3s ease;
     width: 100%;
     margin-bottom: -5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
     }
         
         .btn-calc:hover{
@@ -855,10 +856,10 @@ position: fixed;
                     <h2>Fixed interest</h2> <span>The fixed interest is available only to specific members who claim the offers or gifts. Eligible members will receive this fixed interest for a certain period of time.</span>
                     <div class="mainexordel">
                         <a href="https://mfi0212.github.io/MFI/fixed-interest">
-                            <button class="btn-calc">Explore Now</button>
+                            <button class="btn-calc"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m329.85-329.85 226.89-73.41 73.41-226.89-226.89 73.41-73.41 226.89Zm149.91-112.3q-15.64 0-26.63-11.22-10.98-11.23-10.98-26.87t11.22-26.63q11.23-10.98 26.87-10.98t26.63 11.22q10.98 11.23 10.98 26.87t-11.22 26.63q-11.23 10.98-26.87 10.98Zm.42 316q-73.39 0-138.06-27.89t-112.51-75.69q-47.84-47.81-75.65-112.29-27.81-64.48-27.81-137.8 0-73.39 27.89-138.06t75.69-112.51q47.81-47.84 112.29-75.65 64.48-27.81 137.8-27.81 73.39 0 138.06 27.89t112.51 75.69q47.84 47.8 75.65 112.29 27.81 64.48 27.81 137.8 0 73.39-27.89 138.06t-75.69 112.51q-47.8 47.84-112.29 75.65-64.48 27.81-137.8 27.81Zm-.15-36.93q132.51 0 224.7-92.22 92.19-92.23 92.19-224.73 0-132.51-92.22-224.7-92.23-92.19-224.73-92.19-132.51 0-224.7 92.22-92.19 92.23-92.19 224.73 0 132.51 92.22 224.7 92.23 92.19 224.73 92.19ZM480-480Z"/></svg> Visit</button>
                         </a>
                         <a>
-                            <button class="btn-calc" style=" background: red;" onclick="closeCalc()">Close Now</button>
+                            <button class="btn-calc" style=" background: red;" onclick="closeCalc()"><img class="closesymbol" src="service-icons/close_icon.png" alt="">Close Now</button>
                         </a>
                     </div>
                 </div>
