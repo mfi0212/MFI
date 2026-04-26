@@ -385,17 +385,19 @@ display: flex;
     .site-info {
    flex: 1;
     min-width: 0;
-    padding: 8px 0 8px 0;
-    border-bottom: solid 1px #ffffff45;
     display: flex;
     justify-content: center;
     flex-direction: column;
     margin-right: -15px;
     }
-
+.site-info:last-child{
+  border: none;
+}
     .site-info h3 {
-     font-size: 18px;
-        font-weight: 500;
+         font-size: 18px;
+    font-weight: 500;
+    border-bottom: solid 1px #ffffff45;
+    padding: 8px 0 8px 0;
     }
 
     .site-info p {
