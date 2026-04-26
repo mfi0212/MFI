@@ -359,12 +359,17 @@ padding: 5px;
        .site-item:active{
               transform: scale(0.98); }
 .site-item:hover{
-      opacity: 100%;
+   opacity: 100%;
+    background: rgb(255 255 255 / 8%);
+    border-radius: 10px;
+}
+a.site-item:first-child{
+  border-radius: 25px 25px 10px 10px;
+}
+a.site-item:last-child{
+  border-radius: 10px 10px 25px 25px;
 }
 
-.site-item a:last-child{
-  padding: 10px;
-}
     .letter-icon {
    width: 35px;
     height: 35px;
