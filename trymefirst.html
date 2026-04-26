@@ -865,7 +865,7 @@ position: fixed;
                     <div id="interest-display"></div>
                     <div id="popup-buttons">
                         <button id="popup-cancel"></button>
-                        <button id="popup-apply"><img class="closesymbol" src="service-icons/done_icon.png" alt="">Check interest Now</button>
+                        <button id="popup-apply"><img class="closesymbol" src="service-icons/done_icon.png" alt="">Interest for the amount</button>
                     </div>
                 </div>
             </div>
@@ -984,7 +984,7 @@ position: fixed;
                 popupAmountInput.value = "";
                 interestInput.value = "";
                 interestPercentageInput.value = "";
-                popupApply.textContent = "Check interest Now";
+                popupApply.textContent = "Interest for the amount";
             }
     
             popupAmountInput.addEventListener('input', () => {
@@ -998,12 +998,12 @@ position: fixed;
                     interestDisplay.style.display = "none";
                     interestInput.value = selectedInterest;
                     interestPercentageInput.value = selectedInterestPercentage;
-                    popupApply.textContent = `${selectedInterest} ₹, Next`;
+                    popupApply.textContent = `${selectedInterest} ₹, Ok`;
                 } else {
                     interestDisplay.style.display = "none";
                     interestInput.value = "";
                     interestPercentageInput.value = "";
-                    popupApply.textContent = "Check interest Now";
+                    popupApply.textContent = "Interest for the amount";
                 }
             });
     
