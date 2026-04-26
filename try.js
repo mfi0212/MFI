@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || 'Inr (₹)';
@@ -24,7 +24,7 @@ const usersDB = {
             { planDate: "19-04-2026", endDate: "19-05-2026", interest: 300, takenAmount: 2000, takenFrom: "Lenlink", fineRate: 35 },
         ],
         links: [],
-        emote: "https://i.pinimg.com/originals/bb/c2/a3/bbc2a39b80d283dc936d426be1868e3c.gif"
+        emote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif"
     },
     "0212": {
         name: "Tony Mantana",
@@ -427,7 +427,7 @@ function displayLoanDetails(loan, index) {
     </p>
 </div>
              <a target="_blank" style='position: sticky;
-    bottom: 100px;' href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: #ff0000;
+    bottom: 100px;' href="https://mfi0212.github.io/MFI/abt.hlp"><button style="background-color: #ff0000;
     padding: 8px 15px;
     font-size: 16px;
     transition: all 0.3s ease;
