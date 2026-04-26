@@ -984,7 +984,7 @@ position: fixed;
                 popupAmountInput.value = "";
                 interestInput.value = "";
                 interestPercentageInput.value = "";
-                popupApply.textContent = "Check interest Now";
+                popupApply.textContent = "Apply Now";
             }
     
             popupAmountInput.addEventListener('input', () => {
@@ -998,12 +998,12 @@ position: fixed;
                     interestDisplay.style.display = "none";
                     interestInput.value = selectedInterest;
                     interestPercentageInput.value = selectedInterestPercentage;
-                    popupApply.textContent = `${selectedInterest} ₹, Next`;
+                    popupApply.textContent = `${selectedInterest} ₹, Apply now`;
                 } else {
                     interestDisplay.style.display = "none";
                     interestInput.value = "";
                     interestPercentageInput.value = "";
-                    popupApply.textContent = "Check interest Now";
+                    popupApply.textContent = "Apply Now";
                 }
             });
     
@@ -1243,8 +1243,8 @@ position: fixed;
                     const minutes = now.getMinutes();
                     const timeInMinutes = hours * 60 + minutes;
                     // const startRestriction = 22 * 60 + 30;
-                    // // const endRestriction = 6 * 60;
-                    // const endRestriction = 2 * 60 + 30;
+                    // const endRestriction = 6 * 60; // 6:00 AM
+                    // // const endRestriction = 1 * 60; // 6:00 AM
     
                     const sleepingMessage = document.getElementById("sleeping-message");
                     const form = document.getElementById("form");
