@@ -164,6 +164,13 @@ ease-in-out;z-index: -10;
         .notice{
             transition: all 0.3s ease;
         }
+.notice:hover{
+              transform: scale(1);
+        }
+        .notice:active{
+              transform: scale(0.90); 
+        } 
+
         input[readonly] {
             background-color: #f0f0f0;
             cursor: not-allowed;
@@ -417,9 +424,9 @@ transition: all 0.3s ease;
     color: #000;
 }
         .error-message {
-            color: #ff0000;
+           color: #ff0000;
     font-size: 13px;
-    margin: 15px 0 -5px 0;
+    margin: 5px 0 15px 0;
     display: none;
         }
         input.error {
@@ -739,7 +746,7 @@ position: fixed;
     }
 
     input:focus {
-      background: #00000026;
+      background: #00000038;
     }
 
     .btn-calc {
@@ -820,7 +827,7 @@ position: fixed;
     left: 50%;
     border-radius: 25px;
     transform: translate(-50%, 0);" src="mfi.gif" alt="">
-                    <h3><p class="subtitle">Take Money form</p></h3>
+                    <h3><p class="subtitle">Services Take Money form</p></h3>
                     <span> If you borrow more than the limit of your subscription plan, the standard interest rate associated with your plan will no longer apply. Instead, a higher interest rate will be charged based on the excess amount you borrow..</span> </div>
             
                 </div> 
@@ -864,12 +871,15 @@ position: fixed;
                     <div class="error-message" id="popup-amount-error">Enter a valid amount</div>
                     <div id="interest-display"></div>
                     <div id="popup-buttons">
-                        <button id="popup-cancel"></button>
-                        <button id="popup-apply"><img class="closesymbol" src="service-icons/done_icon.png" alt="">Check interest Now</button>
+                        <button id="popup-cancel">Cancel</button>
+                        <button id="popup-apply"><img class="closesymbol" src="service-icons/done_icon.png" alt="">Apply Now</button>
                     </div>
                 </div>
             </div>
             <form id="form" method="POST">
+                 <div class="info-text">
+                    <button type="button" id="cancel-button">Cancel</button>
+                </div>
                 <a href="">
                     <div class="theme-toggle"> <img style="width: 30px; border-radius: 9px;background-color: transparent;" src="" alt=""> </div>
                 </a>
@@ -1243,8 +1253,8 @@ position: fixed;
                     const minutes = now.getMinutes();
                     const timeInMinutes = hours * 60 + minutes;
                     // const startRestriction = 22 * 60 + 30;
-                    // const endRestriction = 6 * 60; // 6:00 AM
-                    // // const endRestriction = 1 * 60; // 6:00 AM
+                    // // const endRestriction = 6 * 60;
+                    // const endRestriction = 2 * 60 + 30;
     
                     const sleepingMessage = document.getElementById("sleeping-message");
                     const form = document.getElementById("form");
