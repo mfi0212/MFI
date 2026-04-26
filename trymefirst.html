@@ -681,23 +681,21 @@ color: #ffffff99;
 }
 
 #coinSection {
-	  border-radius: 11px;
-    padding: 3px;
+	    border-radius: 99999px;
+    padding: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 3px;
-    font-weight: 900;
+    font-weight: 600;
     font-size: 15px;
     margin-left: 0px;
-    box-shadow: inset 0 5px 0 0 #ffc10000, inset 0 -3px 11px 0 #ffc100bd;
-    transition: all 0.3s ease;
+    box-shadow: inset 0 5px 0 0 #ffc10000, inset 0 -3px 11px 0 #ffc1009e;
     z-index: 1000;
     color: #ffc100;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: solid 1.5px #ffc100bd;
-    background: #ffc20012;
+    border: solid 1.5px #ffc100;
 }
 div#coinSection svg {
  width: 15px;
@@ -1171,21 +1169,20 @@ box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-refle
 }
 
 .reminder-content {
-	border-radius: 35px;
-    
-    width: 100%;
+	border-radius: 45px;
+    width: 97%;
     backdrop-filter: blur(6px);
     max-width: 550px;
     padding: 5px;
-    background: #202020;
+    background: #161616;
     color: #eee;
     position: relative;
     text-align: center;
-    border: solid 1.5px #ffffff1c;
 }
 
 .reminder-content strong {
 	color: #ffaa00;
+        white-space: nowrap;
 }
 
 .reminder-header h2 {
@@ -1200,16 +1197,21 @@ box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-refle
     cursor: pointer;
     font-weight: 100;
     position: absolute;
-    top: 15px;
-    left: 15px;
+    top: 20px;
+    left: 20px;
     width: 43px;
     height: 43px;
-    display: flex;transition: all 0.3s ease;
+    display: flex;
+    transition: all 0.3s ease;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
     padding: 0px;
-    box-shadow: inset 0.6px 0.6px 0px 0.1px #ffffff4a, inset -2px -2.5px 0px -1.8px #ffffff4d;
+    background: rgb(255 255 255 / 6%);
+    color: #fff;
+    border-top: solid 1.5px #ffffff21;
+    border-bottom: solid 1.5px #ffffff21;
+    box-shadow: none;
 }
 .reminder-close-btn svg{
     width: 30px;
@@ -1273,7 +1275,7 @@ display: flex;
     transition: all 0.3s ease;
     width: -webkit-fill-available;
     padding: 5px;
-       background: rgb(255 255 255 / 8%);
+       /* background: rgb(255 255 255 / 8%); */
 }
 
 .nav-item:active {
