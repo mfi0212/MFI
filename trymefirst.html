@@ -391,8 +391,8 @@ p {
 }
 
 #userEmote {
-	width: 40px;
-    height: 40px;
+	width: 43px;
+    height: 43px;
     cursor: pointer;
     border-radius: 100px;
     transition: transform 0.2s;
@@ -410,6 +410,8 @@ p {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     background: #ffffff1f;
+    padding: 5px;
+    filter: none;
 }
 
 
@@ -2502,13 +2504,17 @@ width: 50px;
     <div id="emoteChooser">
         <h3>Choose Your Emote</h3>
         <div class="emote-grid">
-            <div class="emote-grid"> <img class="emote-option" src="https://i.pinimg.com/originals/c6/4e/58/c64e58e0e2745147219d04097c20b026.gif" onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/a0/c7/da/a0c7dae2c0862003bf4dd621f50dcc52.gif"
-                onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/bf/36/76/bf3676d6107b8953decfb33ad16ebf9b.gif" onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
-                onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/bb/c2/a3/bbc2a39b80d283dc936d426be1868e3c.gif" onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_aa7da3b15c7d4a608b87665d33022f30/default/dark/2.0"
-                onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_500ba2d7450c45cf9392be301390e66c/default/dark/2.0" onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/9d/ea/79/9dea79194a3ba97d579f3ddaabbcd35a.gif"
-                onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/1b/e0/05/1be005a1c5defd26fe1256f450ce4522.gif" onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/14/17/73/141773658dd6e47f2b380b1f4884f122.gif"
-                onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/9a/52/11/9a521134306bb6f8cae5d40b625e88c7.gif" onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/15/70/84/157084787880c1ead98ec92332da7094.gif"
-                onclick="setUserEmote(this.src)"> <img class="emote-option" src="https://i.pinimg.com/originals/a5/af/a7/a5afa79a074ee2f393084a7f3f919781.gif" onclick="setUserEmote(this.src)"> </div>
+            <div class="emote-grid"> 
+                <img class="emote-option" src="https://i.pinimg.com/originals/c6/4e/58/c64e58e0e2745147219d04097c20b026.gif" onclick="setUserEmote(this.src)"> 
+                <img class="emote-option" src="https://i.pinimg.com/originals/a0/c7/da/a0c7dae2c0862003bf4dd621f50dcc52.gif"onclick="setUserEmote(this.src)"> 
+                <img class="emote-option" src="https://i.pinimg.com/originals/bf/36/76/bf3676d6107b8953decfb33ad16ebf9b.gif" onclick="setUserEmote(this.src)"> 
+                <img class="emote-option" src="https://i.pinimg.com/originals/bb/c2/a3/bbc2a39b80d283dc936d426be1868e3c.gif" onclick="setUserEmote(this.src)"> 
+                <img class="emote-option" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_aa7da3b15c7d4a608b87665d33022f30/default/dark/2.0"onclick="setUserEmote(this.src)"> 
+                <img class="emote-option" src="https://i.pinimg.com/originals/1b/e0/05/1be005a1c5defd26fe1256f450ce4522.gif" onclick="setUserEmote(this.src)"> 
+                <img class="emote-option" src="https://i.pinimg.com/originals/14/17/73/141773658dd6e47f2b380b1f4884f122.gif"onclick="setUserEmote(this.src)"> 
+                <img class="emote-option" src="https://i.pinimg.com/originals/9a/52/11/9a521134306bb6f8cae5d40b625e88c7.gif" onclick="setUserEmote(this.src)"> 
+                <img class="emote-option" src="https://i.pinimg.com/originals/15/70/84/157084787880c1ead98ec92332da7094.gif"onclick="setUserEmote(this.src)"> 
+                <img class="emote-option" src="https://i.pinimg.com/originals/a5/af/a7/a5afa79a074ee2f393084a7f3f919781.gif" onclick="setUserEmote(this.src)"> </div>
         </div>
         <button onclick="closeEmoteChooser()" style=" margin-bottom: 0px;background-color: red;"><img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close Now</button>
     </div>
