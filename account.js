@@ -1,5 +1,4 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
-
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || 'Inr (₹)';
 let currentUser = null;
@@ -21,10 +20,10 @@ const usersDB = {
             { planDate: "11-01-2026", endDate: "08-05-2026", interest: 1370, takenAmount: 5480, takenFrom: "Golden", fineRate: 40 },
             { planDate: "14-01-2026", endDate: "11-05-2026", interest: 4220, takenAmount: 22813, takenFrom: "Golden", fineRate: 65 },
             { planDate: "14-02-2026", endDate: "13-05-2026", interest: 2500, takenAmount: 10000, takenFrom: "Golden", fineRate: 65 },
-            { planDate: "19-04-2026", endDate: "19-05-2026", interest: 300, takenAmount: 2000, takenFrom: "Lenlink", fineRate: 35 },
+            { planDate: "19-04-2026", endDate: "19-05-2026", interest: 300, takenAmount: 2760, takenFrom: "Lenlink", fineRate: 35 },
         ],
         links: [],
-       emote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif"
+       emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
     },
     "0212": {
         name: "Tony Mantana",
