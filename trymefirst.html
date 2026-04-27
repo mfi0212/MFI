@@ -575,49 +575,50 @@ transition: all 0.3s ease;
             margin-top: 10px;
         }
         #ineligible-message {
-          display: none;
+        display: none;
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
+    width: 98%;
     z-index: 30000000000000;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
     text-align: center;
     padding: 20px;
-    backdrop-filter: blur(25px);
+    backdrop-filter: blur(50px);
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 400;
+    background: #00000029;
+    margin-top: -12px;
         }
         ::placeholder{
             color: #0000007a;
         }
         #ineligible-message p {
-                font-size: 15px;
+         font-size: 18px;
     max-width: 100%;
     font-weight: 500;
-    color: black;
+    color: #000000;
     letter-spacing: 0.5px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     line-height: 25px;
-
         }
         #ineligible-message button {
-           margin-top: 20px;
-    background-color: transparent;
-    color: rgb(0, 0, 0);
+          margin-top: 20px;
+    background-color: #0021ff;
+    color: rgb(255 255 255);
     border: none;
     border-radius: 100px;
     cursor: pointer;
-    width: fit-content;
-    font-weight: 600;
+    width: max-content;
+    font-weight: 400;
     font-size: 16px;
-    padding: 4px 13px;
+    padding: 5px 15px;
+    filter: none;
         }
     </style>
 </head>
@@ -835,16 +836,16 @@ width: 95%;
                 <div class="gamerecom"> <img style="margin-top: -30px; position: absolute; margin-left: -130px; width: 85px;" src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6707965570be866462c0e936_Mask%20group%20(6).webp" alt=""> </div>
             </div>
             <div id="ineligible-message">
-                <p>We found you have not cleared the previous borrowed amount/amounts, Try to clear the amount/amounts that you have taken first.
-                    <br>
-                    <br> Until that's done, you're not able to take any new amounts..!</p>
-                <div class="upp"> <span style=" margin-top: 40px; rotate: 6deg; position: relative; left: 12px; top: 9px;color: blue; font-weight: 700; ">BsRora(Bot)</span> <img width="130px" src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6707a0ea5ddb44cae1dd6b29_clyde_pose_02%201.webp"
-                    alt=""> </div>
-                <button id="ineligible-close">Okay</button>
-                <a href="https://mfi0212.github.io/swan/offer/solution">
-                    <button id="ineligible-close">Buy Limit</button>
-                </a>
-            </div>
+            <p>We found you have not cleared the previous borrowed amount/amounts, Try to clear the amount/amounts that you have taken first.
+                <br>
+                <br> Until that's done, you're not able to take any new amounts..!</p>
+            <div class="upp"> <span style=" margin-top: 40px; rotate: 6deg; position: relative; left: 12px; top: 9px;color: blue; font-weight: 700; ">BsRora(Bot)</span> <img width="130px" src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6707a0ea5ddb44cae1dd6b29_clyde_pose_02%201.webp"
+                alt=""> </div>
+            <button id="ineligible-close"><img class="closesymbol" src="service-icons/done_icon.png" alt="">Okay</button>
+            <a href="https://mfi0212.github.io/swan/offer/solution">
+                <button id="ineligible-close">⚡Buy Limit</button>
+            </a>
+        </div>
             <div id="calcModal" class="modal">
                 <div class="modal-content">
                     <h2>Fixed interest</h2> <span>The fixed interest is available only to specific members who claim the offers or gifts. Eligible members will receive this fixed interest for a certain period of time.</span>
@@ -1246,8 +1247,8 @@ width: 95%;
                     const hours = now.getHours();
                     const minutes = now.getMinutes();
                     const timeInMinutes = hours * 60 + minutes;
-                    // const startRestriction = 22 * 60 + 30;
-                    // // const endRestriction = 6 * 60;
+                    const startRestriction = 22 * 60 + 30;
+                    const endRestriction = 6 * 60;
                     // const endRestriction = 2 * 60 + 30;
     
                     const sleepingMessage = document.getElementById("sleeping-message");
