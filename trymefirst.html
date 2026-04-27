@@ -1,942 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BsLends | Lendlink</title>
-    <link rel="icon" href="mfi.logo.png" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BS&MFI | Turbo</title>
+  <link rel="icon" href="mfi.logo.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-        * {
-            -webkit-tap-highlight-color: transparent;
-            font-family: 'Poppins', sans-serif;
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            scrollbar-width: none;
-        }
-        a{
-          color: white;
-          text-decoration: none;
-        }
-      * {
-  -webkit-tap-highlight-color: transparent;
-}
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&display=swap');
+    
 body {
-  --c-glass: #bbbbbc;
-  --c-light: #fff;
-  --c-dark: #000;
-  
-  --c-content: rgb(255, 255, 255);
-  --c-action: #0052f5;
-  
-  --glass-reflex-dark: 1;
-  --glass-reflex-light: 1;
-  
-  --saturation: 150%;
-  
-  color: var(--c-content);
+	--c-glass: #bbbbbc;
+	--c-light: #fff;
+	--c-dark: #000;
+	--c-content: #224;
+	--c-action: #0052f5;
+	--c-bg: #E8E8E9;
+	--glass-reflex-dark: 1;
+	--glass-reflex-light: 1;
+	--saturation: 150%;
 }
 
 body:has(input[value="dark"]:checked) {
-  --c-glass: #bbbbbc;
-  --c-light: #fff;
-  --c-dark: #000;
-  
-  --c-content: #e1e1e1;
-  --c-action: #03d5ff;
-  
-  --c-bg: #1b1b1d;
+	--c-glass: #bbbbbc;
+	--c-light: #fff;
+	--c-dark: #000;
+	--c-content: #e1e1e1;
+	--c-action: #03d5ff;
+	--c-bg: #1b1b1d;
 }
 
-body:has(input[value="dim"]:checked) {
-  --c-light: #99deff;
-  --c-dark: #20001b;
-  --c-glass: hsl(335 250% 74% / 1);
-  
-  --c-content: #d5dbe2;
-  --c-action: #ff48a9;
-  
-  --c-bg: #152433;
-
-}
-body {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-      
-.loading-overlay {
-    position: fixed;
-    inset: 0;
-    background-color: #00003b;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000000000000;
-    opacity: 1;
-    transition: opacity 0.6s ease;
-}
-
-.servicenmae{
-font-size: 16px;
-    color: #ffffff8f;
-    text-align: center;
-    font-weight: 500;
-}
-.audio-controls {
-    margin: 0;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-}.audio-progress-bar {
-    height: 2px;
-    background: rgba(255, 255, 255, 0);
-    border-radius: 0px;
-    overflow: hidden;
-}.audio-progress-fill {
-    height: 100%;
-    width: 0%;
-    background: rgba(255, 255, 255, 0);
-    border-radius: 6px;
-    transition: width 0.45s ease-out;
-    box-shadow: 0 0 16px #00aaff99;
-}
-.audio-progress-container {
-   line-height: 0;
-    text-align: center;
-    width: 100%;
-}
-div#audioStatus {
-    font-size: 10px;
-    color: #ffffff87;
-}button#muteToggle {
-   border-radius: 100px;
-    border: none;
-    padding: 3px 16px;
-}button#startAudioBtn {
-    background: white;
-    border: none;
-    border-radius: 100px;
-    padding: 10px;
-}
-
-      body {
-        display: block;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #000000;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    letter-spacing: 0.5px;
-    }
-    img{
-      width: 20%;
-    }
-  .top-bar {
-       position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    max-width: 500px;
-    background: linear-gradient(180deg, #000000, transparent 100%);
-    z-index: 998;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 8px 0px 8px;
-    left: 50%;
-    transform: translate(-50%, 0);
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: "Red Hat Display", sans-serif;scrollbar-width: none;
         }
-.job-card p {
-  line-height: 20px;
-    margin: 10px;
-    font-size: 13px;
-    font-weight: 100;
-    color: #ffffffa6;
-    background: rgba(255, 255, 255, 0.06);
-    border-top: solid 1.5px #ffffff0d;
-    border-bottom: solid 1.5px #ffffff0d;
-    border-radius: 25px;
-    padding: 10px 10px 0 10px;
-    width: 100%;
-}
-a {
-    text-decoration: underline;
-    text-underline-position: under;
-    font-weight: 500;
-}.mainoptionbtm {
-  display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 95%;
-    flex-direction: row-reverse;
-}
-.job-card {
-   border-radius: 40px;
-    padding: 20px 15px 5px 15px;
-    margin-bottom: 0px;
-    text-align: center;
-    font-size: 13px;
-    width: 98%;
-    font-weight: 300;
-    transition: all 0.3s ease;
-    filter: saturate(2);
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px 
- color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff26;
-    display: flex;
-    max-width: 525px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    }
-   .helper-button, .helper-buttons {
-      font-size: 17px;
-    padding: 6px 8px;
-    border-radius: 60px;
-    color: #ffffff;
-    font-weight: 500;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    background: rgb(255 255 255 / 6%);
-    border-top: solid 1.5px #ffffff21;
-    border-bottom: solid 1.5px #ffffff21;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}img.audioloadgif {
-   width: 30px;
-    margin-bottom: 20px;
-}
-        .helper-button:active, .helper-buttons:active{
-            transform: scale(0.90); 
-        } 
-.job-card a {
-   font-size: 14px;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff26;
-    padding: 8px;
-    border-radius: 100px;
-    font-weight: 100;
-}
-        .job-card:active{
-            transform: scale(0.90); 
-        } 
-    .job-card span {
-     font-weight: 600;
-    color: #ffdf00;
-    text-decoration: underline 1.5px;
-    text-underline-position: under;
-    text-underline-offset: -3px;
-    }
-
-    .apply-button {
-             bottom: 45px;
-    padding: 8px 20px;
-    color: #000000;
-    border-radius: 50px;
-    font-size: 14px;
-    cursor: pointer;
-    position: fixed;
-    border: none;
-    background: #ffffff26;
-    }
- button:hover{
-  background:  rgba(255, 255, 255, 0.326);
-}
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgb(0 0 0 / 83%);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background: rgb(255 255 255);
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 4px 18px rgb(0 0 0 / 59%);
-    width: 80%;
-    max-width: 300px;
-
-    }
-
-    .modal-content h3 {
-      margin: 10px;
-      color: rgb(0, 0, 0);
-    }
-    .modal-content input {
-      padding: 7px 15px;
-    margin: 10px 0;
-    border: 1px solid #333;
-    border-radius: 4px;
-    background-color: #ffffff;
-    color: #000000;
-    font-size: 15px;
-outline: none;
-    }
-
-    .modal-content input::placeholder {
-      color: #888;
-    }
-
-    .modal-content button {
-      padding: 10px 15px;
-    background-color: #000000;
-    color: #ffffff;
-    border-radius: 6px;
-    font-size: 13px;
-    cursor: pointer;
-    border: none;
-    }
-.bottomloadingopt {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 30px;
-    margin-top: 100px;
-}
-    .message {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #ff2121;
-    font-weight: 600;
-    }
-
-    #accountIcon {
-      font-size: 22px;
-    cursor: pointer;
-    color: #424242;
-    position: fixed;
-    display: contents;
-    }
-.maincontentbottom {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    bottom: 10px;
-    flex-direction: column;
-    gap: 10px;
-}
-        .presave{
-          text-decoration: none;
-    padding: 10px;
-    color: rgb(255, 255, 255);
-    border-radius: 40px;
-    font-size: 15px;
-    width: max-content;
-    text-align: center;
-    transition: all 0.3s ease;
-    filter: saturate(2);
-    background: rgb(255 255 255 / 6%);
-    border-top: solid 1.5px #ffffff21;
-    border-bottom: solid 1.5px #ffffff21;
-        }
-  
-        .presave:active{
-            transform: scale(0.90); 
-        } 
-    @media(max-width: 600px){
-      body {
-        display: block;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: black;
-    color: #000000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    letter-spacing: 0.5px;
-    }
-    img{
-      width: 68%;
-    }
-    }
-    .bottom:hover{
-      text-decoration: underline;
-    }
-   .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #00003b;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1f2a44;
+            margin: 0;
+            padding: 32px;
             display: flex;
-            justify-content: center;
-            align-items: center;
             flex-direction: column;
-            z-index: 1000000000000;
-            opacity: 1;
-            transition: opacity 0.5s ease;
-        }
-
-        .loading-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-         .loading-logo {
-            width: 300px;
-            height: auto;
-        }
-        .loading-dots {
-            display: flex;
-            position: fixed;
-            bottom: 100px;
             align-items: center;
-            justify-content: center;
-        }
-        a{
-            text-decoration: none;
-        }
-       .dot {
-    width: 160px;
-    height: 1.5px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 0px;
-    overflow: hidden;
-    position: relative;
-}
-.dot::before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 100%;
-    background: rgba(255,255,255,0.9);
-    animation: pulse1 1.5s ease-in-out infinite;
-}
-@keyframes pulse1 {
-    0% { width: 0%; opacity: 0; left: 0; }
-    50% { width: 100%; opacity: 1; left: 0; }
-    100% { width: 0%; opacity: 0; left: 100%; }
-}
-  
-.bsmfilogotop{
-text-align: center;
-    z-index: 10000;
-    border-radius: 30px;
-    background: #ffffff1f;
-    padding: 0;
+            min-height: 100vh;
+            letter-spacing: 0.4px;
+        }.blob {
     position: fixed;
-    left: 50%;
-    transform: translate(-50%, 0);
-    backdrop-filter: blur(5px);
-}
-
-        .content h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-.bsmfilogotop {
-    text-align: center;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 63%;
+    animation: float 18s infinite 
+ease-in-out;
+}.blob1 {
+   width: 300px;
+    height: 300px;;
+    top: -10%;
+    right: 0%;
     z-index: 10000;
-    border-radius: 30px;
-    background: #ffffff1f;
-    padding: 3px 5px 3px 3px;
-    position: fixed;
-    left: 50%;
-    transform: translate(-50%, 0);
-    backdrop-filter: blur(5px);
+    background: #0046ff;
 }
-
-.toggle-switch {
-	display: flex;
-    align-items: center;
-    font-size: 13px;
-    color: white;
-    gap: 5px;
-    font-weight: 100;
+.blob2 {
+    width: 300px;
+    height: 300px;
+    background: #00a6ff;
+    bottom: -10%;
+    left: 0%;
 }
-.toggle-switch span {
-  color: white;
-    background: #ffffff26;
-    padding: 3px 5px;
-    border-radius: 26px;
-    font-size: 16px;
-}
-.toggle-switch label {
-	cursor: pointer;
-}
-
-        .switch {
-         position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 16px;
-    margin-left: 15px;
+        * {
+            -webkit-tap-highlight-color: transparent;
         }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgb(255 255 255 / 0%);
-            transition: .4s;
-            border-radius: 34px;
-           box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 3px -2px  color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px  color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border:solid 1px #ffffff14;
+        .header {
+            text-align: center;
+            margin: 40px;
         }
-        .slider:active{
-            transform: scale(0.8);
-        }
-        .slider:before {
-         position: absolute;
-    content: "";
-    height: 20px;
-    width: 33px;
-    left: -7px;
-    bottom: -3.5px;
-    background-color: #ffffff00;
-    transition: .4s;
-    border-radius: 20px;
-    backdrop-filter: blur(1px);
-    border: solid 1.5px #ffffff4f;
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 3px -2px  color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px  color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border:solid 1px #ffffff14;
-        }
-
-        input:checked + .slider {
-            background-color: #ffffff8d;
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-
-        /* Glow container */
-        .edge-glow-container {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-        }
-
-        .edge-glow-container.on {
-            opacity: 1;
-        }
-
-        .edge-glow {
-            position: fixed;
-            opacity: 100%;
-            pointer-events: none;
-        }
-
-        /* Top edge */
-        .edge-glow.top {
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200vw;
-            height: 200px;
-            background: conic-gradient(
-                from 90deg at 50% 100%,
-                #ff0000, #ff7f00, #ffff00, #00ff00,
-                #0000ff, #4b0082, #8b00ff, #ff0000
-            );
-            filter: blur(60px);
-           
-            animation: flow 25s linear infinite;
-        }
-
-        /* Bottom edge */
-        .edge-glow.bottom {
-            bottom: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200vw;
-            height: 200px;
-            background: conic-gradient(
-                from -90deg at 50% 0%,
-                #ff0000, #ff7f00, #ffff00, #00ff00,
-                #0000ff, #4b0082, #8b00ff, #ff0000
-            );
-            filter: blur(60px);
-           
-            animation: flow 30s linear infinite reverse;
-        }
-
-        /* Left edge */
-        .edge-glow.left {
-            left: -100px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 200px;
-            height: 200vh;
-            background: conic-gradient(
-                from 180deg at 100% 50%,
-                #ff0000, #8b00ff, #4b0082, #0000ff,
-                #00ff00, #ffff00, #ff7f00, #ff0000
-            );
-            filter: blur(60px);
-           
-            animation: flow-vertical 28s linear infinite;
-        }
-
-        /* Right edge */
-        .edge-glow.right {
-            right: -100px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 200px;
-            height: 200vh;
-            background: conic-gradient(
-                from 0deg at 0% 50%,
-                #ff0000, #ff7f00, #ffff00, #00ff00,
-                #0000ff, #4b0082, #8b00ff, #ff0000
-            );
-            filter: blur(60px);
-           
-            animation: flow-vertical 32s linear infinite reverse;
-        }
-
-        @keyframes flow {
-            from { transform: translateX(-50%) rotate(0deg); }
-            to { transform: translateX(-50%) rotate(360deg); }
-        }
-
-        @keyframes flow-vertical {
-            from { transform: translateY(-50%) rotate(0deg); }
-            to { transform: translateY(-50%) rotate(360deg); }
-        }
-
-        /* .edge-glow-container.on .top { animation: flow 25s linear infinite, pulse 12s ease-in-out infinite alternate; }
-        .edge-glow-container.on .bottom { animation: flow 30s linear infinite reverse, pulse 12s ease-in-out infinite alternate; }
-        .edge-glow-container.on .left { animation: flow-vertical 28s linear infinite, pulse 12s ease-in-out infinite alternate; }
-        .edge-glow-container.on .right { animation: flow-vertical 32s linear infinite reverse, pulse 12s ease-in-out infinite alternate; } */
-
-        @keyframes pulse {
-            0% { opacity: 0.5; }
-            100% { opacity: 0.8; }
-        }
-    @keyframes color-move {
-        0% { background-position: 100% 0; }
-        100% { background-position: 0 0; }
-    }
-    
-   a.helper-buttons {
-   width: 43px;
-    height: 43px;
-}
-    .option {
-display: flex;
-    gap: 3px;
+        .header h1 {
+          font-size: 28px;
+    font-weight: 600;
+    color: #0021ff;
+    margin: 0;
+    font-family: "Hahmlet", serif;
+    display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 15px;
-    position: fixed;
-    padding: 8px;
-    flex-direction: row;
-    border-radius: 1000px;
+        }
+        .header p {
+                font-size: 16px;
+    color: #000000;
+    margin-top: 0px;
+    max-width: 600px;
+    font-weight: 600;
+        }
+        .container {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+        }
+        .card {
+            background: transparent;
+    border-radius: 40px;
+    padding: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+    z-index: 100000;
+    border: solid 1px #00000029;
+        }
+    
+        .card img {
+           width: 50px;
+    height: 50px;
+    margin: 0px auto 12px;
+    display: block;
+    border-radius: 15px;
+    background: transparent;
+    padding: 6px;
+    border: solid 1.5px #0000004f;
+        }
+        .card h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #0048ff;
+            margin: 0 0 16px;
+            text-align: center;
+            font-family: "Hahmlet", serif;
+        }
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .card ul li {
+           font-size: 14px;
+    color: #0000006b;
+    margin: 8px 0;
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.4;
+    font-weight: 700;
+        }
+        .card ul li::before {
+            content: "•";
+            color: #00aaff;
+            font-size: 16px;
+            margin-right: 8px;
+            line-height: 1.4;
+        }
+        .highlight {
+               font-weight: 600;
+    color: #000000;
+    margin: 0px 5px;
+    display: contents;
+    font-family: "Hahmlet", serif;
+
+        }
+        .badge {
+display: inline-block;
+    background-color: #0048ff30;
+    color: #003eff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 31px;
+        }
+        .offer-badge {
+            background-color: #28a745;
+            color: white;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 8px;
+            margin-right: 5px;
+            display: inline-block;
+        }
+        .discount-text {
+            font-size: 11px;
+            font-weight: bold;
+            color: #0048ff;
+            display: inline-block;
+        }
+        .end-date {
+            position: absolute;
+    top: 23px;
+    right: 10px;
+    font-size: 10px;
+    color: black;
+    background: #ff000036;
+    padding: 3px 10px;
+    border-radius: 6px;
+        }
+        button {
+         padding: 11px;
+    width: 100%;
+    font-size: 17px;
+    border: none;
+    border-radius: 60px;
+    margin: 10px auto 0px;
+    border: none;
+    cursor: pointer;
     transition: all 0.3s ease;
-    filter: saturate(2);
-   background: rgb(255 255 255 / 6%);
-    border-top: solid 1.5px #ffffff21;
-    border-bottom: solid 1.5px #ffffff21;
-  }
-      
-        .option:active{
-            transform: scale(0.90); 
+    letter-spacing: 0.6px;
+    font-weight: 500;
+    border-top: solid 1.5px #ffffff8f;
+    border-bottom: solid 1.5px #ffffff8f;
+        }
+        button:active{
+              transform: scale(0.90); 
         } 
-.option a{
-  display: contents;
-}
-      </style>
+        select, .price-display {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .price-display {
+            background: #f0f8ff;
+            text-align: center;
+            font-weight: bold;
+            color: #0048ff;
+        }
+        .strikethrough {
+            text-decoration: line-through;
+            color: #67728a;
+            margin-right: 8px;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: 16px;
+            }
+            .container {
+                grid-template-columns: 1fr;
+                width: 100%;
+            }
+            .header h1 {
+                font-size: 24px;
+            }
+            .header p {
+                font-size: 14px;
+            }
+            .end-date {
+                font-size: 9px;
+                padding: 3px 6px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <!-- 4-edge glow -->
-    <div class="edge-glow-container" id="glowContainer">
-        <div class="edge-glow top"></div>
-        <div class="edge-glow bottom"></div>
-        <div class="edge-glow left"></div>
-        <div class="edge-glow right"></div>
+     <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+    <div class="header">
+        <h1><svg style="opacity: 100%;
+    width: 35px;
+    height: 35px;
+    fill: #000000;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m435.04-243.96 188.54-237.77H472.85l26.61-225.42-178.54 276.5h147.23l-33.11 186.69ZM384-142.35l48-259.38H271.23L532.5-814.19h7.5l-35.23 303.54h174.65L392-142.35h-8Zm88.5-333.15Z"/></svg> BS&MFI Turbo</h1>
+        <p>Power by BS&MFI</p>
     </div>
-
-
-<div class="loading-overlay" id="loadingOverlay">
-    <div class="servicename" style="position: fixed;
-    top: 10px;
-    font-size: 11px;
-    letter-spacing: 0.5px;
-    background: #ffffff24;
-    padding: 9px;
-    border-radius: 100px;
-    color: #ffffff;
-    font-weight: 300;">
-            BsLends Service
-        </div>
-        <img src="loadinglogo.png" alt="Loading Doughnut" class="loading-logo">
-        
-        <div class="bottomloadingopt">
-            <div class="servicenmae">
-            Welcome to Lendlink
-        </div>
-
-        <button class="start-btn" id="startAudioBtn">Connect Now</button>
-
-        <div class="audio-controls" id="audioControls">
-            <div class="audio-progress-container">
-                <div class="audio-progress-bar">
-                    <div id="audioProgressFill" class="audio-progress-fill"></div>
-                </div>
-                <img class="audioloadgif" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_564995111e604ee1b65d3cfdd94d914f/default/dark/2.0" alt="">
-                <div class="audio-status" id="audioStatus">Waiting for you to start...</div>
-            </div>
-        </div>
-        <button class="mute-btn" id="muteToggle" title="Mute / Unmute">
-                <i class="fas fa-volume-high"></i>
-            </button>
-        <audio id="introAudio" preload="auto">
-            <source src="PlayboiCarti-Not Real.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-        </div>
-    </div>
-
-  <img style="position: fixed; top: 60px; z-index: -1; filter: invert(1);" src="linklogo.png" alt="">
-  
- <div class="maincontentbottom">
-    <a class="presave" style="text-decoration: none;background: #0000cd;filter: none;" href="https://mfi0212.github.io/MFI/applydivert">Take money</a>
-        
-     <div class="job-card">
-    <span style="font-size: 15px;">After filling wait few hours..!</span>
-    <p>To provide the fund, we need to collect the amount first. It takes few hours to arrange the fund, so be patience during this time to get the fund.</p>
-  </div>
-    <a class="presave" href="https://mfi0212.github.io/MFI/rate">To borrow above - 10,000₹</a>
- </div>
-  <div class="bottom" style="position: fixed; top: 15px; left: 15px;">
-    <a href="https://mfi0212.github.io/swan/lndlnk-mid" style="text-decoration: none;color: rgb(255, 255, 255);">
-      <p style="display:none;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    font-size: 13px;
-    text-decoration: underline 1.5px;
-    text-underline-position: under;">Lendlink - Mid</p></a>
- </div>
-     <div class="top-bar">
-        <a class="helper-buttons" href="https://mfi0212.github.io/MFI/imlate" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m352.46-85.39-71.38-120.3-135.54-29.7 13.23-139.53L66.93-480l91.84-105.08-13.23-139.53 135.54-29.7 71.38-120.3L480-820.46l127.54-54.15 71.38 120.3 135.54 29.7-13.23 139.53L893.07-480l-91.84 105.08 13.23 139.53-135.54 29.7-71.38 120.3L480-139.54 352.46-85.39ZM378-162l102-43.23L583.23-162 640-258l110-25.23L740-396l74-84-74-85.23L750-678l-110-24-58-96-102 43.23L376.77-798 320-702l-110 24 10 112.77L146-480l74 84-10 114 110 24 58 96Zm102-318Zm22.92 179.85q9.39-9.39 9.39-22.93T502.92-346q-9.38-9.38-22.92-9.38-13.54 0-22.92 9.38-9.39 9.38-9.39 22.92 0 13.54 9.39 22.93 9.38 9.38 22.92 9.38 13.54 0 22.92-9.38ZM450-436.92h60v-240h-60v240Z"/></svg></a> 
-        <div class="bsmfilogotop">
-            <div class="toggle-switch">
-                <div class="offergift">
-                    <a style="display: flex;" onclick="alert('Welcome to BsLends a service from BS&MFI Services')"> 
-                    <img style="width: 30px;border-radius: 62px;" src="mfi.gif" alt=""></a>
-                </div>
-                <label style="display: none;" class="switch"><input type="checkbox" id="glowToggle"> <span class="slider"></span> </label>
-                <a href="https://mfi0212.github.io/MFI/bsmfi_search"><span>BS&MFI</span></a>
-            </div>
-        </div>
-        <a class="helper-button" href="https://mfi0212.github.io/MFI/abt.hlp" style="position: relative;">Helper</a>
-        </div>
-
-<div class="option">
-    <a href="https://mfi0212.github.io/MFI/accverify"><svg style="width: 20px;
-    height: 20px;" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="#ffffff"><g fill="none" stroke="#ffffff" stroke-width="1.5"><circle cx="12" cy="6" r="4"/><path d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5Z"/></g></svg>
-    <span>My Account</span></a>
-</div>
-  
-  <script>
-    // document.addEventListener('contextmenu', e => e.preventDefault());
-       
-
-       
-    document.addEventListener("DOMContentLoaded", function () {
-        let helperButton = document.querySelector(".helper-button");
-        helperButton.classList.add("animated-border");
-        setTimeout(() => {
-            helperButton.classList.remove("animated-border");
-        }, 10000000);
-    });
     
-    const modal = document.getElementById('passwordModal');
-    const passwordInput = document.getElementById('passwordInput');
-    const messageDiv = document.getElementById('message');
-    const verifyButton = document.getElementById('verifyButton');
+    <div class="container">
+        <div class="card"> 
+            <div class="badge">Mini</div>
+            
+            <!-- <div id="endDateDisplay" class="end-date"></div> -->
+            <img src="https://files.donationalerts.com/uploads/images/2/tb_5000.gif" alt="Normal Plan Icon" aria-label="Normal Plan Icon">
+            <h2 style="display: flex; justify-content: center; align-items: baseline; gap: 10px;">
+                Premium <p style="color: green; font-size: 13px; font-weight: 500;">₹420.00/mon</p>
+            </h2>
+            <ul>
+                <li>Borrow upto : <span class="highlight">40,000</span></li>
+                <li>Borrow limit : <span class="highlight">30 days</span></li>
+                <li>Delay it available: <span class="highlight">Yes</span></li>
+                <li>Delay it upto: <span class="highlight">30 days</span></li>
+                <li>Split half pay available: <span class="highlight">Yes</span></li>
+                <li>Pre-saver available: <span class="highlight">No</span></li>
+                <li>Buy Limit available: <span class="highlight">No</span></li>
+            </ul>
+            <!-- <div id="offerStatus"></div> -->
+            <!-- <select id="monthsSelect">
+                <option value="1">1 Month</option>
+                <option value="3">3 Months</option>
+                <option value="5">5 Months</option>
+                <option value="8">8 Months</option>
+            </select>
+            <div id="priceDisplay" class="price-display">Select duration to see price</div> -->
+          <a href="https://forms.gle/rQKT3RizYfpT9FjM7"><button style="background-image: linear-gradient(45deg, #5b5bff, #00c2ff); color: white;">Take Premium</button></a>
+        </div>
+        <div class="card"> 
+            <div class="badge">Tele</div>
+            
+            <!-- <div id="endDateDisplay" class="end-date"></div> -->
+            
+            <img src="https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif" alt="Normal Plan Icon" aria-label="Normal Plan Icon">
+            <h2 style="display: flex; justify-content: center; align-items: baseline; gap: 10px;">
+                Premium + <p style="color: green; font-size: 13px; font-weight: 500;">₹960.00/mon</p>
+            </h2>
+            <ul>
+                <li>Borrow upto : <span class="highlight">80,000</span></li>
+                <li>Borrow limit : <span class="highlight">60 days</span></li>
+                <li>Delay it available: <span class="highlight">Yes</span></li>
+                <li>Delay it upto: <span class="highlight">60 days</span></li>
+                <li>Split half pay available: <span class="highlight">Yes</span></li>
+                <li>Pre-saver available: <span class="highlight">Yes</span></li>
+                <li>Buy Limit available: <span class="highlight">Yes</span></li>
+            </ul>
+           <a href="https://forms.gle/rQKT3RizYfpT9FjM7"><button style="background-image: linear-gradient(45deg, rgb(255 169 0), rgb(255 0 198), #5b5bff, #00c2ff); color: white;">Take Premium</button></a>
+        
+        </div>
+    </div>
 
-    verifyButton.addEventListener('click', () => {
-        const enteredPassword = passwordInput.value.trim();
-
-        const user = users.find(user => user.password === enteredPassword);
-
-        if (user) {
-            const currentDate = new Date();
-            const currentUTC = new Date(Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()));
-
-            const startDateParts = user.startDate.split("-");
-            const startDateUTC = new Date(Date.UTC(
-                parseInt(startDateParts[0]),
-                parseInt(startDateParts[1]) - 1,
-                parseInt(startDateParts[2])
-            ));
-
-            let daysElapsed = Math.floor((currentUTC - startDateUTC) / (1000 * 60 * 60 * 24));
-            daysElapsed = Math.max(0, daysElapsed);
-
-            const additionalAmount = daysElapsed * user.dailyRate;
-            const totalAmount = user.plan + additionalAmount;
-
-            localStorage.setItem('userDetails', JSON.stringify({
-                name: user.name,
-                plan: user.plan,
-                daysElapsed: daysElapsed,
-                additionalAmount: additionalAmount,
-                totalAmount: totalAmount,
-                takenFor: user.takenFor
-            }));
-
-            setTimeout(() => {
-                window.location.href = "user-details.html";
-            }, 300);
-        } 
-        else {
-            messageDiv.textContent = "Incorrect password. Try again.";
-            messageDiv.style.color = "red";
-        }
-    });
-
-    document.addEventListener("click", () => {
-        const customMenu = document.querySelector(".custom-menu");
-        if (customMenu) customMenu.style.display = "none";
-    });
-    </script>
     <script>
- const container = document.getElementById('glowContainer');
-        const toggle = document.getElementById('glowToggle');
-        const STORAGE_KEY = 'siriEdgeGlowState';
-        const savedState = localStorage.getItem(STORAGE_KEY);
-        let isOn = savedState === 'on';
-        function updateGlow() {
-            if (isOn) {
-                container.classList.add('on');
-            } else {
-                container.classList.remove('on');
-            }
-            toggle.checked = isOn;
-        }
-        toggle.addEventListener('change', function() {
-            isOn = toggle.checked;
-            localStorage.setItem(STORAGE_KEY, isOn ? 'on' : 'off');
-            updateGlow();
-        });
-        updateGlow();
-    </script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-const loadingOverlay = document.getElementById("loadingOverlay");
-const startBtn = document.getElementById("startAudioBtn");
-const audioControls = document.getElementById("audioControls");
-const progressFill = document.getElementById("audioProgressFill");
-const audioStatus = document.getElementById("audioStatus");
-const audio = document.getElementById("introAudio");
-const muteToggle = document.getElementById("muteToggle");
-let stopTime = 0;
-let progressInterval;
-muteToggle?.addEventListener("click", () => {
-    audio.muted = !audio.muted;
-    muteToggle.innerHTML = audio.muted
-        ? '<i class="fas fa-volume-xmark"></i>'
-        : '<i class="fas fa-volume-high"></i>';
+        const startDate = new Date('2025-01-01');
+        const endDate = new Date('2025-12-31');
 
-});
-startBtn?.addEventListener("click", async () => {
-    startBtn.style.display = "none";
-    audioControls.style.display = "flex";
-    try {
-        if (audio.readyState < 1) {
-            await new Promise(resolve => {
-                audio.addEventListener("loadedmetadata", resolve, { once:true });
-            });
+        const basePrice = 450;
+        const discountedPrices = {
+            1: 285, 3: 770, 5: 1153, 8: 1540
+        };
+        const fullPrices = {};
+        for (let i = 1; i <= 8; i++) {
+            fullPrices[i] = basePrice * i;
         }
-        const duration = audio.duration;
-        const minPlay = 0;
-        const maxPlay = Math.min(0, duration);
-        //  const minPlay = 5;
-        // const maxPlay = Math.min(8, duration);
-        stopTime = Math.random() * (maxPlay - minPlay) + minPlay;
-        progressFill.style.width = "0%";
-        audioStatus.textContent = "0% • Loading...";
-        await audio.play();
-        progressInterval = setInterval(() => {
-            let percent = (audio.currentTime / stopTime) * 100;
-            if (percent >= 100 || audio.currentTime >= stopTime) {
-                percent = 100;
-                progressFill.style.width = "100%";
-                audioStatus.textContent = "100% • Complete";
-                audio.pause();
-                audio.currentTime = stopTime;
-                clearInterval(progressInterval);
-                setTimeout(() => {
-                    loadingOverlay?.classList.add("hidden");
-                },500);
+        const monthsSelect = document.getElementById('monthsSelect');
+        const priceDisplay = document.getElementById('priceDisplay');
+        const offerStatus = document.getElementById('offerStatus');
+        const endDateDisplay = document.getElementById('endDateDisplay');
+        function updatePrice() {
+            const now = new Date();
+            const isOfferActive = now >= startDate && now <= endDate;
+
+            if (!isOfferActive) {
+                monthsSelect.style.display = 'none';
+                priceDisplay.style.display = 'none';
+                offerStatus.style.display = 'none';
+                endDateDisplay.style.display = 'none';
                 return;
             }
-            progressFill.style.width = percent + "%";
-            audioStatus.textContent = Math.round(percent) + "% • Loading...";
+            monthsSelect.style.display = 'block';
+            priceDisplay.style.display = 'block';
+            offerStatus.style.display = 'block';
+            endDateDisplay.style.display = 'block';
+            endDateDisplay.textContent = `Ends: ${endDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+            const months = parseInt(monthsSelect.value);
+            const originalTotal = fullPrices[months];
+            const discountedTotal = discountedPrices[months];
+            const monthly = Math.round(discountedTotal / months);
+            const discountPercent = months <= 6 ? 15 : 25;
+            offerStatus.innerHTML = `<div class="offer-badge">Offer Active!</div><span class="discount-text">${discountPercent}% Off</span>`;
+             priceDisplay.innerHTML = `Total amount: <span class="strikethrough">₹${originalTotal}.00</span>₹${discountedTotal}.00`;
+        }
+        monthsSelect.addEventListener('change', updatePrice);
+        updatePrice();
+        document.addEventListener("DOMContentLoaded", () => {
+            const customMenu = document.querySelector(".custom-menu");
 
-        }, 40);
-    } catch(e) {
-        console.error(e);
-        audioStatus.textContent = "Audio blocked";
-    }
-});
-});
-</script>
+            // document.addEventListener("contextmenu", (event) => {
+            //     event.preventDefault();
+            //     if (customMenu) {
+            //         customMenu.style.display = "block";
+            //         customMenu.style.top = `${event.pageY}px`;
+            //         customMenu.style.left = `${event.pageX}px`;
+            //     }
+            // });
+            document.addEventListener("click", () => {
+                if (customMenu) {
+                    customMenu.style.display = "none";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
