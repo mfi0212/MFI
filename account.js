@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || 'Inr (₹)';
@@ -67,7 +67,6 @@ function loadUserData() {
         const saved = savedData[pin];
         if (saved) {
             usersDB[pin].links = saved.links || [];
-            usersDB[pin].emote = saved.emote || usersDB[pin].emote;
             if (saved.purposes) {
                 saved.purposes.forEach((p, i) => {
                     if (usersDB[pin].loans[i]) usersDB[pin].loans[i].purpose = p;
@@ -82,7 +81,6 @@ function saveUserData() {
     for (let pin in usersDB) {
         data[pin] = {
             links: usersDB[pin].links,
-            emote: usersDB[pin].emote,
             purposes: usersDB[pin].loans.map(l => l.purpose || "")
         };
     }
@@ -193,7 +191,7 @@ document.getElementById("submitBtn").onclick = () => {
         filteredLoans = [...user.loans];
 
         document.getElementById("userName").textContent = user.name;
-        document.getElementById("userEmote","userEmote2").src = user.emote;
+        document.getElementById("userEmote").src = user.emote;  
         updateCoinsDisplay();
         renderLinks();
         renderAmountButtons();
@@ -847,14 +845,7 @@ document.getElementById("linkDeleteBtn").onclick = () => {
     document.getElementById("linkConfirmPopup").style.display = "none";
 };
 
-function openEmoteChooser() { document.getElementById("emoteChooser").style.display = "block"; }
-function closeEmoteChooser() { document.getElementById("emoteChooser").style.display = "none"; }
-function setUserEmote(src) {
-    currentUser.emote = src;
-    document.getElementById("userEmote","userEmote2").src = src;
-    saveUserData();
-    closeEmoteChooser();
-}
+
 
 function updateNavActive(view) {
     document.querySelectorAll('.nav-item').forEach(n => {
