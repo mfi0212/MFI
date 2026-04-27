@@ -200,9 +200,13 @@ background: white;
     cursor: pointer;
     box-shadow: none;
     font-size: 11px;
-    margin: 0px; }.notice {
+    margin: 0px; 
+    
+}
+    .notice {
 transition: all 0.3s ease;
-    } .actiontopopt {
+    } 
+    .actiontopopt {
     display: flex;
     align-items: self-start;
     justify-content: space-between;
@@ -435,8 +439,8 @@ transition: all 0.3s ease;
             width: 100%;
             font-weight: 600;
             position: fixed;
-            bottom: 0%;
-            left: 0px;z-index: 1000000000000;
+            top: 0%;
+            left: 0px;z-index: 10000000000000000000;
         }
         #sleeping-message {
             display: none;
@@ -624,19 +628,28 @@ transition: all 0.3s ease;
 </head>
 <body>
    <style>
+    .rghticns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    filter: drop-shadow(1px 0px 4px lightgray);
+    border-radius: 9999px;
+}
     .calc-btn {
      border-radius: 50%;
     color: #000000;
     border: none;
-    font-size: 15px;
-    font-weight: 600;
     cursor: pointer;
-    z-index: 1000000;
-    padding: 10px;
-    width: 45px;
-    height: 45px;
+    width: 43px;
+    height: 43px;
+    background: transparent;
     transition: all 0.3s ease;
+    padding: 10px;
     }
+.calc-btn:hover{
+    background: transparent;
+}
         .calc-btn:active{
               transform: scale(0.90); 
         } 
@@ -801,19 +814,72 @@ width: 95%;
       color: var(--text-light);
       margin-top: 12px;
       text-align: center;
-    }
+    }.top-box {
+  position: fixed;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding:10px 10px 0px 10px;
+        border-radius: 35px;
+    box-shadow: 0 10px 25px rgb(0 0 0 / 5%);
+    transition: 0.4s ease;
+    z-index: 1000;
+    width: 96%;
+    background: #00000029;
+    backdrop-filter: blur(50px);
+    display: flex;
+    flex-direction: column;
+  }
+.mainusesections {
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+  .top-box.show {
+    top: 50px;
+  }
+
+  .money-input {
+    padding: 8px;
+    width: 120px;
+  }
+.money-input:focus{
+    background:white;
+}
+  .convert-btn {
+    padding: 10px;width: fit-content;
+    cursor: pointer;filter: none;
+  }
+
+  .output-text {
+      font-weight: bold;
+    text-align: center;
+    color: white;
+    padding: 5px;
+  }
+
+  .money-icon {
+    cursor: pointer;
+  }
   </style>
 </head>
 
     <body>
         <header>
-           <div class="actiontopopt">
+            <div class="actiontopopt">
                 <button class="secondary" onclick="history.back()">
                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m371.77-481 307.61 307.62q11.85 11.84 12.24 30.15.38 18.31-11.47 30.15-11.84 11.85-30.15 11.85t-30.15-11.85l-303.7-304.46q-13.69-13.69-19.65-30.11-5.96-16.43-5.96-33.35t5.96-33.35q5.96-16.42 19.65-30.11l303.7-303.69q11.84-11.85 29.77-12.23 17.92-.39 29.76 11.46 11.85 11.84 11.85 30.15t-11.85 30.15L371.77-481Z"/></svg>
                 </button>
-                
-                        <button class="calc-btn" onclick="openCalc()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M121-128q-13.54 0-23.27-9.73T88-161q0-13.54 9.73-23.27T121-194h326v-458.38q-25.31-6.16-46-25.7T373.38-726H245.62l98.69 256.54q5.23 12.46 5.96 26.42.73 13.96-2.27 26.66-9 40.76-48.62 62.88-39.61 22.12-78.38 22.12-38.77 0-78.38-22.12Q103-375.62 94-416.38q-3-12.7-2.27-26.66t5.96-26.42L196.38-726H161q-13.54 0-23.27-9.73T128-759q0-13.54 9.73-23.27T161-792h212.38q9.62-33.46 38.39-56.73Q440.54-872 480-872q39.46 0 68.23 23.27Q577-825.46 586.62-792H799q13.54 0 23.27 9.73T832-759q0 13.54-9.73 23.27T799-726h-35.38l98.69 256.54q5.23 12.46 5.96 26.42.73 13.96-2.27 26.66-9 40.76-48.62 62.88-39.61 22.12-78.38 22.12-38.77 0-78.38-22.12Q621-375.62 612-416.38q-3-12.7-2.27-26.66t5.96-26.42L714.38-726H586.62q-6.93 28.38-27.62 47.92-20.69 19.54-46 25.7V-194h326q13.54 0 23.27 9.73T872-161q0 13.54-9.73 23.27T839-128H121Zm557.62-329.38h120.76L739-622.31l-60.38 164.93Zm-518 0h120.76L221-622.31l-60.38 164.93ZM480-712q18.69 0 32.85-14.15Q527-740.31 527-759t-14.15-32.85Q498.69-806 480-806t-32.85 14.15Q433-777.69 433-759t14.15 32.85Q461.31-712 480-712Z"/></svg></button>
-           </div>
+                <div class="rghticns">
+                    <button class="calc-btn" onclick="openCalc()">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" ><path d="M121-128q-13.54 0-23.27-9.73T88-161q0-13.54 9.73-23.27T121-194h326v-458.38q-25.31-6.16-46-25.7T373.38-726H245.62l98.69 256.54q5.23 12.46 5.96 26.42.73 13.96-2.27 26.66-9 40.76-48.62 62.88-39.61 22.12-78.38 22.12-38.77 0-78.38-22.12Q103-375.62 94-416.38q-3-12.7-2.27-26.66t5.96-26.42L196.38-726H161q-13.54 0-23.27-9.73T128-759q0-13.54 9.73-23.27T161-792h212.38q9.62-33.46 38.39-56.73Q440.54-872 480-872q39.46 0 68.23 23.27Q577-825.46 586.62-792H799q13.54 0 23.27 9.73T832-759q0 13.54-9.73 23.27T799-726h-35.38l98.69 256.54q5.23 12.46 5.96 26.42.73 13.96-2.27 26.66-9 40.76-48.62 62.88-39.61 22.12-78.38 22.12-38.77 0-78.38-22.12Q621-375.62 612-416.38q-3-12.7-2.27-26.66t5.96-26.42L714.38-726H586.62q-6.93 28.38-27.62 47.92-20.69 19.54-46 25.7V-194h326q13.54 0 23.27 9.73T872-161q0 13.54-9.73 23.27T839-128H121Zm557.62-329.38h120.76L739-622.31l-60.38 164.93Zm-518 0h120.76L221-622.31l-60.38 164.93ZM480-712q18.69 0 32.85-14.15Q527-740.31 527-759t-14.15-32.85Q498.69-806 480-806t-32.85 14.15Q433-777.69 433-759t14.15 32.85Q461.31-712 480-712Z"/></svg>
+                    </button>
+                    <button class="calc-btn" id="triggerIcon">
+                       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M486-312.31q33.15 0 56.81-15.04 23.65-15.03 23.65-48.65 0-29.31-25.34-46.88-25.35-17.58-89.12-40.97-59.69-21.15-88-51.61-28.31-30.46-28.31-78.54 0-42.69 28.93-76.85 28.92-34.15 79.07-45V-729q0-15.92 10.7-26.61 10.69-10.7 26.61-10.7t26.61 10.7q10.7 10.69 10.7 26.61v13.15q29.23 2 54.04 19.35 24.8 17.35 41.19 42.58 7.46 13.3.5 26.23-6.96 12.92-21.5 19.77-12.92 5.84-26.04 1-13.11-4.85-23.58-16.54-10.53-11.93-25.27-19.08-14.73-7.15-35.65-7.15-34.31 0-53 15.19-18.69 15.19-18.69 40.5 0 26.31 23.19 41.08t85.27 36.31q74 26 97.77 61.3Q640.31-420 640.31-376q0 30.62-9.58 52.73-9.58 22.12-26.65 37.85-17.08 15.73-39.39 25.77-22.31 10.03-48.38 15.5V-231q0 15.92-10.7 26.61-10.69 10.7-26.61 10.7t-26.61-10.7q-10.7-10.69-10.7-26.61v-15.15q-39.84-10-67.34-31.66-27.5-21.65-44.27-56.88-6.85-13.54.42-27.85 7.27-14.31 22.81-20.15 13.92-4.85 27.23.61 13.31 5.47 20.77 18.77 14.54 24.54 36.46 37.77 21.92 13.23 48.23 13.23ZM480-24q-130 0-233.85-63.93-103.84-63.92-159.07-167.23v61.31q0 17.77-12.62 30.39-12.61 12.61-30.38 12.61t-30.39-12.61Q1.08-176.08 1.08-193.85v-163.84q0-20.47 14.34-34.81 14.35-14.35 34.81-14.35h163.85q17.77 0 30.38 12.62 12.62 12.61 12.62 30.38t-12.62 30.39q-12.61 12.61-30.38 12.61h-68.62q44.38 93.39 133.73 152.12Q368.54-110 480-110q138.46 0 242.77-89.08 104.31-89.07 123.85-228.84 2.61-17.54 15.53-29.81Q875.08-470 892.61-470q17.77 0 30 11.58 12.23 11.57 10.62 28.5-9.39 86.38-48.85 160.65Q844.92-195 784.31-140.08q-60.62 54.92-138.77 85.5Q567.38-24 480-24Zm0-826q-136.15 0-241.42 87.73-105.27 87.73-125.2 229.81-2.61 17.54-15.53 30Q84.92-490 67.39-490q-18.16 0-30.2-11.58-12.03-11.57-10.42-28.88 10.15-86.92 49.19-161.39 39.04-74.46 100.16-128.8Q237.23-875 315-905.5 392.77-936 480-936q122.85 0 230.85 62.62 108 62.61 162.07 170.08v-62.85q0-17.77 12.62-30.39 12.61-12.61 30.38-12.61t30.39 12.61q12.61 12.62 12.61 30.39v163.84q0 20.47-14.34 34.81-14.35 14.35-34.81 14.35H745.92q-17.77 0-30.38-12.62-12.62-12.61-12.62-30.38t12.62-30.39q12.61-12.61 30.38-12.61h68.62Q767.31-734 677.27-792 587.23-850 480-850Z"/></svg>
+                    </button>
+                </div>
+            </div>
             <div class="notice">
                 
                 <img style="width: 90px;
@@ -846,6 +912,15 @@ width: 95%;
                 <button id="ineligible-close">⚡Buy Limit</button>
             </a>
         </div>
+
+<!-- POPUP -->
+<div class="top-box" id="converterBox">
+  <div class="mainusesections">
+    <input type="number" class="money-input" id="rupees" placeholder="₹ INR">
+    <button class="convert-btn" onclick="convertMoney()">Convert</button>
+  </div>
+  <div class="output-text" id="usdOutput"></div>
+</div>
             <div id="calcModal" class="modal">
                 <div class="modal-content">
                     <h2>Fixed interest</h2> <span>The fixed interest is available only to specific members who claim the offers or gifts. Eligible members will receive this fixed interest for a certain period of time.</span>
@@ -901,9 +976,9 @@ width: 95%;
                     <div class="radio-group">
                         <!-- <label> <input type="radio" name="Taking in" value="Lendlink" required /> Lendlink [BsLends]</label> <label> <input type="radio" name="Taking in" value="Golden" /> Golden [BsLends]</label> -->
                         <label>
-                            <input type="radio" name="TakingIn" value="Golden" /> Golden (BsLends)</label>
+                            <input type="radio" name="TakingIn" value="Golden" /> Golden</label>
                         <label>
-                            <input type="radio" name="TakingIn" value="Lendlink" /> Lendlink (BsLends)</label>
+                            <input type="radio" name="TakingIn" value="Lendlink" /> Lendlink</label>
                     </div>
                     <div class="error-message" id="taking-in-error">Try to select an option</div>
                 </div>
@@ -1329,6 +1404,20 @@ width: 95%;
             <div class="note">(Power by BsGames)</div>
           `;
         }
+
+         const trigger = document.getElementById("triggerIcon");
+  const box = document.getElementById("converterBox");
+
+  trigger.addEventListener("click", () => {
+    box.classList.toggle("show");
+  });
+
+  function convertMoney() {
+    const inr = document.getElementById("rupees").value;
+    const rate = 83;
+    const usd = (inr / rate).toFixed(2);
+    document.getElementById("usdOutput").innerText = "$ " + usd + " USD";
+  }
         </script>
     </body>
 
