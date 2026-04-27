@@ -24,7 +24,8 @@ const usersDB = {
             { planDate: "19-04-2026", endDate: "19-05-2026", interest: 300, takenAmount: 2000, takenFrom: "Lenlink", fineRate: 35 },
         ],
         links: [],
-        emote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif"
+        emote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif",
+        defaultEmote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif"
     },
     "0212": {
         name: "Tony Mantana",
@@ -193,7 +194,13 @@ document.getElementById("submitBtn").onclick = () => {
         filteredLoans = [...user.loans];
 
         document.getElementById("userName").textContent = user.name;
-        document.getElementById("userEmote","userEmote2").src = user.emote;
+        const emoteImg = document.getElementById("userEmote");
+if (user.emote) {
+  emoteImg.src = user.emote;
+  emoteImg.style.display = "block";
+} else {
+  emoteImg.style.display = "none"; // hide if empty
+}
         updateCoinsDisplay();
         renderLinks();
         renderAmountButtons();
@@ -784,7 +791,7 @@ function showDatePopup(idx) {
         <div class="detailbuttons" style="display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     margin-top: 0px;
     margin-bottom: -10px;">
     <button style="width: 100%;
@@ -853,12 +860,29 @@ document.getElementById("linkDeleteBtn").onclick = () => {
 function openEmoteChooser() { document.getElementById("emoteChooser").style.display = "block"; }
 function closeEmoteChooser() { document.getElementById("emoteChooser").style.display = "none"; }
 function setUserEmote(src) {
-    currentUser.emote = src;
-    document.getElementById("userEmote","userEmote2").src = src;
-    saveUserData();
-    closeEmoteChooser();
-}
+  currentUser.emote = src;
 
+  const emoteImg = document.getElementById("userEmote");
+  emoteImg.src = src;
+  emoteImg.style.display = "block";
+
+  saveUserData();
+  closeEmoteChooser();
+}
+function resetUserEmote() {
+  currentUser.emote = currentUser.defaultEmote || "";
+
+  const emoteImg = document.getElementById("userEmote");
+
+  if (currentUser.emote) {
+    emoteImg.src = currentUser.emote;
+    emoteImg.style.display = "block";
+  } else {
+    emoteImg.style.display = "none";
+  }
+
+  saveUserData();
+}
 function updateNavActive(view) {
     document.querySelectorAll('.nav-item').forEach(n => {
         n.classList.toggle('active', n.dataset.view === view);
