@@ -24,7 +24,7 @@ const usersDB = {
             { planDate: "19-04-2026", endDate: "19-05-2026", interest: 300, takenAmount: 2000, takenFrom: "Lenlink", fineRate: 35 },
         ],
         links: [],
-        emote: "https://i.pinimg.com/originals/bb/c2/a3/bbc2a39b80d283dc936d426be1868e3c.gif"
+       emote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif"
     },
     "0212": {
         name: "Tony Mantana",
