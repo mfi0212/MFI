@@ -1,4 +1,5 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
+
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || 'Inr (₹)';
 let currentUser = null;
@@ -23,7 +24,7 @@ const usersDB = {
             { planDate: "19-04-2026", endDate: "19-05-2026", interest: 300, takenAmount: 2760, takenFrom: "Lenlink", fineRate: 35 },
         ],
         links: [],
-       emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
+       emote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif"
     },
     "0212": {
         name: "Tony Mantana",
