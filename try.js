@@ -343,10 +343,35 @@ function displayLoanDetails(loan, index) {
     top: 250px;
     opacity: 100%;
     z-index: 10000000;
-    padding: 20px 0 0 0;">
+    padding: 20px 0 0 0;filter: drop-shadow(0 0 5px black);">
 
                 <input type="text" class="purpose-input" placeholder="Purpose" value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
             </div>
+
+
+
+<div class="totaldetails">
+    <p style="font-size:60px;
+              font-weight: 600;
+              font-family: 'Anton', sans-serif;
+              letter-spacing: 4.5px;margin: 5px;
+              color: ${overdueFine > 0 
+                        ? '#ff0000' 
+                        : daysLeft <= 2 
+                            ? '#ff0000' 
+                            : daysLeft <= 6 
+                                ? '#ffbf00' 
+                                : '#00d423'};">
+        ${formatMoney(totalPayable)}
+    </p><hr> <h3 style="font-weight: 100;
+    margin: 0 0 30px 0;">
+       Total amount</h3>
+</div><hr>
+
+
+
+
+
            <div class="details">
                 <div class="leftflow">
 <?xml version="1.0" encoding="UTF-8"?>
@@ -408,35 +433,7 @@ function displayLoanDetails(loan, index) {
                         <small>(${Math.abs(daysLeft)} days)</small>
                     </p>` : ''}
             </div>
-
-            <hr>
-            <div class="totaldetails">
-    <svg style='width: 30px;height: 30px;margin-top: 25px;opacity: 80%;' xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
-        <g fill="none" stroke-width="1.5">
-            <path d="M17.414 10.414C18 9.828 18 8.886 18 7c0-1.886 0-2.828-.586-3.414m0 6.828C16.828 11 15.886 11 14 11h-4c-1.886 0-2.828 0-3.414-.586m10.828 0Zm0-6.828C16.828 3 15.886 3 14 3h-4c-1.886 0-2.828 0-3.414.586m10.828 0Zm-10.828 0C6 4.172 6 5.114 6 7c0 1.886 0 2.828.586 3.414m0-6.828Zm0 6.828ZM13 7a1 1 0 1 1-2 0a1 1 0 0 1 2 0Z"/>
-            <path stroke-linecap="round" d="M18 6a3 3 0 0 1-3-3m3 5a3 3 0 0 0-3 3M6 6a3 3 0 0 0 3-3M6 8a3 3 0 0 1 3 3M4 21.388h2.26c1.01 0 2.033.106 3.016.308a14.85 14.85 0 0 0 5.33.118m-.93-3.297c.12-.014.235-.03.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.887 1.887 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075m-5.544-1.229a8.176 8.176 0 0 1-.11.012m.11-.012a.998.998 0 0 0 .427-.24a1.492 1.492 0 0 0 .126-2.134a1.9 1.9 0 0 0-.45-.367c-2.797-1.669-7.15-.398-9.779 1.467m9.676 1.274a.524.524 0 0 1-.11.012m0 0a9.274 9.274 0 0 1-1.814.004"/>
-        </g>
-    </svg>
-    
-    <h3 style="    margin: 10px 0;
-    font-weight: 100;">
-        Total amount to return
-    </h3>
-    
-    <p style="font-size:60px;
-              font-weight: 600;
-              font-family: 'Anton', sans-serif;
-              letter-spacing: 4.5px;
-              color: ${overdueFine > 0 
-                        ? '#ff0000' 
-                        : daysLeft <= 2 
-                            ? '#ff0000' 
-                            : daysLeft <= 6 
-                                ? '#ffbf00' 
-                                : '#00d423'};">
-        ${formatMoney(totalPayable)}
-    </p>
-</div>
+<hr>
              <a target="_blank" style='position: sticky;
     bottom: 90px;' href="https://mfi0212.github.io/MFI/abt.hlp"><button style="background-color: #ff0000;
     padding: 8px 15px;
@@ -445,8 +442,7 @@ function displayLoanDetails(loan, index) {
     left: 50%;
     position: relative;
     transform: translate(-50%, 0%);
-    margin-bottom: 20px;
-    margin-top: 10px;
+    margin: 20px 0 0px 0;
     font-weight: 100;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
@@ -459,7 +455,7 @@ function displayLoanDetails(loan, index) {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;" class="add-link-btn">I'm facing an issue...!</button></a>
+    border: solid 1px #ffffff00;" class="add-link-btn">I'm have an issue...!</button></a>
         </div>
     `;
 }
@@ -712,24 +708,24 @@ function renderCalendar() {
     margin-bottom: 20px;
     margin-top: 5px;
     border-radius: 1008px;
-    padding:  5px 8px;;
+    padding: 7px;
     transition: all 0.3s ease;
     transform: translate(-50%, 0);
-    left: 50%;filter: saturate(2);
+    left: 50%;
+    filter: saturate(2);
     position: relative;
+    background: #0020ff;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px 
+ color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    background: #0020ff;
 ">
 
 <a class="calndarCntnrbtn" href='https://blackswan19.github.io/bscrop/reminder.html'><button>Date Note</button></a>
@@ -748,10 +744,8 @@ function renderCalendar() {
     font-weight: 600;
     padding: 20px;
     margin-top: -10px;
-    border-radius: 40px;
+        border-radius: 40px;
     background: rgba(255, 255, 255, 0.06);
-    border-top: solid 1.5px #ffffff0d;
-    border-bottom: solid 1.5px #ffffff0d;
     border: solid 1.5px #ffffff08;">
         <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`
         ;
