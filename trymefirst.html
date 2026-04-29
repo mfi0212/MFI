@@ -95,7 +95,7 @@ svg {
     text-align: center;
     width: 100%;
     font-weight: 100;
-    outline: none;border: none;
+    outline: none;border: solid 1.5px #ffffff08;
     margin: 25px 0px 10px 0px;
     backdrop-filter: blur(5px);
     filter: drop-shadow(0px 0px 2px black);
@@ -151,7 +151,7 @@ svg {
     backdrop-filter: blur(5px);
     filter: drop-shadow(0px 0px 2px black);
     transition: all 0.3s ease;
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 }
 
 i.fa-solid.fa-arrow-right {
@@ -176,10 +176,10 @@ display: flex;
     left: 50%;
     transform: translate(-50%, 0%);
     max-width: 450px;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(10px);
     z-index: 1;
     filter: saturate(2);
-    background: linear-gradient(180deg, #00000047 10%, transparent);
+    background: linear-gradient(180deg, #000000, transparent);
 }
 #submitBtn:active {
 	transform: scale(0.90);
@@ -259,26 +259,15 @@ p {
 }
 
 .close-btn {
-color: #e0e0e0;
+	color: #e0e0e0;
     cursor: pointer;
     z-index: 11;
     border-radius: 50px;
     display: flex;
     justify-content: center;
-    background: transparent;
-    color: #fff;
-    backdrop-filter: blur(4px) url(#switcher) saturate(var(--saturation));
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px 
- color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+   background: #ffffff1c;
+    color: #fff;    backdrop-filter: blur(10px) url(#switcher) saturate(var(--saturation));
+box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1px 1px 0.5px 0px  color-mix(in srgb, #ffffff36 calc(var(--glass-reflex-light) * 90%), transparent), inset -1px -1px 0.5px 0px  color-mix(in srgb, #ffffff36 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     align-items: center;
     width: 44px;
     height: 44px;
@@ -300,10 +289,21 @@ color: #e0e0e0;
     border-radius: 45px;
     max-height: 280px;
     height: fit-content;
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px 
+ color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    backdrop-filter: blur(10px) url(#switcher) saturate(var(--saturation));
     transform: translate(-50%, 0);
     left: 50%;
-    backdrop-filter: blur(5px);
+    filter: saturate(3);
 }
 
 .scroll {
@@ -346,12 +346,13 @@ color: #e0e0e0;
     justify-content: center;
     gap: 3px;box-shadow: none;
     margin-bottom: 0px;
-   background: transparent;
+   background: #ffffff1c;
+    backdrop-filter: blur(3px);
     text-transform: capitalize;
     padding: 10px 15px;
     font-size: 16px;
-    border-radius: 9999px;
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border-radius: 9999px;    backdrop-filter: blur(10px) url(#switcher) saturate(var(--saturation));
+box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1px 1px 0.5px 0px  color-mix(in srgb, #ffffff36 calc(var(--glass-reflex-light) * 90%), transparent), inset -1px -1px 0.5px 0px  color-mix(in srgb, #ffffff36 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     color: #fff;
     transition: all 0.3s ease;
 }
@@ -398,7 +399,7 @@ color: #e0e0e0;
     filter: none;
     background: #00000000;
     color: #fff;    backdrop-filter: blur(10px) url(#switcher) saturate(var(--saturation));
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1px 1px 0.5px 0px  color-mix(in srgb, #ffffff36 calc(var(--glass-reflex-light) * 90%), transparent), inset -1px -1px 0.5px 0px  color-mix(in srgb, #ffffff36 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 }
 
 
@@ -436,7 +437,7 @@ color: #e0e0e0;
     align-items: center;
     gap: 4px;
     cursor: pointer;
-    background: transparent;
+    background: #ffffff1c;
     transition: all 0.3s ease;
     font-weight: 100;
     border: solid 1.5px #ffffff0f;
@@ -505,8 +506,8 @@ svg.addsiteicon {
     display: flex;
     justify-content: center;
     align-items: center;
-        background: transparent;   backdrop-filter: blur(10px) url(#switcher) saturate(var(--saturation));
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+        background: #ffffff1c;   backdrop-filter: blur(10px) url(#switcher) saturate(var(--saturation));
+box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1px 1px 0.5px 0px  color-mix(in srgb, #ffffff36 calc(var(--glass-reflex-light) * 90%), transparent), inset -1px -1px 0.5px 0px  color-mix(in srgb, #ffffff36 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 }
 div#totalContent {
     line-height: 35px;
@@ -590,7 +591,7 @@ svg.serchareicon {
 }
 
 .amount-btn {
-    color: #e0e0e0;
+color: #e0e0e0;
     border: none;
     border-radius: 9999px;
     padding: 3px 20px;
@@ -604,10 +605,10 @@ svg.serchareicon {
     flex-direction: column;
     transition: all 0.3s ease;
     font-weight: 500;
-    gap: 3px;
-    border: none;
-    background: #ffffff1c;
     box-shadow: none;
+    gap: 3px;border: solid 1.5px #ffffff08;
+    background: #ffffff1c;
+    backdrop-filter: blur(10px);
 }
 .wallettopsection {
   margin: -15px;
@@ -659,9 +660,9 @@ color: #ffffff99;
     width: 33px;
     height: 33px;
     transition: all 0.3s ease;
-    background: transparent;
+    background: #ffffff1c;
      backdrop-filter: blur(10px) url(#switcher) saturate(var(--saturation));
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1px 1px 0.5px 0px  color-mix(in srgb, #ffffff36 calc(var(--glass-reflex-light) * 90%), transparent), inset -1px -1px 0.5px 0px  color-mix(in srgb, #ffffff36 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 }
 
 .total-icon:active {
@@ -816,7 +817,8 @@ button.move-asaid:active {
 }
 
 .graphsays span {
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+	border: solid 1px #ffffff00;
 	border-radius: 7px;
 }
 
@@ -932,7 +934,17 @@ div#loanDetails {
     transition: all 0.3s ease;
     border: solid 1px #ffffff00;
     white-space: nowrap;
-        box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1px 1px 0.5px 0px 
+ color-mix(in srgb, #ffffff36 calc(var(--glass-reflex-light) * 90%), transparent), inset -1px -1px 0.5px 0px 
+ color-mix(in srgb, #ffffff36 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px 
+ color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 }
 
 #totalPopup button {
@@ -1074,7 +1086,7 @@ img.closesymbol {
 }
 
 .purpose-input {
-padding: 3px;
+	padding: 2px;
     color: white;
     font-size: 13px;
     transition: all 0.3s ease;
@@ -1082,10 +1094,10 @@ padding: 3px;
     border-radius: 100px;
     outline: none;
     font-weight: 100;
+    border: solid 1.5px #ffffff0f;
     text-align: center;
     width: 100px;
-    z-index: 100000;
-    border: none;
+    x: 100000;
 }
 
 .purpose-input::placeholder {
@@ -1127,8 +1139,18 @@ padding: 3px;
     background: transparent;
     padding: 5px;
     border-radius: 1000px;
-        box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    backdrop-filter: blur(4px);
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px 
+ color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    backdrop-filter: blur(10px);
     gap: 5px;
     filter: saturate(2);
 }
@@ -1136,7 +1158,7 @@ padding: 3px;
 .sectionoptions {
 	display: flex;
 	gap: 5px;
-        box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 	backdrop-filter: blur(3px);
 	border-radius: 1000px;
 	padding: 5px;
@@ -1194,9 +1216,9 @@ padding: 3px;
     align-items: center;
     border-radius: 50%;
     padding: 0px;
-        background: transparent;
-    color: #fff;
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+        background: #ffffff1c;
+    color: #fff;    backdrop-filter: blur(10px) url(#switcher) saturate(var(--saturation));
+box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1px 1px 0.5px 0px  color-mix(in srgb, #ffffff36 calc(var(--glass-reflex-light) * 90%), transparent), inset -1px -1px 0.5px 0px  color-mix(in srgb, #ffffff36 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     box-shadow: none;
 }
 .reminder-close-btn svg{
@@ -1237,7 +1259,7 @@ padding: 3px;
     transition: all 0.3s ease;
     width: 90%;
     white-space: nowrap;
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 }
 .reminder-btn:active {
 	transform: scale(0.85);
@@ -1262,7 +1284,7 @@ display: flex;
     width: -webkit-fill-available;
     padding: 7px;
     background: #ffffff1c;
-    border: none;
+    border: solid 1.5px #ffffff08;
 }
 
 .nav-item:active {
@@ -1308,7 +1330,7 @@ background: #0020ff;
     margin-top: 35px;
     width: 97%;
     backdrop-filter: blur(10px) url(#switcher) saturate(var(--saturation));
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     transition: all 0.3s ease;
     max-width: 600px;
     left: 50%;
@@ -1383,7 +1405,7 @@ svg#Layer_7 {
     margin-left: auto;
     margin-right: auto;
     background: rgba(255, 255, 255, 0.06);
-    border: none;
+    border: solid 1.5px #ffffff08;
     border-radius: 35px;
 }
 .loan-row {
@@ -1564,7 +1586,7 @@ button {
 	outline: none;
 	border-radius: 13px;
 	margin-bottom: 10px;
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     
 }
 
@@ -1830,7 +1852,7 @@ width: 32px;
     padding: 3px 4px 3px 3px;
     position: fixed;
     top: 20px;
-    border: none;
+    border: solid 1.5px #ffffff08;
 }
 
 .content h1 {
@@ -1879,10 +1901,10 @@ width: 32px;
 	left: 0;
 	right: 0;
 	bottom: 0;
-	    background: transparent;
+	    background: #ffffff1c;
 	transition: .4s;
 	border-radius: 34px;
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 }
 
 .slider:active {
@@ -1901,7 +1923,7 @@ width: 32px;
 	border-radius: 20px;
 	backdrop-filter: blur(1px);
 	border: solid 1.5px #ffffff4f;
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px  color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px  color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 }
 
 input:checked+.slider {
@@ -2092,10 +2114,10 @@ input:checked+.slider:before {
     text-align: start;
     padding: 15px;
     transition: all 0.3s ease;
-    background: #1c1c1c;
+    background: #ffffff1c;
     position: fixed;
     bottom: 25px;
-    border: none;">
+    border: solid 1.5px #ffffff08;">
         <img class="closesymbol" src="service-icons/time_icons@2x.png" alt="">
         <span>You should return the money before the return date, If not additional interest will be charged.</span>
     </div>
