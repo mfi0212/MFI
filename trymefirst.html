@@ -274,8 +274,8 @@ padding-top: 113px;
     bottom: 25px;
     left: 50%;
     transform: translateX(-50%);
-    width: 90%;
-    max-width: 320px;
+   width: 88%;
+    max-width: 350px;
     border-radius: 9999px;
     backdrop-filter: blur(10px);
     display: flex;
@@ -296,6 +296,7 @@ padding-top: 113px;
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    filter: drop-shadow(0px 0px 5px black);
     }
 
     .nav-item {
@@ -306,11 +307,10 @@ padding-top: 113px;
     cursor: pointer;
     padding: 2px 22px;
     border-radius: 9999px;
-    transition: all 0.3s;
     gap: 5px;
-    }
-
-    .nav-item.active {
+    transition: all 0.3s ease;
+}
+        .nav-item:active{ transform: scale(0.90);
       background-color: #0021ff;
       color: white;
     }
@@ -363,8 +363,9 @@ padding-top: 113px;
         <span>Borrow</span>
       </div>
       <div class="nav-item" onclick="window.location.href='https://mfi0212.github.io/MFI/accverify'">
-        <img style="width: 23px;
-    border-radius: 50%;" src="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg" alt=""> 
+        <img style="width: 20px;
+    border-radius: 50%;
+    margin: 2px;" src="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg" alt=""> 
         <span>Account</span>
       </div>
     </div>
