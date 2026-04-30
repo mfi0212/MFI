@@ -1,1 +1,398 @@
-no test...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BS&MFI Services</title>
+  <link rel="icon" href="mfi.logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family: "Red Hat Display", sans-serif; }
+
+    body {
+      background: #000000;
+      color: #ffffff;
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      padding: 12px 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid #222;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .mficolblogo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #0021ff, #00d0ff);
+      padding: 4px;
+    }
+
+    .search-container {
+      position: fixed;
+      top: 68px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 600px;
+      padding: 0 15px;
+      z-index: 90;
+      background: #000;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 14px 20px;
+      font-size: 17px;
+      border: none;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.08);
+      color: white;
+    }
+
+    #searchInput:focus {
+      outline: none;
+      background: rgba(255,255,255,0.15);
+    }
+
+    #sectionsContainer {
+      padding-top: 130px;
+      max-width: 600px;
+      margin: 0 auto;
+      padding-bottom: 20px;
+    }
+
+    .section h2 {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 25px 15px 8px;
+      color: #aaaaaa;
+    }
+
+    .site-list {
+      background: rgba(255,255,255,0.06);
+      border-radius: 20px;
+      margin: 0 10px 15px;
+      overflow: hidden;
+    }
+
+    .site-item {
+      display: flex;
+      align-items: center;
+      padding: 14px 15px;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .site-item:active {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .letter-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    .pin-btn {
+      position: absolute;
+      right: 15px;
+      font-size: 20px;
+      padding: 5px;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .site-item.pinned .pin-btn {
+      color: #00d0ff;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 600px;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid #222;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0 6px;
+      z-index: 200;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #aaa;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .nav-item:hover, .nav-item.active {
+      color: #00d0ff;
+    }
+
+    .nav-item i { font-size: 22px; margin-bottom: 3px; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">
+      <img class="mficolblogo" src="https://github.com/goforbg/telegram-emoji-gifs/blob/master/thunder.gif?raw=true" alt="">
+      <strong>BS&MFI Services</strong>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search services..." autocomplete="off"/>
+  </div>
+
+  <div id="sectionsContainer"></div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <div class="nav-item active"><i class="fas fa-home"></i><span>Home</span></div>
+    <div class="nav-item"><i class="fas fa-thumbtack"></i><span>Pinned</span></div>
+    <div class="nav-item" onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform'">
+      <i class="fas fa-exclamation-triangle"></i><span>Issue</span>
+    </div>
+  </div>
+
+<script>
+// ================== YOUR ORIGINAL DATA ==================
+const siteGroups = [
+  { heading: "Return Management", sites: [
+    { name: "BS&MFI Solutions", desc: "Return date extender", url: "https://mfi0212.github.io/swan/offer/solution" },
+    { name: "BsRora - Atdo", desc: "Return date extender", url: "" }
+  ]},
+  { heading: "New in & issue", sites: [
+    { name: "Enterance Form", desc: "New members form", url: "https://mfi0212.github.io/MFI/entrysheet" },
+    { name: "Helper", desc: "I have issue form", url: "https://mfi0212.github.io/MFI/abt.hlp" }
+  ]},
+  { heading: "Offer & Earns", sites: [
+    { name: "Lendlink-Mid", desc: "Turn your money into income", url: "https://mfi0212.github.io/swan/lndlnk-mid" },
+    { name: "BsGames", desc: "Exclusive rewards and benefits for BS&MFI members.", url: "https://blackswan19.github.io/golden/Bs%20Games/bsgames" },
+    { name: "Stars", desc: "Interest reducer.", url: "https://blackswan19.github.io/golden/FM/starspage" }
+  ]},
+  { heading: "For VIPs Only Services", sites: [
+    { name: "BsMansion", desc: "Store offer to use after", url: "https://mfi0212.github.io/MFI/bsmansion" },
+    { name: "Chloennaouii", desc: "Discover Your Discount", url: "https://mfi0212.github.io/MFI/cholennaouii.main" }
+  ]},
+  { heading: "Services", sites: [
+    { name: "All Services", desc: "All service from BS&MFI", url: "https://blackswan19.github.io/BS/bslends" },
+    { name: "BsLends", desc: "A service from BS&MFI", url: "https://mfi0212.github.io/MFI/rate" },
+    { name: "Myootive", desc: "A service from BS&MFI", url: "https://blackswan19.github.io/golden/FM/themain" },
+    { name: "Vintage Lender(VIPs)", desc: "VIPs only site", url: "" },
+    { name: "Short Term Loan", desc: "Quick amounts for 1 to 15 days.", url: "https://mfi0212.github.io/MFI/1.5.days" }
+  ]},
+  { heading: "Collaboration", sites: [
+    { name: "BsPsgenerater", desc: "Password generator", url: "https://blackswan19.github.io/Educate/password" },
+    { name: "BsReminder", desc: "Date wise notes", url: "https://blackswan19.github.io/bscrop/reminder" },
+    { name: "BsBookpad", desc: "Download the notes", url: "https://blackswan19.github.io/Educate/bookpad" },
+    { name: "BsAdstoper", desc: "Ad blocker", url: "https://blackswan19.github.io/Educate/stoper" }
+  ]}
+];
+
+let pinnedSites = JSON.parse(localStorage.getItem('pinnedBSMFI')) || [];
+
+// Helper Functions
+function getColor(name) {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const hue = Math.abs(hash) % 360;
+  return `hsl(${hue}, 75%, 58%)`;
+}
+
+function getInitial(name) {
+  return name.trim()[0]?.toUpperCase() || "?";
+}
+
+function isPinned(name) {
+  return pinnedSites.some(p => p.name === name);
+}
+
+function togglePin(site) {
+  if (isPinned(site.name)) {
+    // Remove from pinned
+    pinnedSites = pinnedSites.filter(p => p.name !== site.name);
+  } else {
+    // Add to pinned
+    pinnedSites.push(site);
+  }
+  localStorage.setItem('pinnedBSMFI', JSON.stringify(pinnedSites));
+  renderAll();   // Refresh the whole page
+}
+
+// Create Site Item
+function createSiteItem(site) {
+  const a = document.createElement("a");
+  a.href = site.url || "#";
+  a.target = "_parent";
+  a.className = `site-item ${isPinned(site.name) ? 'pinned' : ''}`;
+
+  const bg = getColor(site.name);
+  const initial = getInitial(site.name);
+
+  a.innerHTML = `
+    <div class="letter-icon" style="background: ${bg};">${initial}</div>
+    <div class="site-info">
+      <h3>${site.name}</h3>
+      <p style="font-size:13px; color:#aaa;">${site.desc}</p>
+    </div>
+    <span class="pin-btn" onclick="event.preventDefault(); togglePin(${JSON.stringify(site)})">
+      ${isPinned(site.name) ? '★' : '☆'}
+    </span>
+  `;
+
+  // Long press support
+  let pressTimer;
+  a.addEventListener("touchstart", () => { pressTimer = setTimeout(() => togglePin(site), 650); });
+  a.addEventListener("touchend", () => clearTimeout(pressTimer));
+  a.addEventListener("mousedown", () => { pressTimer = setTimeout(() => togglePin(site), 650); });
+  a.addEventListener("mouseup", () => clearTimeout(pressTimer));
+
+  return a;
+}
+
+// Render Everything
+function renderAll() {
+  const container = document.getElementById("sectionsContainer");
+  container.innerHTML = "";
+
+  // 1. PINNED SECTION (Shows first if any pinned items)
+  if (pinnedSites.length > 0) {
+    const pinnedSection = document.createElement("div");
+    pinnedSection.className = "section";
+
+    const h2 = document.createElement("h2");
+    h2.textContent = "Pinned";
+    pinnedSection.appendChild(h2);
+
+    const list = document.createElement("div");
+    list.className = "site-list";
+
+    pinnedSites.forEach(site => {
+      list.appendChild(createSiteItem(site));
+    });
+
+    pinnedSection.appendChild(list);
+    container.appendChild(pinnedSection);
+  }
+
+  // 2. Original Sections
+  siteGroups.forEach(group => {
+    const section = document.createElement("div");
+    section.className = "section";
+
+    const h2 = document.createElement("h2");
+    h2.textContent = group.heading;
+    section.appendChild(h2);
+
+    const list = document.createElement("div");
+    list.className = "site-list";
+
+    group.sites.forEach(site => {
+      list.appendChild(createSiteItem(site));
+    });
+
+    section.appendChild(list);
+    container.appendChild(section);
+  });
+}
+
+// Search Function
+function renderFiltered(query = "") {
+  const q = query.toLowerCase().trim();
+  if (!q) {
+    renderAll();
+    return;
+  }
+
+  const container = document.getElementById("sectionsContainer");
+  container.innerHTML = "";
+
+  // Search in Pinned
+  if (pinnedSites.length > 0) {
+    const filteredPinned = pinnedSites.filter(s => 
+      s.name.toLowerCase().includes(q) || (s.desc && s.desc.toLowerCase().includes(q))
+    );
+    if (filteredPinned.length > 0) {
+      const sec = document.createElement("div");
+      sec.className = "section";
+      sec.innerHTML = `<h2>Pinned</h2>`;
+      const lst = document.createElement("div");
+      lst.className = "site-list";
+      filteredPinned.forEach(site => lst.appendChild(createSiteItem(site)));
+      sec.appendChild(lst);
+      container.appendChild(sec);
+    }
+  }
+
+  // Search in other groups
+  siteGroups.forEach(group => {
+    const matches = group.sites.filter(s =>
+      s.name.toLowerCase().includes(q) || (s.desc && s.desc.toLowerCase().includes(q))
+    );
+    if (!matches.length) return;
+
+    const section = document.createElement("div");
+    section.className = "section";
+    section.innerHTML = `<h2>${group.heading}</h2>`;
+
+    const list = document.createElement("div");
+    list.className = "site-list";
+    matches.forEach(site => list.appendChild(createSiteItem(site)));
+    section.appendChild(list);
+    container.appendChild(section);
+  });
+}
+
+// Initialize
+renderAll();
+
+document.getElementById("searchInput").addEventListener("input", e => {
+  renderFiltered(e.target.value);
+});
+</script>
+
+</body>
+</html>
