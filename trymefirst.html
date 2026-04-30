@@ -118,7 +118,7 @@ body:has(input[value="dark"]:checked) {
     gap: 10px;
     justify-content: center;
     backdrop-filter: blur(30px);
-    background: linear-gradient(0deg, #0f0f0f 50%, transparent);
+    background: linear-gradient(0deg, #28282859 50%, #000000);
     flex-direction: column;
     }
 strong {
@@ -270,11 +270,11 @@ padding-top: 113px;
     }
 
     .bottom-nav {
-    position: fixed;
+        position: fixed;
     bottom: 25px;
     left: 50%;
     transform: translateX(-50%);
-   width: 88%;
+    width: 88%;
     max-width: 350px;
     border-radius: 9999px;
     backdrop-filter: blur(10px);
@@ -296,7 +296,8 @@ padding-top: 113px;
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    filter: drop-shadow(0px 0px 5px black);
+    filter: drop-shadow(0px 0px 15px black) saturate(1.5);
+
     }
 
     .nav-item {
