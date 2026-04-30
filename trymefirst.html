@@ -333,44 +333,66 @@ padding-top: 113px;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgb(0 0 0 / 59%);
     display: none;
     align-items: end;
-    justify-content: center;
     z-index: 999999999;
     padding-bottom: 20px;
     }
 
     .modal-content {
-          background: #1a1a1c;
+         background: #161616;
     width: 95%;
-    max-width: 340px;
+    max-width: 400px;
     border-radius: 45px;
-    padding: 20px;
+    padding: 0 0 20px 0;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
     }
 
     .modal-content h3 {
-      font-size: 18px;
-      margin-bottom: 8px;
-      color: #fff;
+    letter-spacing: 0px;
+    margin: 10px 0 20px 0;
+    font-weight: 600;
+    font-size: 20px;
     }
 
     .modal-content p {
-      color: #aaaaaa;
-      font-size: 14.5px;
-      line-height: 1.4;
-      margin-bottom: 15px;
-      font-weight: 400;
+      color: white;
+    font-size: 15px;
+    line-height: 40px;
+    margin-bottom: 15px;
+    font-weight: 500;
+    width: 80%;
     }
 strong#modalPageName {
-    font-size: 14.5px;
-    line-height: 1.4;
-    font-weight: 400;    display: contents;
+    color: white;
+    font-size: 15px;
+    line-height: 40px;
+    margin-bottom: 15px;
+    font-weight: 500;    text-transform: lowercase;
+    width: 80%;    display: contents;
+}
+
+.acuntpopup {
+width: 95%;
+    border-radius: 40px 40px 0 0;
+    margin: 8px 0 0 0;
+    padding: 15px 10px 0 10px;
+    background: linear-gradient(180deg, #000000, #161616);
 }
     .modal-actions {
-      display: flex;
-      gap: 12px;
+     display: flex;
+    gap: 10px;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
     }
 
     .modal-btn {
@@ -478,7 +500,10 @@ strong#modalPageName {
 
   <div id="redirectModal">
     <div class="modal-content">
-      <h3 id="modalTitle">Confirm Redirect?</h3>
+       <div class="acuntpopup">
+          <img style="width: 100px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/compass.gif" alt="">
+          <h3 id="modalTitle">Confirm Redirect?</h3>
+       </div>
       <p id="modalMessage">We are redirecting you to <strong id="modalPageName"></strong> page...!</p>
       
        <div class="modal-actions">
