@@ -1,7 +1,7 @@
 const blockedPasswords = ["6275"];
 
 const specialRates = {
-  '2026-13-22': 45
+  '2026-02-01': 29
 };
 
 function getDailyInterestRate() {
