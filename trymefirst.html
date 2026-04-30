@@ -20,24 +20,75 @@
       background: #000000;
       color: #ffffff;
       min-height: 100vh;
-      padding-bottom: 100px;
-      -webkit-tap-highlight-color: transparent;
-      user-select: none;
+      overflow-x: hidden;
+    }
+
+    /* ================== LOADING SCREEN ================== */
+    #loadingScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease;
+    }
+
+    .loader-content {
+      text-align: center;
+    }
+
+    .loader-logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #0021ff, #00d0ff);
+      padding: 6px;
+      animation: pulse 2s infinite ease-in-out;
+      margin-bottom: 20px;
+    }
+
+    .loader-logo img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .loader-text {
+      color: #aaaaaa;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    /* Main Content */
+    #mainContent {
+      opacity: 0;
+      transition: opacity 0.8s ease;
     }
 
     .header {
       position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 600px;
-    z-index: 100;
-    padding: 12px 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #0f0f0f;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 600px;
+      z-index: 100;
+      padding: 12px 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #0f0f0f;
     }
 
     .logo {
@@ -55,15 +106,15 @@
     }
 
     .search-container {
-         position: fixed;
-    top: 68px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 600px;
-    padding: 10px 5px;
-    z-index: 90;
-    background: #0f0f0f;
+      position: fixed;
+      top: 68px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 600px;
+      padding: 10px 5px;
+      z-index: 90;
+      background: #0f0f0f;
     }
 
     #searchInput {
@@ -85,14 +136,14 @@
       padding-top: 135px;
       max-width: 600px;
       margin: 0 auto;
-      padding-bottom: 20px;
+      padding-bottom: 100px;
     }
 
     .section h2 {
       font-size: 15px;
       font-weight: 600;
       margin: 25px 15px 8px;
-      color: #aaaaaa;display: none;
+      color: #aaaaaa;
     }
 
     .site-list {
@@ -109,11 +160,9 @@
       position: relative;
       overflow: hidden;
     }
-.site-item:hover{
-  background: #0f0f0f;
-}
-    .site-item.pinned {
-      background: rgba(255, 255, 255, 0.12) !important; /* Gray highlight */
+
+    .site-item:hover, .site-item.pinned {
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .letter-icon {
@@ -128,7 +177,6 @@
       flex-shrink: 0;
     }
 
-    /* Pin Icon using SVG */
     .pin-icon {
       position: absolute;
       right: -50px;
@@ -181,45 +229,73 @@
 </head>
 <body>
 
-  <!-- Header -->
-  <div class="header">
-    <div class="logo">
-      <img class="mficolblogo" src="https://github.com/goforbg/telegram-emoji-gifs/blob/master/thunder.gif?raw=true" alt="">
-      <strong>BS&MFI Services</strong>
+  <!-- LOADING SCREEN -->
+  <div id="loadingScreen">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <img src="https://github.com/goforbg/telegram-emoji-gifs/blob/master/thunder.gif?raw=true" alt="BS&MFI Logo">
+      </div>
+      <div class="loader-text">Loading BS&MFI Services...</div>
     </div>
   </div>
 
-  <!-- Search -->
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search services..." autocomplete="off"/>
-  </div>
+  <!-- MAIN CONTENT (Hidden initially) -->
+  <div id="mainContent">
 
-  <div id="sectionsContainer"></div>
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">
+        <img class="mficolblogo" src="https://github.com/goforbg/telegram-emoji-gifs/blob/master/thunder.gif?raw=true" alt="">
+        <strong>BS&MFI Services</strong>
+      </div>
+    </div>
 
-  <!-- Bottom Navigation -->
-  <div class="bottom-nav">
-    <div class="nav-item active" id="nav-all" onclick="showAll()">
-      <i class="fas fa-th-large"></i>
-      <span>All</span>
+    <!-- Search -->
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search services..." autocomplete="off"/>
     </div>
-    <div class="nav-item" id="nav-pinned" onclick="showPinnedOnly()">
-      <i class="fas fa-thumbtack"></i>
-      <span>Pinned</span>
-    </div>
-    <div class="nav-item" onclick="window.location.href='https://mfi0212.github.io/MFI/applydivert'">
-      <svg style="width: 28px; height: 24px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
-        <path d="M240.77-190.77Q137.15-220.08 78.96-302T20.77-480q0-96.08 58.19-178t161.81-111.23V-706q-71 24-115.5 86t-44.5 140q0 78 44.5 140t115.5 86v63.23Zm320 10.77q-124.92 0-212.46-87.54T260.77-480q0-124.92 87.54-212.46T560.77-780q60.23 0 113.81 22.31 53.57 22.31 94.88 62.08l-42.15 42.15q-32.62-31.46-74.96-49Q610-720 560.77-720q-100 0-170 70t-70 170q0 100 70 170t170 70q49.23 0 91.58-17.54 42.34-17.54 74.96-49l42.15 42.15q-41.31 39.77-94.88 62.08Q621-180 560.77-180Zm232.31-153.85L750.92-376l74-74H523.08v-60h301.84l-74-74 42.16-42.15L939.23-480 793.08-333.85Z"/>
-      </svg>
-      <span>Borrow</span>
-    </div>
-    <div class="nav-item" onclick="window.location.href='https://mfi0212.github.io/MFI/accverify'">
-      <img style="height: 20px; border-radius: 100px; width: 19px;" src="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg" alt=""> 
-      <span>Account</span>
+
+    <div id="sectionsContainer"></div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <div class="nav-item active" id="nav-all" onclick="showAll()">
+        <i class="fas fa-th-large"></i>
+        <span>All</span>
+      </div>
+      <div class="nav-item" id="nav-pinned" onclick="showPinnedOnly()">
+        <i class="fas fa-thumbtack"></i>
+        <span>Pinned</span>
+      </div>
+      <div class="nav-item" onclick="window.location.href='https://mfi0212.github.io/MFI/applydivert'">
+        <svg style="width: 28px; height: 24px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+          <path d="M240.77-190.77Q137.15-220.08 78.96-302T20.77-480q0-96.08 58.19-178t161.81-111.23V-706q-71 24-115.5 86t-44.5 140q0 78 44.5 140t115.5 86v63.23Zm320 10.77q-124.92 0-212.46-87.54T260.77-480q0-124.92 87.54-212.46T560.77-780q60.23 0 113.81 22.31 53.57 22.31 94.88 62.08l-42.15 42.15q-32.62-31.46-74.96-49Q610-720 560.77-720q-100 0-170 70t-70 170q0 100 70 170t170 70q49.23 0 91.58-17.54 42.34-17.54 74.96-49l42.15 42.15q-41.31 39.77-94.88 62.08Q621-180 560.77-180Zm232.31-153.85L750.92-376l74-74H523.08v-60h301.84l-74-74 42.16-42.15L939.23-480 793.08-333.85Z"/>
+        </svg>
+        <span>Borrow</span>
+      </div>
+      <div class="nav-item" onclick="window.location.href='https://mfi0212.github.io/MFI/accverify'">
+        <img style="height: 20px; border-radius: 100px; width: 19px;" src="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg" alt=""> 
+        <span>Account</span>
+      </div>
     </div>
   </div>
 
 <script>
-// ================== DATA ==================
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const loadingScreen = document.getElementById('loadingScreen');
+    const mainContent = document.getElementById('mainContent');
+
+    loadingScreen.style.opacity = '0';
+
+    setTimeout(() => {
+      loadingScreen.style.display = 'none';
+      mainContent.style.opacity = '1';
+      renderCurrentView();        // Render content after loading
+    }, 600); // Wait for fade out animation
+  }, 2000); // 2 seconds loading time
+});
 const siteGroups = [
   { heading: "Return Management", sites: [
     { name: "BS&MFI Solutions", desc: "Return date extender", url: "https://mfi0212.github.io/swan/offer/solution" },
