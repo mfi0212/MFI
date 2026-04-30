@@ -207,7 +207,9 @@ strong {
         .search-container:active{ transform: scale(0.90); } 
 img.closesymbol {
        width: 35px;
-    margin: -5px;
+    border-radius: 50%;
+    margin: -6px 0;
+    height: 35px;
 }
     #searchInput {
       width: 100%;
@@ -924,8 +926,8 @@ startBtn?.addEventListener("click", async () => {
         }
 
         const duration = audio.duration || 8;
-        const minPlay = 4;
-        const maxPlay = Math.min(7, duration);
+        // const minPlay = 4;
+        // const maxPlay = Math.min(7, duration);
         
         stopTime = Math.random() * (maxPlay - minPlay) + minPlay;
 
