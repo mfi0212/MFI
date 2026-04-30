@@ -9,58 +9,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: "Red Hat Display", sans-serif; }
+    * { 
+      margin:0; 
+      padding:0; 
+      box-sizing:border-box; 
+      font-family: "Red Hat Display", sans-serif; 
+    }
 
     body {
       background: #000000;
       color: #ffffff;
       min-height: 100vh;
-      padding-bottom: 80px;
-    }* {
-            -webkit-tap-highlight-color: transparent;
-        }
-        body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-body:has(input[value="dark"]:checked) {
-  --c-glass: #bbbbbc;
-  --c-light: #fff;
-  --c-dark: #000;
-  
-  --c-content: #e1e1e1;
-  --c-action: #03d5ff;
-  
-  --c-bg: #1b1b1d;
-}
-body {
-  --c-glass: #bbbbbc;
-  --c-light: #fff;
-  --c-dark: #000;
-  
-  --c-content: rgb(255, 255, 255);
-  --c-action: #0052f5;
-  
-  --glass-reflex-dark: 1;
-  --glass-reflex-light: 1;
-  
-  --saturation: 150%;
-  
-  color: var(--c-content);
-}
-body:has(input[value="dim"]:checked) {
-  --c-light: #99deff;
-  --c-dark: #20001b;
-  --c-glass: hsl(335 250% 74% / 1);
-  
-  --c-content: #d5dbe2;
-  --c-action: #ff48a9;
-  
-  --c-bg: #152433;
+      padding-bottom: 100px;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
 
-}
     .header {
       position: fixed;
       top: 0;
@@ -82,7 +46,6 @@ body:has(input[value="dim"]:checked) {
       display: flex;
       align-items: center;
       gap: 8px;
-      flex-shrink: 0;
     }
 
     .mficolblogo {
@@ -131,13 +94,12 @@ body:has(input[value="dim"]:checked) {
       font-size: 15px;
       font-weight: 600;
       margin: 25px 15px 8px;
-      color: #aaaaaa;
+      color: #aaaaaa;display: none;
     }
 
     .site-list {
       background: rgba(255,255,255,0.06);
       border-radius: 20px;
-      margin: 0 10px 15px;
       overflow: hidden;
     }
 
@@ -147,12 +109,13 @@ body:has(input[value="dim"]:checked) {
       padding: 14px 15px;
       color: white;
       text-decoration: none;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
       position: relative;
+      overflow: hidden;
     }
 
-    .site-item:active {
-      background: rgba(255,255,255,0.1);
+    .site-item.pinned {
+      background: rgba(255, 255, 255, 0.12) !important; /* Gray highlight */
     }
 
     .letter-icon {
@@ -166,51 +129,36 @@ body:has(input[value="dim"]:checked) {
       margin-right: 12px;
       flex-shrink: 0;
     }
-.nav-item a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-    .pin-btn {
+
+    /* Pin Icon using SVG */
+    .pin-icon {
       position: absolute;
-      right: 15px;
-      font-size: 20px;
-      padding: 5px;
-      cursor: pointer;
-      color: #666;
+      right: -50px;
+      width: 28px;
+      height: 28px;
+      transition: right 0.4s ease;
+      opacity: 0.9;
     }
 
-    .site-item.pinned .pin-btn {
-      color: #00d0ff;
+    .site-item.show-pin .pin-icon {
+      right: 15px;
     }
 
     .bottom-nav {
-     position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-        width: 45%;
-    max-width: 165px;
-    border-radius: 100px;
-    backdrop-filter: blur(5px);
-    display: flex;
-    justify-content: space-between;
-    padding: 5px;
-    z-index: 200;
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1px 1px 0.5px 0px 
- color-mix(in srgb, #ffffff36 calc(var(--glass-reflex-light) * 90%), transparent), inset -1px -1px 0.5px 0px 
- color-mix(in srgb, #ffffff36 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px 
- color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 85%;
+      max-width: 320px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 10px;
+      z-index: 200;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     .nav-item {
@@ -220,12 +168,14 @@ body:has(input[value="dim"]:checked) {
       color: #ffffff;
       font-size: 11px;
       cursor: pointer;
-    padding: 5px 20px;
-    border-radius: 9999px;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      transition: all 0.3s;
     }
 
-    .nav-item:hover, .nav-item.active {
+    .nav-item.active {
       background-color: #0021ff;
+      color: white;
     }
 
     .nav-item i { font-size: 22px; margin-bottom: 3px; }
@@ -250,22 +200,28 @@ body:has(input[value="dim"]:checked) {
 
   <!-- Bottom Navigation -->
   <div class="bottom-nav">
-    <div class="nav-item"><a onclick="window.location.href='https://mfi0212.github.io/MFI/applydivert'" style="gap: 8px;">
-              <svg style="width: 30px; height: 24px; margin: 0 0 -7px 0;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240.77-190.77Q137.15-220.08 78.96-302T20.77-480q0-96.08 58.19-178t161.81-111.23V-706q-71 24-115.5 86t-44.5 140q0 78 44.5 140t115.5 86v63.23Zm320 10.77q-124.92 0-212.46-87.54T260.77-480q0-124.92 87.54-212.46T560.77-780q60.23 0 113.81 22.31 53.57 22.31 94.88 62.08l-42.15 42.15q-32.62-31.46-74.96-49Q610-720 560.77-720q-100 0-170 70t-70 170q0 100 70 170t170 70q49.23 0 91.58-17.54 42.34-17.54 74.96-49l42.15 42.15q-41.31 39.77-94.88 62.08Q621-180 560.77-180Zm232.31-153.85L750.92-376l74-74H523.08v-60h301.84l-74-74 42.16-42.15L939.23-480 793.08-333.85Z"/></svg>
-               Borrow
-            </a></div>
+    <div class="nav-item active" id="nav-all" onclick="showAll()">
+      <i class="fas fa-th-large"></i>
+      <span>All</span>
+    </div>
+    <div class="nav-item" id="nav-pinned" onclick="showPinnedOnly()">
+      <i class="fas fa-thumbtack"></i>
+      <span>Pinned</span>
+    </div>
+    <div class="nav-item" onclick="window.location.href='https://mfi0212.github.io/MFI/applydivert'">
+      <svg style="width: 28px; height: 24px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+        <path d="M240.77-190.77Q137.15-220.08 78.96-302T20.77-480q0-96.08 58.19-178t161.81-111.23V-706q-71 24-115.5 86t-44.5 140q0 78 44.5 140t115.5 86v63.23Zm320 10.77q-124.92 0-212.46-87.54T260.77-480q0-124.92 87.54-212.46T560.77-780q60.23 0 113.81 22.31 53.57 22.31 94.88 62.08l-42.15 42.15q-32.62-31.46-74.96-49Q610-720 560.77-720q-100 0-170 70t-70 170q0 100 70 170t170 70q49.23 0 91.58-17.54 42.34-17.54 74.96-49l42.15 42.15q-41.31 39.77-94.88 62.08Q621-180 560.77-180Zm232.31-153.85L750.92-376l74-74H523.08v-60h301.84l-74-74 42.16-42.15L939.23-480 793.08-333.85Z"/>
+      </svg>
+      <span>Borrow</span>
+    </div>
     <div class="nav-item" onclick="window.location.href='https://mfi0212.github.io/MFI/accverify'">
-      <a onclick="showContent('content-account', this)">
-                <img style="height: 20px;
-    border-radius: 100px;
-    width: 19px;" src="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg" alt=""> 
-                Account
-            </a>
+      <img style="height: 20px; border-radius: 100px; width: 19px;" src="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg" alt=""> 
+      <span>Account</span>
     </div>
   </div>
 
 <script>
-// ================== YOUR ORIGINAL DATA ==================
+// ================== DATA ==================
 const siteGroups = [
   { heading: "Return Management", sites: [
     { name: "BS&MFI Solutions", desc: "Return date extender", url: "https://mfi0212.github.io/swan/offer/solution" },
@@ -300,6 +256,7 @@ const siteGroups = [
 ];
 
 let pinnedSites = JSON.parse(localStorage.getItem('pinnedBSMFI')) || [];
+let currentView = 'all';
 
 // Helper Functions
 function getColor(name) {
@@ -321,17 +278,23 @@ function isPinned(name) {
 
 function togglePin(site) {
   if (isPinned(site.name)) {
-    // Remove from pinned
     pinnedSites = pinnedSites.filter(p => p.name !== site.name);
   } else {
-    // Add to pinned
     pinnedSites.push(site);
   }
   localStorage.setItem('pinnedBSMFI', JSON.stringify(pinnedSites));
-  renderAll();   // Refresh the whole page
+  renderCurrentView();
 }
 
-// Create Site Item
+// SVG Pin Icon
+const pinSVG = `
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M15 4.5L18 7.5L12 13.5L9 10.5L15 4.5Z"/>
+  <path d="M21 21L15 15"/>
+  <path d="M9 9L3 3"/>
+</svg>`;
+
+// Create Site Item with Drag to Pin
 function createSiteItem(site) {
   const a = document.createElement("a");
   a.href = site.url || "#";
@@ -347,119 +310,123 @@ function createSiteItem(site) {
       <h3>${site.name}</h3>
       <p style="font-size:13px; color:#aaa;">${site.desc}</p>
     </div>
-    <span class="pin-btn" onclick="event.preventDefault(); togglePin(${JSON.stringify(site)})">
-      ${isPinned(site.name) ? '★' : '☆'}
-    </span>
+    <div class="pin-icon">${pinSVG}</div>
   `;
 
-  // Long press support
-  let pressTimer;
-  a.addEventListener("touchstart", () => { pressTimer = setTimeout(() => togglePin(site), 650); });
-  a.addEventListener("touchend", () => clearTimeout(pressTimer));
-  a.addEventListener("mousedown", () => { pressTimer = setTimeout(() => togglePin(site), 650); });
-  a.addEventListener("mouseup", () => clearTimeout(pressTimer));
+  let startX = 0;
+
+  // Touch Events for Drag/Swipe
+  a.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    a.classList.remove("show-pin");
+  });
+
+  a.addEventListener("touchmove", (e) => {
+    const currentX = e.touches[0].clientX;
+    const diff = startX - currentX;
+
+    if (diff > 80) {  // Drag left more than 80px
+      a.classList.add("show-pin");
+    }
+  });
+
+  a.addEventListener("touchend", (e) => {
+    const currentX = e.changedTouches[0].clientX;
+    const diff = startX - currentX;
+
+    if (diff > 100) {  // Strong drag left → Pin the item
+      togglePin(site);
+    } else {
+      // Hide pin icon if not dragged enough
+      setTimeout(() => a.classList.remove("show-pin"), 300);
+    }
+  });
+
+  // Click on item (but not on pin area)
+  a.addEventListener("click", (e) => {
+    if (e.target.closest('.pin-icon')) {
+      e.preventDefault();
+      togglePin(site);
+    } else {
+      setTimeout(() => a.classList.remove("show-pin"), 200);
+    }
+  });
 
   return a;
 }
 
-// Render Everything
-function renderAll() {
+// Render Current View
+function renderCurrentView() {
   const container = document.getElementById("sectionsContainer");
   container.innerHTML = "";
 
-  // 1. PINNED SECTION (Shows first if any pinned items)
+  if (currentView === 'pinned') {
+    if (pinnedSites.length === 0) {
+      container.innerHTML = `
+        <div style="text-align:center; padding:80px 20px; color:#666;">
+          <h2>No Pinned Services</h2>
+          <p>Drag left on any service to pin it.</p>
+        </div>`;
+      return;
+    }
+
+    const section = document.createElement("div");
+    section.className = "section";
+    section.innerHTML = `<h2>Pinned Services</h2>`;
+    const list = document.createElement("div");
+    list.className = "site-list";
+    pinnedSites.forEach(site => list.appendChild(createSiteItem(site)));
+    section.appendChild(list);
+    container.appendChild(section);
+    return;
+  }
+
+  // All Services View
   if (pinnedSites.length > 0) {
     const pinnedSection = document.createElement("div");
     pinnedSection.className = "section";
-
-    const h2 = document.createElement("h2");
-    h2.textContent = "Pinned";
-    pinnedSection.appendChild(h2);
-
+    pinnedSection.innerHTML = `<h2>Pinned</h2>`;
     const list = document.createElement("div");
     list.className = "site-list";
-
-    pinnedSites.forEach(site => {
-      list.appendChild(createSiteItem(site));
-    });
-
+    pinnedSites.forEach(site => list.appendChild(createSiteItem(site)));
     pinnedSection.appendChild(list);
     container.appendChild(pinnedSection);
   }
 
-  // 2. Original Sections
   siteGroups.forEach(group => {
-    const section = document.createElement("div");
-    section.className = "section";
-
-    const h2 = document.createElement("h2");
-    h2.textContent = group.heading;
-    section.appendChild(h2);
-
-    const list = document.createElement("div");
-    list.className = "site-list";
-
-    group.sites.forEach(site => {
-      list.appendChild(createSiteItem(site));
-    });
-
-    section.appendChild(list);
-    container.appendChild(section);
-  });
-}
-
-// Search Function
-function renderFiltered(query = "") {
-  const q = query.toLowerCase().trim();
-  if (!q) {
-    renderAll();
-    return;
-  }
-
-  const container = document.getElementById("sectionsContainer");
-  container.innerHTML = "";
-
-  // Search in Pinned
-  if (pinnedSites.length > 0) {
-    const filteredPinned = pinnedSites.filter(s => 
-      s.name.toLowerCase().includes(q) || (s.desc && s.desc.toLowerCase().includes(q))
-    );
-    if (filteredPinned.length > 0) {
-      const sec = document.createElement("div");
-      sec.className = "section";
-      sec.innerHTML = `<h2>Pinned</h2>`;
-      const lst = document.createElement("div");
-      lst.className = "site-list";
-      filteredPinned.forEach(site => lst.appendChild(createSiteItem(site)));
-      sec.appendChild(lst);
-      container.appendChild(sec);
-    }
-  }
-
-  // Search in other groups
-  siteGroups.forEach(group => {
-    const matches = group.sites.filter(s =>
-      s.name.toLowerCase().includes(q) || (s.desc && s.desc.toLowerCase().includes(q))
-    );
-    if (!matches.length) return;
-
     const section = document.createElement("div");
     section.className = "section";
     section.innerHTML = `<h2>${group.heading}</h2>`;
 
     const list = document.createElement("div");
     list.className = "site-list";
-    matches.forEach(site => list.appendChild(createSiteItem(site)));
+    group.sites.forEach(site => list.appendChild(createSiteItem(site)));
     section.appendChild(list);
     container.appendChild(section);
   });
 }
 
-// Initialize
-renderAll();
+function showAll() {
+  currentView = 'all';
+  document.getElementById('nav-all').classList.add('active');
+  document.getElementById('nav-pinned').classList.remove('active');
+  renderCurrentView();
+}
 
-document.getElementById("searchInput").addEventListener("input", e => {
-  renderFiltered(e.target.value);
+function showPinnedOnly() {
+  currentView = 'pinned';
+  document.getElementById('nav-all').classList.remove('active');
+  document.getElementById('nav-pinned').classList.add('active');
+  renderCurrentView();
+}
+
+// Initialize
+renderCurrentView();
+
+document.getElementById("searchInput").addEventListener("input", (e) => {
+  if (!e.target.value.trim()) {
+    renderCurrentView();
+  }
 });
 </script>
 
