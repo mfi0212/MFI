@@ -43,7 +43,15 @@ body:has(input[value="dark"]:checked) {
 	--c-action: #03d5ff;
 	--c-bg: #1b1b1d;
 }
-
+* {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
     #loadingScreen {
       position: fixed;
       top: 0;
