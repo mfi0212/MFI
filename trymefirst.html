@@ -292,7 +292,7 @@ const pinSVG = `
   <path d="M9 9L3 3"/>
 </svg>`;
 
-// Create Site Item with Drag to Pin
+// Create Site Item
 function createSiteItem(site) {
   const a = document.createElement("a");
   a.href = site.url || "#";
@@ -313,7 +313,6 @@ function createSiteItem(site) {
 
   let startX = 0;
 
-  // Touch Events for Drag/Swipe
   a.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
     a.classList.remove("show-pin");
@@ -322,8 +321,7 @@ function createSiteItem(site) {
   a.addEventListener("touchmove", (e) => {
     const currentX = e.touches[0].clientX;
     const diff = startX - currentX;
-
-    if (diff > 80) {  // Drag left more than 80px
+    if (diff > 80) {
       a.classList.add("show-pin");
     }
   });
@@ -332,15 +330,13 @@ function createSiteItem(site) {
     const currentX = e.changedTouches[0].clientX;
     const diff = startX - currentX;
 
-    if (diff > 100) {  // Strong drag left → Pin the item
+    if (diff > 100) {
       togglePin(site);
     } else {
-      // Hide pin icon if not dragged enough
       setTimeout(() => a.classList.remove("show-pin"), 300);
     }
   });
 
-  // Click on item (but not on pin area)
   a.addEventListener("click", (e) => {
     if (e.target.closest('.pin-icon')) {
       e.preventDefault();
@@ -353,7 +349,7 @@ function createSiteItem(site) {
   return a;
 }
 
-// Render Current View
+// Render Current View - MAIN FIX HERE
 function renderCurrentView() {
   const container = document.getElementById("sectionsContainer");
   container.innerHTML = "";
@@ -363,7 +359,7 @@ function renderCurrentView() {
       container.innerHTML = `
         <div style="text-align:center; padding:80px 20px; color:#666;">
           <h2>No Pinned Services</h2>
-          <p>Drag left on any service to pin it.</p>
+          <p>Swipe left on any service to pin it.</p>
         </div>`;
       return;
     }
@@ -379,7 +375,10 @@ function renderCurrentView() {
     return;
   }
 
-  // All Services View
+  // === ALL SERVICES VIEW (with pinned items removed) ===
+  const pinnedNames = new Set(pinnedSites.map(s => s.name));
+
+  // Show Pinned Section at top if any
   if (pinnedSites.length > 0) {
     const pinnedSection = document.createElement("div");
     pinnedSection.className = "section";
@@ -391,14 +390,19 @@ function renderCurrentView() {
     container.appendChild(pinnedSection);
   }
 
+  // Show other sections but exclude pinned items
   siteGroups.forEach(group => {
+    const filteredSites = group.sites.filter(site => !pinnedNames.has(site.name));
+
+    if (filteredSites.length === 0) return; // Skip empty sections
+
     const section = document.createElement("div");
     section.className = "section";
     section.innerHTML = `<h2>${group.heading}</h2>`;
 
     const list = document.createElement("div");
     list.className = "site-list";
-    group.sites.forEach(site => list.appendChild(createSiteItem(site)));
+    filteredSites.forEach(site => list.appendChild(createSiteItem(site)));
     section.appendChild(list);
     container.appendChild(section);
   });
@@ -421,9 +425,44 @@ function showPinnedOnly() {
 // Initialize
 renderCurrentView();
 
+// Search functionality (basic version)
 document.getElementById("searchInput").addEventListener("input", (e) => {
-  if (!e.target.value.trim()) {
+  const term = e.target.value.toLowerCase().trim();
+  
+  if (!term) {
     renderCurrentView();
+    return;
+  }
+
+  const container = document.getElementById("sectionsContainer");
+  container.innerHTML = "";
+
+  let foundAny = false;
+
+  siteGroups.forEach(group => {
+    const filteredSites = group.sites.filter(site => 
+      site.name.toLowerCase().includes(term) || 
+      site.desc.toLowerCase().includes(term)
+    );
+
+    if (filteredSites.length === 0) return;
+
+    foundAny = true;
+    const section = document.createElement("div");
+    section.className = "section";
+    section.innerHTML = `<h2>${group.heading}</h2>`;
+
+    const list = document.createElement("div");
+    list.className = "site-list";
+    filteredSites.forEach(site => list.appendChild(createSiteItem(site)));
+    section.appendChild(list);
+    container.appendChild(section);
+  });
+
+  if (!foundAny) {
+    container.innerHTML = `<div style="text-align:center; padding:60px 20px; color:#666;">
+      <p>No services found for "<strong>${term}</strong>"</p>
+    </div>`;
   }
 });
 </script>
