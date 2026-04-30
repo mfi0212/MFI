@@ -78,23 +78,26 @@
 
     .header {
       position: fixed;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 600px;
-      z-index: 100;
-      padding: 12px 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: #0f0f0f;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 600px;
+    z-index: 100;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #0f0f0f;
+    justify-content: center;
     }
 
     .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: row-reverse;
     }
 
     .mficolblogo {
@@ -116,7 +119,11 @@
       z-index: 90;
       background: #0f0f0f;
     }
-
+img.closesymbol {
+    width: 35px;
+    height: 35px;
+    margin: -5px;
+}
     #searchInput {
       width: 100%;
       padding: 14px 20px;
@@ -178,14 +185,21 @@
     }
 
     .pin-icon {
-      position: absolute;
-      right: -50px;
-      width: 28px;
-      height: 28px;
-      transition: right 0.4s ease;
-      opacity: 0.9;
+     position: absolute;
+    right: -50px;
+    width: 40px;
+    height: 40px;
+    transition: right 0.4s ease;
+    background: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
     }
-
+.pin-icon svg {
+    width: 35px;
+    height: 35px;
+}
     .site-item.show-pin .pin-icon {
       right: 15px;
     }
@@ -260,7 +274,7 @@
     <!-- Bottom Navigation -->
     <div class="bottom-nav">
       <div class="nav-item active" id="nav-all" onclick="showAll()">
-        <i class="fas fa-th-large"></i>
+        <img class="closesymbol" src="service-icons/details_icon.png" alt="">
         <span>All</span>
       </div>
       <div class="nav-item" id="nav-pinned" onclick="showPinnedOnly()">
@@ -362,11 +376,7 @@ function togglePin(site) {
 
 // SVG Pin Icon
 const pinSVG = `
-<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M15 4.5L18 7.5L12 13.5L9 10.5L15 4.5Z"/>
-  <path d="M21 21L15 15"/>
-  <path d="M9 9L3 3"/>
-</svg>`;
+<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M378.46-80v-119.23H200l280-300 280 300H581.54V-80H378.46Zm40-39.23h123.08v-120h125.84L480-439.23l-187.38 200h125.84v120ZM200-389.23l280-300 280 300h-54.69L480-630 254.69-389.23H200Zm0-190 280-300 280 300h-54.69L480-820 254.69-579.23H200Zm280 340Z"/></svg>`;
 
 // Create Site Item
 function createSiteItem(site) {
