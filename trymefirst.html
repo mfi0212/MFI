@@ -58,7 +58,7 @@ body:has(input[value="dark"]:checked) {
       left: 0;
       width: 100%;
       height: 100vh;
-      background: #000000;
+      background: #00003b;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -68,16 +68,16 @@ body:has(input[value="dark"]:checked) {
 
     .loader-content {
       text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
     }
 
     .loader-logo {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: linear-gradient(45deg, #0021ff, #00d0ff);
-      padding: 6px;
-      animation: pulse 2s infinite ease-in-out;
-      margin-bottom: 20px;
+      width: 290px;
+    height: 90px;
     }
 
     .loader-logo img {
@@ -326,9 +326,9 @@ padding-top: 113px;
   <div id="loadingScreen">
     <div class="loader-content">
       <div class="loader-logo">
-        <img src="https://github.com/goforbg/telegram-emoji-gifs/blob/master/thunder.gif?raw=true" alt="BS&MFI Logo">
+        <img src="loadinglogo.png" alt="Loading Doughnut" class="loading-logo">
       </div>
-      <div class="loader-text">Loading BS&MFI Services...</div>
+      <div class="loader-text">Loading...</div>
     </div>
   </div>
 
@@ -385,9 +385,9 @@ window.addEventListener('load', () => {
     setTimeout(() => {
       loadingScreen.style.display = 'none';
       mainContent.style.opacity = '1';
-      renderCurrentView();        // Render content after loading
-    }, 600); // Wait for fade out animation
-  }, 2000); // 2 seconds loading time
+      renderCurrentView();
+    },2000);
+  }, 4000);
 });
 const siteGroups = [
   { heading: "Return Management", sites: [
