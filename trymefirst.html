@@ -52,57 +52,110 @@ body:has(input[value="dark"]:checked) {
             -ms-user-select: none;
             user-select: none;
         }
-    #loadingScreen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background: #00003b;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.6s ease;
-    }
-
-    .loader-content {
-      text-align: center;
+                
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: #00003b;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000000000000;
+    opacity: 1;
+    transition: opacity 0.6s ease;
+    padding: 40px 0;
+} .loading-logo {
+            width: 350px;
+    object-fit: cover;
+    height: 100px;
+        }
+.servicenmae{
+font-size: 16px;
+    color: #ffffff8f;
+    text-align: center;
+    font-weight: 500;
+}
+.audio-controls {
+    margin: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}.audio-progress-bar {
+    height: 2px;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 0px;
+    overflow: hidden;
+}.audio-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 6px;
+    transition: width 0.45s ease-out;
+    box-shadow: 0 0 16px #00aaff99;
+}
+.audio-progress-container {
+   line-height: 0;
+    text-align: center;
+    width: 100%;
+}.bottomloadingopt {
+    display: flex;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
-    }
+    gap: 30px;width: 100%;
+    margin-top: 180px;
+}img.audioloadgif {
+   width: 30px;
+    margin-bottom: 20px;
+}
+div#audioStatus {
+    font-size: 10px;
+    color: #ffffff87;
+}
 
-    .loader-logo {
-      width: 290px;
-    height: 90px;
-    }
 
-    .loader-logo img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-    }
+button#muteToggle {
+ border-radius: 50%;
+    border: none;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff1a;
+    color: #ffffff;
+    border: solid 1.5px #ffffff1a;
+}
+.loadintroopt {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;max-width: 500px;
+    align-items: center;
+    padding: 0 40px;
+}
+button#startAudioBtn {
+    background: #ffffff;
+    border: none;
+    border-radius: 100px;
+    padding: 10px;font-size: 15px;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px 
+ color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+}
 
-    .loader-text {
-      color: #aaaaaa;
-      font-size: 15px;
-      letter-spacing: 1px;
-    }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-    }
-
-    /* Main Content */
-    #mainContent {
-      opacity: 0;
-      transition: opacity 0.8s ease;
-    }
 
     .header {
    position: fixed;
@@ -443,16 +496,51 @@ width: 95%;
 </head>
 <body>
 
-  <!-- LOADING SCREEN -->
-  <div id="loadingScreen">
-    <div class="loader-content">
-      <div class="loader-logo">
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="servicename" style="    font-size: 11px;
+    letter-spacing: 0.5px;
+    background: #ffffff24;
+    padding: 9px;
+    border-radius: 100px;
+    color: #ffffff;
+    font-weight: 300;">
+            BsLends Service
+        </div>
         <img src="loadinglogo.png" alt="Loading Doughnut" class="loading-logo">
-      </div>
-      <div class="loader-text">Loading...</div>
-    </div>
-  </div>
+        
+        <div class="bottomloadingopt">
+            <div class="servicenmae">
+            Welcome to Golden
+        </div>
 
+        <button class="start-btn" id="startAudioBtn">Connect Now</button>
+
+        <div class="audio-controls" id="audioControls">
+            <div class="audio-progress-container">
+                <div class="audio-progress-bar">
+                    <div id="audioProgressFill" class="audio-progress-fill"></div>
+                </div>
+                <img class="audioloadgif" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_564995111e604ee1b65d3cfdd94d914f/default/dark/2.0" alt="">
+                <div class="audio-status" id="audioStatus">Waiting for you to start...</div>
+            </div>
+        </div>
+        <div class="loadintroopt">
+            <button class="mute-btn" id="muteToggle" title="Mute / Unmute">
+                <i class="fas fa-volume-high"></i>
+            </button>
+            <a style="display: flex;" onclick="alert('Welcome to BsLends Service from BS&MFI Services')"><img style="width: 50px;
+    height: 50px;
+    border-radius: 62px;
+    padding: 2px;
+    border: solid 1.5px #ffffff1a;
+    background: #ffffff1a;" src="mfi.gif" alt=""></a>
+        </div>
+        <audio id="introAudio" preload="auto">
+            <source src="PlayboiCarti-Not Real.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        </div>
+    </div>
   <!-- MAIN CONTENT (Hidden initially) -->
   <div id="mainContent">
 
@@ -512,20 +600,20 @@ width: 95%;
       </div>
     </div>
 <script>
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const loadingScreen = document.getElementById('loadingScreen');
-    const mainContent = document.getElementById('mainContent');
+// window.addEventListener('load', () => {
+//   setTimeout(() => {
+//     const loadingScreen = document.getElementById('loadingScreen');
+//     const mainContent = document.getElementById('mainContent');
 
-    loadingScreen.style.opacity = '0';
+//     loadingScreen.style.opacity = '0';
 
-    setTimeout(() => {
-      loadingScreen.style.display = 'none';
-      mainContent.style.opacity = '1';
-      renderCurrentView();
-    }, 600);
-  }, 3000);
-});
+//     setTimeout(() => {
+//       loadingScreen.style.display = 'none';
+//       mainContent.style.opacity = '1';
+//       renderCurrentView();
+//     }, 600);
+//   }, 3000);
+// });
 
 let currentRedirectUrl = "";
 
@@ -551,20 +639,20 @@ document.getElementById('redirectModal').addEventListener('click', function(e) {
   }
 });
 
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const loadingScreen = document.getElementById('loadingScreen');
-    const mainContent = document.getElementById('mainContent');
+// window.addEventListener('load', () => {
+//   setTimeout(() => {
+//     const loadingScreen = document.getElementById('loadingScreen');
+//     const mainContent = document.getElementById('mainContent');
 
-    loadingScreen.style.opacity = '0';
+//     loadingScreen.style.opacity = '0';
 
-    setTimeout(() => {
-      loadingScreen.style.display = 'none';
-      mainContent.style.opacity = '1';
-      renderCurrentView();
-    },600);
-  }, 3000);
-});
+//     setTimeout(() => {
+//       loadingScreen.style.display = 'none';
+//       mainContent.style.opacity = '1';
+//       renderCurrentView();
+//     },600);
+//   }, 3000);
+// });
 const siteGroups = [
   { heading: "Return Management", sites: [
     { name: "BS&MFI Solutions", desc: "Return date extender", url: "https://mfi0212.github.io/swan/offer/solution" },
@@ -807,6 +895,84 @@ document.getElementById("searchInput").addEventListener("input", (e) => {
   }
 });
 </script>
+ <script>
+const loadingOverlay = document.getElementById("loadingOverlay");
+const startBtn = document.getElementById("startAudioBtn");
+const audioControls = document.getElementById("audioControls");
+const progressFill = document.getElementById("audioProgressFill");
+const audioStatus = document.getElementById("audioStatus");
+const audio = document.getElementById("introAudio");
+const muteToggle = document.getElementById("muteToggle");
+let stopTime = 0;
+let progressInterval;
+muteToggle?.addEventListener("click", () => {
+    audio.muted = !audio.muted;
+    muteToggle.innerHTML = audio.muted
+        ? '<i class="fas fa-volume-xmark"></i>'
+        : '<i class="fas fa-volume-high"></i>';
 
+});
+startBtn?.addEventListener("click", async () => {
+    startBtn.style.display = "none";
+    audioControls.style.display = "flex";
+
+    try {
+        if (audio.readyState < 1) {
+            await new Promise(resolve => {
+                audio.addEventListener("loadedmetadata", resolve, { once: true });
+            });
+        }
+
+        const duration = audio.duration || 8;
+        const minPlay = 4;
+        const maxPlay = Math.min(7, duration);
+        
+        stopTime = Math.random() * (maxPlay - minPlay) + minPlay;
+
+        progressFill.style.width = "0%";
+        audioStatus.textContent = "0% • Loading...";
+
+        await audio.play();
+
+        progressInterval = setInterval(() => {
+            if (audio.currentTime >= stopTime) {
+                progressFill.style.width = "100%";
+                audioStatus.textContent = "100% • Complete";
+                audio.pause();
+                clearInterval(progressInterval);
+
+                // === FIXED HIDING LOGIC ===
+                setTimeout(() => {
+                    loadingOverlay.style.transition = "opacity 0.8s ease";
+                    loadingOverlay.style.opacity = "0";
+
+                    setTimeout(() => {
+                        loadingOverlay.style.display = "none";
+                        // Optional: Show main content smoothly
+                        document.getElementById("mainContent").style.opacity = "1";
+                    }, 800);
+                }, 600);
+
+                return;
+            }
+
+            let percent = Math.min(100, (audio.currentTime / stopTime) * 100);
+            progressFill.style.width = percent + "%";
+            audioStatus.textContent = Math.round(percent) + "% • Loading...";
+
+        }, 40);
+
+    } catch(e) {
+        console.error(e);
+        audioStatus.textContent = "Playback failed";
+        
+        // Fallback: still hide loading if audio fails
+        setTimeout(() => {
+            loadingOverlay.style.opacity = "0";
+            setTimeout(() => loadingOverlay.style.display = "none", 800);
+        }, 1500);
+    }
+});
+</script>
 </body>
 </html>
