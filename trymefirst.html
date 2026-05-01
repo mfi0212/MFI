@@ -271,9 +271,30 @@ display: inline-block;
                 padding: 3px 6px;
             }
         }
+        button.secondary {
+width: 43px;
+    height: 43px;
+    border-radius: 100px;
+    background: #ffffffd6;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 15px;
+    left: 8px;
+    padding: 0px;
+    filter: drop-shadow(1px 0px 4px lightgray);
+    z-index: 10000000;
+}button.secondary:hover{
+background: white;
+}
     </style>
 </head>
 <body>
+    <button class="secondary" onclick="history.back()">
+                   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m371.77-481 307.61 307.62q11.85 11.84 12.24 30.15.38 18.31-11.47 30.15-11.84 11.85-30.15 11.85t-30.15-11.85l-303.7-304.46q-13.69-13.69-19.65-30.11-5.96-16.43-5.96-33.35t5.96-33.35q5.96-16.42 19.65-30.11l303.7-303.69q11.84-11.85 29.77-12.23 17.92-.39 29.76 11.46 11.85 11.84 11.85 30.15t-11.85 30.15L371.77-481Z"/></svg>
+                </button>
      <div class="blob blob1"></div>
   <div class="blob blob2"></div>
     <div class="header">
