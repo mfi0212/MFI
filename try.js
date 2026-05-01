@@ -360,7 +360,7 @@ function displayLoanDetails(loan, index) {
                         : daysLeft <= 2 
                             ? '#ff0000' 
                             : daysLeft <= 6 
-                                ? '#ffbf00' 
+                                ? '#ff8c00' 
                                 : '#00d423'};">
         ${formatMoney(totalPayable)}
     </p><hr> <h3 style="font-weight: 100;
@@ -395,7 +395,7 @@ function displayLoanDetails(loan, index) {
 <svg xmlns="http://www.w3.org/2000/svg" id="Layer_4" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M19,2h-1V1c0-.552-.448-1-1-1s-1,.448-1,1v1H8V1c0-.552-.448-1-1-1s-1,.448-1,1v1h-1C2.243,2,0,4.243,0,7v12c0,2.757,2.243,5,5,5h14c2.757,0,5-2.243,5-5V7c0-2.757-2.243-5-5-5ZM5,4h14c1.654,0,3,1.346,3,3v1H2v-1c0-1.654,1.346-3,3-3Zm14,18H5c-1.654,0-3-1.346-3-3V10H22v9c0,1.654-1.346,3-3,3Zm-3-6c0,.552-.448,1-1,1h-6c-.552,0-1-.448-1-1s.448-1,1-1h6c.552,0,1,.448,1,1Z"/></svg>
 <h3>Return on</h3>
                 </div>
-                <p style="color:${daysLeft <= 2 ? '#ff1100' : daysLeft <= 6 ? '#ffbf00' : '#00d423'};"> ${cleanEndDate}</p>
+                <p style="color:${daysLeft <= 2 ? '#ff1100' : daysLeft <= 6 ? '#ff8c00' : '#00d423'};"> ${cleanEndDate}</p>
             </div>
             <div class="details">
                 <div class="leftflow">
@@ -533,7 +533,7 @@ function renderChart() {
 
         let color = '#0011ff';
         if (daysLeft <= 2) color = '#ff1100';
-        else if (daysLeft <= 6) color = '#ffbf00';
+        else if (daysLeft <= 6) color = '#ff8c00';
 
         const amount = currentCurrency === 'Usd ($)' 
             ? Number((loan.takenAmount / USD_RATE).toFixed(2))
@@ -760,7 +760,7 @@ function renderCalendar() {
             const daysLeft = Math.ceil((end - today) / 86400000);
             let bg = '#00bb06';
             if (daysLeft <= 2) bg = '#ff1100';
-            else if (daysLeft <= 6) bg = '#ffbf00';
+            else if (daysLeft <= 6) bg = '#ff8c00';
             style += `background:${bg};color:white;font-weight:bold;`;
         }
         if (ds === today.toLocaleDateString('en-GB').split('/').reverse().join('-')) {
@@ -784,7 +784,7 @@ function showDatePopup(idx) {
         <p style='color: #ffc000;font-weight: 600;'><strong>Purpose:</strong> ${loan.purpose || 'Not set'}</p>
         <p style='color: #ffc000;font-weight: 600;'><strong>Return date :</strong> ${cleanEnd}</p>
         <hr style='margin: 5px;'>
-        <p style='color: #ffc000;font-weight: 600;    font-size: 20px;'><strong>Status:</strong> <span style="color:${daysLeft<=2?'#ff1100':daysLeft<=6?'#ffbf00':'#00d609'}">
+        <p style='color: #ffc000;font-weight: 600;    font-size: 20px;'><strong>Status:</strong> <span style="color:${daysLeft<=2?'#ff1100':daysLeft<=6?'#ff8c00':'#00d609'}">
             ${daysLeft > 0 ? daysLeft + ' days left' : 'Overdue'}
         </span></p>
         <div class="detailbuttons" style="display: flex;
