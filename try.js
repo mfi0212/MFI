@@ -143,26 +143,26 @@ function showRepaymentReminderPopup(reminder) {
             <div class="reminder-header">
                 <button class="reminder-close-btn" title="Close reminder"><img class="closesymbol" src="service-icons/close_icon.png" alt=""></button>
             </div>
-            <img style="width: 200px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/trumpet.gif" alt="">
-            <div class="iconsinfo" style='width: 85%;'>
+            <img style="width: 150px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/trumpet.gif" alt="">
+            <div class="iconsinfo" style='width: 85%;    margin: 20px 0;'>
                 <div class="icon">
                     <svg style="height: 23px;
                         width: 23px;
                         margin: 0px 0 -2px 0;" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M14.648,5.493c.873-.701,1.772-1.643,2.228-2.789,.238-.598,.161-1.277-.205-1.816-.377-.556-1.002-.888-1.671-.888h-6c-.669,0-1.294,.332-1.671,.888-.366,.539-.442,1.218-.205,1.816,.456,1.145,1.355,2.088,2.228,2.789C4.696,7.221,1,13.159,1,18c0,3.309,2.691,6,6,6h10c3.309,0,6-2.691,6-6,0-4.841-3.696-10.779-8.352-12.507Zm.369-3.528c-.516,1.297-2.094,2.393-3.019,2.91-.923-.513-2.495-1.6-2.999-2.875l6.018-.035Zm1.982,20.035H7c-2.206,0-4-1.794-4-4,0-5.243,4.71-11,9-11s9,5.757,9,11c0,2.206-1.794,4-4,4Zm-5,0c-.552,0-1-.448-1-1v-1h-.268c-1.068,0-2.063-.574-2.598-1.499-.276-.478-.113-1.089,.365-1.366,.476-.277,1.089-.114,1.366,.365,.178,.308,.511,.5,.867,.5h2.268c.551,0,1-.449,1-1,0-.378-.271-.698-.644-.76l-3.042-.507c-1.341-.223-2.315-1.373-2.315-2.733,0-1.654,1.346-3,3-3v-1c0-.552,.448-1,1-1s1,.448,1,1v1h.268c1.067,0,2.063,.575,2.598,1.5,.276,.478,.113,1.089-.365,1.366-.477,.277-1.089,.114-1.366-.365-.179-.309-.511-.5-.867-.5h-2.268c-.551,0-1,.449-1,1,0,.378,.271,.698,.644,.76l3.042,.507c1.341,.223,2.315,1.373,2.315,2.733,0,1.654-1.346,3-3,3v1c0,.552-.448,1-1,1Z"/></svg>
                     <div class="iconname">
-                        Amount
+                        Borrowed Amount
                     </div>
                 </div>
                 <div class="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M19,2h-1V1c0-.552-.448-1-1-1s-1,.448-1,1v1H8V1c0-.552-.448-1-1-1s-1,.448-1,1v1h-1C2.243,2,0,4.243,0,7v12c0,2.757,2.243,5,5,5h14c2.757,0,5-2.243,5-5V7c0-2.757-2.243-5-5-5ZM5,4h14c1.654,0,3,1.346,3,3v1H2v-1c0-1.654,1.346-3,3-3Zm14,18H5c-1.654,0-3-1.346-3-3V10H22v9c0,1.654-1.346,3-3,3Zm-3-6c0,.552-.448,1-1,1h-6c-.552,0-1-.448-1-1s.448-1,1-1h6c.552,0,1,.448,1,1Z"/></svg>
                     <div class="iconname">
-                        Interet
+                        Return date
                     </div>
                 </div>
                 
             </div>
             <div class="reminder-body">
-                <p>Mr. ${name} you have <strong>${formatMoney(totalAmount)}</strong> to return on <strong>${dueDate}</strong>${loansText}. Return before the end date or extra charges will be added.</p><br><p>If you have to extend do so on today only you can't extend on return date.</p>
+                <p>Mr. ${name} you have <strong>${formatMoney(totalAmount)}</strong> to return on <strong>${dueDate}</strong>${loansText}. Return before the end date or extra charges will be added.</p><p>If you have to extend do so on today only you can't extend on return date.</p>
             </div>
             <div class="reminder-actions">
                 <button class="reminder-btn delay"  data-action="delay"><a href="https://mfi0212.github.io/swan/offer/solution">Explore Solutions</a></button>
