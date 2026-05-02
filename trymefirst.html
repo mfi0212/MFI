@@ -59,9 +59,9 @@ body:has(input[value="dark"]:checked) {
   padding:0;font-family: 'Poppins', sans-serif;
   box-sizing:border-box;
 }
-/* p.subtitle {
-    margin-top: 5px;
-} */
+a{
+  display: contents;
+}
 body{
   font-family:Inter, sans-serif;
   background:var(--bg);
@@ -195,36 +195,47 @@ display: block;
 .detail:nth-child(4){
   margin-bottom: 15px;
 }
-.close{
+.bottonopt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
     margin-top: 30px;
-    background: red;
+    width: 100%;
+}
+.bottonopt button{
     border: none;
     padding: 10px;
-    width: 100%;
     cursor: pointer;
     font-size: 18px;
     text-transform: capitalize;
     color: white;
     border-radius: 9999px;
+    width: 100%;
+    font-weight: 100;
     transition: all 0.3s ease;
 }
-        .close:hover{
-              transform: scale(1.03); 
-        }
-        .close:active{
+.bottonopt button:active{
               transform: scale(0.90); 
         } 
+.close-btn{
+    background: red;
+}
+.buy-btn{
+  background: #0800ff;
+}
+        
 .options {
 position: sticky;
     bottom: 0;
     width: 100%;
     display: flex;
     justify-content: center;
-    background: linear-gradient(0deg, #ede9d0, transparent);
+    background: linear-gradient(0deg, #ede9d0 10%, transparent);
     padding: 30px 0;
 }.mainoptions {
 display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 10px;
     width: 85%;
@@ -235,7 +246,6 @@ display: flex;
     display: contents;
 }
 .options button{
-margin-top: 35px;
     width: fit-content;
     cursor: pointer;
     background: #ffffff87;
@@ -247,7 +257,11 @@ margin-top: 35px;
     box-shadow: inset 1px 1px 0px 0.1px #ffffffb8, inset -1px -1px 0px -0.1px #ffffffb8;
     backdrop-filter: blur(3px);
     padding: 10px 15px;
+transition: all 0.3s ease;
 }
+.options button:active{
+              transform: scale(0.90); 
+        } 
 svg#Capa_1 {
     width: 20px;
     height: 20px;
@@ -364,13 +378,12 @@ footer {
 
 <div class="options">
   <div class="mainoptions">
-    <a href="https://mfi0212.github.io/MFI/mansion.account"><button style="width: 45px;
-    height: 45px;
-    display: flex;
+    <a href="https://mfi0212.github.io/MFI/mansion.account"><button style="display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0px;" class="close"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512" height="512"><g><circle cx="256" cy="128" r="128"/><path d="M256,298.667c-105.99,0.118-191.882,86.01-192,192C64,502.449,73.551,512,85.333,512h341.333   c11.782,0,21.333-9.551,21.333-21.333C447.882,384.677,361.99,298.784,256,298.667z"/></g></svg></button></a>
-    <a href="https://forms.gle/NoGVEy8XYfGZmHCZA"><button class="close">Buy Mansion</button></a>
+    padding: 10px;
+    gap: 5px;
+    border: none;" class="close"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512" height="512"><g><circle cx="256" cy="128" r="128"/><path d="M256,298.667c-105.99,0.118-191.882,86.01-192,192C64,502.449,73.551,512,85.333,512h341.333   c11.782,0,21.333-9.551,21.333-21.333C447.882,384.677,361.99,298.784,256,298.667z"/></g></svg> My Account</button></a>
   </div>    
 </div>
 
@@ -400,14 +413,17 @@ footer {
     <p style="color: #ff9a03;
     background: black;
     border-radius: 100px;
-    padding: 4px 7px;
+    padding: 7px 15px;
     width: fit-content;
     position: relative;
     left: 50%;
     transform: translate(-50%, 0);
-    font-weight: 600;
+    font-weight: 400;
     font-size: 12px;">1 Stash = 1 Offer</p>
-    <button class="close" onclick="closeModal()">Close Now</button>
+    <div class="bottonopt">
+      <a href="https://forms.gle/NoGVEy8XYfGZmHCZA"><button  class="buy-btn">Buy Mansion</button></a>
+      <button class="close-btn" onclick="closeModal()">Close Now</button>
+    </div>
   </div>
 </div>
 
