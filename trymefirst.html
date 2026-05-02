@@ -118,8 +118,6 @@ max-width: 500px;
     border-radius: 100px;
     transition: all 0.3s ease;
     background: #ffffff87;
-    filter: drop-shadow(0px 0px 10px #00000047) saturate(2);
-    box-shadow: inset 1px 1px 0px 0.1px #ffffffb8, inset -1px -1px 0px -0.1px #ffffffb8;
   }
 
         .minimal-input:active{
@@ -170,7 +168,7 @@ svg#Layer_1 {
     position: fixed;
     top: 0;
     z-index: 10;
-    background: linear-gradient(180deg, #f9f6e2 35%, transparent);
+    background: linear-gradient(180deg, #f9f6e2 10%, transparent);
     padding: 30px 15px;
     width: 100%;
     left: 0;
@@ -185,54 +183,39 @@ svg#Outline {
     width: 20px;
     height: 20px;
 }.userslide {
-    backdrop-filter: blur(5px);
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
+backdrop-filter: blur(2px);
     border-radius: 100px;
     padding: 7px 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-transition: all 0.3s ease;}
-        .userslide:hover{
-              transform: scale(1.03); 
-        }
+    transition: all 0.3s ease;
+background: #ffffff87;
+    filter: drop-shadow(0px 0px 10px #00000047) saturate(2);
+    box-shadow: inset 1px 1px 0px 0.1px #ffffffb8, inset -1px -1px 0px -0.1px #ffffffb8;
+  }
+
         .userslide:active{
               transform: scale(0.90); 
         } 
        .switch {
-    color: var(--hermes-orange);
+        color: var(--hermes-orange);
     cursor: pointer;
-    transition: opacity 0.2s;
-    backdrop-filter: blur(5px);
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    backdrop-filter: blur(2px);
     border: solid 1px #ffffff00;
     border-radius: 100px;
     padding: 10px;
-transition: all 0.3s ease;}
-        .switch:hover{
-              transform: scale(1.03); 
-        }
+    transition: all 0.3s ease;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+background: #ffffff87;
+    filter: drop-shadow(0px 0px 10px #00000047) saturate(2);
+    box-shadow: inset 1px 1px 0px 0.1px #ffffffb8, inset -1px -1px 0px -0.1px #ffffffb8;
+      }
+
         .switch:active{
               transform: scale(0.90); 
         } 
@@ -244,9 +227,7 @@ transition: all 0.3s ease;}
     text-align: center;
     color: #ffa300;
        transition: all 0.3s ease;}
-        .swan-big:hover{
-              transform: scale(1.03); 
-        }
+
         .swan-big:active{
               transform: scale(0.90); 
         } 
@@ -259,10 +240,7 @@ transition: all 0.3s ease;}
             border-bottom: 1px solid var(--border-subtle);
             font-size: 1rem;opacity: 100%;
         transition: all 0.3s ease;}
-        .offer-item:hover{
-              transform: scale(1.03); 
-              opacity: 50%;
-        }
+
         .offer-item:active{
               transform: scale(0.90); 
         } 
@@ -288,9 +266,7 @@ transition: all 0.3s ease;}
     padding: 10px;
     margin: 0;
        transition: all 0.3s ease;}
-        .live-result:hover{
-              transform: scale(1.03); 
-        }
+
         .live-result:active{
               transform: scale(0.90); 
         } 
@@ -314,50 +290,40 @@ transition: all 0.3s ease;}
     display: flex;
     justify-content: center;
 }.mainoptions {
-  display: flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
     width: 100%;
     max-width: 400px;
     flex-direction: row-reverse;
-    padding: 30px;
-    background: linear-gradient(0deg, #ffffff, transparent);
+    padding: 30px 15px;
+    background: linear-gradient(0deg, #f9f7e3 10%, transparent);
     position: fixed;
     bottom: 0px;
+
 }
 .options a {
     display: contents;
 }
 .options button{
-     margin-top: 35px;
+    margin-top: 35px;
     background: none;
     width: fit-content;
     cursor: pointer;
-   padding: 10px 12px;
+    padding: 10px;
     background: #ffffff1c;
     color: black;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 500;
     border-radius: 100px;
-    filter: saturate(2);
-    backdrop-filter: blur(5px);
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-transition: all 0.3s ease;}
-        .options button:hover{
-              transform: scale(1.03); 
-        }
+    backdrop-filter: blur(2px);
+   background: #ffffff87;
+    filter: drop-shadow(0px 0px 10px #00000047) saturate(2);
+    box-shadow: inset 1px 1px 0px 0.1px #ffffffb8, inset -1px -1px 0px -0.1px #ffffffb8;
+    transition: all 0.3s ease;
+}
+
         .options button:active{
               transform: scale(0.90); 
         } 
@@ -401,7 +367,7 @@ transition: all 0.3s ease;}
                 <span class="switch" onclick="logout()"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M11.476,15a1,1,0,0,0-1,1v3a3,3,0,0,1-3,3H5a3,3,0,0,1-3-3V5A3,3,0,0,1,5,2H7.476a3,3,0,0,1,3,3V8a1,1,0,0,0,2,0V5a5.006,5.006,0,0,0-5-5H5A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H7.476a5.006,5.006,0,0,0,5-5V16A1,1,0,0,0,11.476,15Z"/><path d="M22.867,9.879,18.281,5.293a1,1,0,1,0-1.414,1.414l4.262,4.263L6,11a1,1,0,0,0,0,2H6l15.188-.031-4.323,4.324a1,1,0,1,0,1.414,1.414l4.586-4.586A3,3,0,0,0,22.867,9.879Z"/></svg></span>
             </div>
 
-            <div class="section text-center">
+            <div class="section text-center" style="margin: 100px 0 0 0;">
                 <div class="label">Swans Earned</div>
                 <div id="swans" class="swan-big">1842</div>
             </div>
