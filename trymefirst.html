@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BsMansion | Counter</title>
-  <link rel="icon" href="mansion.mfi.logo.png" />
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<title>BS&MFI House | BsMansion</title>
+<link rel="icon" href="mansion.mfi.logo.jpeg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  
+<link href="https://fonts.googleapis.com/css2?family=Didot&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <style> @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+<style> @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-    * {
-      margin: 0;
-      padding: 0;
-      padding:0;font-family: 'Poppins', sans-serif;
-      box-sizing: border-box;
-    }
-body {
+:root{
+  --bg:#f9f6e2;
+  --ink:#1c1c1c;
+  --line:#e6e3df;
+}body {
   --c-glass: #bbbbbc;
   --c-light: #fff;
   --c-dark: #000;
@@ -43,7 +42,10 @@ body:has(input[value="dark"]:checked) {
   
   --c-bg: #1b1b1d;
 }
-* {
+
+ *{
+            scrollbar-width: none;
+        
             -webkit-tap-highlight-color: transparent;
         }
         body {
@@ -52,352 +54,383 @@ body:has(input[value="dark"]:checked) {
             -ms-user-select: none;
             user-select: none;
         }
-    body {
-      background: #f9f6e2;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #1e293b;
-    }
-
-    .card {
-      width: 100%;
-      max-width: 420px;
-      overflow: hidden;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    /* PIN Screen */
-    #pin-screen {
-      padding: 2.5rem 2rem;
-      text-align: center;
-    }
-
-    #pin-screen h1 {
-      font-size: 1.85rem;
-      font-weight: 500;
-      color: #1e293b;
-      margin-bottom: 1.75rem;
-      font-family: 'Playfair Display', serif;
-    }
-
-    #pin-input {
-font-weight: 100;
-    width: 100%;
-    text-align: center;
-   font-size: 18px;
-    border-radius: 100px;
-    padding: 10px;
-    outline: none;    filter: drop-shadow(0px 0px 10px #00000027) saturate(2);
-    transition: all 0.3s ease;
+*{
+  margin:0;
+  padding:0;font-family: 'Poppins', sans-serif;
+  box-sizing:border-box;
 }
-         #pin-input:active{
-              transform: scale(0.90); 
-        } 
+a{
+  display: contents;
+}
+body{
+  font-family:Inter, sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+}
 
-    #pin-screen button {
-     background-color: #0d0d0d;
-      width: 100%;
-     color: white;
-    font-size: 18px;
-    border-radius: 100px;
-    padding: 10px;width: 100%;
-    font-family: 'Poppins', sans-serif;
+header{
+text-align: start;
+    padding: 20px;
+}
+
+header h1{
+font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    text-align: start;
+}
+
+header p{
+  font-size:14px;
+  color:#555;
+}
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    text-align: center;
+
+}
+.spclevntsec {
+    /* background: linear-gradient(100deg, #a0ff9d, #76c2ff, hsl(317.54deg 100% 76.01%)); */
+    padding: 30px 0;
+}
+.grid{
+max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px 30px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 10px;
+}
+
+    .floating-eggs {
+      position: absolute;
+      font-size: 2.5rem;
+      animation: float 6s infinite ease-in-out;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(15deg); }
+    }
+.house{
+  cursor:pointer;
+}
+
+.house img{
+width: 100%;
+    height: 330px;
+    object-fit: cover;
+    transition: transform .4s ease;
+    border-radius: 35px;
     filter: saturate(2);
-    backdrop-filter: blur(5px);
-        font-weight: 100;
-    border-radius: 1000px;
-    transition: all 0.3s ease;
-      margin-top: 1.5rem;
-   transition: all 0.3s ease;}
-        #pin-screen button:hover{
-              transform: scale(1.03); 
-        }
-        #pin-screen button:active{
-              transform: scale(0.90); 
-        } 
-
-    #pin-screen button:active {
-      transform: scale(0.98);
-    }
-
-    #error-msg {
-      color: #dc2626;
-      font-size: 14px;
-      margin-top: 1.25rem;
-    }
-
-    /* Content Screen */
-    #content {
-      padding: 1.5rem;
-    }
-
-    #content h1 {
-font-size: 18px;
-    font-weight: 100;
-    color: #1c1c1c;
-    text-align: center;
-    margin-bottom: 0.5rem;
-    backdrop-filter: blur(5px);
-    background: white;
-    border-radius: 9999px;
-    padding: 5px;
-    width: fit-content;
-    transition: all 0.3s ease;
-    filter: drop-shadow(0px 0px 10px #00000017);
 }
-        #content h1:hover{
-              transform: scale(1.03); 
-        }
-        #content h1:active{
-              transform: scale(0.90); 
-        } 
 
-    .stats-big {
-      text-align: center;
-    }
-
-    .stats-big #total-points {
-      font-size: 4.5rem;
-      font-weight: 500;
-      color: black;
-      line-height: normal;
-      font-family: 'Playfair Display', serif;
-      margin-top: -30px;
-    }
-
-    .stats-big .label {
-      font-size: 13px;
-    color: #00000080;
-    font-family: 'Poppins', sans-serif;
-    margin: 20px;
-    }
-
-    .stats-grid {
-      display: flex;
+.house:hover img{
+  transform:scale(1.03);
+}
+.modal p {
     text-align: center;
-    align-items: center;
-    justify-content: space-around;
-    }
-.stat-item {
-background: #ffffff;
-    border-radius: 999px;
-    padding: 7px 14px;
+    font-size: 13px;
+    margin-bottom: -15px;
+}
+.house span{
+display: block;
+    margin: 12px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-align: center;
+    text-decoration: underline 1px gray;
+    text-underline-position: under;
+    text-transform: uppercase;
+}
+
+/* Modal */
+.overlay{
+ position: fixed;
+    inset: 0;
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 10;
+}
+
+.modal{
+background: #ffffff57;
+    width: 95%;
+    max-width: 520px;
+    padding: 20px;
+    text-align: center;
+    filter: saturate(3);
+    animation: rise .4s ease;
+    backdrop-filter: blur(15px);
+    border-radius: 45px 45px 25px 25px;
+    margin-bottom: 6px;
+    border: solid 2px white;
+    box-shadow: -0px -35px 100px #00000070;
+}
+
+@keyframes rise{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+.modal h2{
+   font-family: 'Playfair Display', serif;
+      font-weight: 400;
+  font-size:28px;
+  margin-bottom:25px;
+}
+
+.detail{
+ border-bottom: 1px solid #0000002e;
+    padding: 15px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 5px;
-    flex-direction: row-reverse;
-    transition: all 0.3s ease;
-    filter: drop-shadow(0px 0px 10px #00000017);
-    font-weight: 300;
-}
-        .stat-item:hover{
-              transform: scale(1.03); 
-        }
-        .stat-item:active{
-              transform: scale(0.90); 
-        } 
-    .stat-item .value {
-          font-weight: 800;
-    color: #000000;
-    font-family: 'Poppins', sans-serif;
-    }
-.stat-item .label {
-    font-size: 11px;
-    color: #0000006b;
-}
-
-    .footer-info {
-      text-align: center;
-    color: #828282;
-    margin-top: 2rem;
-    line-height: 29px;
-    border-top: 1px solid #e2e8f0;
-    padding-top: 1rem;
-    font-size: 15px;
-    }
-
-    .options {
-      position: sticky;
-      bottom: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 10px;
-      width: 100%;
-    }span#start-date {
-       font-family: 'Poppins', sans-serif;
-    color: #1c1c1c;
+    font-size: 14px;
     font-weight: 500;
-    text-decoration: underline;
 }
-
-    .options button {
-           margin-top: 20px;
-    background: none;
+.detail:hover{
+  color: white;color: white;
+    background: #000000a6;
+}
+.detail:nth-child(4){
+  margin-bottom: 15px;
+}
+.bottonopt {
+display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
     width: 100%;
+    margin-bottom: -5px;
+}
+.bottonopt button{
+    border: none;
+    padding: 10px;
     cursor: pointer;
     font-size: 18px;
-    background-color: #1c1c1c;
-    backdrop-filter: blur(1px);
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-    backdrop-filter: blur(5px);
+    text-transform: capitalize;
     color: white;
-    border-radius: 100px;
-    padding: 10px;
+    border-radius: 9999px;
+    width: 100%;
+    font-weight: 100;
     transition: all 0.3s ease;
-
-  transition: all 0.3s ease;}
-
-        .options button:active{
+}
+.bottonopt button:active{
               transform: scale(0.90); 
         } 
-
-
-    @media (max-width: 400px) {
-      .stats-big #total-points { font-size: 3.75rem; }
-    }
-  </style>
+.close-btn{
+    background: red;
+}
+.buy-btn{
+  background: #0800ff;
+}
+        
+.options {
+position: sticky;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(0deg, #ede9d0 10%, transparent);
+    padding: 30px 0;
+}.mainoptions {
+display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 85%;
+    max-width: 400px;
+    flex-direction: row-reverse;
+}
+.options a {
+    display: contents;
+}
+.options button{
+    width: fit-content;
+    cursor: pointer;
+    background: #ffffff87;
+    color: black;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 100px;
+    filter: drop-shadow(0px 0px 10px #00000047) saturate(2);
+    box-shadow: inset 1px 1px 0px 0.1px #ffffffb8, inset -1px -1px 0px -0.1px #ffffffb8;
+    backdrop-filter: blur(3px);
+    padding: 10px 15px;
+transition: all 0.3s ease;
+}
+.options button:active{
+              transform: scale(0.90); 
+        } 
+svg#Capa_1 {
+    width: 20px;
+    height: 20px;
+}
+footer {
+    text-align: center;
+    font-size: 11px;
+    padding: 10px;
+}
+/* .close:hover{
+    background-color: #1c1c1c;
+    color: white;
+} */
+</style>
 </head>
 <body>
 
-  <!-- PIN Screen -->
-  <div id="pin-screen" class="card">
-        <h1>BsMansions</h1>
-    
-    <input 
-      id="pin-input"
-      placeholder="Enter PIN"
-      autocomplete="off"
-    >
+<header>
+  <h1>BsMansion</h1>
+    <p class="subtitle">By BS&MFI House</p>
+</header>
 
-    <button onclick="checkPin()">Verify Now</button>
+<h1 style="color: #ff00aa;
+    text-decoration: underline 1.5px #1c1c1c;
+    text-underline-position: under;">Mother<span style="font-style: italic;font-family: 'Playfair Display', serif;color: #1c1c1c;">HeartMansions</span></h1>
+    <p class="subtitle" style="text-align: center;text-transform: uppercase;font-size: 12px;">Masion added on May 10th</p>
+    <div onclick="alert('EGG')" class="floating-eggs" style="top: 80px; left: 10%; animation-delay: 0s;">🥚</div>
+    <div onclick="alert('CHICK')" class="floating-eggs" style="    top: 217px;right: 3%;animation-delay: 4s;">🐣</div>
+    <div onclick="alert('RABBIT')" class="floating-eggs" style="top: 300px; left: 20%; animation-delay: 4s;">🐰</div>
+    <div onclick="alert('ROSE')" class="floating-eggs" style="top: 300px; right: 25%; animation-delay: 1.5s;">🌷</div>
+    <div onclick="alert('HORSE')" class="floating-eggs" style="top: 180px;left: 34%;; animation-delay: 0.5s;">🐎</div>
+    <div onclick="alert('SWAN')" class="floating-eggs" style="top: 90px;right: 15%; animation-delay: 2.2s;">🦢</div>
+    <section class="grid">
+      <div class="house" onclick="openModal('MHR-001','₹3000','300 Swans / mon | 18 Stash')">
+        <img src="mansions/4.jpeg">
+        <span>Mother Heart Residence 01</span>
+      </div>
+    </section>
 
-    <p id="error-msg"></p>
+
+<h1 style="position: sticky;
+    top: 0;
+    z-index: 10;
+    color: #b25100;
+    text-decoration: underline 1.5px #1c1c1c;
+    text-underline-position: under;
+    background: linear-gradient(180deg, #f9f6e2 35%, transparent);
+    padding: 10px 0;">Swan<span style="font-style: italic;    font-family: 'Playfair Display', serif;color: #1c1c1c;">Mansions</span></h1>
+    <p class="subtitle" style="text-align: center;text-transform: uppercase;font-size: 12px;">Storage Stash</p>
+<section class="grid">
+     <div class="house" onclick="openModal('SMSH-001','₹650','90 Swans / mon | 04 Stash')">
+    <img src="mansions/4.jpeg">
+    <span>Residence 01</span>
+  </div>
+     <div class="house" onclick="openModal('SMSH-002','₹700','100 Swans / mon | 05 Stash')">
+    <img src="mansions/5.jpeg">
+    <span>Residence 02</span>
+  </div>
+    <div class="house" onclick="openModal('SMSH-003','₹750','110 Swans / mon | 06 Stash')">
+    <img src="mansions/3.jpeg">
+    <span>Residence 03</span>
+  </div>
+  <div class="house" onclick="openModal('SEM-001','₹800','120 Swans / mon | 07 Stash')">
+    <img src="mansions/1.jpeg">
+    <span>Residence 04</span>
+  </div>
+  <div class="house" onclick="openModal('SEM-002','₹850','130 Swans / mon | 08 Stash')">
+    <img src="mansions/15.jpeg">
+    <span>Residence 05</span>
   </div>
 
-  <!-- Content Screen -->
-  <div id="content" class="card hidden">
-    <h1 id="pin-name">Loading...</h1>
+  <div class="house" onclick="openModal('SEM-003','₹900','140 Swans / mon | 09 Stash')">
+    <img src="mansions/14.jpeg">
+    <span>Residence 06</span>
+  </div>
 
-    <div class="stats-big">
-      <div class="label">Your total swans earned was </div>
-      <div id="total-points">0</div>
+  <div class="house" onclick="openModal('SEM-004','₹950','150 Swans / mon | 10 Stash')">
+    <img src="mansions/8.jpeg">
+    <span>Residence 07</span>
+  </div>
+  <div class="house" onclick="openModal('SSEM-001','₹1000','160 Swans / mon | 11 Stash')">
+    <img src="mansions/6.jpeg">
+    <span>Residence 08</span>
+  </div>
+
+  <div class="house" onclick="openModal('SSEM-002','₹1500','170 Swans / mon | 12 Stash')">
+    <img src="mansions/11.jpeg">
+    <span>Residence 09</span>
+  </div>
+  <div class="house" onclick="openModal('SSEM-003','₹2000','180 Swans / mon | 13 Stash')">
+    <img src="mansions/9.jpeg">
+    <span>Residence 10</span>
+  </div>
+
+  <div class="house" onclick="openModal('SSEM-004','₹2500','190 Swans / mon | 14 Stash')">
+    <img src="mansions/12.jpeg">
+    <span>Residence 11</span>
+  </div>
+
+  <div class="house" onclick="openModal('SSEM-005','₹3500','200 Swans / mon | 15 Stash')">
+    <img src="mansions/10.jpeg">
+    <span>Residence 12</span>
+  </div>
+</section>
+
+<div class="options">
+  <div class="mainoptions">
+    <a href="https://mfi0212.github.io/MFI/mansion.account"><button style="display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 5px;
+    border: none;" class="close"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512" height="512"><g><circle cx="256" cy="128" r="128"/><path d="M256,298.667c-105.99,0.118-191.882,86.01-192,192C64,502.449,73.551,512,85.333,512h341.333   c11.782,0,21.333-9.551,21.333-21.333C447.882,384.677,361.99,298.784,256,298.667z"/></g></svg> My Account</button></a>
+  </div>    
+</div>
+
+    <footer>
+      © BS&MFI. All rights reserved.
+    </footer>
+
+<!-- Modal -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h2>Mansions Details</h2>
+
+    <div class="detail">
+      <span>House ID</span>
+      <span id="houseId"></span>
     </div>
 
-    <div class="stats-grid">
-      <div class="stat-item" style="display: none;">
-        <div class="value" id="periods">0</div>
-        <div class="label">Periods</div>
-      </div>
-      <div class="stat-item">
-        <div class="value" id="days-passed">0</div>
-        <div class="label">Days Passed</div>
-      </div>
-      <div class="stat-item next-in">
-        <div class="value" id="next-in">30</div>
-        <div class="label">Total days</div>
-      </div>
-    </div>
-    <div class="footer-info">
-      Start's from: <span id="start-date"></span><br>
-      <p style="margin-top: 10px;">NOTE : Once 30 days completed the swans will automatically added to your account.</p><br>
+    <div class="detail">
+      <span>Mansions Value</span>
+      <span id="price"></span>
     </div>
 
-    <div class="options">
-      <a style="width: 100%;" href="https://blackswan19.github.io/golden/FM/starspage">
-        <button>Visit Stars</button>
-      </a>
+    <div class="detail">
+      <span>Get </span>
+      <span id="earn"></span>
+    </div>
+    <p style="color: #ff9a03;
+    background: black;
+    border-radius: 100px;
+    padding: 7px 15px;
+    width: fit-content;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-weight: 400;
+    font-size: 12px;">1 Stash = 1 Offer</p>
+    <div class="bottonopt">
+      <a href="https://forms.gle/NoGVEy8XYfGZmHCZA"><button  class="buy-btn">Buy Mansion</button></a>
+      <button class="close-btn" onclick="closeModal()">Close Now</button>
     </div>
   </div>
+</div>
 
 <script>
-const userData = {
-  "Mahesh888*": {
-    startdate: "12-04-2026",
-    swansPerDay: 3,
-    password: "Mahesh888*"
-  }
-};
 // document.addEventListener('contextmenu', e => e.preventDefault());
-const userKey = Object.keys(userData)[0];
-const user = userData[userKey];
-
-const CORRECT_PIN = user.password;
-
-document.getElementById('pin-name').textContent = userKey;
-document.getElementById('content-name').textContent = userKey;
-
-function checkPin() {
-  const input = document.getElementById('pin-input');
-  const error = document.getElementById('error-msg');
-  const pin = input.value.trim();
-
-  if (pin === CORRECT_PIN) {
-    document.getElementById('pin-screen').classList.add('hidden');
-    document.getElementById('content').classList.remove('hidden');
-    renderStats();
-    input.value = '';
-  } else {
-    error.textContent = "Incorrect PIN. Try again.";
-    input.value = '';
-    input.focus();
-    setTimeout(() => error.textContent = '', 3000);
-  }
+function openModal(id, price, earn){
+  document.getElementById('houseId').innerText = id;
+  document.getElementById('price').innerText = price;
+  document.getElementById('earn').innerText = earn;
+  document.getElementById('overlay').style.display = 'flex';
 }
 
-document.getElementById('pin-input').addEventListener('keypress', e => {
-  if (e.key === 'Enter') checkPin();
-});
-
-function calculateSwans(startDateStr, swansPerDay) {
-  const [dd, mm, yyyy] = startDateStr.split('-').map(Number);
-  const start = new Date(yyyy, mm - 1, dd);
-  const today = new Date();
-  start.setHours(0, 0, 0, 0);
-  today.setHours(0, 0, 0, 0);
-
-  const diffMs = today - start;
-  const daysPassed = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-  const totalSwans = Math.max(0, daysPassed) * swansPerDay;
-
-  return {
-    totalSwans,
-    daysPassed: Math.max(0, daysPassed),
-    startFormatted: start.toLocaleDateString('en-IN', {
-      day: 'numeric', month: 'short', year: 'numeric'
-    })
-  };
+function closeModal(){
+  document.getElementById('overlay').style.display = 'none';
 }
-
-function renderStats() {
-  const stats = calculateSwans(user.startdate, user.swansPerDay);
-
-  document.getElementById('total-points').textContent = stats.totalSwans.toLocaleString();
-  document.getElementById('days-passed').textContent = stats.daysPassed;
-  document.getElementById('start-date').textContent = stats.startFormatted;
-  document.getElementById('last-updated').textContent = new Date().toLocaleString('en-IN', {
-    dateStyle: 'medium', timeStyle: 'short'
-  });
-}
-setInterval(() => {
-  if (!document.getElementById('content').classList.contains('hidden')) {
-    renderStats();
-  }
-}, 60000);
-
-window.addEventListener('load', () => {
-  if (!document.getElementById('content').classList.contains('hidden')) {
-    renderStats();
-  }
-});
 </script>
 
 </body>
