@@ -231,7 +231,7 @@ background: red;
       flex: 1;
     overflow-y: auto;
     background: #00000012;
-    padding: 40px 8px 145px 8px;
+    padding: 40px 9px 145px 9px;
     max-width: 650px;
     width: 100%;
     }
@@ -1209,7 +1209,7 @@ document.addEventListener("click", function(e) {
         const applyFormUrl = formLinks[currentTab] || "https://forms.gle/9URS1LAqd3iB8qDUA"; 
         contentEl.innerHTML = `
         <img style="width: 100px;filter: saturate(0.5);" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/abacus.gif" alt="">
-          <div style="display:flex; flex-direction:column; gap:1.5rem;">
+          <div style="display:flex; flex-direction:column;gap: 15px;">
             <div>
               <label style="display:block; font-size:0.75rem; text-align: center; color:var(--text2); margin: 0 0 1rem 0; letter-spacing:1px;">AMOUNT TO PROCESS</label>
               <div class="amount-box">
@@ -1227,7 +1227,7 @@ document.addEventListener("click", function(e) {
     color: var(--text);">
               </div>
             </div>
-           
+           <p style='color: green;'>You must pay the fee first.</p>
             <div class="calc-result" style="display:flex; flex-direction:column; gap:1.25rem; font-size:0.875rem;">
               <div style="display:none; justify-content:space-between;    align-items: center;">
                 <span class="text-secondary">Base amount</span>
