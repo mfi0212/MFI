@@ -208,19 +208,22 @@ p {
 }
 
 .notice {
-	font-weight: 100;
-    font-size: 15px;
-    line-height: 20px;
-    padding: 10px;
-    width: 95%;
-    max-width: 400px;
-    color: #ffffff82;
+font-size: 14px;
+    color: #ffffff91;
+    font-weight: 100;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    gap: 10px;border-radius: 35px;
-    text-align: center;
+    gap: 10px;
+    text-align: start;
     transition: all 0.3s ease;
+    position: fixed;
+    bottom: 25px;
+    width: 100%;
+    border-radius: 0px;
+    background: rgb(255 255 255 / 9%);
+    padding: 10px;
+    line-height: 18px;
 }
 
 .notice:active {
@@ -2150,7 +2153,15 @@ input:checked+.slider:before {
                 font-size: 25px;
                 color: white;
                 margin-bottom: 10px;">Verify My Account</h2>
-                <div class="notice"><span>Enter your password to see your amount details.</span></div>
+                <span style="position: relative;
+    color: gray;
+    white-space: nowrap;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;">I have a <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform"><p class="exclamation" style="color: red;
+    text-decoration: underline;">I've Issue</p></a>.</span>
             </div>  
             <div class="paswrdbtm">
                 <input type="text" id="userPassword" placeholder="Enter Password">
@@ -2163,20 +2174,7 @@ input:checked+.slider:before {
                 <p id="error-message"></p>
             </div>
         </div>
-        <div class="notice" style="font-size: 14px;
-    color: #ffffff91;
-    line-height: 21px;
-    font-weight: 100;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    text-align: start;
-    padding: 15px;
-    transition: all 0.3s ease;
-    position: fixed;
-    bottom: 25px;
-    background: rgb(255 255 255 / 9%);">
+        <div class="notice">
         <img class="closesymbol" src="service-icons/time_icons@2x.png" alt="">
         <span>You should return the money before the return date, If not additional interest will be charged.</span>
     </div>
