@@ -542,7 +542,7 @@ span svg{
     }
     
     .modal-body {
-      padding: 1.5rem;
+      padding: 1.5rem;text-align: center;
     }
     
     .section-title {
@@ -672,7 +672,7 @@ display: flex;
     height: 44px;
     cursor: pointer;
     margin: -5px;
-    background: rgb(255 255 255 / 15%);
+    background: rgb(35 35 35);
     transition: all 0.3s ease;
     filter: saturate(4);
     box-shadow: inset 1px 1px 0px 0px #ffffff2e, inset -1px -1px 0px 0px #ffffff2e;
@@ -1208,6 +1208,7 @@ document.addEventListener("click", function(e) {
         titleEl.textContent = tabNames[currentTab];
         const applyFormUrl = formLinks[currentTab] || "https://forms.gle/9URS1LAqd3iB8qDUA"; 
         contentEl.innerHTML = `
+        <img style="width: 100px;filter: saturate(0.5);" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/abacus.gif" alt="">
           <div style="display:flex; flex-direction:column; gap:1.5rem;">
             <div>
               <label style="display:block; font-size:0.75rem; text-align: center; color:var(--text2); margin: 0 0 1rem 0; letter-spacing:1px;">AMOUNT TO PROCESS</label>
@@ -1260,6 +1261,7 @@ document.addEventListener("click", function(e) {
     else if (currentTab === 3) {
         titleEl.textContent = "Pre-Saver";
         contentEl.innerHTML = `
+<img style="width: 100px;filter: saturate(0.5);" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/compass.gif" alt="">
           <div style="text-align:center;">
             <h3 style="font-size: 22px;
     font-weight: 800;
@@ -1280,6 +1282,7 @@ document.addEventListener("click", function(e) {
     else {
         titleEl.textContent = "Lendlink - Mid";
         contentEl.innerHTML = `
+        <img style="width: 100px;filter: saturate(0.5);" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/compass.gif" alt="">
           <div style="text-align:center;">
 <h3 style="font-size: 22px;
     font-weight: 800;
