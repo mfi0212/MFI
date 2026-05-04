@@ -1,4 +1,4 @@
-// document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || 'Inr (₹)';
@@ -366,29 +366,6 @@ function displayLoanDetails(loan, index) {
             </div>
 
 
-
-<div class="totaldetails">
-    <p style="font-size:60px;
-              font-weight: 600;
-              font-family: 'Anton', sans-serif;
-              letter-spacing: 4.5px;margin: 5px;
-              color: ${overdueFine > 0 
-                        ? '#ff0000' 
-                        : daysLeft <= 2 
-                            ? '#ff0000' 
-                            : daysLeft <= 6 
-                                ? '#ff8c00' 
-                                : '#00d423'};">
-        ${formatMoney(totalPayable)}
-    </p><hr> <h3 style="font-weight: 100;
-    margin: 0 0 30px 0;">
-       Total amount</h3>
-</div><hr>
-
-
-
-
-
            <div class="details">
                 <div class="leftflow">
 <?xml version="1.0" encoding="UTF-8"?>
@@ -450,7 +427,6 @@ function displayLoanDetails(loan, index) {
                         <small>(${Math.abs(daysLeft)} days)</small>
                     </p>` : ''}
             </div>
-<hr>
              <a target="_blank" style='position: sticky;
     bottom: 90px;' href="https://mfi0212.github.io/MFI/abt.hlp"><button style="background-color: #ff0000;
     padding: 8px 15px;
@@ -459,7 +435,7 @@ function displayLoanDetails(loan, index) {
     left: 50%;
     position: relative;
     transform: translate(-50%, 0%);
-    margin: 20px 0 0px 0;
+    margin: -40px 0 20px 0;
     font-weight: 100;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
@@ -474,6 +450,24 @@ function displayLoanDetails(loan, index) {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;" class="add-link-btn">I'm have an issue...!</button></a>
         </div>
+    <hr>    
+<div class="totaldetails">
+    <p style="font-size:60px;
+              font-weight: 600;
+              font-family: 'Anton', sans-serif;
+              letter-spacing: 4.5px;margin: 5px;
+              color: ${overdueFine > 0 
+                        ? '#ff0000' 
+                        : daysLeft <= 2 
+                            ? '#ff0000' 
+                            : daysLeft <= 6 
+                                ? '#ff8c00' 
+                                : '#00d423'};">
+        ${formatMoney(totalPayable)}
+    </p><hr> <h3 style="font-weight: 100;
+    margin: 0 0 30px 0;">
+       Total amount</h3>
+</div>
     `;
 }
 
