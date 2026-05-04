@@ -165,7 +165,7 @@ button#startAudioBtn {
 
 h3 {
     font-weight: 500;
-    font-size: 16px;
+    font-size: 17px;
     color: white;
 }
 
@@ -305,7 +305,7 @@ img.closesymbol {
     transition: all 1s ease-in;
     transition: 0.3s;
     }
-    .pin-toggle:active{
+    .pin-toggle:focus{
       transform: scale(1.5) translateX(-5px);
     }
     .pin-toggle.on {
@@ -320,7 +320,8 @@ img.closesymbol {
     height: 19px;
     background: #ffffff;
     border-radius: 40px;
-    transition: 0.3s;
+    transform: translateX(0px);
+    transition: all 1s ease-in;
     }
     .pin-toggle.on::after {
         transform: translateX(17px);
@@ -725,7 +726,8 @@ function createSiteItem(site) {
     <div class="letter-icon" style="background: ${bg};">${initial}</div>
     <div class="site-info" style="flex:1">
       <h3>${site.name}</h3>
-      <p style="font-size: 12px; color: #aaaaaab5;">${site.desc}</p>
+      <p style="font-size: 13px;
+    color: #aaaaaab5;">${site.desc}</p>
     </div>
     <div class="pin-toggle ${isOn ? 'on' : ''}" data-name="${site.name}"></div>
   `;
