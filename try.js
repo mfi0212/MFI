@@ -453,7 +453,7 @@ function displayLoanDetails(loan, index) {
 <hr>
              <a target="_blank" style='position: sticky;
     bottom: 90px;' href="https://mfi0212.github.io/MFI/abt.hlp"><button style="background-color: #ff0000;
-    padding: 8px 13px;
+    padding: 8px 15px;
     font-size: 16px;
     transition: all 0.3s ease;
     left: 50%;
@@ -461,8 +461,18 @@ function displayLoanDetails(loan, index) {
     transform: translate(-50%, 0%);
     margin: 20px 0 0px 0;
     font-weight: 100;
-    border: none;
-    box-shadow: inset 1px 1px 0px 0px #ffffff78, inset -1px -1px 0px 0px #ffffff78;" class="add-link-btn">I'm have an issue...!</button></a>
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
+ color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    border: solid 1px #ffffff00;" class="add-link-btn">I'm have an issue...!</button></a>
         </div>
     `;
 }
@@ -751,9 +761,9 @@ function renderCalendar() {
     font-weight: 600;
     padding: 20px;
     margin-top: -10px;
-    border-radius: 40px;
+        border-radius: 40px;
     background: rgba(255, 255, 255, 0.06);
-    box-shadow: inset 1px 1px 0px 0px #ffffff21, inset -1px -1px 0px 0px #ffffff21;">
+    border: solid 1.5px #ffffff08;">
         <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`
         ;
 
