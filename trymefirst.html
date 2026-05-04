@@ -170,7 +170,7 @@ h3 {
 }
 
     .header {
-position: fixed;
+    position: fixed;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
@@ -182,9 +182,7 @@ position: fixed;
     align-items: flex-end;
     justify-content: center;
     flex-direction: column;
-    background: linear-gradient(0deg, #0f0f0f 30%, transparent);
-    box-shadow: 0px 15px 20px #000000;
-    backdrop-filter: blur(10px);
+    background: linear-gradient(180deg, #0f0f0f 30%, transparent);
     gap: 20px;
     border-radius: 0 0 35px 35px;
     }
@@ -226,15 +224,18 @@ img.closesymbol {
     height: 35px;
 }
     #searchInput {
-        font-size: 15px;
+      font-size: 15px;
     border: none;
     border-radius: 9999px;
-    background: rgb(15 15 15);
+    background: rgb(2 2 2 / 0%);
     color: white;
     text-align: center;
     width: 150px;
     padding: 3px;
     transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    color: #fff;background-color: #1c1c1c;
+   filter: drop-shadow(0 0 5px black);
     }
 .nav-item span {
     font-size: 11px;
@@ -243,9 +244,12 @@ img.closesymbol {
      transform: scale(0.90);
 }
     #searchInput:focus {
-      outline: none;width: 100%;padding: 10px;
-      background: rgba(255,255,255,0.15);
-      font-size: 18px;
+      outline: none;
+    width: 100%;
+    padding: 10px;
+    background: rgb(78 78 78);
+    font-size: 18px;
+    backdrop-filter: blur(20px);
     }
 
     #sectionsContainer {
