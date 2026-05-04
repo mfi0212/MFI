@@ -302,7 +302,11 @@ img.closesymbol {
     position: relative;
     cursor: pointer;
     flex-shrink: 0;
+    transition: all 1s ease-in;
     transition: 0.3s;
+    }
+    .pin-toggle:active{
+      transform: scale(1.5) translateX(-5px);
     }
     .pin-toggle.on {
         background: #34c759;
