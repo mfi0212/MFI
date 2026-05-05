@@ -1,1 +1,938 @@
-no test...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BS&MFI | BsLends</title>
+    <link rel="icon" href="mfi.logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+	-webkit-tap-highlight-color: transparent;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', sans-serif;
+	scrollbar-width: none;letter-spacing: 0.5px;
+}
+
+
+    body {
+      background: #000000;
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+body {
+	--c-glass: #bbbbbc;
+	--c-light: #fff;
+	--c-dark: #000;
+	--c-content: #224;
+	--c-action: #0052f5;
+	--c-bg: #E8E8E9;
+	--glass-reflex-dark: 1;
+	--glass-reflex-light: 1;
+	--saturation: 150%;
+}
+
+body:has(input[value="dark"]:checked) {
+	--c-glass: #bbbbbc;
+	--c-light: #fff;
+	--c-dark: #000;
+	--c-content: #e1e1e1;
+	--c-action: #03d5ff;
+	--c-bg: #1b1b1d;
+}
+* {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+                
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: #00003b;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000000000000;
+    opacity: 1;
+    transition: opacity 0.6s ease;
+    padding: 40px 0;
+} .loading-logo {
+            width: 350px;
+    object-fit: cover;
+    height: 100px;
+        }
+.servicenmae{
+font-size: 18px;
+    color: #ffffff8f;
+    text-align: center;
+    font-weight: 500;
+}
+.audio-controls {
+    margin: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}.audio-progress-bar {
+    height: 2px;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 0px;
+    overflow: hidden;
+}.audio-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 6px;
+    transition: width 0.45s ease-out;
+    box-shadow: 0 0 16px #00aaff99;
+}
+.audio-progress-container {
+   line-height: 0;
+    text-align: center;
+    width: 100%;
+}.bottomloadingopt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;width: 100%;
+    margin-top: 180px;
+}img.audioloadgif {
+   width: 30px;
+    margin-bottom: 20px;
+}
+div#audioStatus {
+    font-size: 10px;
+    color: #ffffff87;
+}
+
+
+button#muteToggle {
+ border-radius: 50%;
+    border: none;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;color: white;
+background: rgba(255 255 255 / 9%);
+    box-shadow: inset 1px 1px 0px 0px #ffffff40, inset -1px -1px 0px 0px #ffffff40;
+}
+.loadintroopt {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;max-width: 500px;
+    align-items: center;
+    padding: 0 40px;
+}
+button#startAudioBtn {
+    background: #ffffff;
+    border: none;
+    border-radius: 100px;
+    padding: 10px;font-size: 15px;
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px 
+ color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+}
+
+h3 {
+    font-weight: 500;
+    font-size: 17px;
+    color: white;
+}
+
+    .header {
+        position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 600px;
+    z-index: 100000000;
+    padding: 20px 10px 10px 10px;
+    display: flex;
+    backdrop-filter: blur(1px);
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(180deg, #0f0f0f 35%, transparent);
+    gap: 20px;
+    border-radius: 0 0 35px 35px;
+    }
+strong {
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+}
+    .logo {
+     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    }
+
+    .mficolblogo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #0021ff, #00d0ff);
+      padding: 4px;
+    }
+
+    .search-container {
+    width: 100%;text-align: center;
+    max-width: 600px;
+    z-index: 90000000000;
+   transition: all 0.3s ease;
+}
+        .search-container:active{ transform: scale(0.90); } 
+img.closesymbol {
+       width: 35px;
+    border-radius: 50%;
+    margin: -6px 0;
+    height: 35px;
+}
+    #searchInput {
+     font-size: 15px;
+    border: none;
+    border-radius: 9999px;
+    background: rgb(2 2 2 / 0%);
+    color: white;
+    text-align: center;
+    width: 130px;
+    padding: 5px;
+    transition: all 0.3s ease;
+    color: #fff;
+    background-color: #1c1c1c;
+    filter: drop-shadow(0 0 5px black);
+    }
+.nav-item span {
+    font-size: 11px;
+}
+#searchInput:active{
+     transform: scale(0.90);
+}
+    #searchInput:focus {
+      outline: none;
+    width: 100%;
+    padding: 10px;
+    background: rgb(78 78 78);
+    font-size: 18px;
+    backdrop-filter: blur(20px);
+    }
+
+    #sectionsContainer {
+    padding-top: 185px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-bottom: 97px;
+    }
+
+    .section h2 {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 25px 15px 8px;
+      color: #aaaaaa;display: none;
+    }
+
+    .site-list {
+          overflow: hidden;
+    width: 98%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    }
+.fixwidth {
+    max-width: 600px;
+}
+    .site-item {
+    display: flex;
+    align-items: center;
+    padding: 9px;
+    color: white;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    opacity: 70%;
+    border-radius: 22px;
+    margin: 5px 0 0 0;
+    background: #0f0f0f;
+}
+
+        .site-item:active{ transform: scale(0.95);} 
+
+.site-item.pinned {
+      background: rgb(0, 0, 0);
+    }
+
+    /* Toggle Switch */
+    .pin-toggle {
+     width: 47px;
+    height: 23px;
+    background: #2e2e30;
+    border-radius: 9999px;
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 1s ease-in;
+    transition: 0.3s;
+    }
+    .pin-toggle:focus{
+      transform: scale(1.5) translateX(-5px);
+    }
+    .pin-toggle.on {
+        background: #34c759;
+    }
+    .pin-toggle::after {
+        content: '';
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    width: 25px;
+    height: 19px;
+    background: #ffffff;
+    border-radius: 40px;
+    transform: translateX(0px);
+    transition: all 1s ease-in;
+    }
+    .pin-toggle.on::after {
+        transform: translateX(17px);
+    }
+
+.helper-button {
+z-index: 1000;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: saturate(4);
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;    backdrop-filter: blur(2px);
+
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px 
+ color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+  }
+.helper-button a{
+    display: contents;
+}
+.helper-button svg{
+  transition: all 0.3s ease;
+}
+.helper-button svg:active{
+  transform: scale(0.70); 
+}
+
+    .letter-icon {
+      width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    margin-right: 12px;
+    flex-shrink: 0;
+    font-size: 23px;
+    color: #ffffff;
+    }
+
+    .bottom-nav {
+           position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 350px;
+    border-radius: 9999px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    z-index: 200;
+    color: #fff;
+    backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
+    filter: drop-shadow(0px 0px 15px black) saturate(1.5);
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px 
+ color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    }
+
+    .nav-item {
+     display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 3px 15px;
+    border-radius: 9999px;
+    gap: 2px;
+    transition: all 0.3s ease;
+    }
+
+    .nav-item:hover { background-color: #0021ff; color: white; }
+    .nav-item:active { transform: scale(0.90); }
+
+    .nav-item i { font-size: 22px; margin-bottom: 3px; }
+    #redirectModal {
+          position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0 0 0 / 59%);
+    display: none;
+    align-items: end;
+    z-index: 999999999;
+    padding-bottom: 20px;
+    }
+
+    .modal-content {
+         background: #161616;
+    width: 95%;
+    max-width: 400px;
+    border-radius: 45px;
+    padding: 0 0 20px 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    }
+
+    .modal-content h3 {
+    letter-spacing: 0px;
+    margin: 10px 0 20px 0;
+    font-weight: 600;
+    font-size: 20px;
+    }
+
+    .modal-content p {
+color: white;
+    font-size: 17px;
+    line-height: 40px;
+    margin-bottom: 15px;
+    font-weight: 100;
+    width: 80%;
+    }
+strong#modalPageName {
+    color: white;
+    font-size: 15px;
+    line-height: 40px;
+    margin-bottom: 15px;
+    font-weight: 500;    text-transform: lowercase;
+    width: 80%;    display: contents;
+}
+
+.acuntpopup {
+width: 95%;
+    border-radius: 40px 40px 0 0;
+    margin: 8px 0 0 0;
+    padding: 15px 10px 0 10px;
+    background: linear-gradient(180deg, #000000, #161616);
+}
+    .modal-actions {
+     display: flex;
+    gap: 10px;
+    width: 90%;flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    .modal-btn {
+flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 9999px;
+    font-size: 18px;
+    font-weight: 100;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 47px;
+}
+
+    .modal-btn.cancel {
+      background: #ff0000c9;
+      color: white;
+    }
+
+    .modal-btn.proceed {
+     background-color: #0000ff;
+      color: white;
+    }
+
+    .modal-btn:active {
+      transform: scale(0.95);
+    }
+#modalTitle{
+  color: #ffd800;
+}
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 28px;
+      color: #888;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="servicename" style=" font-size: 12px;
+    letter-spacing: 0.5px;
+    padding: 10px;
+    border-radius: 100px;
+    color: #ffffff;
+    font-weight: 300;background: rgba(255 255 255 / 9%);
+    box-shadow: inset 1px 1px 0px 0px #ffffff40, inset -1px -1px 0px 0px #ffffff40;">
+            BsLends Service
+        </div>
+        <img src="loadinglogo.png" alt="Loading Doughnut" class="loading-logo">
+        
+        <div class="bottomloadingopt">
+            <div class="servicenmae">
+            Welcome to BsLends
+        </div>
+
+        <button class="start-btn" id="startAudioBtn">Connect Now</button>
+
+        <div class="audio-controls" id="audioControls">
+            <div class="audio-progress-container">
+                <div class="audio-progress-bar">
+                    <div id="audioProgressFill" class="audio-progress-fill"></div>
+                </div>
+                <img class="audioloadgif" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_564995111e604ee1b65d3cfdd94d914f/default/dark/2.0" alt="">
+                <div class="audio-status" id="audioStatus">Waiting for you to start...</div>
+            </div>
+        </div>
+        <div class="loadintroopt">
+            <button class="mute-btn" id="muteToggle" title="Mute / Unmute">
+                <i class="fas fa-volume-high"></i>
+            </button>
+            <a style="display: flex;" onclick="alert('Welcome to BsLends Service from BS&MFI Services')"><img style="width: 50px;
+    height: 50px;
+    border-radius: 62px;
+    padding: 2px;
+    background: rgba(255 255 255 / 9%);
+    box-shadow: inset 1px 1px 0px 0px #ffffff40, inset -1px -1px 0px 0px #ffffff40;" src="mfi.gif" alt=""></a>
+        </div>
+        <audio id="introAudio" preload="auto">
+            <source src="PlayboiCarti-Not Real.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        </div>
+    </div>
+
+  <div id="mainContent">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">
+        <div class="helper-button">
+          <a  href="https://mfi0212.github.io/MFI/starpre"><svg style="opacity: 100%;width: 34px;height: 34px;fill: white;margin: -20px -9px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m435.04-243.96 188.54-237.77H472.85l26.61-225.42-178.54 276.5h147.23l-33.11 186.69ZM384-142.35l48-259.38H271.23L532.5-814.19h7.5l-35.23 303.54h174.65L392-142.35h-8Zm88.5-333.15Z"/></svg></a> 
+        </div>
+        <strong class="fixwidth"><img style="width: 100px;" src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Swan.webp" alt=""></strong> 
+        <a onclick="alert('Welcome to BsLends from BS&MFI Services')"><img style="width: 44px;
+    border-radius: 50%;    backdrop-filter: blur(2px);
+
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
+ color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px 
+ color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    padding: 3px;" src="mfi.logo.png" alt=""></a>
+      </div>
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search here..." autocomplete="off"/>
+      </div>
+    </div>
+    <div id="sectionsContainer"></div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <div class="nav-item active" id="nav-all" onclick="showAll()">
+        <img class="closesymbol" src="service-icons/details_icon.png" alt="">
+        <span>All</span>
+      </div>
+      <div class="nav-item" id="nav-pinned" onclick="showPinnedOnly()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M378.46-80v-119.23H200l280-300 280 300H581.54V-80H378.46Zm40-39.23h123.08v-120h125.84L480-439.23l-187.38 200h125.84v120ZM200-389.23l280-300 280 300h-54.69L480-630 254.69-389.23H200Zm0-190 280-300 280 300h-54.69L480-820 254.69-579.23H200Zm280 340Z"/></svg>
+        <span>Pinned</span>
+      </div>
+      <div class="nav-item" onclick="showRedirectPopup('Borrow', 'https://mfi0212.github.io/MFI/applydivert')">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+          <path d="M240.77-190.77Q137.15-220.08 78.96-302T20.77-480q0-96.08 58.19-178t161.81-111.23V-706q-71 24-115.5 86t-44.5 140q0 78 44.5 140t115.5 86v63.23Zm320 10.77q-124.92 0-212.46-87.54T260.77-480q0-124.92 87.54-212.46T560.77-780q60.23 0 113.81 22.31 53.57 22.31 94.88 62.08l-42.15 42.15q-32.62-31.46-74.96-49Q610-720 560.77-720q-100 0-170 70t-70 170q0 100 70 170t170 70q49.23 0 91.58-17.54 42.34-17.54 74.96-49l42.15 42.15q-41.31 39.77-94.88 62.08Q621-180 560.77-180Zm232.31-153.85L750.92-376l74-74H523.08v-60h301.84l-74-74 42.16-42.15L939.23-480 793.08-333.85Z"/>
+        </svg>
+        <span>Borrow</span>
+      </div>
+      <div class="nav-item" onclick="showRedirectPopup('Account', 'https://mfi0212.github.io/MFI/accverify')">
+        <img style="width: 20px; border-radius: 50%; margin: 2px;" 
+             src="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg" alt=""> 
+        <span>Account</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="redirectModal">
+    <div class="modal-content">
+       <div class="acuntpopup">
+          <img style="width: 100px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/compass.gif" alt="">
+          <h3 id="modalTitle">Confirm Redirect?</h3>
+       </div>
+      <p id="modalMessage">We are redirecting you to <strong id="modalPageName"></strong> page...!</p>
+      
+       <div class="modal-actions">
+        <button class="modal-btn cancel" onclick="closeModal()"><img class="closesymbol" src="service-icons/close_icon.png" alt="">Cancel</button>
+        <button class="modal-btn proceed" onclick="proceedToLink()"><img class="closesymbol" src="service-icons/done_icon.png" alt="">Continue</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+// Data and functions
+const siteGroups = [
+  { heading: "Return Management", sites: [
+    { name: "BS&MFI Solutions", desc: "Return date extender", url: "https://mfi0212.github.io/swan/offer/solution" },
+]},
+{ heading: "New in & issue", sites: [
+    { name: "Enterance Form", desc: "New members form", url: "https://mfi0212.github.io/MFI/entrysheet" },
+    { name: "Helper", desc: "I have issue form", url: "https://mfi0212.github.io/MFI/abt.hlp" },
+    { name: "I'm late", desc: "Important Note", url: "https://mfi0212.github.io/MFI/imlate" }
+]},
+{ heading: "Offer & Earns", sites: [
+    { name: "Lendlink-Mid", desc: "Turn your money into income", url: "https://mfi0212.github.io/swan/lndlnk-mid" },
+    { name: "BsGames", desc: "Exclusive rewards and benefits for BS&MFI members.", url: "https://blackswan19.github.io/golden/Bs%20Games/bsgames" },
+    { name: "Stars", desc: "Interest reducer.", url: "https://blackswan19.github.io/golden/FM/starspage" }
+  ]},
+  { heading: "For VIPs Only Services", sites: [
+    { name: "BsMansion", desc: "Store offer to use after", url: "https://mfi0212.github.io/MFI/bsmansion" },
+    { name: "Chloennaouii", desc: "Discover Your Discount", url: "https://mfi0212.github.io/MFI/cholennaouii.main" }
+  ]},
+  { heading: "Services", sites: [
+    { name: "All Services", desc: "All service from BS&MFI", url: "https://blackswan19.github.io/BS/bslends" },
+    { name: "BsLends", desc: "A service from BS&MFI", url: "https://mfi0212.github.io/MFI/rate" },
+    { name: "Myootive", desc: "A service from BS&MFI", url: "https://blackswan19.github.io/golden/FM/themain" },
+    { name: "Turbo", desc: "Subcription plans", url: "https://mfi0212.github.io/MFI/starpre" },
+    { name: "Short Term Loan", desc: "Quick amounts for 1 to 15 days.", url: "https://mfi0212.github.io/MFI/1.5.days" }
+  ]},
+  { heading: "Collaboration", sites: [
+    { name: "BsPsgenerater", desc: "Password generator", url: "https://blackswan19.github.io/Educate/password" },
+    { name: "BsReminder", desc: "Date wise notes", url: "https://blackswan19.github.io/bscrop/reminder" },
+    { name: "BsBookpad", desc: "Download the notes", url: "https://blackswan19.github.io/Educate/bookpad" },
+    { name: "BsAdstoper", desc: "Ad blocker", url: "https://blackswan19.github.io/Educate/stoper" }
+  ]}
+];
+
+let pinnedSites = JSON.parse(localStorage.getItem('pinnedBSMFI')) || [];
+let currentView = 'all';
+
+function getColor(name) {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const hue = Math.abs(hash) % 360;
+  return `hsl(${hue}, 75%, 58%)`;
+}
+
+function getInitial(name) {
+  return name.trim()[0]?.toUpperCase() || "?";
+}
+
+function isPinned(name) {
+  return pinnedSites.some(p => p.name === name);
+}
+
+function togglePin(site) {
+  if (isPinned(site.name)) {
+    pinnedSites = pinnedSites.filter(p => p.name !== site.name);
+  } else {
+    pinnedSites.push(site);
+  }
+  localStorage.setItem('pinnedBSMFI', JSON.stringify(pinnedSites));
+  renderCurrentView();
+}
+
+function createSiteItem(site) {
+  const a = document.createElement("a");
+  a.href = site.url || "#";
+  a.target = "_parent";
+  a.className = `site-item ${isPinned(site.name) ? 'pinned' : ''}`;
+
+  const bg = getColor(site.name);
+  const initial = getInitial(site.name);
+  const isOn = isPinned(site.name);
+
+  a.innerHTML = `
+    <div class="letter-icon" style="background: ${bg};">${initial}</div>
+    <div class="site-info" style="flex:1">
+      <h3>${site.name}</h3>
+
+    </div>
+    <div class="pin-toggle ${isOn ? 'on' : ''}" data-name="${site.name}"></div>
+  `;
+
+  // Toggle functionality
+  const toggle = a.querySelector('.pin-toggle');
+  toggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    togglePin(site);
+  });
+
+  return a;
+}
+
+function renderCurrentView() {
+  const container = document.getElementById("sectionsContainer");
+  container.innerHTML = "";
+
+  if (currentView === 'pinned') {
+    if (pinnedSites.length === 0) {
+      container.innerHTML = `<div style="text-align:center; padding:80px 20px; color:#666;"><h2>No Pinned Services</h2><p>Tap the toggle to pin services.</p></div>`;
+      return;
+    }
+    const section = document.createElement("div");
+    section.className = "section";
+    section.innerHTML = `<h2>Pinned Services</h2>`;
+    const list = document.createElement("div");
+    list.className = "site-list";
+    pinnedSites.forEach(site => list.appendChild(createSiteItem(site)));
+    section.appendChild(list);
+    container.appendChild(section);
+    return;
+  }
+
+  // Pinned section at top
+  if (pinnedSites.length > 0) {
+    const pinnedSection = document.createElement("div");
+    pinnedSection.className = "section";
+    pinnedSection.innerHTML = `<h2>Pinned</h2>`;
+    const list = document.createElement("div");
+    list.className = "site-list";
+    pinnedSites.forEach(site => list.appendChild(createSiteItem(site)));
+    pinnedSection.appendChild(list);
+    container.appendChild(pinnedSection);
+  }
+
+  const pinnedNames = new Set(pinnedSites.map(s => s.name));
+
+  siteGroups.forEach(group => {
+    const filteredSites = group.sites.filter(site => !pinnedNames.has(site.name));
+    if (filteredSites.length === 0) return;
+
+    const section = document.createElement("div");
+    section.className = "section";
+    section.innerHTML = `<h2>${group.heading}</h2>`;
+
+    const list = document.createElement("div");
+    list.className = "site-list";
+    filteredSites.forEach(site => list.appendChild(createSiteItem(site)));
+    section.appendChild(list);
+    container.appendChild(section);
+  });
+}
+
+function showAll() {
+  currentView = 'all';
+  document.getElementById('nav-all').classList.add('active');
+  document.getElementById('nav-pinned').classList.remove('active');
+  renderCurrentView();
+}
+
+function showPinnedOnly() {
+  currentView = 'pinned';
+  document.getElementById('nav-all').classList.remove('active');
+  document.getElementById('nav-pinned').classList.add('active');
+  renderCurrentView();
+}
+
+// Search
+document.getElementById("searchInput").addEventListener("input", (e) => {
+  const term = e.target.value.toLowerCase().trim();
+  if (!term) { renderCurrentView(); return; }
+
+  const container = document.getElementById("sectionsContainer");
+  container.innerHTML = "";
+
+  let foundAny = false;
+  siteGroups.forEach(group => {
+    const filteredSites = group.sites.filter(site => 
+      site.name.toLowerCase().includes(term) || site.desc.toLowerCase().includes(term)
+    );
+    if (filteredSites.length === 0) return;
+    foundAny = true;
+
+    const section = document.createElement("div");
+    section.className = "section";
+    section.innerHTML = `<h2>${group.heading}</h2>`;
+    const list = document.createElement("div");
+    list.className = "site-list";
+    filteredSites.forEach(site => list.appendChild(createSiteItem(site)));
+    section.appendChild(list);
+    container.appendChild(section);
+  });
+
+  if (!foundAny) {
+    container.innerHTML = `<div style="text-align:center; padding:60px 20px; color:#666;">No services found for "<strong>${term}</strong>"</div>`;
+  }
+});
+
+renderCurrentView();
+</script>
+
+<script>
+// Your original loading + audio script (kept unchanged)
+const loadingOverlay = document.getElementById("loadingOverlay");
+const startBtn = document.getElementById("startAudioBtn");
+const audioControls = document.getElementById("audioControls");
+const progressFill = document.getElementById("audioProgressFill");
+const audioStatus = document.getElementById("audioStatus");
+const audio = document.getElementById("introAudio");
+const muteToggle = document.getElementById("muteToggle");
+
+let stopTime = 0;
+let progressInterval;
+
+muteToggle?.addEventListener("click", () => {
+    audio.muted = !audio.muted;
+    muteToggle.innerHTML = audio.muted ? '<i class="fas fa-volume-xmark"></i>' : '<i class="fas fa-volume-high"></i>';
+});
+
+startBtn?.addEventListener("click", async () => {
+    startBtn.style.display = "none";
+    audioControls.style.display = "flex";
+
+    try {
+        if (audio.readyState < 1) {
+            await new Promise(resolve => audio.addEventListener("loadedmetadata", resolve, { once: true }));
+        }
+
+        stopTime = audio.duration * 0.25 || 20;
+
+        progressFill.style.width = "0%";
+        audioStatus.textContent = "0% • Loading...";
+
+        await audio.play();
+
+        progressInterval = setInterval(() => {
+            if (audio.currentTime >= stopTime) {
+                progressFill.style.width = "100%";
+                audioStatus.textContent = "100% • Complete";
+                audio.pause();
+                clearInterval(progressInterval);
+
+                setTimeout(() => {
+                    loadingOverlay.style.opacity = "0";
+                    setTimeout(() => {
+                        loadingOverlay.style.display = "none";
+                        document.getElementById("mainContent").style.opacity = "1";
+                    }, 800);
+                }, 600);
+                return;
+            }
+
+            let percent = Math.min(100, (audio.currentTime / stopTime) * 100);
+            progressFill.style.width = percent + "%";
+            audioStatus.textContent = Math.round(percent) + "% • Loading...";
+        }, 40);
+
+    } catch(e) {
+        console.error(e);
+        setTimeout(() => {
+            loadingOverlay.style.opacity = "0";
+            setTimeout(() => loadingOverlay.style.display = "none", 800);
+        }, 1500);
+    }
+});
+</script>
+
+<script>
+let currentRedirectUrl = "";
+
+function showRedirectPopup(pageName, url) {
+  currentRedirectUrl = url;
+  document.getElementById('modalPageName').textContent = pageName;
+  document.getElementById('redirectModal').style.display = 'flex';
+}
+
+function closeModal() {
+  document.getElementById('redirectModal').style.display = 'none';
+}
+
+function proceedToLink() {
+  if (currentRedirectUrl) window.location.href = currentRedirectUrl;
+}
+
+document.getElementById('redirectModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+</script>
+</body>
+</html>
