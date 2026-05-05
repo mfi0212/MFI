@@ -162,9 +162,9 @@ background: #ffffff57;
     filter: saturate(3);
     animation: rise .4s ease;
     backdrop-filter: blur(15px);
-    border-radius: 45px 45px 25px 25px;
+    border-radius: 40px;
     margin-bottom: 6px;
-    border: solid 2px white;
+    border: solid 2px #ffffff;
     box-shadow: -0px -35px 100px #00000070;
 }
 
@@ -181,12 +181,12 @@ background: #ffffff57;
 }
 
 .detail{
- border-bottom: 1px solid #0000002e;
+border-bottom: 1px solid #0000001a;
     padding: 15px;
     display: flex;
     justify-content: space-between;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 100;
 }
 .detail:hover{
   color: white;color: white;
@@ -202,7 +202,6 @@ display: flex;
     gap: 10px;
     margin-top: 30px;
     width: 100%;
-    margin-bottom: -5px;
 }
 .bottonopt button{
     border: none;
@@ -232,7 +231,7 @@ position: sticky;
     width: 100%;
     display: flex;
     justify-content: center;
-    background: linear-gradient(0deg, #ede9d0 10%, transparent);
+    background: linear-gradient(0deg, #f9f6e2 10%, transparent);
     padding: 30px 0;    z-index: 10;
 }.mainoptions {
 display: flex;
@@ -249,15 +248,14 @@ display: flex;
 .options button{
     width: fit-content;
     cursor: pointer;
-    background: #ffffff00;
+    background: transparent;
     color: black;
     font-size: 18px;
     font-weight: 100;
     border-radius: 100px;
-    filter: drop-shadow(0px 0px 10px #00000047) saturate(2);
+    filter: drop-shadow(0px 0px 5px #00000047) saturate(4);
     box-shadow: inset 1px 1px 0px 0.1px #ffffffb8, inset -1px -1px 0px -0.1px #ffffffb8;
-    backdrop-filter: blur(3px);
-    padding: 10px 15px;
+    backdrop-filter: blur(10px);
     transition: all 0.3s ease;
 }
 .options button:active{
