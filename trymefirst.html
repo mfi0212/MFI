@@ -71,6 +71,9 @@ body{
 header{
 text-align: start;
     padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header h1{
@@ -280,8 +283,14 @@ footer {
 <body>
 
 <header>
-  <h1>BsMansion</h1>
+  <div class="lftsdopt">
+    <h1>BsMansion</h1>
     <p class="subtitle">By BS&MFI House</p>
+  </div>
+  <div class="rghtsdopt">
+    <a onclick="alert('Welcome to BsMansion from BS&MFI House')"><img style="width: 44px;
+    border-radius: 50%;cursor: pointer;" src="mfi.gif" alt=""></a>
+  </div>
 </header>
 <!-- <div onclick="alert('EGG')" class="floating-eggs" style="top: 80px; left: 10%; animation-delay: 0s;">🥚</div>
     <div onclick="alert('CHICK')" class="floating-eggs" style="    top: 217px;right: 3%;animation-delay: 4s;">🐣</div>
