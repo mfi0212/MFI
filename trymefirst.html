@@ -174,11 +174,6 @@ display: flex;
     left: 0;
         }
 
-        .user {
-               font-weight: 100;
-    color: var(--text);
-    
-        }
 svg#Outline {
     width: 20px;
     height: 20px;
@@ -190,19 +185,20 @@ backdrop-filter: blur(5px);
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease;
-    background: transparent;
-    filter: drop-shadow(0px 0px 10px #00000047) saturate(4);
-    box-shadow: inset 1px 1px 0px 0.1px #ffffff, inset -1px -1px 0px -0.1px #ffffff;
+    background: var(--hermes-orange);
+    filter: saturate(4);
     font-size: 18px;
     height: 44px;
+    fill: white;
+    color: white;
+    font-weight: 100;
   }
 
         .userslide:active{
               transform: scale(0.90); 
         } 
        .switch {
-        color: var(--hermes-orange);
-    cursor: pointer;
+        cursor: pointer;
     backdrop-filter: blur(5px);
     border: solid 1px #ffffff00;
     border-radius: 100px;
@@ -213,11 +209,12 @@ backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ffffff00;
-    filter: drop-shadow(0px 0px 10px #00000047) saturate(4);
-    box-shadow: inset 1px 1px 0px 0.1px #ffffff, inset -1px -1px 0px -0.1px #ffffff;
+    background: var(--hermes-orange);
+    border: none;
       }
-
+.switch svg{
+    fill: white;
+}
         .switch:active{
               transform: scale(0.90); 
         } 
@@ -312,15 +309,15 @@ backdrop-filter: blur(5px);
 margin-top: 35px;
     cursor: pointer;
     padding: 10px;
-    color: black;
+    color: #ffffff;
     font-size: 18px;
     font-weight: 100;
     border-radius: 100px;
     backdrop-filter: blur(2px);
-    background: #ffffff00;
+    background: var(--hermes-orange);
     filter: drop-shadow(0px 0px 10px #00000047) saturate(4);
-    box-shadow: inset 1px 1px 0px 0.1px #ffffff, inset -1px -1px 0px -0.1px #ffffff;
     transition: all 0.3s ease;
+    border: none;
 }
 
         .options button:active{
