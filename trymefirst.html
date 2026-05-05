@@ -137,7 +137,11 @@ button#muteToggle {
     justify-content: center;color: white;
 background: rgba(255 255 255 / 9%);
     box-shadow: inset 1px 1px 0px 0px #ffffff40, inset -1px -1px 0px 0px #ffffff40;
+transition: all 0.3s ease;
 }
+
+        button#muteToggle:active{ transform: scale(0.90);} 
+
 .loadintroopt {
     display: flex;
     justify-content: space-between;
@@ -145,6 +149,12 @@ background: rgba(255 255 255 / 9%);
     align-items: center;
     padding: 0 40px;
 }
+.loadintroopt img{
+transition: all 0.3s ease;
+}
+
+        .loadintroopt img:active{ transform: scale(0.90);} 
+
 button#startAudioBtn {
     background: #ffffff;
     border: none;
@@ -161,7 +171,10 @@ button#startAudioBtn {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+transition: all 0.3s ease;
 }
+
+        button#startAudioBtn:active{ transform: scale(0.90);} 
 
 h3 {
     font-weight: 500;
@@ -285,11 +298,11 @@ img.closesymbol {
     text-decoration: none;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
     opacity: 70%;
     border-radius: 22px;
     margin: 5px 0 0 0;
     background: #0f0f0f;
+    transition: all 0.3s ease;
 }
 
         .site-item:active{ transform: scale(0.95);} 
@@ -546,7 +559,7 @@ flex: 1;
     color: #ffffff;
     font-weight: 300;background: rgba(255 255 255 / 9%);
     box-shadow: inset 1px 1px 0px 0px #ffffff40, inset -1px -1px 0px 0px #ffffff40;">
-            BsLends Service
+            BS&MFI Service
         </div>
         <img src="loadinglogo.png" alt="Loading Doughnut" class="loading-logo">
         
@@ -733,7 +746,8 @@ function createSiteItem(site) {
     <div class="letter-icon" style="background: ${bg};">${initial}</div>
     <div class="site-info" style="flex:1">
       <h3>${site.name}</h3>
-
+      <p style="font-size: 13px;
+    color: #aaaaaab5;">${site.desc}</p>
     </div>
     <div class="pin-toggle ${isOn ? 'on' : ''}" data-name="${site.name}"></div>
   `;
