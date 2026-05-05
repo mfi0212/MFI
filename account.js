@@ -12,7 +12,7 @@ let hiddenLoans = new Set();
 let loanChart = null; 
 
 const usersDB = {
-    "Mahesh888*": {
+   "Mahesh888*": {
         name: "Mahesh Muthinti",
         coins: 0,
         loans: [
@@ -23,13 +23,14 @@ const usersDB = {
             { planDate: "11-01-2026", endDate: "08-06-2026", interest: 1717, takenAmount: 6850, takenFrom: "Golden", fineRate: 40 },
         ],
         links: [],
-       emote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif"
+       emote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif",
+        defaultEmote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif"
     },
     "0212": {
         name: "Tony Mantana",
         coins: 4000,
         loans: [
-             { planDate: "09-02-2026", endDate: "08-03-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "01-05-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
             ],
         links: [],
         emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
@@ -66,6 +67,7 @@ function loadUserData() {
         const saved = savedData[pin];
         if (saved) {
             usersDB[pin].links = saved.links || [];
+            usersDB[pin].emote = saved.emote || usersDB[pin].emote;
             if (saved.purposes) {
                 saved.purposes.forEach((p, i) => {
                     if (usersDB[pin].loans[i]) usersDB[pin].loans[i].purpose = p;
@@ -80,6 +82,7 @@ function saveUserData() {
     for (let pin in usersDB) {
         data[pin] = {
             links: usersDB[pin].links,
+            emote: usersDB[pin].emote,
             purposes: usersDB[pin].loans.map(l => l.purpose || "")
         };
     }
@@ -137,14 +140,31 @@ function showRepaymentReminderPopup(reminder) {
     modal.innerHTML = `
         <div class="reminder-content">
             <div class="reminder-header">
-                <button class="reminder-close-btn" title="Close reminder"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z"/></svg></button>
+                <button class="reminder-close-btn" title="Close reminder"><img class="closesymbol" src="service-icons/close_icon.png" alt=""></button>
             </div>
-            <img style="width: 100px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/trumpet.gif" alt="">
+            <img style="width: 150px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/trumpet.gif" alt="">
+            <div class="iconsinfo" style='width: 85%;    margin: 20px 0;'>
+                <div class="icon">
+                    <svg style="height: 23px;
+                        width: 23px;
+                        margin: 0px 0 -2px 0;" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M14.648,5.493c.873-.701,1.772-1.643,2.228-2.789,.238-.598,.161-1.277-.205-1.816-.377-.556-1.002-.888-1.671-.888h-6c-.669,0-1.294,.332-1.671,.888-.366,.539-.442,1.218-.205,1.816,.456,1.145,1.355,2.088,2.228,2.789C4.696,7.221,1,13.159,1,18c0,3.309,2.691,6,6,6h10c3.309,0,6-2.691,6-6,0-4.841-3.696-10.779-8.352-12.507Zm.369-3.528c-.516,1.297-2.094,2.393-3.019,2.91-.923-.513-2.495-1.6-2.999-2.875l6.018-.035Zm1.982,20.035H7c-2.206,0-4-1.794-4-4,0-5.243,4.71-11,9-11s9,5.757,9,11c0,2.206-1.794,4-4,4Zm-5,0c-.552,0-1-.448-1-1v-1h-.268c-1.068,0-2.063-.574-2.598-1.499-.276-.478-.113-1.089,.365-1.366,.476-.277,1.089-.114,1.366,.365,.178,.308,.511,.5,.867,.5h2.268c.551,0,1-.449,1-1,0-.378-.271-.698-.644-.76l-3.042-.507c-1.341-.223-2.315-1.373-2.315-2.733,0-1.654,1.346-3,3-3v-1c0-.552,.448-1,1-1s1,.448,1,1v1h.268c1.067,0,2.063,.575,2.598,1.5,.276,.478,.113,1.089-.365,1.366-.477,.277-1.089,.114-1.366-.365-.179-.309-.511-.5-.867-.5h-2.268c-.551,0-1,.449-1,1,0,.378,.271,.698,.644,.76l3.042,.507c1.341,.223,2.315,1.373,2.315,2.733,0,1.654-1.346,3-3,3v1c0,.552-.448,1-1,1Z"/></svg>
+                    <div class="iconname">
+                        Borrowed Amount
+                    </div>
+                </div>
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M19,2h-1V1c0-.552-.448-1-1-1s-1,.448-1,1v1H8V1c0-.552-.448-1-1-1s-1,.448-1,1v1h-1C2.243,2,0,4.243,0,7v12c0,2.757,2.243,5,5,5h14c2.757,0,5-2.243,5-5V7c0-2.757-2.243-5-5-5ZM5,4h14c1.654,0,3,1.346,3,3v1H2v-1c0-1.654,1.346-3,3-3Zm14,18H5c-1.654,0-3-1.346-3-3V10H22v9c0,1.654-1.346,3-3,3Zm-3-6c0,.552-.448,1-1,1h-6c-.552,0-1-.448-1-1s.448-1,1-1h6c.552,0,1,.448,1,1Z"/></svg>
+                    <div class="iconname">
+                        Return date
+                    </div>
+                </div>
+                
+            </div>
             <div class="reminder-body">
-                <p>Mr. ${name} you have <strong>${formatMoney(totalAmount)}</strong> to return on <br><strong>${dueDate}</strong>${loansText}. Return before the end date or extra charges will be added.</p>
+                <p>Mr. ${name} you have <strong>${formatMoney(totalAmount)}</strong> to return on <strong>${dueDate}</strong>${loansText}. Return before the end date or extra charges will be added.</p><p>If you have to extend do so on today only you can't extend on return date.</p>
             </div>
             <div class="reminder-actions">
-                <button class="reminder-btn delay"  data-action="delay"><a href="https://mfi0212.github.io/swan/offer/solution">Explore Solutions</a></button>
+                <button class="reminder-btn delay"  data-action="delay"><a href="https://mfi0212.github.io/swan/offer/solution"><img class="closesymbol" src="service-icons/visit_icon.png" alt=""> Visit Solutions</a></button>
             </div>
         </div>
     `;
@@ -190,7 +210,13 @@ document.getElementById("submitBtn").onclick = () => {
         filteredLoans = [...user.loans];
 
         document.getElementById("userName").textContent = user.name;
-        document.getElementById("userEmote").src = user.emote;  
+        const emoteImg = document.getElementById("userEmote");
+if (user.emote) {
+  emoteImg.src = user.emote;
+  emoteImg.style.display = "block";
+} else {
+  emoteImg.style.display = "none"; // hide if empty
+}
         updateCoinsDisplay();
         renderLinks();
         renderAmountButtons();
@@ -325,15 +351,21 @@ function displayLoanDetails(loan, index) {
 
     document.getElementById("loanDetails").innerHTML = `
         <div class="loan-entry">
-            <div class="details" style="transform: none;">
-                <div class="leftflow">
-                  <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M12,7c-2.757,0-5,2.243-5,5s2.243,5,5,5,5-2.243,5-5-2.243-5-5-5Zm0,8c-1.654,0-3-1.346-3-3s1.346-3,3-3,3,1.346,3,3-1.346,3-3,3Zm12-4h-2.05c-.471-4.717-4.233-8.48-8.95-8.95V0h-2V2.05C6.283,2.52,2.52,6.283,2.05,11H0v2H2.05c.471,4.717,4.233,8.48,8.95,8.95v2.05h2v-2.05c4.717-.471,8.48-4.233,8.95-8.95h2.05v-2Zm-12,9c-4.411,0-8-3.589-8-8S7.589,4,12,4s8,3.589,8,8-3.589,8-8,8Z"/></svg>
-<h3>Purpose</h3>
-                </div>
-                <input type="text" class="purpose-input" placeholder="Eg : Shopping.." value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
+            <div class="details" style="transform: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 250px;
+    opacity: 100%;
+    z-index: 10000000;
+    padding: 20px 0 0 0;filter: drop-shadow(0 0 5px black);">
+
+                <input type="text" class="purpose-input" placeholder="Purpose" value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
             </div>
-            <div class="details">
+
+
+           <div class="details">
                 <div class="leftflow">
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" id="Layer_2" data-name="Layer 1" viewBox="0 0 24 24">
@@ -341,22 +373,22 @@ function displayLoanDetails(loan, index) {
 </svg>
 
 
-<h3>Taken From</h3>
+<h3>Service</h3>
                 </div>
                 <p>${loan.takenFrom}</p>
             </div>
             <div class="details">
                 <div class="leftflow"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_3" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="m8,12h-2c-1.103,0-2,.897-2,2v2c0,1.103.897,2,2,2h2c1.103,0,2-.897,2-2v-2c0-1.103-.897-2-2-2Zm-2,4v-2h2v2s-2,0-2,0ZM19,2h-1v-1c0-.552-.447-1-1-1s-1,.448-1,1v1h-8v-1c0-.552-.447-1-1-1s-1,.448-1,1v1h-1C2.243,2,0,4.243,0,7v12c0,2.757,2.243,5,5,5h14c2.757,0,5-2.243,5-5V7c0-2.757-2.243-5-5-5Zm-14,2h14c1.654,0,3,1.346,3,3v1H2v-1c0-1.654,1.346-3,3-3Zm14,18H5c-1.654,0-3-1.346-3-3v-9h20v9c0,1.654-1.346,3-3,3Z"/></svg>
-<h3>Taken Date</h3>
+<h3>Borrowed on</h3>
                 </div>
                 <p>${loan.planDate}</p>
             </div>
             <div class="details">
                 <div class="leftflow">
 <svg xmlns="http://www.w3.org/2000/svg" id="Layer_4" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M19,2h-1V1c0-.552-.448-1-1-1s-1,.448-1,1v1H8V1c0-.552-.448-1-1-1s-1,.448-1,1v1h-1C2.243,2,0,4.243,0,7v12c0,2.757,2.243,5,5,5h14c2.757,0,5-2.243,5-5V7c0-2.757-2.243-5-5-5ZM5,4h14c1.654,0,3,1.346,3,3v1H2v-1c0-1.654,1.346-3,3-3Zm14,18H5c-1.654,0-3-1.346-3-3V10H22v9c0,1.654-1.346,3-3,3Zm-3-6c0,.552-.448,1-1,1h-6c-.552,0-1-.448-1-1s.448-1,1-1h6c.552,0,1,.448,1,1Z"/></svg>
-<h3>Return Date</h3>
+<h3>Return on</h3>
                 </div>
-                <p style="color:${daysLeft <= 2 ? '#ff1100' : daysLeft <= 6 ? '#ffbf00' : '#00d423'};"> ${cleanEndDate}</p>
+                <p style="color:${daysLeft <= 2 ? '#ff1100' : daysLeft <= 6 ? '#ff8c00' : '#00d423'};"> ${cleanEndDate}</p>
             </div>
             <div class="details">
                 <div class="leftflow">
@@ -370,7 +402,7 @@ function displayLoanDetails(loan, index) {
                 <div class="leftflow">
                     <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M14.648,5.493c.873-.701,1.772-1.643,2.228-2.789,.238-.598,.161-1.277-.205-1.816-.377-.556-1.002-.888-1.671-.888h-6c-.669,0-1.294,.332-1.671,.888-.366,.539-.442,1.218-.205,1.816,.456,1.145,1.355,2.088,2.228,2.789C4.696,7.221,1,13.159,1,18c0,3.309,2.691,6,6,6h10c3.309,0,6-2.691,6-6,0-4.841-3.696-10.779-8.352-12.507Zm.369-3.528c-.516,1.297-2.094,2.393-3.019,2.91-.923-.513-2.495-1.6-2.999-2.875l6.018-.035Zm1.982,20.035H7c-2.206,0-4-1.794-4-4,0-5.243,4.71-11,9-11s9,5.757,9,11c0,2.206-1.794,4-4,4Zm-5,0c-.552,0-1-.448-1-1v-1h-.268c-1.068,0-2.063-.574-2.598-1.499-.276-.478-.113-1.089,.365-1.366,.476-.277,1.089-.114,1.366,.365,.178,.308,.511,.5,.867,.5h2.268c.551,0,1-.449,1-1,0-.378-.271-.698-.644-.76l-3.042-.507c-1.341-.223-2.315-1.373-2.315-2.733,0-1.654,1.346-3,3-3v-1c0-.552,.448-1,1-1s1,.448,1,1v1h.268c1.067,0,2.063,.575,2.598,1.5,.276,.478,.113,1.089-.365,1.366-.477,.277-1.089,.114-1.366-.365-.179-.309-.511-.5-.867-.5h-2.268c-.551,0-1,.449-1,1,0,.378,.271,.698,.644,.76l3.042,.507c1.341,.223,2.315,1.373,2.315,2.733,0,1.654-1.346,3-3,3v1c0,.552-.448,1-1,1Z"/></svg>
-<h3>Amount Taken</h3>
+<h3>Borrowed Amount </h3>
                 </div>
                 <p>${formatMoney(loan.takenAmount)}</p>
             </div>
@@ -382,7 +414,7 @@ function displayLoanDetails(loan, index) {
                 </div>
                 <p>${formatMoney(loan.interest)}</p>
             </div>
-            <div class="details">
+            <div class="details" style='padding-bottom: 55px;'>
                 ${overdueFine > 0 ? `
                     <div class="leftflow">
                         <svg class="strokeadder"  style="background: #ff0000;
@@ -394,44 +426,15 @@ function displayLoanDetails(loan, index) {
                         <small>(${Math.abs(daysLeft)} days)</small>
                     </p>` : ''}
             </div>
-
-            <hr>
-            <div class="totaldetails">
-    <svg style='width: 30px;height: 30px;margin-top: 25px;opacity: 80%;' xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
-        <g fill="none" stroke-width="1.5">
-            <path d="M17.414 10.414C18 9.828 18 8.886 18 7c0-1.886 0-2.828-.586-3.414m0 6.828C16.828 11 15.886 11 14 11h-4c-1.886 0-2.828 0-3.414-.586m10.828 0Zm0-6.828C16.828 3 15.886 3 14 3h-4c-1.886 0-2.828 0-3.414.586m10.828 0Zm-10.828 0C6 4.172 6 5.114 6 7c0 1.886 0 2.828.586 3.414m0-6.828Zm0 6.828ZM13 7a1 1 0 1 1-2 0a1 1 0 0 1 2 0Z"/>
-            <path stroke-linecap="round" d="M18 6a3 3 0 0 1-3-3m3 5a3 3 0 0 0-3 3M6 6a3 3 0 0 0 3-3M6 8a3 3 0 0 1 3 3M4 21.388h2.26c1.01 0 2.033.106 3.016.308a14.85 14.85 0 0 0 5.33.118m-.93-3.297c.12-.014.235-.03.345-.047c.911-.145 1.676-.633 2.376-1.162l1.808-1.365a1.887 1.887 0 0 1 2.22 0c.573.433.749 1.146.386 1.728c-.423.678-1.019 1.545-1.591 2.075m-5.544-1.229a8.176 8.176 0 0 1-.11.012m.11-.012a.998.998 0 0 0 .427-.24a1.492 1.492 0 0 0 .126-2.134a1.9 1.9 0 0 0-.45-.367c-2.797-1.669-7.15-.398-9.779 1.467m9.676 1.274a.524.524 0 0 1-.11.012m0 0a9.274 9.274 0 0 1-1.814.004"/>
-        </g>
-    </svg>
-    
-    <h3 style="    margin: 10px 0;
-    font-weight: 100;">
-        Total amount to return
-    </h3>
-    
-    <p style="font-size:60px;
-              font-weight: 600;
-              font-family: 'Anton', sans-serif;
-              letter-spacing: 4.5px;
-              color: ${overdueFine > 0 
-                        ? '#ff0000' 
-                        : daysLeft <= 2 
-                            ? '#ff0000' 
-                            : daysLeft <= 6 
-                                ? '#ffbf00' 
-                                : '#00d423'};">
-        ${formatMoney(totalPayable)}
-    </p>
-</div>
-             <a target="_blank" href="https://forms.gle/RzTJ8W9bwmm8DVj2A"><button style="background-color: #ff0000;
+             <a target="_blank" style='position: sticky;
+    bottom: 90px;' href="https://mfi0212.github.io/MFI/abt.hlp"><button style="background-color: #ff0000;
     padding: 8px 15px;
     font-size: 16px;
     transition: all 0.3s ease;
     left: 50%;
     position: relative;
     transform: translate(-50%, 0%);
-    margin-bottom: 20px;
-    margin-top: 10px;
+    margin: -40px 0 20px 0;
     font-weight: 100;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
@@ -444,8 +447,25 @@ function displayLoanDetails(loan, index) {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;" class="add-link-btn">I have an issue with my account.!</button></a>
+    border: solid 1px #ffffff00;" class="add-link-btn">I'm have an issue...!</button></a>
         </div>
+    <hr>    
+<div class="totaldetails">
+    <p style="font-size:60px;
+              font-weight: 600;
+              font-family: 'Anton', sans-serif;
+              letter-spacing: 4.5px;margin: 5px;
+              color: ${overdueFine > 0 
+                        ? '#ff0000' 
+                        : daysLeft <= 2 
+                            ? '#ff0000' 
+                            : daysLeft <= 6 
+                                ? '#ff8c00' 
+                                : '#00d423'};">
+        ${formatMoney(totalPayable)}
+    </p><hr> <h3 style="font-weight: 100;">
+       Total amount</h3>
+</div>
     `;
 }
 
@@ -522,7 +542,7 @@ function renderChart() {
 
         let color = '#0011ff';
         if (daysLeft <= 2) color = '#ff1100';
-        else if (daysLeft <= 6) color = '#ffbf00';
+        else if (daysLeft <= 6) color = '#ff8c00';
 
         const amount = currentCurrency === 'Usd ($)' 
             ? Number((loan.takenAmount / USD_RATE).toFixed(2))
@@ -596,7 +616,7 @@ function renderLoanList() {
     const container = document.getElementById('loans-list-container');
     if (!container) return;
 
-    container.style.transition = 'opacity 0.4s ease';
+    container.style.transition = 'opacity 0.4s ease, all 0.3s ease-in-out';
     container.style.opacity = '0';
 
     setTimeout(() => {
@@ -631,7 +651,8 @@ function renderLoanList() {
                 <button class="btn-hide" data-idx="${idx}">
                     ${isHidden ? '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M607.5-372.5Q660-425 660-500t-52.5-127.5Q555-680 480-680t-127.5 52.5Q300-575 300-500t52.5 127.5Q405-320 480-320t127.5-52.5Zm-204-51Q372-455 372-500t31.5-76.5Q435-608 480-608t76.5 31.5Q588-545 588-500t-31.5 76.5Q525-392 480-392t-76.5-31.5ZM214-281.5Q94-363 40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200q-146 0-266-81.5ZM480-500Zm207.5 160.5Q782-399 832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280q113 0 207.5-59.5Z"/></svg>' : '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m644-428-58-58q9-47-27-88t-93-32l-58-58q17-8 34.5-12t37.5-4q75 0 127.5 52.5T660-500q0 20-4 37.5T644-428Zm128 126-58-56q38-29 67.5-63.5T832-500q-50-101-143.5-160.5T480-720q-29 0-57 4t-55 12l-62-62q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302Zm20 246L624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM222-624q-29 26-53 57t-41 67q50 101 143.5 160.5T480-280q20 0 39-2.5t39-5.5l-36-38q-11 3-21 4.5t-21 1.5q-75 0-127.5-52.5T300-500q0-11 1.5-21t4.5-21l-84-82Zm319 93Zm-151 75Z"/></svg>'}
                 </button>
-                <button class="btn-details" data-idx="${idx}"> <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#e3e3e3"><path d="M429.5-197.5q-19.6 0-32.55-12.68-12.95-12.68-12.95-32t13.13-33.07Q410.25-289 429.5-289h102q18.6 0 31.8 13.93 13.2 13.92 13.2 33.24T563.13-210q-13.38 12.5-32.63 12.5h-101Zm-163-238q-19.6 0-32.3-12.43-12.7-12.43-12.7-32t12.7-32.82Q246.9-526 266.5-526h426q19.6 0 32.8 13.43 13.2 13.42 13.2 32.99t-13.2 31.83q-13.2 12.25-32.8 12.25h-426ZM145-672q-19.6 0-32.3-13.18-12.7-13.18-12.7-32.5t13.38-32.57Q126.75-763.5 146-763.5h669.5q19.1 0 32.3 13.43 13.2 13.42 13.2 32.74T847.13-685q-13.88 13-32.63 13H145Z"/></svg></button>
+                <button class="btn-details" data-idx="${idx}"> <img class="closesymbol" src="service-icons/details_icon.png" alt="">
+                                 </button>
              </div>
             `;
 
@@ -696,24 +717,24 @@ function renderCalendar() {
     margin-bottom: 20px;
     margin-top: 5px;
     border-radius: 1008px;
-    padding:  5px 8px;;
+    padding: 7px;
     transition: all 0.3s ease;
     transform: translate(-50%, 0);
-    left: 50%;filter: saturate(2);
+    left: 50%;
+    filter: saturate(2);
     position: relative;
+    background: #0020ff;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
+ color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
+ color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px 
+ color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;
-    background: #0020ff;
 ">
 
 <a class="calndarCntnrbtn" href='https://blackswan19.github.io/bscrop/reminder.html'><button>Date Note</button></a>
@@ -721,8 +742,8 @@ function renderCalendar() {
     color: #eee;
     font-size: 14px;
     letter-spacing: 0px;">${calendarMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
-        <button class="move-asaid" onclick="prevMonth()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M640-107.69 267.69-480 640-852.31l42.54 42.54L352.77-480l329.77 329.77L640-107.69Z"/></svg></button>
-        <button class="move-asaid" onclick="nextMonth()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m320.23-107.69-42.54-42.54L607.46-480 277.69-809.77l42.54-42.54L692.54-480 320.23-107.69Z"/></svg></button>
+        <button class="move-asaid" onclick="prevMonth()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m371.77-481 307.61 307.62q11.85 11.84 12.24 30.15.38 18.31-11.47 30.15-11.84 11.85-30.15 11.85t-30.15-11.85l-303.7-304.46q-13.69-13.69-19.65-30.11-5.96-16.43-5.96-33.35t5.96-33.35q5.96-16.42 19.65-30.11l303.7-303.69q11.84-11.85 29.77-12.23 17.92-.39 29.76 11.46 11.85 11.84 11.85 30.15t-11.85 30.15L371.77-481Z"/></svg></button>
+        <button class="move-asaid" onclick="nextMonth()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M595.46-481 287.85-788.62q-11.85-11.84-12.23-29.76-.39-17.93 11.46-29.77Q298.92-860 316.85-860q17.92 0 29.77 11.85l304.46 303.69q13.69 13.69 19.65 30.11 5.96 16.43 5.96 33.35t-5.96 33.35q-5.96 16.42-19.65 30.11l-303.7 303.69q-11.84 11.85-30.15 12.23-18.31.39-30.15-11.46-11.85-11.84-11.85-29.77 0-17.92 11.85-29.77L595.46-481Z"/></svg></button>
     </div>
     <div style="display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -730,11 +751,11 @@ function renderCalendar() {
     text-align: center;
     color: #888;
     font-weight: 600;
-    background: linear-gradient(0deg, #ffffff1a, transparent);
     padding: 20px;
-    margin-top: -15px;
-    corner-shape: squircle;
-    border-radius: 75px;">
+    margin-top: -10px;
+        border-radius: 40px;
+    background: rgba(255, 255, 255, 0.06);
+    border: solid 1.5px #ffffff08;">
         <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`
         ;
 
@@ -748,7 +769,7 @@ function renderCalendar() {
             const daysLeft = Math.ceil((end - today) / 86400000);
             let bg = '#00bb06';
             if (daysLeft <= 2) bg = '#ff1100';
-            else if (daysLeft <= 6) bg = '#ffbf00';
+            else if (daysLeft <= 6) bg = '#ff8c00';
             style += `background:${bg};color:white;font-weight:bold;`;
         }
         if (ds === today.toLocaleDateString('en-GB').split('/').reverse().join('-')) {
@@ -772,21 +793,21 @@ function showDatePopup(idx) {
         <p style='color: #ffc000;font-weight: 600;'><strong>Purpose:</strong> ${loan.purpose || 'Not set'}</p>
         <p style='color: #ffc000;font-weight: 600;'><strong>Return date :</strong> ${cleanEnd}</p>
         <hr style='margin: 5px;'>
-        <p style='color: #ffc000;font-weight: 600;    font-size: 20px;'><strong>Status:</strong> <span style="color:${daysLeft<=2?'#ff1100':daysLeft<=6?'#ffbf00':'#00d609'}">
+        <p style='color: #ffc000;font-weight: 600;    font-size: 20px;'><strong>Status:</strong> <span style="color:${daysLeft<=2?'#ff1100':daysLeft<=6?'#ff8c00':'#00d609'}">
             ${daysLeft > 0 ? daysLeft + ' days left' : 'Overdue'}
         </span></p>
         <div class="detailbuttons" style="display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     margin-top: 0px;
     margin-bottom: -10px;">
     <button style="width: 100%;
     background: #0026ff;
-    border-radius: 200px;" onclick="goToList(${idx})"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M442.31-280q-8.5 0-14.25-5.76t-5.75-14.27q0-8.51 5.75-14.24t14.25-5.73h74.61q8.5 0 14.25 5.76t5.75 14.27q0 8.51-5.75 14.24T516.92-280h-74.61Zm-150-180q-8.5 0-14.25-5.76t-5.75-14.27q0-8.51 5.75-14.24t14.25-5.73h374.61q8.5 0 14.25 5.76t5.75 14.27q0 8.51-5.75 14.24T666.92-460H292.31ZM180-640q-8.5 0-14.25-5.76T160-660.03q0-8.51 5.75-14.24T180-680h600q8.5 0 14.25 5.76t5.75 14.27q0 8.51-5.75 14.24T780-640H180Z"/></svg> Details</button>
+    border-radius: 200px;" onclick="goToList(${idx})"><img class="closesymbol" src="service-icons/details_icon.png" alt=""> Details</button>
     <button onclick="closeDatePopup()" style="width: 100%;
     background: #ff0000;
-    border-radius: 200px;background-color: red;" onclick="goToList(${idx})"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M256-213.85 213.85-256l224-224-224-224L256-746.15l224 224 224-224L746.15-704l-224 224 224 224L704-213.85l-224-224-224 224Z"/></svg> Close Now</button>
+    border-radius: 200px;background-color: red;" onclick="goToList(${idx})"><img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close Now</button>
 </div>
     `;
     document.getElementById('datePopup').style.display = 'block';
@@ -844,8 +865,32 @@ document.getElementById("linkDeleteBtn").onclick = () => {
     document.getElementById("linkConfirmPopup").style.display = "none";
 };
 
+function openEmoteChooser() { document.getElementById("emoteChooser").style.display = "block"; }
+function closeEmoteChooser() { document.getElementById("emoteChooser").style.display = "none"; }
+function setUserEmote(src) {
+  currentUser.emote = src;
 
+  const emoteImg = document.getElementById("userEmote");
+  emoteImg.src = src;
+  emoteImg.style.display = "block";
 
+  saveUserData();
+  closeEmoteChooser();
+}
+function resetUserEmote() {
+  currentUser.emote = currentUser.defaultEmote || "";
+
+  const emoteImg = document.getElementById("userEmote");
+
+  if (currentUser.emote) {
+    emoteImg.src = currentUser.emote;
+    emoteImg.style.display = "block";
+  } else {
+    emoteImg.style.display = "none";
+  }
+
+  saveUserData();
+}
 function updateNavActive(view) {
     document.querySelectorAll('.nav-item').forEach(n => {
         n.classList.toggle('active', n.dataset.view === view);
@@ -1087,4 +1132,10 @@ document.addEventListener('DOMContentLoaded', function() {
             alert("Could not download. Try using Live Server instead of opening file directly.");
         }
     });
-});
+});  function goBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        alert(" Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
+      }
+    }
