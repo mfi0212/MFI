@@ -222,10 +222,10 @@ backdrop-filter: blur(5px);
         } 
 
         .swan-big {
-          font-size: 20px;
+         font-size: 15px;
     font-weight: 300;
     text-align: center;
-    color: #ffa300;
+    color: #000000;
     transition: all 0.3s ease;
 }
 
@@ -327,22 +327,24 @@ margin-top: 35px;
         } 
 
        .mainusesec{
-           margin: 100px 0 0 0;
+          margin: 100px 0 0 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
     padding: 10px;
+    flex-direction: column;
         }
         .frststsec,.secndsec{
-    background: #ffffff;
-    padding: 20px 15px;
+       background: #ffffff;
+    padding: 10px;
     border-radius: 30px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 14px;    width: 100%;
+    gap: 5px;
+    width: 100%;
 }
 
     </style>
@@ -390,8 +392,8 @@ margin-top: 35px;
                     <div id="swans" class="swan-big">0</div>
                 </div>
                 <div class="secndsec">
-                    <div class="label">Swans Earned</div>
-                    <div id="houseId" class="swan-big">0</div>
+                    <div class="label">Mansions</div>
+                    <div id="houseId" class="swan-big">-</div>
                 </div>
             </div>
            <div class="section">
@@ -457,9 +459,9 @@ margin-top: 35px;
             "Mahesh Muthinti": {
                 password: "Mahesh888*",
                 swans: 1000,
-                houseId: 'SMSH-001,SMSH-001',
+                houseId: 'SMSH-001, SMSH-001, SMSH-001, SMSH-001',
                 offers: [
-                    { num: '0', text: "No stored offer" },
+                    // { num: '', text: "" },
                 ]
             },
         };
