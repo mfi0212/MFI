@@ -1,4 +1,4 @@
-// document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || 'Inr (₹)';
@@ -350,22 +350,6 @@ function displayLoanDetails(loan, index) {
     if (btns[filteredLoans.indexOf(loan)]) btns[filteredLoans.indexOf(loan)].classList.add("active");
 
     document.getElementById("loanDetails").innerHTML = `
-    <div class="totaldetails">
-    <p style="font-size:60px;
-              font-weight: 600;
-              font-family: 'Anton', sans-serif;
-              letter-spacing: 4.5px;margin: 5px;
-              color: ${overdueFine > 0 
-                        ? '#ff0000' 
-                        : daysLeft <= 2 
-                            ? '#ff0000' 
-                            : daysLeft <= 6 
-                                ? '#ff8c00' 
-                                : '#00d423'};">
-        ${formatMoney(totalPayable)}
-    </p><hr> <h3 style="font-weight: 100;">
-       Total amount</h3>
-</div>
 
         <div class="loan-entry">
             <div class="details" style="transform: none;
@@ -465,7 +449,23 @@ function displayLoanDetails(loan, index) {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;" class="add-link-btn">I'm have an issue...!</button></a>
         </div>
-    <hr>    
+    <hr>   
+     <div class="totaldetails">
+    <p style="font-size:60px;
+              font-weight: 600;
+              font-family: 'Anton', sans-serif;
+              letter-spacing: 4.5px;margin: 5px;
+              color: ${overdueFine > 0 
+                        ? '#ff0000' 
+                        : daysLeft <= 2 
+                            ? '#ff0000' 
+                            : daysLeft <= 6 
+                                ? '#ff8c00' 
+                                : '#00d423'};">
+        ${formatMoney(totalPayable)}
+    </p><hr> <h3 style="font-weight: 100;">
+       Total amount</h3>
+</div> 
     `;
 }
 
@@ -807,7 +807,7 @@ function showDatePopup(idx) {
     border-radius: 200px;" onclick="goToList(${idx})"><img class="closesymbol" src="service-icons/details_icon.png" alt=""> Details</button>
     <button onclick="closeDatePopup()" style="width: 100%;
     background: #ff0000;
-    border-radius: 200px;background-color: red;" onclick="goToList(${idx})"><img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close Now</button>
+    border-radius: 200px;background-color: red;" onclick="goToList(${idx})"><img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close</button>
 </div>
     `;
     document.getElementById('datePopup').style.display = 'block';
