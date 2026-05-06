@@ -387,10 +387,8 @@ display: flex;
 }
 
 .currency-switch {
-	 background: transparent;
+	background: transparent;
     color: #ffffffd4;
-    font-size: 25px;
-    cursor: pointer;
     z-index: 10000;
     display: flex;
     border: none;
@@ -398,12 +396,11 @@ display: flex;
     justify-content: center;
     margin-bottom: 0px;
     transition: all 0.3s ease;
-    backdrop-filter: blur(4px);
     text-transform: capitalize;
     font-weight: 100;
     box-shadow: none;
-    width: 45px;
-    height: 45px;
+    width: 0;
+    height: 35px;
 }
 
 .currency-switch:active {
@@ -563,10 +560,11 @@ svg.addsiteicon {
     flex-direction: column;
 }
 .pinamtsec {
-    display: flex;
+   display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 100%;
+    width: 105%;
+    border-bottom: solid 1px #ffffff42;
 }
 div#amountButtons {
     display: flex;
@@ -574,31 +572,25 @@ div#amountButtons {
     align-items: center;
     overflow: scroll;
     gap: 10px;
-    padding: 0 14px;
+    padding: 0;
 }
 .pincrnchng {
-    display: flex;
-    justify-content: center;
+   display: flex;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 .pincrnchng span {
     font-size: 14px;
 }
 span#currencyLabel {
-    font-size: 25px;
+    font-size: 20px;
 }
 #searchIcon {
 	color: #ffffffd6;
     cursor: pointer;
     transition: all 0.9s ease;
-    padding: 10px;
-    border-radius: 105px;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
+    padding: 0px 15px;
 }
 div#totalContent {
     line-height: 35px;
