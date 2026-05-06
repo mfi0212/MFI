@@ -429,7 +429,7 @@ function displayLoanDetails(loan, index) {
                     </p>` : ''}
             </div>
              <a target="_blank" style='position: sticky;
-    bottom: 90px;' href="https://mfi0212.github.io/MFI/abt.hlp"><button style="background-color: #ff0000;
+    bottom: 90px;' href="https://mfi0212.github.io/MFI/abt.hlp"><button style="background-color: rgb(193 0 0 / 88%);
     padding: 8px 15px;
     font-size: 16px;
     transition: all 0.3s ease;
