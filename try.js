@@ -373,7 +373,7 @@ function displayLoanDetails(loan, index) {
     justify-content: center;
     align-items: center;
     position: sticky;
-    top: 250px;
+    top: 220px;
     opacity: 100%;
     z-index: 10000000;padding: 30px 0 10px 0;filter: drop-shadow(0 0 5px black);">
 
