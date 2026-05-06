@@ -19,7 +19,7 @@
         :root {
             --hermes-orange:    #1c1c1c;    
             --hermes-orange-dark: #080404e0;
-            --bg:              #f9f6e2;
+            --bg:              #ffffff;
             --text:             #000000;
             --text-muted:       #4a4a4a;
             --neutral-light:    white;  
@@ -94,11 +94,12 @@ max-width: 500px;
     transform: translate(-50%);
     backdrop-filter: blur(5px);
     top: 50%;
-    width:97%;
+    width: 97%;
     padding: 20px;
     margin: 20px 0;
-    border: solid 2px #0000001c;
     border-radius: 40px;
+    background: white;
+    filter: drop-shadow(1px 0px 4px lightgray);
         } 
 
         .minimal-input {
@@ -114,8 +115,7 @@ max-width: 500px;
     backdrop-filter: blur(5px);
     border-radius: 100px;
     transition: all 0.3s ease;
-    background: #ffffff;
-    filter: drop-shadow(0px 0px 10px #00000017);
+    background: #e1e1e1;
     padding: 10px;
   }
 
@@ -146,18 +146,17 @@ svg#Layer_1 {
     height: 20px;
 }
         .label {
-               font-size: 12px;
+           font-size: 12px;
     font-weight: 100;
     letter-spacing: 0.08em;
-    color: #ffffff;
+    color: #000000;
     text-transform: uppercase;
     display: block;
-    background: #00000052;
     border-radius: 9999px;
     margin: 0 0 5px 0;
-    width: fit-content;
-    padding: 0px 5px;
-
+    padding: 6px;
+    text-align: center;
+    background: #e1e1e1;
         }
 
         .header {
@@ -170,7 +169,7 @@ display: flex;
     position: fixed;
     top: 0;
     z-index: 10;
-    background: linear-gradient(180deg, #f9f6e2 10%, transparent);
+    background: linear-gradient(180deg, #ffffff 10%, transparent);
     padding: 20px 15px 30px 15px;
     width: 100%;
     left: 0;
@@ -237,7 +236,7 @@ backdrop-filter: blur(5px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            padding: 1rem 10px;
             border-bottom: 1px solid var(--border-subtle);
             font-size: 1rem;opacity: 100%;
         transition: all 0.3s ease;}
@@ -299,7 +298,7 @@ backdrop-filter: blur(5px);
     max-width: 400px;
     flex-direction: row-reverse;
     padding: 13px 15px 20px 15px;
-    background: linear-gradient(0deg, #f9f7e3 10%, transparent);
+    background: linear-gradient(0deg, #ffffff 10%, transparent);
     position: fixed;
     bottom: 0px;
 }
@@ -354,8 +353,10 @@ margin-top: 35px;
     <div class="container">
 
         <!-- Login -->
-        <div id="login" class="section" style="padding: 125px 0 0 0;
-    border: none;">
+        <div id="login" class="section" style="
+    padding: 125px 0 0 0;
+    border: none;
+    filter: none;">
             <div class="text-center">
                 <div class="logo">BsMansion</div>
             </div>
@@ -433,7 +434,10 @@ margin-top: 35px;
     left: 50%;
     position: relative;
     transform: translate(-50%, 0);">Note : In this section, you can find out how many swans turn into how many stars.</p>
-            <div class="section">
+            <div class="section" style="padding: 20px 0;
+    margin: 0;
+    border-radius: 0;
+    filter: none;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
                     <div class="label">Offers ID</div>
                     <span id="user-offer-count" style="font-size:0.875rem; color:var(--hermes-orange);">
@@ -461,7 +465,9 @@ margin-top: 35px;
                 swans: 1000,
                 houseId: 'SMSH-001, SMSH-001, SMSH-001, SMSH-001',
                 offers: [
-                    // { num: '', text: "" },
+                    { num: '1', text: "testpage 1" },
+                    { num: '2', text: "testpage 2" },
+                    { num: '3', text: "testpage 3" },
                 ]
             },
         };
