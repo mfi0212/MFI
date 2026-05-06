@@ -1952,12 +1952,12 @@ img.closesymbol {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: none;
     backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
-    padding: 5px 15px;transition: all 0.3s ease-in;
-    border-radius: 100px;
+    padding: 5px 15px;
+    border-radius: 100px;    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
-.toggle-switch:active {
-	transform: scale(0.90);
-}
+
 .switch {
 	position: relative;
 	display: inline-block;
@@ -2397,6 +2397,9 @@ input:checked+.slider:before {
                         <label style="display: none;" class="switch"><input type="checkbox" id="glowToggle"> <span class="slider"></span> </label>
                         <a href="https://mfi0212.github.io/MFI/bsmfi_search"><span>BS&MFI</span></a>
                     </div>
+                        
+                    
+                    <div class="tpfixmaincnt">
                         <div onclick="showTotalPopup()" class="mincntatusr">
                            <div class="useridentity">
                              <span id="userName"></span>
@@ -2409,6 +2412,7 @@ input:checked+.slider:before {
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
                 <img id="userEmote" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0" onclick="openEmoteChooser()"> 
             </div>
