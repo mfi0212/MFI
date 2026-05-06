@@ -1,7 +1,7 @@
 // document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
-let currentCurrency = localStorage.getItem('currency') || 'Inr (₹)';
+let currentCurrency = localStorage.getItem('currency') || '₹';
 let currentUser = null;
 let currentLoanIndex = null;
 let calendarMonth = new Date();
@@ -50,8 +50,8 @@ function formatDateDDMMYYYY(date) {
 }
 
 function formatMoney(amount) {
-    const val = currentCurrency === 'Usd ($)' ? (amount / USD_RATE).toFixed(2) : amount;
-    const symbol = currentCurrency === 'Usd ($)' ? '$' : '₹';
+    const val = currentCurrency === '$' ? (amount / USD_RATE).toFixed(2) : amount;
+    const symbol = currentCurrency === '$' ? '$' : '₹';
     return `${symbol}${parseFloat(val).toLocaleString()}`;
 }
 
@@ -239,11 +239,11 @@ if (user.emote) {
 function updateCurrencyUI() {
     document.getElementById('currencyLabel').textContent = currentCurrency;
     document.querySelector('#currencySwitch i').className = 
-        currentCurrency === 'Usd ($)' ? '' : '';
+        currentCurrency === '$' ? '' : '';
 }
 
 function toggleCurrency() {
-    currentCurrency = currentCurrency === 'Inr (₹)' ? 'Usd ($)' : 'Inr (₹)';
+    currentCurrency = currentCurrency === '₹' ? '$' : '₹';
     localStorage.setItem('currency', currentCurrency);
     updateCurrencyUI();
     if (currentUser) {
@@ -546,7 +546,7 @@ function renderChart() {
         if (daysLeft <= 2) color = '#ff1100';
         else if (daysLeft <= 6) color = '#ff8c00';
 
-        const amount = currentCurrency === 'Usd ($)' 
+        const amount = currentCurrency === '$' 
             ? Number((loan.takenAmount / USD_RATE).toFixed(2))
             : Number(loan.takenAmount);
 
@@ -637,7 +637,7 @@ function renderLoanList() {
             }
 
             const daysLeft = calculateDaysLeft(loan.endDate);
-            const amount = currentCurrency === 'Usd ($)'
+            const amount = currentCurrency === '$'
                 ? (loan.takenAmount / USD_RATE).toFixed(2)
                 : loan.takenAmount;
 
