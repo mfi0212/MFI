@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || 'Inr (₹)';
@@ -12,19 +12,18 @@ let hiddenLoans = new Set();
 let loanChart = null; 
 
 const usersDB = {
-    "Mahesh888*": {
+   "Mahesh888*": {
         name: "Mahesh Muthinti",
-        coins: 0,
+        coins: 1000,
         loans: [
-
-            { planDate: "09-02-2026", endDate: "07-05-2026", interest: 875, takenAmount: 3500, takenFrom: "Lendlink", fineRate: 35 },
-            { planDate: "11-01-2026", endDate: "08-05-2026", interest: 1370, takenAmount: 5480, takenFrom: "Golden", fineRate: 40 },
             { planDate: "14-01-2026", endDate: "11-05-2026", interest: 4220, takenAmount: 22813, takenFrom: "Golden", fineRate: 65 },
             { planDate: "14-02-2026", endDate: "13-05-2026", interest: 2500, takenAmount: 10000, takenFrom: "Golden", fineRate: 65 },
-            { planDate: "19-04-2026", endDate: "19-05-2026", interest: 300, takenAmount: 2760, takenFrom: "Lenlink", fineRate: 35 },
+            { planDate: "19-04-2026", endDate: "19-05-2026", interest: 800, takenAmount: 2760, takenFrom: "Lenlink", fineRate: 35 },
+             { planDate: "09-02-2026", endDate: "07-06-2026", interest: 1093, takenAmount: 4375, takenFrom: "Lendlink", fineRate: 35 },
+            { planDate: "11-01-2026", endDate: "08-06-2026", interest: 1717, takenAmount: 6850, takenFrom: "Golden", fineRate: 40 },
         ],
         links: [],
-        emote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif",
+       emote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif",
         defaultEmote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif"
     },
     "0212": {
@@ -351,6 +350,23 @@ function displayLoanDetails(loan, index) {
     if (btns[filteredLoans.indexOf(loan)]) btns[filteredLoans.indexOf(loan)].classList.add("active");
 
     document.getElementById("loanDetails").innerHTML = `
+    <div class="totaldetails">
+    <p style="font-size:60px;
+              font-weight: 600;
+              font-family: 'Anton', sans-serif;
+              letter-spacing: 4.5px;margin: 5px;
+              color: ${overdueFine > 0 
+                        ? '#ff0000' 
+                        : daysLeft <= 2 
+                            ? '#ff0000' 
+                            : daysLeft <= 6 
+                                ? '#ff8c00' 
+                                : '#00d423'};">
+        ${formatMoney(totalPayable)}
+    </p><hr> <h3 style="font-weight: 100;">
+       Total amount</h3>
+</div>
+
         <div class="loan-entry">
             <div class="details" style="transform: none;
     display: flex;
@@ -359,8 +375,7 @@ function displayLoanDetails(loan, index) {
     position: sticky;
     top: 250px;
     opacity: 100%;
-    z-index: 10000000;
-    padding: 20px 0 0 0;filter: drop-shadow(0 0 5px black);">
+    z-index: 10000000;padding: 30px 0 10px 0;filter: drop-shadow(0 0 5px black);">
 
                 <input type="text" class="purpose-input" placeholder="Purpose" value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
             </div>
@@ -415,7 +430,7 @@ function displayLoanDetails(loan, index) {
                 </div>
                 <p>${formatMoney(loan.interest)}</p>
             </div>
-            <div class="details">
+            <div class="details" style='padding-bottom: 55px;'>
                 ${overdueFine > 0 ? `
                     <div class="leftflow">
                         <svg class="strokeadder"  style="background: #ff0000;
@@ -451,23 +466,6 @@ function displayLoanDetails(loan, index) {
     border: solid 1px #ffffff00;" class="add-link-btn">I'm have an issue...!</button></a>
         </div>
     <hr>    
-<div class="totaldetails">
-    <p style="font-size:60px;
-              font-weight: 600;
-              font-family: 'Anton', sans-serif;
-              letter-spacing: 4.5px;margin: 5px;
-              color: ${overdueFine > 0 
-                        ? '#ff0000' 
-                        : daysLeft <= 2 
-                            ? '#ff0000' 
-                            : daysLeft <= 6 
-                                ? '#ff8c00' 
-                                : '#00d423'};">
-        ${formatMoney(totalPayable)}
-    </p><hr> <h3 style="font-weight: 100;
-    margin: 0 0 30px 0;">
-       Total amount</h3>
-</div>
     `;
 }
 
