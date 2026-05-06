@@ -17,7 +17,7 @@
             scrollbar-width: none;font-family: 'Poppins', sans-serif;
         }
         :root {
-            --hermes-orange:    #1c1c1c;    
+            --hermes-orange:    #ffffff;    
             --hermes-orange-dark: #080404e0;
             --bg:              #ffffff;
             --text:             #000000;
@@ -67,7 +67,7 @@ body:has(input[value="dark"]:checked) {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px 10px 120px 10px;
+            padding: 10px 10px 100px 10px;
             line-height: 1.58;
             -webkit-font-smoothing: antialiased;
         }
@@ -125,17 +125,16 @@ max-width: 500px;
 
 
         .btn-hermes {
-           background: var(--hermes-orange);
-    color: white;
+          color: white;
     padding: 10px;
-    transition: background 0.25s ease;
     width: 100%;
     font-size: 18px;
     font-family: 'Poppins', sans-serif;
-    filter: saturate(2);
     border-radius: 1000px;
     transition: all 0.3s ease;
     font-weight: 100;
+    background: #000000;
+    filter: drop-shadow(1px 0px 4px lightgray);
   }
 
         .btn-hermes:active{
@@ -187,21 +186,20 @@ backdrop-filter: blur(5px);
     align-items: center;
     transition: all 0.3s ease;
     background: var(--hermes-orange);
-    filter: saturate(4);
     font-size: 18px;
     height: 44px;
-    fill: white;
-    color: white;
+    fill: #000000;
+    color: #000000;
     font-weight: 100;
+    filter: drop-shadow(1px 0px 4px lightgray);
   }
 
         .userslide:active{
               transform: scale(0.90); 
         } 
        .switch {
-        cursor: pointer;
+      cursor: pointer;
     backdrop-filter: blur(5px);
-    border: solid 1px #ffffff00;
     border-radius: 100px;
     padding: 10px;
     transition: all 0.3s ease;
@@ -210,12 +208,11 @@ backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--hermes-orange);
     border: none;
+    background: var(--hermes-orange);
+    filter: drop-shadow(1px 0px 4px lightgray);
       }
-.switch svg{
-    fill: white;
-}
+
         .switch:active{
               transform: scale(0.90); 
         } 
@@ -250,7 +247,7 @@ backdrop-filter: blur(5px);
         }
 
         .offer-num {
-            color: var(--hermes-orange);
+            color: #000000;
             font-weight: 500;
             min-width: 3rem;
             font-family: 'Poppins', sans-serif;
@@ -309,16 +306,16 @@ backdrop-filter: blur(5px);
 margin-top: 35px;
     cursor: pointer;
     padding: 12px;
-    color: #ffffff;
+    color: #000000;
     font-size: 18px;
     font-weight: 100;
     border-radius: 100px;
     backdrop-filter: blur(2px);
     background: var(--hermes-orange);
-    filter: saturate(4);
     transition: all 0.3s ease;
     border: none;
     width: 90%;
+    filter: drop-shadow(1px 0px 4px lightgray);
 }
 
         .options button:active{
@@ -440,7 +437,11 @@ margin-top: 35px;
     filter: none;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
                     <div class="label">Offers ID</div>
-                    <span id="user-offer-count" style="font-size:0.875rem; color:var(--hermes-orange);">
+                    <span id="user-offer-count" style="font-size: 0.875rem;
+    color: #ffffff;
+    background: #ffa300;
+    padding: 5px;
+    border-radius: 100px;">
                         0 offers
                     </span>
                 </div>
@@ -452,7 +453,7 @@ margin-top: 35px;
                     <a href="https://forms.gle/5dHJnzYJDAyUm5xq9"><button class="close">Convert Swans to Stars</button></a>
                 </div>    
             </div>
-            <p style="text-align:center; font-size:0.8125rem;margin-top: 30px;color:var(--text-muted);">
+            <p style="text-align:center; font-size:0.8125rem;color:var(--text-muted);">
                 © BS&MFI House. All rights reserved.
             </p>
         </div>
