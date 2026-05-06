@@ -357,10 +357,10 @@ function displayLoanDetails(loan, index) {
     justify-content: center;
     align-items: center;
     position: sticky;
-    top: 200px;
+    top: 190px;
     opacity: 100%;
     z-index: 10000000;
-    padding: 30px 0 10px 0;
+    padding: 20px 0 0 0;
     filter: drop-shadow(0 0 5px black);">
 
                 <input type="text" class="purpose-input" placeholder="Purpose" value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
