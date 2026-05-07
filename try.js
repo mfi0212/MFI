@@ -51,7 +51,7 @@ function formatDateDDMMYYYY(date) {
 
 function formatMoney(amount) {
     const val = currentCurrency === '$' ? (amount / USD_RATE).toFixed(2) : amount;
-    const symbol = currentCurrency === '₹' ? '$' : '₹';
+    const symbol = currentCurrency === '₹' ? '₹' : '$';
     return `${symbol}${parseFloat(val).toLocaleString()}`;
 }
 
