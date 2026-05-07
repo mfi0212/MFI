@@ -383,7 +383,7 @@ font-size: 14px;
 }
 
 .currency-switch {
-	background: transparent;
+background: transparent;
     color: #ffffffd4;
     z-index: 10000;
     display: flex;
@@ -391,15 +391,16 @@ font-size: 14px;
     align-items: center;
     justify-content: center;
     margin-bottom: 0px;
-    transition: all 0.3s ease;
     text-transform: capitalize;
     font-weight: 100;
     box-shadow: none;
-    width: 0;
     height: 35px;
+    gap: 5px;
 }
-
-.currency-switch:active {
+.pincrnchng{
+transition: all 0.3s ease;
+}
+.pincrnchng:active {
 	transform: scale(0.90);
 }
 
@@ -578,10 +579,11 @@ display: flex;
     align-items: center;
     width: 100%;
     color: #e0e0e0cf;
-    margin: 2px 5px -5px 5px;
+    margin: 0px -5px -5px 5px;
 }
 .pincrnchng span {
     font-size: 12px;
+    color: #ffffff94;
 }
 span#currencyLabel {
     font-size: 20px;
@@ -2488,9 +2490,14 @@ input:checked+.slider:before {
                             <input type="text" id="searchInput" placeholder="Search here..." oninput="filterLoans()">
                             <div class="amount-buttons" id="amountButtons"></div>
                         </div>
-                        <div class="pincrnchng">
-                            <span>Click the icon to change the currency</span>
-                            <button class="currency-switch" id="currencySwitch"><span id="currencyLabel">$</span>  <i style="display: none;" class="fa-solid fa-dollar-sign"></i> </button>
+                        <div id="currencySwitch" class="pincrnchng">
+                            <span>Click to change the currency</span>
+                            <button class="currency-switch" id="currencySwitch"><p style="font-size: 10px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;">Currently on</p><span id="currencyLabel">$</span>  <i style="display: none;" class="fa-solid fa-dollar-sign"></i> </button>
                         </div>
                     </div>
                 </div>
