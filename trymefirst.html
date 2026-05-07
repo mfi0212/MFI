@@ -367,15 +367,10 @@ font-size: 14px;
 	transition: 0.5s ease-in-out;
     color: white;
     background-clip: text;
-    font-weight: 500;
+    font-weight: 550;
     font-size: 15px;
 }
-.afternamecontent{
-display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
+
 
 @keyframes shimmer {
 	0% {
@@ -585,7 +580,7 @@ display: flex;
     margin: 2px 5px -5px 5px;
 }
 .pincrnchng span {
-    font-size: 14px;
+    font-size: 12px;
 }
 span#currencyLabel {
     font-size: 20px;
@@ -1953,10 +1948,12 @@ img.closesymbol {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: none;
     backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
-    padding: 5px 15px;
-    border-radius: 100px;    position: absolute;
+    padding: 2px 15px;
+    border-radius: 100px;
+    position: absolute;
     left: 50%;
     transform: translate(-50%, 0);
+    height: 44px;
 }
 
 .switch {
@@ -2431,7 +2428,7 @@ input:checked+.slider:before {
                            <div class="afternamecontent">
                                 <div class="starssection">
                                     <div id="coinSection">
-                                       No.of.stars :<span id="userCoinsDisplay">0</span>
+                                       Available Stars :<span id="userCoinsDisplay">0</span>
                                     </div> 
                                 </div>
                             </div>
