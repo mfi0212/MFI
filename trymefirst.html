@@ -394,13 +394,10 @@ background: transparent;
     text-transform: capitalize;
     font-weight: 100;
     box-shadow: none;
-    height: 35px;
     gap: 5px;
-}
-.pincrnchng{
 transition: all 0.3s ease;
 }
-.pincrnchng:active {
+.currency-switch:active {
 	transform: scale(0.90);
 }
 
@@ -586,7 +583,14 @@ display: flex;
     color: #ffffff94;
 }
 span#currencyLabel {
-    font-size: 20px;
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: solid 1.5px #949494;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #searchIcon {
 	color: #ffffffd6;
@@ -2489,7 +2493,7 @@ input:checked+.slider:before {
                             <input type="text" id="searchInput" placeholder="Search here..." oninput="filterLoans()">
                             <div class="amount-buttons" id="amountButtons"></div>
                         </div>
-                        <div id="currencySwitch" class="pincrnchng">
+                        <div class="pincrnchng">
                             <span>Click to change the currency</span>
                             <button class="currency-switch" id="currencySwitch"><p style="font-size: 10px;
     margin: 0;
