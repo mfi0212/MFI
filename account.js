@@ -1,7 +1,7 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
-let currentCurrency = localStorage.getItem('currency') || 'Inr (₹)';
+let currentCurrency = localStorage.getItem('currency') || '₹';
 let currentUser = null;
 let currentLoanIndex = null;
 let calendarMonth = new Date();
@@ -14,12 +14,12 @@ let loanChart = null;
 const usersDB = {
    "Mahesh888*": {
         name: "Mahesh Muthinti",
-        coins: 0,
+        coins: 1000,
         loans: [
             { planDate: "14-01-2026", endDate: "11-05-2026", interest: 4220, takenAmount: 22813, takenFrom: "Golden", fineRate: 65 },
             { planDate: "14-02-2026", endDate: "13-05-2026", interest: 2500, takenAmount: 10000, takenFrom: "Golden", fineRate: 65 },
             { planDate: "19-04-2026", endDate: "19-05-2026", interest: 800, takenAmount: 2760, takenFrom: "Lenlink", fineRate: 35 },
-             { planDate: "09-02-2026", endDate: "07-06-2026", interest: 1093, takenAmount: 4375, takenFrom: "Lendlink", fineRate: 35 },
+             { planDate: "09-02-2026", endDate: "07-06-2026", interest: 1293, takenAmount: 4375, takenFrom: "Lendlink", fineRate: 35 },
             { planDate: "11-01-2026", endDate: "08-06-2026", interest: 1717, takenAmount: 6850, takenFrom: "Golden", fineRate: 40 },
         ],
         links: [],
@@ -50,8 +50,8 @@ function formatDateDDMMYYYY(date) {
 }
 
 function formatMoney(amount) {
-    const val = currentCurrency === 'Usd ($)' ? (amount / USD_RATE).toFixed(2) : amount;
-    const symbol = currentCurrency === 'Usd ($)' ? '$' : '₹';
+    const val = currentCurrency === '$' ? (amount / USD_RATE).toFixed(2) : amount;
+    const symbol = currentCurrency === '₹' ? '₹' : '$';
     return `${symbol}${parseFloat(val).toLocaleString()}`;
 }
 
@@ -239,11 +239,11 @@ if (user.emote) {
 function updateCurrencyUI() {
     document.getElementById('currencyLabel').textContent = currentCurrency;
     document.querySelector('#currencySwitch i').className = 
-        currentCurrency === 'Usd ($)' ? '' : '';
+        currentCurrency === '$' ? '' : '';
 }
 
 function toggleCurrency() {
-    currentCurrency = currentCurrency === 'Inr (₹)' ? 'Usd ($)' : 'Inr (₹)';
+    currentCurrency = currentCurrency === '₹' ? '$' : '₹';
     localStorage.setItem('currency', currentCurrency);
     updateCurrencyUI();
     if (currentUser) {
@@ -350,16 +350,18 @@ function displayLoanDetails(loan, index) {
     if (btns[filteredLoans.indexOf(loan)]) btns[filteredLoans.indexOf(loan)].classList.add("active");
 
     document.getElementById("loanDetails").innerHTML = `
+
         <div class="loan-entry">
             <div class="details" style="transform: none;
     display: flex;
     justify-content: center;
     align-items: center;
     position: sticky;
-    top: 250px;
+    top: 190px;
     opacity: 100%;
     z-index: 10000000;
-    padding: 20px 0 0 0;filter: drop-shadow(0 0 5px black);">
+    padding: 20px 0 0 0;
+    filter: drop-shadow(0 0 5px black);">
 
                 <input type="text" class="purpose-input" placeholder="Purpose" value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
             </div>
@@ -427,7 +429,7 @@ function displayLoanDetails(loan, index) {
                     </p>` : ''}
             </div>
              <a target="_blank" style='position: sticky;
-    bottom: 90px;' href="https://mfi0212.github.io/MFI/abt.hlp"><button style="background-color: #ff0000;
+    bottom: 90px;' href="https://mfi0212.github.io/MFI/abt.hlp"><button style="background-color: rgb(193 0 0 / 88%);
     padding: 8px 15px;
     font-size: 16px;
     transition: all 0.3s ease;
@@ -449,8 +451,8 @@ function displayLoanDetails(loan, index) {
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     border: solid 1px #ffffff00;" class="add-link-btn">I'm have an issue...!</button></a>
         </div>
-    <hr>    
-<div class="totaldetails">
+    <hr>   
+     <div class="totaldetails">
     <p style="font-size:60px;
               font-weight: 600;
               font-family: 'Anton', sans-serif;
@@ -465,7 +467,7 @@ function displayLoanDetails(loan, index) {
         ${formatMoney(totalPayable)}
     </p><hr> <h3 style="font-weight: 100;">
        Total amount</h3>
-</div>
+</div> 
     `;
 }
 
@@ -544,7 +546,7 @@ function renderChart() {
         if (daysLeft <= 2) color = '#ff1100';
         else if (daysLeft <= 6) color = '#ff8c00';
 
-        const amount = currentCurrency === 'Usd ($)' 
+        const amount = currentCurrency === '$' 
             ? Number((loan.takenAmount / USD_RATE).toFixed(2))
             : Number(loan.takenAmount);
 
@@ -635,7 +637,7 @@ function renderLoanList() {
             }
 
             const daysLeft = calculateDaysLeft(loan.endDate);
-            const amount = currentCurrency === 'Usd ($)'
+            const amount = currentCurrency === '$'
                 ? (loan.takenAmount / USD_RATE).toFixed(2)
                 : loan.takenAmount;
 
@@ -807,7 +809,7 @@ function showDatePopup(idx) {
     border-radius: 200px;" onclick="goToList(${idx})"><img class="closesymbol" src="service-icons/details_icon.png" alt=""> Details</button>
     <button onclick="closeDatePopup()" style="width: 100%;
     background: #ff0000;
-    border-radius: 200px;background-color: red;" onclick="goToList(${idx})"><img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close Now</button>
+    border-radius: 200px;background-color: red;" onclick="goToList(${idx})"><img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close</button>
 </div>
     `;
     document.getElementById('datePopup').style.display = 'block';
