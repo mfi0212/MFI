@@ -726,7 +726,7 @@ function renderCalendar() {
     left: 50%;
     filter: saturate(2);
     position: relative;
-        background: #ffffff29;
+        background: #212121;
 ">
 
 <a class="calndarCntnrbtn" href='https://blackswan19.github.io/bscrop/reminder.html'><button>Date Note</button></a>
@@ -739,12 +739,12 @@ function renderCalendar() {
     </div>
     <div style="display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
+    gap:5px;
     text-align: center;
     padding: 15px 10px;
     margin-top: -10px;
     border-radius: 35px;
-    background: linear-gradient(0deg, #ffffff1a, transparent);">
+    background: linear-gradient(0deg, #191919, transparent);">
         <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`
         ;
 
