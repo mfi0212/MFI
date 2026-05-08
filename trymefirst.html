@@ -1318,19 +1318,29 @@ color: white;
 /* GRAPH & CALENDAR */
 #graphContainer,
 #calendarContainer {
-	background: #00000000;
-    border-radius:50px;
-    padding: 20px;
+	    background: #00000000;
+    border-radius: 45px;
+    padding: 10px;
     scrollbar-width: none;
     position: relative;
     left: 0%;
     scrollbar-width: none;
     overflow: scroll;
-    margin-top: 35px;
-     border: none;
-    width: 97%;
+    margin-top: 95px;
+    border: none;
+    width: 95%;
     backdrop-filter: blur(10px) url(#switcher) saturate(var(--saturation));
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.5px 1.5px 1.5px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 90%), transparent), inset -1.5px -1.5px 1.5px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    box-shadow: inset 0 0 0 1px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.5px 1.5px 1.5px -1.5px 
+ color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 90%), transparent), inset -1.5px -1.5px 1.5px -1.5px 
+ color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px 
+ color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
+ color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     transition: all 0.3s ease;
     max-width: 600px;
     left: 50%;
@@ -1343,16 +1353,14 @@ color: white;
 }
 
 #calendarContainer>div>div {
-	color: #ddd;
-	border-radius: 58px;
-	min-height: 30px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-weight: 500;
-	font-size: 15px;
-	transition: all 0.3s ease;
-	background: #ffffff1a;
+color: #e0e0e0cf;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 100;
+    font-size: 17px;
+    transition: all 0.3s ease;
 }
 
 
@@ -1400,13 +1408,12 @@ svg#Layer_7 {
 }
 
 .loans-list {
-	margin-top: 24px;
-    padding: 20px 15px;
+	margin-top: 25px;
+    padding: 15px 10px;
     margin-left: auto;
     margin-right: auto;
     background: linear-gradient(0deg, #ffffff1a, transparent);
-    border-radius: 30px;
-    
+    border-radius: 35px;
 }
 
 .loan-row {
@@ -1582,14 +1589,14 @@ input {
 
 .show select#mode,
 button {
-	padding: 10px;
-	border: none;
-	outline: none;
-	border-radius: 13px;
-	margin-bottom: 10px;
-	border: 1px solid rgb(255 255 255);
-    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.5px 1.5px 1.5px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 90%), transparent), inset -1.5px -1.5px 1.5px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
- border: none;
+padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 13px;
+    margin-bottom: 10px;
+    border: none;
+    background: #ffffff54;
+    color: white;
 }
 
 .empty-message {
@@ -1650,7 +1657,10 @@ button {
 		top: 120px;
 		z-index: 10;
 	}
-
+#graphContainer,
+#calendarContainer {
+    margin-top: 35px;
+}
 	.user-name-container {
 		justify-content: flex-start;        
 		padding: 10px 10px 0 10px;
@@ -2504,7 +2514,7 @@ input:checked+.slider:before {
         <button onclick="closeEmoteChooser()" style="margin-bottom: -5px;background-color: red;"><img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close Now</button>
         </div>
     </div>
-    <script src="account.js">
+    <script src="try.js">
     </script>
     <svg style="position:absolute;width:0;height:0"> </svg>
 </svg>
