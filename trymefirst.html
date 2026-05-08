@@ -300,13 +300,14 @@ img.closesymbol {
 }.site-info {
     border-bottom: solid 1px #80808070;
     padding: 0 0 10px 0;
-}
+    display: flex;
+    justify-content: space-between;}
 
         .site-item:active{ transform: scale(0.95);border-radius: 20px;} 
 
-.site-item.pinned {
-      /* background: #28282880; */
-    }
+/* .site-item.pinned {
+      background: #28282880;
+    } */
 .togglestyle {
    background: #ffffff21;
     width: 44px;
@@ -315,6 +316,9 @@ img.closesymbol {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+}
+.togglestyletwo {
+    width: 225px;
 }
     .pin-toggle {
      width: 20px;
@@ -741,12 +745,14 @@ function createSiteItem(site) {
   a.innerHTML = `
     <div class="letter-icon" style="background: ${bg};">${initial}</div>
     <div class="site-info" style="flex:1">
-      <h3>${site.name}</h3>
- <p style="font-size:13px; color:#aaa;">${site.desc}</p>
+        <div class="togglestyletwo">
+          <h3>${site.name}</h3>
+          <p style="font-size:13px; color:#aaa;">${site.desc}</p>
+        </div>
+        <div class="togglestyle">
+          <div class="pin-toggle ${isOn ? 'on' : ''}" data-name="${site.name}"></div>
+        </div>
     </div>
-    <div class="togglestyle">
-  <div class="pin-toggle ${isOn ? 'on' : ''}" data-name="${site.name}"></div>
-</div>
   `;
 
   const toggle = a.querySelector('.pin-toggle');
