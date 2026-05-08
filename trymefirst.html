@@ -325,7 +325,7 @@ img.closesymbol {
       transform: scale(1.5) translateX(-5px);
     }
     .pin-toggle.on {
-        background: #001dff;
+        background: #34c759;
     }
     .pin-toggle::after {
 content: '';
@@ -361,18 +361,15 @@ z-index: 1000;
  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     background: #ffffff12;
     height: 44px;
-    width: 44px;padding: 10px;
-    display: flex;
+    width: 44px;
+    display: flex;transition: all 0.3s ease;
     justify-content: center;
     align-items: center;
   }
 .helper-button a{
     display: contents;
 }
-.helper-button svg{
-  transition: all 0.3s ease;
-}
-.helper-button svg:active{
+.helper-button:active{
   transform: scale(0.70); 
 }
 
