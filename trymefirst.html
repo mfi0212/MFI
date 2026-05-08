@@ -194,7 +194,7 @@ position: fixed;
     width: 100%;
     max-width: 600px;
     z-index: 100000000;
-    padding: 20px 10px 5px 10px;
+    padding: 20px 10px 15px 10px;
     display: flex;
     align-items: self-start;
     gap: 10px;
@@ -239,15 +239,18 @@ img.closesymbol {
     margin: -6px 0;
     height: 35px;
 }    #searchInput {
-   padding: 5px;
+   padding: 3px;
     font-size: 13px;
-    border: none;
-    border-radius: 30px;
-    color: white;
-    background: #121212;
-    filter: saturate(3);
-    width: 120px;transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    border-radius: 100px;
+    outline: none;
+    font-weight: 100;
     text-align: center;
+    width: 100px;
+    x: 100000;
+    border: none;
+    background: #1c1c1c;
+    color: #fff;
     }
 .nav-item span {
     font-size: 11px;
@@ -258,7 +261,7 @@ img.closesymbol {
     }
 
     #sectionsContainer {
-    padding-top: 125px;
+    padding-top: 120px;
     max-width: 600px;
     margin: 0 auto;
     padding-bottom: 97px;
@@ -284,7 +287,7 @@ img.closesymbol {
     .site-item {
     display: flex;
     align-items: center;
-    padding: 15px;
+    padding: 15px 10px;
     color: white;
     text-decoration: none;
     position: relative;
@@ -294,6 +297,9 @@ img.closesymbol {
     margin: 0;
     background: transparent;
     transition: all 0.3s ease;
+}.site-info {
+    border-bottom: solid 1px #80808070;
+    padding: 0 0 10px 0;
 }
 
         .site-item:active{ transform: scale(0.95);border-radius: 20px;} 
@@ -302,7 +308,7 @@ img.closesymbol {
       /* background: #28282880; */
     }
 .togglestyle {
-   background: #151513;
+   background: #ffffff21;
     width: 40px;
     height: 40px;
     display: flex;
@@ -313,7 +319,7 @@ img.closesymbol {
     .pin-toggle {
      width: 20px;
     height: 10px;
-    background: #ffffff36;
+    background: #ffffff45;
     border-radius: 9999px;
     position: relative;
     cursor: pointer;
