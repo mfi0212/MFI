@@ -33,7 +33,8 @@ const usersDB = {
              { planDate: "09-02-2026", endDate: "01-05-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
             ],
         links: [],
-        emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif"
+        emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif",
+        defaultEmote: "https://files.donationalerts.com/uploads/images/2/tb_5000.gif"
     },
 };
 
