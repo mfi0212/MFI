@@ -295,21 +295,24 @@ img.closesymbol {
     opacity: 70%;
     border-radius: 0;
     margin: 0;
-    background: #28282880;
+   background: #1d1d1d;
     transition: all 0.3s ease;
 }.site-info {
     /* border-bottom: solid 1px #80808070;
     padding: 0 0 10px 0; */
     display: flex;align-items: center;
     justify-content: space-between;}
-
+.site-item:last-child{
+  border-radius: 0 0 35px 36px;
+    padding: 10px;
+}
         .site-item:active{ transform: scale(0.95);border-radius: 20px;} 
 
 .site-item.pinned {
       background: #00000000;
     }
 .togglestyle {
-   background: #ffffff21;
+   background: #1c1c1c;
     width: 44px;
     height: 44px;
     display: flex;
@@ -671,30 +674,20 @@ flex: 1;
 const siteGroups = [
   { heading: "Return Management", sites: [
     { name: "BS&MFI Solutions", desc: "Return date extender", url: "https://mfi0212.github.io/swan/offer/solution" },
-]},
-{ heading: "New in & issue", sites: [
     { name: "Enterance Form", desc: "New members form", url: "https://mfi0212.github.io/MFI/entrysheet" },
     { name: "Helper", desc: "I have issue form", url: "https://mfi0212.github.io/MFI/abt.hlp" },
-    { name: "I'm late", desc: "Important Note", url: "https://mfi0212.github.io/MFI/imlate" }
-]},
-{ heading: "Offer & Earns", sites: [
+    { name: "I'm late", desc: "Important Note", url: "https://mfi0212.github.io/MFI/imlate" },
     { name: "Lendlink-Mid", desc: "Turn your money into income", url: "https://mfi0212.github.io/swan/lndlnk-mid" },
     { name: "BsGames", desc: "Exclusive rewards and benefits for BS&MFI members.", url: "https://blackswan19.github.io/golden/Bs%20Games/bsgames" },
-    { name: "Stars", desc: "Interest reducer.", url: "https://blackswan19.github.io/golden/FM/starspage" }
-  ]},
-  { heading: "For VIPs Only Services", sites: [
+    { name: "Stars", desc: "Interest reducer.", url: "https://blackswan19.github.io/golden/FM/starspage" },
     { name: "BsMansion", desc: "Store offer to use after", url: "https://mfi0212.github.io/MFI/bsmansion" },
-    { name: "Chloennaouii", desc: "Discover Your Discount", url: "https://mfi0212.github.io/MFI/cholennaouii.main" }
-  ]},
-  { heading: "Services", sites: [
+    { name: "Chloennaouii", desc: "Discover Your Discount", url: "https://mfi0212.github.io/MFI/cholennaouii.main" },
     { name: "All Services", desc: "All service from BS&MFI", url: "https://blackswan19.github.io/BS/bslends" },
     { name: "BsLends", desc: "A service from BS&MFI", url: "https://mfi0212.github.io/MFI/rate" },
     { name: "Myootive", desc: "A service from BS&MFI", url: "https://blackswan19.github.io/golden/FM/themain" },
     { name: "Turbo", desc: "Subcription plans", url: "https://mfi0212.github.io/MFI/starpre" },
     { name: "Short Term Loan", desc: "Quick amounts for 1 to 15 days.", url: "https://mfi0212.github.io/MFI/1.5.days" },
-    { name: "BsNews", desc: "BS&MFI Service news", url: "https://blackswan19.github.io/golden/FM/bsnews" }
-  ]},
-  { heading: "Collaboration", sites: [
+    { name: "BsNews", desc: "BS&MFI Service news", url: "https://blackswan19.github.io/golden/FM/bsnews" },
     { name: "BsPsgenerater", desc: "Password generator", url: "https://blackswan19.github.io/Educate/password" },
     { name: "BsReminder", desc: "Date wise notes", url: "https://blackswan19.github.io/bscrop/reminder" },
     { name: "BsBookpad", desc: "Download the notes", url: "https://blackswan19.github.io/Educate/bookpad" },
