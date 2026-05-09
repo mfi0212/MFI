@@ -716,28 +716,17 @@ function renderCalendar() {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 95%;
     margin-bottom: 20px;
     margin-top: 5px;
     border-radius: 1008px;
-    padding: 7px;
+    padding: 10px;
     transition: all 0.3s ease;
     transform: translate(-50%, 0);
     left: 50%;
     filter: saturate(2);
     position: relative;
-    background: #0020ff;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff59 calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff80 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px 
- color-mix(in srgb, #ffffff66 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+        background: #212121;
 ">
 
 <a class="calndarCntnrbtn" href='https://blackswan19.github.io/bscrop/reminder.html'><button>Date Note</button></a>
@@ -750,15 +739,12 @@ function renderCalendar() {
     </div>
     <div style="display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 6px;
+    gap:5px;
     text-align: center;
-    color: #888;
-    font-weight: 600;
-    padding: 20px;
+    padding: 15px 10px;
     margin-top: -10px;
-        border-radius: 40px;
-    background: rgba(255, 255, 255, 0.06);
-    border: solid 1.5px #ffffff08;">
+    border-radius: 35px;
+    background: linear-gradient(0deg, #191919, transparent);">
         <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`
         ;
 
