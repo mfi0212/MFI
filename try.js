@@ -716,9 +716,9 @@ function renderCalendar() {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 95%;
+    width: 99%;
     margin-bottom: 20px;
-    margin-top: 5px;
+    margin-top: 0px;
     border-radius: 1008px;
     padding: 10px;
     transition: all 0.3s ease;
@@ -726,7 +726,7 @@ function renderCalendar() {
     left: 50%;
     filter: saturate(2);
     position: relative;
-        background: #212121;
+    background: #212121;
 ">
 
 <a class="calndarCntnrbtn" href='https://blackswan19.github.io/bscrop/reminder.html'><button>Date Note</button></a>
@@ -743,7 +743,7 @@ function renderCalendar() {
     text-align: center;
     padding: 15px 10px;
     margin-top: -10px;
-    border-radius: 35px;
+    border-radius: 35px;    corner-shape: superellipse(1.5);
     background: linear-gradient(0deg, #191919, transparent);">
         <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`
         ;
