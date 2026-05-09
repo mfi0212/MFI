@@ -275,11 +275,12 @@ img.closesymbol {
     }
 
     .site-list {
-          overflow: hidden;
-    width: 100%;
+     overflow: hidden;
+    width: 98%;
     position: relative;
     left: 50%;
     transform: translate(-50%, 0);
+    margin: 9px 0;
     }
 .fixwidth {
     max-width: 600px;
@@ -287,7 +288,7 @@ img.closesymbol {
     .site-item {
     display: flex;
     align-items: center;
-   padding: 15px 10px;
+    padding: 5px;
     color: white;
     text-decoration: none;
     position: relative;
@@ -295,16 +296,19 @@ img.closesymbol {
     opacity: 70%;
     border-radius: 0;
     margin: 0;
-   background: #1d1d1d;
+    background: #1d1d1d;
     transition: all 0.3s ease;
 }.site-info {
-    /* border-bottom: solid 1px #80808070;
-    padding: 0 0 10px 0; */
-    display: flex;align-items: center;
+    display: flex;
+    align-items: center;
     justify-content: space-between;}
+
+a.site-item:hover{
+  background: #1d1d1d;    border-radius: 25px;
+}
 .site-item:last-child{
   border-radius: 0 0 35px 35px;
-    padding: 10px;
+  padding: 10px;
 }
 .site-item:first-child{
   border-radius: 35px 35px 0 0 ;
