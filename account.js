@@ -644,7 +644,7 @@ function renderLoanList() {
 
             row.innerHTML = `
                 <div class="loan-info">
-                    <span class="loan-title">Loan ${idx + 1}</span>
+                    <span class="loan-title">Amount ${idx + 1}</span>
                     <span class="loan-amount">${amount} ${currentCurrency}</span>
                     <span class="loan-days ${daysLeft <= 2 ? 'urgent' : daysLeft <= 6 ? 'warning' : 'safe'}">
                         ${daysLeft} days left
