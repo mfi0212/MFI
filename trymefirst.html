@@ -543,7 +543,7 @@ div#amountButtons {
     gap: 0px;
     border-radius: 45px 25px 0 45px;
     margin: 0 0 0 -5px;
-    padding: 0 8px 0 5px;
+    padding: 0 8px 0 8px;
     corner-shape: superellipse(1.5);
 }
 .pincrnchng {
@@ -1311,7 +1311,12 @@ color: white;
 .nav-item i {
 	    rotate: 270deg;
 }
-
+.useridentity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
+}
 .toggle-pin.on{
 	color: #0020ff;display: none; 
 }
@@ -2339,6 +2344,9 @@ input:checked+.slider:before {
                         <div onclick="showTotalPopup()" class="mincntatusr">
                            <div class="useridentity">
                              <span id="userName"></span>
+                            <svg style="width: 20px;
+    height: 20px;
+    margin: 0 -10px 0 0;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M501.85-481 345.92-636.92q-12.3-12.31-12.5-29.89-.19-17.57 12.5-30.27 12.7-12.69 30.08-12.69t30.08 12.69l181.77 181.77q7.61 7.62 10.92 15.85 3.31 8.23 3.31 18.46t-3.31 18.46q-3.31 8.23-10.92 15.85L406.08-264.92q-12.31 12.3-29.89 12.5-17.57.19-30.27-12.5-12.69-12.7-12.69-30.08t12.69-30.08L501.85-481Z"/></svg></span>
                            </div>
                            <div class="afternamecontent">
                                 <div class="starssection">
