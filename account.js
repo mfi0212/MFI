@@ -366,7 +366,22 @@ function displayLoanDetails(loan, index) {
 
                 <input type="text" class="purpose-input" placeholder="Purpose" value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
             </div>
-
+<div class="totaldetails">
+    <p style="font-size:60px;
+              font-weight: 600;
+              font-family: 'Anton', sans-serif;
+              letter-spacing: 4.5px;margin: 5px;
+              color: ${overdueFine > 0 
+                        ? '#ff0000' 
+                        : daysLeft <= 2 
+                            ? '#ff0000' 
+                            : daysLeft <= 6 
+                                ? '#ff8c00' 
+                                : '#00d423'};">
+        ${formatMoney(totalPayable)}
+    </p><hr> <h3 style="font-weight: 100;">
+       Total amount</h3>
+</div> 
 
            <div class="details">
                 <div class="leftflow">
@@ -453,22 +468,7 @@ function displayLoanDetails(loan, index) {
     border: solid 1px #ffffff00;" class="add-link-btn">I'm have an issue...!</button></a>
         </div>
     <hr>   
-     <div class="totaldetails">
-    <p style="font-size:60px;
-              font-weight: 600;
-              font-family: 'Anton', sans-serif;
-              letter-spacing: 4.5px;margin: 5px;
-              color: ${overdueFine > 0 
-                        ? '#ff0000' 
-                        : daysLeft <= 2 
-                            ? '#ff0000' 
-                            : daysLeft <= 6 
-                                ? '#ff8c00' 
-                                : '#00d423'};">
-        ${formatMoney(totalPayable)}
-    </p><hr> <h3 style="font-weight: 100;">
-       Total amount</h3>
-</div> 
+    
     `;
 }
 
