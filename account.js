@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || '₹';
@@ -16,11 +16,7 @@ const usersDB = {
         name: "Mahesh Muthinti",
         coins: 316,
         loans: [
-            { planDate: "14-02-2026", endDate: "13-05-2026", interest: 3020, takenAmount: 10000, takenFrom: "Golden", fineRate: 65 },
-             { planDate: "14-01-2026", endDate: "13-05-2026", interest: 480, takenAmount: 27033, takenFrom: "Golden", fineRate: 65 },
-            { planDate: "19-04-2026", endDate: "19-05-2026", interest: 800, takenAmount: 2760, takenFrom: "Lenlink", fineRate: 35 },
-             { planDate: "09-02-2026", endDate: "07-06-2026", interest: 1393, takenAmount: 4375, takenFrom: "Lendlink", fineRate: 35 },
-            { planDate: "11-01-2026", endDate: "08-06-2026", interest: 1717, takenAmount: 6850, takenFrom: "Golden", fineRate: 40 },
+            { planDate: "11-05-2026", endDate: "", interest: 0, takenAmount: 15500, takenFrom: "Golden", fineRate: 65 },
         ],
         links: [],
        emote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif",
