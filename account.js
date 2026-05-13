@@ -1,5 +1,4 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
-
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || '₹';
 let currentUser = null;
@@ -17,6 +16,7 @@ const usersDB = {
         coins: 0,
         loans: [
             { planDate: "11-05-2026", endDate: "11-06-2026", interest: 3356, takenAmount: 15500, takenFrom: "Golden", fineRate: 130 },
+            { planDate: "13-05-2026", endDate: "12-06-2026", interest: 2500, takenAmount: 10000, takenFrom: "Golden", fineRate: 85 },
         ],
         links: [],
        emote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif",
