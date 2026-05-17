@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BS/MFI | Notice</title>
-    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
+    <title>BS/MFI | I'm late</title>
+    <link rel="icon" type="image/x-icon" href="mansion.mfi.logo.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
-    
     <style>
          @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
         * {
@@ -43,17 +42,21 @@
     text-decoration: underline;
         }
         p {
-            font-size: 16px;
-        }
+        font-size: 14px;
+        text-align: center;
+        margin: 10px 0;
+    }
         .highlight {
             font-weight: 600;
     color: #000000;
 
         }
         ul {
-            text-align: left;
-            margin-top: 15px;
-            padding-left: 20px;
+          text-align: left;
+    margin-top: 15px;
+    background: blue;
+    color: white;
+    padding: 10px 25px;
         }
         ul li {
             list-style: square;
@@ -64,9 +67,7 @@
            line-height: 25px;
            font-size: 14px;
         }
-        p {
-            font-size: 14px;
-        }
+    
         h1{
             color: #000000;
     font-size: 23px;
@@ -80,7 +81,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Important Note</h1>
+        <h1>I'm late</h1>
         <p>
             If you are <span class="highlight">late in returning the amount</span>,
             the interest will <span class="highlight">keep adding to the amount</span>.
@@ -97,19 +98,22 @@
         <p style="    text-decoration: underline;">
             Verify your total return amount in your account details before returning the amount.
         </p>
+        <br>
         <p>
-            Thanks for your attention and understanding.
+            <a style="color: blue;" href="https://mfi0212.github.io/swan/offer/programs">Click here to visit BS&MFI Solutions</a>
         </p>
     </div>
         <script>
         document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
+
     document.addEventListener("contextmenu", (event) => {
         event.preventDefault();
         customMenu.style.display = "block";
         customMenu.style.top = `${event.pageY}px`;
         customMenu.style.left = `${event.pageX}px`;
     });
+
     document.addEventListener("click", () => {
         customMenu.style.display = "none";
     });
