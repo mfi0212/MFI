@@ -1,1 +1,1283 @@
-no test...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BS&MFI Solution</title>
+    <link rel="icon" href="mfi.logo.png" />
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+	-webkit-tap-highlight-color: transparent;
+	font-family: 'Poppins', sans-serif;
+	scrollbar-width: none;letter-spacing: 0.5px;
+}
+    :root {
+      --bg: #000000;
+      --header: #121212;
+      --card: #ffffff0f;
+      --text: #ffffff;
+      --text2: #888888;
+      --accent: #0000ff;
+    }
+    .light {
+      --bg: #f8f9fa;
+      --header: #ffffff;
+      --card: #ffffff;
+      --text: #111111;
+      --text2: #666666;
+      --accent: #0000ff;
+    }* {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+        }
+body {
+  --c-glass: #bbbbbc;
+  --c-light: #fff;
+  --c-dark: #000;
+  
+  --c-content: rgb(255, 255, 255);
+  --c-action: #0052f5;
+  
+  --glass-reflex-dark: 1;
+  --glass-reflex-light: 1;
+  
+  --saturation: 150%;
+  
+  color: var(--c-content);
+}
+
+body:has(input[value="dark"]:checked) {
+  --c-glass: #bbbbbc;
+  --c-light: #fff;
+  --c-dark: #000;
+  
+  --c-content: #e1e1e1;
+  --c-action: #03d5ff;
+  
+  --c-bg: #1b1b1d;
+}
+
+body:has(input[value="dim"]:checked) {
+  --c-light: #99deff;
+  --c-dark: #20001b;
+  --c-glass: hsl(335 250% 74% / 1);
+  
+  --c-content: #d5dbe2;
+  --c-action: #ff48a9;
+  
+  --c-bg: #152433;
+
+}
+    * { margin:0; padding:0; box-sizing:border-box; scrollbar-width: none;}
+    
+    body {
+      background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+    
+    header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 20px 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background: linear-gradient(180deg, black, transparent);
+    }
+    header img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    filter: saturate(2);
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
+    filter: saturate(4);
+    background: #ffffff12;
+    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.5px 1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 90%), transparent), inset -1.5px -1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    }
+        header img:hover{
+              transform: scale(1.03); 
+        }
+        header img:active{
+              transform: scale(0.90); 
+        } 
+    button.btn-primary {
+        filter: saturate(2);
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;height: 47px;
+    font-weight: 100;
+    border-radius: 100px;
+    font-size: 18px;
+    letter-spacing: 0.6px;
+    }
+
+        button.btn-primary:active{
+              transform: scale(0.90); 
+        } 
+        a{
+            text-decoration: none;
+        }
+    button.back-btn{
+border: none;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    background: transparent;
+    backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
+    filter: saturate(4);
+    background: #ffffff12;
+   box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.5px 1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 90%), transparent), inset -1.5px -1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    }
+        header button:hover{
+              transform: scale(1.03); 
+        }
+        header button:active{
+              transform: scale(0.90); 
+        } 
+    .theme-btn {
+      transition: all 0.3s;
+    }
+button.btn-close {
+background: red;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    font-weight: 100;
+    border-radius: 100px;
+    margin: -30px 0 15px 0;
+    font-size: 18px;
+    border: solid 1px #ffffff00;
+    filter: saturate(2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;height: 47px;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border: none;
+  }div#modal-content svg {
+   width: 26px;
+    height: 26px;
+    border-radius: 30px;
+    fill: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+        button.btn-close:hover{
+              transform: scale(1.03); 
+        }
+        button.btn-close:active{
+              transform: scale(0.90); 
+        } 
+
+    main {
+      flex: 1;
+    overflow-y: auto;
+    background: #00000012;
+    padding: 40px 9px 145px 9px;
+    max-width: 650px;
+    width: 100%;
+    }
+button.theme-btn {
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    box-shadow: none;
+    border: none;
+}
+        button.theme-btn:hover{
+              transform: scale(1.03); 
+        }
+        button.theme-btn:active{
+              transform: scale(0.90); 
+        } 
+        .bottomtop {
+    position: fixed;
+    bottom: 95px;
+    z-index: 40;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+button.theme-btn span{
+   font-weight: 500;
+    font-size: 15px;
+    padding: 5px 5px 5px 8px;
+    width: max-content;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: -4px;
+    color: #fff;
+    backdrop-filter: blur(5px) url(#switcher) saturate(var(--saturation));
+    filter: saturate(4);
+    background: #ffffff12;
+    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.5px 1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 90%), transparent), inset -1.5px -1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+}
+h6 svg{
+  width: 20px;
+    height: 20px;
+}
+    .second1icon{
+border-radius: 100px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 100%;
+    border: none;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+   backdrop-filter: blur(3px) url(#switcher) saturate(var(--saturation));
+    filter: saturate(6);
+   background: #ffffff12;
+    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.5px 1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 90%), transparent), inset -1.5px -1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+}
+.nav-container svg {
+width: 25px;
+    height: 25px;
+    fill: white;
+}
+.nav {
+width: 100%;
+    padding: 25px 20px;
+    max-width: 650px;
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background: linear-gradient(0deg, black, transparent);
+}
+   .nav-container {
+   display: flex;
+    font-size: 10px;
+    font-weight: 500;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+.mficolblogo{
+   width: 60px;
+    height: 60px;
+    filter: saturate(2);
+    background: linear-gradient(45deg, #0021ffbd 34%, #00d0ffcc);
+    position: relative;
+    z-index: 100000;
+    border: none;
+    padding: 5px;
+    border-radius: 100px;
+    backdrop-filter: blur(2px);
+}
+.tab span{
+  font-size: 11px;
+    font-weight: 100;
+}
+    .first4icons {
+          border: none;
+    border-radius: 999px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+    gap: 3px;
+    color: #fff;
+    backdrop-filter: blur(3px) url(#switcher) saturate(var(--saturation));
+    height: 60px;
+    filter: saturate(6);
+    background: #ffffff12;
+  box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.5px 1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 90%), transparent), inset -1.5px -1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    }
+
+footer {
+text-align: center;
+    font-size: 10px;
+    position: fixed;
+    bottom: 15px;
+    width: 100%;
+    left: 0;
+    color: #ffffff8f;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+    .tab {
+   display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 5px 15px;
+    justify-content: center;
+    width: 100%;
+    border-radius: 10000px;
+    transition: all 0.3s ease;
+    }h2#modal-title {
+    font-weight: 400;
+    font-size: 20px;
+}
+        .tab:hover{
+              transform: scale(1.03); 
+        }
+        .tab:active{
+              transform: scale(0.90); 
+        } 
+
+    .tab-active {
+      background: #0020ff;
+    filter: none;opacity: 100%;
+    border-radius: 1000px;
+    filter: saturate(2);
+    }
+    .tab i {
+      font-size: 1.75rem;
+    }
+    img.closesymbol {
+        width: 35px;
+    height: 35px;
+    margin: -5px;
+}
+    .apply-btn {
+        background-color: #0026e6ad;
+    color: white;
+    font-weight: 100;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    border: none;
+    max-width: 400px;
+    height: 45px;
+    filter: saturate(2);
+    height: 44px;
+    backdrop-filter: blur(2px);
+    transition: all 0.3s ease;
+    }
+        .apply-btn:hover{
+              transform: scale(1.03); 
+        }
+        .apply-btn:active{
+              transform: scale(0.90); 
+        } 
+   .maiinoptionsatapply {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}.exclamation {
+color: rgb(255 255 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: saturate(2);
+    backdrop-filter: blur(2px);
+    padding: 10px;
+    height: 45px;
+    border-radius: 100px;
+    background: rgb(255 0 0 / 53%);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-size: 15px;
+    border: none;
+    font-weight: 100;
+}
+span svg{
+      width: 18px;
+}
+.exclamation:hover{
+              transform: scale(1.03); 
+        }
+        .exclamation:active{
+              transform: scale(0.90); 
+        } 
+    .card {
+      background-color: var(--card);
+      border-radius: 16px;
+    }
+    
+    .text-secondary {
+      color: var(--text2);
+    }
+    
+    .accent {
+      color: var(--accent);
+    }
+    
+    .modal {
+      position: fixed;
+    inset: 0;
+    background-color: #00000085;
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 9999;
+    }
+    .modal.show {
+      display: flex;
+    }
+    
+    .modal-content {
+     width: 95%;
+    max-width: 600px;
+    overflow: hidden;
+    animation: slideUp 0.3s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+    margin-bottom: 20px;
+    filter: saturate(2);
+    border-radius: 40px;
+    background: #191919;
+
+}
+    
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .modal-header {
+          padding: 20px;
+    border-bottom: 5px solid #ffffff1f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffc200;
+    font-size: 15px;
+    flex-direction: row-reverse;
+    }
+    
+    .modal-body {
+      padding: 1.5rem;text-align: center;
+    }
+    
+    .section-title {
+font-size: 45px;
+    font-weight: 900;
+    letter-spacing: -5px;
+    text-align: center;
+    color: #0000ff;
+margin: 0;
+    }
+    .how-it-works:first-child{
+      margin-top: 20px;
+    }
+    .how-it-works {
+          margin: 20px 0 0 0;
+    padding: 1.5rem;
+    border-radius: 45px;
+   box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.5px 1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 90%), transparent), inset -1.5px -1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    }
+    
+    /* FAQ STYLING */
+    .faq-container {
+     margin: 20px 0 0 0;
+    padding: 1.5rem;
+    border-radius: 45px;
+    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.5px 1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 90%), transparent), inset -1.5px -1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    }
+    .faq-item {
+      border-bottom: 1px solid #333;
+      padding: 1.25rem 0;
+      transition: all 0.3s;
+    }
+    .faq-item:first-child {
+      border-bottom: none;
+      padding: 0 0 20px 0;
+    }
+    .faq-item:last-child {
+      border-bottom: none;
+      padding: 20px 0 0 0;
+    }
+    .faq-item h3 {
+         color: var(--text);
+    font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 15px;
+    }li {
+   line-height: 25px;
+    font-size: 14px;
+    font-weight: 100;
+    text-align: left;
+}
+    .faq-item p {
+color: var(--text2);
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: 100;
+    text-align: left;
+    }
+.amount-box {
+box-shadow: inset 1px 1px 0px 0px #ffffff1a, inset -1px -1px 0px 0px #ffffff1a;
+    display: flex;
+    align-items: center;
+    background: #0f0f0f;
+    padding: 15px 25px;
+    transition: all 0.3s ease;
+    border-radius: 116px;
+    color: #fff;
+    }
+        .amount-box:active{
+              transform: scale(0.90); 
+        } 
+    .amount-input {
+      flex: 1;
+      background: #00000063;
+      border: none;
+      outline: none;
+      font-size: 2.75rem;
+      font-weight: 300;
+      color: var(--text);
+    }
+    
+    .calc-result {
+background-color: #00000063;
+    border-radius: 37px;
+    padding: 10px 15px;
+    box-shadow: inset 1px 1px 0px 0px #ffffff1a, inset -1px -1px 0px 0px #ffffff1a;
+    }
+    
+    .btn-primary {
+     width: 100%;
+    background: #ffffff1c;
+    color: white;
+    font-weight: 300;
+    padding: 10px;
+    border-radius: 34px;
+    font-size: 18px;
+    border: none;    height: 47px;
+    cursor: pointer;
+    }
+    .popup_close {
+display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    margin: -5px;
+    background: rgb(35 35 35);
+    transition: all 0.3s ease;
+    filter: saturate(4);
+    box-shadow: inset 1px 1px 0px 0px #ffffff1a, inset -1px -1px 0px 0px #ffffff1a;
+  }
+         .popup_close:hover{
+              transform: scale(1.03); 
+        }
+         .popup_close:active{
+              transform: scale(0.90); 
+        } 
+    
+    .btn-secondary {
+   background: #0000ff;
+    cursor: pointer;
+    margin-bottom: 20px;
+        height: 47px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
+    width: 100%;
+    padding: 10px;font-size: 18px;
+    font-weight: 100;
+    border-radius: 100px;
+  }
+        .btn-secondary:active{
+              transform: scale(0.90); 
+        } 
+    .btn-secondary svg{
+    fill: black;
+    width: 20px;
+    height: 20px;
+    }   
+     .btn-secondary a {
+   text-decoration: none;
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+    
+    .btn-secondary a:hover>.btn-secondary:hover {
+      background-color: #0000ff;
+      color: white;
+        }
+
+.popup-menu {
+position: fixed;
+    bottom: 95px;
+    right: 30px;
+    display: none;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 30px;
+    z-index: 10000;
+    color: #fff;
+    backdrop-filter: blur(25px) url(#switcher) saturate(var(--saturation));
+    filter: drop-shadow(0 0 10px black);
+    background: #00000038;
+    flex-direction: column;
+    box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.5px 1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 90%), transparent), inset -1.5px -1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+}
+div#menu-btn img {
+    width: 40px;
+    height: 40px;
+    margin: -11px 0;
+}
+
+.popup-menu .tab {
+ display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-direction: row;
+    justify-content: center;
+    padding: 8px;
+}
+div#popupMenu svg {
+display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    fill: white;
+}
+div#popupMenu span {
+    font-size: 15px;
+}
+  </style>
+</head>
+<body>
+
+ <header>
+    <button onclick="goBack()" class="back-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z"/></svg>
+    </button>
+    <button class="theme-btn">
+        <img class="mficolblogo" src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Objects/Light%20Bulb.webp" alt="">
+      <span>BS&MFI Solutions <img style="width: 23px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    opacity: 70%;
+    margin: -5px;" src="service-icons/rightside_arrow.png" alt=""></span>
+    </button>
+    <img onclick="alert('Welcome to BS&MFI Solutions from BS&MFI Services')" src="mfi.gif" alt="">
+  </header>
+
+  <main id="main-content"></main>
+
+ <div class="bottomtop">
+     <button onclick="showPopup()" class="apply-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m329.85-329.85 226.89-73.41 73.41-226.89-226.89 73.41-73.41 226.89Zm149.91-112.3q-15.64 0-26.63-11.22-10.98-11.23-10.98-26.87t11.22-26.63q11.23-10.98 26.87-10.98t26.63 11.22q10.98 11.23 10.98 26.87t-11.22 26.63q-11.23 10.98-26.87 10.98Zm.42 316q-73.39 0-138.06-27.89t-112.51-75.69q-47.84-47.81-75.65-112.29-27.81-64.48-27.81-137.8 0-73.39 27.89-138.06t75.69-112.51q47.81-47.84 112.29-75.65 64.48-27.81 137.8-27.81 73.39 0 138.06 27.89t112.51 75.69q47.84 47.8 75.65 112.29 27.81 64.48 27.81 137.8 0 73.39-27.89 138.06t-75.69 112.51q-47.8 47.84-112.29 75.65-64.48 27.81-137.8 27.81Zm-.15-36.93q132.51 0 224.7-92.22 92.19-92.23 92.19-224.73 0-132.51-92.22-224.7-92.23-92.19-224.73-92.19-132.51 0-224.7 92.22-92.19 92.23-92.19 224.73 0 132.51 92.22 224.7 92.23 92.19 224.73 92.19ZM480-480Z"/></svg>
+    Explore / Apply Now
+  </button>
+   <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform"><p class="exclamation">I've Issue</p></a>
+  
+ </div>
+
+  <nav class="nav">
+    <div class="nav-container">
+        <div class="first4icons">
+            <div onclick="switchTab(0)" id="tab-0" class="tab tab-active">
+              <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#e3e3e3"><g><rect fill="none" height="24" width="24"/></g><g><g><polygon points="10,8 10,14 14.7,16.9 15.5,15.7 11.5,13.3 11.5,8"/><path d="M17.92,12c0.05,0.33,0.08,0.66,0.08,1c0,3.9-3.1,7-7,7s-7-3.1-7-7c0-3.9,3.1-7,7-7c0.7,0,1.37,0.1,2,0.29V4.23 C12.36,4.08,11.69,4,11,4c-5,0-9,4-9,9s4,9,9,9s9-4,9-9c0-0.34-0.02-0.67-0.06-1H17.92z"/><polygon points="20,5 20,2 18,2 18,5 15,5 15,7 18,7 18,10 20,10 20,7 23,7 23,5"/></g></g></svg>
+            <span>Delay</span>
+                        </div>
+                        <div onclick="switchTab(1)" id="tab-1" class="tab">
+                              <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#e3e3e3"><g><rect fill="none" height="24" width="24"/></g><g><path d="M14.59,15.59L16,17l4-4l-4-4l-1.41,1.41L16.17,12c-1.51-0.33-3.73,0.08-5.17,1.36l0-6.53l1.59,1.59L14,7l-4-4L6,7 l1.41,1.41L9,6.83V21l2,0v-4c0.73-2.58,3.07-3.47,5.17-3L14.59,15.59z"/></g></svg><span>Split</span>
+                        </div>
+                        <div onclick="switchTab(2)" id="tab-2" class="tab">
+             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#e3e3e3"><path d="M0 0h24v24H0z" fill="none"/><path d="M22 5v2h-3v3h-2V7h-3V5h3V2h2v3h3zm-3 14H5V5h6V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6h-2v6zm-4-6v4h2v-4h-2zm-4 4h2V9h-2v8zm-2 0v-6H7v6h2z"/></svg><span>Limit</span>
+            </div>
+        </div>
+        <div class="second1icon">
+          <div class="tab" onclick="toggleMenu()" id="menu-btn">
+              <img src="service-icons/more_options_icons.png" alt="">
+          </div>
+        </div>
+    </div>
+  </nav>
+<div class="popup-menu" id="popupMenu">
+        <div onclick="switchTab(3)" id="tab-3" class="tab">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#e3e3e3"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM6.24 5h11.52l.81.97H5.44l.8-.97zM5 19V8h14v11H5zm8.45-9h-2.9v3H8l4 4 4-4h-2.55z"/></svg><span>Pre-Saver</span>
+        </div>
+
+        <div onclick="switchTab(4)" id="tab-4" class="tab">
+            <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#e3e3e3"><rect fill="none" height="24" width="24"/><path d="M21,6.5c-1.66,0-3,1.34-3,3c0,0.07,0,0.14,0.01,0.21l-2.03,0.68c-0.64-1.21-1.82-2.09-3.22-2.32V5.91 C14.04,5.57,15,4.4,15,3c0-1.66-1.34-3-3-3S9,1.34,9,3c0,1.4,0.96,2.57,2.25,2.91v2.16c-1.4,0.23-2.58,1.11-3.22,2.32L5.99,9.71 C6,9.64,6,9.57,6,9.5c0-1.66-1.34-3-3-3s-3,1.34-3,3s1.34,3,3,3c1.06,0,1.98-0.55,2.52-1.37l2.03,0.68 c-0.2,1.29,0.17,2.66,1.09,3.69l-1.41,1.77C6.85,17.09,6.44,17,6,17c-1.66,0-3,1.34-3,3s1.34,3,3,3s3-1.34,3-3 c0-0.68-0.22-1.3-0.6-1.8l1.41-1.77c1.36,0.76,3.02,0.75,4.37,0l1.41,1.77C15.22,18.7,15,19.32,15,20c0,1.66,1.34,3,3,3s3-1.34,3-3 s-1.34-3-3-3c-0.44,0-0.85,0.09-1.23,0.26l-1.41-1.77c0.93-1.04,1.29-2.4,1.09-3.69l2.03-0.68c0.53,0.82,1.46,1.37,2.52,1.37 c1.66,0,3-1.34,3-3S22.66,6.5,21,6.5z M3,10.5c-0.55,0-1-0.45-1-1c0-0.55,0.45-1,1-1s1,0.45,1,1C4,10.05,3.55,10.5,3,10.5z M6,21 c-0.55,0-1-0.45-1-1c0-0.55,0.45-1,1-1s1,0.45,1,1C7,20.55,6.55,21,6,21z M11,3c0-0.55,0.45-1,1-1s1,0.45,1,1c0,0.55-0.45,1-1,1 S11,3.55,11,3z M12,15c-1.38,0-2.5-1.12-2.5-2.5c0-1.38,1.12-2.5,2.5-2.5s2.5,1.12,2.5,2.5C14.5,13.88,13.38,15,12,15z M18,19 c0.55,0,1,0.45,1,1c0,0.55-0.45,1-1,1s-1-0.45-1-1C17,19.45,17.45,19,18,19z M21,10.5c-0.55,0-1-0.45-1-1c0-0.55,0.45-1,1-1 s1,0.45,1,1C22,10.05,21.55,10.5,21,10.5z"/></svg><span>Lendlink - Mid</span>
+        </div>
+    </div>
+  
+  <div id="modal" class="modal" onclick="if(event.target.id==='modal') hideModal()">
+    <div onclick="event.stopImmediatePropagation()" class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title" style="font-weight:600;"> Calculator</h2>
+        <p onclick="hideModal()" class="popup_close"><img class="closesymbol" src="service-icons/close_icon.png" alt=""></p>
+      </div>
+      <div id="modal-content" class="modal-body"></div>
+      <footer>© BS&MFI Solutions. All Rights Reserved.</footer>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+    const menu = document.getElementById("popupMenu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
+
+// Optional: close when clicking outside
+document.addEventListener("click", function(e) {
+    const menu = document.getElementById("popupMenu");
+    const btn = document.getElementById("menu-btn");
+
+    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.style.display = "none";
+    }
+});
+
+
+
+
+    let currentTab = 0;
+    let isDarkMode = true;
+    const tabNames = ["Delay It Calculater", "Split Pay Calculater", "Buy Limit Calculater", "Pre-Saver", "Lendlink - Mid"];
+    const fees = [4.5, 5.0, 5.5, null, null];
+    const googleFormUrl = "https://forms.gle/YOUR_GOOGLE_FORM_LINK_HERE";
+    // document.addEventListener('contextmenu', e => e.preventDefault());
+    const tabContents = {
+      0: `
+        <div style="padding-top: 5rem;">
+          <h2 class="section-title">Delay It</h2>
+          <div style="    margin-top: -0.3rem;
+    font-size: 13px;
+    color: var(--text2);
+    position: relative;
+    left: 2px;text-align: center;
+">Return date extender</div>
+           <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">About Us</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Delay It by BS&MFI Solutions helps to extend your payment deadlines with transparent fees. Our service provides the flexibility you need to manage your returns.</li>
+            </ul>
+          </div>
+          <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">How Delay It works?</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> You can extend the return date of the amount.</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Transparent fees with no hidden costs.</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Fast extend process.</li>
+            </ul>
+          </div>
+          
+          <div style="margin: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text2);
+    padding: 0px;
+    text-align: center;;">
+            Note : The Process Fee must be paid before applying for Delay It. If not, we can't provide the extension.
+          </div>
+
+          <div class="faq-container" >
+            <h2 style="font-size:1.125rem; font-weight:600;">FAQ's</h2>
+            <div class="faq-item">
+              <h3>What is the minimum amount I can extend?</h3>
+              <p>The minimum amount is ₹500.</p>
+            </div>
+            <div class="faq-item">
+              <h3>How is the fee calculated?</h3>
+              <p>The fee is 4.5% of the amount multiplied by the number of days you choose.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Can I apply for multiple extensions?</h3>
+              <p>Yes, you can apply multiple times. Each extension is treated separately with its own fee.</p>
+            </div>
+            <div class="faq-item">
+              <h3>If today is my return date, can I still extend?</h3>
+              <p>No, you must apply at least 24 hours before the original return date.</p>
+            </div>
+            <div class="faq-item">
+              <h3>How many days can I extend?</h3>
+              <p>Standard range is 15–30 days. Premium members can go up to 60 days.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Will my credit score be affected?</h3>
+              <p>No. Delay It is a paid service and does not impact your credit report.</p>
+            </div>
+          </div>
+        </div>
+      `,
+
+      1: `
+        <div style="padding-top: 5rem;">
+          <h2 class="section-title">Split Half Pay</h2>
+          <div style="    margin-top: -0.3rem;
+    font-size: 13px;
+    color: var(--text2);
+    position: relative;
+    left: 2px;text-align: center;
+">Flexible Repayment</div>
+          
+          <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">About Us</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> With Split half pay, you can pay half of the total amount and extend the remaining half with a flexibility while ensuring smooth repayment.</li>
+            </ul>
+          </div>
+          
+
+           <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">How Half Split Pay works?</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Paying 50% of the amount now and split the remaining 50% in instalments.</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Fast approval and simple process.</li>
+            </ul>
+          </div>
+          
+          <div style="margin: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text2);
+    padding: 0px;
+    text-align: center;">
+            Note: The split fee must be paid upfront along with the first 50%. This allows you to split the remaining amount.
+          </div>
+
+          <div class="faq-container" >
+            <h2 style="font-size:1.125rem; font-weight:600; margin-bottom:1.5rem;">FAQ's</h2>
+            <div class="faq-item">
+              <h3>What is the minimum amount I can split?</h3>
+              <p>The minimum amount is 2000₹.</p>
+            </div>
+            <div class="faq-item">
+              <h3>How is the 5.2% fee divided?</h3>
+              <p>The fee is shared equally among all participants.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Can I choose different number of splits?</h3>
+              <p>Yes — you can select between 2 to 8 splits.</p>
+            </div>
+          </div>
+        </div>
+      `,
+
+      2: `
+        <div style="padding-top: 5rem;">
+          <h2 class="section-title">Buy Limit</h2>
+          <div style="    margin-top: -0.3rem;
+    font-size: 13px;
+    color: var(--text2);
+    position: relative;
+    left: 2px;text-align: center;
+">Limit extender</div>
+          
+          <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">About Us</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Buy Limit by BS&MFI Solutions helps to borrow more than the borrow limit with transparent fees. Our service let you borrow when you reaches the limit.</li>
+            </ul>
+          </div>
+
+          <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">How Buy Limit works?</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> You can borrow more than your account borrow amount limit.</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Transparent fees with no hidden costs.</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Fast approv process.</li>
+            </ul>
+          </div>
+          
+          <div style="margin: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text2);
+    padding: 0px;
+    text-align: center;">
+           Note: The Buy Limit fee must be paid upfront along with the first 50%. This allows you to Buy Limit and borrow the amount.
+          </div>
+
+          <div class="faq-container" >
+            <h2 style="font-size:1.125rem; font-weight:600; margin-bottom:1.5rem;">FAQ's</h2>
+            <div class="faq-item">
+              <h3>How many times i can Buy Limit?</h3>
+              <p>Its based on the amount you borrowing.</p>
+            </div>
+          </div>
+        </div>
+      `,
+
+      3: `
+        <div style="padding-top: 5rem;">
+          <h2 class="section-title">Pre-Saver</h2>
+          <div style="    margin-top: -0.3rem;
+    font-size: 13px;
+    color: var(--text2);
+    position: relative;
+    left: 2px;text-align: center;
+">Save on time</div>
+          
+              <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">About Us</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> By using Pre-saver you can save the particular upcoming offer (or) amounts on a perticular date.</li>
+            </ul>
+          </div>
+
+
+          <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">Fees</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span>₹500 (to) ₹5,000 - ₹150</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span>₹5,000 (to) ₹10,000 - ₹300</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span>₹10,000 (to) ₹15,000 - ₹450</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span>₹15,000 (to) ₹20,000 - ₹600</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span>₹20,000 (to) ₹25,000 - ₹750</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span>₹25,000 (to) ₹30,000 - ₹900</li>
+            </ul>
+          </div>
+
+<div style="margin: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text2);
+    padding: 0px;
+    text-align: center;">
+            Note: You have to pay the fee first.
+          </div>
+
+          <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">How Pre-Saver works?</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Pre saves the offers and amounts on the date you want.</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Fast approval process</li>
+            </ul>
+          </div>
+          
+          <div class="faq-container" >
+            <h2 style="font-size:1.125rem; font-weight:600; margin-bottom:1.5rem;">For VIP members</h2>
+            <div class="faq-item">
+              <h3>1. Private Offer</h3>
+              <p>VIPs get private offer.</p>
+            </div>
+            <div class="faq-item">
+              <h3>2. Customize Offer</h3>
+              <p>VIPs can custom their offer based on their needs.</p>
+            </div>
+            <div class="faq-item">
+              <h3>3. RLO(Rare Limited Offer)</h3>
+              <p>VIPs can get very rare limited offers for every 2-3 months.</p>
+            </div>
+          </div>
+        </div>
+
+          <div class="faq-container" >
+            <h2 style="font-size:1.125rem; font-weight:600; margin-bottom:1.5rem;">FAQ's</h2>
+            <div class="faq-item">
+              <h3>Can I pre-save when ever i want?</h3>
+              <p>Yes, if you are VIP then you can use when ever you want.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Where can i find the fee for pre-saver?</h3>
+              <p>The fee for pre-saver is based on the offer or amount you applying(Ask coordinator).</p>
+            </div>
+            <div class="faq-item">
+              <h3>Can I pre-save when ever i want? But i'm not VIP..!</h3>
+              <p>No, but you can apply when ever their will be offer avaiable soon.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Is there any withdrawal fee?</h3>
+              <p>No fee if you withdraw after 30 days. Early withdrawal has 1% fee.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Can I set different rules for different accounts?</h3>
+              <p>Yes, you can create multiple Pre-Saver goals (Travel, Emergency, etc.).</p>
+            </div>
+            <div class="faq-item">
+              <h3>How secure is my saved money?</h3>
+              <p>100% secure with bank-level encryption and insurance up to ₹5 lakh.</p>
+            </div>
+          </div>
+        </div>
+      `,
+
+      4: `
+        <div style="padding-top: 5rem;">
+          <h2 class="section-title">Lendlink - Mid</h2>
+          <div style="    margin-top: -0.3rem;
+    font-size: 13px;
+    color: var(--text2);
+    position: relative;
+    left: 2px;text-align: center;
+">Turn your money into income</div>
+          
+          <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">About us</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span>Lendlink - Mid from Lendlink hepls you to turn your money into income that mean you can lend your money and earn interest for the amount you lended.</li>
+            </ul>
+          </div>
+          
+          <div style="margin: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text2);
+    padding: 0px;
+    text-align: center;">
+            Note: MID has 2 plans, Before lending you have to select 1 plan to continue the lending process.
+          </div>
+
+          <div class="faq-container" >
+            <h2 style="font-size:1.125rem; font-weight:600; margin-bottom:1.5rem;">FAQ's</h2>
+            <div class="faq-item">
+              <h3>How much money i can lend?</h3>
+              <p>Their is no limit on the lending limit, It will be based on the borrower.</p>
+            </div>
+          </div>
+        </div>
+      `
+    };
+
+    function switchTab(tabIndex) {
+      currentTab = tabIndex;
+      for (let i = 0; i < 5; i++) {
+        const tabEl = document.getElementById(`tab-${i}`);
+        if (tabEl) tabEl.classList.toggle('tab-active', i === tabIndex);
+      }
+      document.getElementById('main-content').innerHTML = tabContents[tabIndex];
+    }
+
+    function showPopup() {
+    const modal = document.getElementById('modal');
+    const titleEl = document.getElementById('modal-title');
+    const contentEl = document.getElementById('modal-content');
+    
+    modal.classList.add('show');
+    const rate = fees[currentTab];
+
+    const formLinks = {
+        0: "https://forms.gle/9URS1LAqd3iB8qDUA",
+        1: "https://forms.gle/ujs36QQpBpMPBRPu6",
+        2: "https://forms.gle/VqJ1Wqtj8HxXa84e9",
+    };
+
+    if (rate !== null) {
+        titleEl.textContent = tabNames[currentTab];
+        const applyFormUrl = formLinks[currentTab] || "https://forms.gle/9URS1LAqd3iB8qDUA"; 
+        contentEl.innerHTML = `
+          <div style="display:flex; flex-direction:column;gap: 15px;">
+            <div>
+              <div class="amount-box">
+                <span style="font-size: 20px;
+    color: #ffffffba;
+    white-space: nowrap;">$ l ₹</span>
+                <input id="amount-input" type="number" placeholder='Enter amount...'
+                       style="flex: 1;
+    background: transparent;
+    border: none;
+    font-size: 25px;
+    font-weight: 500;
+    outline: none;
+    padding: 0 8px;
+    color: var(--text);">
+              </div>
+            </div>
+            <div class="calc-result" style="display:flex; flex-direction:column; gap:1.25rem; font-size:0.875rem;">
+              <div style="display:none; justify-content:space-between;    align-items: center;">
+                <span class="text-secondary">Base amount</span>
+                <span id="base-amount" style="font-weight:500;"></span>
+              </div>
+              <div style="display:flex; justify-content:space-between;align-items: center;">
+                <span class="text-secondary">Amount Fee (${rate}%)</span>
+                <span id="fee-amount" style="font-weight: 600; color: #00beff; font-size: 16px;"></span>
+              </div>
+              <div style="height:1px; background:#333; display: none;"></div>
+              <div style="display:none; justify-content:space-between; font-size:1.25rem; font-weight:600;">
+                <span>Total</span>
+                <span id="total-amount" class="accent"></span>
+              </div>
+            </div>
+                      <label style="display: block;
+    font-size: 0.75rem;
+    text-align: center;
+    color: var(--text2);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;">You must pay the fee first.</label>
+           <div class="maiinoptionsatapply">
+    <button onclick="calculateFee()" class="btn-primary"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M332.31-332.31V-270q0 7.62 5.04 12.65 5.03 5.04 12.65 5.04t12.65-5.04q5.04-5.03 5.04-12.65v-62.31H430q7.62 0 12.65-5.04 5.04-5.03 5.04-12.65t-5.04-12.65q-5.03-5.04-12.65-5.04h-62.31V-430q0-7.62-5.04-12.65-5.03-5.04-12.65-5.04t-12.65 5.04q-5.04 5.03-5.04 12.65v62.31H270q-7.62 0-12.65 5.04-5.04 5.03-5.04 12.65t5.04 12.65q5.03 5.04 12.65 5.04h62.31Zm217.69 50h140q7.62 0 12.65-5.04 5.04-5.03 5.04-12.65t-5.04-12.65q-5.03-5.04-12.65-5.04H550q-7.62 0-12.65 5.04-5.04 5.03-5.04 12.65t5.04 12.65q5.03 5.04 12.65 5.04Zm0-100h140q7.62 0 12.65-5.04 5.04-5.03 5.04-12.65t-5.04-12.65q-5.03-5.04-12.65-5.04H550q-7.62 0-12.65 5.04-5.04 5.03-5.04 12.65t5.04 12.65q5.03 5.04 12.65 5.04Zm-270-222h140q7.62 0 12.65-5.04 5.04-5.03 5.04-12.65t-5.04-12.65q-5.03-5.04-12.65-5.04H280q-7.62 0-12.65 5.04-5.04 5.03-5.04 12.65t5.04 12.65q5.03 5.04 12.65 5.04ZM224.62-160q-27.62 0-46.12-18.5Q160-197 160-224.62v-510.76q0-27.62 18.5-46.12Q197-800 224.62-800h510.76q27.62 0 46.12 18.5Q800-763 800-735.38v510.76q0 27.62-18.5 46.12Q763-160 735.38-160H224.62Zm0-40h510.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-510.76q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H224.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v510.76q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69ZM200-760v560-560Zm420 163.54L663.46-553q5.16 5.15 12.16 5.54 7 .38 12.92-5.54 5.69-5.69 5.81-12.42.11-6.73-5.58-12.66L645.08-622l43.46-43.46q5.15-5.16 5.54-12.16.38-7-5.54-12.92T676-696.46q-6.62 0-12.54 5.92L620-647.08l-43.46-43.46q-5.16-5.15-12.16-5.54-7-.38-12.92 5.54T545.54-678q0 6.62 5.92 12.54L594.92-622l-43.69 43.92q-4.92 5.16-5.31 12.16-.38 7 5.54 12.92t12.54 5.92q6.62 0 12.54-5.92L620-596.46Z"/></svg> Calculate</button>    
+    <button class="btn-secondary" >
+      <a href="${applyFormUrl}">
+        <?xml version="1.0" encoding="UTF-8"?>
+        <svg  style='fill: white;'xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m540.85-574.08 213.61-212.61q5.62-5.62 13.27-5.35 7.65.27 13.5 6.12 5.62 5.61 5.62 13.77 0 8.15-5.62 13.77L563.46-540.62q-9.69 9.7-22.61 9.7-12.93 0-22.62-9.7L413.46-645.38q-5.84-5.85-6.11-14.16-.27-8.31 6.34-14.15 5.85-5.62 14.16-5.35 8.3.27 14.15 6.12l98.85 98.84Zm34.84 446.23q3.85 1.54 6.93 1.54 3.07 0 6.92-1.54l232.61-71.69q-1.15-18.23-11.03-26.27-9.89-8.04-21.89-8.04H599.54q-25.46 0-46.08-2-20.61-2-42.23-9.53l-68.54-22.08q-8.31-2.69-11.84-10.77-3.54-8.08-.85-16.39 2.69-7.53 10.27-11.19 7.58-3.65 15.88-.96l62 22.46q19.31 6.54 42.73 8.39 23.43 1.84 58.12 2.07h10.23q0-18.69-6.88-30.23-6.89-11.54-19.73-16.07l-230.16-84.47q-2.31-.76-4.23-1.15-1.92-.38-4.23-.38h-84v192.3l295.69 86Zm-10.23 39.54L280-171.85q-5.69 23.7-24.19 37.77Q237.31-120 215.38-120h-30.76q-26.85 0-45.74-18.88Q120-157.77 120-184.62v-196.92q0-26.85 18.88-45.73 18.89-18.88 45.74-18.88h178.61q5.46 0 11.31 1.11 5.84 1.12 11.08 3.12l231.15 84.69q21.46 8.15 36.96 29.31 15.5 21.15 15.5 54.07h120q36.15 0 55.39 22.62 19.23 22.61 19.23 57.38 0 12-6.5 20.27t-18.97 12.43L603-88.54q-8.69 2.46-18.38 2.85-9.7.38-19.16-2.62ZM160-184.62q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92h30.76q10.77 0 17.7-5.77 6.92-5.77 6.92-18.85v-221.53h-55.38q-10.77 0-17.7 6.92-6.92 6.92-6.92 17.69v196.92Z"/></svg>
+        Apply Now
+      </a>
+    </button>
+    </div>
+          </div>
+        `;
+        calculateFee();
+    } 
+    else if (currentTab === 3) {
+        titleEl.textContent = "Pre-Saver";
+        contentEl.innerHTML = `
+<img style="width: 100px;filter: saturate(0.5);" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/compass.gif" alt="">
+          <div style="text-align:center;">
+            <h3 style="font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 0.75rem;">Welcome to Pre-Saver</h3>
+            <p style="color:var(--text2);    margin-bottom: 20px;line-height:1.5;">
+              By using Pre-saver you can save the particular upcoming offer (or) amounts on a perticular date..
+            </p>
+            <a href="https://forms.gle/rtcayowFYw48u94PA">
+              <button class="btn-primary" style='
+    margin-bottom: 45px;'><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m540.85-574.08 213.61-212.61q5.62-5.62 13.27-5.35 7.65.27 13.5 6.12 5.62 5.61 5.62 13.77 0 8.15-5.62 13.77L563.46-540.62q-9.69 9.7-22.61 9.7-12.93 0-22.62-9.7L413.46-645.38q-5.84-5.85-6.11-14.16-.27-8.31 6.34-14.15 5.85-5.62 14.16-5.35 8.3.27 14.15 6.12l98.85 98.84Zm34.84 446.23q3.85 1.54 6.93 1.54 3.07 0 6.92-1.54l232.61-71.69q-1.15-18.23-11.03-26.27-9.89-8.04-21.89-8.04H599.54q-25.46 0-46.08-2-20.61-2-42.23-9.53l-68.54-22.08q-8.31-2.69-11.84-10.77-3.54-8.08-.85-16.39 2.69-7.53 10.27-11.19 7.58-3.65 15.88-.96l62 22.46q19.31 6.54 42.73 8.39 23.43 1.84 58.12 2.07h10.23q0-18.69-6.88-30.23-6.89-11.54-19.73-16.07l-230.16-84.47q-2.31-.76-4.23-1.15-1.92-.38-4.23-.38h-84v192.3l295.69 86Zm-10.23 39.54L280-171.85q-5.69 23.7-24.19 37.77Q237.31-120 215.38-120h-30.76q-26.85 0-45.74-18.88Q120-157.77 120-184.62v-196.92q0-26.85 18.88-45.73 18.89-18.88 45.74-18.88h178.61q5.46 0 11.31 1.11 5.84 1.12 11.08 3.12l231.15 84.69q21.46 8.15 36.96 29.31 15.5 21.15 15.5 54.07h120q36.15 0 55.39 22.62 19.23 22.61 19.23 57.38 0 12-6.5 20.27t-18.97 12.43L603-88.54q-8.69 2.46-18.38 2.85-9.7.38-19.16-2.62ZM160-184.62q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92h30.76q10.77 0 17.7-5.77 6.92-5.77 6.92-18.85v-221.53h-55.38q-10.77 0-17.7 6.92-6.92 6.92-6.92 17.69v196.92Z"/></svg>
+        Apply Now</button>
+            </a>
+            
+    <button onclick="hideModal()" class="btn-close"><img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close Now</button>  
+          </div>
+        `;
+    } 
+    else {
+        titleEl.textContent = "Lendlink - Mid";
+        contentEl.innerHTML = `
+        <img style="width: 100px;filter: saturate(0.5);" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/compass.gif" alt="">
+          <div style="text-align:center;">
+<h3 style="font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 0.75rem;">By Lendlink</h3>
+            <p style="color:var(--text2); max-width:240px; margin:0 auto;">Turn your money into income.</p>
+            <a href="https://mfi0212.github.io/swan/lndlnk-mid">
+              <button class="btn-primary" style="margin-top:1.5rem;
+    margin-bottom: 45px;"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m329.85-329.85 226.89-73.41 73.41-226.89-226.89 73.41-73.41 226.89Zm149.91-112.3q-15.64 0-26.63-11.22-10.98-11.23-10.98-26.87t11.22-26.63q11.23-10.98 26.87-10.98t26.63 11.22q10.98 11.23 10.98 26.87t-11.22 26.63q-11.23 10.98-26.87 10.98Zm.42 316q-73.39 0-138.06-27.89t-112.51-75.69q-47.84-47.81-75.65-112.29-27.81-64.48-27.81-137.8 0-73.39 27.89-138.06t75.69-112.51q47.81-47.84 112.29-75.65 64.48-27.81 137.8-27.81 73.39 0 138.06 27.89t112.51 75.69q47.84 47.8 75.65 112.29 27.81 64.48 27.81 137.8 0 73.39-27.89 138.06t-75.69 112.51q-47.8 47.84-112.29 75.65-64.48 27.81-137.8 27.81Zm-.15-36.93q132.51 0 224.7-92.22 92.19-92.23 92.19-224.73 0-132.51-92.22-224.7-92.23-92.19-224.73-92.19-132.51 0-224.7 92.22-92.19 92.23-92.19 224.73 0 132.51 92.22 224.7 92.23 92.19 224.73 92.19ZM480-480Z"/></svg> Explore Now</button>
+            </a>
+            
+    <button onclick="hideModal()" class="btn-close"><img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close Now</button>  
+          </div>
+        `;
+    }
+}
+
+    function submitApplication() {
+      hideModal();
+      window.open(googleFormUrl, '_blank');
+    }
+
+    function calculateFee() {
+      const input = document.getElementById('amount-input');
+      if (!input) return;
+      let amount = parseFloat(input.value) || 1000;
+      const rate = fees[currentTab];
+      const fee = (amount * rate / 100);
+      const total = amount + fee;
+
+      document.getElementById('base-amount').textContent = '₹' + amount.toFixed(2);
+      document.getElementById('fee-amount').textContent = '₹' + fee.toFixed(2);
+      document.getElementById('total-amount').textContent = '₹' + total.toFixed(2);
+    }
+
+    function hideModal() {
+      const modal = document.getElementById('modal');
+      modal.classList.remove('show');
+    }
+
+    function toggleTheme() {
+      isDarkMode = !isDarkMode;
+      if (isDarkMode) {
+        document.body.classList.remove('light');
+        document.getElementById('theme-icon').classList.replace('fa-sun', 'fa-moon');
+      } else {
+        document.body.classList.add('light');
+        document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun');
+      }
+    }
+
+    window.onload = () => {
+      switchTab(0);
+      console.log('%cBS & MFI — Full pure CSS version (NO Tailwind CDN)', 'color:#0000ff; font-weight:600');
+    };    function goBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        alert(" Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
+      }
+    }
+  </script>
+</body>
+</html>
