@@ -2252,9 +2252,20 @@ cursor: pointer;
     transition: 0.3s;
     margin-bottom: 8px;
   }
-
-
-  /* Overlay to close on outside tap */
+.stars {
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    color: #ffcc00;
+    gap: 3px;
+    background: #ffcc0040;
+    padding: 3px 7px;
+    border-radius: 999px;
+    border: solid 1.5px #ffcc0040;
+}
   .overlay {
     position: fixed;
     inset: 0;
@@ -2461,6 +2472,9 @@ cursor: pointer;
                 	</div>
             <img style="width: 100px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/folder.gif" alt="">
             <h3>Amounts Folder</h3>
+            <div class="stars">
+                <img style="width: 20px;" src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Glowing%20Star.webp" alt="Star"><span style="    font-weight: 600;" id="userCoinsDisplays">0</span>
+            </div>
             <div class="iconsinfo">
                 <div class="icon">
                     <svg style="height: 23px;
