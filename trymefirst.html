@@ -325,10 +325,13 @@ font-size: 14px;
 }
 
 #userName {
-	transition: 0.5s ease-in-out;
+transition: 0.5s ease-in-out;
     color: white;
     background-clip: text;
     font-weight: 550;
+    overflow: scroll;
+    text-overflow: ellipsis;
+    width: 130px;
     font-size: 15px;
 }
 
@@ -1849,7 +1852,7 @@ img.closesymbol {
 .toggle-switch {
 	text-align: center;
     z-index: 10000;
-    width: stretch;
+    width: fit-content;
     box-shadow: inset 0 0 0 1px 
  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.5px 1.5px 1px -1.5px 
  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 90%), transparent), inset -1.5px -1.5px 1px -1.5px 
@@ -1876,9 +1879,10 @@ img.closesymbol {
     justify-content: center;
 }
 .useridentity {
-    overflow: scroll;
-    text-overflow: ellipsis;
-    width: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
 }
 .afternamecontent {
     position: relative;
