@@ -1,4 +1,5 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
+
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || '₹';
 let currentUser = null;
@@ -55,6 +56,7 @@ function formatMoney(amount) {
 function updateCoinsDisplay() {
     if (currentUser && document.getElementById('userCoinsDisplay')) {
         document.getElementById('userCoinsDisplay').textContent = currentUser.coins.toLocaleString();
+        document.getElementById('userCoinsDisplays').textContent = currentUser.coins.toLocaleString();
     }
 }
 
