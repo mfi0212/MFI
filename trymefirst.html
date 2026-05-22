@@ -2330,7 +2330,7 @@ position: fixed;
     background: #5f5f5f12;
     width: max-content;
     border-radius: 999px;
-    top: 12px;
+    top: 5px;
     gap: 10px;
     filter: drop-shadow(0px 0px 0px black);
 }
@@ -2346,7 +2346,7 @@ width: 35px;
     height: 35px;
     border-radius: 50%;
     object-fit: cover;
-    border: solid 1.5px #ffffff4d;
+    box-shadow: inset 1px 1px 0px 0px #ffffff, inset -1px -1px 0px 0px #ffffff;
 }
 
 .login-text {
@@ -2386,6 +2386,16 @@ background: none;
 
         <body>
 <div class="topoptions">
+    <div id="topLoginMessage" class="top-login-message">
+    <div class="login-info">
+        <img id="topUserEmote" src="" alt="Profile" class="top-emote">
+        <div class="login-text">
+            <span id="topUserName" class="user-name"></span>
+            <span class="logged-in-text">Logged</span>
+        </div>
+    </div>
+    <button class="close-top-msg" onclick="hideTopLoginMessage()">×</button>
+</div>
                 <div class="optiononeser">
 					<div class="close-btn" onclick="closeModal()">
 						<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z"/></svg>
@@ -2466,17 +2476,6 @@ background: none;
                 </div>
             </div>
             <div id="lights"></div> <i class="fa-solid fa-candy-cane" style="display: none;" id="candy"></i>
-            <!-- Top Login Message -->
-<div id="topLoginMessage" class="top-login-message">
-    <div class="login-info">
-        <img id="topUserEmote" src="" alt="Profile" class="top-emote">
-        <div class="login-text">
-            <span id="topUserName" class="user-name"></span>
-            <span class="logged-in-text">Logged</span>
-        </div>
-    </div>
-    <button class="close-top-msg" onclick="hideTopLoginMessage()">×</button>
-</div>
             <div class="fixed-details">
                 <div class="topdec"> <img style="position: fixed; top: -20px; right: -15px; width: 26%; " src="https://i.pinimg.com/originals/1f/d3/ac/1fd3acf4a378b1e2536a4f86fc023b1a.gif" alt=""> </div>
                 <h3 style="display: none;">Borrower</h3>
