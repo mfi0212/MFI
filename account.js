@@ -24,7 +24,7 @@ const usersDB = {
         defaultEmote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif"
     },
     "0212": {
-        name: "Antonio Tony Montana",
+        name: "Tony Antonio Montana",
         coins: 4000,
         loans: [
              { planDate: "09-02-2026", endDate: "01-05-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
@@ -207,37 +207,70 @@ document.getElementById("submitBtn").onclick = () => {
     const err = document.getElementById("error-message");
 
     if (user) {
-        localStorage.setItem('lastPassword', input);
-        currentUser = user;
-        filteredLoans = [...user.loans];
+    localStorage.setItem('lastPassword', input);
+    currentUser = user;
+    filteredLoans = [...user.loans];
 
-        document.getElementById("userName").textContent = user.name;
-        const emoteImg = document.getElementById("userEmote");
-if (user.emote) {
-  emoteImg.src = user.emote;
-  emoteImg.style.display = "block";
-} else {
-  emoteImg.style.display = "none"; // hide if empty
-}
-        updateCoinsDisplay();
-        renderLinks();
-        renderAmountButtons();
-        if (user.loans.length) displayLoanDetails(user.loans[0], 0);
-
-        document.getElementById("userInfoModal").style.display = "block";
-        document.getElementById("passwordContainer").style.display = "none";
-        err.textContent = "";
-
-        const pinned = localStorage.getItem(PINNED_KEY) || 'list';
-        switchView(pinned, false);
-        updateNavActive(pinned);
-        setTimeout(checkAndShowRepaymentReminders, 1400);
-
+    document.getElementById("userName").textContent = user.name;
+    
+    // Update emote
+    const emoteImg = document.getElementById("userEmote");
+    if (user.emote) {
+        emoteImg.src = user.emote;
+        emoteImg.style.display = "block";
     } else {
-        err.textContent = "Invalid password!";
+        emoteImg.style.display = "none";
     }
-};
 
+    updateCoinsDisplay();
+    renderLinks();
+    renderAmountButtons();
+    if (user.loans.length) displayLoanDetails(user.loans[0], 0);
+
+    document.getElementById("userInfoModal").style.display = "block";
+    document.getElementById("passwordContainer").style.display = "none";
+    err.textContent = "";
+
+    const pinned = localStorage.getItem(PINNED_KEY) || 'list';
+    switchView(pinned, false);
+    updateNavActive(pinned);
+
+    // === NEW: Show Top Login Message ===
+    showTopLoginMessage();
+
+    setTimeout(checkAndShowRepaymentReminders, 1400);
+} else {
+    err.textContent = "Invalid password!";
+}
+};
+function showTopLoginMessage() {
+    const msg = document.getElementById('topLoginMessage');
+    const nameEl = document.getElementById('topUserName');
+    const emoteEl = document.getElementById('topUserEmote');
+
+    nameEl.textContent = currentUser.name;
+    emoteEl.src = currentUser.emote || currentUser.defaultEmote || 'https://via.placeholder.com/45';
+
+    msg.style.display = 'flex';
+
+    setTimeout(() => {
+        hideTopLoginMessage();
+    }, 8000);
+}
+
+function hideTopLoginMessage() {
+    const msg = document.getElementById('topLoginMessage');
+    if (msg) {
+        msg.style.transition = 'opacity 0.5s ease';
+        msg.style.opacity = '0';
+        
+        setTimeout(() => {
+            msg.style.display = 'none';
+            msg.style.opacity = '1';
+            msg.style.transition = '';
+        }, 500);
+    }
+}
 function updateCurrencyUI() {
     document.getElementById('currencyLabel').textContent = currentCurrency;
     document.querySelector('#currencySwitch i').className = 
@@ -482,15 +515,25 @@ function updatePurpose(index, value) {
 function renderAmountButtons() {
     const container = document.getElementById("amountButtons");
     container.innerHTML = "";
+    
     filteredLoans.forEach((loan, i) => {
         const originalIndex = currentUser.loans.indexOf(loan);
         const btn = document.createElement("button");
         btn.className = "amount-btn";
-        btn.innerHTML = `${formatMoney(loan.takenAmount)}<div class="purpose-tag">${loan.purpose || 'Purpose'}</div>`;
+        
+        btn.innerHTML = `
+            <div class="extra-info"></div>
+            <div class="amounts-section">
+                ${formatMoney(loan.takenAmount)}
+                <div class="purpose-tag">${loan.purpose || 'Purpose'}</div>
+            </div>
+        `;
+        
         btn.onclick = () => { 
             displayLoanDetails(loan, originalIndex); 
             switchView('list', false); 
         };
+        
         container.appendChild(btn);
     });
 }
