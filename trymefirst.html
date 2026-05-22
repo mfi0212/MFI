@@ -2364,9 +2364,11 @@ position: fixed;
 }
 
 .logged-in-text {
-       font-size: 13px;
+    font-size: 13px;
     color: #00d423;
     font-weight: 900;
+    display: flex;
+    align-items: center;
 }
 
 .close-top-msg {
@@ -2394,7 +2396,11 @@ background: none;
         <img id="topUserEmote" src="" alt="Profile" class="top-emote">
         <div class="login-text">
             <span id="topUserName" class="user-name"></span>
-            <span class="logged-in-text">Logged in</span>
+            <span class="logged-in-text">Logged in <img style="    height: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+    width: 25px;
+    margin: 0;" src="service-icons/visit_icon.png" alt=""></span>
         </div>
     </div>
     <button class="close-top-msg" onclick="hideTopLoginMessage()">×</button>
