@@ -27,7 +27,7 @@ const usersDB = {
         coins: 4000,
         loans: [
              { planDate: "09-02-2026", endDate: "01-05-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
-             { planDate: "09-02-2026", endDate: "01-07-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "29-05-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
              { planDate: "09-02-2026", endDate: "05-09-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
              { planDate: "09-02-2026", endDate: "01-10-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
             ],
@@ -274,7 +274,7 @@ function showTopLoginMessage() {
 
     setTimeout(() => {
         hideTopLoginMessage();
-    }, 8000);
+    }, 8000000);
 }
 
 function hideTopLoginMessage() {
@@ -537,15 +537,21 @@ function renderAmountButtons() {
     filteredLoans.forEach((loan, i) => {
         const originalIndex = currentUser.loans.indexOf(loan);
         const daysLeft = calculateDaysLeft(loan.endDate);
+        
+        // Determine dot color
         const dotColor = daysLeft <= 2 ? '#ff1100' : 
                         daysLeft <= 6 ? '#ff8c00' : '#00d423';
+        
+        // Determine pulse speed (smaller duration = faster pulse)
+        const animationDuration = getPulseDuration(daysLeft);
         
         const btn = document.createElement("button");
         btn.className = "amount-btn";
         
         btn.innerHTML = `
             <div class="extra-info" 
-                 style="background-color: ${dotColor};">
+                 style="background-color: ${dotColor}; 
+                        animation-duration: ${animationDuration}s;">
             </div>
             <div class="amounts-section">
                 ${formatMoney(loan.takenAmount)}
@@ -560,6 +566,12 @@ function renderAmountButtons() {
         
         container.appendChild(btn);
     });
+}function getPulseDuration(daysLeft) {
+    if (daysLeft <= 1) return 0.3;    
+    if (daysLeft <= 2) return 0.5;  
+    if (daysLeft <= 4) return 1;  
+    if (daysLeft <= 7) return 1.5;      
+    return 2.5;                       
 }
 function calculateDaysLeft(endDateStr) {
     const clean = endDateStr.split('(')[0].trim();
