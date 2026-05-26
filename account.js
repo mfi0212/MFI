@@ -24,7 +24,7 @@ const usersDB = {
         defaultEmote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif"
     },
     "0212": {
-        name: "Tony Montana",
+        name: "Tony Antonio Montana",
         coins: 4000,
         loans: [
              { planDate: "09-02-2026", endDate: "01-05-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
@@ -275,7 +275,7 @@ function showTopLoginMessage() {
 
     setTimeout(() => {
         hideTopLoginMessage();
-    }, 8000000);
+    }, 10000);
 }
 
 function hideTopLoginMessage() {
