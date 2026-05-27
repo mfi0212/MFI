@@ -1,5 +1,4 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
-
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || '₹';
 let currentUser = null;
@@ -24,13 +23,11 @@ const usersDB = {
         defaultEmote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif"
     },
     "0212": {
-        name: "Tony Antonio Montana",
-        coins: 4000,
+        name: "Bonasera",
+        coins: 1000,
         loans: [
-             { planDate: "09-02-2026", endDate: "01-05-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
-             { planDate: "09-02-2026", endDate: "29-05-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
-             { planDate: "09-02-2026", endDate: "05-09-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
-             { planDate: "09-02-2026", endDate: "01-10-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "05-08-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "01-08-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
             ],
         links: [],
         emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif",
@@ -1101,7 +1098,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 10000000);
     }
 });
-
 document.addEventListener('DOMContentLoaded', function() {
     const downloadBtn = document.getElementById('download-receipt');
     if (!downloadBtn) {
@@ -1109,6 +1105,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     console.log("✅ Receipt button initialized");
+
     downloadBtn.addEventListener('click', function() {
         if (!currentUser) {
             alert("Login first!");
@@ -1119,101 +1116,138 @@ document.addEventListener('DOMContentLoaded', function() {
             alert("No active loans found.");
             return;
         }
+
+        // High Quality Settings
+        const SCALE = 2;
+        const BASE_WIDTH = 850;
+        const width = BASE_WIDTH * SCALE;
+
         const baseHeight = 320;
         const perLoanHeight = 148;
-        const footerHeight = 110;
-        const canvasHeight = baseHeight + (user.loans.length * perLoanHeight) + footerHeight;
+        const footerHeight = 220;
+        const canvasHeight = (baseHeight + (user.loans.length * perLoanHeight) + footerHeight) * SCALE;
+
         const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        const width = 850;
+        const ctx = canvas.getContext('2d', { alpha: true });
+
         canvas.width = width;
         canvas.height = canvasHeight;
+
+        ctx.scale(SCALE, SCALE);
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+
         ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, width, canvasHeight);
+        ctx.fillRect(0, 0, BASE_WIDTH, canvasHeight / SCALE);
+
         let y = 80;
+
         ctx.fillStyle = '#1a1a1a';
-        ctx.font = '600 42px Arial';
+        ctx.font = '700 44px Arial';
         ctx.textAlign = 'center';
-        ctx.fillText('BsLends', width / 2, y);
-        y += 28;
-        ctx.fillStyle = '#666666';
+        ctx.fillText('BsLends', BASE_WIDTH / 2, y);
+        y += 30;
+
+        ctx.fillStyle = '#555555';
         ctx.font = '400 18px Arial';
-        ctx.fillText('Borrow Statement', width / 2, y);
-        y += 48;
+        ctx.fillText('Borrow Statement', BASE_WIDTH / 2, y);
+        y += 52;
+
         ctx.textAlign = 'left';
         ctx.fillStyle = '#1a1a1a';
-        ctx.font = '600 23px Arial';
+        ctx.font = '600 24px Arial';
         ctx.fillText(user.name, 75, y);
-        y += 32;
-        ctx.font = '400 15px Arial';
+        y += 34;
+
+        ctx.font = '400 15.5px Arial';
         ctx.fillStyle = '#555555';
         ctx.fillText('Password • ' + (user === usersDB["0212"] ? "0212" : "BsPasgenerater"), 75, y);
-        y += 55;
+        y += 58;
+
         ctx.fillStyle = '#1a1a1a';
-        ctx.font = '600 19px Arial';
+        ctx.font = '600 20px Arial';
         ctx.fillText('Active Loans', 75, y);
-        y += 35;
+        y += 38;
+
         user.loans.forEach((loan, i) => {
             const total = loan.takenAmount + loan.interest;
-            ctx.strokeStyle = '#f0f0f0';
-            ctx.lineWidth = 1;
+
+            ctx.strokeStyle = '#eeeeee';
+            ctx.lineWidth = 1.5;
             ctx.beginPath();
-            ctx.moveTo(75, y - 6);
-            ctx.lineTo(width - 75, y - 6);
+            ctx.moveTo(75, y - 8);
+            ctx.lineTo(BASE_WIDTH - 75, y - 8);
             ctx.stroke();
-            y += 28;
-            ctx.fillStyle = '#1a1a1a';
-            ctx.font = '600 18px Arial';
-            ctx.fillText(`Loan ${i + 1}`, 75, y);
-            y += 32;
-            ctx.font = '400 16.5px Arial';
-            ctx.fillStyle = '#444444';
-            ctx.fillText('Principal Amount', 75, y);
-            ctx.textAlign = 'right';
-            ctx.fillText(`₹${loan.takenAmount.toLocaleString('en-IN')}`, width - 75, y);
-            ctx.textAlign = 'left';
-            y += 28;
-            ctx.fillText('Interest', 75, y);
-            ctx.textAlign = 'right';
-            ctx.fillText(`₹${loan.interest.toLocaleString('en-IN')}`, width - 75, y);
-            ctx.textAlign = 'left';
+
             y += 30;
             ctx.fillStyle = '#1a1a1a';
-            ctx.font = '600 18px Arial';
+            ctx.font = '600 19px Arial';
+            ctx.fillText(`Loan ${i + 1}`, 75, y);
+            y += 34;
+
+            ctx.font = '400 16.8px Arial';
+            ctx.fillStyle = '#333333';
+
+            ctx.fillText('Principal Amount', 75, y);
+            ctx.textAlign = 'right';
+            ctx.fillText(`₹${loan.takenAmount.toLocaleString('en-IN')}`, BASE_WIDTH - 75, y);
+            ctx.textAlign = 'left';
+            y += 30;
+
+            ctx.fillText('Interest', 75, y);
+            ctx.textAlign = 'right';
+            ctx.fillText(`₹${loan.interest.toLocaleString('en-IN')}`, BASE_WIDTH - 75, y);
+            ctx.textAlign = 'left';
+            y += 32;
+
+            ctx.fillStyle = '#1a1a1a';
+            ctx.font = '600 19px Arial';
             ctx.fillText('Total Payable', 75, y);
             ctx.textAlign = 'right';
-            ctx.fillStyle = '#d32f2f';
-            ctx.fillText(`₹${total.toLocaleString('en-IN')}`, width - 75, y);
+            ctx.fillStyle = '#0000ff';
+            ctx.fillText(`₹${total.toLocaleString('en-IN')}`, BASE_WIDTH - 75, y);
             ctx.textAlign = 'left';
-            y += 28;
+            y += 30;
+
             ctx.fillStyle = '#555555';
-            ctx.font = '400 15.5px Arial';
+            ctx.font = '400 15.8px Arial';
             ctx.fillText(`Due on ${loan.endDate}`, 75, y);
-            y += 52;
+            y += 55;
         });
-        y += 35;
-        ctx.fillStyle = '#999999';
-        ctx.font = '400 14px Arial';
+        y += 45;
+        ctx.fillStyle = '#1a1a1a';
+        ctx.font = '500 17.5px Arial';
         ctx.textAlign = 'center';
-        ctx.fillText('Power by BsBookpad', width / 2, y);
-        y += 28;
-        ctx.fillStyle = '#bbbbbb';
-        ctx.font = '400 13px Arial';
-        ctx.fillText('BsLends Services • Confidential', width / 2, y);
+        ctx.fillText('Try to clear on time, Thank you', BASE_WIDTH / 2, y);
+        y += 62;
+        ctx.fillStyle = '#444444';
+        ctx.font = 'italic 400 15px Arial';
+        ctx.textAlign = 'right';
+        ctx.fillText('Powered by BsBookpad', BASE_WIDTH - 75, y);
+
+        y += 38;
+        ctx.fillStyle = '#aaaaaa';
+        ctx.font = '400 13.5px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('BsLends Services • Confidential', BASE_WIDTH / 2, y);
+
+        y += 70;
         try {
             const link = document.createElement('a');
             link.download = user.name.replace(/[^a-zA-Z0-9]/g, '_') + '_BsLends_Statement.png';
-            link.href = canvas.toDataURL('image/png');
+            link.href = canvas.toDataURL('image/png', 1.0);
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            console.log(`✅ Receipt downloaded successfully for ${user.name}`);
+            console.log(`✅ High-Quality Receipt downloaded for ${user.name}`);
         } catch (err) {
             console.error("Download error:", err);
-            alert("Could not download. Try using Live Server instead of opening file directly.");
+            alert("Could not download. Try using Live Server.");
         }
     });
-});  function goBack() {
+});
+
+function goBack() {
       if (window.history.length > 1) {
         window.history.back();
       } else {
