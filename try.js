@@ -1,4 +1,4 @@
-// document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || '₹';
@@ -486,7 +486,7 @@ function displayLoanDetails(loan, index) {
                 </div>
                 <p>${formatMoney(loan.interest)}</p>
             </div>
-            <div class="details" style='padding-bottom: 55px;'>
+            <div class="details" style='margin-bottom: -10px;'>
                 ${overdueFine > 0 ? `
                     <div class="leftflow">
                         <svg class="strokeadder"  style="background: #ff0000;
