@@ -701,24 +701,39 @@ margin: -15px;
 .total-icon:active {
 	transform: scale(0.90);
 }
-#coinSection {
-display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
+#userCoinsDisplay {
     font-weight: 500;
     font-size: 12px;
     color: #ffca00;
-    background: #ffca004d;
-    padding: 5px;
-    border-radius: 12px;
-	transition: all 0.3s ease-in-out;
 }
-
+.strstitel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    font-size: 9px;
+}
+#coinSection {
+display: flex;
+    justify-content: center;
+    gap: 0;
+    transition: all 0.3s ease-in-out;
+    flex-direction: column;
+    color: #ffca00;
+    background: #ffca004d;
+    border-radius: 17px;
+    height: 40px;
+    padding: 10px;
+    align-items: center;
+}
 #coinSection:active {
 	transform: scale(0.90);
 }
-
+#userCoinsDisplay {
+    font-weight: 900;
+    font-size: 12px;
+    color: #ffca00;
+}
 .offergift {
 	display: none;
 }
@@ -2470,7 +2485,11 @@ background: none;
                 <div class="afternamecontent">
                                 <div class="starssection">
                                     <div id="coinSection">
-                                       <img style="width: 15px;" src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Glowing%20Star.webp" alt="Star"><span id="userCoinsDisplay">0</span>
+                                       <div class="strstitel">
+                                        <img style="width: 15px;" src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Glowing%20Star.webp" alt="Star">
+                                        Stars
+                                       </div> 
+                                       <span id="userCoinsDisplay">0</span>
                                     </div> 
                                 </div>
                             </div></div>
