@@ -1,4 +1,5 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
+
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || '₹';
 let currentUser = null;
@@ -13,9 +14,9 @@ let loanChart = null;
 const usersDB = {
    "Mahesh888*": {
         name: "Mahesh Muthinti",
-        coins: 0,
+        coins: 800,
         loans: [
-            { planDate: "11-05-2026", endDate: "11-06-2026", interest: 3310, takenAmount: 15000, takenFrom: "Golden", fineRate: 130 },
+            { planDate: "11-05-2026", endDate: "11-06-2026", interest: 3560, takenAmount: 15000, takenFrom: "Golden", fineRate: 130 },
             { planDate: "25-05-2026", endDate: "24-06-2026", interest: 500, takenAmount: 2000, takenFrom: "Golden", fineRate: 130 },
         ],
         links: [],
