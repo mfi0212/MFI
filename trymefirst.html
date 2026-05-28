@@ -1877,18 +1877,11 @@ img.closesymbol {
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0);
+	transition: all 0.3s ease-in-out;
 }
-#userName{
-    transition: all 0.3s ease-in-out;
-}
-#userName:active {
+
+.toggle-switch:active {
 	transform: scale(0.90);
-    text-decoration: underline 1px;
-    text-underline-position: from-font;
 }
 .useridentity {
     display: flex;
