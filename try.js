@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || '₹';
@@ -435,8 +435,7 @@ function displayLoanDetails(loan, index) {
         ${formatMoney(totalPayable)}
     </p><hr> <h3 style="font-weight: 100;">
        Total amount</h3>
-</div> 
-<hr>   
+</div>   
     
            <div class="details">
                 <div class="leftflow">
