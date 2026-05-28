@@ -1,5 +1,4 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
-
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || '₹';
 let currentUser = null;
@@ -14,9 +13,9 @@ let loanChart = null;
 const usersDB = {
    "Mahesh888*": {
         name: "Mahesh Muthinti",
-        coins: 800,
+        coins: 0,
         loans: [
-            { planDate: "11-05-2026", endDate: "11-06-2026", interest: 3560, takenAmount: 15000, takenFrom: "Golden", fineRate: 130 },
+            { planDate: "11-05-2026", endDate: "11-06-2026", interest: 3310, takenAmount: 15000, takenFrom: "Golden", fineRate: 130 },
             { planDate: "25-05-2026", endDate: "24-06-2026", interest: 500, takenAmount: 2000, takenFrom: "Golden", fineRate: 130 },
         ],
         links: [],
@@ -498,7 +497,7 @@ function displayLoanDetails(loan, index) {
                     </p>` : ''}
             </div>
              <a target="_blank" style='position: sticky;
-    bottom: 90px;' href="https://mfi0212.github.io/MFI/abt.hlp"><button style="background-color: rgb(193 0 0 / 88%);
+    bottom: 85px;' href="https://mfi0212.github.io/MFI/abt.hlp"><button style="background-color: rgb(193 0 0 / 88%);
     padding: 8px 15px;
     font-size: 16px;
     transition: all 0.3s ease;
