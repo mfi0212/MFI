@@ -335,6 +335,7 @@ transition: 0.5s ease-in-out;
     max-width: 140px;
     font-size: 15px;
     width: fit-content;
+    cursor: pointer;
 }
 
 
@@ -2451,11 +2452,11 @@ background: none;
                         
                     
                     <div class="tpfixmaincnt">
-                        <div onclick="showTotalPopup()" class="mincntatusr">
+                        <div  class="mincntatusr">
                            <div class="useridentity">
                             <img id="userEmote" src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_7d7473ef8ba54ce2b2f8e29d078f90bf/default/dark/2.0" onclick="openEmoteChooser()"> 
             
-                             <span id="userName"></span>
+                             <span onclick="showTotalPopup()" id="userName"></span>
                              <img style="width: 20px;
     height: 15px;
     opacity: 70%;
