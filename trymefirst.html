@@ -2321,7 +2321,7 @@ cursor: pointer;
 
 
 .top-login-message {
-position: fixed;
+        position: fixed;
     color: white;
     padding: 10px 5px;
     z-index: 100000;
@@ -2339,23 +2339,32 @@ position: fixed;
     transform: translate(-50%, 0);
     left: 50%;
     backdrop-filter: blur(5px);
-    width: max-content;
-    border-radius: 9999px;
+    border-radius: 45px;
     top: 10px;
     filter: drop-shadow(0px 0px 0px black);
-    scale: 1;
-    justify-content: space-between;
-    gap: 5px;
+    justify-content: center;
     align-items: center;
     background: #1919198f;
+    flex-direction: column;
+    width: 150px;
+    height: 150px;
+
 }
 
 .login-info {
-    display: flex;
+        display: flex;
     align-items: center;
-    gap: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
 }
-
+.userinfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0;
+}
 .top-emote {
    width: 30px;
     height: 30px;
@@ -2366,22 +2375,23 @@ position: fixed;
 }
 
 .login-text {
-    line-height: 20px;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0;
 }
 
 .user-name {
-    font-weight: 900;
-    font-size: 16px;
+font-weight: 900;
+    font-size: 13px;
     display: block;
     color: white;
 }
 
 .logged-in-text {
-    font-size: 13px;
+font-size: 10px;
     color: #00d423;
-    font-weight: 900;
-    display: flex;
-    align-items: center;
 }
 
 .close-top-msg {
@@ -2405,20 +2415,7 @@ background: none;
 
         <body>
 <div class="topoptions">
-    <div id="topLoginMessage" class="top-login-message">
-    <div class="login-info">
-        <img style="width: 40px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/wave.gif" alt="">
-        <img id="topUserEmote" src="" alt="Profile" class="top-emote">
-        <div class="login-text">
-            <span id="topUserName" class="user-name"></span>
-            <span class="logged-in-text">Logged in</span>
-        </div>
-    </div>
-    <button class="close-top-msg" onclick="hideTopLoginMessage()"><img style="height: 40px;
-    border-radius: 50%;
-    width: 40px;" src="service-icons/visit_icon.png" alt=""></button>
-</div>
-                <div class="optiononeser">
+      <div class="optiononeser">
 					<div class="close-btn" onclick="closeModal()">
 						<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z"/></svg>
                         <?xml version="1.0" encoding="UTF-8"?>
@@ -2553,7 +2550,23 @@ background: none;
                 <div id="calendarContainer" style="display:none;"></div>
                 </div>
         
-			   
+			    <div id="topLoginMessage" class="top-login-message">
+    <div class="login-info">
+        <svg style="width: 45px;
+    height: 45px;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512.033 512.033" style="enable-background:new 0 0 512.033 512.033;" xml:space="preserve" width="512" height="512"> <g> <path d="M352.017,170.7H170.683v-16.491c0.009-49.815,40.399-90.19,90.214-90.181c32.799,0.006,63.01,17.816,78.895,46.511 c8.577,15.452,28.057,21.025,43.509,12.448s21.025-28.057,12.448-43.509l0,0C354.469,4.992,260.62-21.925,186.134,19.356 c-49.024,27.17-79.445,78.803-79.451,134.853v29.44c-39.236,20.023-63.952,60.334-64,104.384V394.7 c0.071,64.772,52.561,117.263,117.333,117.333h192c64.772-0.071,117.263-52.561,117.333-117.333V288.033 C469.28,223.261,416.789,170.771,352.017,170.7z M405.35,394.7c0,29.455-23.878,53.333-53.333,53.333h-192 c-29.455,0-53.333-23.878-53.333-53.333V288.033c0-29.455,23.878-53.333,53.333-53.333h192c29.455,0,53.333,23.878,53.333,53.333 V394.7z"/> <path d="M245.35,298.7h21.333c17.673,0,32,14.327,32,32l0,0c0,17.673-14.327,32-32,32H245.35c-17.673,0-32-14.327-32-32l0,0 C213.35,313.027,227.677,298.7,245.35,298.7z"/> </g> </svg>
+        <div class="login-text">
+            <img id="topUserEmote" src="" alt="Profile" class="top-emote">
+            <div class="userinfo">
+                <span id="topUserName" class="user-name"></span>
+                <span class="logged-in-text">Logged in</span>
+            </div>
+        </div>
+    </div>
+    <!-- <button class="close-top-msg" onclick="hideTopLoginMessage()"><img style="height: 40px;
+    border-radius: 50%;
+    width: 40px;" src="service-icons/visit_icon.png" alt=""></button> -->
+</div>
+          
             <div class="bottomoptions">
                 <div id="bottomNav">
                     <div class="nav-item" data-view="graph">
