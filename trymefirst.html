@@ -407,7 +407,7 @@ width: 30px;
     background: #ffffff17;
 }
 #userEmote:active {
-	transform: scale(0.90);
+	transform: scale(0.70);
 }
 
 .linkadder {
@@ -1878,12 +1878,17 @@ img.closesymbol {
     display: flex;
     align-items: center;
     justify-content: center;
+	transition: all 0.3s ease-in-out;
+}
+
+.toggle-switch:active {
+	transform: scale(0.90);
 }
 .useridentity {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 3px;
+    gap: 5px;
 }
 .afternamecontent {
     position: relative;
