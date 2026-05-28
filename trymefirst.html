@@ -108,7 +108,7 @@ svg {
 }
 
 #userPassword:focus {
-    background-color: #3a3a3a;
+    background-color: #3f3f3f;
 }
 @keyframes liquidPress {
 	0% {
@@ -404,7 +404,7 @@ width: 30px;
     border: none;
     border: none;
     padding: 3px;
-    background: #ffffff2b;
+    background: #3f3f3f;
 }
 #userEmote:active {
 	transform: scale(0.70);
@@ -645,7 +645,7 @@ display: flex;
     width: 100%;
     font-weight: 100;
     font-size: 11px;
-    background: #ffffff1a;
+    background: #3f3f3f;
     margin-top: 15px;
     border-radius: 20px;
     padding: 10px;
@@ -1068,17 +1068,17 @@ div#loanDetails {
 	width: 100%;
 }
 .purpose-input {
-	padding: 3px;
+padding: 5px;
     font-size: 13px;
     transition: all 0.3s ease;
     border-radius: 100px;
     outline: none;
     font-weight: 100;
     text-align: center;
-    width: 100px;
+    width: 90px;
     x: 100000;
     border: none;
-    background: #1c1c1c;
+    background: #3f3f3f;
     color: #fff;
 }
 .purpose-input:active {
@@ -1089,8 +1089,8 @@ div#loanDetails {
 }
 
 .purpose-input:focus {
-	padding: 8px;
-    font-size: 15px;
+padding: 8px;
+    font-size: 18px;
     background: rgb(78 78 78);
     width: 200px;
     box-shadow: none;
@@ -1877,11 +1877,18 @@ img.closesymbol {
     display: flex;
     align-items: center;
     justify-content: center;
-	transition: all 0.3s ease-in-out;
+    
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
-
-.toggle-switch:active {
+#userName{
+    transition: all 0.3s ease-in-out;
+}
+#userName:active {
 	transform: scale(0.90);
+    text-decoration: underline 1px;
+    text-underline-position: from-font;
 }
 .useridentity {
     display: flex;
@@ -2167,7 +2174,7 @@ cursor: pointer;
 
     border-radius: 1000px;
     position: absolute;
-    background: #333333;
+    background: #3f3f3f;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2362,7 +2369,7 @@ width: 30px;
     border-radius: 11px;
     object-fit: cover;
     padding: 3px;
-    background: #ffffff2b;
+    background-color: #3f3f3f;
 }
 
 .login-text {
