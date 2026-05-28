@@ -419,6 +419,7 @@ function displayLoanDetails(loan, index) {
 
                 <input type="text" class="purpose-input" placeholder="Purpose" value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
             </div>
+            
 <div class="totaldetails">
     <p style="font-size:60px;
               font-weight: 600;
@@ -434,8 +435,8 @@ function displayLoanDetails(loan, index) {
         ${formatMoney(totalPayable)}
     </p><hr> <h3 style="font-weight: 100;">
        Total amount</h3>
-</div> 
-
+</div>   
+    
            <div class="details">
                 <div class="leftflow">
 <?xml version="1.0" encoding="UTF-8"?>
@@ -485,7 +486,7 @@ function displayLoanDetails(loan, index) {
                 </div>
                 <p>${formatMoney(loan.interest)}</p>
             </div>
-            <div class="details" style='padding-bottom: 55px;'>
+            <div class="details" style='margin-bottom: -10px;'>
                 ${overdueFine > 0 ? `
                     <div class="leftflow">
                         <svg class="strokeadder"  style="background: #ff0000;
@@ -497,31 +498,8 @@ function displayLoanDetails(loan, index) {
                         <small>(${Math.abs(daysLeft)} days)</small>
                     </p>` : ''}
             </div>
-             <a target="_blank" style='position: sticky;
-    bottom: 85px;' href="https://mfi0212.github.io/MFI/abt.hlp"><button style="background-color: rgb(193 0 0 / 88%);
-    padding: 8px 15px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    left: 50%;
-    position: relative;
-    transform: translate(-50%, 0%);
-    margin: -40px 0 20px 0;
-    font-weight: 100;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 10%), transparent), inset 2.8px 2px 2px -2px 
- color-mix(in srgb, #ffffff4a calc(var(--glass-reflex-light) * 90%), transparent), inset -2.5px -1px 3px -2px 
- color-mix(in srgb, #ffffff54 calc(var(--glass-reflex-light) * 80%), transparent), inset -4px -7px 6px -7px 
- color-mix(in srgb, #ffffff5e calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    border: solid 1px #ffffff00;" class="add-link-btn">I'm have an issue...!</button></a>
+
         </div>
-    <hr>   
-    
     `;
 }
 
