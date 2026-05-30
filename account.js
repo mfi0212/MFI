@@ -24,11 +24,11 @@ const usersDB = {
         defaultEmote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif"
     },
     "0212": {
-        name: "Bonasera",
+        name: "Michael Corleone - Test page",
         coins: 1000,
         loans: [
-             { planDate: "09-02-2026", endDate: "27-05-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
-             { planDate: "09-02-2026", endDate: "30-05-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "27-08-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "30-08-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
              { planDate: "09-02-2026", endDate: "01-08-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
             ],
         links: [],
@@ -274,7 +274,7 @@ function showTopLoginMessage() {
 
     setTimeout(() => {
         hideTopLoginMessage();
-    }, 10000);
+    }, 4000000000000);
 }
 
 function hideTopLoginMessage() {
