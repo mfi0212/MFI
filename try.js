@@ -1,4 +1,3 @@
-
 // document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
@@ -275,7 +274,7 @@ function showTopLoginMessage() {
 
     setTimeout(() => {
         hideTopLoginMessage();
-    }, 2500);
+    },3000);
 }
 
 function hideTopLoginMessage() {
@@ -782,14 +781,14 @@ function renderCalendar() {
     width: 98%;
     margin-bottom: 20px;
     margin-top: 0px;
-    border-radius: 30px 30px 0 0;
+    border-radius: 30px;
     padding: 10px;
     transition: all 0.3s ease;
     transform: translate(-50%, 0);
     left: 50%;
     filter: saturate(2);
     position: relative;
-    background: linear-gradient(180deg, #212121 0, transparent);
+    background: #303030;
 ">
 
 <a class="calndarCntnrbtn" href='https://blackswan19.github.io/bscrop/reminder.html'><button>Date Note</button></a>
@@ -797,8 +796,8 @@ function renderCalendar() {
     color: #eee;
     font-size: 14px;
     letter-spacing: 0px;">${calendarMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
-        <button class="move-asaid" onclick="prevMonth()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m371.77-481 307.61 307.62q11.85 11.84 12.24 30.15.38 18.31-11.47 30.15-11.84 11.85-30.15 11.85t-30.15-11.85l-303.7-304.46q-13.69-13.69-19.65-30.11-5.96-16.43-5.96-33.35t5.96-33.35q5.96-16.42 19.65-30.11l303.7-303.69q11.84-11.85 29.77-12.23 17.92-.39 29.76 11.46 11.85 11.84 11.85 30.15t-11.85 30.15L371.77-481Z"/></svg></button>
-        <button class="move-asaid" onclick="nextMonth()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M595.46-481 287.85-788.62q-11.85-11.84-12.23-29.76-.39-17.93 11.46-29.77Q298.92-860 316.85-860q17.92 0 29.77 11.85l304.46 303.69q13.69 13.69 19.65 30.11 5.96 16.43 5.96 33.35t-5.96 33.35q-5.96 16.42-19.65 30.11l-303.7 303.69q-11.84 11.85-30.15 12.23-18.31.39-30.15-11.46-11.85-11.84-11.85-29.77 0-17.92 11.85-29.77L595.46-481Z"/></svg></button>
+        <button class="move-asaid" onclick="prevMonth()"><?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M10.6,12.71a1,1,0,0,1,0-1.42l4.59-4.58a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0L9.19,9.88a3,3,0,0,0,0,4.24l4.59,4.59a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.42Z"/></svg></button>
+        <button class="move-asaid" onclick="nextMonth()"><?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M15.4,9.88,10.81,5.29a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42L14,11.29a1,1,0,0,1,0,1.42L9.4,17.29a1,1,0,0,0,1.41,1.42l4.59-4.59A3,3,0,0,0,15.4,9.88Z"/></svg></button>
     </div>
     <div style="display: grid;
     grid-template-columns: repeat(7, 1fr);
