@@ -160,10 +160,11 @@ border-radius: 50%;
     align-items: center;
     justify-content: center;
     color: white;
-    background: rgba(255 255 255 / 9%);
-    box-shadow: inset 1px 1px 0px 0px #ffffff2b, inset -1px -1px 0px 0px #ffffff2b;
     transition: all 0.3s ease;
     fill: white;
+    background: #ffffff14;
+    backdrop-filter: blur(5px);
+    box-shadow: inset 1px 1px 0px 0px #ffffff1a, inset -1px -1px 0px 0px #ffffff1a;
 }
 
         button#muteToggle:active{ transform: scale(0.90);} 
@@ -183,7 +184,7 @@ transition: all 0.3s ease;
         .loadintroopt img:active{ transform: scale(0.90);} 
 
 button#startAudioBtn {
-    border: none;
+border: none;
     border-radius: 100px;
     padding: 10px 20px;
     font-size: 16px;
@@ -192,10 +193,12 @@ button#startAudioBtn {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 6px;height: 50px;
+    gap: 6px;
+    height: 50px;
     font-weight: 500;
     background: #ffffff14;
-    box-shadow: inset 1px 1px 0px 0px #ffffff2b, inset -1px -1px 0px 0px #ffffff2b;
+    backdrop-filter: blur(5px);
+    box-shadow: inset 1px 1px 0px 0px #ffffff1a, inset -1px -1px 0px 0px #ffffff1a;
 }
 
         button#startAudioBtn:active{ transform: scale(0.90);} 
@@ -277,11 +280,11 @@ img.closesymbol {
     font-size: 11px;
 }
     #searchInput:focus {
-     outline: none;
+outline: none;
     width: 100%;
     padding: 10px;
     font-size: 18px;
-    background: rgb(37 37 37);
+    background: rgb(78 78 78);
     }
 
     #sectionsContainer {
@@ -390,18 +393,17 @@ content: '';
 .helper-button {
 z-index: 1000;
     text-decoration: none;
-    display: flex;
     filter: saturate(5);
     border-radius: 9999px;
-   box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.5px 1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 90%), transparent), inset -1.5px -1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    background: #ffffff12;
     height: 44px;
     width: 44px;
     display: flex;
     transition: all 0.3s ease;
     justify-content: center;
     align-items: center;
+    background: rgb(255 255 255 / 9%);
     backdrop-filter: blur(5px);
+    box-shadow: inset 1px 1px 0px 0px #ffffff1a, inset -1px -1px 0px 0px #ffffff1a;
   }
 .helper-button a{
     display: contents;
@@ -437,30 +439,19 @@ z-index: 1000;
     width: 100%;
 }
     .bottom-nav {
-    max-width: 350px;
+   max-width: 350px;
     display: flex;
     padding: 5px;
     color: #fff;
-    box-shadow: inset 0 0 0 1px 
- color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.5px 1.5px 1px -1.5px 
- color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 90%), transparent), inset -1.5px -1.5px 1px -1.5px 
- color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px 
- color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px 
- color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-    backdrop-filter: blur(5px);
     border-radius: 9999px;
-    filter: drop-shadow(0px 0px 0px black);
     scale: 1;
     justify-content: space-between;
     gap: 0;
     align-items: center;
-    background: #23232363;
     width: 80%;
+    background: rgb(255 255 255 / 9%);
+    backdrop-filter: blur(5px);
+    box-shadow: inset 1px 1px 0px 0px #ffffff1a, inset -1px -1px 0px 0px #ffffff1a;
     }
 
     .nav-item {
@@ -635,11 +626,12 @@ flex: 1;
         </div>
                       <button class="start-btn" id="startAudioBtn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M296-270q-42 35-87.5 32T129-269q-34-28-46.5-73.5T99-436l75-124q-25-22-39.5-53T120-680q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47q-9 0-18-1t-17-3l-77 130q-11 18-7 35.5t17 28.5q13 11 31 12.5t35-12.5l420-361q42-35 88-31.5t80 31.5q34 28 46 73.5T861-524l-75 124q25 22 39.5 53t14.5 67q0 66-47 113t-113 47q-66 0-113-47t-47-113q0-66 47-113t113-47q9 0 17.5 1t16.5 3l78-130q11-18 7-35.5T782-630q-13-11-31-12.5T716-630L296-270Zm40.5-353.5Q360-647 360-680t-23.5-56.5Q313-760 280-760t-56.5 23.5Q200-713 200-680t23.5 56.5Q247-600 280-600t56.5-23.5Zm400 400Q760-247 760-280t-23.5-56.5Q713-360 680-360t-56.5 23.5Q600-313 600-280t23.5 56.5Q647-200 680-200t56.5-23.5ZM280-680Zm400 400Z"/></svg> Connect</button>
             <a style="display: flex;" onclick="alert('Welcome to BsLends Service from BS&MFI Services')"><img style="width: 50px;
-            height: 50px;
-            border-radius: 62px;
-            padding: 2px;
-            background: rgba(255 255 255 / 9%);
-            box-shadow: inset 1px 1px 0px 0px #ffffff2b, inset -1px -1px 0px 0px #ffffff2b;" src="mfi.gif" alt=""></a>
+    height: 50px;
+    border-radius: 62px;
+    padding: 2px;
+    background: rgba(255 255 255 / 9%);
+    backdrop-filter: blur(5px);
+    box-shadow: inset 1px 1px 0px 0px #ffffff1a, inset -1px -1px 0px 0px #ffffff1a;" src="mfi.gif" alt=""></a>
         </div>
         <audio id="introAudio" preload="auto">
             <source src="PlayboiCarti-Not Real.mp3" type="audio/mpeg">
