@@ -335,7 +335,7 @@ position: fixed;
     transition: 0.5s ease-in-out;
     color: white;
     background-clip: text;
-    font-weight: 600;
+    font-weight: 500;
     overflow: scroll;
     text-overflow: ellipsis;
     max-width: 145px;
@@ -2366,16 +2366,16 @@ line-height: 20px;
 }
 
 .user-name {
-    font-weight: 500;
-    font-size: 14px;
+    font-weight: 400;
+    font-size: 15px;
     display: block;
     color: white;
 }
 
 .logged-in-text {
- font-size: 10px;
+font-size: 11px;
     color: #00d423;
-    font-weight: 500;
+    font-weight: 300;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2544,13 +2544,12 @@ background: none;
     <div class="login-info">
         <img style="    height: 70px;
     width: 70px;
-    filter: none;" src="https://cdn3.emoji.gg/emojis/99583-verified.png" alt="">
+    filter: invert(1);" src="https://cdn3.emoji.gg/emojis/99583-verified.png" alt="">
         <img id="topUserEmote" src="" alt="Profile" class="top-emote">
         <div class="login-text">
             <span id="topUserName" class="user-name"></span>
-            <span class="logged-in-text">Account verified <svg style="fill: #00d423;
-    width: 20px;
-    height: 20px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M364-146q-90 0-154-64t-64-154v-232q0-90 64-154t154-64h232q90 0 154 64t64 154v232q0 90-64 154t-154 64H364Zm76-266-71-71q-8-8-18.5-8.5T331-483q-9 9-9 19t9 19l79 79q13 13 30 13t30-13l175-175q8-8 8.5-18.5T645-579q-9-9-19-9t-19 9L440-412Zm-76 212h232q69 0 116.5-47.5T760-364v-232q0-69-47.5-116.5T596-760H364q-69 0-116.5 47.5T200-596v232q0 69 47.5 116.5T364-200Zm116-280Z"/></svg></span>
+            <span class="logged-in-text">Account verified <svg style="fill: #00d423;width: 15px;height: 15px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m382-338.77 351.08-351.08q9.84-9.84 23.27-10.23 13.42-.38 24.03 10.23Q791-679.23 791-666.58q0 12.66-10.62 23.27l-366.76 366q-13.7 13.69-31.62 13.69t-31.62-13.69l-168-168q-9.84-9.84-10.11-22.88-.27-13.04 10.35-23.66 10.61-10.61 23.26-10.61 12.66 0 23.27 10.61L382-338.77Z"/></svg>
+</span>
         </div>
     </div>
     <button class="close-top-msg" onclick="hideTopLoginMessage()"><img style="height: 40px;
