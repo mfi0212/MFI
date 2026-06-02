@@ -195,11 +195,12 @@ h3 {
 }
 
 p {
-	margin-bottom: 2px;
+    margin-bottom: 2px;
     color: #ffffff94;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 16px;
-    display: flex;align-items: center;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -532,20 +533,24 @@ display: flex;
     width: 100%;
     color: #e0e0e0cf;
     margin: 0px -5px -5px 5px;
+    font-weight: 300;
 }
 .pincrnchng span {
     font-size: 12px;
+    font-weight: 200;
     color: #ffffff94;
 }
 span#currencyLabel {
-    font-size: 12px;
+font-size: 12px;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    border: solid 1.5px #949494;
+    border: solid 1.5px #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #ffffff;
+    font-weight: 200;
 }
 #searchIcon {
 	color: #ffffffd6;
@@ -636,7 +641,7 @@ display: flex;
     box-shadow: none;
     border: none;
     transition: all 0.3s ease;
-    font-weight: 500;
+    font-weight: 300;
     margin: 0;
     gap: 8px;
 }
@@ -674,7 +679,6 @@ margin: -15px;
 .purpose-tag {
 	font-size: 11px;
     color: #00e5ff;
-    margin-top: -3px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -752,6 +756,7 @@ input {
 
 #totalContent strong {
 	color: rgb(255, 204, 0);
+    font-weight: 400;
 }
 
 #popupContent strong {
@@ -938,7 +943,7 @@ transform: translate(-50%, 0);
     cursor: pointer;
     width: 100%;gap: 3px;
     font-size: 18px;
-    font-weight: 100;display: flex;
+    font-weight: 300;display: flex;
     justify-content: center;
     align-items: center;
 	transition: all 0.3s ease;
@@ -2497,12 +2502,14 @@ background: none;
                         </div>
                         <div class="pincrnchng">
                             <span>Click to change the currency</span>
-                            <button class="currency-switch" id="currencySwitch"><p style="font-size: 10px;
-    margin: 0;
+                            <button class="currency-switch" id="currencySwitch"><p style="margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;">Currently on</p><span id="currencyLabel">$</span>  <i style="display: none;" class="fa-solid fa-dollar-sign"></i> </button>
+    align-items: center;
+    font-weight: 200;
+    font-size: 12px;
+    color: #ffffff;">Currently on</p><span id="currencyLabel">$</span>  <i style="display: none;" class="fa-solid fa-dollar-sign"></i> </button>
                         </div>
                     </div>
                 </div>
@@ -2622,7 +2629,7 @@ background: none;
         <div id="totalContent"></div>
         
         <div class="notepad">
-            If you exceed your plan’s <a href="https://mfi0212.github.io/MFI/starpre" style="font-weight: 900;
+            If you exceed your plan’s <a href="https://mfi0212.github.io/MFI/starpre" style="font-weight: 500;
     font-size: 12px;">borrow limit</a> from Next Borrow or extend beyond it, an extra charge will be applied.
         </div>
         <button onclick="closeTotalPopup()" style="margin-bottom:-2px;margin-top: 20px;background-color: blue;"><img class="closesymbol" src="service-icons/done_icon.png" alt=""> Ok</button>
