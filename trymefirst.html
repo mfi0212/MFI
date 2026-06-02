@@ -227,12 +227,13 @@ position: fixed;
     filter: drop-shadow(0px 0px 6px black);
     }
 strong {
-    font-size: 30px;
+font-size: 30px;
     font-weight: 600;
     display: flex;
     align-items: end;
     justify-content: center;
     gap: 5px;
+    color: white;
 }
     .logo {
      display: flex;
@@ -882,7 +883,7 @@ document.getElementById("searchInput").addEventListener("input", (e) => {
   });
 
   if (!foundAny) {
-    container.innerHTML = `<div style="text-align:center; padding:60px 20px; color:#666;">No services found for "<strong>${term}</strong>"</div>`;
+    container.innerHTML = `<div style="text-align:center; padding:60px 20px; color:#666;">No service found as<br><strong>${term}</strong></div>`;
   }
 });
 
