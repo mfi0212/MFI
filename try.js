@@ -24,7 +24,7 @@ const usersDB = {
         defaultEmote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif"
     },
     "0212": {
-        name: "Pavel Durov",
+        name: "Vavia's chat",
         coins: 1000,
         loans: [
              { planDate: "09-02-2026", endDate: "27-08-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
@@ -421,10 +421,10 @@ function displayLoanDetails(loan, index) {
             </div>
             
 <div class="totaldetails">
-    <p style="font-size: 60px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    margin: 5px;
+    <p style="font-size:60px;
+              font-weight: 600;
+              font-family: 'Anton', sans-serif;
+              letter-spacing: 4.5px;margin: 5px;
               color: ${overdueFine > 0 
                         ? '#ff0000' 
                         : daysLeft <= 2 
