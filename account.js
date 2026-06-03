@@ -25,7 +25,7 @@ const usersDB = {
     },
     "0212": {
         name: "Tony Montana",
-        coins: 1000,
+        coins: 0,
         loans: [
              { planDate: "09-02-2026", endDate: "27-08-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
              { planDate: "09-02-2026", endDate: "30-08-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
@@ -111,12 +111,29 @@ function renderAmountButtons() {
 }
 
 function updateCoinsDisplay() {
-    if (currentUser && document.getElementById('userCoinsDisplay')) {
-        document.getElementById('userCoinsDisplay').textContent = currentUser.coins.toLocaleString();
-        document.getElementById('userCoinsDisplays').textContent = currentUser.coins.toLocaleString();
+    if (!currentUser) return;
+
+    const coinSection = document.getElementById('coinSection');
+    const coinsDisplay = document.getElementById('userCoinsDisplay');
+    const coinsDisplay2 = document.getElementById('userCoinsDisplays'); // second one
+
+    if (!coinSection) return;
+
+    if (currentUser.coins > 0) {
+        // Show section and update values
+        coinSection.style.display = ''; // or 'flex' / 'block' depending on your CSS
+
+        if (coinsDisplay) {
+            coinsDisplay.textContent = currentUser.coins.toLocaleString();
+        }
+        if (coinsDisplay2) {
+            coinsDisplay2.textContent = currentUser.coins.toLocaleString();
+        }
+    } else {
+        // Hide entire section when coins are 0
+        coinSection.style.display = 'none';
     }
 }
-
 function loadUserData() {
     const savedData = JSON.parse(localStorage.getItem('userData') || '{}');
     for (let pin in usersDB) {
