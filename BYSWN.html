@@ -5,7 +5,7 @@
       let qty = parseInt(document.getElementById('quantity').value) || 0;
       if (qty < 1) qty = 1;
       
-      let price = (qty * 0.7).toFixed(2);
+      let price = (qty * 0.5).toFixed(2);
       document.getElementById('totalPrice').textContent = `₹${price}`;
     }
 
@@ -22,7 +22,5 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
     window.onload = calculatePrice;
   </script>
-</body>
-</html>
 </body>
 </html>
