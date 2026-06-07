@@ -17,7 +17,7 @@ const usersDB = {
         coins: 0,
         loans: [
             { planDate: "11-05-2026", endDate: "11-06-2026", interest: 3560, takenAmount: 15000, takenFrom: "Golden", fineRate: 130 },
-            { planDate: "25-05-2026", endDate: "24-06-2026", interest: 625, takenAmount: 2000, takenFrom: "Golden", fineRate: 130 },
+            { planDate: "25-05-2026", endDate: "24-06-2026", interest: 500, takenAmount: 2000, takenFrom: "Golden", fineRate: 130 },
         ],
         links: [],
        emote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif",
@@ -29,6 +29,10 @@ const usersDB = {
         loans: [
              { planDate: "09-02-2026", endDate: "27-08-2026", interest: 1340, takenAmount: 10860, takenFrom: "Lendlink", fineRate: 50 },
              { planDate: "09-02-2026", endDate: "30-08-2026", interest: 1340, takenAmount: 6460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "01-08-2026", interest: 1340, takenAmount: 9460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "01-08-2026", interest: 1340, takenAmount: 9460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "01-08-2026", interest: 1340, takenAmount: 9460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "01-08-2026", interest: 1340, takenAmount: 9460, takenFrom: "Lendlink", fineRate: 50 },
              { planDate: "09-02-2026", endDate: "01-08-2026", interest: 1340, takenAmount: 9460, takenFrom: "Lendlink", fineRate: 50 },
             ],
         links: [],
@@ -1244,3 +1248,85 @@ function goBack() {
         alert(" Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
       }
     }
+
+let selectedSumIds = new Set();
+
+function showSumPopup() {
+  if (!currentUser) {
+    alert("Please login first!");
+    return;
+  }
+  document.getElementById('sumPopup').style.display = 'block';
+  document.getElementById('sumOverlay').style.display = 'block';
+  selectedSumIds.clear(); // reset selection
+  renderSumContent();
+}
+
+function renderSumContent() {
+  const container = document.getElementById('sum-list');
+  container.innerHTML = '';
+
+  currentUser.loans.forEach((loan, idx) => {
+    const isSelected = selectedSumIds.has(idx);
+    const opacityClass = isSelected ? 'selected' : '';
+    
+    container.innerHTML += `
+      <div class="loan-option ${opacityClass}" onclick="toggleSumLoan(${idx})">
+        <strong>Amount ${idx+1} - ₹${loan.takenAmount}</strong> (${loan.takenFrom})<br>
+        <small>Interest: ₹${loan.interest} | ${loan.planDate} → ${loan.endDate}</small>
+      </div>
+    `;
+  });
+
+  updateSumSummary();
+}
+
+function toggleSumLoan(idx) {
+  if (selectedSumIds.has(idx)) {
+    selectedSumIds.delete(idx);
+  } else {
+    selectedSumIds.add(idx);
+  }
+  renderSumContent(); // re-render to update visual state
+}
+
+function updateSumSummary() {
+  const summaryDiv = document.getElementById('sum-summary');
+  
+  if (selectedSumIds.size === 0) {
+    summaryDiv.innerHTML = `<p style="color:#666;">No loans selected</p>`;
+    return;
+  }
+
+  let totalPrincipal = 0;
+  let totalInterest = 0;
+  let html = '';
+
+  selectedSumIds.forEach(idx => {
+    const loan = currentUser.loans[idx];
+    html += `
+      <div>
+        <strong>Amount ${idx+1}:</strong> ₹${loan.takenAmount}<br>
+        <strong>Interest:</strong> ₹${loan.interest}
+      </div>`;
+    totalPrincipal += loan.takenAmount;
+    totalInterest += loan.interest;
+  });
+
+  html += `
+    <hr>
+    <div class="total">
+      Total Amount: ₹${totalPrincipal}<br>
+      Total Interest: ₹${totalInterest}<br>
+      <strong>Total: ₹${totalPrincipal + totalInterest}</strong>
+    </div>
+  `;
+
+  summaryDiv.innerHTML = html;
+}
+
+function closeSumPopup() {
+  document.getElementById('sumPopup').style.display = 'none';
+  document.getElementById('sumOverlay').style.display = 'none';
+  selectedSumIds.clear();
+}
