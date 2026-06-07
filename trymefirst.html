@@ -2152,15 +2152,15 @@ button.totalsumamt {
     margin: 0 0 0 10px;
 }
 div#sum-list {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     margin: 15px;
     gap: 10px;
-    background: black;
+    background: #000000;
     padding: 10px 15px;
-    border-radius: 20px;
+    border-radius: 30px;
     width: 100%;
     height: 100px;
     overflow: scroll;
@@ -2467,6 +2467,31 @@ background: none;
 
 .close-top-msg:hover {
     color: white;opacity: 100%;
+}
+
+.loan-option {
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: white;
+    font-weight: 200;
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+.loan-option:hover {
+  background: #ffffff0b;
+}
+
+.loan-option.selected {
+background: #ffffff;
+    opacity: 1;
+    color: black;
+}
+
+.loan-option:not(.selected) {
+  opacity: 0.65; /* Lower opacity for unselected */
 }
 </style>
         </head>
