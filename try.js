@@ -1,4 +1,4 @@
-// document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || '₹';
@@ -1284,7 +1284,7 @@ function renderSumContent() {
     container.innerHTML += `
       <label class="loan-option">
         <input type="checkbox" ${checked} onchange="toggleSumLoan(${idx}, this.checked)">
-        <strong>Loan ${idx+1} - ₹${loan.takenAmount}</strong> (${loan.takenFrom})<br>
+        <strong>Amount ${idx+1} - ₹${loan.takenAmount}</strong> (${loan.takenFrom})<br>
         <small>Interest: ₹${loan.interest} | ${loan.planDate} → ${loan.endDate}</small>
       </label>
     `;
@@ -1315,7 +1315,7 @@ function updateSumSummary() {
     const loan = currentUser.loans[idx];
     html += `
       <div>
-        <strong>Loan ${idx+1}:</strong> ₹${loan.takenAmount}<br>
+        <strong>Amount ${idx+1}:</strong> ₹${loan.takenAmount}<br>
         <strong>Interest:</strong> ₹${loan.interest}
       </div>`;
     totalPrincipal += loan.takenAmount;
