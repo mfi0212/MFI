@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || '₹';
@@ -14,7 +14,7 @@ let loanChart = null;
 const usersDB = {
    "Mahesh888*": {
         name: "Mahesh Muthinti",
-        coins: 800,
+        coins: 0,
         loans: [
             { planDate: "11-05-2026", endDate: "11-06-2026", interest: 3560, takenAmount: 15000, takenFrom: "Golden", fineRate: 130 },
             { planDate: "25-05-2026", endDate: "24-06-2026", interest: 500, takenAmount: 2000, takenFrom: "Golden", fineRate: 130 },
@@ -27,9 +27,13 @@ const usersDB = {
         name: "Tony Montana",
         coins: 0,
         loans: [
-             { planDate: "09-02-2026", endDate: "27-08-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
-             { planDate: "09-02-2026", endDate: "30-08-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
-             { planDate: "09-02-2026", endDate: "01-08-2026", interest: 1340, takenAmount: 12460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "27-08-2026", interest: 1340, takenAmount: 10860, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "30-08-2026", interest: 1340, takenAmount: 6460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "01-08-2026", interest: 1340, takenAmount: 9460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "01-08-2026", interest: 1340, takenAmount: 9460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "01-08-2026", interest: 1340, takenAmount: 9460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "01-08-2026", interest: 1340, takenAmount: 9460, takenFrom: "Lendlink", fineRate: 50 },
+             { planDate: "09-02-2026", endDate: "01-08-2026", interest: 1340, takenAmount: 9460, takenFrom: "Lendlink", fineRate: 50 },
             ],
         links: [],
         emote: "https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif",
@@ -1244,3 +1248,94 @@ function goBack() {
         alert(" Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
       }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    let selectedSumIds = new Set();
+
+function showSumPopup() {
+  if (!currentUser) {
+    alert("Please login first!");
+    return;
+  }
+  document.getElementById('sumPopup').style.display = 'block';
+  document.getElementById('sumOverlay').style.display = 'block';
+  renderSumContent();
+}
+
+function renderSumContent() {
+  const container = document.getElementById('sum-list');
+  container.innerHTML = '';
+
+  currentUser.loans.forEach((loan, idx) => {
+    const checked = selectedSumIds.has(idx) ? 'checked' : '';
+    container.innerHTML += `
+      <label class="loan-option">
+        <input type="checkbox" ${checked} onchange="toggleSumLoan(${idx}, this.checked)">
+        <strong>Loan ${idx+1} - ₹${loan.takenAmount}</strong> (${loan.takenFrom})<br>
+        <small>Interest: ₹${loan.interest} | ${loan.planDate} → ${loan.endDate}</small>
+      </label>
+    `;
+  });
+
+  updateSumSummary();
+}
+
+function toggleSumLoan(idx, checked) {
+  if (checked) selectedSumIds.add(idx);
+  else selectedSumIds.delete(idx);
+  renderSumContent(); // live update
+}
+
+function updateSumSummary() {
+  const summaryDiv = document.getElementById('sum-summary');
+  
+  if (selectedSumIds.size === 0) {
+    summaryDiv.innerHTML = `<p style="color:#666;">No loans selected</p>`;
+    return;
+  }
+
+  let totalPrincipal = 0;
+  let totalInterest = 0;
+  let html = '';
+
+  selectedSumIds.forEach(idx => {
+    const loan = currentUser.loans[idx];
+    html += `
+      <div>
+        <strong>Loan ${idx+1}:</strong> ₹${loan.takenAmount}<br>
+        <strong>Interest:</strong> ₹${loan.interest}
+      </div>`;
+    totalPrincipal += loan.takenAmount;
+    totalInterest += loan.interest;
+  });
+
+  html += `
+    <hr>
+    <div class="total">
+      Total Principal: ₹${totalPrincipal}<br>
+      Total Interest: ₹${totalInterest}<br>
+      <strong>Grand Total: ₹${totalPrincipal + totalInterest}</strong>
+    </div>
+  `;
+
+  summaryDiv.innerHTML = html;
+}
+
+function closeSumPopup() {
+  document.getElementById('sumPopup').style.display = 'none';
+  document.getElementById('sumOverlay').style.display = 'none';
+  selectedSumIds.clear();
+}
