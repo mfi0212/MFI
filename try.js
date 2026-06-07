@@ -1261,9 +1261,7 @@ function goBack() {
 
 
 
-
-
-    let selectedSumIds = new Set();
+let selectedSumIds = new Set();
 
 function showSumPopup() {
   if (!currentUser) {
@@ -1272,6 +1270,7 @@ function showSumPopup() {
   }
   document.getElementById('sumPopup').style.display = 'block';
   document.getElementById('sumOverlay').style.display = 'block';
+  selectedSumIds.clear(); // reset selection
   renderSumContent();
 }
 
@@ -1280,23 +1279,27 @@ function renderSumContent() {
   container.innerHTML = '';
 
   currentUser.loans.forEach((loan, idx) => {
-    const checked = selectedSumIds.has(idx) ? 'checked' : '';
+    const isSelected = selectedSumIds.has(idx);
+    const opacityClass = isSelected ? 'selected' : '';
+    
     container.innerHTML += `
-      <label class="loan-option">
-        <input type="checkbox" ${checked} onchange="toggleSumLoan(${idx}, this.checked)">
+      <div class="loan-option ${opacityClass}" onclick="toggleSumLoan(${idx})">
         <strong>Amount ${idx+1} - ₹${loan.takenAmount}</strong> (${loan.takenFrom})<br>
         <small>Interest: ₹${loan.interest} | ${loan.planDate} → ${loan.endDate}</small>
-      </label>
+      </div>
     `;
   });
 
   updateSumSummary();
 }
 
-function toggleSumLoan(idx, checked) {
-  if (checked) selectedSumIds.add(idx);
-  else selectedSumIds.delete(idx);
-  renderSumContent(); // live update
+function toggleSumLoan(idx) {
+  if (selectedSumIds.has(idx)) {
+    selectedSumIds.delete(idx);
+  } else {
+    selectedSumIds.add(idx);
+  }
+  renderSumContent(); // re-render to update visual state
 }
 
 function updateSumSummary() {
