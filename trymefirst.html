@@ -879,7 +879,7 @@ canvas#loanChart {
     gap: 5px;
     color: #e0e0e0;
     border-radius: 50px;
-    max-width: 450px;
+    max-width: 600px;
     z-index: 2000000;
     text-align: center;
     font-size: 14.5px;padding: 25px;
@@ -1040,10 +1040,14 @@ display: flex;
 .emote-option {
 	width: 80px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.3s ease-in-out;
     padding: 3px;
     margin: 0px 25px;
-    border-radius: 26px;
+    border-radius: 25px;
+}
+.emote-option:active {
+	transform: scale(0.85);
+    border-radius: 50%;
 }
 
 
@@ -1306,7 +1310,7 @@ display: flex;
 }
 
 .nav-item:active {
-	transform: scale(0.85);
+	transform: scale(0.90);
 }
 
 .nav-item.active {
@@ -1620,39 +1624,6 @@ input {
 	margin-bottom: 20px;
 	text-align: center;
 	color: #ffcc00;
-}
-
-.youtube-wrapper {
-	position: relative;
-	opacity: 80%;
-	width: 100%;
-	padding-bottom: 55%;
-	height: 0;
-	overflow: hidden;
-	border-radius: 22px;
-	margin: 30px 0px;
-	border: transparent;
-	outline: solid 3px rgb(255 255 255 / 34%);
-	outline-offset: 5px;
-	transition: all 0.3s ease-in-out;
-}
-
-.youtube-wrapper:active {
-	transform: scale(0.70);
-}
-
-.youtube-wrapper iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	border: 0;
-	transition: all 0.3s ease-in-out;
-}
-
-.youtube-wrapper iframe:active {
-	transform: scale(0.70);
 }
 
 @media (max-width : 700px) {
@@ -2068,7 +2039,7 @@ display: none;
     width: 100%;
 }
 .popupcontant {
-display: flex;
+    display: flex;
     justify-content: end;
     align-items: center;
     flex-direction: column;
@@ -2080,6 +2051,7 @@ display: flex;
     left: 50%;
     border-radius: 45px;
     padding: 30px;
+    max-width: 600px;
 }
 
 .loan-option {
@@ -2112,6 +2084,10 @@ margin: 0 0 8px 0;
     font-weight: 500;
     color: #ffffff;
     font-size: 14px;
+ transition: all 0.3s ease;
+}
+div#sum-summary div:active {
+	transform: scale(0.90);
 }
 div#sum-summary .total {
 background: #ffffff1f;
@@ -2122,7 +2098,12 @@ background: #ffffff1f;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
+ transition: all 0.3s ease;
 }
+div#sum-summary .total:active {
+	transform: scale(0.90);
+}
+
 div#sum-summary strong {
 color: #919191;
     font-weight: 500;
@@ -2164,7 +2145,12 @@ display: flex;
     width: 100%;
     height: 100px;
     overflow: scroll;
+     transition: all 0.3s ease;
 }
+div#sum-list:active {
+	transform: scale(0.90);
+}
+
 </style>
 </head>
 
