@@ -209,7 +209,7 @@ startBtn?.addEventListener("click", async () => {
             await new Promise(resolve => audio.addEventListener("loadedmetadata", resolve, { once: true }));
         }
 
-        stopTime = audio.duration * 0.15 || 10;
+        stopTime = audio.duration * 0.10 || 5;
 
         progressFill.style.width = "0%";
         audioStatus.textContent = "0% • Loading...";
