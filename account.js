@@ -295,7 +295,7 @@ function showTopLoginMessage() {
 
     setTimeout(() => {
         hideTopLoginMessage();
-    },3000);
+    },5000);
 }
 
 function hideTopLoginMessage() {
@@ -871,7 +871,7 @@ function showDatePopup(idx) {
     align-items: center;
     gap: 10px;
     margin-top: 0px;
-    margin-bottom: -10px;">
+    margin-bottom: 0px;">
     <button style="width: 100%;
     background: #0026ff;
     border-radius: 200px;" onclick="goToList(${idx})"><svg style='width: 25px;
