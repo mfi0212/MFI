@@ -276,9 +276,9 @@ background: #181818d9;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 45px;
+    height: 48px;
     border-radius: 9999px;
-    filter: saturate(60);
+    filter: saturate(6);
     padding: 5px;
 }
 
@@ -304,12 +304,7 @@ img.closesymbol {
     margin: -5px;
 }
 .searchcontainer {
-   border-radius: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 88%;
-    gap: 10px;
+    width: 90%;
 }
   .section {
       position: relative;
@@ -412,11 +407,13 @@ width: 35px;
 }
 
     .no-results {
-      text-align: center;
-      padding: 80px 20px;
-      color: var(--text-secondary);
-      font-size: 1.1rem;
-      display: none;
+     text-align: center;
+    padding: 80px 20px;
+    color: gray;
+    font-size: 1.1rem;
+    display: none;
+    position: fixed;
+    top: 50px;
     }
 footer{
   text-align: center;
@@ -467,7 +464,6 @@ footer{
         <span class="search-icon"><img class="closesymbol"  class="serchareicon" class="closesymbol" src="service-icons/search_icon.png" alt=""></span>
         <input type="text" id="searchInput" placeholder="Search" autocomplete="off"/>
       </div>
-      <p class="exclamation" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform', '_parent')">I've Issue</p></a>
     </div>
   </div>
 
