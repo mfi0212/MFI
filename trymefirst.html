@@ -220,11 +220,12 @@ position: fixed;
     padding: 20px 10px 15px 10px;
     display: flex;
     align-items: self-start;
-    gap: 13px;
     justify-content: center;
-    background: linear-gradient(0deg, #28282800, #000000);
     flex-direction: column;
     filter: drop-shadow(0px 0px 6px black);
+    background: linear-gradient(180deg, #000000b3, #00000000);
+    gap: 10px;
+    backdrop-filter: blur(1px);
     }
 strong {
 font-size: 20px;
@@ -458,10 +459,10 @@ max-width: 350px;
     justify-content: space-between;
     gap: 0;
     align-items: center;
-    width: 76%;
+    width: 75%;
     height: 60px;
     background: #181818d9;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);filter: saturate(6);
     box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
     }
 
@@ -645,10 +646,10 @@ display: flex;
 }
 .fiftopt {
       background: #181818d9;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
     box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
     border-radius: 50%;height: 60px;
-    width: 60px;
+    width: 60px;filter: saturate(6);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -766,7 +767,7 @@ display: flex;
         </div>
         <div class="nav-item" onclick="showRedirectPopup('Account', 'https://mfi0212.github.io/MFI/accverify')">
           <img style="width: 23px;
-      border-radius: 50%;" 
+      border-radius: 50%;filter: saturate(0.5);" 
               src="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg" alt=""> 
           <span>Account</span>
         </div>
