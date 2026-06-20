@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BsRora</title>
+      
+  <link rel="icon" href="https://i.ibb.co/ZpVQQ2Kp/mfi-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Noto Sans", sans-serif;
+            background:  #ffffff;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1d1d1f;
+        }
+* {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .container {
+            width: 100%;
+            max-width: 380px;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            color: #666;
+            margin: 8px 0 0;
+            font-size: 17px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .option {
+           background: white;
+    border-radius: 18px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #1d1d1f;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+    border: 0.5px solid rgb(0 0 0 / 9%);
+        }
+svg {
+    fill: black;
+}
+        .option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .option:active {
+            transform: scale(0.98);
+        }
+
+        .icon {
+            width: 55px;
+    height: 55px;
+    background: #2fff00;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-right: 18px;
+    flex-shrink: 0;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: #666;
+            margin: 0;
+        }
+
+        .chevron {
+            color: #a1a1a6;
+            font-size: 20px;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>BsRora</h1>
+            <p>Let the bot do</p>
+        </div>
+        
+        <div class="options">
+            <!-- Option 1 -->
+            <a href="#" onclick="handleClick('BsRora')" class="option">
+                <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M216.16-140q-15.37 0-25.76-10.4-10.4-10.4-10.4-25.77v-144.68q0-29.84 21.24-51.03 21.24-21.2 51.07-21.2h455.38q29.83 0 51.07 21.25Q780-350.58 780-320.74v144.67q0 15.38-10.4 25.72Q759.21-140 743.84-140H216.16Zm149.61-308.46q-77.09 0-131.43-54.34T180-634.23q0-77.09 54.34-131.43T365.77-820h228.46q77.09 0 131.43 54.34T780-634.23q0 77.09-54.34 131.43t-131.43 54.34H365.77ZM240-200h480v-120.77q0-5.38-3.46-8.85-3.46-3.46-8.85-3.46H252.31q-5.39 0-8.85 3.46-3.46 3.47-3.46 8.85V-200Zm125.77-308.46h228.46q52.69 0 89.23-36.54Q720-581.54 720-634.23q0-52.69-36.54-89.23Q646.92-760 594.23-760H365.77q-52.69 0-89.23 36.54Q240-686.92 240-634.23q0 52.69 36.54 89.23 36.54 36.54 89.23 36.54Zm24.65-101.1q9.96-9.95 9.96-24.66 0-14.7-9.94-24.66-9.95-9.97-24.66-9.97-14.7 0-24.66 9.95-9.97 9.95-9.97 24.66 0 14.7 9.95 24.66t24.66 9.96q14.7 0 24.66-9.94Zm228.46 0q9.97-9.95 9.97-24.66 0-14.7-9.95-24.66-9.95-9.97-24.66-9.97-14.7 0-24.66 9.95t-9.96 24.66q0 14.7 9.94 24.66 9.95 9.96 24.66 9.96 14.7 0 24.66-9.94ZM480-200Zm0-434.23Z"/></svg></div>
+                <div class="content">
+                    <div class="title">BsRora</div>
+                    <div class="subtitle">Main Bot</div>
+                </div>
+                <div class="chevron"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M428.2-329.16q-7.35 0-12.78-4.97-5.42-4.97-5.42-13.1v-265.54q0-8.13 5.48-13.1 5.47-4.97 12.77-4.97 1.83 0 12.67 5.61l126.04 126.04q4.35 4.34 6.35 8.98 2 4.64 2 10.21 0 5.57-2 10.21-2 4.64-6.35 8.98L440.92-334.76q-2.61 2.6-5.83 4.1-3.21 1.5-6.89 1.5Z"/></svg></div>
+            </a>
+            
+            <!-- Option 2 -->
+            <a href="#" onclick="handleClick('BsRora - Atdo')" class="option">
+                <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M394.23-512.69V-280q0 12.75 8.63 21.37 8.63 8.63 21.38 8.63 12.76 0 21.38-8.63 8.61-8.62 8.61-21.37v-233.85q0-6.36-1.5-12.71-1.5-6.36-4.12-11.98l-60.23-118.84q-5.69-11.16-17.23-15.31-11.53-4.16-22.69 1.92-11.15 6.08-15.11 17.54-3.96 11.46 1.73 22.61l59.15 117.93Zm171.54-.11 59.15-118.43q5.69-11.15 1.73-22.31-3.96-11.15-15.11-17.23-11.16-6.08-22.83-1.96-11.68 4.12-17.71 15.35l-59.61 118.84q-2.62 5.62-4.12 11.98-1.5 6.35-1.5 12.71V-280q0 12.75 8.63 21.37 8.63 8.63 21.38 8.63 12.76 0 21.37-8.63 8.62-8.62 8.62-21.37v-232.8Zm88.19 61.07q11.65-3.96 17.35-15.12l44.38-88.38q5.69-11.16 1.73-22.62-3.96-11.46-15.11-17.53-11.16-6.08-22.84-1.96-11.67 4.11-17.7 15.34l-44.39 88.62q-5.69 11.15-1.53 22.69 4.15 11.54 15.3 17.23 11.16 5.69 22.81 1.73Zm-310-20.04q3.96-11.46-1.73-22.61l-44.38-88.39q-5.7-11.15-17.35-15.11-11.65-3.97-22.81 1.73-11.15 5.69-15.3 17.53-4.16 11.85 1.53 23l44.39 88q5.69 11.16 17.54 15.31 11.84 4.15 23-1.92 11.15-6.08 15.11-17.54ZM480.07-100q-78.84 0-148.21-29.92t-120.68-81.21q-51.31-51.29-81.25-120.63Q100-401.1 100-479.93q0-78.84 29.92-148.21t81.21-120.68q51.29-51.31 120.63-81.25Q401.1-860 479.93-860q78.84 0 148.21 29.92t120.68 81.21q51.31 51.29 81.25 120.63Q860-558.9 860-480.07q0 78.84-29.92 148.21t-81.21 120.68q-51.29 51.31-120.63 81.25Q558.9-100 480.07-100Zm-.07-60q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg></div>
+                <div class="content">
+                    <div class="title">BsRora - Atdo</div>
+                    <div class="subtitle">Advanced Trading Bot</div>
+                </div>
+                <div class="chevron"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M428.2-329.16q-7.35 0-12.78-4.97-5.42-4.97-5.42-13.1v-265.54q0-8.13 5.48-13.1 5.47-4.97 12.77-4.97 1.83 0 12.67 5.61l126.04 126.04q4.35 4.34 6.35 8.98 2 4.64 2 10.21 0 5.57-2 10.21-2 4.64-6.35 8.98L440.92-334.76q-2.61 2.6-5.83 4.1-3.21 1.5-6.89 1.5Z"/></svg></div>
+            </a>
+            
+            <!-- Option 3 -->
+            <a href="#" onclick="handleClick('BsMining Bot')" class="option">
+                <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M725.54-171.62 536.62-360.54l63.22-63.23 188.93 188.92q12.77 12.77 12.77 31.62 0 18.84-12.77 31.61t-31.62 12.77q-18.84 0-31.61-12.77Zm-566.69-31.61q0-18.85 12.77-31.62l245.54-245.53-93.39-93.01q-9.85 9.85-24.92 9.85-15.08 0-24.93-9.85l-19.53-19.92v83.46q0 12.46-11.04 16.89-11.04 4.42-19.89-4.43L122.54-598.31q-8.85-8.85-4.42-19.88 4.42-11.04 16.88-11.04h83.46l-18.54-18.54q-10.84-10.85-10.84-25.5t10.84-25.5l88.62-88.61q16.92-16.93 36.65-24.77 19.73-7.85 41.04-7.85 16.92 0 31.92 4.85 15 4.84 29.31 15.31 6.84 4.61 7.54 12.65.69 8.04-5.54 14.27L365-708.46l22 22q9.84 9.84 9.84 24.92 0 15.08-9.84 24.92l93.38 93.01 96.16-96.16q-6.69-12.15-9.77-25.11-3.08-12.97-3.08-27.27 0-54 37.23-91.23 37.23-37.23 91.23-37.23 6.85 0 12.5.3 5.66.31 11.89 1.93 7.46 2.61 9.77 10.57 2.3 7.97-3.54 13.81l-61.16 61.15Q656-727.23 656-720q0 7.23 5.61 12.85l45.54 45.54Q712.77-656 720-656q7.23 0 12.85-5.61L794-722.77q5.84-5.84 13.81-3.84 7.96 2 10.57 10.07 1.62 6.23 1.93 11.89.3 5.65.3 12.5 0 54-37.23 91.23-37.23 37.23-91.23 37.23-14.3 0-27.27-2.77-12.96-2.77-25.11-10.08L234.85-171.62q-12.77 12.77-31.62 12.77-18.84 0-31.61-12.77t-12.77-31.61Z"/></svg></div>
+                <div class="content">
+                    <div class="title">BsMining Bot</div>
+                    <div class="subtitle">Mining &amp; Rewards</div>
+                </div>
+                <div class="chevron"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M428.2-329.16q-7.35 0-12.78-4.97-5.42-4.97-5.42-13.1v-265.54q0-8.13 5.48-13.1 5.47-4.97 12.77-4.97 1.83 0 12.67 5.61l126.04 126.04q4.35 4.34 6.35 8.98 2 4.64 2 10.21 0 5.57-2 10.21-2 4.64-6.35 8.98L440.92-334.76q-2.61 2.6-5.83 4.1-3.21 1.5-6.89 1.5Z"/></svg></div>
+            </a>
+        </div>
+        
+        <div style="text-align: center; margin-top: 50px; color: #888; font-size: 13px;">
+            Powered by Black Swan
+        </div>
+    </div>
+
+    <script>
+       document.addEventListener('contextmenu', e => e.preventDefault());
+    </script>
+</body>
+</html>

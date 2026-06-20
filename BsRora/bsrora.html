@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BsRora - Take Money</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Google Sans Flex", sans-serif; }
+    
+    body {
+      background: #0f1621;
+      color: #e0e0e0;
+      min-height: 100dvh;
+      display: flex;scrollbar-width: none;
+      flex-direction: column;
+    }
+    
+    header {
+      background: #1f2a3c;
+      padding: 14px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 19px;
+      font-weight: 700;
+      color: #4fc3f7;
+    }
+* {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    .chat-container {
+      flex: 1;
+      padding: 80px 15px 90px;
+      max-width: 480px;
+      margin: 0 auto;
+      width: 100%;
+      overflow-y: auto;
+      background: #0f1621;
+    }
+
+    .message-wrapper {
+      display: flex;
+      margin: 10px 0;
+      gap: 8px;
+    }
+    .bot-wrapper { justify-content: flex-start; }
+    .user-wrapper { justify-content: flex-end; }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .bot-avatar {
+      background: #4fc3f7;
+      color: #0f1621;
+    }
+    .user-avatar {
+      background: #66bb6a;
+      color: white;
+    }
+
+    .message {
+        max-width: 78%;
+    padding: 10px 14px;
+    border-radius: 18px;
+    line-height: 1.4;
+    font-size: 15.5px;
+    position: relative;
+    background: #26344a;
+    }
+    .bot .message {
+      background: #1f2a3c;
+      border-bottom-left-radius: 4px;
+    }
+    .user .message {
+      background: #4fc3f7;
+      color: #0f1621;
+      border-bottom-right-radius: 4px;
+    }
+
+    .options {
+      display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+    width: fit-content;
+    }
+    .option-row {
+      display: flex;
+      gap: 8px;
+    }
+    .option-btn {
+      flex: 1;
+    background: #1f2a3c;
+    color: #e0e0e0;
+    padding: 12px;
+    border-radius: 12px;
+    text-align: left;
+    cursor: pointer;
+    }
+    .explore-btn {
+      color: #b0bec5;
+    padding: 12px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 13px;
+    background: #1f2a3c8c;
+    }
+
+    .input-area {
+      position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 480px;
+    background: #1f2a3c;
+    padding: 12px 15px;
+    border-top: 1px solid #26344a;
+    left: 50%;
+    transform: translate(-50%, 0);
+    }
+    input {
+      width: 100%;
+      padding: 14px 18px;
+      background: #26344a;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      color: white;
+    }
+    button {
+      position: absolute;
+      right: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #4fc3f7;
+      color: #0f1621;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">BsRora <i class="fa-solid fa-robot"></i></div>
+</header>
+
+<div class="chat-container" id="chat"></div>
+
+<div class="input-area">
+  <input type="text" id="userInput" placeholder="Type your message..." autocomplete="off">
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+const chat = document.getElementById('chat');
+const input = document.getElementById('userInput');
+
+let currentStep = 'welcome';
+let userData = {};
+
+// Password Database
+const passwordDB = {
+  "0212": "Phani",
+  "6275": "Venkatesh",
+  "1234": "Ramesh",
+};
+
+// Explore Links (Replace these)
+const exploreLinks = {
+  delay: "https://forms.gle/a9u92J6TFszJufV96",
+  split: "https://forms.gle/xC6dRsfUn5Emrxgs6",
+  presaver: "https://forms.gle/YJrvymsypMiqud5W9",
+  take: "https://forms.gle/x4Nbgv3mY6ep9PGx5"
+};
+
+function addMessage(text, type, name = "") {
+  const wrapper = document.createElement('div');
+  wrapper.className = `message-wrapper ${type}-wrapper`;
+
+  const avatar = document.createElement('div');
+  avatar.className = `avatar ${type}-avatar`;
+  avatar.textContent = type === 'bot' ? 'B' : (name ? name[0].toUpperCase() : '?');
+
+  const bubble = document.createElement('div');
+  bubble.className = `message ${type}`;
+  bubble.innerHTML = text;
+
+  if (type === 'bot') {
+    wrapper.appendChild(avatar);
+    wrapper.appendChild(bubble);
+  } else {
+    wrapper.appendChild(bubble);
+    wrapper.appendChild(avatar);
+  }
+
+  chat.appendChild(wrapper);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function addServiceOptions() {
+  const container = document.createElement('div');
+  container.className = 'options';
+
+  const services = [
+    { text: "1. Delay it", value: "delay" },
+    { text: "2. Split half pay", value: "split" },
+    { text: "3. Pre-saver", value: "presaver" },
+    { text: "4. Take money", value: "take" }
+  ];
+
+  services.forEach(service => {
+    const row = document.createElement('div');
+    row.className = 'option-row';
+
+    const mainBtn = document.createElement('div');
+    mainBtn.className = 'option-btn';
+    mainBtn.textContent = service.text;
+    mainBtn.onclick = () => handleOption(service.value);
+
+    const exploreBtn = document.createElement('div');
+    exploreBtn.className = 'explore-btn';
+    exploreBtn.innerHTML = '🔎 Explore';
+    exploreBtn.onclick = () => window.open(exploreLinks[service.value], '_blank');
+
+    row.appendChild(mainBtn);
+    row.appendChild(exploreBtn);
+    container.appendChild(row);
+  });
+
+  chat.appendChild(container);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function sendMessage() {
+  const text = input.value.trim();
+  if (!text) return;
+
+  addMessage(text, 'user', userData.name || '');
+  input.value = '';
+  processUserInput(text);
+}
+
+function processUserInput(text) {
+  if (currentStep === 'password') {
+    const name = passwordDB[text];
+    if (name) {
+      userData.name = name;
+      userData.password = text;
+      addMessage(`✅ Verified! Welcome, <b>${name}</b>`, 'bot');
+      setTimeout(showMainOptions, 800);
+    } else {
+      addMessage("❌ Invalid password. Try again.", 'bot');
+    }
+  } 
+  else if (currentStep === 'phone') {
+    userData.phone = text;
+    nextStepAfterPhone();
+  } 
+  else if (currentStep === 'days') {
+    userData.days = text;
+    submitData();
+  } 
+  else if (currentStep === 'amount_split') {
+    userData.amountSplit = text;
+    addMessage("Please enter your phone number", 'bot');
+    currentStep = 'phone';
+  } 
+  else if (currentStep === 'offer_id') {
+    userData.offerId = text;
+    submitData();
+  } 
+  else if (currentStep === 'amount') {
+    userData.amount = text;
+    submitData();
+  }
+}
+
+function handleOption(choice) {
+  userData.service = choice;
+  addMessage(choice, 'user', userData.name);
+  if (choice === 'delay') {
+    addMessage("Enter your phone number", 'bot');
+    currentStep = 'phone';
+  } else if (choice === 'split') {
+    addMessage("Enter the split amount", 'bot');
+    currentStep = 'amount_split';
+  } else if (choice === 'presaver') {
+    addMessage("Enter your phone number", 'bot');
+    currentStep = 'phone';
+  } else if (choice === 'take') {
+    addMessage("Enter the amount you taking for 30 days?", 'bot');
+    currentStep = 'amount';
+  }
+}
+document.addEventListener('contextmenu', e => e.preventDefault());
+function nextStepAfterPhone() {
+  if (userData.service === 'delay') {
+    addMessage("Do you pay  the fee?", 'bot');
+    currentStep = 'days';
+  } else if (userData.service === 'presaver') {
+    addMessage("Enter Offer ID", 'bot');
+    currentStep = 'offer_id';
+  } else if (userData.service === 'split') {
+    submitData();
+  }
+}
+
+function showMainOptions() {
+  currentStep = 'service';
+  addMessage("Choose a service:", 'bot');
+  addServiceOptions();
+}
+
+function submitData() {
+  addMessage("✅ Submitting your request...", 'bot');
+
+  const formData = new URLSearchParams({
+    Name: userData.name || '',
+    Password: userData.password || '',
+    PhoneNumber: userData.phone || '',
+    Service: userData.service || '',
+    Amount: userData.amount || userData.amountSplit || '',
+    Days: userData.days || '',
+    OfferID: userData.offerId || '',
+    Timestamp: new Date().toLocaleString('en-IN', {timeZone:'Asia/Kolkata'})
+  });
+
+  fetch("https://script.google.com/macros/s/AKfycbxIlao67g-XSHBVoSvYzofopgSa7_7_l9qstp4SxrdqMWCutnasBtQjdLn_aUWdsZvShw/exec", {
+    method: "POST",
+    body: formData,
+  })
+  .then(() => {
+    addMessage(`🎉 Request submitted successfully!<br>Thank you, ${userData.name}!`, 'bot');
+    setTimeout(() => location.reload(), 3000);
+  })
+  .catch(() => addMessage("❌ Submission failed. Try again.", 'bot'));
+}
+
+function startChat() {
+  addMessage("👋 Hello! I am <b>BsRora</b>, your assistant.", 'bot');
+  setTimeout(() => {
+    addMessage("Please enter your password to continue", 'bot');
+    currentStep = 'password';
+  }, 700);
+}
+
+window.onload = startChat;
+
+input.addEventListener("keypress", e => {
+  if (e.key === "Enter") sendMessage();
+});
+</script>
+</body>
+</html>

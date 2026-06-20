@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BS&MFI - BsRora</title>
+  <link rel="icon" href="https://i.ibb.co/ZpVQQ2Kp/mfi-logo.png" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    * {
+      -webkit-tap-highlight-color: transparent;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0b141a;
+      color: #eaecef;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    ::-webkit-scrollbar { background-color: transparent; }
+
+    .chat-container {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .header {
+      background: #243542;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .header-avatar {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 12px;
+      border: 2px solid rgba(255,255,255,0.2);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .header-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    .bot-name { font-weight: 500; font-size: 17px; }
+    .bot-status { font-size: 12px; opacity: 0.85; }
+
+    .chat-box {
+      flex: 1;
+      padding: 14px 10px;
+      overflow-y: auto;
+      background: #0b141a;
+      background-image: radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 20px 20px;
+      scroll-behavior: smooth;
+    }
+
+    .message-wrapper {
+      display: flex;
+      margin: 8px 0;
+      max-width: 85%;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bot-message { align-self: flex-start; }
+    .user-message { align-self: flex-end; margin-left: auto; flex-direction: row-reverse; }
+
+    .message {
+      background: #1f2c34;
+      padding: 10px 14px;
+      border-radius: 16px;
+      font-size: 14.5px;
+      line-height: 1.5;
+      position: relative;
+      max-width: calc(100% - 50px);
+      color: #e4e6eb;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .user .message {
+      background: linear-gradient(135deg, #2b5278, #265b91);
+      color: #fff;
+    }
+
+    .msg-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 8px;
+      border: 2px solid rgba(255,255,255,0.1);
+    }
+    .msg-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    .message::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 0; height: 0;
+      border: 6px solid transparent;
+    }
+
+    .timestamp {
+      font-size: 11px;
+      color: #8696a0;
+      margin-top: 4px;
+      text-align: right;
+      opacity: 0.9;
+    }
+
+    .check { 
+      font-size: 13px; 
+      margin-left: 5px; 
+      color: #53bdeb; 
+    }
+
+    .typing {
+      background: #1f2c34;
+      color: #8696a0;
+      font-style: italic;
+      padding: 10px 14px;
+      border-radius: 16px;
+    }
+
+    .input-area {
+      padding: 10px;
+      background: #111b21;
+      display: flex;
+      align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    input {
+      flex: 1;
+      background: #1e2a30;
+      color: #e1e8ed;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 16px;
+      font-size: 15px;
+      outline: none;
+      transition: background 0.2s ease;
+    }
+    input:focus { background: #24343c; }
+
+    button {
+      background: #243542;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 44px; height: 44px;
+      margin-left: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+    button:hover {
+      background: #5b8fd1;
+      transform: scale(1.05);
+    }
+
+    .details {
+      background: rgba(82,130,184,0.1);
+      padding: 12px;
+      border-radius: 14px;
+      margin: 8px 0;
+      font-size: 13.5px;
+      border-left: 3px solid #5181b8;
+    }
+  </style>
+</head>
+<body>
+
+<div class="chat-container">
+  <div class="header">
+    <div class="header-avatar">
+      <img src="https://i.ibb.co/ZpVQQ2Kp/mfi-logo.png" alt="Bot Logo">
+    </div>
+    <div>
+      <div class="bot-name">BS&MFI - BsRora</div>
+      <div class="bot-status">online</div>
+    </div>
+  </div>
+
+  <div class="chat-box" id="chatBox"></div>
+
+  <div class="input-area">
+    <input type="text" id="userInput" placeholder="Type a message..." autocomplete="off" />
+    <button id="sendBtn">➤</button>
+  </div>
+</div>
+
+<script src="accverify.js"></script>
+<script>
+  const chatBox = document.getElementById('chatBox');
+  const userInput = document.getElementById('userInput');
+  const sendBtn = document.getElementById('sendBtn');
+  let currentUser = null;
+  let step = 'password';
+  let typingInterval;
+
+  function getTime() {
+    const now = new Date();
+    return now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+  }
+
+  function createAvatar(type) {
+    const avatar = document.createElement('div');
+    avatar.className = 'msg-avatar';
+    avatar.innerHTML = type === 'bot'
+      ? `<img src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/670cd7c3577a0eeb27ea90ca_Clyde_Clippboard%202.webp" alt="Bot">`
+      : `<img src="https://i.pravatar.cc/150?img=12" alt="User">`;
+    return avatar;
+  }
+
+  function addMessage(text, type = 'bot') {
+    const wrapper = document.createElement('div');
+    wrapper.className = `message-wrapper ${type}-message ${type}`;
+
+    const avatar = createAvatar(type);
+    const msg = document.createElement('div');
+    msg.className = 'message';
+    msg.innerHTML = text;
+
+    const time = document.createElement('div');
+    time.className = 'timestamp';
+    time.innerHTML = `${getTime()} ${type === 'user' ? '<span class="check">Check</span>' : ''}`;
+
+    msg.appendChild(time);
+    wrapper.appendChild(avatar);
+    wrapper.appendChild(msg);
+    chatBox.appendChild(wrapper);
+    chatBox.scrollTop = chatBox.scrollHeight;
+    return wrapper;
+  }
+
+  function showTyping(delay = 2000, callback) {
+    const wrapper = addMessage('<em>Analyzing</em>', 'bot');
+    const textEl = wrapper.querySelector('em');
+    let dots = 0;
+    typingInterval = setInterval(() => {
+      dots = (dots + 1) % 4;
+      textEl.textContent = 'Analyzing' + '.'.repeat(dots);
+    }, 500);
+
+    setTimeout(() => {
+      clearInterval(typingInterval);
+      chatBox.removeChild(wrapper);
+      if (callback) callback();
+    }, delay);
+  }
+
+  function getTotalLoan(user) {
+    return user.loans.reduce((sum, loan) => sum + loan.takenAmount, 0);
+  }
+
+  function startBot() {
+    addMessage("Welcome! Enter your password to continue.");
+    step = 'password';
+  }
+
+  function processInput(input) {
+    // ==== PASSWORD STEP ====
+    if (step === 'password') {
+      const user = passwords[input];
+      if (user) {
+        currentUser = { ...user, password: input };
+        showTyping(1500, () => {
+          const total = getTotalLoan(user);
+          addMessage(`
+            <div class="details">
+              <strong>Password:</strong> ${input}<br>
+              <strong>Name:</strong> ${user.name}<br>
+              <strong>Coins:</strong> ${user.coins}<br>
+              <strong>Total Loan:</strong> ₹${total.toLocaleString()}<br>
+              <strong>Tier Points:</strong> ${user.tierPoints}
+            </div>
+            <br>Is this you? <em>(Yes / No)</em>
+          `);
+          step = 'confirm';
+        });
+      } else {
+        addMessage("Invalid password. Try again.");
+      }
+    }
+
+    // ==== CONFIRMATION STEP ====
+    else if (step === 'confirm') {
+      const yes = ['yes', 'y'].includes(input.toLowerCase().trim());
+      const no = ['no', 'n'].includes(input.toLowerCase().trim());
+
+      if (yes) {
+        addMessage("Great! First send your <strong>Coins ID</strong>.");
+        step = 'details';
+      } else if (no) {
+        addMessage("Restarting...");
+        setTimeout(() => {
+          currentUser = null;
+          step = 'password';
+          startBot();
+        }, 1000);
+      } else {
+        addMessage("Reply <strong>Yes</strong> or <strong>No</strong>.");
+      }
+    }
+
+    // ==== DETAILS STEP (SEPARATE INPUTS) ====
+    else if (step === 'details') {
+      // ---- First: Coins ID ----
+      if (!currentUser.coinsId) {
+        const coinsId = input.trim();
+        if (!coinsId) {
+          addMessage("Send a valid <strong>Coins ID</strong>.");
+          return;
+        }
+        currentUser.coinsId = coinsId;
+        addMessage(`Coins ID received: <strong>${coinsId}</strong>`);
+        addMessage("Now send your <strong>Phone Number</strong>.");
+        return;
+      }
+
+      // ---- Second: Phone Number ----
+      const phone = input.trim();
+      if (!phone) {
+        addMessage("Send a valid <strong>Phone Number</strong>.");
+        return;
+      }
+
+      showTyping(1500, () => {
+        addMessage(`
+          <div class="details">
+            <strong>Coins ID:</strong> ${currentUser.coinsId}<br>
+            <strong>Phone:</strong> ${phone}
+          </div>
+          <br>
+          <strong style="color:#5b8fd1;">Continue with your transaction...</strong>
+        `);
+        userInput.disabled = true;
+        userInput.placeholder = "Verification complete..!";
+        sendBtn.disabled = true;
+        step = 'done';
+      });
+    }
+  }
+
+  function sendMessage() {
+    const input = userInput.value.trim();
+    if (!input || step === 'done') return;
+
+    addMessage(input, 'user');
+    userInput.value = '';
+    setTimeout(() => processInput(input), 500);
+  }
+
+  sendBtn.onclick = sendMessage;
+  userInput.addEventListener('keypress', e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+ document.addEventListener("DOMContentLoaded", () => {
+            const customMenu = document.querySelector(".custom-menu");
+
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                if (customMenu) {
+                    customMenu.style.display = "block";
+                    customMenu.style.top = `${event.pageY}px`;
+                    customMenu.style.left = `${event.pageX}px`;
+                }
+            });
+
+            document.addEventListener("click", () => {
+                if (customMenu) {
+                    customMenu.style.display = "none";
+                }
+            });
+        });
+  window.onload = () => setTimeout(startBot, 800);
+</script>
+
+</body>
+</html>
