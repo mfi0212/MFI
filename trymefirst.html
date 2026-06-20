@@ -5,14 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BsRora - Take Money</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;700&display=swap" rel="stylesheet">
+  
   <style>
-          
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: "Noto Sans", sans-serif;}
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Google Sans Flex", sans-serif; }
+    
     body {
       background: #000000;
       color: #e0e0e0;
@@ -319,7 +316,7 @@ function processUserInput(text) {
   } 
   else if (currentStep === 'amount_split') {
     userData.amountSplit = text;
-    addMessage("Enter your phone number", 'bot');
+    addMessage("Please enter your phone number", 'bot');
     currentStep = 'phone';
   } 
   else if (currentStep === 'offer_id') {
@@ -396,7 +393,7 @@ function submitData() {
 function startChat() {
   addMessage("👋 Hello! I am <b>BsRora</b>, your assistant.", 'bot');
   setTimeout(() => {
-    addMessage("Enter your password to continue", 'bot');
+    addMessage("Please enter your password to continue", 'bot');
     currentStep = 'password';
   }, 700);
 }
