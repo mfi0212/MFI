@@ -28,7 +28,7 @@
     justify-content: center;
     }
     .logo {
-     text-align: center;
+    text-align: center;
     position: fixed;
     width: fit-content;
     top: 20px;
@@ -41,10 +41,15 @@
     font-weight: 200;
     outline: none;
     border: 0.5px solid rgba(255, 255, 255, 0.1);
-    border-radius: 9999px;
-    padding: 10px 15px;
+    border-radius: 19px;
+    padding: 5px 15px;
     gap: 5px;
+    flex-direction: column;
     }
+    .logo span {
+    font-size: 10px;
+    color: gray;
+}
 * {
             -webkit-tap-highlight-color: transparent;
         }
@@ -71,7 +76,10 @@
     }
     .bot-wrapper { justify-content: flex-start; }
     .user-wrapper { justify-content: flex-end; }
-
+.logoicon {
+    display: flex;
+    gap: 5px;
+}
     .avatar {
       width: 35px;
     height: 35px;
@@ -182,7 +190,12 @@
 <body>
 
 <header>
-  <div class="logo">BsRora <i class="fa-solid fa-robot"></i></div>
+  <div class="logo">
+    <div class="logoicon">
+      BsRora(Bot)<i class="fa-solid fa-robot"></i>
+    </div>
+    <span>Power by BsRora</span>
+    </div>
 </header>
 
 <div class="chat-container" id="chat"></div>
