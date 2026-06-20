@@ -319,7 +319,7 @@ function processUserInput(text) {
   } 
   else if (currentStep === 'amount_split') {
     userData.amountSplit = text;
-    addMessage("Please enter your phone number", 'bot');
+    addMessage("Enter your phone number", 'bot');
     currentStep = 'phone';
   } 
   else if (currentStep === 'offer_id') {
@@ -396,7 +396,7 @@ function submitData() {
 function startChat() {
   addMessage("👋 Hello! I am <b>BsRora</b>, your assistant.", 'bot');
   setTimeout(() => {
-    addMessage("Please enter your password to continue", 'bot');
+    addMessage("Enter your password to continue", 'bot');
     currentStep = 'password';
   }, 700);
 }
