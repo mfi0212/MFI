@@ -242,10 +242,10 @@ const passwordDB = {
 
 // Explore Links (Replace these)
 const exploreLinks = {
-  delay: "https://forms.gle/a9u92J6TFszJufV96",
-  split: "https://forms.gle/xC6dRsfUn5Emrxgs6",
-  presaver: "https://forms.gle/YJrvymsypMiqud5W9",
-  take: "https://forms.gle/x4Nbgv3mY6ep9PGx5"
+  delay: "https://mfi0212.github.io/swan/offer/programs",
+  split: "https://mfi0212.github.io/swan/offer/programs",
+  presaver: "https://mfi0212.github.io/swan/offer/programs",
+  take: "https://mfi0212.github.io/MFI/applydivert"
 };
 
 function addMessage(text, type, name = "") {
@@ -384,6 +384,7 @@ function showMainOptions() {
   currentStep = 'service';
   addMessage("Choose a service:", 'bot');
   addServiceOptions();
+  addMessage("Note: Select the solution based on your specific service.", 'bot');
 }
 
 function submitData() {
