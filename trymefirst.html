@@ -22,16 +22,31 @@
      text-align: center;
     position: fixed;
     width: 100%;
-    top: 20px;
+    top: 10px;
     z-index: 100;
     display: flex;
     justify-content: center;
-    }
+    }.logosection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}.logoimg {
+    background: #ffffff42;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(30px);
+    position: relative;
+    bottom: -6px;
+    z-index: 100000;
+}
     .logo {
     text-align: center;
-    position: fixed;
     width: fit-content;
-    top: 20px;
     z-index: 100;
     display: flex;
     justify-content: center;
@@ -60,13 +75,13 @@
             user-select: none;
         }
     .chat-container {
-      flex: 1;
-      padding: 80px 15px 90px;
-      max-width: 480px;
-      margin: 0 auto;
-      width: 100%;
-      overflow-y: auto;
-      background: #000000;
+          flex: 1;
+    padding: 125px 15px 90px;
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+    overflow-y: auto;
+    background: #000000;
     }
 
     .message-wrapper {
@@ -190,12 +205,17 @@
 <body>
 
 <header>
+   <div class="logosection">
+    <div class="logoimg">
+      <img style="width: 80px;" src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6707a0ea5ddb44cae1dd6b29_clyde_pose_02%201.webp" alt="">
+    </div>
   <div class="logo">
     <div class="logoicon">
       BsRora(Bot)<i class="fa-solid fa-robot"></i>
     </div>
     <span>Power by BsRora</span>
     </div>
+   </div>
 </header>
 
 <div class="chat-container" id="chat"></div>
