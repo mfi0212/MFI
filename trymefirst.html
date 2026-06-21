@@ -96,22 +96,21 @@
     gap: 5px;
 }
     .avatar {
-      width: 35px;
-    height: 35px;
+     width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 500;
     font-size: 20px;
     flex-shrink: 0;
-    }
+}
     .bot-avatar {
-      background: #4fc3f7;
-      color: #0f1621;
+     background: #0010ff;
+    color: #0f1621;
     }
     .user-avatar {
-      background: #4fc3f7;
+      background: #00c7ff;
     color: black;
     }
 
@@ -207,7 +206,7 @@
 <header>
    <div class="logosection">
     <div class="logoimg">
-      <img style="width: 80px;" src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6707a0ea5ddb44cae1dd6b29_clyde_pose_02%201.webp" alt="">
+      <img style="width: 50px;" src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6707a0ea5ddb44cae1dd6b29_clyde_pose_02%201.webp" alt="">
     </div>
   <div class="logo">
     <div class="logoicon">
@@ -253,7 +252,7 @@ function addMessage(text, type, name = "") {
 
   const avatar = document.createElement('div');
   avatar.className = `avatar ${type}-avatar`;
-  avatar.textContent = type === 'bot' ? 'B' : (name ? name[0].toUpperCase() : '?');
+  avatar.textContent = type === 'bot' ? '🤖' : (name ? name[0].toUpperCase() : '?');
 
   const bubble = document.createElement('div');
   bubble.className = `message ${type}`;
@@ -336,7 +335,7 @@ function processUserInput(text) {
   } 
   else if (currentStep === 'amount_split') {
     userData.amountSplit = text;
-    addMessage("Please enter your phone number", 'bot');
+    addMessage("Enter your phone number", 'bot');
     currentStep = 'phone';
   } 
   else if (currentStep === 'offer_id') {
@@ -413,7 +412,7 @@ function submitData() {
 function startChat() {
   addMessage("👋 Hello! I am <b>BsRora</b>, your assistant.", 'bot');
   setTimeout(() => {
-    addMessage("Please enter your password to continue", 'bot');
+    addMessage("Enter your password to continue", 'bot');
     currentStep = 'password';
   }, 700);
 }
