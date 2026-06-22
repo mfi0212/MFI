@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || '₹';
@@ -223,15 +223,25 @@ document.getElementById("submitBtn").onclick = () => {
         currentUser = user;
         filteredLoans = [...user.loans];
 
-        document.getElementById("userName").textContent = user.name;
-        
-        const emoteImg = document.getElementById("userEmote");
-        if (user.emote) {
-            emoteImg.src = user.emote;
-            emoteImg.style.display = "block";
-        } else {
-            emoteImg.style.display = "none";
-        }
+       document.getElementById("userName").textContent = user.name;
+
+const emoteImg = document.getElementById("userEmote");
+if (user.emote) {
+    emoteImg.src = user.emote;
+    emoteImg.style.display = "block";
+} else {
+    emoteImg.style.display = "none";
+}
+
+const fragmentImg = document.getElementById("fragmentBadge");
+if (fragmentImg) {
+    if (user.fragment) {
+        fragmentImg.src = user.fragment;
+        fragmentImg.style.display = "inline-block";
+    } else {
+        fragmentImg.style.display = "none";
+    }
+}
 
         updateCoinsDisplay();
         renderLinks();
@@ -265,7 +275,7 @@ function showTopLoginMessage() {
 
     setTimeout(() => {
         hideTopLoginMessage();
-    },5000);
+    },50);
 }
 
 function hideTopLoginMessage() {
