@@ -5,19 +5,13 @@ const siteGroups = [
   { heading: "Return Management", sites: [
     { name: "BsRora", desc: "Let the bot do", url: "https://mfi0212.github.io/MFI/BsRora/bsora.main.page" },
     { name: "BS&MFI Solutions", desc: "Return date extender", url: "https://mfi0212.github.io/swan/offer/solution" },
-    { name: "Enterance Form", desc: "New members form", url: "https://mfi0212.github.io/MFI/entrysheet" },
-    { name: "Helper", desc: "I have issue form", url: "https://mfi0212.github.io/MFI/abt.hlp" },
     { name: "I'm late", desc: "Important Note", url: "https://mfi0212.github.io/MFI/imlate" },
     { name: "Lendlink-Mid", desc: "Turn your money into income", url: "https://mfi0212.github.io/swan/lndlnk-mid" },
-    // { name: "BsGames", desc: "Exclusive rewards and benefits for BS&MFI members.", url: "https://blackswan19.github.io/golden/Bs%20Games/bsgames" },
     { name: "Stars", desc: "Interest reducer.", url: "https://blackswan19.github.io/golden/FM/starspage" },
     { name: "BYSWN", desc: "Interest reducer.", url: "https://mfi0212.github.io/MFI/BYSWN" },
     { name: "BsMansion", desc: "Store offer to use after", url: "https://mfi0212.github.io/MFI/bsmansion" },
     { name: "Chloennaouii", desc: "Discover Your Discount", url: "https://mfi0212.github.io/MFI/cholennaouii.main" },
     { name: "All Services", desc: "All service from BS&MFI", url: "https://blackswan19.github.io/BS/bslends" },
-    { name: "BsLends", desc: "A service from BS&MFI", url: "https://mfi0212.github.io/MFI/rate" },
-    { name: "Myootive", desc: "A service from BS&MFI", url: "https://blackswan19.github.io/golden/FM/themain" },
-    // { name: "Turbo", desc: "Subcription plans", url: "https://mfi0212.github.io/MFI/starpre" },
     { name: "Short Term Loan", desc: "Quick amounts for 1 to 15 days.", url: "https://mfi0212.github.io/MFI/1.5.days" },
     { name: "BsNews", desc: "BS&MFI Service news", url: "https://blackswan19.github.io/golden/FM/bsnews" },
     { name: "BsPsgenerater", desc: "Password generator", url: "https://blackswan19.github.io/Educate/password" },
@@ -210,7 +204,7 @@ startBtn?.addEventListener("click", async () => {
             await new Promise(resolve => audio.addEventListener("loadedmetadata", resolve, { once: true }));
         }
 
-        stopTime = audio.duration * 0.25 || 20;
+        // stopTime = audio.duration * 0.25 || 20;
 
         progressFill.style.width = "0%";
         audioStatus.textContent = "0% • Loading...";
