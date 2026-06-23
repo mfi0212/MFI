@@ -14,11 +14,11 @@ const usersDB = {
         name: "Tony Montana",
         coins: 0,
         loans: [
-            { planDate: "09-02-2026", endDate: "03-07-2026", interest: 1340, takenAmount: 10860, takenFrom: "Lendlink", fineRate: 50 },
-            { planDate: "09-02-2026", endDate: "30-08-2026", interest: 1340, takenAmount: 6460, takenFrom: "Lendlink", fineRate: 50 },
-            { planDate: "09-02-2026", endDate: "01-08-2026", interest: 1340, takenAmount: 9460, takenFrom: "Lendlink", fineRate: 50 }
+            { planDate: "09-02-2026", endDate: "03-07-2026", interest: 2200, takenAmount: 10000, takenFrom: "Lendlink", fineRate: 50 },
+            { planDate: "09-02-2026", endDate: "30-08-2026", interest: 1300, takenAmount: 6500, takenFrom: "Lendlink", fineRate: 50 },
+            { planDate: "09-02-2026", endDate: "01-08-2026", interest: 2100, takenAmount: 9500, takenFrom: "Lendlink", fineRate: 50 }
         ],
-        fragment: "https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/dead-skull.gif",
-    defaultEmote: "https://files.donationalerts.com/uploads/images/2/tb_5000.gif"
+        fragment: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Lion.webp",
+    defaultEmote: "https://i.pinimg.com/736x/0c/f0/91/0cf091bff92a49d8072c049472edc25c.jpg"
     }
 };
