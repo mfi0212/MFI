@@ -11,14 +11,14 @@ const usersDB = {
     defaultEmote: "https://files.donationalerts.com/uploads/images/2/tb_5000.gif"
     },
     "0212": {
-        name: "Bob Marley",
-        coins: 0,
+        name: "Phanindra Yerra",
+        coins: 1200,
         loans: [
-            { planDate: "09-02-2026", endDate: "03-07-2026", interest: 1340, takenAmount: 10860, takenFrom: "Lendlink", fineRate: 50 },
-            { planDate: "09-02-2026", endDate: "30-08-2026", interest: 1340, takenAmount: 6460, takenFrom: "Lendlink", fineRate: 50 },
-            { planDate: "09-02-2026", endDate: "01-08-2026", interest: 1340, takenAmount: 9460, takenFrom: "Lendlink", fineRate: 50 }
+            { planDate: "09-02-2026", endDate: "03-07-2026", interest: 2200, takenAmount: 10000, takenFrom: "Lendlink", fineRate: 50 },
+            { planDate: "09-02-2026", endDate: "21-07-2026", interest: 1800, takenAmount: 9000, takenFrom: "Lendlink", fineRate: 50 },
+            { planDate: "09-02-2026", endDate: "30-07-2026", interest: 2500, takenAmount: 12000, takenFrom: "Lendlink", fineRate: 50 },
         ],
-        fragment: "",
-    defaultEmote: "https://files.donationalerts.com/uploads/images/2/tb_5000.gif"
+        fragment: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Activity/Crystal%20Ball.webp",
+    defaultEmote: "https://i.ibb.co/xKy358Vk/IMG-20260623-114628-188-jpg.jpg"
     }
 };
