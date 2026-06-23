@@ -11,7 +11,7 @@ const usersDB = {
     defaultEmote: "https://files.donationalerts.com/uploads/images/2/tb_5000.gif"
     },
     "0212": {
-        name: "Che",
+        name: "Bob Marley",
         coins: 0,
         loans: [
             { planDate: "09-02-2026", endDate: "03-07-2026", interest: 1340, takenAmount: 10860, takenFrom: "Lendlink", fineRate: 50 },
