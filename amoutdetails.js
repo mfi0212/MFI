@@ -12,7 +12,7 @@ const usersDB = {
     },
     "0212": {
         name: "Tony Montana",
-        coins: 0,
+        coins: 2650,
         loans: [
             { planDate: "09-02-2026", endDate: "03-07-2026", interest: 2200, takenAmount: 10000, takenFrom: "Lendlink", fineRate: 50 },
             { planDate: "09-02-2026", endDate: "30-08-2026", interest: 1300, takenAmount: 6500, takenFrom: "Lendlink", fineRate: 50 },
