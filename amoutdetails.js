@@ -8,7 +8,7 @@ const usersDB = {
             { planDate: "10-06-2026", endDate: "10-07-2026", interest: 232, takenAmount: 1138, takenFrom: "Delay & Mansion Fee", fineRate: 130 },
         ],
         fragment: "",
-    defaultEmote: "https://files.donationalerts.com/uploads/images/2/tb_5000.gif"
+    defaultEmote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif"
     },
     "0212": {
         name: "Tony Montana",
