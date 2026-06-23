@@ -12,13 +12,13 @@ const usersDB = {
     },
     "0212": {
         name: "Tony Montana",
-        coins: 2650,
+        coins: 2200,
         loans: [
             { planDate: "09-02-2026", endDate: "03-07-2026", interest: 2200, takenAmount: 10000, takenFrom: "Lendlink", fineRate: 50 },
             { planDate: "09-02-2026", endDate: "30-08-2026", interest: 1300, takenAmount: 6500, takenFrom: "Lendlink", fineRate: 50 },
             { planDate: "09-02-2026", endDate: "01-08-2026", interest: 2100, takenAmount: 9500, takenFrom: "Lendlink", fineRate: 50 }
         ],
-        fragment: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Lion.webp",
+        fragment: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Flags/Pirate%20Flag.webp",
     defaultEmote: "https://i.pinimg.com/736x/0c/f0/91/0cf091bff92a49d8072c049472edc25c.jpg"
     }
 };
