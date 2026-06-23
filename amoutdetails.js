@@ -19,6 +19,6 @@ const usersDB = {
             { planDate: "09-02-2026", endDate: "01-08-2026", interest: 2100, takenAmount: 9500, takenFrom: "Lendlink", fineRate: 50 }
         ],
         fragment: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Lion.webp",
-    defaultEmote: "https://i.pinimg.com/1200x/14/95/85/14958584dc9b723eabece4eaef8cbac7.jpg"
+    defaultEmote: "https://i.pinimg.com/736x/0c/f0/91/0cf091bff92a49d8072c049472edc25c.jpg"
     }
 };
