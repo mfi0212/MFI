@@ -7,7 +7,7 @@ const usersDB = {
             { planDate: "10-06-2026", endDate: "10-07-2026", interest: 232, takenAmount: 1138, takenFrom: "Delay & Mansion Fee", fineRate: 130 },
         ],
         fragment: "",
-    defaultEmote: "https://files.donationalerts.com/uploads/images/2/tb_5000.gif"
+    defaultEmote: "service-icons/premium_mini_logo.gif"
     },
     "0212": {
         name: "Tony Montana",
@@ -18,6 +18,6 @@ const usersDB = {
             { planDate: "09-02-2026", endDate: "01-08-2026", interest: 2100, takenAmount: 9500, takenFrom: "Lendlink", fineRate: 50 }
         ],
         fragment: "",
-    defaultEmote: "https://files.donationalerts.com/uploads/images/2/tb_5000.gif"
+    defaultEmote: "service-icons/premium_tele_logo.gif"
     }
 };
