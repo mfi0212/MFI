@@ -210,9 +210,6 @@ function showRepaymentReminderPopup(reminder) {
     document.body.appendChild(modal);
 }
 
-// ... [All your other functions remain the same: displayLoanDetails, updatePurpose, showTotalPopup, renderChart, etc.] ...
-
-// Keep all your existing functions below (I didn't remove any)
 document.getElementById("submitBtn").onclick = () => {
     const input = document.getElementById("userPassword").value.trim();
     const user = usersDB[input];
@@ -225,34 +222,33 @@ document.getElementById("submitBtn").onclick = () => {
 
         document.getElementById("userName").textContent = user.name;
 
-        // === IMPROVED EMOTE LOGIC ===
         const emoteImg = document.getElementById("userEmote");
-        const afterNameContainer = document.querySelector(".afternamecontent");
+        const afterNameContainer = document.querySelector(".afternamecontent") || 
+                                   document.getElementById("afternamecontent");
 
         if (emoteImg && afterNameContainer) {
-            let emoteSrc = user?.emote || defaultEmote;  // Use default if no user emote
+            const defaultEmoteSrc = "service-icons/unpremium_logo.gif";
+            const emoteSrc = user?.emote || defaultEmoteSrc;
 
             if (emoteSrc) {
                 emoteImg.src = emoteSrc;
                 emoteImg.style.display = "block";
-                afterNameContainer.style.display = "block"; // Show container
+                afterNameContainer.style.display = "block";
 
-                // Error fallback
                 emoteImg.onerror = () => {
                     console.warn("Failed to load emote:", emoteSrc);
-                    if (defaultEmote && emoteSrc !== defaultEmote) {
-                        emoteImg.src = defaultEmote; // Try default as fallback
+                    if (emoteSrc !== defaultEmoteSrc) {
+                        emoteImg.src = defaultEmoteSrc;   // fallback
                     } else {
-                        afterNameContainer.style.display = "none"; // Hide if default also fails
+                        afterNameContainer.style.display = "none";
                     }
                 };
             } else {
-                // No emote at all → hide completely
                 afterNameContainer.style.display = "none";
             }
         }
 
-        // Fragment badge logic (unchanged)
+        // Fragment logic (unchanged)
         const fragmentImg = document.getElementById("fragmentBadge");
         if (fragmentImg) {
             if (user.fragment) {
@@ -282,7 +278,6 @@ document.getElementById("submitBtn").onclick = () => {
         err.textContent = "Invalid password!";
     }
 };
-
 
 function showTopLoginMessage() {
     const msg = document.getElementById('topLoginMessage');
