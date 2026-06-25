@@ -224,13 +224,22 @@ document.getElementById("submitBtn").onclick = () => {
         filteredLoans = [...user.loans];
 
        document.getElementById("userName").textContent = user.name;
-
 const emoteImg = document.getElementById("userEmote");
-if (user.emote) {
-    emoteImg.src = user.emote;
-    emoteImg.style.display = "block";
+
+if (emoteImg) {
+    if (user?.emote) {                  
+        emoteImg.src = user.emote;
+        emoteImg.style.display = "block";
+        
+        emoteImg.onerror = () => {
+            emoteImg.style.display = "none";
+            console.warn("Failed to load emote:", user.emote);
+        };
+    } else {
+        emoteImg.style.display = "none";
+    }
 } else {
-    emoteImg.style.display = "none";
+    console.warn("Element #userEmote not found in DOM");
 }
 
 const fragmentImg = document.getElementById("fragmentBadge");
