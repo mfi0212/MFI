@@ -223,34 +223,45 @@ document.getElementById("submitBtn").onclick = () => {
         currentUser = user;
         filteredLoans = [...user.loans];
 
-       document.getElementById("userName").textContent = user.name;
-const emoteImg = document.getElementById("userEmote");
+        document.getElementById("userName").textContent = user.name;
 
-if (emoteImg) {
-    if (user?.emote) {                  
-        emoteImg.src = user.emote;
-        emoteImg.style.display = "block";
-        
-        emoteImg.onerror = () => {
-            emoteImg.style.display = "none";
-            console.warn("Failed to load emote:", user.emote);
-        };
-    } else {
-        emoteImg.style.display = "none";
-    }
-} else {
-    console.warn("Element #userEmote not found in DOM");
-}
+        // === IMPROVED EMOTE LOGIC ===
+        const emoteImg = document.getElementById("userEmote");
+        const afterNameContainer = document.querySelector(".afternamecontent");
 
-const fragmentImg = document.getElementById("fragmentBadge");
-if (fragmentImg) {
-    if (user.fragment) {
-        fragmentImg.src = user.fragment;
-        fragmentImg.style.display = "inline-block";
-    } else {
-        fragmentImg.style.display = "none";
-    }
-}
+        if (emoteImg && afterNameContainer) {
+            let emoteSrc = user?.emote || defaultEmote;  // Use default if no user emote
+
+            if (emoteSrc) {
+                emoteImg.src = emoteSrc;
+                emoteImg.style.display = "block";
+                afterNameContainer.style.display = "block"; // Show container
+
+                // Error fallback
+                emoteImg.onerror = () => {
+                    console.warn("Failed to load emote:", emoteSrc);
+                    if (defaultEmote && emoteSrc !== defaultEmote) {
+                        emoteImg.src = defaultEmote; // Try default as fallback
+                    } else {
+                        afterNameContainer.style.display = "none"; // Hide if default also fails
+                    }
+                };
+            } else {
+                // No emote at all → hide completely
+                afterNameContainer.style.display = "none";
+            }
+        }
+
+        // Fragment badge logic (unchanged)
+        const fragmentImg = document.getElementById("fragmentBadge");
+        if (fragmentImg) {
+            if (user.fragment) {
+                fragmentImg.src = user.fragment;
+                fragmentImg.style.display = "inline-block";
+            } else {
+                fragmentImg.style.display = "none";
+            }
+        }
 
         updateCoinsDisplay();
         renderLinks();
@@ -271,6 +282,7 @@ if (fragmentImg) {
         err.textContent = "Invalid password!";
     }
 };
+
 
 function showTopLoginMessage() {
     const msg = document.getElementById('topLoginMessage');
