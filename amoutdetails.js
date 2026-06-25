@@ -18,6 +18,6 @@ const usersDB = {
             { planDate: "09-02-2026", endDate: "01-08-2026", interest: 2100, takenAmount: 9500, takenFrom: "Lendlink", fineRate: 50 }
         ],
         fragment: "",
-    defaultEmote: "service-icons/premium_tele_logo.gif"
+    defaultEmote: ""
     }
 };
