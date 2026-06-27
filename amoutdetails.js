@@ -16,6 +16,6 @@ const usersDB = {
             { planDate: "02-05-2026", endDate: "26-07-2026", interest: 2500, takenAmount: 10000, takenFrom: "Lendlink", fineRate: 0 }
         ],
        fragment: "https://static-cdn.jtvnw.net/emoticons/v2/303179115/default/dark/3.0#e=0",
-    defaultEmote: "service-icons/premium_tele_logo.gif"
+    defaultEmote: "https://i.pinimg.com/564x/20/43/35/2043357064cfd99290b47fc40b74c9fa.jpg"
     }
 };
