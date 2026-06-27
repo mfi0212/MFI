@@ -679,7 +679,7 @@ color: #e0e0e0cf;
 }
 .wallettopsection {
     margin: -15px;
-    background: linear-gradient(180deg, #000000 50%, #18181800);
+    background: linear-gradient(180deg, #000000 10%, #181818);
     padding: 30px 10px 0 10px;
     border-radius: 40px 40px 0px 0px;
 }
@@ -694,7 +694,7 @@ color: #e0e0e0cf;
 }
 .datepopupframo {
 margin: -15px;
-    background: linear-gradient(180deg, #4c4c4c 50%,#18181800);
+    background: linear-gradient(180deg, #4c4c4c 10%, #181818 80%);
     padding: 30px 10px 40px 10px;
     border-radius: 40px 40px 0px 0px;
 }
@@ -919,9 +919,9 @@ display: none;
     transform: translate(-50%, 0%) scale(1);
     box-shadow: 0 0 0 1000px #00000085;
     backdrop-filter: blur(5px);
-    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-    /* filter: saturate(6); */
     background: #181818d9;
+    border-top: solid 1px #ffffff17;
+    border-bottom: solid 1px #ffffff17;
 }
 .totalcloseopt:active {
 	transform: scale(0.90);
@@ -2831,8 +2831,8 @@ background: #ffffff;
             </div>
         </div>
         <div class="mainbtmoptemj">
-            <button onclick="resetUserEmote()" style="background-color:#0026ff;margin-bottom: -5px;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#999999"><path d="M387.85-144.15q-96.31-29.31-157.08-110.58Q170-336 170-440q0-39.85 10.62-79.23 10.61-39.39 28.3-76.54 6.62-18.61 23.16-21.23 16.54-2.62 31.38 12.23 5.62 5.62 7.73 14.54 2.12 8.92.5 17-18.61 29.77-27.15 64.35Q236-474.31 236-440q0 80.08 46.62 143.62 46.61 63.53 121 88.69 9.84 4.69 16.61 13.81 6.77 9.11 6.77 19.96 0 18-11.69 27.23t-27.46 2.54Zm184.3 1.53q-15.77 6.7-27.46-2.15Q533-153.62 533-171.62q0-10.61 6.77-20.23 6.77-9.61 16.61-15.07 73.62-27.23 121.12-90Q725-359.69 725-440q0-100-67-172.5T492-685h-22.31l33.85 33.85q10.38 10.38 6.88 21.65-3.5 11.27-11.88 19.65-11.39 11.39-23.66 11.39-12.26 0-23.65-11.39l-76.54-76.53q-7.23-7.24-10.34-15.2-3.12-7.96-3.12-16.42t3.12-16.42q3.11-7.96 10.34-15.2l77.54-77.53q10.39-10.39 22.15-10.89 11.77-.5 24.16 11.89 12.38 12.38 13.38 22.15 1 9.77-8.38 19.15L469.69-751H492q126.08 0 212.54 91.46T791-440q0 105-61.15 185-61.16 80-157.7 112.38Z"/></svg>Default</button>
-        <button onclick="closeEmoteChooser()" style="margin-bottom: -5px;background-color: red;"><img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close Now</button>
+            <button onclick="resetUserEmote()" style="background-color:#0026ff;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#999999"><path d="M387.85-144.15q-96.31-29.31-157.08-110.58Q170-336 170-440q0-39.85 10.62-79.23 10.61-39.39 28.3-76.54 6.62-18.61 23.16-21.23 16.54-2.62 31.38 12.23 5.62 5.62 7.73 14.54 2.12 8.92.5 17-18.61 29.77-27.15 64.35Q236-474.31 236-440q0 80.08 46.62 143.62 46.61 63.53 121 88.69 9.84 4.69 16.61 13.81 6.77 9.11 6.77 19.96 0 18-11.69 27.23t-27.46 2.54Zm184.3 1.53q-15.77 6.7-27.46-2.15Q533-153.62 533-171.62q0-10.61 6.77-20.23 6.77-9.61 16.61-15.07 73.62-27.23 121.12-90Q725-359.69 725-440q0-100-67-172.5T492-685h-22.31l33.85 33.85q10.38 10.38 6.88 21.65-3.5 11.27-11.88 19.65-11.39 11.39-23.66 11.39-12.26 0-23.65-11.39l-76.54-76.53q-7.23-7.24-10.34-15.2-3.12-7.96-3.12-16.42t3.12-16.42q3.11-7.96 10.34-15.2l77.54-77.53q10.39-10.39 22.15-10.89 11.77-.5 24.16 11.89 12.38 12.38 13.38 22.15 1 9.77-8.38 19.15L469.69-751H492q126.08 0 212.54 91.46T791-440q0 105-61.15 185-61.16 80-157.7 112.38Z"/></svg>Default</button>
+        <button onclick="closeEmoteChooser()" style="background-color: red;"><img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close Now</button>
         </div>
     </div>
     <script src="account.js"></script>
