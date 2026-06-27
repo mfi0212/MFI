@@ -572,7 +572,7 @@ flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 47px;
+    height: 45px;
 }
 
     .modal-btn.cancel {
@@ -619,7 +619,7 @@ flex: 1;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #00000085;
     z-index: 1000;
     align-items: end;
     justify-content: center;
@@ -628,20 +628,23 @@ flex: 1;
 display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
     margin: 0 0 15px 0;
 }
     .popup-content {
-    padding: 30px;
+    padding: 25px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     text-align: center;
     position: relative;
     bottom: 20px;
-    background: #161616;
     width: 95%;
     max-width: 400px;
     border-radius: 45px;
     line-height: 40px;
+    backdrop-filter: blur(5px);
+    background: #181818d9;
+    border-top: solid 1px #ffffff17;
+    border-bottom: solid 1px #ffffff17;
     }
     .buttons .modal-btn {
     display: flex;
@@ -744,8 +747,10 @@ display: flex;
 
     <div class="device-popup" id="devicePopup">
     <div class="popup-content">
-      <h3 style="margin-bottom: 10px;
-    font-size: 20px;">What would you like to visit?</h3>
+      <h3 style="    margin-bottom: 10px;
+    font-size: 20px;
+    margin-top: -10px;
+">What would you like to visit?</h3>
       
       <div class="buttons">
         <button onclick="window.open('https://mfi0212.github.io/MFI/desktop.acc','_parent')" class="modal-btn proceed"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M75.77-137.54q-13.54 0-23.27-9.73t-9.73-23.27q0-13.54 9.73-23.27t23.27-9.73h808.46q13.54 0 23.27 9.73t9.73 23.27q0 13.54-9.73 23.27t-23.27 9.73H75.77Zm102.85-106q-38.35 0-64.48-26.14Q88-295.81 88-334.15v-398.77q0-38.34 26.14-64.48 26.13-26.14 64.48-26.14h602.76q38.35 0 64.48 26.14Q872-771.26 872-732.92v398.77q0 38.34-26.14 64.47-26.13 26.14-64.48 26.14H178.62Zm0-66h602.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.92v-398.77q0-9.23-7.69-16.93-7.69-7.69-16.93-7.69H178.62q-9.24 0-16.93 7.69-7.69 7.7-7.69 16.93v398.77q0 9.23 7.69 16.92 7.69 7.69 16.93 7.69Zm-24.62 0v-448 448Z"/></svg> System</button>
