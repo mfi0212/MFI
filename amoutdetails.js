@@ -11,11 +11,11 @@ const usersDB = {
     },
     "0212": {
         name: "Tony Montana",
-        coins: 0,
+        coins: 20,
         loans: [
             { planDate: "02-05-2026", endDate: "26-07-2026", interest: 2500, takenAmount: 10000, takenFrom: "Lendlink", fineRate: 0 }
         ],
-        fragment: "",
-    defaultEmote: ""
+       fragment: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Speech%20Balloon.webp",
+    defaultEmote: "service-icons/premium_tele_logo.gif"
     }
 };
