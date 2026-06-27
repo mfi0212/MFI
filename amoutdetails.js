@@ -3,8 +3,7 @@ const usersDB = {
         name: "Mahesh Muthinti",
         coins: 1120,
         loans: [
-            { planDate: "11-05-2026", endDate: "10-07-2026", interest: 4640, takenAmount: 18560, takenFrom: "Golden", fineRate: 130 },
-            { planDate: "10-06-2026", endDate: "10-07-2026", interest: 232, takenAmount: 1138, takenFrom: "Delay & Mansion Fee", fineRate: 130 },
+            { planDate: "11-05-2026", endDate: "10-07-2026", interest: 4640, takenAmount: 18560, takenFrom: "Golden", fineRate: 130 },
         ],
         fragment: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/New%20Button.webp",
     defaultEmote: "service-icons/premium_mini_logo.gif"
