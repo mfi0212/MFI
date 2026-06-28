@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> BS&MFI House | Fragment</title>
-
+<title> BS&MFI House | Quantam</title>
 <link rel="icon" href="quantam.fragment.logo.png" />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -28,9 +27,13 @@ body {
 
 header {
   text-align: center;
-  padding: 30px 10px 10px;
-  font-family: 'Playfair Display', serif;
-  font-size: 30px;
+    padding: 30px 0 10px 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    position: sticky;
+    top: 0;
+    background: #ffffff00;
+    backdrop-filter: blur(20px);
 }
 span {
     font-size: 10px;
@@ -39,16 +42,10 @@ span {
 }
 
 .container {
-    display: grid;
+   display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    padding: 15px;
-    background: #00000021;
-    border-radius: 40px;
-    height: 70vh;
-    overflow: scroll;
-    margin: 15px;
-    scrollbar-width: none;
-    gap: 15px;
+    gap: 25px;
+    padding: 20px;
 }
 
 .card {
@@ -57,6 +54,7 @@ span {
     padding: 10px;
     cursor: pointer;
     transition: all 0.2s;
+    background: #0000000f;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,7 +62,7 @@ span {
 }
 
 .card.selected {
-   background: linear-gradient(180deg, #ffb1006b, #ffffff57);
+   background: linear-gradient(180deg, #ffb1006b, #eeeeee);
     transform: scale(1.05);
     color: white;
 }
@@ -203,10 +201,10 @@ button:hover {
 <body>
 
 <div class="helperbtm" style="position: fixed; top: 0; right: 0; background: #111111; color: white; padding: 5px 9px; z-index: 1001; border-radius: 0 0 0 13px;">
-  <a onclick="window.open('https://forms.gle/wGpmYDUA6sXwZkzN6','_parent')">Buy Now</a>
+  <a onclick="window.open('')">Help</a>
 </div>
 
-<header>Fragment
+<header>Quantam
   <br><span>BS&MFI House</span>
 </header>
 <!-- <div class="soldoutmsg" style="display: flex;
@@ -251,54 +249,30 @@ button:hover {
     <button class="buy" onclick="buySelected()">Buy Now</button>
   </div>
 </div>
-</div>
 
+</div>
 <script>
 const formLink = "https://forms.gle/nwhjN54BzxjXqzo48";
 
 const gifts = [
-  {id: 'FGMT/IN#2/Q1I1', price: 10000, priceses: 5000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Activity/Crystal%20Ball.webp'},
-  {id: 'FGMT/IN#2/Q1I2', price: 3000, priceses: 1500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Travel%20and%20Places/Rocket.webp'},
-  {id: 'FGMT/IN#2/Q1I3', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Aquarius.webp'},
-  {id: 'FGMT/IN#2/Q1I4', price: 1500, priceses: 750, gif: 'http://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Aries.webp'},
-  {id: 'FGMT/IN#2/Q1I5', price: 3500, priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Black%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I6', price: 3500, priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Blue%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I7', price: 4000, priceses: 2000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Broken%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I8', price: 3500, priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Brown%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I9', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Cancer.webp'},
-  {id: 'FGMT/IN#2/Q1I10', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Capricorn.webp'},
-  {id: 'FGMT/IN#2/Q1I11', price: 7000, priceses: 3500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Cool%20Button.webp'},
-  {id: 'FGMT/IN#2/Q1I12', price: 3000, priceses: 1500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Dizzy.webp'},
-  {id: 'FGMT/IN#2/Q1I13', price:  1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Gemini.webp'},
-  {id: 'FGMT/IN#2/Q1I14', price: 3500, priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Green%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I15', price: 6000, priceses: 3000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Heart%20Exclamation.webp'},
-  {id: 'FGMT/IN#2/Q1I16', price: 8000, priceses: 4000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Heart%20On%20Fire.webp'},
-  {id: 'FGMT/IN#2/Q1I17', price: 2200, priceses: 1100, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Heart%20With%20Ribbon.webp'},
-  {id: 'FGMT/IN#2/Q1I18', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Leo.webp'},
-  {id: 'FGMT/IN#2/Q1I19', price: 1500, priceses: 750,gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Libra.webp'},
-  {id: 'FGMT/IN#2/Q1I20', price: 3000, priceses: 1500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Mending%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I21', price: 2000, priceses: 1000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/New%20Button.webp'},
-  {id: 'FGMT/IN#2/Q1I22', price: 7000, priceses: 3500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/No%20One%20Under%20Eighteen.webp'},
-  {id: 'FGMT/IN#2/Q1I23', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Ophiuchus.webp'},
-  {id: 'FGMT/IN#2/Q1I24', price: 3500, priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Orange%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I25', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Pisces.webp'},
-  {id: 'FGMT/IN#2/Q1I26', price: 3500, priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Purple%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I27', price: 3500, priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Red%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I28', price: 3000, priceses: 1500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Revolving%20Hearts.webp'},
-  {id: 'FGMT/IN#2/Q1I29', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Sagittarius.webp'},
-  {id: 'FGMT/IN#2/Q1I30', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Scorpio.webp'},
-  {id: 'FGMT/IN#2/Q1I31', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Speech%20Balloon.webp'},
-  {id: 'FGMT/IN#2/Q1I32', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Taurus.webp'},
-  {id: 'FGMT/IN#2/Q1I33', price: 1200, priceses: 600, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Thought%20Balloon.webp'},
-  {id: 'FGMT/IN#2/Q1I34', price: 1200, priceses: 600, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Top%20Arrow.webp'},
-  {id: 'FGMT/IN#2/Q1I35', price: 4000, priceses: 2000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Two%20Hearts.webp'},
-  {id: 'FGMT/IN#2/Q1I36', price: 8000, priceses: 4000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Up%20Button.webp'},
-  {id: 'FGMT/IN#2/Q1I37', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Virgo.webp'},
-  {id: 'FGMT/IN#2/Q1I38', price: 2200, priceses: 1100, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/White%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I39', price: 3500, priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Yellow%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I40', price: 2100, priceses: 1050, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Zzz.webp'},
-];
-document.addEventListener('contextmenu', e => e.preventDefault());
+  {id: 'SWU#F/Q@GIF01', priceses: 100, gif: 'https://data.chpic.su/stickers/e/Easteregggifts_by_EmojiRu_Bot/Easteregggifts_by_EmojiRu_Bot_001.webp'},
+  {id: 'SWU#F/Q@GIF02', priceses: 100, gif: 'https://data.chpic.su/stickers/e/Easteregggifts_by_EmojiRu_Bot/Easteregggifts_by_EmojiRu_Bot_005.webp'},
+  {id: 'SWU#F/Q@GIF03', priceses: 100, gif: 'https://data.chpic.su/stickers/e/Easteregggifts_by_EmojiRu_Bot/Easteregggifts_by_EmojiRu_Bot_007.webp'},
+  {id: 'SWU#F/Q@GIF04', priceses: 100, gif: 'https://data.chpic.su/stickers/e/Easteregggifts_by_EmojiRu_Bot/Easteregggifts_by_EmojiRu_Bot_011.webp'},
+  {id: 'SWU#F/Q@GIF05', priceses: 100, gif: 'https://data.chpic.su/stickers/e/Easteregggifts_by_EmojiRu_Bot/Easteregggifts_by_EmojiRu_Bot_012.webp'},
+  {id: 'SWU#F/Q@GIF06', priceses: 100, gif: 'https://data.chpic.su/stickers/e/Easteregggifts_by_EmojiRu_Bot/Easteregggifts_by_EmojiRu_Bot_013.webp'},
+  {id: 'SWU#F/Q@GIF07', priceses: 100, gif: 'https://data.chpic.su/stickers/e/Easteregggifts_by_EmojiRu_Bot/Easteregggifts_by_EmojiRu_Bot_014.webp'},
+  {id: 'SWU#F/Q@GIF08', priceses: 100, gif: 'https://data.chpic.su/stickers/e/Easteregggifts_by_EmojiRu_Bot/Easteregggifts_by_EmojiRu_Bot_022.webp'},
+  {id: 'SWU#F/Q@GIF09', priceses: 100, gif: 'https://data.chpic.su/stickers/e/Easteregggifts_by_EmojiRu_Bot/Easteregggifts_by_EmojiRu_Bot_025.webp'},
+  {id: 'SWU#F/Q@GIF10', priceses: 100, gif: 'https://data.chpic.su/stickers/e/Easteregggifts_by_EmojiRu_Bot/Easteregggifts_by_EmojiRu_Bot_026.webp'},
+  {id: 'SWU#F/Q@GIF11', priceses: 100, gif: 'https://data.chpic.su/stickers/e/Easteregggifts_by_EmojiRu_Bot/Easteregggifts_by_EmojiRu_Bot_028.webp'},
+  {id: 'SWU#F/Q@GIF12', priceses: 100, gif: 'https://data.chpic.su/stickers/e/Easteregggifts_by_EmojiRu_Bot/Easteregggifts_by_EmojiRu_Bot_030.webp'},
+  {id: 'SWU#F/Q@GIF13', priceses: 100, gif: 'https://data.chpic.su/stickers/e/Easteregggifts_by_EmojiRu_Bot/Easteregggifts_by_EmojiRu_Bot_033.webp'},
+  {id: 'SWU#F/Q@GIF14', priceses: 100, gif: 'https://data.chpic.su/stickers/e/Easteregggifts_by_EmojiRu_Bot/Easteregggifts_by_EmojiRu_Bot_034.webp'},
+  {id: 'SWU#F/Q@GIF15', priceses: 100, gif: 'https://data.chpic.su/stickers/e/Easteregggifts_by_EmojiRu_Bot/Easteregggifts_by_EmojiRu_Bot_035.webp'},
+
+ ];
+// document.addEventListener('contextmenu', e => e.preventDefault());
 let selectedGifts = [];
 let currentCurrency = 'swans'; // default
 
@@ -314,10 +288,7 @@ function renderGifts() {
     div.innerHTML = `
       <img src="${gift.gif}">
       <h3>${gift.id}</h3>
-      <div class="price">
-        <img style="width: 25px;" src="https://em-content.zobj.net/source/telegram/358/four-leaf-clover_1f340.webp" alt="">
-        ${gift.price}
-      </div>
+      
       <div class="price">
         <img style="width: 25px;" src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Glowing%20Star.webp" alt="">
         ${gift.priceses}
