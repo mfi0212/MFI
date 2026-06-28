@@ -1,76 +1,139 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title> BS&MFI House | Fragment</title> <link rel="icon" href="quantam.fragment.logo.png" /> <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"> <style> body { margin: 0; font-family: 'Inter', sans-serif; background: #ffffff; color: #1a1a1a; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } header { text-align: center; padding: 30px 10px 10px; font-family: 'Playfair Display', serif; font-size: 30px; } span { font-size: 10px; font-family: 'Inter', sans-serif; display: block; } .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); padding: 15px; background: #00000021; border-radius: 40px; height: 70vh; overflow: scroll; margin: 15px; scrollbar-width: none; gap: 15px; } .card { text-align: center; border-radius: 30px; padding: 10px; cursor: pointer; transition: all 0.2s; display: flex; justify-content: center; align-items: center; flex-direction: column; } .card.selected { background: linear-gradient(180deg, #ffb1006b, #ffffff57); transform: scale(1.05); color: white; } .card img { width: 70%; } .card h3 { font-weight: 500; font-size: 15px; text-transform: uppercase; background: #0000001f; padding: 5px; border-radius: 9999px; width: fit-content; } .price { color: #333; font-size: 14px; font-weight: 600; justify-content: left; align-items: center; gap: 8px; display: flex; } /* Bottom Bar */ .bottom-bar { position: sticky; bottom: 20px; background: linear-gradient(0deg, #ffb1006b, #d3d3d3); color: white; padding: 15px; display: none; flex-direction: column; gap: 12px; z-index: 1000; backdrop-filter: blur(10px); margin: 15px; border-radius: 40px; } .bottom-bar.show { display: flex; text-align: center; } .selected-info { font-size: 14px; font-weight: 100; letter-spacing: 0.4px; line-height: 20px; } #selectedIds { background: black; padding: 7px 10px; border-radius: 999px; overflow: scroll; white-space: nowrap; font-size: 12px; scrollbar-width: none; } .currency-selector { display: flex; background: rgba(0,0,0,0.2); border-radius: 999px; padding: 4px; width: fit-content; margin: 0 auto; } .currency-btn { padding: 7px; border-radius: 999px; border: none; font-weight: 500; cursor: pointer; transition: 0.3s; background: transparent; font-size: 10px; } .currency-btn.active { background: white; color: black; } .total { color: black; display: flex; justify-content: space-around; align-items: center; } .currency { display: flex; justify-content: center; align-items: baseline; flex-direction: column; } .buttons { display: flex; gap: 10px; } button { flex: 1; padding: 12px; border-radius: 9999px; border: none; cursor: pointer; font-size: 17px; font-weight: 500; transition: 0.2s; letter-spacing: 0.4px; } button.copy { background: #ffffff; color: #000; } button.buy { background: #000; color: #fff; } button:hover { opacity: 0.9; } </style> </head> <body> <div class="helperbtm" style="position: fixed; top: 0; right: 0; background: #111111; color: white; padding: 5px 9px; z-index: 1001; border-radius: 0 0 0 13px;"> <a onclick="window.open('https://forms.gle/wGpmYDUA6sXwZkzN6','_parent')">Buy Now</a> </div> <header>Fragment <br><span>BS&MFI House</span> </header> <!-- <div class="soldoutmsg" style="display: flex; justify-content: center; align-items: center; position: fixed; top: 50%; transform: translate(-50%, -50%); left: 50%; font-size: 20px; font-weight: 800;"> Sold Out </div> --> <!-- <div class="allitems" style=" filter: blur(10px);"> --> <div class="allitems" > <div class="container" id="giftContainer"></div> <!-- Bottom Bar --> <div class="bottom-bar" id="bottomBar"> <div class="selected-info"> <span id="selectedIds">Selected item id</span> </div> <div class="currency-selector"> <button class="currency-btn active" id="btnSwans" onclick="setCurrency('swans')">Swans</button> <button class="currency-btn" id="btnStars" onclick="setCurrency('stars')">Stars</button> </div> <div class="total"> <div class="label"> Total </div> <div class="currency"> <span id="totalAmount">0</span> <span id="currencyLabel">Swans</span> </div> </div> <div class="buttons"> <button class="copy" onclick="copySelection()">Copy</button> <button class="buy" onclick="buySelected()">Buy Now</button> </div> </div> </div>
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title> BS&MFI House | Fragment</title> <link rel="icon" href="quantam.fragment.logo.png" /> <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"> <style> body { margin: 0; font-family: 'Inter', sans-serif; background: #ffffff; color: #1a1a1a; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } header { text-align: center; padding: 30px 10px 10px; font-family: 'Playfair Display', serif; font-size: 30px; } span { font-size: 10px; font-family: 'Inter', sans-serif; display: block; } .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); padding: 15px; background: #00000021; border-radius: 40px; height: 70vh; overflow: scroll; margin: 15px; scrollbar-width: none; gap: 15px; } .card { text-align: center; border-radius: 30px; padding: 10px; cursor: pointer; transition: all 0.2s; display: flex; justify-content: center; align-items: center; flex-direction: column; } .card.selected { background: linear-gradient(180deg, #ffb1006b, #ffffff57); transform: scale(1.05); color: white; } .card img { width: 70%; } .card h3 { font-weight: 500; font-size: 15px; text-transform: uppercase; background: #0000001f; padding: 5px; border-radius: 9999px; width: fit-content; } .price { color: #333; font-size: 14px; font-weight: 600; justify-content: left; align-items: center; gap: 8px; display: flex; } /* Bottom Bar */ .bottom-bar { position: sticky; bottom: 20px; background: linear-gradient(0deg, #ffb1006b, #d3d3d3); color: white; padding: 15px; display: none; flex-direction: column; gap: 12px; z-index: 1000; backdrop-filter: blur(10px); margin: 15px; border-radius: 40px; } .bottom-bar.show { display: flex; text-align: center; } .selected-info { font-size: 14px; font-weight: 100; letter-spacing: 0.4px; line-height: 20px; } #selectedIds { background: black; padding: 7px 10px; border-radius: 999px; overflow: scroll; white-space: nowrap; font-size: 12px; scrollbar-width: none; } .total { color: black; display: flex; justify-content: space-around; align-items: center; } .currency { display: flex; justify-content: center; align-items: baseline; flex-direction: column; } .buttons { display: flex; gap: 10px; } button { flex: 1; padding: 12px; border-radius: 9999px; border: none; cursor: pointer; font-size: 17px; font-weight: 500; transition: 0.2s; letter-spacing: 0.4px; } button.copy { background: #ffffff; color: #000; } button.buy { background: #000; color: #fff; } button:hover { opacity: 0.9; } /* Filter Button */ .filter-btn { position: fixed; top: 5px; right: 5px; background: #111111; color: white; padding: 5px; z-index: 1001; border-radius: 50%; cursor: pointer; user-select: none; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; } .filter-menu { position: fixed; top: 50px; right: 10px; background: #00000094; color: white; border-radius: 30px; padding: 10px; z-index: 1002; display: none; flex-direction: column; backdrop-filter: blur(10px); text-align: center; } .filter-menu.show { display: flex; } .filter-option { padding: 10px; cursor: pointer; white-space: nowrap; border-radius: 9999px; } .filter-option:hover { background: #0000006b; color: white; font-weight: 400; } .filter-option.active { background: #000000; color: white; font-weight: 400; } </style> </head> <body> <div class="filter-btn" id="filterBtn"> <svg style="width: 20px;height: 20px;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512.051 512.051" style="enable-background:new 0 0 512.051 512.051;" xml:space="preserve" width="300" height="300" xmlns:svgjs="http://svgjs.dev/svgjs"><g width="100%" height="100%" transform="matrix(1,0,0,1,0,0)"><g> <path d="M21.359,101.359h58.368c11.52,42.386,55.219,67.408,97.605,55.888c27.223-7.399,48.489-28.665,55.888-55.888h257.472 c11.782,0,21.333-9.551,21.333-21.333s-9.551-21.333-21.333-21.333H233.22C221.7,16.306,178.001-8.716,135.615,2.804 c-27.223,7.399-48.489,28.665-55.888,55.888H21.359c-11.782,0-21.333,9.551-21.333,21.333S9.577,101.359,21.359,101.359z" fill="#ffffff" fill-opacity="1" data-original-color="#000000ff" stroke="none" stroke-opacity="1"/> <path d="M490.692,234.692h-58.368c-11.497-42.38-55.172-67.416-97.552-55.92c-27.245,7.391-48.529,28.674-55.92,55.92H21.359 c-11.782,0-21.333,9.551-21.333,21.333c0,11.782,9.551,21.333,21.333,21.333h257.493c11.497,42.38,55.172,67.416,97.552,55.92 c27.245-7.391,48.529-28.674,55.92-55.92h58.368c11.782,0,21.333-9.551,21.333-21.333 C512.025,244.243,502.474,234.692,490.692,234.692z" fill="#ffffff" fill-opacity="1" data-original-color="#000000ff" stroke="none" stroke-opacity="1"/> <path d="M490.692,410.692H233.22c-11.52-42.386-55.219-67.408-97.605-55.888c-27.223,7.399-48.489,28.665-55.888,55.888H21.359 c-11.782,0-21.333,9.551-21.333,21.333c0,11.782,9.551,21.333,21.333,21.333h58.368c11.52,42.386,55.219,67.408,97.605,55.888 c27.223-7.399,48.489-28.665,55.888-55.888h257.472c11.782,0,21.333-9.551,21.333-21.333 C512.025,420.243,502.474,410.692,490.692,410.692z" fill="#ffffff" fill-opacity="1" data-original-color="#000000ff" stroke="none" stroke-opacity="1"/> </g></g></svg> <span id="currentSortText" ></span> </div> <div class="filter-menu" id="filterMenu"> <div class="filter-option active" data-sort="default" onclick="setSortMode('default')">Default Order</div> <div class="filter-option" data-sort="high-low" onclick="setSortMode('high-low')">Price: High to Low</div> <div class="filter-option" data-sort="low-high" onclick="setSortMode('low-high')">Price: Low to High</div> </div> <header>Fragment <br><span>BS&MFI House</span> </header> <div class="allitems"> <div class="container" id="giftContainer"></div> <!-- Bottom Bar --> <div class="bottom-bar" id="bottomBar"> <div class="selected-info"> <span id="selectedIds">Selected item id</span> </div> <div class="total"> <div class="label"> Total </div> <div class="currency"> <span id="totalAmount">0</span> <span id="currencyLabel">Stars</span> </div> </div> <div class="buttons"> <button class="copy" onclick="copySelection()">Copy</button> <button class="buy" onclick="buySelected()">Buy Now</button> </div> </div> </div>
 <script>
 const formLink = "https://forms.gle/nwhjN54BzxjXqzo48";
 
 const gifts = [
-  {id: 'FGMT/IN#2/Q1I1', price: 10000, priceses: 5000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Activity/Crystal%20Ball.webp'},
-  {id: 'FGMT/IN#2/Q1I2', price: 3000, priceses: 1500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Travel%20and%20Places/Rocket.webp'},
-  {id: 'FGMT/IN#2/Q1I3', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Aquarius.webp'},
-  {id: 'FGMT/IN#2/Q1I4', price: 1500, priceses: 750, gif: 'http://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Aries.webp'},
-  {id: 'FGMT/IN#2/Q1I5', price: 3500, priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Black%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I6', price: 3500, priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Blue%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I7', price: 4000, priceses: 2000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Broken%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I8', price: 3500, priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Brown%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I9', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Cancer.webp'},
-  {id: 'FGMT/IN#2/Q1I10', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Capricorn.webp'},
-  {id: 'FGMT/IN#2/Q1I11', price: 7000, priceses: 3500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Cool%20Button.webp'},
-  {id: 'FGMT/IN#2/Q1I12', price: 3000, priceses: 1500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Dizzy.webp'},
-  {id: 'FGMT/IN#2/Q1I13', price:  1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Gemini.webp'},
-  {id: 'FGMT/IN#2/Q1I14', price: 3500, priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Green%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I15', price: 6000, priceses: 3000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Heart%20Exclamation.webp'},
-  {id: 'FGMT/IN#2/Q1I16', price: 8000, priceses: 4000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Heart%20On%20Fire.webp'},
-  {id: 'FGMT/IN#2/Q1I17', price: 2200, priceses: 1100, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Heart%20With%20Ribbon.webp'},
-  {id: 'FGMT/IN#2/Q1I18', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Leo.webp'},
-  {id: 'FGMT/IN#2/Q1I19', price: 1500, priceses: 750,gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Libra.webp'},
-  {id: 'FGMT/IN#2/Q1I20', price: 3000, priceses: 1500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Mending%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I21', price: 2000, priceses: 1000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/New%20Button.webp'},
-  {id: 'FGMT/IN#2/Q1I22', price: 7000, priceses: 3500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/No%20One%20Under%20Eighteen.webp'},
-  {id: 'FGMT/IN#2/Q1I23', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Ophiuchus.webp'},
-  {id: 'FGMT/IN#2/Q1I24', price: 3500, priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Orange%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I25', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Pisces.webp'},
-  {id: 'FGMT/IN#2/Q1I26', price: 3500, priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Purple%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I27', price: 3500, priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Red%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I28', price: 3000, priceses: 1500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Revolving%20Hearts.webp'},
-  {id: 'FGMT/IN#2/Q1I29', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Sagittarius.webp'},
-  {id: 'FGMT/IN#2/Q1I30', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Scorpio.webp'},
-  {id: 'FGMT/IN#2/Q1I31', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Speech%20Balloon.webp'},
-  {id: 'FGMT/IN#2/Q1I32', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Taurus.webp'},
-  {id: 'FGMT/IN#2/Q1I33', price: 1200, priceses: 600, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Thought%20Balloon.webp'},
-  {id: 'FGMT/IN#2/Q1I34', price: 1200, priceses: 600, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Top%20Arrow.webp'},
-  {id: 'FGMT/IN#2/Q1I35', price: 4000, priceses: 2000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Two%20Hearts.webp'},
-  {id: 'FGMT/IN#2/Q1I36', price: 8000, priceses: 4000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Up%20Button.webp'},
-  {id: 'FGMT/IN#2/Q1I37', price: 1500, priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Virgo.webp'},
-  {id: 'FGMT/IN#2/Q1I38', price: 2200, priceses: 1100, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/White%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I39', price: 3500, priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Yellow%20Heart.webp'},
-  {id: 'FGMT/IN#2/Q1I40', price: 2100, priceses: 1050, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Zzz.webp'},
+  {id: 'FGMT/IN#2/Q1I41',  priceses: 750, gif: 'http://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Activity/1st%20Place%20Medal.webp'},
+  {id: 'FGMT/IN#2/Q1I42', priceses: 650, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Activity/2nd%20Place%20Medal.webp'},
+  {id: 'FGMT/IN#2/Q1I43', priceses: 550, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Activity/3rd%20Place%20Medal.webp'},
+  {id: 'FGMT/IN#2/Q1I44', priceses: 700, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Activity/Mirror%20Ball.webp'},
+  {id: 'FGMT/IN#2/Q1I45', priceses: 1100, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Activity/Party%20Popper.webp'},
+  {id: 'FGMT/IN#2/Q1I46', priceses: 1500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Activity/Trophy.webp'},
+  {id: 'FGMT/IN#2/Q1I47', priceses: 2000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Activity/Video%20Game.webp'},
+  {id: 'FGMT/IN#2/Q1I48', priceses: 1600, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Bison.webp'},
+  {id: 'FGMT/IN#2/Q1I49', priceses: 4500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Blossom.webp'},
+  {id: 'FGMT/IN#2/Q1I50', priceses: 3500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Bouquet.webp'},
+  {id: 'FGMT/IN#2/Q1I51', priceses: 4000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Butterfly.webp'},
+  {id: 'FGMT/IN#2/Q1I52', priceses: 3600, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Cactus.webp'},
+  {id: 'FGMT/IN#2/Q1I53', priceses: 2800, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Cloud%20With%20Rain.webp'},
+  {id: 'FGMT/IN#2/Q1I54', priceses: 3200, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Cherry%20Blossom.webp'},
+  {id: 'FGMT/IN#2/Q1I55', priceses: 4000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Cloud%20With%20Lightning%20And%20Rain.webp'},
+  {id: 'FGMT/IN#2/Q1I56', priceses: 3800, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Cloud%20With%20Lightning.webp'},
+  {id: 'FGMT/IN#2/Q1I57', priceses: 2500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Cloud%20With%20Snow.webp'},
+  {id: 'FGMT/IN#2/Q1I58', priceses: 4000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Cow.webp'},
+  {id: 'FGMT/IN#2/Q1I59', priceses: 3900, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Deciduous%20Tree.webp'},
+  {id: 'FGMT/IN#2/Q1I60', priceses: 3300, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Deer.webp'},
+  {id: 'FGMT/IN#2/Q1I61', priceses: 4100, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Dog%20Face.webp'},
+  {id: 'FGMT/IN#2/Q1I62', priceses: 4500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Dove.webp'},
+  {id: 'FGMT/IN#2/Q1I63', priceses: 4100, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Duck.webp'},
+  {id: 'FGMT/IN#2/Q1I64', priceses: 2000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Evergreen%20Tree.webp'},
+  {id: 'FGMT/IN#2/Q1I65', priceses: 5500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Fire.webp'},
+  {id: 'FGMT/IN#2/Q1I66', priceses: 5100, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Flamingo.webp'},
+  {id: 'FGMT/IN#2/Q1I67', priceses: 4800, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Giraffe.webp'},
+  {id: 'FGMT/IN#2/Q1I68', priceses: 4200, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Gorilla.webp'},
+  {id: 'FGMT/IN#2/Q1I69', priceses: 4000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Hamster.webp'},
+  {id: 'FGMT/IN#2/Q1I70', priceses: 4200, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Hibiscus.webp'},
+  {id: 'FGMT/IN#2/Q1I71', priceses: 3000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Honeybee.webp'},
+  {id: 'FGMT/IN#2/Q1I72', priceses: 2800, gif: 'https://github.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/blob/main/Animals%20and%20Nature/Horse%20Face.webp?raw=true'},
+  {id: 'FGMT/IN#2/Q1I73', priceses: 2600, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Horse.webp'},
+  {id: 'FGMT/IN#2/Q1I74', priceses: 3200, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Palm%20Tree.webp'},
+  {id: 'FGMT/IN#2/Q1I75', priceses: 4000, gif: 'https://github.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/blob/main/Animals%20and%20Nature/Parrot.webp?raw=true'},
+  {id: 'FGMT/IN#2/Q1I76', priceses: 2800, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Rose.webp'},
+  {id: 'FGMT/IN#2/Q1I77', priceses: 6000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Rosette.webp'},
+  {id: 'FGMT/IN#2/Q1I78', priceses: 4000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Shrimp.webp'},
+  {id: 'FGMT/IN#2/Q1I2',  priceses: 1500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Travel%20and%20Places/Rocket.webp'},
+  {id: 'FGMT/IN#2/Q1I3',   priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Aquarius.webp'},
+  {id: 'FGMT/IN#2/Q1I4',   priceses: 750, gif: 'http://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Aries.webp'},
+  {id: 'FGMT/IN#2/Q1I5',   priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Black%20Heart.webp'},
+  {id: 'FGMT/IN#2/Q1I6',   priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Blue%20Heart.webp'},
+  {id: 'FGMT/IN#2/Q1I7',   priceses: 2000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Broken%20Heart.webp'},
+  {id: 'FGMT/IN#2/Q1I8',   priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Brown%20Heart.webp'},
+  {id: 'FGMT/IN#2/Q1I9',   priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Cancer.webp'},
+  {id: 'FGMT/IN#2/Q1I10',    priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Capricorn.webp'},
+  {id: 'FGMT/IN#2/Q1I11',  priceses: 3500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Cool%20Button.webp'},
+  {id: 'FGMT/IN#2/Q1I12',   priceses: 1500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Dizzy.webp'},
+  {id: 'FGMT/IN#2/Q1I13', priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Gemini.webp'},
+  {id: 'FGMT/IN#2/Q1I14',    priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Green%20Heart.webp'},
+  {id: 'FGMT/IN#2/Q1I15',   priceses: 3000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Heart%20Exclamation.webp'},
+  {id: 'FGMT/IN#2/Q1I17',  priceses: 1100, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Heart%20With%20Ribbon.webp'},
+  {id: 'FGMT/IN#2/Q1I18',  priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Leo.webp'},
+  {id: 'FGMT/IN#2/Q1I19', priceses: 750,gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Libra.webp'},
+  {id: 'FGMT/IN#2/Q1I20', priceses: 1500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Mending%20Heart.webp'},
+  {id: 'FGMT/IN#2/Q1I21', priceses: 1000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/New%20Button.webp'},
+  {id: 'FGMT/IN#2/Q1I22',   priceses: 3500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/No%20One%20Under%20Eighteen.webp'},
+  {id: 'FGMT/IN#2/Q1I23',   priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Ophiuchus.webp'},
+  {id: 'FGMT/IN#2/Q1I24',  priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Orange%20Heart.webp'},
+  {id: 'FGMT/IN#2/Q1I25',  priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Pisces.webp'},
+  {id: 'FGMT/IN#2/Q1I26',  priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Purple%20Heart.webp'},
+  {id: 'FGMT/IN#2/Q1I27',  priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Red%20Heart.webp'},
+  {id: 'FGMT/IN#2/Q1I28',  priceses: 1500, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Revolving%20Hearts.webp'},
+  {id: 'FGMT/IN#2/Q1I29',  priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Sagittarius.webp'},
+  {id: 'FGMT/IN#2/Q1I30',  priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Scorpio.webp'},
+  {id: 'FGMT/IN#2/Q1I31',  priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Speech%20Balloon.webp'},
+  {id: 'FGMT/IN#2/Q1I32',  priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Taurus.webp'},
+  {id: 'FGMT/IN#2/Q1I33', priceses: 600, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Thought%20Balloon.webp'},
+  {id: 'FGMT/IN#2/Q1I34',  priceses: 600, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Top%20Arrow.webp'},
+  {id: 'FGMT/IN#2/Q1I35',  priceses: 2000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Two%20Hearts.webp'},
+  {id: 'FGMT/IN#2/Q1I36', priceses: 4000, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Up%20Button.webp'},
+  {id: 'FGMT/IN#2/Q1I37',  priceses: 750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Virgo.webp'},
+  {id: 'FGMT/IN#2/Q1I38',  priceses: 1100, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/White%20Heart.webp'},
+  {id: 'FGMT/IN#2/Q1I39', priceses: 1750, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Yellow%20Heart.webp'},
+  {id: 'FGMT/IN#2/Q1I40', priceses: 1050, gif: 'https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/Zzz.webp'},
+  // {id: 'FGMT/IN#2/Q1I79', priceses: 0, gif: ''},
+  // {id: 'FGMT/IN#2/Q1I80', priceses: 0, gif: ''},
+  // {id: 'FGMT/IN#2/Q1I81', priceses: 0, gif: ''},
+  // {id: 'FGMT/IN#2/Q1I82', priceses: 0, gif: ''},
+  // {id: 'FGMT/IN#2/Q1I83', priceses: 0, gif: ''},
+  // {id: 'FGMT/IN#2/Q1I84', priceses: 0, gif: ''},
+  // {id: 'FGMT/IN#2/Q1I85', priceses: 0, gif: ''},
+  // {id: 'FGMT/IN#2/Q1I86', priceses: 0, gif: ''},
+  // {id: 'FGMT/IN#2/Q1I87', priceses: 0, gif: ''},
+  // {id: 'FGMT/IN#2/Q1I88', priceses: 0, gif: ''},
+  // {id: 'FGMT/IN#2/Q1I89', priceses: 0, gif: ''},
+  // {id: 'FGMT/IN#2/Q1I90', priceses: 0, gif: ''},
 ];
+
 document.addEventListener('contextmenu', e => e.preventDefault());
+
 let selectedGifts = [];
-let currentCurrency = 'swans'; // default
+let sortMode = 'default';
+
+function getSortedGifts() {
+  let sorted = [...gifts];
+  
+  if (sortMode === 'high-low') {
+    sorted.sort((a, b) => b.priceses - a.priceses);
+  } else if (sortMode === 'low-high') {
+    sorted.sort((a, b) => a.priceses - b.priceses);
+  }
+  // default: original order
+  
+  return sorted;
+}
 
 function renderGifts() {
   const container = document.getElementById('giftContainer');
   container.innerHTML = '';
 
-  gifts.forEach((gift, index) => {
+  const sortedGifts = getSortedGifts();
+
+  sortedGifts.forEach((gift) => {
+    const originalIndex = gifts.findIndex(g => g.id === gift.id);
+    
     const div = document.createElement('div');
     div.className = 'card';
-    div.dataset.index = index;
+    div.dataset.index = originalIndex;
 
     div.innerHTML = `
       <img src="${gift.gif}">
       <h3>${gift.id}</h3>
-      <div class="price">
-        <img style="width: 25px;" src="https://em-content.zobj.net/source/telegram/358/four-leaf-clover_1f340.webp" alt="">
-        ${gift.price}
-      </div>
       <div class="price">
         <img style="width: 25px;" src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Animals%20and%20Nature/Glowing%20Star.webp" alt="">
         ${gift.priceses}
       </div>
     `;
 
-    div.addEventListener('click', () => toggleSelect(gift, index, div));
+    div.addEventListener('click', () => toggleSelect(gift, originalIndex, div));
     container.appendChild(div);
   });
 }
@@ -89,17 +152,6 @@ function toggleSelect(gift, index, cardElement) {
   updateBottomBar();
 }
 
-function setCurrency(currency) {
-  currentCurrency = currency;
-  
-  document.getElementById('btnSwans').classList.toggle('active', currency === 'swans');
-  document.getElementById('btnStars').classList.toggle('active', currency === 'stars');
-  
-  document.getElementById('currencyLabel').textContent = currency === 'swans' ? 'Swans' : 'Stars';
-  
-  updateBottomBar();
-}
-
 function updateBottomBar() {
   const bottomBar = document.getElementById('bottomBar');
   const selectedIdsEl = document.getElementById('selectedIds');
@@ -111,13 +163,7 @@ function updateBottomBar() {
     const ids = selectedGifts.map(g => g.id).join(', ');
     selectedIdsEl.textContent = ids;
 
-    let total = 0;
-    if (currentCurrency === 'swans') {
-      total = selectedGifts.reduce((sum, gift) => sum + gift.price, 0);
-    } else {
-      total = selectedGifts.reduce((sum, gift) => sum + gift.priceses, 0);
-    }
-
+    const total = selectedGifts.reduce((sum, gift) => sum + gift.priceses, 0);
     totalAmountEl.textContent = total;
   } else {
     bottomBar.classList.remove('show');
@@ -139,19 +185,51 @@ function copySelection() {
 function buySelected() {
   if (selectedGifts.length === 0) return;
   
-  let total = 0;
-  if (currentCurrency === 'swans') {
-    total = selectedGifts.reduce((sum, g) => sum + g.price, 0);
-  } else {
-    total = selectedGifts.reduce((sum, g) => sum + g.priceses, 0);
-  }
+  const total = selectedGifts.reduce((sum, g) => sum + g.priceses, 0);
 
-  const currencyName = currentCurrency === 'swans' ? 'Swans' : 'Stars';
-
-  alert(`You are buying ${selectedGifts.length} gift(s):\n\n${selectedGifts.map(g => g.id).join(', ')}\nTotal: ${total} ${currencyName}\n\nRedirecting to form...`);
+  alert(`You are buying ${selectedGifts.length} gift(s):\n\n${selectedGifts.map(g => g.id).join(', ')}\nTotal: ${total} Stars\n\nRedirecting to form...`);
   
   window.open(formLink);
 }
+
+// Filter functions
+function toggleFilterMenu() {
+  const menu = document.getElementById('filterMenu');
+  menu.classList.toggle('show');
+}
+
+function setSortMode(mode) {
+  sortMode = mode;
+  
+  document.querySelectorAll('.filter-option').forEach(opt => {
+    opt.classList.toggle('active', opt.dataset.sort === mode);
+  });
+  
+  const sortText = document.getElementById('currentSortText');
+  if (mode === 'high-low') {
+    sortText.textContent = '↑↓';
+  } else if (mode === 'low-high') {
+    sortText.textContent = '↓↑';
+  } else {
+    sortText.textContent = 'Sort';
+  }
+  
+  document.getElementById('filterMenu').classList.remove('show');
+  
+  renderGifts();
+}
+
+// Event listeners
+document.getElementById('filterBtn').addEventListener('click', toggleFilterMenu);
+
+document.addEventListener('click', function(e) {
+  const filterBtn = document.getElementById('filterBtn');
+  const filterMenu = document.getElementById('filterMenu');
+  
+  if (!filterBtn.contains(e.target) && !filterMenu.contains(e.target)) {
+    filterMenu.classList.remove('show');
+  }
+});
 
 renderGifts();
 </script>
