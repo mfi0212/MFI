@@ -1,11 +1,11 @@
 const usersDB = {
    "Mahesh888*": {
         name: "Mahesh Muthinti",
-        coins: 1120,
+        coins: 0,
         loans: [
             { planDate: "11-05-2026", endDate: "10-07-2026", interest: 4640, takenAmount: 18560, takenFrom: "Golden", fineRate: 130 },
         ],
-        fragment: "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Symbols/New%20Button.webp",
+        fragment: "",
     defaultEmote: "service-icons/premium_mini_logo.gif"
     },
     "0212": {
