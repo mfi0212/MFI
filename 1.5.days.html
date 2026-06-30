@@ -4,21 +4,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const users = {
       "0212": {
-        name: "Demo User",
-        avatar: "DU",
+        name: "Phani",
+        avatar: "P",
         maxDays: 15,
-        dailyRatePercent: 1,
+        dailyRatePercent: 25,
         loans: [{
-          takenAmount: 0,
-          interest: 0,
-          planDate: "-",
-          endDate: "-",
-          takenFrom: "-",
-          fineRate: 50
+          takenAmount: 500,
+          interest: 125,
+          planDate: "30-05-2026",
+          endDate: "30-06-2026",
+          takenFrom: "personal loan",
+          fineRate: 5,
         }]
       }
     };
-document.addEventListener('contextmenu', e => e.preventDefault());
+
     const passwordInput   = document.getElementById("searchPassword");
     const interestSection = document.getElementById("interestSection");
     const loanSection     = document.getElementById("loanSection");
@@ -26,16 +26,41 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     const calcAmount      = document.getElementById("calcAmount");
     const calcDays        = document.getElementById("calcDays");
     const interestResult  = document.getElementById("interestResult");
-    const applyBtn        = document.getElementById("applyBtn");
     const limitMsg        = document.getElementById("limitMsg");
 
     let currentUser = null;
 
-    // Enforce maximum 1000
+    // Helper: Convert DD-MM-YYYY to Date object
+    function parseDate(dateStr) {
+      const [day, month, year] = dateStr.split('-').map(Number);
+      return new Date(year, month - 1, day);
+    }
+
+    // Calculate overdue days and penalty
+    function calculatePenalty(loan) {
+      const today = new Date(2026, 5, 30); // Current date: 30 June 2026
+      const endDate = parseDate(loan.endDate);
+      
+      // Reset time to compare only dates
+      today.setHours(0, 0, 0, 0);
+      endDate.setHours(0, 0, 0, 0);
+
+      const timeDiff = today - endDate;
+      const overdueDays = Math.floor(timeDiff / (1000 * 3600 * 24));
+
+      if (overdueDays <= 0) return { overdueDays: 0, penalty: 0 };
+
+      // Penalty = fineRate % per day on (Principal + Interest)
+      const totalDue = loan.takenAmount + loan.interest;
+      const dailyFine = totalDue * (loan.fineRate / 100);
+      const penalty = Math.round(dailyFine * overdueDays);
+
+      return { overdueDays, penalty };
+    }
+
     function enforceAmountLimit() {
       let value = parseFloat(calcAmount.value);
       if (isNaN(value)) return;
-      
       if (value > 1000) {
         calcAmount.value = 1000;
         limitMsg.style.display = "block";
@@ -46,7 +71,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 
     function updateInterest() {
       if (!currentUser) return;
-
       let amt = parseFloat(calcAmount.value) || 0;
       let days = parseInt(calcDays.value) || 1;
 
@@ -71,6 +95,68 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       `;
     }
 
+    // Render User + Loans with Penalty
+    function renderUserDetails(user) {
+      let html = `
+        <div class="card">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:15px;">
+            <div style="background:#00c4b4; width:50px; height:50px; border-radius:17px; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:bold; color:white;">${user.avatar}</div>
+            <div>
+              <b style="font-size:18px;">${user.name}</b><br>
+              <small style="color:#888;">Daily Rate: ${user.dailyRatePercent}%</small>
+            </div>
+          </div>
+      `;
+
+      if (user.loans && user.loans.length > 0) {
+        html += `<div style="margin:15px 0 8px;"><strong>Your Loans:</strong></div>`;
+
+        user.loans.forEach((loan, index) => {
+          const totalRepay = loan.takenAmount + loan.interest;
+          const penaltyInfo = calculatePenalty(loan);
+          const grandTotal = totalRepay + penaltyInfo.penalty;
+
+          let statusHTML = '';
+          if (penaltyInfo.overdueDays > 0) {
+            statusHTML = `
+              <div style="background:#ff444420; color:#ff6666; padding:8px; border-radius:10px; margin-top:8px; font-size:13px;">
+                <strong>Overdue by ${penaltyInfo.overdueDays} days!</strong><br>
+                Overdue: ₹${penaltyInfo.penalty} (${loan.fineRate}% per day)
+              </div>
+            `;
+          } else {
+            statusHTML = `<small style="color:#00ff9d;">Return date: ${loan.endDate}</small>`;
+          }
+
+          html += `
+            <div class="card" style="background:#1f1f1f; margin-top:10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <strong>₹${loan.takenAmount}</strong><br>
+                  <small style="color:#00ff9d;">${loan.takenFrom}</small>
+                </div>
+                <div style="text-align:right;">
+                  <strong style="color:#00ff9d;">₹${grandTotal}</strong><br>
+                  ${statusHTML}
+                </div>
+              </div>
+              
+              <hr style="border:none; border-top:1px solid #333; margin:10px 0;">
+              <small>
+                Interest: ₹${loan.interest} 
+                ${penaltyInfo.penalty > 0 ? `| <span style="color:#ff6666;">Overdue: ₹${penaltyInfo.penalty}</span>` : ''}
+              </small>
+            </div>
+          `;
+        });
+      } else {
+        html += `<p style="color:#888; text-align:center; padding:20px 0;">No active loans found</p>`;
+      }
+
+      html += `</div>`;
+      loanList.innerHTML = html;
+    }
+
     function unlockUser(pass) {
       const user = users[pass];
       if (!user) {
@@ -83,28 +169,19 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       interestSection.style.display = "block";
       loanSection.style.display = "block";
 
-      // Populate loans
-      loanList.innerHTML = `
-        <div class="card">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <div style="background:#00c4b4; width:50px; height:50px; border-radius:17px; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:bold; color:white;">${user.avatar}</div>
-            <div><b>${user.name}</b></div>
-          </div>
-        </div>
-      `;
+      renderUserDetails(user);
 
-      // Real-time updates
+      // Real-time calculator
       calcAmount.addEventListener("input", () => {
         enforceAmountLimit();
         updateInterest();
       });
 
       calcDays.addEventListener("input", updateInterest);
-
       updateInterest();
     }
 
-    // Password input
+    // Password handler
     passwordInput.addEventListener("input", () => {
       const val = passwordInput.value.trim();
       if (val.length === 4) {
@@ -115,25 +192,29 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       }
     });
 
-    applyBtn.addEventListener("click", () => {
-      if (!currentUser) return;
-      
-      let amt = parseFloat(calcAmount.value);
-      let days = parseInt(calcDays.value);
+    // Apply Button
+    document.querySelectorAll('.apply-btn').forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (!currentUser) return;
+        
+        let amt = parseFloat(calcAmount.value);
+        let days = parseInt(calcDays.value) || 1;
 
-      if (!amt || amt < 100) {
-        alert("Minimum amount is ₹100");
-        return;
-      }
-      if (amt > 1000) {
-        alert("Maximum amount allowed is ₹1000");
-        calcAmount.value = 1000;
-        return;
-      }
+        if (!amt || amt < 100) {
+          alert("Minimum amount is ₹100");
+          return;
+        }
+        if (amt > 1000) {
+          alert("Maximum amount allowed is ₹1000");
+          calcAmount.value = 1000;
+          return;
+        }
 
-      const interest = Math.round(amt * (currentUser.dailyRatePercent/100) * days);
+        const interest = Math.round(amt * (currentUser.dailyRatePercent/100) * days);
+        const total = amt + interest;
 
-      alert(`✅ Application Submitted!\n\nCode: ${passwordInput.value}\nAmount: ₹${amt}\nDays: ${days}\nInterest: ₹${interest}\nTotal: ₹${amt + interest}`);
+        alert(`✅ Application Submitted!\n\nCode: ${passwordInput.value}\nAmount: ₹${amt}\nDays: ${days}\nInterest: ₹${interest}\nTotal: ₹${total}`);
+      });
     });
 });
 </script>
