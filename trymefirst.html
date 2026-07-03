@@ -99,8 +99,8 @@ body:has(input[value="dark"]:checked) {
     width: 350px;
     object-fit: cover;
     height: 100px;
-    background: #00004b;
-    border-radius: 30px;
+    /* background: #00004b;
+    border-radius: 30px; */
         }
         a {
     text-decoration: none;
@@ -605,7 +605,7 @@ flex: 1;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 30px;
+    gap: 0px;
 }
 
 .device-popup {
@@ -679,24 +679,24 @@ display: flex;
         BsLends
        </div>
         Services
-       </div>
-       
-        <div class="botmmainopt">
-            <img src="loadinglogo.png" alt="Loading Doughnut" class="loading-logo">
-            <div class="loadintroopt">
-                <button class="mute-btn" id="muteToggle" title="Mute / Unmute">
-                <svg xmlns="http://www.w3.org/2000/svg" id="Filled" viewBox="0 0 24 24" width="512" height="512"><path d="M20.8,4.293A1,1,0,0,0,19.39,5.707a8.911,8.911,0,0,1,0,12.586A1,1,0,1,0,20.8,19.707,10.911,10.911,0,0,0,20.8,4.293Z"/><path d="M18.093,7.293a1,1,0,1,0-1.414,1.414,4.664,4.664,0,0,1,0,6.586,1,1,0,1,0,1.414,1.414A6.665,6.665,0,0,0,18.093,7.293Z"/><path d="M13.819.207A12.055,12.055,0,0,0,6.268,5H5a5.006,5.006,0,0,0-5,5v4a5.006,5.006,0,0,0,5,5H6.269a12.051,12.051,0,0,0,7.55,4.793A1,1,0,0,0,15,22.81V1.19A1,1,0,0,0,13.819.207Z"/></svg>
-                </button>
-                <div class="audio-controls" id="audioControls">
-                <div class="audio-progress-container">
-                    <div class="audio-progress-bar">
-                        <div id="audioProgressFill" class="audio-progress-fill"></div>
-                    </div>
-                    <img class="audioloadgif" src="service-icons/loading_screen_load_icon.gif" alt="">
-                    <div class="audio-status" id="audioStatus">Waiting for you to start...</div>
+      </div>
+      
+      <div class="botmmainopt">
+          <button class="start-btn" id="startAudioBtn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M296-270q-42 35-87.5 32T129-269q-34-28-46.5-73.5T99-436l75-124q-25-22-39.5-53T120-680q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47q-9 0-18-1t-17-3l-77 130q-11 18-7 35.5t17 28.5q13 11 31 12.5t35-12.5l420-361q42-35 88-31.5t80 31.5q34 28 46 73.5T861-524l-75 124q25 22 39.5 53t14.5 67q0 66-47 113t-113 47q-66 0-113-47t-47-113q0-66 47-113t113-47q9 0 17.5 1t16.5 3l78-130q11-18 7-35.5T782-630q-13-11-31-12.5T716-630L296-270Zm40.5-353.5Q360-647 360-680t-23.5-56.5Q313-760 280-760t-56.5 23.5Q200-713 200-680t23.5 56.5Q247-600 280-600t56.5-23.5Zm400 400Q760-247 760-280t-23.5-56.5Q713-360 680-360t-56.5 23.5Q600-313 600-280t23.5 56.5Q647-200 680-200t56.5-23.5ZM280-680Zm400 400Z"/></svg> Connect</button>
+          <div class="loadintroopt">
+            <button class="mute-btn" id="muteToggle" title="Mute / Unmute">
+              <svg xmlns="http://www.w3.org/2000/svg" id="Filled" viewBox="0 0 24 24" width="512" height="512"><path d="M20.8,4.293A1,1,0,0,0,19.39,5.707a8.911,8.911,0,0,1,0,12.586A1,1,0,1,0,20.8,19.707,10.911,10.911,0,0,0,20.8,4.293Z"/><path d="M18.093,7.293a1,1,0,1,0-1.414,1.414,4.664,4.664,0,0,1,0,6.586,1,1,0,1,0,1.414,1.414A6.665,6.665,0,0,0,18.093,7.293Z"/><path d="M13.819.207A12.055,12.055,0,0,0,6.268,5H5a5.006,5.006,0,0,0-5,5v4a5.006,5.006,0,0,0,5,5H6.269a12.051,12.051,0,0,0,7.55,4.793A1,1,0,0,0,15,22.81V1.19A1,1,0,0,0,13.819.207Z"/></svg>
+            </button>
+            <div class="audio-controls" id="audioControls">
+              <div class="audio-progress-container">
+                <div class="audio-progress-bar">
+                  <div id="audioProgressFill" class="audio-progress-fill"></div>
                 </div>
+                <img class="audioloadgif" src="service-icons/loading_screen_load_icon.gif" alt="">
+                <div class="audio-status" id="audioStatus">Waiting for you to start...</div>
+              </div>
             </div>
-            <button class="start-btn" id="startAudioBtn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M296-270q-42 35-87.5 32T129-269q-34-28-46.5-73.5T99-436l75-124q-25-22-39.5-53T120-680q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47q-9 0-18-1t-17-3l-77 130q-11 18-7 35.5t17 28.5q13 11 31 12.5t35-12.5l420-361q42-35 88-31.5t80 31.5q34 28 46 73.5T861-524l-75 124q25 22 39.5 53t14.5 67q0 66-47 113t-113 47q-66 0-113-47t-47-113q0-66 47-113t113-47q9 0 17.5 1t16.5 3l78-130q11-18 7-35.5T782-630q-13-11-31-12.5T716-630L296-270Zm40.5-353.5Q360-647 360-680t-23.5-56.5Q313-760 280-760t-56.5 23.5Q200-713 200-680t23.5 56.5Q247-600 280-600t56.5-23.5Zm400 400Q760-247 760-280t-23.5-56.5Q713-360 680-360t-56.5 23.5Q600-313 600-280t23.5 56.5Q647-200 680-200t56.5-23.5ZM280-680Zm400 400Z"/></svg> Connect</button>
+            <img src="loadinglogo.png" alt="Loading Doughnut" class="loading-logo">
             <a style="display: flex;" onclick="alert('Welcome to BsLends Service from BS&MFI Services')"><img style="width: 50px;
                         height: 50px;
                         border-radius: 62px;
