@@ -1,1 +1,1273 @@
-no test...
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BS&MFI Solution</title>
+    <link rel="icon" href="mfi.logo.png" />
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+ <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Six+Caps&family=Stack+Sans+Headline:wght@200..700&family=Stalemate&display=swap" rel="stylesheet">
+<style>
+
+* {
+	-webkit-tap-highlight-color: transparent;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: "Google Sans Flex", sans-serif;
+	scrollbar-width: none;
+        letter-spacing: 0.3px;
+}
+
+    :root {
+      --bg: #000000;
+      --header: #121212;
+      --card: #ffffff0f;
+      --text: #ffffff;
+      --text2: #888888;
+      --accent: #0000ff;
+    }
+    .light {
+      --bg: #f8f9fa;
+      --header: #ffffff;
+      --card: #ffffff;
+      --text: #111111;
+      --text2: #666666;
+      --accent: #0000ff;
+    }* {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+        }
+body {
+  --c-glass: #bbbbbc;
+  --c-light: #fff;
+  --c-dark: #000;
+  
+  --c-content: rgb(255, 255, 255);
+  --c-action: #0052f5;
+  
+  --glass-reflex-dark: 1;
+  --glass-reflex-light: 1;
+  
+  --saturation: 150%;
+  
+  color: var(--c-content);
+}
+
+body:has(input[value="dark"]:checked) {
+  --c-glass: #bbbbbc;
+  --c-light: #fff;
+  --c-dark: #000;
+  
+  --c-content: #e1e1e1;
+  --c-action: #03d5ff;
+  
+  --c-bg: #1b1b1d;
+}
+
+body:has(input[value="dim"]:checked) {
+  --c-light: #99deff;
+  --c-dark: #20001b;
+  --c-glass: hsl(335 250% 74% / 1);
+  
+  --c-content: #d5dbe2;
+  --c-action: #ff48a9;
+  
+  --c-bg: #152433;
+
+}
+    * { margin:0; padding:0; box-sizing:border-box; scrollbar-width: none;}
+    
+    body {
+      background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+    
+    header {
+position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 20px 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background: linear-gradient(180deg, #000000c9 50%, #00000000);
+    }
+    header img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    filter: saturate(4);
+    background: #181818d9;
+    backdrop-filter: blur(2px);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+ }
+        header img:hover{
+              transform: scale(1.03); 
+        }
+        header img:active{
+              transform: scale(0.90); 
+        } 
+    button.btn-primary {
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 47px;
+    border-radius: 9999px;
+    font-size: 18px;
+    font-weight: 300;
+    }
+
+        button.btn-primary:active{
+              transform: scale(0.90); 
+        } 
+        a{
+            text-decoration: none;
+        }
+    button.back-btn{
+border: none;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    filter: saturate(4);
+    background: #181818d9;
+    backdrop-filter: blur(3px);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+}
+        header button:hover{
+              transform: scale(1.03); 
+        }
+        header button:active{
+              transform: scale(0.90); 
+        } 
+    .theme-btn {
+      transition: all 0.3s;
+    }
+button.btn-close {
+background: red;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    font-weight: 400;
+    border-radius: 100px;
+    margin: -30px 0 15px 0;
+    font-size: 18px;
+    filter: saturate(2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    height: 47px;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border: none;
+  }div#modal-content svg {
+   width: 26px;
+    height: 26px;
+    fill: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+        button.btn-close:hover{
+              transform: scale(1.03); 
+        }
+        button.btn-close:active{
+              transform: scale(0.90); 
+        } 
+
+    main {
+      flex: 1;
+    overflow-y: auto;
+    background: #00000012;
+    padding: 40px 5px 155px 5px;
+    max-width: 650px;
+    width: 100%;
+    }
+button.theme-btn {
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    box-shadow: none;
+    border: none;
+}
+        button.theme-btn:hover{
+              transform: scale(1.03); 
+        }
+        button.theme-btn:active{
+              transform: scale(0.90); 
+        } 
+        .bottomtop {
+    position: fixed;
+    bottom: 95px;
+    z-index: 40;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+button.theme-btn span{
+font-weight: 500;
+    font-size: 15px;
+    padding: 8px 5px 8px 10px;
+    width: max-content;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: -4px;
+    color: #fff;
+    backdrop-filter: blur(3px);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    filter: saturate(6);
+    background: #181818d9;
+}
+h6 svg{
+  width: 20px;
+    height: 20px;
+}
+    .second1icon{
+border-radius: 100px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 100%;
+    border: none;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    filter: saturate(6);
+    background: #181818d9;
+    backdrop-filter: blur(3px);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+}
+.nav-container svg {
+width: 25px;
+    height: 25px;
+    fill: white;
+}
+.nav {
+width: 100%;
+    padding: 20px;
+    max-width: 650px;
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background: linear-gradient(0deg, #000000c9 50%, #00000000);
+}
+   .nav-container {
+   display: flex;
+    font-size: 10px;
+    font-weight: 500;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+.mficolblogo{
+   width: 60px;
+    height: 60px;
+    filter: saturate(2);
+    background: linear-gradient(45deg, #0021ffbd 34%, #00d0ffcc);
+    position: relative;
+    z-index: 100000;
+    border: none;
+    padding: 5px;
+    border-radius: 100px;
+    backdrop-filter: blur(2px);
+}
+.tab span{
+  font-size: 11px;
+  font-weight: 300;
+}
+    .first4icons {
+border: none;
+    border-radius: 999px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+    gap: 3px;
+    color: #fff;
+    height: 60px;
+    filter: saturate(6);
+    background: #181818d9;
+    backdrop-filter: blur(3px);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+}
+
+footer {
+text-align: center;
+    font-size: 10px;
+    position: fixed;
+    bottom: 15px;
+    width: 100%;
+    left: 0;
+    color: #ffffff8f;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+    .tab {
+   display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 5px 15px;
+    justify-content: center;
+    width: 100%;    gap: 3px;
+    border-radius: 10000px;
+    transition: all 0.3s ease;
+    }h2#modal-title {
+    font-weight: 400;
+    font-size: 20px;
+    }
+        .tab:active{
+              transform: scale(0.90); 
+        } 
+
+    .tab-active {
+      background: #0020ff;
+    filter: none;opacity: 100%;
+    border-radius: 1000px;
+    filter: saturate(2);
+    }
+    .tab i {
+      font-size: 1.75rem;
+    }
+    img.closesymbol {
+        width: 35px;
+    height: 35px;
+    margin: -5px;
+}
+    .apply-btn {
+background-color: #0026e6ad;
+    color: white;
+    font-weight: 300;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    border: none;
+    max-width: 400px;
+    height: 45px;
+    filter: saturate(2);
+    backdrop-filter: blur(3px);
+    transition: all 0.3s ease;
+    }
+        .apply-btn:hover{
+              transform: scale(1.03); 
+        }
+        .apply-btn:active{
+              transform: scale(0.90); 
+        } 
+   .maiinoptionsatapply {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}.exclamation {
+color: rgb(255 255 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: saturate(2);
+    backdrop-filter: blur(3px);
+    padding: 10px;
+    height: 45px;
+    border-radius: 100px;
+    background: rgb(255 0 0 / 53%);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-size: 15px;
+    border: none;
+    font-weight: 300;
+}
+span svg{
+      width: 18px;
+}
+.exclamation:hover{
+              transform: scale(1.03); 
+        }
+        .exclamation:active{
+              transform: scale(0.90); 
+        } 
+    .card {
+      background-color: var(--card);
+      border-radius: 16px;
+    }
+    
+    .text-secondary {
+      color: var(--text2);
+    }
+    
+    .accent {
+      color: var(--accent);
+    }
+    
+    .modal {
+      position: fixed;
+    inset: 0;
+    background-color: #00000085;
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 9999;
+    }
+    .modal.show {
+      display: flex;
+    }
+    
+    .modal-content {
+    width: 95%;
+    max-width: 600px;
+    overflow: hidden;
+    animation: slideUp 0.3s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+    margin-bottom: 20px;
+    border-radius: 40px;
+    backdrop-filter: blur(5px);
+    background: #181818d9;
+    border-top: solid 1px #ffffff17;
+    border-bottom: solid 1px #ffffff17;
+}
+    
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .modal-header {
+          padding: 20px;
+    border-bottom: 5px solid #ffffff1f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffc200;
+    font-size: 15px;
+    flex-direction: row-reverse;
+    }
+    
+    .modal-body {
+      padding: 1.5rem;text-align: center;
+    }
+    
+    .section-title {
+font-size: 45px;
+    font-weight: 600;
+    letter-spacing: -3px;
+    text-align: center;
+    color: #0000ff;
+    margin: 0;
+    }
+    .how-it-works:first-child{
+      margin-top: 20px;
+    }
+    .how-it-works,  .faq-container {
+         margin: 20px 0 0 0;
+    padding: 1.5rem;
+    border-radius: 35px;
+    background: #121212;
+  }
+    .faq-item {
+      border-bottom: 1px solid #33333394;
+      padding: 1.25rem 0;
+      transition: all 0.3s;
+    }
+    .faq-item:first-child {
+      border-bottom: none;
+      padding: 0 0 20px 0;
+    }
+    .faq-item:last-child {
+      border-bottom: none;
+      padding: 20px 0 0 0;
+    }
+    .faq-item h3 {
+         color: var(--text);
+    font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 15px;
+    }li {
+   line-height: 25px;
+    font-size: 14px;
+        font-weight: 300;
+    text-align: left;
+}
+    .faq-item p {
+color: var(--text2);
+    line-height: 25px;
+    font-size: 14px;
+        font-weight: 300;
+    text-align: left;
+    }
+.amount-box {
+box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    display: flex;
+    align-items: center;
+    background: #0f0f0f;
+    padding: 15px 25px;
+    transition: all 0.3s ease;
+    border-radius: 116px;
+    color: #fff;
+    }
+        .amount-box:active{
+              transform: scale(0.90); 
+        } 
+    .amount-input {
+      flex: 1;
+      background: #00000063;
+      border: none;
+      outline: none;
+      font-size: 2.75rem;
+      font-weight: 300;
+      color: var(--text);
+    }
+    
+    .calc-result {
+background-color: #00000063;
+    border-radius: 37px;
+    padding: 10px 15px;
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    }
+    
+    .btn-primary {
+     width: 100%;
+    background: #ffffff1c;
+    color: white;
+    font-weight: 300;
+    padding: 10px;
+    border-radius: 34px;
+    font-size: 18px;
+    border: none;    height: 47px;
+    cursor: pointer;
+    }
+    .popup_close {
+display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    margin: -5px;
+    background: rgb(35 35 35);
+    transition: all 0.3s ease;
+    filter: saturate(4);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+  }
+         .popup_close:hover{
+              transform: scale(1.03); 
+        }
+         .popup_close:active{
+              transform: scale(0.90); 
+        } 
+    
+    .btn-secondary {
+background: #0000ff;
+    cursor: pointer;
+    margin-bottom: 20px;
+    height: 47px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 100px;
+    font-weight: 300;
+  }
+        .btn-secondary:active{
+              transform: scale(0.90); 
+        } 
+    .btn-secondary svg{
+    fill: black;
+    width: 20px;
+    height: 20px;
+    }   
+     .btn-secondary a {
+   text-decoration: none;
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+    
+    .btn-secondary a:hover>.btn-secondary:hover {
+      background-color: #0000ff;
+      color: white;
+        }
+
+.popup-menu {
+position: fixed;
+    bottom: 95px;
+    right: 30px;
+    display: none;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 30px;
+    z-index: 10000;
+    color: #fff;
+    flex-direction: column;
+    background: rgb(0 0 0 / 41%);
+    backdrop-filter: blur(15px);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+}
+div#menu-btn img {
+    width: 40px;
+    height: 40px;
+    margin: -11px 0;
+}
+
+.popup-menu .tab {
+ display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-direction: row;
+    justify-content: center;
+    padding: 8px;
+}
+div#popupMenu svg {
+display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    fill: white;
+}
+div#popupMenu span {
+    font-size: 15px;
+}
+  </style>
+</head>
+<body>
+
+ <header>
+    <button onclick="goBack()" class="back-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m371.77-481 307.61 307.62q11.85 11.84 12.24 30.15.38 18.31-11.47 30.15-11.84 11.85-30.15 11.85t-30.15-11.85l-303.7-304.46q-13.69-13.69-19.65-30.11-5.96-16.43-5.96-33.35t5.96-33.35q5.96-16.42 19.65-30.11l303.7-303.69q11.84-11.85 29.77-12.23 17.92-.39 29.76 11.46 11.85 11.84 11.85 30.15t-11.85 30.15L371.77-481Z"/></svg>
+     </button>
+    <button class="theme-btn">
+        <img class="mficolblogo" src="service-icons/bs_solutions_logo.gif" alt="">
+      <span>BS&MFI Solutions <img style="width: 23px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    opacity: 70%;
+    margin: -5px;" src="service-icons/rightside_arrow.png" alt=""></span>
+    </button>
+    <img onclick="alert('Welcome to BS&MFI Solutions from BS&MFI Services')" src="mfi.gif" alt="">
+  </header>
+
+  <main id="main-content"></main>
+
+ <div class="bottomtop">
+     <button onclick="showPopup()" class="apply-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M368.54-341.15 514-382.08q24.38-6.23 41.04-22.88 16.65-16.66 22.88-41.04L619-591.63q3.85-12.29-5.75-21.75-9.6-9.47-21.79-5.47L446-577.92q-24.38 6.23-41.04 22.88-16.65 16.66-22.88 41.04L341-368.37q-3.85 12.29 5.75 21.75 9.6 9.47 21.79 5.47Zm111.04-114.23q-10.43 0-17.31-7.31-6.89-7.3-6.89-17.73t7.31-17.31q7.3-6.89 17.73-6.89t17.31 7.31q6.89 7.3 6.89 17.73t-7.31 17.31q-7.3 6.89-17.73 6.89ZM480.13-88q-81.31 0-152.89-30.86-71.57-30.86-124.52-83.76-52.95-52.9-83.83-124.42Q88-398.55 88-479.87q0-81.56 30.92-153.37 30.92-71.8 83.92-124.91 53-53.12 124.42-83.48Q398.67-872 479.87-872q81.55 0 153.35 30.34 71.79 30.34 124.92 83.42 53.13 53.08 83.49 124.84Q872-561.64 872-480.05q0 81.59-30.34 152.83-30.34 71.23-83.41 124.28-53.07 53.05-124.81 84Q561.7-88 480.13-88Zm-.13-66q137.77 0 231.88-94.12Q806-342.23 806-480q0-137.77-94.12-231.88Q617.77-806 480-806q-137.77 0-231.88 94.12Q154-617.77 154-480q0 137.77 94.12 231.88Q342.23-154 480-154Zm0-326Z"/></svg>
+    Explore / Apply Now
+  </button>
+   <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform"><p class="exclamation">I've Issue</p></a>
+  
+ </div>
+
+  <nav class="nav">
+    <div class="nav-container">
+        <div class="first4icons">
+            <div onclick="switchTab(0)" id="tab-0" class="tab tab-active">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m470-494.31 109 109q9.62 9.62 10 22.77.38 13.16-10 23.54-10.38 10.38-23.15 10.38-12.77 0-23.16-10.38l-115-115q-7.23-7.23-10.46-14.97-3.23-7.75-3.23-16.88V-653q0-13.5 9.76-23.25t23.27-9.75q13.51 0 23.24 9.75Q470-666.5 470-653v158.69Zm252-234.31h-89q-13.5 0-23.25-9.75-9.75-9.76-9.75-23.27t9.75-23.24q9.75-9.74 23.25-9.74h89v-89q0-13.5 9.76-23.25t23.27-9.75q13.51 0 23.24 9.75 9.73 9.75 9.73 23.25v89h89q13.5 0 23.25 9.76t9.75 23.27q0 13.51-9.75 23.24-9.75 9.73-23.25 9.73h-89v89q0 13.5-9.76 23.25t-23.27 9.75q-13.51 0-23.24-9.75-9.73-9.75-9.73-23.25v-89ZM299.71-157.88q-63.75-27.88-111.33-75.42-47.58-47.54-74.98-111.75Q86-409.25 86-481.89q0-72.65 27.39-136.9t74.94-111.83q47.56-47.58 111.28-75.48Q363.33-834 436-834q11 0 21.5.5T479-831q13.54.77 23.27 10.37t9.73 22.89q0 13.28-9.73 23.39-9.73 10.12-23.27 9.35-10.23-1.54-20.97-2.27Q447.28-768 436-768q-117.46 0-200.73 84.27T152-482q0 117.46 83.27 201.73T436-196q117.46 0 201.73-84.27T722-482q0-13.5 9.76-23.25t23.27-9.75q13.51 0 23.24 9.75Q788-495.5 788-482q0 72.67-27.88 136.89-27.88 64.22-75.42 111.78-47.54 47.55-111.75 75.44Q508.75-130 436.11-130q-72.65 0-136.4-27.88Z"/></svg>
+              <span>Delay</span>
+                        </div>
+                        <div onclick="switchTab(1)" id="tab-1" class="tab">
+                              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M371.5-131.5Q360-143 360-160v-527l-36 35q-11 11-28 11t-28-11q-12-12-11.5-28.5T268-708l104-104q12-12 28-12t28 12l104 104q12 12 11.5 28T532-652q-12 12-28 12.5T476-651l-36-36v261q35-31 79-44.5t88-13.5q11 0 21 1t19 3l-35-36q-11-11-11-28t11-28q12-12 28.5-11.5T668-572l104 104q12 12 12 28t-12 28L668-308q-11 11-28 11t-28-11q-12-12-12-28.5t11-27.5l36-36q-11-2-22-3.5t-22-1.5q-54 0-99.5 30.5T440-280v120q0 17-11.5 28.5T400-120q-17 0-28.5-11.5Z"/></svg>
+                              <span>Split</span>
+                        </div>
+                        <div onclick="switchTab(2)" id="tab-2" class="tab">
+             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h320q17 0 28.5 11.5T560-800q0 17-11.5 28.5T520-760H200v560h560v-320q0-17 11.5-28.5T800-560q17 0 28.5 11.5T840-520v320q0 33-23.5 56.5T760-120H200Zm91.5-428.5Q280-537 280-520v200q0 17 11.5 28.5T320-280q17 0 28.5-11.5T360-320v-200q0-17-11.5-28.5T320-560q-17 0-28.5 11.5Zm160-120Q440-657 440-640v320q0 17 11.5 28.5T480-280q17 0 28.5-11.5T520-320v-320q0-17-11.5-28.5T480-680q-17 0-28.5 11.5Zm160 240Q600-417 600-400v80q0 17 11.5 28.5T640-280q17 0 28.5-11.5T680-320v-80q0-17-11.5-28.5T640-440q-17 0-28.5 11.5ZM680-680h-40q-17 0-28.5-11.5T600-720q0-17 11.5-28.5T640-760h40v-40q0-17 11.5-28.5T720-840q17 0 28.5 11.5T760-800v40h40q17 0 28.5 11.5T840-720q0 17-11.5 28.5T800-680h-40v40q0 17-11.5 28.5T720-600q-17 0-28.5-11.5T680-640v-40ZM480-480Z"/></svg>
+             <span>Limit</span>
+            </div>
+        </div>
+        <div class="second1icon">
+          <div class="tab" onclick="toggleMenu()" id="menu-btn">
+              <img src="service-icons/more_options_icons.png" alt="">
+          </div>
+        </div>
+    </div>
+  </nav>
+<div class="popup-menu" id="popupMenu">
+        <div onclick="switchTab(3)" id="tab-3" class="tab">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M302.72-128q-42.95 0-74.45-27.31t-36.94-69.81l-56.87-410.73q-3-20.92 10.84-35.84 13.85-14.93 34.47-14.93h67v-54.76q0-38.66 25.98-64.64Q298.73-832 337.38-832h285.24q38.65 0 64.63 25.98 25.98 25.98 25.98 64.64v54.76H781q20.92 0 34.23 14.93 13.31 14.92 9.31 35.84l-57.59 410.73q-6.49 42.5-38.15 69.81Q697.14-128 654.92-128h-352.2ZM201.85-621.62l57.06 407.85q1.54 9.23 8.46 15 6.92 5.77 16.16 5.77h392.78q9.23 0 16.15-5.77 6.92-5.77 8.46-15l55.46-407.85H201.85Zm235.46 238.85-33.77-33q-8.85-9.61-22.27-10.5-13.42-.88-24.04 9.73-9.61 9.62-9.61 23.16 0 13.53 9.61 23.15l47.49 47.93q13.53 13.45 32.13 13.45 18.61 0 32.3-13.69l133.62-132.31q10.61-10.12 10.11-23.79t-10.73-22.51q-10.23-8.85-24.03-9.35-13.81-.5-22.66 9.35L437.31-382.77ZM311.77-686.62h336.46v-55.76q0-10.77-6.92-17.7-6.93-6.92-17.69-6.92H336.38q-10.76 0-17.69 6.92-6.92 6.93-6.92 17.7v55.76ZM480-407.31Z"/></svg>
+            <span>Pre-Saver</span>
+        </div>
+
+        <div onclick="switchTab(4)" id="tab-4" class="tab">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M155-75q-35-35-35-85t35-85q35-35 85-35 14 0 26 3t23 8l57-71q-28-31-39-70t-5-78l-81-27q-17 25-43 40t-58 15q-50 0-85-35T0-580q0-50 35-85t85-35q50 0 85 35t35 85v8l81 28q20-36 53.5-61t75.5-32v-87q-39-11-64.5-42.5T360-840q0-50 35-85t85-35q50 0 85 35t35 85q0 42-26 73.5T510-724v87q42 7 75.5 32t53.5 61l81-28v-8q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35q-32 0-58.5-15T739-515l-81 27q6 39-5 77.5T614-340l57 70q11-5 23-7.5t26-2.5q50 0 85 35t35 85q0 50-35 85t-85 35q-50 0-85-35t-35-85q0-20 6.5-38.5T624-232l-57-71q-41 23-87.5 23T392-303l-56 71q11 15 17.5 33.5T360-160q0 50-35 85t-85 35q-50 0-85-35Zm-35-465q17 0 28.5-11.5T160-580q0-17-11.5-28.5T120-620q-17 0-28.5 11.5T80-580q0 17 11.5 28.5T120-540Zm148.5 408.5Q280-143 280-160t-11.5-28.5Q257-200 240-200t-28.5 11.5Q200-177 200-160t11.5 28.5Q223-120 240-120t28.5-11.5Zm240-680Q520-823 520-840t-11.5-28.5Q497-880 480-880t-28.5 11.5Q440-857 440-840t11.5 28.5Q463-800 480-800t28.5-11.5ZM480-360q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29Zm268.5 228.5Q760-143 760-160t-11.5-28.5Q737-200 720-200t-28.5 11.5Q680-177 680-160t11.5 28.5Q703-120 720-120t28.5-11.5Zm120-420Q880-563 880-580t-11.5-28.5Q857-620 840-620t-28.5 11.5Q800-597 800-580t11.5 28.5Q823-540 840-540t28.5-11.5ZM480-840ZM120-580Zm360 120Zm360-120ZM240-160Zm480 0Z"/></svg>
+            <span>Lendlink - Mid</span>
+        </div>
+    </div>
+  
+  <div id="modal" class="modal" onclick="if(event.target.id==='modal') hideModal()">
+    <div onclick="event.stopImmediatePropagation()" class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title" style="font-weight:600;"> Calculator</h2>
+        <p onclick="hideModal()" class="popup_close"><img class="closesymbol" src="service-icons/close_icon.png" alt=""></p>
+      </div>
+      <div id="modal-content" class="modal-body"></div>
+      <footer>© BS&MFI Solutions. All Rights Reserved.</footer>
+    </div>
+  </div>
+
+ <script>
+    function toggleMenu() {
+    const menu = document.getElementById("popupMenu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
+
+document.addEventListener("click", function(e) {
+    const menu = document.getElementById("popupMenu");
+    const btn = document.getElementById("menu-btn");
+
+    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.style.display = "none";
+    }
+});
+    let currentTab = 0;
+    let isDarkMode = true;
+    const tabNames = ["Delay It Calculater", "Split Pay Calculater", "Buy Limit Calculater", "Pre-Saver", "Lendlink - Mid"];
+    const fees = [5.0, 5.5, 6.0, null, null];
+    const googleFormUrl = "https://forms.gle/YOUR_GOOGLE_FORM_LINK_HERE";
+    // document.addEventListener('contextmenu', e => e.preventDefault());
+    const tabContents = {
+      0: `
+        <div style="padding-top: 5rem;">
+          <h2 class="section-title">Delay It</h2>
+          <div style="    margin-top: -0.3rem;
+    font-size: 13px;
+    color: var(--text2);
+    position: relative;
+    left: 2px;text-align: center;
+">Return date extender</div>
+           <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">About Us</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Delay It by BS&MFI Solutions helps to extend your payment deadlines with transparent fees. Our service provides the flexibility you need to manage your returns.</li>
+            </ul>
+          </div>
+          <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">How Delay It works?</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> You can extend the return date of the amount.</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Transparent fees with no hidden costs.</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Fast extend process.</li>
+            </ul>
+          </div>
+          
+          <div style="margin: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text2);
+    padding: 0px;
+    text-align: center;;">
+            Note : The Process Fee must be paid before applying for Delay It. If not, we can't provide the extension.
+          </div>
+
+          <div class="faq-container" >
+            <h2 style="font-size:1.125rem; font-weight:600;">FAQ's</h2>
+            <div class="faq-item">
+              <h3>What is the minimum amount I can extend?</h3>
+              <p>The minimum amount is ₹500.</p>
+            </div>
+            <div class="faq-item">
+              <h3>How is the fee calculated?</h3>
+              <p>The fee is 4.5% of the amount multiplied by the number of days you choose.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Can I apply for multiple extensions?</h3>
+              <p>Yes, you can apply multiple times. Each extension is treated separately with its own fee.</p>
+            </div>
+            <div class="faq-item">
+              <h3>If today is my return date, can I still extend?</h3>
+              <p>No, you must apply at least 24 hours before the original return date.</p>
+            </div>
+            <div class="faq-item">
+              <h3>How many days can I extend?</h3>
+              <p>Standard range is 15–30 days. Premium members can go up to 60 days.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Will my credit score be affected?</h3>
+              <p>No. Delay It is a paid service and does not impact your credit report.</p>
+            </div>
+          </div>
+        </div>
+      `,
+
+      1: `
+        <div style="padding-top: 5rem;">
+          <h2 class="section-title">Split Pay</h2>
+          <div style="    margin-top: -0.3rem;
+    font-size: 13px;
+    color: var(--text2);
+    position: relative;
+    left: 2px;text-align: center;
+">Flexible Repayment</div>
+          
+          <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">About Us</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> With Split half pay, you can pay half of the total amount and extend the remaining half with a flexibility while ensuring smooth repayment.</li>
+            </ul>
+          </div>
+          
+
+           <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">How Half Split Pay works?</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Paying 50% of the amount now and split the remaining 50% in instalments.</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Fast approval and simple process.</li>
+            </ul>
+          </div>
+          
+          <div style="margin: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text2);
+    padding: 0px;
+    text-align: center;">
+            Note: The split fee must be paid upfront along with the first 50%. This allows you to split the remaining amount.
+          </div>
+
+          <div class="faq-container" >
+            <h2 style="font-size:1.125rem; font-weight:600;">FAQ's</h2>
+            <div class="faq-item">
+              <h3>What is the minimum amount I can split?</h3>
+              <p>The minimum amount is 2000₹.</p>
+            </div>
+            <div class="faq-item">
+              <h3>How is the 5.2% fee divided?</h3>
+              <p>The fee is shared equally among all participants.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Can I choose different number of splits?</h3>
+              <p>Yes — you can select between 2 to 8 splits.</p>
+            </div>
+          </div>
+        </div>
+      `,
+
+      2: `
+        <div style="padding-top: 5rem;">
+          <h2 class="section-title">Buy Limit</h2>
+          <div style="    margin-top: -0.3rem;
+    font-size: 13px;
+    color: var(--text2);
+    position: relative;
+    left: 2px;text-align: center;
+">Limit extender</div>
+          
+          <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">About Us</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Buy Limit by BS&MFI Solutions helps to borrow more than the borrow limit with transparent fees. Our service let you borrow when you reaches the limit.</li>
+            </ul>
+          </div>
+
+          <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">How Buy Limit works?</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> You can borrow more than your account borrow amount limit.</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Transparent fees with no hidden costs.</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Fast approv process.</li>
+            </ul>
+          </div>
+          
+          <div style="margin: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text2);
+    padding: 0px;
+    text-align: center;">
+           Note: The Buy Limit fee must be paid upfront along with the first 50%. This allows you to Buy Limit and borrow the amount.
+          </div>
+
+          <div class="faq-container" >
+            <h2 style="font-size:1.125rem; font-weight:600;">FAQ's</h2>
+            <div class="faq-item">
+              <h3>How many times i can Buy Limit?</h3>
+              <p>Its based on the amount you borrowing.</p>
+            </div>
+          </div>
+        </div>
+      `,
+
+      3: `
+        <div style="padding-top: 5rem;">
+          <h2 class="section-title">Pre-Saver</h2>
+          <div style="    margin-top: -0.3rem;
+    font-size: 13px;
+    color: var(--text2);
+    position: relative;
+    left: 2px;text-align: center;
+">Save on time</div>
+          
+              <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">About Us</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> By using Pre-saver you can save the particular upcoming offer (or) amounts on a perticular date.</li>
+            </ul>
+          </div>
+
+
+          <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">Fees</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span>₹500 (to) ₹5,000 - ₹150</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span>₹5,000 (to) ₹10,000 - ₹300</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span>₹10,000 (to) ₹15,000 - ₹450</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span>₹15,000 (to) ₹20,000 - ₹600</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span>₹20,000 (to) ₹25,000 - ₹750</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span>₹25,000 (to) ₹30,000 - ₹900</li>
+            </ul>
+          </div>
+
+<div style="margin: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text2);
+    padding: 0px;
+    text-align: center;">
+            Note: You have to pay the fee first.
+          </div>
+
+          <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">How Pre-Saver works?</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Pre saves the offers and amounts on the date you want.</li>
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span> Fast approval process</li>
+            </ul>
+          </div>
+          
+          <div class="faq-container" >
+            <h2 style="font-size:1.125rem; font-weight:600; margin-bottom:1.5rem;">For VIP members</h2>
+            <div class="faq-item">
+              <h3>1. Private Offer</h3>
+              <p>VIPs get private offer.</p>
+            </div>
+            <div class="faq-item">
+              <h3>2. Customize Offer</h3>
+              <p>VIPs can custom their offer based on their needs.</p>
+            </div>
+            <div class="faq-item">
+              <h3>3. RLO(Rare Limited Offer)</h3>
+              <p>VIPs can get very rare limited offers for every 2-3 months.</p>
+            </div>
+          </div>
+        </div>
+
+          <div class="faq-container" >
+            <h2 style="font-size:1.125rem; font-weight:600;">FAQ's</h2>
+            <div class="faq-item">
+              <h3>Can I pre-save when ever i want?</h3>
+              <p>Yes, if you are VIP then you can use when ever you want.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Where can i find the fee for pre-saver?</h3>
+              <p>The fee for pre-saver is based on the offer or amount you applying(Ask coordinator).</p>
+            </div>
+            <div class="faq-item">
+              <h3>Can I pre-save when ever i want? But i'm not VIP..!</h3>
+              <p>No, but you can apply when ever their will be offer avaiable soon.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Is there any withdrawal fee?</h3>
+              <p>No fee if you withdraw after 30 days. Early withdrawal has 1% fee.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Can I set different rules for different accounts?</h3>
+              <p>Yes, you can create multiple Pre-Saver goals (Travel, Emergency, etc.).</p>
+            </div>
+            <div class="faq-item">
+              <h3>How secure is my saved money?</h3>
+              <p>100% secure with bank-level encryption and insurance up to ₹5 lakh.</p>
+            </div>
+          </div>
+        </div>
+      `,
+
+      4: `
+        <div style="padding-top: 5rem;">
+          <h2 class="section-title">Lendlink - Mid</h2>
+          <div style="    margin-top: -0.3rem;
+    font-size: 13px;
+    color: var(--text2);
+    position: relative;
+    left: 2px;text-align: center;
+">Turn your money into income</div>
+          
+          <div class="how-it-works" >
+            <p style="font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;">About us</p>
+            <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.875rem;    opacity: 50%;
+">
+              <li style="display:flex; gap:0.75rem;"><span style="color:white; font-weight:700;">-</span>Lendlink - Mid from Lendlink hepls you to turn your money into income that mean you can lend your money and earn interest for the amount you lended.</li>
+            </ul>
+          </div>
+          
+          <div style="margin: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text2);
+    padding: 0px;
+    text-align: center;">
+            Note: MID has 2 plans, Before lending you have to select 1 plan to continue the lending process.
+          </div>
+
+          <div class="faq-container" >
+            <h2 style="font-size:1.125rem; font-weight:600;">FAQ's</h2>
+            <div class="faq-item">
+              <h3>How much money i can lend?</h3>
+              <p>Their is no limit on the lending limit, It will be based on the borrower.</p>
+            </div>
+          </div>
+        </div>
+      `
+    };
+
+    function switchTab(tabIndex) {
+      currentTab = tabIndex;
+      for (let i = 0; i < 5; i++) {
+        const tabEl = document.getElementById(`tab-${i}`);
+        if (tabEl) tabEl.classList.toggle('tab-active', i === tabIndex);
+      }
+      document.getElementById('main-content').innerHTML = tabContents[tabIndex];
+    }
+
+    function showPopup() {
+    const modal = document.getElementById('modal');
+    const titleEl = document.getElementById('modal-title');
+    const contentEl = document.getElementById('modal-content');
+    
+    modal.classList.add('show');
+    const rate = fees[currentTab];
+
+    const formLinks = {
+        0: "https://forms.gle/9URS1LAqd3iB8qDUA",
+        1: "https://forms.gle/ujs36QQpBpMPBRPu6",
+        2: "https://forms.gle/VqJ1Wqtj8HxXa84e9",
+    };
+
+    if (rate !== null) {
+        titleEl.textContent = tabNames[currentTab];
+        const applyFormUrl = formLinks[currentTab] || "https://forms.gle/9URS1LAqd3iB8qDUA"; 
+        contentEl.innerHTML = `
+          <div style="display:flex; flex-direction:column;gap: 15px;">
+            <div>
+              <div class="amount-box">
+                <span style="font-size: 20px;
+    color: #ffffffba;
+    white-space: nowrap;">$ l ₹</span>
+                <input id="amount-input" type="number" placeholder='Enter amount...'
+                       style="flex: 1;
+    background: transparent;
+    border: none;
+    font-size: 25px;
+    font-weight: 500;
+    outline: none;
+    padding: 0 8px;
+    color: var(--text);">
+              </div>
+            </div>
+            <div class="calc-result" style="display:flex; flex-direction:column; gap:1.25rem; font-size:0.875rem;">
+              <div style="display:none; justify-content:space-between;    align-items: center;">
+                <span class="text-secondary">Base amount</span>
+                <span id="base-amount" style="font-weight:500;"></span>
+              </div>
+              <div style="display:flex; justify-content:space-between;align-items: center;">
+                <span class="text-secondary">Amount Fee (${rate}%)</span>
+                <span id="fee-amount" style="font-weight: 600; color: #00beff; font-size: 16px;"></span>
+              </div>
+              <div style="height:1px; background:#333; display: none;"></div>
+              <div style="display:none; justify-content:space-between; font-size:1.25rem; font-weight:600;">
+                <span>Total</span>
+                <span id="total-amount" class="accent"></span>
+              </div>
+            </div>
+                      <label style="display: block;
+    font-size: 0.75rem;
+    text-align: center;
+    color: var(--text2);
+    letter-spacing: 1px;
+    text-transform: uppercase;">You must pay the fee first.</label>
+           <div class="maiinoptionsatapply">
+    <button onclick="calculateFee()" class="btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M322.31-322.31V-266q0 11.08 7.54 18.39 7.53 7.3 18.15 7.3 10.62 0 18.15-7.3 7.54-7.31 7.54-18.39v-56.31H430q11.08 0 18.39-7.54 7.3-7.53 7.3-18.15 0-10.62-7.3-18.15-7.31-7.54-18.39-7.54h-56.31V-430q0-11.08-7.54-18.39-7.53-7.3-18.15-7.3-10.62 0-18.15 7.3-7.54 7.31-7.54 18.39v56.31H266q-11.08 0-18.39 7.54-7.3 7.53-7.3 18.15 0 10.62 7.3 18.15 7.31 7.54 18.39 7.54h56.31Zm229.69 52h142q11.08 0 18.39-7.54 7.3-7.53 7.3-18.15 0-10.62-7.3-18.15-7.31-7.54-18.39-7.54H552q-11.08 0-18.39 7.54-7.3 7.53-7.3 18.15 0 10.62 7.3 18.15 7.31 7.54 18.39 7.54Zm0-102h142q11.08 0 18.39-7.54 7.3-7.53 7.3-18.15 0-10.62-7.3-18.15-7.31-7.54-18.39-7.54H552q-11.08 0-18.39 7.54-7.3 7.53-7.3 18.15 0 10.62 7.3 18.15 7.31 7.54 18.39 7.54Zm-276-226h142q11.08 0 18.39-7.54 7.3-7.53 7.3-18.15 0-10.62-7.3-18.15-7.31-7.54-18.39-7.54H276q-11.08 0-18.39 7.54-7.3 7.53-7.3 18.15 0 10.62 7.3 18.15 7.31 7.54 18.39 7.54ZM224.62-134q-38.35 0-64.48-26.14Q134-186.27 134-224.62v-510.76q0-38.35 26.14-64.48Q186.27-826 224.62-826h510.76q38.35 0 64.48 26.14Q826-773.73 826-735.38v510.76q0 38.35-26.14 64.48Q773.73-134 735.38-134H224.62Zm0-66h510.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-510.76q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H224.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v510.76q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69ZM200-760v560-560Zm422 173.54L662.46-547q7.16 7.15 17.66 7.04 10.5-.12 18.42-8.04 8.69-8.69 8.81-18.36.11-9.68-8.58-17.72L659.08-624l39.46-39.46q7.15-7.16 7.54-18.16.38-11-7.54-18.92-7.92-7.92-18.54-7.92t-18.54 7.92L622-661.08l-38.46-39.46q-7.61-7.15-17.88-7.54-10.28-.38-18.2 7.54T539.54-682q0 10.62 7.92 18.54L586.92-624l-39.69 39.92q-7.92 7.16-7.31 17.66.62 10.5 8.68 18.42 8.07 7.92 17.54 7.92 9.48 0 17.4-7.92L622-586.46Z"/></svg> 
+        Calculate
+    </button>    
+    <button class="btn-secondary" >
+      <a href="${applyFormUrl}">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m615.85-676.08 204.61-203.61q9.62-9.62 22.27-9.35 12.65.27 22.5 10.12 9.62 9.61 9.62 22.77 0 13.15-9.62 22.77L648.46-615.62q-13.69 13.7-32.61 13.7-18.93 0-32.62-13.7L479.46-720.38q-9.84-9.85-10.61-23.16-.77-13.31 9.84-23.15 9.85-10.62 23.66-9.85 13.8.77 23.65 10.62l89.85 89.84Zm-32.16 542.23q3.85 1.54 6.93 1.54 3.07 0 6.92-1.54l238.61-73.69q-1.15-18.23-5.53-22.27-4.39-4.04-21.39-4.04H609.54q-27.46 0-50.08-2-22.61-2-44.23-9.53l-62.54-21.08q-13.31-5.69-18.84-17.27-5.54-11.58-.85-24.89 4.69-12.53 16.77-18.19 12.08-5.65 25.38-.96l53 19.46q19.31 6.54 37.73 7.89 18.43 1.34 61.12.57h-.77 13q0-18.69-7.38-27.23-7.39-8.54-20.23-13.07l-235.16-86.47q-2.31-.76-4.23-1.15-1.92-.38-4.23-.38h-67v214.3l282.69 80Zm-13.23 65.54L301-145.85q-4.69 26.7-30.69 42.27Q244.31-88 211.38-88h-32.76q-38.85 0-64.74-25.88Q88-139.77 88-178.62v-224.92q0-38.85 25.88-64.73 25.89-25.88 64.74-25.88h189.61q7.46 0 15.81 1.61 8.34 1.62 16.58 4.62l234.15 86.69q33.46 13.15 49.96 33.31 16.5 20.15 16.5 68.07h108q46.15 0 70.39 29.62 24.23 29.61 24.23 70.38 0 21-13 35.77-13 14.77-29.47 19.93L622-68.54q-12.69 3.46-25.38 3.85-12.7.38-26.16-3.62ZM155-178.62q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92h30.76q10.77 0 17.7-5.77 6.92-5.77 6.92-18.85v-250.53h-55.38q-10.77 0-17.7 6.92-6.92 6.92-6.92 17.69v225.92Z"/></svg>
+        Apply Now
+      </a>
+    </button>
+    </div>
+          </div>
+        `;
+        calculateFee();
+    } 
+    else if (currentTab === 3) {
+        titleEl.textContent = "Pre-Saver";
+        contentEl.innerHTML = `
+<img style="width: 100px;filter: saturate(0.5);" src="service-icons/solutions_divert.gif" alt="">
+          <div style="text-align:center;">
+            <h3 style="font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 0.75rem;">Welcome to Pre-Saver</h3>
+            <p style="color:var(--text2);    margin-bottom: 20px;line-height:1.5;">
+              By using Pre-saver you can save the particular upcoming offer (or) amounts on a perticular date..
+            </p>
+            <a href="https://forms.gle/rtcayowFYw48u94PA">
+              <button class="btn-primary" style='
+    margin-bottom: 45px;'><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m615.85-676.08 204.61-203.61q9.62-9.62 22.27-9.35 12.65.27 22.5 10.12 9.62 9.61 9.62 22.77 0 13.15-9.62 22.77L648.46-615.62q-13.69 13.7-32.61 13.7-18.93 0-32.62-13.7L479.46-720.38q-9.84-9.85-10.61-23.16-.77-13.31 9.84-23.15 9.85-10.62 23.66-9.85 13.8.77 23.65 10.62l89.85 89.84Zm-32.16 542.23q3.85 1.54 6.93 1.54 3.07 0 6.92-1.54l238.61-73.69q-1.15-18.23-5.53-22.27-4.39-4.04-21.39-4.04H609.54q-27.46 0-50.08-2-22.61-2-44.23-9.53l-62.54-21.08q-13.31-5.69-18.84-17.27-5.54-11.58-.85-24.89 4.69-12.53 16.77-18.19 12.08-5.65 25.38-.96l53 19.46q19.31 6.54 37.73 7.89 18.43 1.34 61.12.57h-.77 13q0-18.69-7.38-27.23-7.39-8.54-20.23-13.07l-235.16-86.47q-2.31-.76-4.23-1.15-1.92-.38-4.23-.38h-67v214.3l282.69 80Zm-13.23 65.54L301-145.85q-4.69 26.7-30.69 42.27Q244.31-88 211.38-88h-32.76q-38.85 0-64.74-25.88Q88-139.77 88-178.62v-224.92q0-38.85 25.88-64.73 25.89-25.88 64.74-25.88h189.61q7.46 0 15.81 1.61 8.34 1.62 16.58 4.62l234.15 86.69q33.46 13.15 49.96 33.31 16.5 20.15 16.5 68.07h108q46.15 0 70.39 29.62 24.23 29.61 24.23 70.38 0 21-13 35.77-13 14.77-29.47 19.93L622-68.54q-12.69 3.46-25.38 3.85-12.7.38-26.16-3.62ZM155-178.62q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92h30.76q10.77 0 17.7-5.77 6.92-5.77 6.92-18.85v-250.53h-55.38q-10.77 0-17.7 6.92-6.92 6.92-6.92 17.69v225.92Z"/></svg>
+    Apply Now</button>
+            </a>
+            
+    <button onclick="hideModal()" class="btn-close"><img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close Now</button>  
+          </div>
+        `;
+    } 
+    else {
+        titleEl.textContent = "Lendlink - Mid";
+        contentEl.innerHTML = `
+        <img style="width: 100px;filter: saturate(0.5);" src="service-icons/solutions_divert.gif" alt="">
+          <div style="text-align:center;">
+<h3 style="font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 0.75rem;">By Chloennaouii</h3>
+            <p style="color:var(--text2); max-width:240px; margin:0 auto;">Turn your money into income with Lendlink - Mid.</p>
+            <a href="https://mfi0212.github.io/swan/lndlnk-mid">
+              <button class="btn-primary" style="margin-top:1.5rem;
+    margin-bottom: 45px;"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M368.54-341.15 514-382.08q24.38-6.23 41.04-22.88 16.65-16.66 22.88-41.04L619-591.63q3.85-12.29-5.75-21.75-9.6-9.47-21.79-5.47L446-577.92q-24.38 6.23-41.04 22.88-16.65 16.66-22.88 41.04L341-368.37q-3.85 12.29 5.75 21.75 9.6 9.47 21.79 5.47Zm111.04-114.23q-10.43 0-17.31-7.31-6.89-7.3-6.89-17.73t7.31-17.31q7.3-6.89 17.73-6.89t17.31 7.31q6.89 7.3 6.89 17.73t-7.31 17.31q-7.3 6.89-17.73 6.89ZM480.13-88q-81.31 0-152.89-30.86-71.57-30.86-124.52-83.76-52.95-52.9-83.83-124.42Q88-398.55 88-479.87q0-81.56 30.92-153.37 30.92-71.8 83.92-124.91 53-53.12 124.42-83.48Q398.67-872 479.87-872q81.55 0 153.35 30.34 71.79 30.34 124.92 83.42 53.13 53.08 83.49 124.84Q872-561.64 872-480.05q0 81.59-30.34 152.83-30.34 71.23-83.41 124.28-53.07 53.05-124.81 84Q561.7-88 480.13-88Zm-.13-66q137.77 0 231.88-94.12Q806-342.23 806-480q0-137.77-94.12-231.88Q617.77-806 480-806q-137.77 0-231.88 94.12Q154-617.77 154-480q0 137.77 94.12 231.88Q342.23-154 480-154Zm0-326Z"/></svg> Explore Now</button>
+            </a>
+            
+    <button onclick="hideModal()" class="btn-close"><img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close Now</button>  
+          </div>
+        `;
+    }
+}
+
+    function submitApplication() {
+      hideModal();
+      window.open(googleFormUrl, '_blank');
+    }
+
+    function calculateFee() {
+      const input = document.getElementById('amount-input');
+      if (!input) return;
+      let amount = parseFloat(input.value) || 1000;
+      const rate = fees[currentTab];
+      const fee = (amount * rate / 100);
+      const total = amount + fee;
+
+      document.getElementById('base-amount').textContent = '₹' + amount.toFixed(2);
+      document.getElementById('fee-amount').textContent = '₹' + fee.toFixed(2);
+      document.getElementById('total-amount').textContent = '₹' + total.toFixed(2);
+    }
+
+    function hideModal() {
+      const modal = document.getElementById('modal');
+      modal.classList.remove('show');
+    }
+
+    function toggleTheme() {
+      isDarkMode = !isDarkMode;
+      if (isDarkMode) {
+        document.body.classList.remove('light');
+        document.getElementById('theme-icon').classList.replace('fa-sun', 'fa-moon');
+      } else {
+        document.body.classList.add('light');
+        document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun');
+      }
+    }
+
+    window.onload = () => {
+      switchTab(0);
+      console.log('%cBS & MFI — Full pure CSS version (NO Tailwind CDN)', 'color:#0000ff; font-weight:600');
+    };    function goBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        alert(" Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
+      }
+    }
+  </script>
+</body>
+</html>
