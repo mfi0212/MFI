@@ -60,7 +60,10 @@ document.addEventListener('contextmenu', e => e.preventDefault());
                 card.className = "pool-card";
                 
                 card.innerHTML = `
-                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                    <div style="display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;">
                         <div>
                             <div style="    font-weight: 500;
     font-size: 13px;
@@ -71,12 +74,11 @@ document.addEventListener('contextmenu', e => e.preventDefault());
                                 ₹${entry.amount.toLocaleString("en-IN")}
                             </div>
                         </div>
-                        <div style="text-align: right;
+                        <div style="    text-align: right;
     display: flex;
     justify-content: space-between;
-    align-items: end;
-    flex-direction: column;
-    height: -webkit-fill-available;">
+    align-items: baseline;
+    flex-direction: column;">
                             <div style="color: #22c55e;
                                         font-size: 20px;
                                         font-weight: 600;">
