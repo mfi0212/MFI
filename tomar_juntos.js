@@ -12,17 +12,6 @@
                             { member: "Rahul Sharma", share: 1000 },
                             { member: "Priya Patel", share: 1000 },
                         ]
-                    },
-                    {
-                        id: 2,
-                        name: "Amount 2",
-                        amount: 20000,
-                        date: "15-07-2026",
-                        rate: 25,
-                        splits: [
-                            { member: "Sharma", share: 10000 },
-                            { member: "Patel", share: 10000 },
-                        ]
                     }
                 ]
             },
@@ -71,10 +60,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
                 card.className = "pool-card";
                 
                 card.innerHTML = `
-                    <div style="display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 15px;">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
                         <div>
                             <div style="    font-weight: 500;
     font-size: 13px;
@@ -85,11 +71,12 @@ document.addEventListener('contextmenu', e => e.preventDefault());
                                 ₹${entry.amount.toLocaleString("en-IN")}
                             </div>
                         </div>
-                        <div style="    text-align: right;
+                        <div style="text-align: right;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    flex-direction: column;">
+    align-items: end;
+    flex-direction: column;
+    height: -webkit-fill-available;">
                             <div style="color: #22c55e;
                                         font-size: 20px;
                                         font-weight: 600;">
