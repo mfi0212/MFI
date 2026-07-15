@@ -15,11 +15,10 @@
                     }
                 ]
             },
-            // Add more users as needed
         };
 
         let currentUser = null;
-// document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('contextmenu', e => e.preventDefault());
         window.addEventListener("DOMContentLoaded", () => {
             const savedUsername = localStorage.getItem("savedUsername");
             if (savedUsername) {
