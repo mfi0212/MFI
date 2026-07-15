@@ -12,6 +12,17 @@
                             { member: "Rahul Sharma", share: 1000 },
                             { member: "Priya Patel", share: 1000 },
                         ]
+                    },
+                    {
+                        id: 2,
+                        name: "Amount 2",
+                        amount: 20000,
+                        date: "15-07-2026",
+                        rate: 25,
+                        splits: [
+                            { member: "Sharma", share: 10000 },
+                            { member: "Patel", share: 10000 },
+                        ]
                     }
                 ]
             },
