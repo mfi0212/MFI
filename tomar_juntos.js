@@ -1,16 +1,16 @@
  const users = {
-            "tony montana": {
-                name: "Tony Montana",
+            "9919888*": {
+                name: "Mahesh & Phani",
                 poolEntries: [
                     {
                         id: 1,
                         name: "Amount 1",
-                        amount: 2000,
+                        amount: 10000,
                         date: "15-05-2026",
-                        rate: 25,
+                        rate: 20,
                         splits: [
-                            { member: "Rahul Sharma", share: 1000 },
-                            { member: "Priya Patel", share: 1000 },
+                            { member: "Mahesh Muthinti", share: 5000 },
+                            { member: "Phanindra Yerra", share: 5000 },
                         ]
                     }
                 ]
