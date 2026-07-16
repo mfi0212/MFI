@@ -6,7 +6,7 @@
                         id: 1,
                         name: "Amount 1",
                         amount: 10000,
-                        date: "15-05-2026",
+                        date: "16-07-2026",
                         rate: 20,
                         splits: [
                             { member: "Mahesh Muthinti", share: 5000 },
