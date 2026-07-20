@@ -62,9 +62,9 @@ document.addEventListener('contextmenu', e => e.preventDefault());
                 card.innerHTML = `
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;">
                         <div>
-                            <div style="    font-weight: 500;
+                            <div style="    font-weight: 300;
     font-size: 13px;
-    color: #79838f;">${entry.name}</div>
+    color: #ffffffc9;">${entry.name}</div>
                             <div style="font-size: 20px;
                                         font-weight: 600;
                                         margin-top: 5px;">
@@ -77,12 +77,14 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     align-items: end;
     flex-direction: column;
     height: -webkit-fill-available;">
-                            <div style="color: #22c55e;
+                            <div style="color: #00e1ff;
                                         font-size: 20px;
                                         font-weight: 600;">
                                 ${entry.rate}%
                             </div>
-                            <div style="color:#79838f;font-size:13px;margin-top:4px;">
+                            <div style="color:    font-weight: 300;
+    font-size: 13px;
+    color: #ffffffc9;margin-top:4px;">
                                 ${entry.date}
                             </div>
                         </div>
@@ -116,12 +118,14 @@ document.addEventListener('contextmenu', e => e.preventDefault());
                         <div>${split.member}</div>
                         <div style="    color: white;
     font-size: 20px;
-">₹${split.share.toLocaleString("en-IN")}</div>
+    font-weight: 600;">₹${split.share.toLocaleString("en-IN")}</div>
                     </div>
                     <div style="text-align:right;">
-                        <div style="font-weight: 600;
-    color: #45a4e3;">₹${memberInterest.toLocaleString("en-IN")}</div>
-                        <div style="font-size:12px;color:#79838f;">per month</div>
+                        <div style="font-weight: 600;font-size: 20px;
+    color: #00e1ff;">₹${memberInterest.toLocaleString("en-IN")}</div>
+                        <div style="    font-weight: 300;
+    font-size: 13px;
+    color: #ffffffc9;">per month</div>
                     </div>
                 `;
                 container.appendChild(row);
