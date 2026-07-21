@@ -15,7 +15,7 @@
                     },
                     {
                         id: 2,
-                        name: "Special 25% pass",
+                        name: "Mlendings SO",
                         amount: 29418,
                         date: "21-08-2026",
                         rate: 25,
@@ -88,9 +88,9 @@
     align-items: end;
     flex-direction: column;
     height: -webkit-fill-available;">
-                            <div style="    color: #232b3e;
-    font-size: 20px;
-    font-weight: 600;">
+                            <div style="color: #00e1ff;
+                                        font-size: 20px;
+                                        font-weight: 600;">
                                 ${entry.rate}%
                             </div>
                             <div style="color:    font-weight: 300;
@@ -133,7 +133,7 @@
                     </div>
                     <div style="text-align:right;">
                         <div style="font-weight: 600;font-size: 20px;
-    color: #3f88f7;">₹${memberInterest.toLocaleString("en-IN")}</div>
+    color: #00e1ff;">₹${memberInterest.toLocaleString("en-IN")}</div>
                         <div style="    font-weight: 300;
     font-size: 13px;
     color: #ffffffc9;">per month</div>
