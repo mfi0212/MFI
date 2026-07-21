@@ -45,9 +45,6 @@
     border: solid 1px #ffffff2e;
         }
         
-        input:focus { 
-             background: #2b3652;
-        }
         
         button {
            background: #455f92;
@@ -73,8 +70,6 @@ div#modal-total-interest{
         #main-app {
            display: none;
     padding: 20px 10px;
-    height: 100vh;
-    backdrop-filter: brightness(0.8);
         }
 
         /* Pool Entries */
@@ -200,7 +195,10 @@ div#modal-total-interest{
     </style>
 </head>
 <body>
-    <div id="login-screen" style="display: flex; align-items: center; justify-content: center; min-height: 100vh;    background: #00000042;">
+    <div id="login-screen" style="display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;">
        <div class="topoptios" style="    position: fixed;
     top: 0;
     padding: 14.5px 10px;
@@ -288,13 +286,13 @@ div#modal-total-interest{
 
             <h2 style="color: #ffffffa8;
     font-size: 11px;
-    margin: 100px 0 40px 0;
+    margin: 100px 0 16px;
     font-weight: 300;
     background: #181b24;
     padding: 5px;
     border-radius: 5px;
     text-align: center;">Your JUNTOS borrowed amounts</h2>
-            <div id="pool-entries" style="display: flex; flex-direction: column; gap: 40px;"></div>
+            <div id="pool-entries" style="display: flex; flex-direction: column; gap: 10px;"></div>
         </div>
     </div>
 
