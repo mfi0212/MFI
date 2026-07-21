@@ -88,9 +88,9 @@
     align-items: end;
     flex-direction: column;
     height: -webkit-fill-available;">
-                            <div style="color: #455f92;
-                                        font-size: 20px;
-                                        font-weight: 600;">
+                            <div style="    color: #161922;
+    font-size: 20px;
+    font-weight: 600;">
                                 ${entry.rate}%
                             </div>
                             <div style="color:    font-weight: 300;
