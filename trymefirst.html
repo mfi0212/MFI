@@ -1,1 +1,342 @@
-no test...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spli pay | Tomar Juntos</title>
+     <link rel="icon" type="image/x-icon" href="quantam.fragment.logo.png   ">
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Six+Caps&family=Stack+Sans+Headline:wght@200..700&family=Stalemate&display=swap" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        letter-spacing: 0.3px;scrollbar-width: none;
+            font-family: "Google Sans Flex", sans-serif;
+        }
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        body {
+            background: #000000;
+    color: #ffffff;
+    min-height: 100vh;
+    background-size: cover;
+    background-image: url('https://i.ibb.co/7dSHpjgM/tomar-juntos-bg.png');
+        }
+        
+        input {
+           background: #31343b;
+    color: white;
+    padding: 10px;
+    border-radius: 999px;
+    font-size: 20px;
+    outline: none;
+    text-align: center;
+    border: solid 1px #ffffff2e;
+        }
+        
+        input:focus { 
+             background: #2b3652;
+        }
+        
+        button {
+           background: #455f92;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 9999px;
+    font-weight: 400;
+    cursor: pointer;
+    font-size: 19px;
+        }
+        
+div#modal-total {
+    font-size: 25px;
+    font-weight: 600;
+    margin-top: 4px;
+}div#modal-rate {
+       color: #00e1ff;
+    font-weight: 600;
+    font-size: 20px;
+}
+div#modal-total-interest{
+        color: #00e1ff;
+    font-weight: 600;
+    font-size: 20px;
+}
+        #main-app {
+            display: none;
+                padding: 20px 10px;
+        }
+
+        /* Pool Entries */
+        .pool-card {
+           background: #232b3e;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+    height: fit-content;
+        }
+        .topfixedcontent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    left: 0;
+    gap: 10px;
+}
+        #entry-detail-modal {
+            display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+    background: #00000094;
+    align-items: end;
+    justify-content: center;
+    z-index: 1000;
+        }
+
+        .modal-content {
+            width: 98%;
+    max-width: 480px;
+    background: transparent;
+    border: none;
+    overflow: hidden;
+
+        }
+
+        .modal-header {
+                padding: 10px 0;
+    border-bottom: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+        }
+        .topoptios {
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    z-index: 1000;
+    background: linear-gradient(180deg, black, transparent);
+}
+.closebtn{
+        background: #31343b;
+    color: white;
+    font-size: 18px;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: solid 1px #ffffff1a;
+}
+.servicelogo {
+    width: 90px;
+    height: 90px;
+    background: #232b3e;
+    border-radius: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 60px 0 10px;
+    padding: 15px;
+}
+        .modal-body {
+                padding: 15px;
+    width: 100%;
+    max-width: 480px;
+    background: #191f2d;
+    border: none;
+    border-radius: 20px 20px 40px 40px;
+    overflow: hidden;
+        }
+
+        .pool-summary {
+                margin-bottom: 24px;
+        }
+
+        .split-row {
+                background: #232b3e;
+    border: none;
+    border-radius: 30px;
+    padding: 5px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 300;
+    font-size: 13px;
+    color: #ffffffc9;
+        }
+        .back-btn{
+       position: fixed;
+    top: 20px;
+    left: 10px;
+    width: fit-content;
+}
+.usernamelogocontainer {
+        background: #31343b;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 999px;
+    width: 100%;
+    padding: 2px;
+    gap: 5px;
+    max-width: 400px;
+    border: solid 1px #ffffff1a;
+}
+    </style>
+</head>
+<body>
+    <div id="login-screen" style="display: flex; align-items: center; justify-content: center; min-height: 100vh;    background: #00000042;">
+       <div class="topoptios" style="position: fixed;
+    top: 0;
+    padding: 10px;
+    left: 0;
+    width: 100%;">
+                    <button onclick="goBack()" class="closebtn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m294.92-450 206.77 206.77q8.92 8.92 8.81 20.88-.12 11.96-9.42 21.27-9.31 8.69-21.08 9-11.77.31-21.08-9L205.31-454.69q-5.62-5.62-7.92-11.85-2.31-6.23-2.31-13.46t2.31-13.46q2.3-6.23 7.92-11.85l253.61-253.61q8.31-8.31 20.58-8.5 12.27-.19 21.58 8.5 9.3 9.31 9.3 21.38 0 12.08-9.3 21.39L294.92-510H750q12.77 0 21.38 8.62Q780-492.77 780-480t-8.62 21.38Q762.77-450 750-450H294.92Z"/></svg></button>
+                                       <h1  class="closebtn" style="    font-size: 18px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    padding: 2px 15px;
+">Tomar Juntos <br><span style="font-size: 8px;
+    color: #ffffff9c;
+    font-weight: 200;">Power by Split Pay</span></h1>
+                    <button onclick="window.open('https://forms.gle/Jterthk79hnPZeLU9','_parent')" class="closebtn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m548.92-602.54 206.31-205.3q8.31-8.31 20.38-8.43 12.08-.11 21 8.81 8.31 8.31 8.31 20.88 0 12.58-8.31 20.89L574.23-543.31q-10.85 10.85-25.31 10.85-14.46 0-25.31-10.85L414.23-652.69q-8.92-8.92-8.81-21.08.12-12.15 9.43-21.07 8.92-8.31 21.07-8.43 12.16-.11 21.08 8.81l91.92 91.92Zm37.93 466.62q1.92.77 3.46.77t3.46-.77l235.31-72.85q-3.08-13.61-12.77-20.88-9.7-7.27-21.7-7.27H598.77q-26.23 0-44.54-2t-37.62-8.77l-62.76-20.54q-12.16-3.85-17.43-15.38-5.27-11.54-1.42-23.7 3.85-11.77 14.88-17.34 11.04-5.58 23.2-1.73l52 18.23q18.15 5.77 40.61 8.19t58.31 3.04h10.61q0-14.85-6.69-25.62-6.69-10.77-17.61-14.54l-232.08-85.23q-1.15-.38-2.12-.57-.96-.2-2.11-.2h-74v206.16l286.85 81Zm-15.62 58.77L300-154.92q-6.85 24.84-27.85 39.88-21 15.04-44.46 15.04h-55.38q-29.92 0-51.12-21.19Q100-142.39 100-172.31v-238.46q0-29.92 21.19-51.11 21.2-21.19 51.12-21.19h201.3q6.24 0 12.66 1.3 6.42 1.31 12.04 3.31l233.07 85.85q27.23 10.07 45.23 35.65 18 25.58 18 60.04h100q43.08 0 70.2 27.81 27.11 27.8 27.11 72.19 0 17-9 27.38-9 10.39-27.23 16.46L613-77.77q-9.85 3.23-20.69 3.42-10.85.2-21.08-2.8ZM160-172.31q0 5.39 3.46 8.85t8.85 3.46h55.38q5.39 0 8.85-2.88 3.46-2.89 3.46-9.43v-250.77h-67.69q-5.39 0-8.85 3.47-3.46 3.46-3.46 8.84v238.46Z"/></svg></button>
+                </div>
+        <div style="width: 100%;
+    max-width: 340px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;">
+            <div style="text-align: center;">
+                <div style="margin: 5px;" class="servicelogo">
+                    <svg style="    width: 60px;
+    height: 60px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M206.97-100q-44.57 0-75.77-31.3-31.2-31.3-31.2-76.01 0-36.31 21.92-64.81 21.93-28.5 55.39-37.8v-92.39q0-44.61 31.54-76.15Q240.39-510 285-510h165v-140.08q-33.46-9.3-55.38-37.8-21.93-28.5-21.93-64.81 0-44.71 31.2-76.01 31.2-31.3 75.77-31.3 44.57 0 76.11 31.3t31.54 76.01q0 36.31-21.93 64.81-21.92 28.5-55.38 37.8V-510h165q44.61 0 76.15 31.54 31.54 31.54 31.54 76.15v92.39q33.46 9.3 55.39 37.8Q860-243.62 860-207.31q0 44.71-31.54 76.01-31.54 31.3-76.11 31.3t-75.77-31.3q-31.19-31.3-31.19-76.01 0-36.31 21.92-64.81t55.38-37.8v-92.39q0-20.27-13.71-33.98Q695.27-450 675-450H510v140.08q33.46 9.3 55.38 37.8 21.93 28.5 21.93 64.81 0 44.71-31.54 76.01-31.54 31.3-76.11 31.3t-75.77-31.3q-31.2-31.3-31.2-76.01 0-36.31 21.93-64.81 21.92-28.5 55.38-37.8V-450H285q-20.27 0-33.98 13.71-13.71 13.71-13.71 33.98v92.39q33.46 9.3 55.38 37.8 21.92 28.5 21.92 64.81 0 44.71-31.53 76.01-31.54 31.3-76.11 31.3Zm.15-60q19.88 0 33.69-13.6 13.81-13.59 13.81-33.69 0-20.1-13.72-33.71-13.71-13.62-33.98-13.62-19.69 0-33.3 13.81Q160-227 160-207.31q0 19.69 13.62 33.5Q187.23-160 207.12-160Zm272.69 0q19.88 0 33.69-13.6 13.81-13.59 13.81-33.69 0-20.1-13.71-33.71-13.72-13.62-33.98-13.62-19.7 0-33.31 13.81-13.62 13.81-13.62 33.5 0 19.69 13.62 33.5Q459.92-160 479.81-160Zm272.69 0q19.88 0 33.69-13.6Q800-187.19 800-207.29q0-20.1-13.71-33.71-13.71-13.62-33.98-13.62-19.7 0-33.31 13.81-13.62 13.81-13.62 33.5 0 19.69 13.62 33.5Q732.61-160 752.5-160ZM479.81-705.38q19.88 0 33.69-13.6 13.81-13.59 13.81-33.69 0-20.1-13.71-33.71Q499.88-800 479.62-800q-19.7 0-33.31 13.81-13.62 13.81-13.62 33.5 0 19.69 13.62 33.5 13.61 13.81 33.5 13.81Z"/></svg>
+                </div>
+                <div>
+                    <p id="user-name" style="color: #666; font-size: 14px;"></p>
+                </div>
+            </div>
+            
+            <input type="text" id="username" placeholder="Enter password">
+            <button onclick="login()">Continue</button>
+        </div>
+    </div>
+    <div style="width: 100%;
+    text-align: center;
+    background: linear-gradient(0deg, #000000, transparent);
+    padding: 10px;
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;">
+        <span  class="closebtn" style="    position: fixed;
+        bottom: 10px;
+        font-size: 12px;">Power by Lendlink - Mid</span>
+    </div>
+    <div id="main-app">
+        <div style="max-width: 480px; margin: 0 auto;">
+            <div class="topfixedcontent">
+                <div class="topoptios">
+                    <button onclick="logout()" class="closebtn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-437.85 277.08-234.92q-8.31 8.3-20.89 8.5-12.57.19-21.27-8.5-8.69-8.7-8.69-21.08 0-12.38 8.69-21.08L437.85-480 234.92-682.92q-8.3-8.31-8.5-20.89-.19-12.57 8.5-21.27 8.7-8.69 21.08-8.69 12.38 0 21.08 8.69L480-522.15l202.92-202.93q8.31-8.3 20.89-8.5 12.57-.19 21.27 8.5 8.69 8.7 8.69 21.08 0 12.38-8.69 21.08L522.15-480l202.93 202.92q8.3 8.31 8.5 20.89.19 12.57-8.5 21.27-8.7 8.69-21.08 8.69-12.38 0-21.08-8.69L480-437.85Z"/></svg></button>
+                    <h1  class="closebtn" style="    font-size: 18px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    padding: 2px 15px;
+">Tomar Juntos <br><span style="font-size: 8px;
+    color: #ffffff9c;
+    font-weight: 200;">Power by Split Pay</span></h1>
+                    <button onclick="window.open('https://forms.gle/Jterthk79hnPZeLU9','_parent')" class="closebtn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m548.92-602.54 206.31-205.3q8.31-8.31 20.38-8.43 12.08-.11 21 8.81 8.31 8.31 8.31 20.88 0 12.58-8.31 20.89L574.23-543.31q-10.85 10.85-25.31 10.85-14.46 0-25.31-10.85L414.23-652.69q-8.92-8.92-8.81-21.08.12-12.15 9.43-21.07 8.92-8.31 21.07-8.43 12.16-.11 21.08 8.81l91.92 91.92Zm37.93 466.62q1.92.77 3.46.77t3.46-.77l235.31-72.85q-3.08-13.61-12.77-20.88-9.7-7.27-21.7-7.27H598.77q-26.23 0-44.54-2t-37.62-8.77l-62.76-20.54q-12.16-3.85-17.43-15.38-5.27-11.54-1.42-23.7 3.85-11.77 14.88-17.34 11.04-5.58 23.2-1.73l52 18.23q18.15 5.77 40.61 8.19t58.31 3.04h10.61q0-14.85-6.69-25.62-6.69-10.77-17.61-14.54l-232.08-85.23q-1.15-.38-2.12-.57-.96-.2-2.11-.2h-74v206.16l286.85 81Zm-15.62 58.77L300-154.92q-6.85 24.84-27.85 39.88-21 15.04-44.46 15.04h-55.38q-29.92 0-51.12-21.19Q100-142.39 100-172.31v-238.46q0-29.92 21.19-51.11 21.2-21.19 51.12-21.19h201.3q6.24 0 12.66 1.3 6.42 1.31 12.04 3.31l233.07 85.85q27.23 10.07 45.23 35.65 18 25.58 18 60.04h100q43.08 0 70.2 27.81 27.11 27.8 27.11 72.19 0 17-9 27.38-9 10.39-27.23 16.46L613-77.77q-9.85 3.23-20.69 3.42-10.85.2-21.08-2.8ZM160-172.31q0 5.39 3.46 8.85t8.85 3.46h55.38q5.39 0 8.85-2.88 3.46-2.89 3.46-9.43v-250.77h-67.69q-5.39 0-8.85 3.47-3.46 3.46-3.46 8.84v238.46Z"/></svg></button>
+                </div>
+               <div class="usernamelogocontainer">
+                 <div class="servicelogoss" style="    display: contents;">
+                    <svg style="width: 35px;
+    height: 35px;
+    background: black;
+    padding: 5px;
+    border-radius: 10px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M170.77-410.54 256-495.77 170.77-581l-85.23 85.23 85.23 85.23Zm533.85-16.38L790-563.84l85.77 136.92H704.62ZM480.14-460q-43.22 0-73.6-30.29-30.38-30.28-30.38-73.55 0-44.14 30.28-73.99 30.29-29.86 73.56-29.86 44.13 0 73.99 29.82 29.85 29.81 29.85 73.89 0 43.21-29.81 73.6Q524.21-460 480.14-460ZM20-283.08v-14.15q0-40.54 41.83-65.88 41.83-25.35 108.57-25.35 12.22 0 23.45.69 11.23.69 21.46 2.69-11.31 17.7-17.16 37.66-5.84 19.97-5.84 42.54v56.42H54.62q-14.71 0-24.67-9.95Q20-268.37 20-283.08Zm240-1.54v-18.84q0-57.31 60.99-91.92Q381.98-430 480.11-430q99.04 0 159.47 34.62Q700-360.77 700-303.46v18.84q0 15.37-10.4 25.76-10.39 10.4-25.76 10.4H296.31q-15.62 0-25.96-10.4Q260-269.25 260-284.62Zm530-103.84q67.5 0 108.75 25.35Q940-337.77 940-297.23v14.15q0 14.71-9.95 24.67-9.96 9.95-24.67 9.95H767.69v-56.49q0-22.59-5.34-42.51-5.35-19.92-16.04-37.62 10.23-2 21.22-2.69 11-.69 22.47-.69Z"/></svg>
+                </div>
+                <div>
+                    <p id="user-name-display" style="color: white;
+    font-size: 16px;
+    font-weight: 400;"></p>
+                </div>
+               </div>
+            </div>
+
+            <h2 style="color: #ffffffa8;
+    font-size: 11px;
+    margin: 100px 0 16px;
+    font-weight: 300;
+    background: #181b24;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;">Your JUNTOS borrowed amounts</h2>
+            <div id="pool-entries" style="display: flex; flex-direction: column; gap: 16px;"></div>
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div id="entry-detail-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="closebtn" id="modal-title"></h3>
+                <p class="closebtn" id="modal-date"></p>
+                <button class="closebtn" onclick="hideEntryDetail()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-437.85 277.08-234.92q-8.31 8.3-20.89 8.5-12.57.19-21.27-8.5-8.69-8.7-8.69-21.08 0-12.38 8.69-21.08L437.85-480 234.92-682.92q-8.3-8.31-8.5-20.89-.19-12.57 8.5-21.27 8.7-8.69 21.08-8.69 12.38 0 21.08 8.69L480-522.15l202.92-202.93q8.31-8.3 20.89-8.5 12.57-.19 21.27 8.5 8.69 8.7 8.69 21.08 0 12.38-8.69 21.08L522.15-480l202.93 202.92q8.3 8.31 8.5 20.89.19 12.57-8.5 21.27-8.7 8.69-21.08 8.69-12.38 0-21.08-8.69L480-437.85Z"/></svg></button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="pool-summary">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                        <div>
+                            <div style="color: #79838f;
+    font-size: 12px;">TOTAL AMOUNT</div>
+                            <div id="modal-total"></div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div id="modal-rate"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ffffff38;">
+                        <div style="display: flex; justify-content: space-between; font-size: 15px;">
+                            <span style="color: #79838f;">Total Interest</span>
+                            <span id="modal-total-interest"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="color: #79838f; font-size: 13px; margin-bottom: 12px;">Member splits</div>
+                <div id="member-splits" style="display: flex; flex-direction: column; gap: 12px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="tomar_juntos.js"></script>
+</body>
+</html>
