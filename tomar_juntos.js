@@ -20,8 +20,8 @@
                         date: "21-08-2026",
                         rate: 25,
                         splits: [
-                            { member: "Mahesh Muthinti", share: 10709},
-                            { member: "Muthinti Mahesh", share: 10709 },
+                            { member: "Mahesh Muthinti", share: 14709},
+                            { member: "Muthinti Mahesh", share: 14709 },
                         ]
                     }
                 ]
