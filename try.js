@@ -82,20 +82,24 @@
                                 ₹${entry.amount.toLocaleString("en-IN")}
                             </div>
                         </div>
-                        <div style="text-align: right;
+                        <div style="    text-align: right;
     display: flex;
     justify-content: space-between;
     align-items: end;
-    flex-direction: column;
-    height: -webkit-fill-available;">
+    height: -webkit-fill-available;
+    flex-direction: column-reverse;">
                             <div style="color: #455f92;
                                         font-size: 20px;
                                         font-weight: 600;">
                                 ${entry.rate}%
                             </div>
-                            <div style="color:    font-weight: 300;
-    font-size: 13px;
-    color: #ffffffc9;margin-top:4px;">
+                            <div style="    color: #ffffffc9;
+    margin-top: -35px;
+    position: relative;
+    background: #496191;
+    border-radius: 99px;
+    padding: 3px 5px;
+    font-size: 13px;">
                                 ${entry.date}
                             </div>
                         </div>
