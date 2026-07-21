@@ -88,7 +88,7 @@
     align-items: end;
     flex-direction: column;
     height: -webkit-fill-available;">
-                            <div style="    color: #161922;
+                            <div style="    color: #232b3e;
     font-size: 20px;
     font-weight: 600;">
                                 ${entry.rate}%
@@ -133,7 +133,7 @@
                     </div>
                     <div style="text-align:right;">
                         <div style="font-weight: 600;font-size: 20px;
-    color: #455f92;">₹${memberInterest.toLocaleString("en-IN")}</div>
+    color: #3f88f7;">₹${memberInterest.toLocaleString("en-IN")}</div>
                         <div style="    font-weight: 300;
     font-size: 13px;
     color: #ffffffc9;">per month</div>
