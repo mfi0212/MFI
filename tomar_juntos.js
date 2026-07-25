@@ -3,17 +3,6 @@ const users = {
         name: "Mahesh Muthinti & Phanindra Yerra & Bhargav Naidu",
         poolEntries: [
             {
-                id: 1,
-                name: "Amount 1",
-                amount: 10000,
-                date: "16-08-2026",
-                rate: 20,
-                splits: [
-                    { member: "Mahesh Muthinti", share: 5000 },
-                    { member: "Phanindra Yerra", share: 5000 },
-                ]
-            },
-            {
                 id: 2,
                 name: "Special 25% pass",
                 amount: 29418,
