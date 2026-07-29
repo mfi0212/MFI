@@ -1,13 +1,13 @@
 const usersDB = {
-    "0212": {
-        name: "BS&MFI",
-        coins: 0,
+    "9919": {
+        name: "Charlie",
+        coins: 2000,
         loans: [
-            { planDate: "02-05-2026", endDate: "26-07-2026", interest: 2300, takenAmount: 10000, takenFrom: "Lendlink", fineRate: 0 },
-            { planDate: "02-05-2026", endDate: "26-07-2026", interest: 1250, takenAmount: 5000, takenFrom: "Lendlink", fineRate: 0 },
+            { planDate: "02-05-2026", endDate: "26-09-2026", interest: 2300, takenAmount: 10000, takenFrom: "Lendlink", fineRate: 0 },
+            { planDate: "02-05-2026", endDate: "26-09-2026", interest: 1250, takenAmount: 5000, takenFrom: "Lendlink", fineRate: 0 },
         ],
-       fragment: "",
-    defaultEmote:""
+       fragment: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_b431fc1e14d642a781c8116343c15967/default/dark/3.0#e=0",
+    defaultEmote:"https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif"
     }
 };
 
