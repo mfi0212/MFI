@@ -1,4 +1,4 @@
-// document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('contextmenu', e => e.preventDefault());
 const usersDB = {
     "9919": {
         name: "Charlie",
@@ -102,8 +102,22 @@ function getPulseDuration(daysLeft) {
     if (daysLeft <= 7) return 1.5;
     return 2.5;
 }
+// ====================== CUSTOM CONTENT + NOTICE (24h close) ======================
 
-// ====================== CUSTOM CONTENT + NOTICE ======================
+function getClosedNoticeKey() {
+    const pin = localStorage.getItem('lastPassword') || 'unknown';
+    return `closedSpecialNotice_${pin}`;
+}
+
+function isNoticeClosedFor24Hours() {
+    const closedAt = localStorage.getItem(getClosedNoticeKey());
+    if (!closedAt) return false;               // never closed → show
+
+    const elapsed = Date.now() - parseInt(closedAt, 10);
+    const twentyFourHours = 24 * 60 * 60 * 1000; // 86400000 ms
+
+    return elapsed < twentyFourHours;          // true = still hidden
+}
 
 function renderUserCustomContent() {
     const offerSec = document.getElementById("customOfferSection");
@@ -127,8 +141,11 @@ function renderUserCustomContent() {
         offerSec.style.display = "none";
     }
 
-    // ---- Special notice (HTML allowed) ----
-    if (currentUser.showSpecialNotice === "yes" && currentUser.specialNoticeText) {
+    // ---- Special notice (HTML allowed) – respect 24h hide ----
+    if (currentUser.showSpecialNotice === "yes" &&
+        currentUser.specialNoticeText &&
+        !isNoticeClosedFor24Hours()) {
+
         const txt = document.getElementById("specialNoticeText");
         if (txt) {
             txt.innerHTML = currentUser.specialNoticeText;
@@ -139,8 +156,29 @@ function renderUserCustomContent() {
     }
 }
 
-// ====================== MAIN RENDER FUNCTION ======================
+// Close button – hide for 24 hours
+document.addEventListener("click", function (e) {
+    if (e.target && e.target.id === "closeSpecialNotice") {
+        const noticeSec = document.getElementById("specialNoticeSection");
+        if (noticeSec) {
+            noticeSec.style.display = "none";
+            // store current timestamp
+            localStorage.setItem(getClosedNoticeKey(), Date.now().toString());
+        }
+    }
+});
 
+// Close button handler (attach once)
+document.addEventListener("click", function (e) {
+    if (e.target && e.target.id === "closeSpecialNotice") {
+        const noticeSec = document.getElementById("specialNoticeSection");
+        if (noticeSec) {
+            noticeSec.style.display = "none";
+            // remember that this user closed it
+            localStorage.setItem(getClosedNoticeKey(), "yes");
+        }
+    }
+});
 function renderAmountButtons() {
     const container = document.getElementById("amountButtons");
     container.innerHTML = "";
@@ -539,23 +577,31 @@ function displayLoanDetails(loan, index) {
               </a>
             </div>
 
-            <div id="specialNoticeSection" style="display: none;padding: 10px;
-    border-radius: 0 15px 15px 0;
+            <div id="specialNoticeSection" style="display: none;
+    padding: 10px;
+    border-radius: 15px;
     color: rgb(238 238 238 / 55%);
     font-size: 15px;
-    border: 0 solid;
-    border-image-slice: 1;
-    border-width: 3px;
-    border-image-source: linear-gradient(to bottom, #9a4d00 50%, #00648b 50%);
-    border-right: 0;
-    border-bottom: 0;
-    border-top: 0;
     box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
     background: #181818d9;
     display: block;
     margin: 10px 5px;
     text-align: center;">
               <div id="specialNoticeText"></div>
+              <div class="deletespecialoption" style="width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0 0 0;">
+    <button id="closeSpecialNotice" class="totalcloseopt" style="background-color: red;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    color: white;
+    padding: 6px;"><img class="closesymbol" src="service-icons/close_icon.png" alt="">Close Now</button>
+</div>
             </div>
             <!-- ===== END CUSTOM BLOCK ===== -->
     
@@ -564,7 +610,7 @@ function displayLoanDetails(loan, index) {
     <p style="font-size:60px;
               font-weight: 600;
               font-family: 'Anton', sans-serif;
-              letter-spacing: 4.5px;margin: 5px;
+              letter-spacing: 4.5px;
               color: ${overdueFine > 0
                 ? '#ff0000'
                 : daysLeft <= 2
