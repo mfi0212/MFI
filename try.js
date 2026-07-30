@@ -17,7 +17,7 @@ const usersDB = {
             value: "programXoffer.png",                 // local path or full URL
             url: "https://mfi0212.github.io/swan/offer/programx"
         },
-        showSpecialNotice: "no",
+        showSpecialNotice: "yes",
         specialNoticeText: "Dear <strong>Charlie</strong>, Lendlink amounts are running. Kindly return on or before the due date."
     },
     "0211": {
@@ -549,22 +549,9 @@ function displayLoanDetails(loan, index) {
     document.getElementById("loanDetails").innerHTML = `
 
         <div class="loan-entry">
-            <div class="details" style="transform: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: sticky;
-    top: 190px;
-    opacity: 100%;
-    z-index: 10000000;
-    padding: 20px 0 0 0;
-    filter: drop-shadow(0 0 5px black);">
-
-                <input type="text" class="purpose-input" placeholder="Purpose" value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
-            </div>
-             <!-- ===== USER CUSTOM OFFER + NOTICE (injected after Total amount) ===== -->
+        <!-- ===== USER CUSTOM OFFER + NOTICE (injected after Total amount) ===== -->
             <div id="customOfferSection" style="display: block;
-    margin: 15px 5px;
+    margin: 15px 5px -10px 5px;
     text-align: center;">
               <a id="customOfferLink" href="#" target="_blank" rel="noopener" style="display: inline-block;">
                 <img id="customOfferImg" src="" alt="Special Offer" 
@@ -585,7 +572,7 @@ function displayLoanDetails(loan, index) {
     box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
     background: #181818d9;
     display: block;
-    margin: 10px 5px;
+    margin: 15px 5px -5px 5px;
     text-align: center;">
               <div id="specialNoticeText"></div>
               <div class="deletespecialoption" style="width: 100%;
@@ -604,6 +591,20 @@ function displayLoanDetails(loan, index) {
 </div>
             </div>
             <!-- ===== END CUSTOM BLOCK ===== -->
+            <div class="details" style="transform: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 190px;
+    opacity: 100%;
+    z-index: 10000000;
+    padding: 20px 0 0 0;
+    filter: drop-shadow(0 0 5px black);">
+
+                <input type="text" class="purpose-input" placeholder="Purpose" value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
+            </div>
+             
     
 <div class="totaldetails">
 
