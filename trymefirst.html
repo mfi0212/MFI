@@ -55,6 +55,10 @@
     font-weight: 400;
     cursor: pointer;
     font-size: 19px;
+         transition: 0.1s ease-in-out;
+        }
+        button:active{
+            transform: scale(0.5);
         }
         
 div#modal-total {
@@ -85,7 +89,7 @@ div#modal-total-interest{
        transition: 0.1s ease-in-out;
         }
         .pool-card:active{
-            transform: scale(1.05);
+            transform: scale(0.5);
         }
         .topfixedcontent {
 display: flex;
@@ -148,7 +152,11 @@ display: flex;
     border-radius: 999px;
     border: solid 1px #ffffff12;
     backdrop-filter: blur(2px);
-}
+ transition: 0.1s ease-in-out;
+        }
+        .closebtn:active{
+            transform: scale(0.5);
+        }
 .servicelogoname {
        background: #232b3e;
     padding: 5px 15px;
