@@ -1,4 +1,3 @@
-
 // document.addEventListener('contextmenu', e => e.preventDefault());
 const usersDB = {
     "9919": {
@@ -36,7 +35,7 @@ const usersDB = {
         showCustomContent: "yes",
         customContent: {
             type: "image",
-            value: "programYoffer.png",                 // change to your image
+            value: "programXoffer.png",                 // change to your image
             url: "https://mfi0212.github.io/swan/offer/solution"
         },
         showSpecialNotice: "yes",
