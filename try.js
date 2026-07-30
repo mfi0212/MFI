@@ -20,6 +20,27 @@ const usersDB = {
         showSpecialNotice: "yes",
         specialNoticeText: "Dear <strong>Charlie</strong>, Lendlink amounts are running. Kindly return on or before the due date."
     },
+    "021122": {
+        name: "Chmbad arlie",
+        coins: 205,
+        loans: [
+            { planDate: "02-05-2026", endDate: "26-09-2026", interest: 2300, takenAmount: 21907, takenFrom: "Lendlink", fineRate: 0 },
+            { planDate: "02-05-2026", endDate: "16-09-2026", interest: 1250, takenAmount: 12000, takenFrom: "Lendlink", fineRate: 0 },
+            { planDate: "02-05-2026", endDate: "6-09-2026", interest: 1250, takenAmount: 20026, takenFrom: "Lendlink", fineRate: 0 },
+        ],
+        fragment: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_b431fc1e14d642a781c8116343c15967/default/dark/3.0#e=0",
+        defaultEmote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif",
+
+        // ===== DIFFERENT OFFER + MESSAGE FOR THIS USER =====
+        showCustomContent: "yes",
+        customContent: {
+            type: "image",
+            value: "programXoffer.png",                 // change to your image
+            url: "https://mfi0212.github.io/swan/offer/solution"
+        },
+        showSpecialNotice: "no",
+        specialNoticeText: "Dear <strong>Chmbad arlie</strong>, multiple Lendlink loans are active. Please clear them before the earliest due date to avoid extra charges."
+    },
     "0211": {
         name: "Chmbad arlie",
         coins: 205,
@@ -103,6 +124,7 @@ function getPulseDuration(daysLeft) {
     return 2.5;
 }
 // ====================== CUSTOM CONTENT + NOTICE (24h close) ======================
+// ====================== CUSTOM CONTENT + NOTICE (24h close) ======================
 
 function getClosedNoticeKey() {
     const pin = localStorage.getItem('lastPassword') || 'unknown';
@@ -148,6 +170,7 @@ function renderUserCustomContent() {
 
         const txt = document.getElementById("specialNoticeText");
         if (txt) {
+            // Put the text inside the <marquee>
             txt.innerHTML = currentUser.specialNoticeText;
             noticeSec.style.display = "block";
         }
@@ -156,6 +179,16 @@ function renderUserCustomContent() {
     }
 }
 
+// Close button – hide for 24 hours (only one handler needed)
+document.addEventListener("click", function (e) {
+    if (e.target && (e.target.id === "closeSpecialNotice" || e.target.closest("#closeSpecialNotice"))) {
+        const noticeSec = document.getElementById("specialNoticeSection");
+        if (noticeSec) {
+            noticeSec.style.display = "none";
+            localStorage.setItem(getClosedNoticeKey(), Date.now().toString());
+        }
+    }
+});
 // Close button – hide for 24 hours
 document.addEventListener("click", function (e) {
     if (e.target && e.target.id === "closeSpecialNotice") {
@@ -564,31 +597,7 @@ function displayLoanDetails(loan, index) {
               </a>
             </div>
 
-            <div id="specialNoticeSection" style="display: none;
-    padding: 10px;
-    border-radius: 15px;
-    color: rgb(238 238 238 / 55%);
-    font-size: 15px;
-    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-    background: #181818d9;
-    display: block;
-    margin: 15px 5px -5px 5px;
-    text-align: center;">
-              <div id="specialNoticeText"></div>
-              <div class="deletespecialoption" style="width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    margin: 10px 0 0 0;">
-    <button id="closeSpecialNotice" class="totalcloseopt" style="background-color: red;
-    border: none;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 15px;
-    color: white;
-    padding: 6px;"><img class="closesymbol" src="service-icons/close_icon.png" alt="">Close Now</button>
-</div>
+            
             </div>
             <!-- ===== END CUSTOM BLOCK ===== -->
             <div class="details" style="transform: none;
