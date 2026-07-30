@@ -515,6 +515,7 @@ a {
     align-items: center;
     padding: 3px 5px;
     gap: 1px;
+    height: 45px;
 }
 svg.addsiteicon {
     width: 20px;
@@ -1182,6 +1183,8 @@ width: 100%;
     justify-content: space-between;
     background: linear-gradient(0deg, #000000c9 50%, #00000000);
     gap: 10px;
+    flex-direction: column;
+    align-items: center;
 }
 
 #bottomNav {
@@ -2054,6 +2057,13 @@ input:checked+.slider:before {
     backdrop-filter: blur(5px);
     box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
 }
+.rightsidemainamountoption {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column-reverse;
+    gap: 15px;
+}
 .back-btnss{
     border: none;
     cursor: pointer;
@@ -2069,10 +2079,8 @@ input:checked+.slider:before {
     background: #181818d9;
     backdrop-filter: blur(2px);
     box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-    position: fixed;
-    right: 15px;
-    bottom: 75px;
 }
+
         .back-btn:active,.back-btnss:active{
               transform: scale(0.90); 
         } 
@@ -2165,7 +2173,12 @@ background: #ffffff1f;
 div#sum-summary .total:active {
 	transform: scale(0.90);
 }
-
+.mainamountdisplayoptions {
+display: flex;
+    justify-content: space-between;
+    align-items: end;
+    width: 100%;
+}
 div#sum-summary strong {
 color: #919191;
     font-weight: 500;
@@ -2289,6 +2302,7 @@ display: flex;
                 <br>
                 <p id="error-message"></p>
             </div>
+            
         </div>
         <div class="notice">
             <img class="closesymbol" src="service-icons/time_icons@2x.png" alt="">
@@ -2565,6 +2579,28 @@ background: #ffffff;
 .loan-option:not(.selected) {
   opacity: 0.65; /* Lower opacity for unselected */
 }
+
+.marquee-wrapper {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 18s linear infinite;
+    white-space: nowrap;
+}
+
+.marquee-text:hover {
+    animation-play-state: paused;   /* optional – pause on hover */
+}
+
+@keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
 </style>
         </head>
 
@@ -2741,7 +2777,8 @@ background: #ffffff;
 </div>
 
             <div class="bottomoptions">
-                <div id="bottomNav">
+                <div class="mainamountdisplayoptions">
+                    <div id="bottomNav">
                     <div class="nav-item" data-view="graph">
                         <?xml version="1.0" encoding="UTF-8"?>
                             <div class="iconbotm">
@@ -2764,17 +2801,48 @@ background: #ffffff;
     margin: 0;
     backdrop-filter: blur(2px);
     border: none;" class="add-link-btn">I've an issue here.</button>
-                    	<div id="bottomNav2"><div class="nav-item active" data-view="list">
+                    	<div class="rightsidemainamountoption">
+                            <div id="bottomNav2"><div class="nav-item active" data-view="list">
                             <div class="iconbotm">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M160-88q-13.64 0-22.82-9.73T128-121.07q0-13.61 9.73-22.77T161-153h398.62q13.63 0 22.81 9.16 9.19 9.16 9.19 22.77t-9.19 23.34Q573.25-88 559.62-88H160Zm0-160.38q-13.64 0-22.82-9.74-9.18-9.73-9.18-23.33 0-13.61 9.73-22.77t23.27-9.16h639q13.64 0 22.82 9.16t9.18 22.77q0 13.6-9.18 23.33-9.18 9.74-22.82 9.74H160Zm58.62-160.39q-38.35 0-64.48-26.14Q128-461.04 128-499.38v-282q0-38.35 26.14-64.48Q180.27-872 218.62-872h522.76q38.35 0 64.48 26.14Q832-819.73 832-781.38v282q0 38.34-26.14 64.47-26.13 26.14-64.48 26.14H218.62Zm-1-65h524.76q10.77 0 17.7-6.92 6.92-6.93 6.92-17.69v-284q0-10.77-6.92-17.7-6.93-6.92-17.7-6.92H217.62q-10.77 0-17.7 6.92-6.92 6.93-6.92 17.7v284q0 10.76 6.92 17.69 6.93 6.92 17.7 6.92Zm-24.62 0V-807v333.23Z"/></svg>
                                  </div> 
 							<i class="fa-solid fa-toggle-on toggle-pin on" data-view="list"></i> 
 						</div>
+    
+                        </div>
+                         <button class="back-btnss" onclick="window.open('https://mfi0212.github.io/MFI/multi.mem.acc', '_self')">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M71.93-276.62q0-30.92 15.96-55.19 15.96-24.27 42.65-37.73 57-27.92 114.65-43.04 57.66-15.11 126.73-15.11 69.08 0 126.73 15.11 57.66 15.12 114.66 43.04 26.69 13.46 42.65 37.73 15.96 24.27 15.96 55.19v28.16q0 24.15-17.73 42.46-17.73 18.31-43.04 18.31H132.69q-25.3 0-43.03-17.73-17.73-17.74-17.73-43.04v-28.16Zm664.53 88.93q7.54-13.77 11.5-29.27t3.96-31.5v-33.08q0-39.38-19.3-75.07-19.31-35.7-54.7-61.23 40.23 6 76.39 18.57 36.15 12.58 69 29.73 31 16.54 47.88 38.92 16.88 22.39 16.88 49.08v33.08q0 25.3-17.73 43.04-17.73 17.73-43.03 17.73h-90.85Zm-463.5-345.66q-41.03-41.03-41.03-98.96 0-57.92 41.03-98.96 41.04-41.04 98.96-41.04 57.93 0 98.96 41.04 41.04 41.04 41.04 98.96 0 57.93-41.04 98.96-41.03 41.04-98.96 41.04-57.92 0-98.96-41.04Zm403.31 0q-41.04 41.04-98.96 41.04-6.77 0-17.23-1.54-10.47-1.54-17.23-3.38 23.53-28.54 36.3-63.12 12.77-34.57 12.77-71.96 0-37.38-12.96-71.77-12.96-34.38-36.11-63.3 8.61-3.08 17.23-4 8.61-.93 17.23-.93 57.92 0 98.96 41.04 41.03 41.04 41.03 98.96 0 57.93-41.03 98.96Z"/></svg>
+                        </button>
             </div>
-            <button class="back-btnss" onclick="window.open('https://mfi0212.github.io/MFI/multi.mem.acc', '_self')">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M71.93-276.62q0-30.92 15.96-55.19 15.96-24.27 42.65-37.73 57-27.92 114.65-43.04 57.66-15.11 126.73-15.11 69.08 0 126.73 15.11 57.66 15.12 114.66 43.04 26.69 13.46 42.65 37.73 15.96 24.27 15.96 55.19v28.16q0 24.15-17.73 42.46-17.73 18.31-43.04 18.31H132.69q-25.3 0-43.03-17.73-17.73-17.74-17.73-43.04v-28.16Zm664.53 88.93q7.54-13.77 11.5-29.27t3.96-31.5v-33.08q0-39.38-19.3-75.07-19.31-35.7-54.7-61.23 40.23 6 76.39 18.57 36.15 12.58 69 29.73 31 16.54 47.88 38.92 16.88 22.39 16.88 49.08v33.08q0 25.3-17.73 43.04-17.73 17.73-43.03 17.73h-90.85Zm-463.5-345.66q-41.03-41.03-41.03-98.96 0-57.92 41.03-98.96 41.04-41.04 98.96-41.04 57.93 0 98.96 41.04 41.04 41.04 41.04 98.96 0 57.93-41.04 98.96-41.03 41.04-98.96 41.04-57.92 0-98.96-41.04Zm403.31 0q-41.04 41.04-98.96 41.04-6.77 0-17.23-1.54-10.47-1.54-17.23-3.38 23.53-28.54 36.3-63.12 12.77-34.57 12.77-71.96 0-37.38-12.96-71.77-12.96-34.38-36.11-63.3 8.61-3.08 17.23-4 8.61-.93 17.23-.93 57.92 0 98.96 41.04 41.03 41.04 41.03 98.96 0 57.93-41.03 98.96Z"/></svg>
-        </button>
-        </div>
+                </div>
+       <div id="specialNoticeSection" style="display: block;
+    width: 100%;">
+        <div style="display: flex;
+            padding: 10px;
+            border-radius: 15px;
+            color: rgba(238, 238, 238, 0.55);
+            font-size: 15px;
+            box-shadow: rgba(255, 255, 255, 0.09) 0.9px 0.9px 0px 0px inset, rgba(255, 255, 255, 0.09) -0.9px -0.9px 0px 0px inset;
+            background: rgba(24, 24, 24, 0.85);
+            margin: 5px 0 -5px 0;
+            text-align: center;
+            overflow: hidden;
+            width: 100%;gap: 10px;
+            justify-content: center;
+            align-items: center;">
+            
+            <div class="marquee-wrapper">
+                <div id="specialNoticeText" class="marquee-text"></div>
+            </div>
+
+            <div class="deletespecialoption" style="    display: flex;
+            justify-content: flex-end;">
+                <button id="closeSpecialNotice" class="totalcloseopt" style="font-size: 17px;border: none;background-color: transparent;">
+                    ✕
+                </button>
+            </div>
+       </div>
+</div>
             
     </div>
     <div id="totalPopup">
