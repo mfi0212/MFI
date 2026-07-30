@@ -1,5 +1,6 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
 
+
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || '₹';
 let currentUser = null;
@@ -8,8 +9,8 @@ let calendarMonth = new Date();
 const PINNED_KEY = 'pinnedView';
 let pendingLink = null;
 let filteredLoans = [];
-let hiddenLoans = new Set(); 
-let loanChart = null; 
+let hiddenLoans = new Set();
+let loanChart = null;
 
 function parseDate(str) {
     const [dd, mm, yyyy] = str.split("-").map(Number);
@@ -17,8 +18,8 @@ function parseDate(str) {
 }
 
 function formatDateDDMMYYYY(date) {
-    const d = String(date.getDate()).padStart(2,'0');
-    const m = String(date.getMonth()+1).padStart(2,'0');
+    const d = String(date.getDate()).padStart(2, '0');
+    const m = String(date.getMonth() + 1).padStart(2, '0');
     const y = date.getFullYear();
     return `${d}-${m}-${y}`;
 }
@@ -40,9 +41,9 @@ function calculateDaysLeft(endDateStr) {
 }
 
 function getDaysColor(daysLeft) {
-    if (daysLeft <= 2) return '#ff1100';      // Urgent Red
-    if (daysLeft <= 6) return '#ff8c00';      // Warning Orange
-    return '#00d423';                          // Safe Green
+    if (daysLeft <= 2) return '#ff1100';
+    if (daysLeft <= 6) return '#ff8c00';
+    return '#00d423';
 }
 
 function getDaysLeftText(daysLeft) {
@@ -52,34 +53,134 @@ function getDaysLeftText(daysLeft) {
     return `${daysLeft} days`;
 }
 
-// ====================== MAIN RENDER FUNCTION ======================
+function getPulseDuration(daysLeft) {
+    if (daysLeft <= 1) return 0.3;
+    if (daysLeft <= 2) return 0.5;
+    if (daysLeft <= 4) return 1;
+    if (daysLeft <= 7) return 1.5;
+    return 2.5;
+}
+// ====================== CUSTOM CONTENT + NOTICE (24h close) ======================
+// ====================== CUSTOM CONTENT + NOTICE (24h close) ======================
 
+function getClosedNoticeKey() {
+    const pin = localStorage.getItem('lastPassword') || 'unknown';
+    return `closedSpecialNotice_${pin}`;
+}
+
+function isNoticeClosedFor24Hours() {
+    const closedAt = localStorage.getItem(getClosedNoticeKey());
+    if (!closedAt) return false;               // never closed → show
+
+    const elapsed = Date.now() - parseInt(closedAt, 10);
+    const twentyFourHours = 24 * 60 * 60 * 1000; // 86400000 ms
+
+    return elapsed < twentyFourHours;          // true = still hidden
+}
+
+function renderUserCustomContent() {
+    const offerSec = document.getElementById("customOfferSection");
+    const noticeSec = document.getElementById("specialNoticeSection");
+    if (!offerSec || !noticeSec || !currentUser) return;
+
+    // ---- Offer image ----
+    if (currentUser.showCustomContent === "yes" && currentUser.customContent) {
+        const c = currentUser.customContent;
+        const img = document.getElementById("customOfferImg");
+        const link = document.getElementById("customOfferLink");
+
+        if (c.type === "image" && img && link) {
+            img.src = c.value;
+            link.href = c.url || "#";
+            offerSec.style.display = "block";
+        } else {
+            offerSec.style.display = "none";
+        }
+    } else {
+        offerSec.style.display = "none";
+    }
+
+    // ---- Special notice (HTML allowed) – respect 24h hide ----
+    if (currentUser.showSpecialNotice === "yes" &&
+        currentUser.specialNoticeText &&
+        !isNoticeClosedFor24Hours()) {
+
+        const txt = document.getElementById("specialNoticeText");
+        if (txt) {
+            // Put the text inside the <marquee>
+            txt.innerHTML = currentUser.specialNoticeText;
+            noticeSec.style.display = "block";
+        }
+    } else {
+        noticeSec.style.display = "none";
+    }
+}
+
+// Close button – hide for 24 hours (only one handler needed)
+document.addEventListener("click", function (e) {
+    if (e.target && (e.target.id === "closeSpecialNotice" || e.target.closest("#closeSpecialNotice"))) {
+        const noticeSec = document.getElementById("specialNoticeSection");
+        if (noticeSec) {
+            noticeSec.style.display = "none";
+            localStorage.setItem(getClosedNoticeKey(), Date.now().toString());
+        }
+    }
+});
+// Close button – hide for 24 hours
+document.addEventListener("click", function (e) {
+    if (e.target && e.target.id === "closeSpecialNotice") {
+        const noticeSec = document.getElementById("specialNoticeSection");
+        if (noticeSec) {
+            noticeSec.style.display = "none";
+            // store current timestamp
+            localStorage.setItem(getClosedNoticeKey(), Date.now().toString());
+        }
+    }
+});
+
+// Close button handler (attach once)
+document.addEventListener("click", function (e) {
+    if (e.target && e.target.id === "closeSpecialNotice") {
+        const noticeSec = document.getElementById("specialNoticeSection");
+        if (noticeSec) {
+            noticeSec.style.display = "none";
+            // remember that this user closed it
+            localStorage.setItem(getClosedNoticeKey(), "yes");
+        }
+    }
+});
 function renderAmountButtons() {
     const container = document.getElementById("amountButtons");
     container.innerHTML = "";
-    
+
     filteredLoans.forEach((loan, i) => {
         const originalIndex = currentUser.loans.indexOf(loan);
         const daysLeft = calculateDaysLeft(loan.endDate);
-        
+
+        const dotColor = daysLeft <= 2 ? '#ff1100' :
+            daysLeft <= 6 ? '#ff8c00' : '#00d423';
+
+        const animationDuration = getPulseDuration(daysLeft);
+
         const btn = document.createElement("button");
         btn.className = "amount-btn";
-        
+
         btn.innerHTML = `
-            <div class="extra-info" style="color: ${getDaysColor(daysLeft)};">
-                ${getDaysLeftText(daysLeft)}
+            <div class="extra-info" 
+                 style="background-color: ${dotColor}; 
+                        animation-duration: ${animationDuration}s;">
             </div>
             <div class="amounts-section">
                 ${formatMoney(loan.takenAmount)}
                 <div class="purpose-tag">${loan.purpose || 'Purpose'}</div>
             </div>
         `;
-        
-        btn.onclick = () => { 
-            displayLoanDetails(loan, originalIndex); 
-            switchView('list', false); 
+
+        btn.onclick = () => {
+            displayLoanDetails(loan, originalIndex);
+            switchView('list', false);
         };
-        
+
         container.appendChild(btn);
     });
 }
@@ -89,25 +190,19 @@ function updateCoinsDisplay() {
 
     const coinSection = document.getElementById('coinSection');
     const coinsDisplay = document.getElementById('userCoinsDisplay');
-    const coinsDisplay2 = document.getElementById('userCoinsDisplays'); // second one
+    const coinsDisplay2 = document.getElementById('userCoinsDisplays');
 
     if (!coinSection) return;
 
     if (currentUser.coins > 0) {
-        // Show section and update values
-        coinSection.style.display = ''; // or 'flex' / 'block' depending on your CSS
-
-        if (coinsDisplay) {
-            coinsDisplay.textContent = currentUser.coins.toLocaleString();
-        }
-        if (coinsDisplay2) {
-            coinsDisplay2.textContent = currentUser.coins.toLocaleString();
-        }
+        coinSection.style.display = '';
+        if (coinsDisplay) coinsDisplay.textContent = currentUser.coins.toLocaleString();
+        if (coinsDisplay2) coinsDisplay2.textContent = currentUser.coins.toLocaleString();
     } else {
-        // Hide entire section when coins are 0
         coinSection.style.display = 'none';
     }
 }
+
 function loadUserData() {
     const savedData = JSON.parse(localStorage.getItem('userData') || '{}');
     for (let pin in usersDB) {
@@ -136,7 +231,7 @@ function saveUserData() {
     localStorage.setItem('userData', JSON.stringify(data));
 }
 
-// === Rest of your functions (unchanged except minor improvements) ===
+// === Rest of functions ===
 
 function checkAndShowRepaymentReminders() {
     if (!currentUser || !currentUser.loans?.length) return;
@@ -223,8 +318,8 @@ document.getElementById("submitBtn").onclick = () => {
         document.getElementById("userName").textContent = user.name;
 
         const emoteImg = document.getElementById("userEmote");
-        const afterNameContainer = document.querySelector(".afternamecontent") || 
-                                   document.getElementById("afternamecontent");
+        const afterNameContainer = document.querySelector(".afternamecontent") ||
+            document.getElementById("afternamecontent");
 
         if (emoteImg && afterNameContainer) {
             const defaultEmoteSrc = "service-icons/unpremium_logo.gif";
@@ -238,7 +333,7 @@ document.getElementById("submitBtn").onclick = () => {
                 emoteImg.onerror = () => {
                     console.warn("Failed to load emote:", emoteSrc);
                     if (emoteSrc !== defaultEmoteSrc) {
-                        emoteImg.src = defaultEmoteSrc;   // fallback
+                        emoteImg.src = defaultEmoteSrc;
                     } else {
                         afterNameContainer.style.display = "none";
                     }
@@ -248,7 +343,7 @@ document.getElementById("submitBtn").onclick = () => {
             }
         }
 
-        // Fragment logic (unchanged)
+        // Fragment logic
         const fragmentImg = document.getElementById("fragmentBadge");
         if (fragmentImg) {
             if (user.fragment) {
@@ -291,7 +386,7 @@ function showTopLoginMessage() {
 
     setTimeout(() => {
         hideTopLoginMessage();
-    },5000);
+    }, 5000);
 }
 
 function hideTopLoginMessage() {
@@ -299,7 +394,7 @@ function hideTopLoginMessage() {
     if (msg) {
         msg.style.transition = 'opacity 0.5s ease';
         msg.style.opacity = '0';
-        
+
         setTimeout(() => {
             msg.style.display = 'none';
             msg.style.opacity = '1';
@@ -307,9 +402,10 @@ function hideTopLoginMessage() {
         }, 500);
     }
 }
+
 function updateCurrencyUI() {
     document.getElementById('currencyLabel').textContent = currentCurrency;
-    document.querySelector('#currencySwitch i').className = 
+    document.querySelector('#currencySwitch i').className =
         currentCurrency === '$' ? '' : '';
 }
 
@@ -333,74 +429,74 @@ const sheet = document.getElementById('sheet');
 const overlay = document.getElementById('overlay');
 
 fab.onclick = () => {
-  sheet.classList.toggle('active');
-  overlay.classList.toggle('active');
+    sheet.classList.toggle('active');
+    overlay.classList.toggle('active');
 };
 
 overlay.onclick = () => {
-  sheet.classList.remove('active');
-  overlay.classList.remove('active');
-  document.getElementById('presetSection').style.display = 'none';
-  document.getElementById('uploadSection').style.display = 'none';
+    sheet.classList.remove('active');
+    overlay.classList.remove('active');
+    document.getElementById('presetSection').style.display = 'none';
+    document.getElementById('uploadSection').style.display = 'none';
 };
 
 document.getElementById('presetBtn').onclick = () => {
-  const section = document.getElementById('presetSection');
-  section.style.display = section.style.display === 'block' ? 'none' : 'block';
-  document.getElementById('uploadSection').style.display = 'none';
+    const section = document.getElementById('presetSection');
+    section.style.display = section.style.display === 'block' ? 'none' : 'block';
+    document.getElementById('uploadSection').style.display = 'none';
 };
 
 document.querySelectorAll('.wallpaper-thumb').forEach(img => {
-  img.onclick = () => {
-    applyImage(img.src, false);
-    closeSheet();
-  };
+    img.onclick = () => {
+        applyImage(img.src, false);
+        closeSheet();
+    };
 });
 
 document.getElementById('uploadBtn').onclick = () => {
-  const section = document.getElementById('uploadSection');
-  section.style.display = section.style.display === 'block' ? 'none' : 'block';
-  document.getElementById('presetSection').style.display = 'none';
+    const section = document.getElementById('uploadSection');
+    section.style.display = section.style.display === 'block' ? 'none' : 'block';
+    document.getElementById('presetSection').style.display = 'none';
 };
 
 document.getElementById('dropArea').onclick = () => {
-  document.getElementById('fileInput').click();
+    document.getElementById('fileInput').click();
 };
 
 document.getElementById('fileInput').onchange = (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      applyImage(ev.target.result, false);
-      closeSheet();
-    };
-    reader.readAsDataURL(file);
-  }
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+            applyImage(ev.target.result, false);
+            closeSheet();
+        };
+        reader.readAsDataURL(file);
+    }
 };
 
 document.getElementById('originalBtn').onclick = () => {
-  applyBlack();
-  closeSheet();
+    applyBlack();
+    closeSheet();
 };
 
 function applyImage(url, repeat = false) {
-  document.body.style.backgroundImage = `url(${url})`;
-  document.body.style.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
-  document.body.style.backgroundSize = '115%';
-  document.body.style.backgroundPosition = 'center';
-  localStorage.setItem('userBG', url);
+    document.body.style.backgroundImage = `url(${url})`;
+    document.body.style.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
+    document.body.style.backgroundSize = '115%';
+    document.body.style.backgroundPosition = 'center';
+    localStorage.setItem('userBG', url);
 }
 
 function applyBlack() {
-  document.body.style.background = '#000';
-  document.body.style.backgroundImage = 'none';
-  localStorage.setItem('userBG', 'black');
+    document.body.style.background = '#000';
+    document.body.style.backgroundImage = 'none';
+    localStorage.setItem('userBG', 'black');
 }
 
 function closeSheet() {
-  sheet.classList.remove('active');
-  overlay.classList.remove('active');
+    sheet.classList.remove('active');
+    overlay.classList.remove('active');
 }
 
 function displayLoanDetails(loan, index) {
@@ -423,6 +519,24 @@ function displayLoanDetails(loan, index) {
     document.getElementById("loanDetails").innerHTML = `
 
         <div class="loan-entry">
+        <!-- ===== USER CUSTOM OFFER + NOTICE (injected after Total amount) ===== -->
+            <div id="customOfferSection" style="display: block;
+    margin: 15px 5px -10px 5px;
+    text-align: center;">
+              <a id="customOfferLink" href="#" target="_blank" rel="noopener" style="display: inline-block;">
+                <img id="customOfferImg" src="" alt="Special Offer" 
+                     style="    width: 100%;
+    border-radius: 15px;
+    padding: 5px;
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    filter: saturate(6);
+    background: #181818d9;">
+              </a>
+            </div>
+
+            
+            </div>
+            <!-- ===== END CUSTOM BLOCK ===== -->
             <div class="details" style="transform: none;
     display: flex;
     justify-content: center;
@@ -436,24 +550,26 @@ function displayLoanDetails(loan, index) {
 
                 <input type="text" class="purpose-input" placeholder="Purpose" value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
             </div>
-            
+             
+    
 <div class="totaldetails">
+
     <p style="font-size:60px;
               font-weight: 600;
               font-family: 'Anton', sans-serif;
-              letter-spacing: 4.5px;margin: 5px;
-              color: ${overdueFine > 0 
-                        ? '#ff0000' 
-                        : daysLeft <= 2 
-                            ? '#ff0000' 
-                            : daysLeft <= 6 
-                                ? '#ff8c00' 
-                                : '#00d423'};">
+              letter-spacing: 4.5px;
+              color: ${overdueFine > 0
+                ? '#ff0000'
+                : daysLeft <= 2
+                    ? '#ff0000'
+                    : daysLeft <= 6
+                        ? '#ff8c00'
+                        : '#00d423'};">
         ${formatMoney(totalPayable)}
     </p><hr> <h3>
        Total amount</h3>
-</div>   
-    
+</div>
+
            <div class="details">
                 <div class="leftflow">
 <svg xmlns="http://www.w3.org/2000/svg" id="Layer_2" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M200-320v-200q0-17 11.5-28.5T240-560q17 0 28.5 11.5T280-520v200q0 17-11.5 28.5T240-280q-17 0-28.5-11.5T200-320Zm240 0v-200q0-17 11.5-28.5T480-560q17 0 28.5 11.5T520-520v200q0 17-11.5 28.5T480-280q-17 0-28.5-11.5T440-320ZM120-120q-17 0-28.5-11.5T80-160q0-17 11.5-28.5T120-200h720q17 0 28.5 11.5T880-160q0 17-11.5 28.5T840-120H120Zm560-200v-200q0-17 11.5-28.5T720-560q17 0 28.5 11.5T760-520v200q0 17-11.5 28.5T720-280q-17 0-28.5-11.5T680-320Zm160-320H116q-15 0-25.5-10.5T80-676v-22q0-11 5.5-19t14.5-13l344-172q17-8 36-8t36 8l342 171q11 5 16.5 15t5.5 21v15q0 17-11.5 28.5T840-640Z"/></svg>
@@ -509,6 +625,9 @@ function displayLoanDetails(loan, index) {
 
         </div>
     `;
+
+    // Render the user-specific offer + message right after Total amount
+    renderUserCustomContent();
 }
 
 function updatePurpose(index, value) {
@@ -516,59 +635,6 @@ function updatePurpose(index, value) {
     saveUserData();
     renderAmountButtons();
 }
-function renderAmountButtons() {
-    const container = document.getElementById("amountButtons");
-    container.innerHTML = "";
-    
-    filteredLoans.forEach((loan, i) => {
-        const originalIndex = currentUser.loans.indexOf(loan);
-        const daysLeft = calculateDaysLeft(loan.endDate);
-        
-        // Determine dot color
-        const dotColor = daysLeft <= 2 ? '#ff1100' : 
-                        daysLeft <= 6 ? '#ff8c00' : '#00d423';
-        
-        // Determine pulse speed (smaller duration = faster pulse)
-        const animationDuration = getPulseDuration(daysLeft);
-        
-        const btn = document.createElement("button");
-        btn.className = "amount-btn";
-        
-        btn.innerHTML = `
-            <div class="extra-info" 
-                 style="background-color: ${dotColor}; 
-                        animation-duration: ${animationDuration}s;">
-            </div>
-            <div class="amounts-section">
-                ${formatMoney(loan.takenAmount)}
-                <div class="purpose-tag">${loan.purpose || 'Purpose'}</div>
-            </div>
-        `;
-        
-        btn.onclick = () => { 
-            displayLoanDetails(loan, originalIndex); 
-            switchView('list', false); 
-        };
-        
-        container.appendChild(btn);
-    });
-}function getPulseDuration(daysLeft) {
-    if (daysLeft <= 1) return 0.3;    
-    if (daysLeft <= 2) return 0.5;  
-    if (daysLeft <= 4) return 1;  
-    if (daysLeft <= 7) return 1.5;      
-    return 2.5;                       
-}
-function calculateDaysLeft(endDateStr) {
-    const clean = endDateStr.split('(')[0].trim();
-    const end = new Date(clean.split('-').reverse().join('-'));
-    const now = new Date();
-    now.setHours(0, 0, 0, 0);
-    const diff = end - now;
-    return Math.ceil(diff / (1000 * 60 * 60 * 24));
-}
-
-
 
 function showTotalPopup() {
     const now = new Date();
@@ -601,8 +667,8 @@ function showTotalPopup() {
     document.getElementById("totalPopup").style.display = "block";
 }
 
-function closeTotalPopup() { 
-    document.getElementById("totalPopup").style.display = "none"; 
+function closeTotalPopup() {
+    document.getElementById("totalPopup").style.display = "none";
 }
 
 function renderChart() {
@@ -612,7 +678,7 @@ function renderChart() {
     const visibleLabels = [];
     const visibleData = [];
     const colors = [];
-    const loanIndices = []; 
+    const loanIndices = [];
     currentUser.loans.forEach((loan, originalIdx) => {
         if (hiddenLoans.has(originalIdx)) return;
 
@@ -624,7 +690,7 @@ function renderChart() {
         if (daysLeft <= 2) color = '#ff1100';
         else if (daysLeft <= 6) color = '#ff8c00';
 
-        const amount = currentCurrency === '$' 
+        const amount = currentCurrency === '$'
             ? Number((loan.takenAmount / USD_RATE).toFixed(2))
             : Number(loan.takenAmount);
 
@@ -676,9 +742,9 @@ function renderChart() {
                     }
                 },
                 animation: {
-                    duration: 1200,          
-                    easing: 'easeOutQuart', 
-                    animateRotate: true, 
+                    duration: 1200,
+                    easing: 'easeOutQuart',
+                    animateRotate: true,
                     animateScale: true
                 }
             }
@@ -692,6 +758,7 @@ function renderChart() {
 
     renderLoanList();
 }
+
 function renderLoanList() {
     const container = document.getElementById('loans-list-container');
     if (!container) return;
@@ -768,13 +835,6 @@ function renderLoanList() {
     }, 420);
 }
 
-function calculateDaysLeft(endDateStr) {
-    const clean = endDateStr.split('(')[0].trim();
-    const end = new Date(clean.split('-').reverse().join('-'));
-    const now = new Date();
-    return Math.ceil((end - now) / 86400000);
-}
-
 function renderCalendar() {
     const c = document.getElementById('calendarContainer');
     const y = calendarMonth.getFullYear(), m = calendarMonth.getMonth();
@@ -786,7 +846,7 @@ function renderCalendar() {
     currentUser.loans.forEach((loan, i) => {
         const clean = loan.endDate.split('(')[0].trim();
         const [d, mm, yy] = clean.split('-');
-        dueMap[`${d.padStart(2,'0')}-${mm.padStart(2,'0')}-${yy}`] = i;
+        dueMap[`${d.padStart(2, '0')}-${mm.padStart(2, '0')}-${yy}`] = i;
     });
 
     let html = `<div style="text-align: center;
@@ -822,14 +882,13 @@ function renderCalendar() {
     margin-top: -10px;
     border-radius: 35px;
     background: linear-gradient(0deg, #191919, transparent);">
-        <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`
-        ;
+        <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`;
 
     for (let i = 0; i < first; i++) html += `<div></div>`;
     for (let d = 1; d <= days; d++) {
-        const ds = `${String(d).padStart(2,'0')}-${String(m+1).padStart(2,'0')}-${y}`;
+        const ds = `${String(d).padStart(2, '0')}-${String(m + 1).padStart(2, '0')}-${y}`;
         const idx = dueMap[ds];
-        let style = `border-radius:9999px;cursor:${idx!==undefined?'pointer':'default'};transition:all .2s;`;
+        let style = `border-radius:9999px;cursor:${idx !== undefined ? 'pointer' : 'default'};transition:all .2s;`;
         if (idx !== undefined) {
             const end = new Date(currentUser.loans[idx].endDate.split('(')[0].trim().split('-').reverse().join('-'));
             const daysLeft = Math.ceil((end - today) / 86400000);
@@ -841,11 +900,12 @@ function renderCalendar() {
         if (ds === today.toLocaleDateString('en-GB').split('/').reverse().join('-')) {
             style += `border:2px solid #00aaff;box-sizing:border-box;`;
         }
-        html += `<div style="${style}" ${idx!==undefined?`onclick="showDatePopup(${idx})"`:''}>${d}</div>`;
+        html += `<div style="${style}" ${idx !== undefined ? `onclick="showDatePopup(${idx})"` : ''}>${d}</div>`;
     }
     html += `</div>`;
     c.innerHTML = html;
 }
+
 function prevMonth() { calendarMonth.setMonth(calendarMonth.getMonth() - 1); renderCalendar(); }
 function nextMonth() { calendarMonth.setMonth(calendarMonth.getMonth() + 1); renderCalendar(); }
 
@@ -859,7 +919,7 @@ function showDatePopup(idx) {
         <p style='color: #ffc000;font-weight: 600;'><strong>Purpose:</strong> ${loan.purpose || 'Not set'}</p>
         <p style='color: #ffc000;font-weight: 600;'><strong>Return date :</strong> ${cleanEnd}</p>
         <hr style='margin: 5px;'>
-        <p style='color: #ffc000;font-weight: 600;    font-size: 20px;'><strong>Status:</strong> <span style="color:${daysLeft<=2?'#ff1100':daysLeft<=6?'#ff8c00':'#00d609'}">
+        <p style='color: #ffc000;font-weight: 600;    font-size: 20px;'><strong>Status:</strong> <span style="color:${daysLeft <= 2 ? '#ff1100' : daysLeft <= 6 ? '#ff8c00' : '#00d609'}">
             ${daysLeft > 0 ? daysLeft + ' days left' : 'Overdue'}
         </span></p>
         <div class="detailbuttons" style="display: flex;
@@ -886,7 +946,7 @@ function goToList(idx) { closeDatePopup(); switchView('list', true); displayLoan
 
 function renderLinks() {
     const c = document.getElementById("userLinks");
-    c.innerHTML = "";                
+    c.innerHTML = "";
 
     if (!currentUser.links || currentUser.links.length === 0) {
         const emptyMsg = document.createElement("div");
@@ -896,15 +956,15 @@ function renderLinks() {
             No links saved yet.
         `;
         c.appendChild(emptyMsg);
-        return;                          
+        return;
     }
     currentUser.links.forEach((link, i) => {
         const div = document.createElement("div");
         div.className = "user-link";
         div.innerHTML = `<i class="fa-solid fa-link"></i> ${link.title}`;
-        div.onclick = () => { 
-            pendingLink = {link, i}; 
-            document.getElementById("linkConfirmPopup").style.display = "block"; 
+        div.onclick = () => {
+            pendingLink = { link, i };
+            document.getElementById("linkConfirmPopup").style.display = "block";
         };
         c.appendChild(div);
     });
@@ -915,7 +975,7 @@ function addLink() {
     if (!title) return;
     const url = prompt("URL:");
     if (url && url.startsWith('http')) {
-        currentUser.links.push({title, url});
+        currentUser.links.push({ title, url });
         renderLinks();
         saveUserData();
     }
@@ -936,28 +996,28 @@ document.getElementById("linkDeleteBtn").onclick = () => {
 function openEmoteChooser() { document.getElementById("emoteChooser").style.display = "block"; }
 function closeEmoteChooser() { document.getElementById("emoteChooser").style.display = "none"; }
 function setUserEmote(src) {
-  currentUser.emote = src;
+    currentUser.emote = src;
 
-  const emoteImg = document.getElementById("userEmote");
-  emoteImg.src = src;
-  emoteImg.style.display = "block";
+    const emoteImg = document.getElementById("userEmote");
+    emoteImg.src = src;
+    emoteImg.style.display = "block";
 
-  saveUserData();
-  closeEmoteChooser();
+    saveUserData();
+    closeEmoteChooser();
 }
 function resetUserEmote() {
-  currentUser.emote = currentUser.defaultEmote || "";
+    currentUser.emote = currentUser.defaultEmote || "";
 
-  const emoteImg = document.getElementById("userEmote");
+    const emoteImg = document.getElementById("userEmote");
 
-  if (currentUser.emote) {
-    emoteImg.src = currentUser.emote;
-    emoteImg.style.display = "block";
-  } else {
-    emoteImg.style.display = "none";
-  }
+    if (currentUser.emote) {
+        emoteImg.src = currentUser.emote;
+        emoteImg.style.display = "block";
+    } else {
+        emoteImg.style.display = "none";
+    }
 
-  saveUserData();
+    saveUserData();
 }
 function updateNavActive(view) {
     document.querySelectorAll('.nav-item').forEach(n => {
@@ -1024,17 +1084,17 @@ const popupOverlay = document.getElementById('swanShopPopup');
 const closeBtn = document.querySelector('.close-btn');
 
 coinSection.addEventListener('click', () => {
-  popupOverlay.classList.add('active');
+    popupOverlay.classList.add('active');
 });
 
 closeBtn.addEventListener('click', () => {
-  popupOverlay.classList.remove('active');
+    popupOverlay.classList.remove('active');
 });
 
 popupOverlay.addEventListener('click', (e) => {
-  if (e.target === popupOverlay) {
-    popupOverlay.classList.remove('active');
-  }
+    if (e.target === popupOverlay) {
+        popupOverlay.classList.remove('active');
+    }
 });
 
 
@@ -1053,7 +1113,7 @@ function updateGlow() {
     toggle.checked = isOn;
 }
 
-toggle.addEventListener('change', function() {
+toggle.addEventListener('change', function () {
     isOn = toggle.checked;
     localStorage.setItem(STORAGE_KEY, isOn ? 'on' : 'off');
     updateGlow();
@@ -1088,7 +1148,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 10000000);
     }
 });
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const downloadBtn = document.getElementById('download-receipt');
     if (!downloadBtn) {
         console.error("Button with id='download-receipt' NOT FOUND!");
@@ -1096,7 +1156,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     console.log("✅ Receipt button initialized");
 
-    downloadBtn.addEventListener('click', function() {
+    downloadBtn.addEventListener('click', function () {
         if (!currentUser) {
             alert("Login first!");
             return;
@@ -1238,78 +1298,78 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function goBack() {
-      if (window.history.length > 1) {
+    if (window.history.length > 1) {
         window.history.back();
-      } else {
+    } else {
         alert(" Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
-      }
     }
+}
 
 let selectedSumIds = new Set();
 
 function showSumPopup() {
-  if (!currentUser) {
-    alert("Please login first!");
-    return;
-  }
-  document.getElementById('sumPopup').style.display = 'block';
-  document.getElementById('sumOverlay').style.display = 'block';
-  selectedSumIds.clear(); // reset selection
-  renderSumContent();
+    if (!currentUser) {
+        alert("Please login first!");
+        return;
+    }
+    document.getElementById('sumPopup').style.display = 'block';
+    document.getElementById('sumOverlay').style.display = 'block';
+    selectedSumIds.clear();
+    renderSumContent();
 }
 
 function renderSumContent() {
-  const container = document.getElementById('sum-list');
-  container.innerHTML = '';
+    const container = document.getElementById('sum-list');
+    container.innerHTML = '';
 
-  currentUser.loans.forEach((loan, idx) => {
-    const isSelected = selectedSumIds.has(idx);
-    const opacityClass = isSelected ? 'selected' : '';
-    
-    container.innerHTML += `
+    currentUser.loans.forEach((loan, idx) => {
+        const isSelected = selectedSumIds.has(idx);
+        const opacityClass = isSelected ? 'selected' : '';
+
+        container.innerHTML += `
       <div class="loan-option ${opacityClass}" onclick="toggleSumLoan(${idx})">
-        <strong>Amount ${idx+1} - ₹${loan.takenAmount}</strong> (${loan.takenFrom})<br>
+        <strong>Amount ${idx + 1} - ₹${loan.takenAmount}</strong> (${loan.takenFrom})<br>
         <small>Interest: ₹${loan.interest} | ${loan.planDate} → ${loan.endDate}</small>
       </div>
     `;
-  });
+    });
 
-  updateSumSummary();
+    updateSumSummary();
 }
 
 function toggleSumLoan(idx) {
-  if (selectedSumIds.has(idx)) {
-    selectedSumIds.delete(idx);
-  } else {
-    selectedSumIds.add(idx);
-  }
-  renderSumContent(); // re-render to update visual state
+    if (selectedSumIds.has(idx)) {
+        selectedSumIds.delete(idx);
+    } else {
+        selectedSumIds.add(idx);
+    }
+    renderSumContent();
 }
 
 function updateSumSummary() {
-  const summaryDiv = document.getElementById('sum-summary');
-  
-  if (selectedSumIds.size === 0) {
-    summaryDiv.innerHTML = `<p style="color:#666;">No loans selected</p>`;
-    return;
-  }
+    const summaryDiv = document.getElementById('sum-summary');
 
-  let totalPrincipal = 0;
-  let totalInterest = 0;
-  let html = '';
+    if (selectedSumIds.size === 0) {
+        summaryDiv.innerHTML = `<p style="color:#666;">No loans selected</p>`;
+        return;
+    }
 
-  selectedSumIds.forEach(idx => {
-    const loan = currentUser.loans[idx];
-    html += `
+    let totalPrincipal = 0;
+    let totalInterest = 0;
+    let html = '';
+
+    selectedSumIds.forEach(idx => {
+        const loan = currentUser.loans[idx];
+        html += `
       <div>
-        <strong>Amount ${idx+1}:</strong> ₹${loan.takenAmount}<br>
+        <strong>Amount ${idx + 1}:</strong> ₹${loan.takenAmount}<br>
         <strong>Interest:</strong> ₹${loan.interest}
       </div>`;
-    totalPrincipal += loan.takenAmount;
-    totalInterest += loan.interest;
-  });
+        totalPrincipal += loan.takenAmount;
+        totalInterest += loan.interest;
+    });
 
-  html += `
+    html += `
     <hr>
     <div class="total">
       Total Amount: ₹${totalPrincipal}<br>
@@ -1318,11 +1378,11 @@ function updateSumSummary() {
     </div>
   `;
 
-  summaryDiv.innerHTML = html;
+    summaryDiv.innerHTML = html;
 }
 
 function closeSumPopup() {
-  document.getElementById('sumPopup').style.display = 'none';
-  document.getElementById('sumOverlay').style.display = 'none';
-  selectedSumIds.clear();
+    document.getElementById('sumPopup').style.display = 'none';
+    document.getElementById('sumOverlay').style.display = 'none';
+    selectedSumIds.clear();
 }
