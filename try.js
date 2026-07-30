@@ -88,8 +88,16 @@ function renderPoolEntries() {
         card.innerHTML = `
             <div style="display:flex;justify-content:space-between;align-items:flex-start;">
                 <div>
-                    <div style="font-weight: 300; font-size: 13px; color: #ffffffc9;">${entry.name}</div>
-                    <div style="font-size: 20px; font-weight: 600; margin-top: 5px;">
+                    <div style="    font-weight: 300;
+    font-size: 12px;
+    color: #79838f;
+">${entry.name}</div>
+                    <div style="font-size: 20px;
+    font-weight: 500;
+    margin-top: 5px;
+    border-left: solid 3px #404f72;
+    padding: 0 5px;
+    color: #ffffffd1;">
                         ₹${entry.amount.toLocaleString("en-IN")}
                     </div>
                 </div>
@@ -97,7 +105,9 @@ function renderPoolEntries() {
                     <div style="color: #0a95ff; font-size: 20px; font-weight: 600;">
                         ${entry.rate}%
                     </div>
-                    <div style="font-weight: 300; font-size: 13px; color: #ffffffc9; margin-top:4px;">
+                    <div style="font-weight: 300;
+    font-size: 12px;
+    color: #ffffffd1;">
                         ${entry.date}
                     </div>
                 </div>
@@ -129,16 +139,19 @@ function showEntryDetail(entry) {
         row.innerHTML = `
             <div>
                 <div>${split.member}</div>
-                <div style="    color: white;
-    font-size: 15px;
-    font-weight: 400;">₹${split.share.toLocaleString("en-IN")}</div>
+                <div style="    color: #ffffffc9;
+    font-weight: 600;    border-left: solid 3px #404f72;
+    padding: 0 5px;
+    font-size: 19px;">₹${split.share.toLocaleString("en-IN")}</div>
             </div>
             <div style="text-align:right;">
-                <div style="    font-weight: 500;
-    font-size: 17px;
+                <div style="font-weight: 600;
+    font-size: 19px;
     color: #0a95ff;">₹${memberInterest.toLocaleString("en-IN")}</div>
-                <div style="color: #a1a1a1;
-    font-size: 10px;">per month</div>
+                <div style="    font-weight: 300;
+    font-size: 10px;
+    color: #79838f;
+">per month</div>
             </div>
         `;
         container.appendChild(row);
