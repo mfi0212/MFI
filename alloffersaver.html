@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BsLinksaver | AOS</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background: #000;
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .powered {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .powered span {
+      color: #aaa;
+    }
+
+    /* Input */
+    .input-row {
+     display: flex;
+    margin-bottom: 24px;
+       background: #1a1a1a;
+    border: 1px solid #ffffff1f;
+    border-radius: 999px;
+    justify-content: center;
+    align-items: center;
+    }
+
+    input {
+      flex: 1;
+      background-color: transparent;
+      border: none;
+    color: #fff;
+    padding: 13px;
+    font-size: 18px;
+    outline: none;
+    text-align: center;
+    }
+
+    input:focus {
+      border-color: #444;
+    }
+
+    button {
+      background: transparent;
+    fill: white;
+    border: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    }
+
+    button:hover {
+      background: rgba(255, 255, 255, 0.555);
+    }
+
+    .error {
+      color: #ff5555;
+      text-align: center;
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    /* Links */
+    #links {
+      display: none;
+    }
+
+    .welcome {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #888;
+      margin-bottom: 16px;
+    }
+
+    .card {
+        background: #1a1a1a;
+    border-radius: 999px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    .info h3 {
+      font-size: 0.95rem;
+      color: #fff;
+      margin-bottom: 2px;
+      font-weight: 500;
+    }
+
+    .info p {
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    .btn {
+      background: #fff;
+      color: #000;
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .btn:hover {
+      background: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>AOS</h1>
+    <p class="powered">Powered by <span style="cursor: pointer;" onclick="window.open('https://blackswan19.github.io/Educate/savelink','_self')">BsLinksaver</span></p>
+
+    <div class="input-row">
+      <input type="password" id="pass" placeholder="Enter password" autocomplete="off">
+      <button onclick="check()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M781.69-136.92 530.46-388.16q-30 24.77-69 38.77-39 14-80.69 14-102.46 0-173.54-71.07-71.07-71.08-71.07-173.54t71.07-173.54q71.08-71.07 173.54-71.07t173.54 71.07q71.07 71.08 71.07 173.54 0 42.85-14.38 81.85-14.39 39-38.39 67.84l251.23 251.23-42.15 42.16ZM380.77-395.38q77.31 0 130.96-53.66 53.66-53.65 53.66-130.96t-53.66-130.96q-53.65-53.66-130.96-53.66t-130.96 53.66Q196.15-657.31 196.15-580t53.66 130.96q53.65 53.66 130.96 53.66Z"/></svg></button>
+    </div>
+
+    <p class="error" id="error">Wrong password</p>
+
+    <div id="links"></div>
+  </div>
+
+  <script>
+    const users = {
+      "user1": {
+        name: "User 1",
+        links: [
+          { title: "Premium Offer A", desc: "Best deal for you", url: "https://example.com/a" },
+          { title: "Special Package B", desc: "Limited time", url: "https://example.com/b" },
+          { title: "VIP Access C", desc: "Members only", url: "https://example.com/c" }
+        ]
+      },
+      "user2": {
+        name: "User 2",
+        links: [
+          { title: "Hot Deal X", desc: "Don't miss this", url: "https://example.com/x" },
+          { title: "Mega Offer Y", desc: "High value", url: "https://example.com/y" }
+        ]
+      },
+      "demo": {
+        name: "Demo",
+        links: [
+          { title: "Demo Link 1", desc: "Test link", url: "https://google.com" },
+          { title: "Demo Link 2", desc: "Another test", url: "https://youtube.com" }
+        ]
+      }
+    };
+
+    function check() {
+      const pass = document.getElementById("pass").value.trim();
+      const error = document.getElementById("error");
+      const linksDiv = document.getElementById("links");
+
+      if (users[pass]) {
+        error.style.display = "none";
+        const u = users[pass];
+        let html = `<p class="welcome">Welcome, ${u.name}</p>`;
+
+        u.links.forEach(l => {
+          html += `
+            <div class="card">
+              <div class="info">
+                <h3>${l.title}</h3>
+                <p>${l.desc}</p>
+              </div>
+              <a href="${l.url}" target="_blank" class="btn">Open</a>
+            </div>`;
+        });
+
+        linksDiv.innerHTML = html;
+        linksDiv.style.display = "block";
+      } else {
+        linksDiv.style.display = "none";
+        error.style.display = "block";
+      }
+    }
+
+    document.getElementById("pass").addEventListener("keypress", e => {
+      if (e.key === "Enter") check();
+    });
+  </script>
+
+</body>
+</html>
