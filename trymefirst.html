@@ -59,7 +59,7 @@
     color: blue;
     transform: scaleY(1.5);
 }
-    body {
+  body {
       background: #000000;
       color: #ffffff;
       min-height: 100vh;
@@ -107,9 +107,11 @@ body:has(input[value="dark"]:checked) {
     z-index: 2000;
     opacity: 1;
     transition: opacity 0.6s ease;
-    padding: 30px 0;
-
-} .loading-logo {
+    padding: 30px 0;  }
+.section {
+    animation: fadeSlideleft 0.8s;
+}
+    .loading-logo {
     width: 100%;
     object-fit: cover;
     height: 80px;
@@ -341,7 +343,6 @@ padding: 5px;
     width: 98%;
     position: relative;
     margin: 9px 0;
-    animation: fadeSlideleft 0.8s;
     }
 .fixwidth {
     max-width: 600px;
@@ -472,6 +473,7 @@ z-index: 1000;
     justify-content: center;
     align-items: center;
     width: 100%;
+    left: 0;
 }
     .bottom-nav {
 max-width: 350px;
