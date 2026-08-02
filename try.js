@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || '₹';
 let currentUser = null;
@@ -964,7 +964,22 @@ function closeDatePopup() {
     }, 300); // matches the 0.3s transition
  }
 function goToList(idx) { closeDatePopup(); switchView('list', true); displayLoanDetails(currentUser.loans[idx], idx); }
-
+function closeSumPopup() {
+    const popup = document.getElementById("sumPopup", "sumOverlay");
+    
+    // Start the fade-out
+    popup.style.transition = "opacity 0.3s ease";
+    popup.style.opacity = "0";
+    
+    // Hide the element after the animation finishes
+    setTimeout(() => {
+        popup.style.display = "none";
+        // Optional: reset opacity so it can fade in again later
+        popup.style.opacity = "1";
+    }, 300); // matches the 0.3s transition
+    
+    selectedSumIds.clear();
+}
 function renderLinks() {
     const c = document.getElementById("userLinks");
     c.innerHTML = "";
@@ -1415,8 +1430,3 @@ function updateSumSummary() {
     summaryDiv.innerHTML = html;
 }
 
-function closeSumPopup() {
-    document.getElementById('sumPopup').style.display = 'none';
-    document.getElementById('sumOverlay').style.display = 'none';
-    selectedSumIds.clear();
-}
