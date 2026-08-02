@@ -1,7 +1,7 @@
 const usersDB = {
     "9919": {
         name: "Phanindra Yerra",
-        coins: 2500,
+        coins: 2565,
         loans: [
             { planDate: "02-05-2026", endDate: "26-09-2026", interest: 7000, takenAmount: 38000, takenFrom: "BsLends", fineRate: 0 },
             { planDate: "02-05-2026", endDate: "26-09-2026", interest: 4200, takenAmount: 22000, takenFrom: "BsLends", fineRate: 0 },
