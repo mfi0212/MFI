@@ -233,7 +233,7 @@ display: flex;
     width: 100%;
     left: 50%;
     transform: translate(-50%, 0%);
-    max-width: 450px;
+    max-width: 600px;
     z-index: 1;
     background: linear-gradient(180deg, #000000c9 70%, #00000000);
     gap: 10px;
@@ -662,11 +662,14 @@ svg.serchareicon {
 width: 150px;
     left: 0;
     opacity: 100%;
-    padding: 5px 15px;
+    padding: 5px 15px 5px 35px;
     text-align: justify;
-    background: #5d5d5ddb;
     border: none;
-    margin: 0 15px 0 0;
+    margin: 0 0 0 -45px;
+    background: #ffffff1f;
+    backdrop-filter: blur(2px);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff21, inset -0.9px -0.9px 0px 0px #ffffff21;
+    z-index: -1;
 }
 .details {
 display: flex;
@@ -978,7 +981,7 @@ display: none;
 div#loanDetails {
 max-width: 600px;
     position: relative;
-    padding: 10px 10px 50px 10px;
+    padding: 10px 10px 40px 10px;
     animation: fadeSlideleft 0.8s;
 }
 
@@ -2127,7 +2130,7 @@ display: none;
     width: 100%;
 }
 .popupcontant {
-    display: flex;
+        display: flex;
     justify-content: end;
     align-items: center;
     flex-direction: column;
@@ -2140,6 +2143,9 @@ display: none;
     padding: 20px;
     max-width: 600px;
     background: #141414;
+    animation: fadeSlideUp 0.8s;
+    box-shadow: 0 0 0 1000px #00000085;
+    z-index: 10000;
 }
 
 .loan-option {
@@ -2211,20 +2217,21 @@ small {
     line-height: 25px;
 }
 button.totalsumamt {
-    background: #ffffff2b;
-    color: white;
+   color: white;
     border: none;
     width: 45px;
     height: 45px;
     border-radius: 50%;
     font-size: 32px;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 0 0 10px;
+    background: #ffffff17;
+    backdrop-filter: blur(2px);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff21, inset -0.9px -0.9px 0px 0px #ffffff21;
 }
 div#sum-list {
 display: flex;
