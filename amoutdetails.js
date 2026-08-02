@@ -1,14 +1,14 @@
 const usersDB = {
     "9919": {
-        name: "Pavel Durov",
-        coins: 1508,
+        name: "Charlie",
+        coins: 205,
         loans: [
-            { planDate: "02-05-2026", endDate: "26-09-2026", interest: 2300, takenAmount: 15826, takenFrom: "Lendlink", fineRate: 0 },
-            // { planDate: "02-05-2026", endDate: "26-09-2026", interest: 1250, takenAmount: 2026, takenFrom: "Lendlink", fineRate: 0 },
+            { planDate: "02-05-2026", endDate: "26-09-2026", interest: 2300, takenAmount: 2907, takenFrom: "Lendlink", fineRate: 0 },
+            { planDate: "02-05-2026", endDate: "26-09-2026", interest: 1250, takenAmount: 2026, takenFrom: "Lendlink", fineRate: 0 },
         ],
-        fragment: "https://pbs.twimg.com/media/GV16TLTWAAAjU7U?format=webp&name=medium",
-        defaultEmote: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/1280px-Telegram_2019_Logo.svg.png",
-        showCustomContent: "yes",
+        fragment: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_b431fc1e14d642a781c8116343c15967/default/dark/3.0#e=0",
+        defaultEmote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif",
+        showCustomContent: "no",
         customContent: {
             type: "image",
             value: "programXoffer.png",
