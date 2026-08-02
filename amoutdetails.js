@@ -7,15 +7,15 @@ const usersDB = {
             { planDate: "02-05-2026", endDate: "26-09-2026", interest: 4200, takenAmount: 22000, takenFrom: "BsLends", fineRate: 0 },
             { planDate: "02-05-2026", endDate: "26-09-2026", interest: 2000, takenAmount: 10000, takenFrom: "BsLends", fineRate: 0 },
         ],
-        fragment: "https://i.getgems.io/0NCf7Yswcvj-VFnHnPPDSrLT-XkPm75kQdeTd2uxFbM/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUJWNVhvektBMGUwNlo1eTZlTDdwV3JVVXBFb2xiUGhOZGNOUzBLNFpEazFqQ3MvMTU1OGM0ZTY1NzkwOTBiMw",
+        fragment: "https://data.chpic.su/stickers/l/Loving_Gift_by_EmojiRu_Bot/Loving_Gift_by_EmojiRu_Bot_036.webp",
         defaultEmote: "https://scontent.cdninstagram.com/v/t51.82787-19/729808268_18106195441988721_2475922297071123598_n.jpg?_nc_cat=102&ccb=7-5&_nc_sid=bf7eb4&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=WSiK-y37FewQ7kNvwEXTS5V&_nc_oc=AdqIhCnR5fRfxxP4rFdW-FP5fSd10ycRSu_LD5l9MSdhG_K9UYY4tdJ4IcZY0B36bro&_nc_zt=24&_nc_ht=scontent.cdninstagram.com&_nc_gid=5esDC-_lMD4PfCHgJjFcyw&_nc_ss=7baaf&oh=00_AQGSji_r8lbq1YK3NBG9mchO5fev4qAveoOuE7fCmhY_VQ&oe=6A750324",
-        showCustomContent: "no",
+        showCustomContent: "yes",
         customContent: {
             type: "image",
             value: "programXoffer.png",
             url: "https://mfi0212.github.io/swan/offer/programx"
         },
-        showSpecialNotice: "yes",
+        showSpecialNotice: "no",
         specialNoticeText: "Dear <strong>Charlie</strong>, Lendlink amounts are running. Kindly return on or before the due date."
     },
     "0021": {
