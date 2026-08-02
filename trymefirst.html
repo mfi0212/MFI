@@ -50,8 +50,6 @@
     align-items: center;
     flex-direction: column;
     gap: 15px;
-    
-    animation: fadeSlideleft 0.8s;
 }
 .servicelogo {
    font-size: 220px;
@@ -99,8 +97,7 @@ body:has(input[value="dark"]:checked) {
         }
                 
 .loading-overlay {
-    position: fixed;
-    inset: 0;
+position: fixed;
     background-color: black;
     display: flex;
     flex-direction: column;
@@ -110,7 +107,8 @@ body:has(input[value="dark"]:checked) {
     opacity: 1;
     transition: opacity 0.6s ease;
     padding: 30px 0;
-    animation: fadeSlideleft 0.8s;
+    height: 100vh;
+    width: 100%;
 
 } .loading-logo {
     width: 100%;
@@ -254,7 +252,6 @@ position: fixed;
     flex-direction: column;
     background: linear-gradient(180deg, #000000c9 50%, #00000000);
     gap: 10px;
-    animation: fadeSlideleft 0.8s;
     }
 strong {
 font-size: 20px;
@@ -326,6 +323,8 @@ display: flex;
     align-items: center;
     flex-direction: column;
     width: 100%;
+    
+    animation: fadeSlideleft 0.8s;
 }
     #sectionsContainer {
     padding-top: 130px;
@@ -478,7 +477,6 @@ z-index: 1000;
     justify-content: center;
     align-items: center;
     width: 100%;
-    animation: fadeSlideleft 0.8s;
 }
     .bottom-nav {
 max-width: 350px;
@@ -636,7 +634,6 @@ flex: 1;
     align-items: center;
     flex-direction: column;
     gap: 10px;
-    animation: fadeSlideleft 0.8s;
 }
 
 .device-popup {
