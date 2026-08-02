@@ -1,6 +1,4 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
-
-
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || '₹';
 let currentUser = null;
@@ -529,7 +527,6 @@ function displayLoanDetails(loan, index) {
     border-radius: 15px;
     padding: 5px;
     box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-    filter: saturate(6);
     background: #181818d9;">
               </a>
             </div>
