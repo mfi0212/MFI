@@ -1,20 +1,21 @@
 const usersDB = {
     "9919": {
-        name: "Charlie",
-        coins: 205,
+        name: "Phanindra Yerra",
+        coins: 2500,
         loans: [
-            { planDate: "02-05-2026", endDate: "26-09-2026", interest: 2300, takenAmount: 2907, takenFrom: "Lendlink", fineRate: 0 },
-            { planDate: "02-05-2026", endDate: "26-09-2026", interest: 1250, takenAmount: 2026, takenFrom: "Lendlink", fineRate: 0 },
+            { planDate: "02-05-2026", endDate: "26-09-2026", interest: 7000, takenAmount: 38000, takenFrom: "BsLends", fineRate: 0 },
+            { planDate: "02-05-2026", endDate: "26-09-2026", interest: 4200, takenAmount: 22000, takenFrom: "BsLends", fineRate: 0 },
+            { planDate: "02-05-2026", endDate: "26-09-2026", interest: 2000, takenAmount: 10000, takenFrom: "BsLends", fineRate: 0 },
         ],
-        fragment: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_b431fc1e14d642a781c8116343c15967/default/dark/3.0#e=0",
-        defaultEmote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif",
+        fragment: "https://i.getgems.io/0NCf7Yswcvj-VFnHnPPDSrLT-XkPm75kQdeTd2uxFbM/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUJWNVhvektBMGUwNlo1eTZlTDdwV3JVVXBFb2xiUGhOZGNOUzBLNFpEazFqQ3MvMTU1OGM0ZTY1NzkwOTBiMw",
+        defaultEmote: "https://scontent.cdninstagram.com/v/t51.82787-19/729808268_18106195441988721_2475922297071123598_n.jpg?_nc_cat=102&ccb=7-5&_nc_sid=bf7eb4&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=WSiK-y37FewQ7kNvwEXTS5V&_nc_oc=AdqIhCnR5fRfxxP4rFdW-FP5fSd10ycRSu_LD5l9MSdhG_K9UYY4tdJ4IcZY0B36bro&_nc_zt=24&_nc_ht=scontent.cdninstagram.com&_nc_gid=5esDC-_lMD4PfCHgJjFcyw&_nc_ss=7baaf&oh=00_AQGSji_r8lbq1YK3NBG9mchO5fev4qAveoOuE7fCmhY_VQ&oe=6A750324",
         showCustomContent: "no",
         customContent: {
             type: "image",
             value: "programXoffer.png",
             url: "https://mfi0212.github.io/swan/offer/programx"
         },
-        showSpecialNotice: "no",
+        showSpecialNotice: "yes",
         specialNoticeText: "Dear <strong>Charlie</strong>, Lendlink amounts are running. Kindly return on or before the due date."
     },
     "0021": {
