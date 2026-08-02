@@ -1,9 +1,9 @@
 const usersDB = {
     "9919": {
         name: "Pavel Durov",
-        coins: 15826,
+        coins: 1508,
         loans: [
-            { planDate: "02-05-2026", endDate: "26-09-2026", interest: 2300, takenAmount: 20826, takenFrom: "Lendlink", fineRate: 0 },
+            { planDate: "02-05-2026", endDate: "26-09-2026", interest: 2300, takenAmount: 15826, takenFrom: "Lendlink", fineRate: 0 },
             // { planDate: "02-05-2026", endDate: "26-09-2026", interest: 1250, takenAmount: 2026, takenFrom: "Lendlink", fineRate: 0 },
         ],
         fragment: "https://pbs.twimg.com/media/GV16TLTWAAAjU7U?format=webp&name=medium",
