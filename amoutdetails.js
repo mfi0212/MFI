@@ -16,7 +16,7 @@ const usersDB = {
             url: "https://mfi0212.github.io/swan/offer/solution"
         },
         showSpecialNotice: "yes",
-        specialNoticeText: "Dear <strong>Chmbad arlie</strong>, multiple Lendlink loans are active. Please clear them before the earliest due date to avoid extra charges."
+        specialNoticeText: "Dear <strong>Pskry</strong>, Welcome to OFFER CLAIMER TLL AUGUST 15TH.!"
     },
 };
 
