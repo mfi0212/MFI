@@ -24,19 +24,6 @@ const users = {
                     { member: "Muthinti Mahesh", share: 1425 },
                 ]
             },
-{
-                id: 4,
-                name: "Amount 4",
-                amount: 30000,
-                date: "25-08-2026",
-                rate: 20,
-                splits: [
-                    { member: "Mahesh Muthinti", share: 10000 },
-                    { member: "Phanindra yerra", share: 10000 },
-{ member: "Bhargav Naidu", share: 10000 },
-                ]
-            }
-        ]
     },
 };
 
