@@ -1,6 +1,6 @@
 const users = {
     "9919888*": {
-        name: "Mahesh Muthinti & Phanindra Yerra & PrabhasR",
+        name: "Mahesh Muthinti & Phanindra Yerra & Bhargav Naidu",
         poolEntries: [
             {
                 id: 2,
@@ -41,7 +41,7 @@ const users = {
 };
 
 let currentUser = null;
-// document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('contextmenu', e => e.preventDefault());
 let membersCount = 4;
 let memberAmounts = [];
 
