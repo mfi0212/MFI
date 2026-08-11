@@ -1,222 +1,212 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <title>BS&MFI | Short Term Loan</title> <link rel="icon" type="image/x-icon" href="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> <style> * { font-family: "Roboto", sans-serif; margin: 0; padding: 0; box-sizing: border-box; letter-spacing: 0.5px; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } body { background: #000000; color: #ddd; min-height: 100vh; padding: 70px 0 45px; } .header { position: fixed; top: 0; left: 0; right: 0; padding: 12px 16px; z-index: 100; background: black; border-radius: 0 0 40px 40px; } h3 { padding: 10px; text-align: center; } .search-container { position: relative; margin-top: 10px; } #searchPassword { width: 100%; padding: 12px 45px; background: #202020; border-radius: 33px; color: white; font-size: 18px; border: none; outline: none; } .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #777; font-size: 18px; } .section { padding: 0 15px; margin-top: 60px; } .section-title { font-size: 15px; font-weight: 500; margin: 20px 0 12px; color: #ffffff8a; text-align: center; } .card { background: #181818; border-radius: 30px; padding: 20px; margin-bottom: 20px; } .input-row { display: flex; gap: 12px; margin-bottom: 12px; } input[type="number"] { flex: 1; padding: 14px 16px; background: #202020; border: none; border-radius: 12px; color: white; font-size: 17px; outline: none; } strong { color: #ffffff5e; font-weight: 400; } input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } #interestResult { font-size: 16px; line-height: 1.6; margin: 15px 0; padding: 12px; background: #111; border-radius: 12px; min-height: 60px; } .apply-btn { background: #007aff; color: white; border: none; border-radius: 80px; font-weight: 600; font-size: 18px; padding: 14px; width: 100%; margin-top: 10px; cursor: pointer; } .limit-msg { color: #ff9800; font-size: 13px; margin-top: 6px; text-align: center; } </style> </head> <body> <div class="header"> <h3>Short Term Loans / Offers</h3> <div class="search-container"> <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span> <input type="text" id="searchPassword" placeholder="Enter your password..." maxlength="4" autocomplete="off"/> </div> </div> <!-- Interest Calculator --> <div class="section" id="interestSection" style="display:none;"> <div class="section-title">Calculate Interest</div> <div class="card"> <div class="input-row"> <input type="number" id="calcAmount" placeholder="Amount (₹)" min="100" max="1000" /> <input type="number" id="calcDays" placeholder="Days" min="1" max="15"/> </div> <div id="limitMsg" class="limit-msg" style="display:none;"> Maximum amount allowed: ₹1000 </div> <div id="interestResult"> Enter amount to see interest </div> <button class="apply-btn" onclick="window.open('https://forms.gle/XULCgr6MM42GwZWR9','_parent')">Apply Now</button> </div> </div> <!-- Loan Details --> <div class="section" id="loanSection" style="display:none;"> <div class="section-title">Your Amount Details</div> <div id="loanList"></div> </div> <div style="position:fixed; bottom:0; left:0; right:0; background:#000; color:#aaa; text-align:center; padding:10px; font-size:11px;"> © Lendlink - Mid / BS&MFI. All rights reserved. </div>
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <title>BS&MFI | Short Term Loan</title> <link rel="icon" type="image/x-icon" href="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> <style> * { font-family: "Roboto", sans-serif; margin: 0; padding: 0; box-sizing: border-box; letter-spacing: 0.5px; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background: #000000; color: #ddd; min-height: 100vh; padding: 70px 0 45px; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .header { position: fixed; top: 0; left: 0; right: 0; padding: 12px 16px; z-index: 100; background: black; border-radius: 0 0 40px 40px; } h3 { padding: 10px; text-align: center; } .search-container { position: relative; margin-top: 10px; } #searchPassword { width: 100%; padding: 12px 45px; background: #202020; border-radius: 33px; color: white; font-size: 18px; border: none; outline: none; } .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #777; font-size: 18px; } .section { padding: 0 15px; margin-top: 60px; } .section-title { font-size: 15px; font-weight: 500; margin: 20px 0 12px; color: #ffffff8a; text-align: center; } .card { background: #181818; border-radius: 30px; padding: 20px; margin-bottom: 20px; } .input-row { display: flex; gap: 12px; margin-bottom: 12px; } input[type="number"] { flex: 1; padding: 14px 16px; background: #202020; border: none; border-radius: 12px; color: white; font-size: 17px; outline: none; } strong { color: #ffffff5e; font-weight: 400; } input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } #interestResult { font-size: 16px; line-height: 1.6; margin: 15px 0; padding: 12px; background: #111; border-radius: 12px; min-height: 60px; } .apply-btn { background: #007aff; color: white; border: none; border-radius: 80px; font-weight: 600; font-size: 18px; padding: 14px; width: 100%; margin-top: 10px; cursor: pointer; } .limit-msg { color: #ff9800; font-size: 13px; margin-top: 6px; text-align: center; } </style> </head> <body> <div class="header"> <h3>Short Term Loans / Offers</h3> <div class="search-container"> <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span> <input type="text" id="searchPassword" placeholder="Enter your password..." maxlength="4" autocomplete="off"/> </div> </div> <!-- Interest Calculator --> <div class="section" id="interestSection" style="display:none;"> <div class="section-title">Calculate Interest</div> <div class="card"> <div class="input-row"> <input type="number" id="calcAmount" placeholder="Amount (₹)" min="100" max="1000" /> <input type="number" id="calcDays" placeholder="Days" min="1" max="15"/> </div> <div id="limitMsg" class="limit-msg" style="display:none;"> Maximum amount allowed: ₹1000 </div> <div id="interestResult"> Enter amount to see interest </div> <button class="apply-btn" onclick="window.open('https://forms.gle/XULCgr6MM42GwZWR9','_parent')">Apply Now</button> </div> </div> <!-- Loan Details --> <div class="section" id="loanSection" style="display:none;"> <div class="section-title">Your Amount Details</div> <div id="loanList"></div> </div> <div style="position:fixed; bottom:0; left:0; right:0; background:#000; color:#aaa; text-align:center; padding:10px; font-size:11px;"> ©BS&MFI. All rights reserved. </div>
 <script>
-  document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('DOMContentLoaded', function() {
 
-    const users = {
-      "0212": {
-        name: "Phani",
-        avatar: "P",
-        maxDays: 15,
-        dailyRatePercent: 25,
-        loans: [{
-          takenAmount: 500,
-          interest: 125,
-          planDate: "30-05-2026",
-          endDate: "30-06-2026",
-          takenFrom: "personal loan",
-          fineRate: 5,
-        }]
-      }
-    };
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  const users = {
+    "Mahesh888*": {
+      name: "Mahesh",
+      avatar: "M",
+      maxDays: 15,
+      dailyRatePercent: 2,          // ← Fixed: 2% per day
+      loans: []
+    }
+  };
 
-    const passwordInput   = document.getElementById("searchPassword");
-    const interestSection = document.getElementById("interestSection");
-    const loanSection     = document.getElementById("loanSection");
-    const loanList        = document.getElementById("loanList");
-    const calcAmount      = document.getElementById("calcAmount");
-    const calcDays        = document.getElementById("calcDays");
-    const interestResult  = document.getElementById("interestResult");
-    const limitMsg        = document.getElementById("limitMsg");
+  const passwordInput   = document.getElementById("searchPassword");
+  const interestSection = document.getElementById("interestSection");
+  const loanSection     = document.getElementById("loanSection");
+  const loanList        = document.getElementById("loanList");
+  const calcAmount      = document.getElementById("calcAmount");
+  const calcDays        = document.getElementById("calcDays");
+  const interestResult  = document.getElementById("interestResult");
+  const limitMsg        = document.getElementById("limitMsg");
 
-    let currentUser = null;
+  let currentUser = null;
 
-    // Helper: Convert DD-MM-YYYY to Date object
-    function parseDate(dateStr) {
-      const [day, month, year] = dateStr.split('-').map(Number);
-      return new Date(year, month - 1, day);
+  // Helper: Convert DD-MM-YYYY to Date object
+  function parseDate(dateStr) {
+    const [day, month, year] = dateStr.split('-').map(Number);
+    return new Date(year, month - 1, day);
+  }
+
+  // Calculate overdue days and penalty
+  function calculatePenalty(loan) {
+    const today = new Date(2026, 5, 30); // Current date: 30 June 2026
+    const endDate = parseDate(loan.endDate);
+    
+    today.setHours(0, 0, 0, 0);
+    endDate.setHours(0, 0, 0, 0);
+
+    const timeDiff = today - endDate;
+    const overdueDays = Math.floor(timeDiff / (1000 * 3600 * 24));
+
+    if (overdueDays <= 0) return { overdueDays: 0, penalty: 0 };
+
+    const totalDue = loan.takenAmount + loan.interest;
+    const dailyFine = totalDue * (loan.fineRate / 100);
+    const penalty = Math.round(dailyFine * overdueDays);
+
+    return { overdueDays, penalty };
+  }
+
+  function enforceAmountLimit() {
+    let value = parseFloat(calcAmount.value);
+    if (isNaN(value)) return;
+    if (value > 1000) {
+      calcAmount.value = 1000;
+      limitMsg.style.display = "block";
+    } else {
+      limitMsg.style.display = "none";
+    }
+  }
+
+  function updateInterest() {
+    if (!currentUser) return;
+    let amt = parseFloat(calcAmount.value) || 0;
+    let days = parseInt(calcDays.value) || 1;
+
+    if (days > currentUser.maxDays) {
+      days = currentUser.maxDays;
+      calcDays.value = days;
+    }
+    if (days < 1) days = 1;
+
+    if (amt < 100) {
+      interestResult.innerHTML = "Enter amount to see interest";
+      return;
     }
 
-    // Calculate overdue days and penalty
-    function calculatePenalty(loan) {
-      const today = new Date(2026, 5, 30); // Current date: 30 June 2026
-      const endDate = parseDate(loan.endDate);
-      
-      // Reset time to compare only dates
-      today.setHours(0, 0, 0, 0);
-      endDate.setHours(0, 0, 0, 0);
+    const dailyRate = currentUser.dailyRatePercent / 100;
+    const interest = Math.round(amt * dailyRate * days);
+    const total = amt + interest;
 
-      const timeDiff = today - endDate;
-      const overdueDays = Math.floor(timeDiff / (1000 * 3600 * 24));
+    interestResult.innerHTML = `
+      <strong>Interest:</strong> ₹${interest}<br>
+      <strong>Total to repay:</strong> ₹${total}
+    `;
+  }
 
-      if (overdueDays <= 0) return { overdueDays: 0, penalty: 0 };
-
-      // Penalty = fineRate % per day on (Principal + Interest)
-      const totalDue = loan.takenAmount + loan.interest;
-      const dailyFine = totalDue * (loan.fineRate / 100);
-      const penalty = Math.round(dailyFine * overdueDays);
-
-      return { overdueDays, penalty };
-    }
-
-    function enforceAmountLimit() {
-      let value = parseFloat(calcAmount.value);
-      if (isNaN(value)) return;
-      if (value > 1000) {
-        calcAmount.value = 1000;
-        limitMsg.style.display = "block";
-      } else {
-        limitMsg.style.display = "none";
-      }
-    }
-
-    function updateInterest() {
-      if (!currentUser) return;
-      let amt = parseFloat(calcAmount.value) || 0;
-      let days = parseInt(calcDays.value) || 1;
-
-      if (days > currentUser.maxDays) {
-        days = currentUser.maxDays;
-        calcDays.value = days;
-      }
-      if (days < 1) days = 1;
-
-      if (amt < 100) {
-        interestResult.innerHTML = "Enter amount to see interest";
-        return;
-      }
-
-      const dailyRate = currentUser.dailyRatePercent / 100;
-      const interest = Math.round(amt * dailyRate * days);
-      const total = amt + interest;
-
-      interestResult.innerHTML = `
-        <strong>Interest:</strong> ₹${interest}<br>
-        <strong>Total to repay:</strong> ₹${total}
-      `;
-    }
-
-    // Render User + Loans with Penalty
-    function renderUserDetails(user) {
-      let html = `
-        <div class="card">
-          <div style="display:flex; align-items:center; gap:12px; margin-bottom:15px;">
-            <div style="background:#00c4b4; width:50px; height:50px; border-radius:17px; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:bold; color:white;">${user.avatar}</div>
-            <div>
-              <b style="font-size:18px;">${user.name}</b><br>
-              <small style="color:#888;">Daily Rate: ${user.dailyRatePercent}%</small>
-            </div>
+  // Render User + Loans with Penalty
+  function renderUserDetails(user) {
+    let html = `
+      <div class="card">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:15px;">
+          <div style="background:#00c4b4; width:50px; height:50px; border-radius:17px; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:bold; color:white;">${user.avatar}</div>
+          <div>
+            <b style="font-size:18px;">${user.name}</b><br>
+            <small style="color:#888;">Daily Rate: ${user.dailyRatePercent}%</small>
           </div>
-      `;
+        </div>
+    `;
 
-      if (user.loans && user.loans.length > 0) {
-        html += `<div style="margin:15px 0 8px;"><strong>Your Loans:</strong></div>`;
+    if (user.loans && user.loans.length > 0) {
+      html += `<div style="margin:15px 0 8px;"><strong>Your Loans:</strong></div>`;
 
-        user.loans.forEach((loan, index) => {
-          const totalRepay = loan.takenAmount + loan.interest;
-          const penaltyInfo = calculatePenalty(loan);
-          const grandTotal = totalRepay + penaltyInfo.penalty;
+      user.loans.forEach((loan) => {
+        const totalRepay = loan.takenAmount + loan.interest;
+        const penaltyInfo = calculatePenalty(loan);
+        const grandTotal = totalRepay + penaltyInfo.penalty;
 
-          let statusHTML = '';
-          if (penaltyInfo.overdueDays > 0) {
-            statusHTML = `
-              <div style="background:#ff444420; color:#ff6666; padding:8px; border-radius:10px; margin-top:8px; font-size:13px;">
-                <strong>Overdue by ${penaltyInfo.overdueDays} days!</strong><br>
-                Overdue: ₹${penaltyInfo.penalty} (${loan.fineRate}% per day)
-              </div>
-            `;
-          } else {
-            statusHTML = `<small style="color:#00ff9d;">Return date: ${loan.endDate}</small>`;
-          }
-
-          html += `
-            <div class="card" style="background:#1f1f1f; margin-top:10px;">
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <div>
-                  <strong>₹${loan.takenAmount}</strong><br>
-                  <small style="color:#00ff9d;">${loan.takenFrom}</small>
-                </div>
-                <div style="text-align:right;">
-                  <strong style="color:#00ff9d;">₹${grandTotal}</strong><br>
-                  ${statusHTML}
-                </div>
-              </div>
-              
-              <hr style="border:none; border-top:1px solid #333; margin:10px 0;">
-              <small>
-                Interest: ₹${loan.interest} 
-                ${penaltyInfo.penalty > 0 ? `| <span style="color:#ff6666;">Overdue: ₹${penaltyInfo.penalty}</span>` : ''}
-              </small>
+        let statusHTML = '';
+        if (penaltyInfo.overdueDays > 0) {
+          statusHTML = `
+            <div style="background:#ff444420; color:#ff6666; padding:8px; border-radius:10px; margin-top:8px; font-size:13px;">
+              <strong>Overdue by ${penaltyInfo.overdueDays} days!</strong><br>
+              Overdue: ₹${penaltyInfo.penalty} (${loan.fineRate}% per day)
             </div>
           `;
-        });
-      } else {
-        html += `<p style="color:#888; text-align:center; padding:20px 0;">No active loans found</p>`;
-      }
+        } else {
+          statusHTML = `<small style="color:#00ff9d;">Return date: ${loan.endDate}</small>`;
+        }
 
-      html += `</div>`;
-      loanList.innerHTML = html;
+        html += `
+          <div class="card" style="background:#1f1f1f; margin-top:10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <strong>₹${loan.takenAmount}</strong><br>
+                <small style="color:#00ff9d;">${loan.takenFrom}</small>
+              </div>
+              <div style="text-align:right;">
+                <strong style="color:#00ff9d;">₹${grandTotal}</strong><br>
+                ${statusHTML}
+              </div>
+            </div>
+            
+            <hr style="border:none; border-top:1px solid #333; margin:10px 0;">
+            <small>
+              Interest: ₹${loan.interest} 
+              ${penaltyInfo.penalty > 0 ? `| <span style="color:#ff6666;">Overdue: ₹${penaltyInfo.penalty}</span>` : ''}
+            </small>
+          </div>
+        `;
+      });
+    } else {
+      html += `<p style="color:#888; text-align:center; padding:20px 0;">No active loans found</p>`;
     }
 
-    function unlockUser(pass) {
-      const user = users[pass];
-      if (!user) {
-        interestSection.style.display = "none";
-        loanSection.style.display = "none";
+    html += `</div>`;
+    loanList.innerHTML = html;
+  }
+
+  function unlockUser(pass) {
+    const user = users[pass];
+    if (!user) {
+      interestSection.style.display = "none";
+      loanSection.style.display = "none";
+      return;
+    }
+
+    currentUser = user;
+    interestSection.style.display = "block";
+    loanSection.style.display = "block";
+
+    renderUserDetails(user);
+
+    calcAmount.addEventListener("input", () => {
+      enforceAmountLimit();
+      updateInterest();
+    });
+
+    calcDays.addEventListener("input", updateInterest);
+    updateInterest();
+  }
+
+  // Password handler
+  passwordInput.addEventListener("input", () => {
+    const val = passwordInput.value.trim();
+    if (val.length === 4) {
+      unlockUser(val);
+    } else {
+      interestSection.style.display = "none";
+      loanSection.style.display = "none";
+    }
+  });
+
+  // Apply Button
+  document.querySelectorAll('.apply-btn').forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (!currentUser) return;
+      
+      let amt = parseFloat(calcAmount.value);
+      let days = parseInt(calcDays.value) || 1;
+
+      if (!amt || amt < 100) {
+        alert("Minimum amount is ₹100");
+        return;
+      }
+      if (amt > 1000) {
+        alert("Maximum amount allowed is ₹1000");
+        calcAmount.value = 1000;
         return;
       }
 
-      currentUser = user;
-      interestSection.style.display = "block";
-      loanSection.style.display = "block";
+      const interest = Math.round(amt * (currentUser.dailyRatePercent/100) * days);
+      const total = amt + interest;
 
-      renderUserDetails(user);
-
-      // Real-time calculator
-      calcAmount.addEventListener("input", () => {
-        enforceAmountLimit();
-        updateInterest();
-      });
-
-      calcDays.addEventListener("input", updateInterest);
-      updateInterest();
-    }
-
-    // Password handler
-    passwordInput.addEventListener("input", () => {
-      const val = passwordInput.value.trim();
-      if (val.length === 4) {
-        unlockUser(val);
-      } else {
-        interestSection.style.display = "none";
-        loanSection.style.display = "none";
-      }
+      alert(`✅ Application Submitted!\n\nCode: ${passwordInput.value}\nAmount: ₹${amt}\nDays: ${days}\nInterest: ₹${interest}\nTotal: ₹${total}`);
     });
-
-    // Apply Button
-    document.querySelectorAll('.apply-btn').forEach(btn => {
-      btn.addEventListener("click", () => {
-        if (!currentUser) return;
-        
-        let amt = parseFloat(calcAmount.value);
-        let days = parseInt(calcDays.value) || 1;
-
-        if (!amt || amt < 100) {
-          alert("Minimum amount is ₹100");
-          return;
-        }
-        if (amt > 1000) {
-          alert("Maximum amount allowed is ₹1000");
-          calcAmount.value = 1000;
-          return;
-        }
-
-        const interest = Math.round(amt * (currentUser.dailyRatePercent/100) * days);
-        const total = amt + interest;
-
-        alert(`✅ Application Submitted!\n\nCode: ${passwordInput.value}\nAmount: ₹${amt}\nDays: ${days}\nInterest: ₹${interest}\nTotal: ₹${total}`);
-      });
-    });
+  });
 });
 </script>
 </body>
