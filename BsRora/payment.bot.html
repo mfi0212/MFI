@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BsRora(Bot)</title>
+  <link rel="icon" href="https://i.ibb.co/ZpVQQ2Kp/mfi-logo.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Google Sans Flex", sans-serif; }
+    
+    body {
+      background: #000000;
+      color: #e0e0e0;
+      min-height: 100dvh;
+      display: flex;
+      scrollbar-width: none;
+      flex-direction: column;
+    }
+    
+    header {
+      text-align: center;
+      position: fixed;
+      width: 100%;
+      top: 0px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      background: linear-gradient(180deg, black, transparent);
+    }
+    
+    .logosection {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+    }
+    
+    .logoimg {
+      background: #ffffff42;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(30px);
+      position: relative;
+      bottom: -6px;
+      z-index: 100000;
+    }
+    
+    button.back-btn {
+      position: fixed;
+      left: 10px;
+      top: 45px;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      box-shadow: 0px 0px 8px rgb(0 0 0 / 21%);
+      background: rgb(255 255 255 / 10%);
+      backdrop-filter: blur(30px);
+      font-weight: 200;
+      outline: none;
+      border: 0.5px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+    
+    .logo {
+      text-align: center;
+      width: fit-content;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      box-shadow: 0px 0px 8px rgb(0 0 0 / 21%);
+      background: rgb(255 255 255 / 10%);
+      backdrop-filter: blur(30px);
+      font-weight: 200;
+      outline: none;
+      border: 0.5px solid rgba(255, 255, 255, 0.1);
+      border-radius: 19px;
+      padding: 5px 15px;
+      gap: 5px;
+      flex-direction: column;
+    }
+    
+    .logo span {
+      font-size: 10px;
+      color: gray;
+    }
+    
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    
+    .chat-container {
+      flex: 1;
+      padding: 125px 15px 90px;
+      max-width: 480px;
+      margin: 0 auto;
+      width: 100%;
+      overflow-y: auto;
+      background: #000000;
+    }
+
+    .message-wrapper {
+      display: flex;
+      margin: 10px 0;
+      gap: 8px;
+    }
+    
+    .bot-wrapper { justify-content: flex-start; }
+    .user-wrapper { justify-content: flex-end; }
+    
+    .logoicon {
+      display: flex;
+      gap: 5px;
+    }
+    
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    b {
+    color: #ff9a00;
+}
+    .bot-avatar {
+      background: #0010ff;
+      color: #0f1621;
+    }
+    
+    .user-avatar {
+      background: #00c7ff;
+      color: black;
+    }
+
+    .message {
+      max-width: 78%;
+      padding: 10px 15px;
+      border-radius: 18px;
+      line-height: 1.4;
+      font-size: 15.5px;
+      position: relative;
+    }
+    
+    .message.bot {
+      background: #0010ff45;
+    }
+    
+    .message.user {
+      background: #00b6ff54;
+    }
+    
+    .bot .message {
+      background: #1f2a3c;
+      border-bottom-left-radius: 4px;
+    }
+    
+    .user .message {
+      background: #4fc3f7;
+      color: #0f1621;
+      border-bottom-right-radius: 4px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+      width: fit-content;
+    }
+    
+    .option-row {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .option-btn {
+      flex: 1;
+      background: #0010ff45;
+      color: #e0e0e0;
+      padding: 12px;
+      border-radius: 12px;
+      text-align: left;
+      cursor: pointer;
+    }
+    
+    .explore-btn {
+      color: #b0bec5;
+      padding: 12px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 13px;
+      background: rgb(255 255 255 / 10%);
+    }
+
+    .input-area {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      max-width: 480px;
+      padding: 20px 16px;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+    
+    input {
+      width: 100%;
+      padding: 14px 18px;
+      font-size: 16px;
+      color: white;
+      box-shadow: 0px 0px 8px rgb(0 0 0 / 21%);
+      background: rgb(255 255 255 / 10%);
+      backdrop-filter: blur(30px);
+      font-weight: 200;
+      outline: none;
+      border: 0.5px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+    }
+    
+    input:focus {
+      background: rgba(255, 255, 255, 0.183);
+    }
+    
+    button {
+      position: absolute;
+      right: 23px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #0033ff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 400;
+    }
+    
+    .active-list {
+      background: #0010ff30;
+      border-radius: 12px;
+      padding: 12px 15px;
+      margin-top: 8px;
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+    
+    .active-list b {
+      color: #4fc3f7;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <button onclick="goBack()" class="back-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m371.77-481 307.61 307.62q11.85 11.84 12.24 30.15.38 18.31-11.47 30.15-11.84 11.85-30.15 11.85t-30.15-11.85l-303.7-304.46q-13.69-13.69-19.65-30.11-5.96-16.43-5.96-33.35t5.96-33.35q5.96-16.42 19.65-30.11l303.7-303.69q11.84-11.85 29.77-12.23 17.92-.39 29.76 11.46 11.85 11.84 11.85 30.15t-11.85 30.15L371.77-481Z"/></svg>
+  </button>
+  <div class="logosection">
+    <div class="logoimg">
+      <img style="width: 50px;" src="https://raw.githubusercontent.com/goforbg/telegram-emoji-gifs/refs/heads/master/money-flying.gif" alt="">
+    </div>
+    <div class="logo">
+      <div class="logoicon">
+        BotPay<i class="fa-solid fa-robot"></i>
+      </div>
+      <span>Let the bot pay</span>
+    </div>
+  </div>
+</header>
+
+<div class="chat-container" id="chat"></div>
+
+<div class="input-area">
+  <input type="text" id="userInput" placeholder="Type your message..." autocomplete="off">
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+const chat = document.getElementById('chat');
+const input = document.getElementById('userInput');
+
+let currentStep = 'welcome';
+let userData = {};
+
+// ========== USER DATABASE ==========
+// password → { name, activeServices[] }
+// You can add more users here
+const usersDB = {
+  "test": {
+    name: "Test User",
+    active: ["Solutions"]
+  },
+  "Mahesh888*": {
+    name: "Mahesh",
+    active: ["Solutions"]
+  },
+};
+
+// document.addEventListener('contextmenu', e => e.preventDefault());
+
+function addMessage(text, type, name = "") {
+  const wrapper = document.createElement('div');
+  wrapper.className = `message-wrapper ${type}-wrapper`;
+
+  const avatar = document.createElement('div');
+  avatar.className = `avatar ${type}-avatar`;
+  avatar.textContent = type === 'bot' ? '🤖' : (name ? name[0].toUpperCase() : '?');
+
+  const bubble = document.createElement('div');
+  bubble.className = `message ${type}`;
+  bubble.innerHTML = text;
+
+  if (type === 'bot') {
+    wrapper.appendChild(avatar);
+    wrapper.appendChild(bubble);
+  } else {
+    wrapper.appendChild(bubble);
+    wrapper.appendChild(avatar);
+  }
+
+  chat.appendChild(wrapper);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function showActiveList() {
+  const list = userData.active || [];
+  
+  if (list.length === 0) {
+    addMessage("You currently have <b>no active services</b>.", 'bot');
+    return;
+  }
+
+  let html = `<div class="active-list"><b>Active List</b><br>`;
+  list.forEach((service, index) => {
+    html += `${index + 1}. ${service}<br>`;
+  });
+  html += `</div>`;
+  
+  addMessage(html, 'bot');
+  
+  setTimeout(() => {
+    addMessage(
+      `Commands you can use:<br><br>
+      • <b>./stop</b> or <b>Solutions/stop</b> to Pause<br>
+      • <b>./start</b> or <b>Solutions/start</b> to Resume <br>`, 
+      'bot'
+    );
+  }, 600);
+}
+
+function sendMessage() {
+  const text = input.value.trim();
+  if (!text) return;
+
+  addMessage(text, 'user', userData.name || '');
+  input.value = '';
+  processUserInput(text);
+}
+
+function processUserInput(text) {
+  // ===== PASSWORD STEP =====
+  if (currentStep === 'password') {
+    const user = usersDB[text];
+    
+    if (user) {
+      userData.name = user.name;
+      userData.password = text;
+      userData.active = [...user.active]; // copy
+      userData.service = "";
+      
+      addMessage(`✅ Verified! Welcome, <b>${user.name}</b>`, 'bot');
+      
+      setTimeout(() => {
+        showActiveList();
+        currentStep = 'command';
+      }, 800);
+    } else {
+      addMessage("❌ Invalid password. Try again.", 'bot');
+    }
+    return;
+  }
+
+  // ===== COMMAND STEP (after login) =====
+  if (currentStep === 'command') {
+    handleCommand(text);
+  }
+}
+
+function handleCommand(text) {
+  const lower = text.toLowerCase().trim();
+  let action = null;      // "stop" or "start"
+  let serviceName = null;
+
+  // Match patterns:
+  // 1/stop , 1/start
+  // Solutions/stop , Solutions/start
+  // /stop , /start
+  // stop Solutions , start Solutions
+
+  const match1 = lower.match(/^(\d+)\s*\/\s*(stop|start)$/);
+  const match2 = lower.match(/^([a-zA-Z0-9\s]+)\s*\/\s*(stop|start)$/);
+  const match3 = lower.match(/^\/(stop|start)$/);
+  const match4 = lower.match(/^(stop|start)\s+(.+)$/);
+
+  if (match1) {
+    const index = parseInt(match1[1]) - 1;
+    action = match1[2];
+    if (userData.active[index]) {
+      serviceName = userData.active[index];
+    }
+  } 
+  else if (match2) {
+    serviceName = match2[1].trim();
+    action = match2[2];
+  } 
+  else if (match3) {
+    action = match3[1];
+    serviceName = userData.active[0] || null;
+  } 
+  else if (match4) {
+    action = match4[1];
+    serviceName = match4[2].trim();
+  }
+
+  // Validate
+  if (!action || !serviceName) {
+    addMessage("❌ Invalid command.<br>Examples:<br>• <b>1/stop</b><br>• <b>Solutions/stop</b><br>• <b>/stop</b><br>• <b>/start</b>", 'bot');
+    return;
+  }
+
+  // Check if service exists in user's active list (case insensitive)
+  const found = userData.active.find(s => s.toLowerCase() === serviceName.toLowerCase());
+  
+  if (!found) {
+    addMessage(`❌ Service "<b>${serviceName}</b>" not found in your active list.`, 'bot');
+    return;
+  }
+
+  // Save action
+  userData.service = `${found}/${action}`;
+  
+  // Feedback
+  if (action === 'stop') {
+    addMessage(`⏸️ <b>${found}</b> has been <b>PAUSED</b>.<br>Auto apply & pay fee will be stopped.`, 'bot');
+  } else {
+    addMessage(`▶️ <b>${found}</b> has been <b>RESUMED</b>.<br>Auto apply & pay fee is now active again.`, 'bot');
+  }
+
+  // Submit to Google Sheet
+  setTimeout(submitData, 900);
+}
+
+function submitData() {
+  addMessage("✅ Submitting your request...", 'bot');
+
+  const formData = new URLSearchParams({
+    Name: userData.name || '',
+    Password: userData.password || '',
+    PhoneNumber: userData.phone || '',
+    Service: userData.service || '',
+    Amount: userData.amount || userData.amountSplit || '',
+    Days: userData.days || '',
+    OfferID: userData.offerId || '',
+    Timestamp: new Date().toLocaleString('en-IN', {timeZone:'Asia/Kolkata'})
+  });
+
+  fetch("https://script.google.com/macros/s/AKfycbxIlao67g-XSHBVoSvYzofopgSa7_7_l9qstp4SxrdqMWCutnasBtQjdLn_aUWdsZvShw/exec", {
+    method: "POST",
+    body: formData,
+  })
+  .then(() => {
+    addMessage(`🎉 Request submitted successfully!<br>Thank you, <b>${userData.name}</b>!`, 'bot');
+    
+    // Keep the session alive so user can send more commands
+    setTimeout(() => {
+      addMessage("You can continue managing your services. Type another command anytime.", 'bot');
+    }, 1500);
+  })
+  .catch(() => {
+    addMessage("❌ Submission failed. Try again.", 'bot');
+  });
+}
+
+function startChat() {
+  addMessage("👋 Hello! I am <b>BotPay</b><br><br>From BsRora.", 'bot');
+  setTimeout(() => {
+    addMessage("Enter your password to continue", 'bot');
+    currentStep = 'password';
+  }, 700);
+}
+
+window.onload = startChat;
+
+input.addEventListener("keypress", e => {
+  if (e.key === "Enter") sendMessage();
+});
+
+function goBack() {
+  if (window.history.length > 1) {
+    window.history.back();
+  } else {
+    alert("Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
+  }
+}
+</script>
+</body>
+</html>
