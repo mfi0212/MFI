@@ -276,10 +276,6 @@ div#sectionsContainer {
     border-bottom: 1.35px solid rgb(255 255 255 / 18%);
 }
 
-.header img:hover {
-  transform: scale(1.03);
-}
-
 .header img:active {
   transform: scale(0.90);
 }
@@ -292,7 +288,6 @@ div#sectionsContainer {
     justify-content: space-evenly;
     align-items: center;
     z-index: 1;
-    transition: all 0.3s ease;
     gap: 0px;
     padding: 0 0 20px 0;
     max-width: 600px;
@@ -308,11 +303,13 @@ display: flex;
     padding: 5px;
     background: rgb(51 51 51 / 75%);
     backdrop-filter: blur(3px) saturate(15%) brightness(2);
-    border-radius: 9999px;
+    border-radius: 9999px;transition: all 0.3s ease;
     border-top: 1.35px solid rgb(255 255 255 / 18%);
     border-bottom: 1.35px solid rgb(255 255 255 / 18%);
 }
-
+.searchsection:active {
+  transform: scale(0.90);
+}
 #searchInput {
   font-size: 18px;
   border: none;
