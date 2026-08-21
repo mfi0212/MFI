@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 const USD_RATE = 87.85;
 let currentCurrency = localStorage.getItem('currency') || '₹';
 let currentUser = null;
@@ -1430,3 +1430,20 @@ function updateSumSummary() {
     summaryDiv.innerHTML = html;
 }
 
+  function showPopup(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.style.display = 'block';
+    requestAnimationFrame(() => {
+      el.classList.add('show');
+    });
+  }
+
+  function hidePopup(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.remove('show');
+    setTimeout(() => {
+      el.style.display = 'none';
+    }, 450);
+}
