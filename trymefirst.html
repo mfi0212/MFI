@@ -20,11 +20,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Six+Caps&family=Stack+Sans+Headline:wght@200..700&family=Stalemate&display=swap" rel="stylesheet">
 <style>
 
-/* ===== IMPROVED iOS SPRING ANIMATIONS ===== */
+/* ===== SMOOTH iOS ANIMATIONS (SAFE - does not break JS) ===== */
 @keyframes fadeSlideleft {
   from {
     opacity: 0;
-    transform: translateX(40px) scale(0.96);
+    transform: translateX(40px) scale(0.97);
   }
   to {
     opacity: 1;
@@ -35,7 +35,7 @@
 @keyframes fadeSlideUp {
   from {
     opacity: 0;
-    transform: translateY(50px) scale(0.92);
+    transform: translateY(45px) scale(0.92);
   }
   to {
     opacity: 1;
@@ -43,18 +43,18 @@
   }
 }
 
-@keyframes springIn {
+@keyframes springPopup {
   0% {
     opacity: 0;
-    transform: scale(0.82) translateY(30px);
+    transform: translate(-50%, 50px) scale(0.88);
   }
-  60% {
+  70% {
     opacity: 1;
-    transform: scale(1.04) translateY(-4px);
+    transform: translate(-50%, -6px) scale(1.03);
   }
   100% {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: translate(-50%, 0) scale(1);
   }
 }
 
@@ -67,8 +67,8 @@
 	100% { transform: scale(1, 1); }
 }
 
-            .viewnotice{
-           display: block;
+.viewnotice{
+    display: block;
     position: fixed;
     left: 50%;
     background-color: #000;
@@ -78,13 +78,15 @@
     white-space: nowrap;
     height: 100vh;
     width: 100%;
-        }.contentmsg {
-        display: flex;
+}
+.contentmsg {
+    display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px;
     height: 100vh;
-}.explorealternatesite{
+}
+.explorealternatesite{
     text-align: center;
     position: fixed;
     left: 50%;
@@ -92,11 +94,11 @@
     transform: translate(-50%, 0);
     margin-top: 40px;
 }
-            #passwordScreen,
-            #mainApp{
-                background-color: black;
-                display: none;
-            }
+#passwordScreen,
+#mainApp{
+    background-color: black;
+    display: none;
+}
         
 * {
 	-webkit-tap-highlight-color: transparent;
@@ -105,7 +107,7 @@
 	padding: 0;
 	font-family: "Google Sans Flex", sans-serif;
 	scrollbar-width: none;
-        letter-spacing: 0.3px;
+    letter-spacing: 0.3px;
 }
 
 body {
@@ -157,7 +159,8 @@ body {
 	min-height: 100vh;
 	text-align: center;
 	line-height: 15px;
-	position: fixed;width: 100%;
+	position: fixed;
+    width: 100%;
 	background: transparent;
     animation: fadeSlideleft 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -193,14 +196,13 @@ svg {
 
 #userPassword:focus {
     background-color: #3f3f3f;
-    transform: scale(1.02);
 }
 
 .paswrdbtm {
     width: 90%;
 }
 #submitBtn {
-background-color: blue;
+    background-color: blue;
     font-size: 18px;
     border-radius: 40px;
     color: #fff;
@@ -227,7 +229,7 @@ i.fa-solid.fa-arrow-right {
 }
 
 .topoptions {
-display: flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     position: fixed;
@@ -246,9 +248,9 @@ display: flex;
 }
 
 h3 {
-	    color: #ffffff94;
+	color: #ffffff94;
     font-weight: 300;
-        font-size: 17px;
+    font-size: 17px;
 }
 
 p {
@@ -263,13 +265,13 @@ p {
 
 #error-message {
 	color: #ff0000;
-	font-size: 12px;display: contents;
+	font-size: 12px;
+    display: contents;
 	margin-top: 10px;
 }
 
-
 .notice {
-font-size: 14px;
+    font-size: 14px;
     color: #ffffff91;
     font-weight: 300;
     display: flex;
@@ -291,7 +293,6 @@ font-size: 14px;
 	transform: scale(0.94);
     border-radius: 90px;
 }
-
 
 /* MODAL */
 .modal {
@@ -316,17 +317,12 @@ font-size: 14px;
 }
 
 @keyframes shimmer {
-	0% {
-		background-position: 200% 0;
-	}
-
-	100% {
-		background-position: -200% 0;
-	}
+	0% { background-position: 200% 0; }
+	100% { background-position: -200% 0; }
 }
 
 .close-btn {
-color: #e0e0e0;
+    color: #e0e0e0;
     cursor: pointer;
     z-index: 11;
     border-radius: 50px;
@@ -346,7 +342,7 @@ color: #e0e0e0;
 }
 
 .fixed-details {
-position: fixed;
+    position: fixed;
     top: 80px;
     width: 95%;
     max-width: 600px;
@@ -370,7 +366,8 @@ position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;display: none;
+    gap: 5px;
+    display: none;
     background: #4040407d;
     border-radius: 100px;
     padding: 3px 9px 3px 3px;
@@ -390,7 +387,7 @@ position: fixed;
 }
 
 #userName {
-    transition: 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     color: white;
     background-clip: text;
     font-weight: 500;
@@ -402,19 +399,8 @@ position: fixed;
     cursor: pointer;
 }
 
-
-@keyframes shimmer {
-	0% {
-		background-position: 200% 0;
-	}
-
-	100% {
-		background-position: -200% 0;
-	}
-}
-
 .currency-switch {
-background: transparent;
+    background: transparent;
     color: #ffffffd4;
     z-index: 10000;
     display: flex;
@@ -426,7 +412,7 @@ background: transparent;
     font-weight: 300;
     box-shadow: none;
     gap: 5px;
-transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .currency-switch:active {
 	transform: scale(0.92);
@@ -457,7 +443,7 @@ transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 #userEmote {
-width: 45px;
+    width: 45px;
     height: 45px;
     cursor: pointer;
     border-radius: 50%;
@@ -475,8 +461,10 @@ width: 45px;
 	width: 99%;
 	display: flex;
 	align-items: center;
-	gap: 5px;    margin-left: -5px;
-	margin-top: 10px;display: none;
+	gap: 5px;
+    margin-left: -5px;
+	margin-top: 10px;
+    display: none;
 	padding: 0px 0px 0px 5px;
 }
 .amtrghtsidopt {
@@ -511,12 +499,12 @@ width: 45px;
     align-items: center;
     gap: 4px;
     cursor: pointer;
-    font-weight: 300; border: none;
+    font-weight: 300;
+    border: none;
     box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.5px 1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 90%), transparent), inset -1.5px -1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
     transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
     font-weight: 300;
 }
-
 
 .user-links :active {
 	transform: scale(0.90);
@@ -536,7 +524,8 @@ a {
     border-radius: 101px;
     font-size: 12px;
     font-weight: 300;
-    cursor: pointer;box-shadow: none;
+    cursor: pointer;
+    box-shadow: none;
     transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
     white-space: nowrap;
     display: flex;
@@ -575,7 +564,7 @@ svg.addsiteicon {
     flex-direction: column;
 }
 .pinamtsec {
-display: flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     width: 103%;
@@ -597,7 +586,7 @@ div#amountButtons {
     padding: 0 8px 0 0;
 }
 .pincrnchng {
-display: flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -611,7 +600,7 @@ display: flex;
     color: #ffffff94;
 }
 span#currencyLabel {
-font-size: 12px;
+    font-size: 12px;
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -637,7 +626,6 @@ svg.serchareicon {
     height: 30px;
 }
 
-
 #searchIcon:active {
 	transform: scale(0.90);
 }
@@ -655,14 +643,13 @@ svg.serchareicon {
     position: relative;
     left: -100px;
     opacity: 0%;
-    
     border-radius: 9999px;
     height: 44px;
     font-weight: 300;
 }
 
 #searchInput.active {
-width: 150px;
+    width: 150px;
     left: 0;
     opacity: 100%;
     padding: 5px 15px 5px 35px;
@@ -675,18 +662,10 @@ width: 150px;
     z-index: -1;
 }
 .details {
-display: flex;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 27px 5px;
-}
-
-
-.totaldetails {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
 }
 
 .totaldetails {
@@ -697,7 +676,7 @@ display: flex;
 }
 
 .amount-btn {
-color: #e0e0e0cf;
+    color: #e0e0e0cf;
     border: none;
     border-radius: 9999px;
     padding: 5px 10px;
@@ -732,7 +711,7 @@ color: #e0e0e0cf;
     padding: 10px;
 }
 .datepopupframo {
-margin: -15px;
+    margin: -15px;
     background: linear-gradient(180deg, #303030 50%, #00000000);
     padding: 30px 10px 40px 10px;
     border-radius: 40px 40px 0px 0px;
@@ -782,7 +761,7 @@ margin: -15px;
 	transform: scale(0.90);
 }
 #coinSection {
-display: flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 2px;
@@ -827,7 +806,7 @@ input {
 }
 
 #totalContent strong {
-color: rgb(255, 204, 0);
+    color: rgb(255, 204, 0);
     font-weight: 700;
 }
 
@@ -846,7 +825,7 @@ color: rgb(255, 204, 0);
 }
 
 button.move-asaid {
-	    padding: 2px;
+	padding: 2px;
     background: transparent;
     color: white;
     outline: none;
@@ -861,7 +840,7 @@ button.move-asaid {
     box-shadow: none;
 }
 .paswrdcontnt {
-display: flex;
+    display: flex;
     max-width: 350px;
     justify-content: center;
     align-items: center;
@@ -870,24 +849,25 @@ display: flex;
     width: 100%;
 }
 
-
 .iconsinfo {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;display: none;
+    gap: 10px;
+    display: none;
     width: 100%;
 }
 .icon svg {
    width: 20px;
     height: 20px;
     background: transparent;
-}.iconname {
+}
+.iconname {
     font-size: 11px;
     font-weight: 300;
 }
 .icon {
-      background: #ffffff2b;
+    background: #ffffff2b;
     border-radius: 18px;
     padding: 5px 0;
     width: 100%;
@@ -904,12 +884,12 @@ button.move-asaid:active {
 
 .graphsays span {
     box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.5px 1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 90%), transparent), inset -1.5px -1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
- border: none;
+    border: none;
 	border-radius: 7px;
 }
 
 .graphsays {
-display: flex;
+    display: flex;
     font-size: 12px;
     white-space: nowrap;
     justify-content: center;
@@ -936,16 +916,15 @@ canvas#loanChart {
 	margin-bottom: -40px;
 }
 
-/* ===== ALL POPUPS – iOS SPRING ===== */
+/* ===== POPUPS - FIXED (works with your original JS) ===== */
 #totalPopup,
 #datePopup,
 #linkConfirmPopup,
 #emoteChooser {
-display: none;
+    display: none;
     position: fixed;
     bottom: 10px;
     left: 50%;
-    scale: 1;
     color: #e0e0e0;
     border-radius: 45px;
     max-width: 600px;
@@ -955,20 +934,10 @@ display: none;
     padding: 25px;
     line-height: 1.7;
     width: 95%;
-    transform: translate(-50%, 40px) scale(0.9);
-    opacity: 0;
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: translate(-50%, 0);
     box-shadow: 0 0 0 1000px #00000085;
     background: #141414;
-}
-
-#totalPopup.show,
-#datePopup.show,
-#linkConfirmPopup.show,
-#emoteChooser.show {
-    display: block;
-    opacity: 1;
-    transform: translate(-50%, 0) scale(1);
+    animation: springPopup 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .totalcloseopt:active {
@@ -994,7 +963,7 @@ display: none;
     margin: 20px 0 -0px 0;
 }
 div#loanDetails {
-max-width: 600px;
+    max-width: 600px;
     position: relative;
     padding: 10px 10px 40px 10px;
     animation: fadeSlideleft 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -1031,18 +1000,12 @@ div#sumPopup button{
     border: solid 1px #ffffff00;
 }
 
-#totalPopup button {
-	transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-#totalPopup button:active {
+#totalPopup button:active,
+#datePopup button:active,
+#linkConfirmPopup button:active,
+#emoteChooser button:active {
 	transform: scale(0.93);
 }
-
-#linkConfirmPopup button {
-	transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
 
 .mincntatusr {
   display: flex;
@@ -1051,30 +1014,6 @@ div#sumPopup button{
     width: 100%;
     gap: 0;
     flex-direction: column;
-}
-#linkConfirmPopup button:active {
-	transform: scale(0.93);
-}
-
-#emoteChooser button {
-	transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-#emoteChooser button:hover {
-	transform: scale(1.03);
-}
-
-#emoteChooser button:active {
-	transform: scale(0.92);
-}
-
-#datePopup button {
-	transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-
-#datePopup button:active {
-	transform: scale(0.93);
 }
 
 .btn-yes {
@@ -1102,7 +1041,7 @@ div#sumPopup button{
 	padding: 5px 0px 5px 0px
 }
 .paswrdtop {
-display: flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -1167,7 +1106,7 @@ display: flex;
 	width: 100%;
 }
 .purpose-input {
-padding: 5px;
+    padding: 5px;
     font-size: 13px;
     transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
     border-radius: 9999px;
@@ -1175,7 +1114,6 @@ padding: 5px;
     font-weight: 300;
     text-align: center;
     width: 95px;
-    x: 100000;
     border: none;
     background: #1c1c1c;
     color: #fff;
@@ -1188,7 +1126,7 @@ padding: 5px;
 }
 
 .purpose-input:focus {
-padding: 10px;
+    padding: 10px;
     font-size: 18px;
     background: rgb(78 78 78);
     width: 250px;
@@ -1198,12 +1136,9 @@ padding: 10px;
 .purpose-input.animate {
 	animation: liquidPress 0.7s cubic-bezier(.2, .8, .2, 1);
 }
-.purpose-input.animate {
-	animation: liquidPress 0.7s cubic-bezier(.2, .8, .2, 1);
-}
 
 .bottomoptions {
-width: 100%;
+    width: 100%;
     position: fixed;
     bottom: 0px;
     left: 50%;
@@ -1234,7 +1169,7 @@ width: 100%;
 }
 
 #bottomNav2 {
-display: flex;
+    display: flex;
     align-items: center;
     flex-direction: row-reverse;
     justify-content: center;
@@ -1248,7 +1183,7 @@ display: flex;
     background: #181818d9;
 }
 #bottomNav svg {
-height: 20px;
+    height: 20px;
     fill: #ffffff;
     width: 20px;
 }
@@ -1257,7 +1192,7 @@ height: 20px;
 	display: flex;
 	gap: 5px;
     box-shadow: inset 0 0 0 1px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 10%), transparent), inset 1.5px 1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 90%), transparent), inset -1.5px -1.5px 1px -1.5px  color-mix(in srgb, #ffffff70 calc(var(--glass-reflex-light) * 80%), transparent), inset -2px -7.5px 1px -7.5px  color-mix(in srgb, #ffffff00 calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px 0px 4px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0px 3px 4px -2px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 1px 5px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0px 6px 16px 0px  color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
- border: none;
+    border: none;
 	backdrop-filter: blur(2px);
 	border-radius: 1000px;
 	padding: 5px;
@@ -1278,7 +1213,7 @@ height: 20px;
 
 .reminder-content {
 	border-radius: 45px;
-       width: 95%;
+    width: 95%;
     max-width: 550px;
     padding: 15px;
     color: #eee;
@@ -1290,12 +1225,12 @@ height: 20px;
     flex-direction: column;
     backdrop-filter: blur(5px);
     background: #141414;
-    animation: springIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: springPopup 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .reminder-content strong {
 	color: #ffaa00;
-        white-space: nowrap;
+    white-space: nowrap;
 }
 
 .reminder-header h2 {
@@ -1323,7 +1258,7 @@ height: 20px;
     background: #ffffff1c;
     filter: saturate(6);
     box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-        backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
 }
 .reminder-close-btn svg{
     width: 30px;
@@ -1333,7 +1268,7 @@ height: 20px;
 	transform: scale(0.88);
 }
 .reminder-body p {
-margin: -25px 0 15px 0;
+    margin: -25px 0 15px 0;
     line-height: 26px;
     font-size: 16px;
     padding: 20px 15px;
@@ -1343,7 +1278,7 @@ margin: -25px 0 15px 0;
 }
 
 .reminder-actions {
-	 display: flex;
+	display: flex;
     gap: 0px;
     margin-top: -15px;
     justify-content: center;
@@ -1383,7 +1318,7 @@ margin: -25px 0 15px 0;
 	color: white;
 }
 .nav-item {
-display: flex;
+    display: flex;
     align-items: center;
     justify-content: space-around;
     gap: 0;
@@ -1401,22 +1336,25 @@ display: flex;
 }
 
 .nav-item.active {
-color: white;
+    color: white;
     border: none;
     background: #0020ff;
     box-shadow: none;
 }
 
 .nav-item i {
-	display: none;    rotate: 270deg;
+	display: none;
+    rotate: 270deg;
 }
 
 .toggle-pin.on{
-	color: #0020ff;display: none; 
+	color: #0020ff;
+    display: none; 
 }
 .toggle-pin.on>.iconbotm>.nav-item{
-	color: #0020ff;justify-content: center;
-      align-items: center;
+	color: #0020ff;
+    justify-content: center;
+    align-items: center;
 }
 .iconbotm {
 	display: flex;
@@ -1454,7 +1392,7 @@ color: white;
 }
 
 #calendarContainer>div>div {
-color: #e0e0e0cf;
+    color: #e0e0e0cf;
     min-height: 30px;
     display: flex;
     align-items: center;
@@ -1464,44 +1402,16 @@ color: #e0e0e0cf;
     transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-
 #calendarContainer>div>div:active {
 	transform: scale(0.90);
 }
-svg#Layer_0 {
-    fill: #d20000;
-    stroke: transparent;
-}
-
-svg#Layer_2 {
-    fill: #c900ff;
-    stroke: transparent;
-}
-
-svg#Layer_3 {
-fill: #ff0088;
-    stroke: transparent;
-}
-
-svg#Layer_4 {
-   fill: #00a018;
-    stroke: transparent;
-}
-
-svg#Layer_5 {
-     fill: #006fff;
-    stroke: transparent;
-}
-
-svg#Layer_6 {
-    fill: #ff5b00;
-    stroke: transparent;
-}
-
-svg#Layer_7 {
-fill: #ff8a00;
-    stroke: transparent;
-}
+svg#Layer_0 { fill: #d20000; stroke: transparent; }
+svg#Layer_2 { fill: #c900ff; stroke: transparent; }
+svg#Layer_3 { fill: #ff0088; stroke: transparent; }
+svg#Layer_4 { fill: #00a018; stroke: transparent; }
+svg#Layer_5 { fill: #006fff; stroke: transparent; }
+svg#Layer_6 { fill: #ff5b00; stroke: transparent; }
+svg#Layer_7 { fill: #ff8a00; stroke: transparent; }
 
 .loans-list {
 	margin-top: 25px;
@@ -1560,7 +1470,7 @@ fill: #ff8a00;
 }
 
 .loan-days.warning {
-background: rgb(255, 128, 0);
+    background: rgb(255, 128, 0);
     color: white;
     font-size: 10px;
     font-weight: 300;
@@ -1617,7 +1527,7 @@ a#customOfferLink img:active{
     display: flex;
     justify-content: center;
     align-items: center;
-  gap: 10px;
+    gap: 10px;
 }
 .loan-actions svg {
 	width: 18px;
@@ -1626,28 +1536,15 @@ a#customOfferLink img:active{
     stroke: transparent;
 }
 
-.btn-hide {
-	background: #ffffff54;
-	color: white;
-}
-
-.btn-details {
-	background: #0022ff00;
-	color: white;
-}
-
-.btn-edit {
-	background: #8900ff;
-	color: white;
-}
+.btn-hide { background: #ffffff54; color: white; }
+.btn-details { background: #0022ff00; color: white; }
+.btn-edit { background: #8900ff; color: white; }
 
 canvas#loanChart {
 	transition: opacity 0.6s ease;
 }
 
-/* Optional — makes empty chart area look intentional */
 #loanChart-wrapper {
-	/* wrap your <canvas> in a div with this id if you want */
 	position: relative;
 }
 
@@ -1691,7 +1588,6 @@ input {
 	opacity: 0;
 	visibility: hidden;
 	transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
-	transform: translateX(-50%) scale(1);
 	color: white;
 }
 
@@ -1765,37 +1661,37 @@ input {
 		transform-origin: center top;
 	}
 
-        .scroll {
-	top: 80px;}
+    .scroll {
+	    top: 80px;
+    }
 	@media (max-width : 380px) {
         .scroll {
-	top: 80px;}
+	        top: 80px;
+        }
 		.user-links {
 			overflow: auto;
-			overflow: auto;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    padding: 5px 15px 5px 0px;
-    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-    position: relative;
-    top: -5px;
-    left: 5px;
-    width: 82%;
-    border-radius: 30px 0 0 30px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            padding: 5px 15px 5px 0px;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            top: -5px;
+            left: 5px;
+            width: 82%;
+            border-radius: 30px 0 0 30px;
 		}
         .pinamtsec {
-display: flex;
-justify-content: space-between;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
             width: 105%;
             border-bottom: solid 1px #ffffff42;
             padding: 0 0 10px 0;
-}
+        }
 	}
 }
 
-/* Popup overlay */
 .issuebtn button {
 	width: 100%;
 	position: relative;
@@ -1808,7 +1704,6 @@ justify-content: space-between;
 	border-radius: 13px;
 	cursor: pointer;
 }
-
 
 .topdec {
 	display: none;
@@ -1852,15 +1747,13 @@ img.closesymbol {
 }
 
 .details svg {
-width: 33px;
+    width: 33px;
     height: 33px;
     background: linear-gradient(45deg, #161616, #2f2f2f);
     padding: 4px;
     border-radius: 12px;
     border: none;
-    /* box-shadow: inset 0 0 10px #6a6a6a26; */
     box-shadow: inset 0 0 10px #6a6a6a33;
-        /* box-shadow: inset 1px 1px 0px 0px #ffffff0f, inset -1px -1px 0px 0px #ffffff0f; */
 }
 
 .leftflow {
@@ -1888,7 +1781,7 @@ width: 33px;
 }
 
 .toggle-switch {
-position: absolute;
+    position: absolute;
     left: 50%;
     transform: translate(-50%, 0);
     text-align: center;
@@ -1934,7 +1827,6 @@ position: absolute;
 	height: 0;
 }
 
-/* The slider */
 .slider {
 	position: absolute;
 	cursor: pointer;
@@ -1971,14 +1863,12 @@ position: absolute;
 
 input:checked+.slider {
 	background-color: #ffffff78;
-	/* Apple blue when ON */
 }
 
 input:checked+.slider:before {
 	transform: translateX(26px);
 }
 
-/* Glow container */
 .edge-glow-container {
 	position: fixed;
 	inset: 0;
@@ -1998,7 +1888,6 @@ input:checked+.slider:before {
 	pointer-events: none;
 }
 
-/* Top edge */
 .edge-glow.top {
 	top: -100px;
 	left: 50%;
@@ -2010,7 +1899,6 @@ input:checked+.slider:before {
 	animation: flow 25s linear infinite;
 }
 
-/* Bottom edge */
 .edge-glow.bottom {
 	bottom: -100px;
 	left: 50%;
@@ -2022,7 +1910,6 @@ input:checked+.slider:before {
 	animation: flow 30s linear infinite reverse;
 }
 
-/* Left edge */
 .edge-glow.left {
 	left: -100px;
 	top: 50%;
@@ -2034,7 +1921,6 @@ input:checked+.slider:before {
 	animation: flow-vertical 28s linear infinite;
 }
 
-/* Right edge */
 .edge-glow.right {
 	right: -100px;
 	top: 50%;
@@ -2047,23 +1933,13 @@ input:checked+.slider:before {
 }
 
 @keyframes flow {
-	from {
-		transform: translateX(-50%) rotate(0deg);
-	}
-
-	to {
-		transform: translateX(-50%) rotate(360deg);
-	}
+	from { transform: translateX(-50%) rotate(0deg); }
+	to { transform: translateX(-50%) rotate(360deg); }
 }
 
 @keyframes flow-vertical {
-	from {
-		transform: translateY(-50%) rotate(0deg);
-	}
-
-	to {
-		transform: translateY(-50%) rotate(360deg);
-	}
+	from { transform: translateY(-50%) rotate(0deg); }
+	to { transform: translateY(-50%) rotate(360deg); }
 }
 .extra-info {
     width: 7px;
@@ -2116,17 +1992,12 @@ input:checked+.slider:before {
     box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
 }
 
-        .back-btn:active,.back-btnss:active{
-              transform: scale(0.88); 
-        } 
+.back-btn:active,.back-btnss:active{
+    transform: scale(0.88); 
+} 
 @keyframes pulse {
-	0% {
-		opacity: 0.5;
-	}
-
-	100% {
-		opacity: 0.8;
-	}
+	0% { opacity: 0.5; }
+	100% { opacity: 0.8; }
 }
 .overlay {
   display: none;
@@ -2137,19 +2008,19 @@ input:checked+.slider:before {
 }
 
 .calculpopup {
-display: none;
-        z-index: 1000;
+    display: none;
+    z-index: 1000;
     height: 100vh;
     background: #0000007d;
     width: 100%;
 }
 .popupcontant {
-        display: flex;
+    display: flex;
     justify-content: end;
     align-items: center;
     flex-direction: column;
     width: 95%;
-    transform: translate(-50%, 40px) scale(0.92);
+    transform: translate(-50%, 0);
     position: fixed;
     bottom: 10px;
     left: 50%;
@@ -2157,15 +2028,9 @@ display: none;
     padding: 20px;
     max-width: 600px;
     background: #141414;
-    opacity: 0;
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: springPopup 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: 0 0 0 1000px #00000085;
     z-index: 10000;
-}
-
-.calculpopup.show .popupcontant {
-    opacity: 1;
-    transform: translate(-50%, 0) scale(1);
 }
 
 .loan-option {
@@ -2178,7 +2043,7 @@ label.loan-option strong {
     color: gray;
 }
 .summary-box {
-padding: 8px;
+    padding: 8px;
     border-radius: 30px;
     border: 1.5px solid #dddddd2b;
     text-align: center;
@@ -2188,7 +2053,7 @@ padding: 8px;
     overflow-y: scroll;
 }
 div#sum-summary div {
-margin: 0 0 8px 0;
+    margin: 0 0 8px 0;
     padding: 10px;
     border-radius: 20px;
     display: flex;
@@ -2198,13 +2063,13 @@ margin: 0 0 8px 0;
     font-weight: 500;
     color: #ffffff;
     font-size: 14px;
- transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 div#sum-summary div:active {
 	transform: scale(0.94);
 }
 div#sum-summary .total {
-background: #ffffff1f;
+    background: #ffffff1f;
     margin: 9px 0 0 0;
     font-weight: 300;
     font-size: 15px;
@@ -2212,20 +2077,20 @@ background: #ffffff1f;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
- transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 div#sum-summary .total:active {
 	transform: scale(0.94);
 }
 .mainamountdisplayoptions {
-display: flex;
+    display: flex;
     justify-content: space-between;
     align-items: end;
     width: 100%;
     animation: fadeSlideUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 div#sum-summary strong {
-color: #919191;
+    color: #919191;
     font-weight: 500;
     font-size: 16px;
 }
@@ -2252,13 +2117,13 @@ button.totalsumamt {
     background: #ffffff17;
     backdrop-filter: blur(2px);
     box-shadow: inset 0.9px 0.9px 0px 0px #ffffff21, inset -0.9px -0.9px 0px 0px #ffffff21;
- transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 button.totalsumamt:active {
 	transform: scale(0.88);
 }
 div#sum-list {
-display: flex;
+    display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
@@ -2272,16 +2137,11 @@ display: flex;
     gap: 10px;
 }
 @media (max-width : 800px) {
-            .viewnotice{
-           display: none;
-        }
+    .viewnotice{
+        display: none;
+    }
 }
 </style>
-</head>
-<body>
-
-</head>
-<body>
 <div class="viewnotice">
         <div class="contentmsg">
             This site is for mobile <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M299.62-48q-38.85 0-64.74-25.88Q209-99.77 209-138.62v-682.76q0-38.35 26.14-64.48Q261.27-912 299.62-912h361.84q38.85 0 64.73 25.88 25.89 25.89 25.89 64.74v118.61q16.92 3.62 28.42 17.39 11.5 13.76 11.5 30.92v68.77q0 17.15-11.5 30.92Q769-541 752.08-537.38v398.76q0 38.85-25.89 64.74Q700.31-48 661.46-48H299.62Zm-1-65h363.84q10.77 0 17.69-6.92 6.93-6.93 6.93-17.7v-684.76q0-10.77-6.93-17.7-6.92-6.92-17.69-6.92H298.62q-10.77 0-17.7 6.92-6.92 6.93-6.92 17.7v684.76q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92ZM274-113v-734 734Zm237.5-588.5q12.81-12.81 12.81-30.96 0-18.16-12.81-30.96-12.81-12.81-30.96-12.81-18.16 0-30.96 12.81-12.81 12.8-12.81 30.96 0 18.15 12.81 30.96 12.8 12.81 30.96 12.81 18.15 0 30.96-12.81Z"/></svg> use only.
