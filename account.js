@@ -384,7 +384,7 @@ function showTopLoginMessage() {
 
     setTimeout(() => {
         hideTopLoginMessage();
-    }, 5000);
+    }, 3000);
 }
 
 function hideTopLoginMessage() {
