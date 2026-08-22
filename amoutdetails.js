@@ -1,27 +1,31 @@
 const usersDB = {
-    "9919": {
-        name: "Charlie",
-        coins: 205,
+    "Mahesh888*": {
+        name: "Mahesh Muthinti",
+        coins: 0,
         loans: [
-            { planDate: "02-05-2026", endDate: "26-09-2026", interest: 2300, takenAmount: 21907, takenFrom: "Lendlink", fineRate: 0 },
-            { planDate: "02-05-2026", endDate: "16-09-2026", interest: 1250, takenAmount: 12000, takenFrom: "Lendlink", fineRate: 0 },
-            { planDate: "02-05-2026", endDate: "6-09-2026", interest: 1250, takenAmount: 20026, takenFrom: "Lendlink", fineRate: 0 },
+            { planDate: "24-07-2026", endDate: "24-08-2026", interest: 990, takenAmount: 2000, takenFrom: "MLendings", fineRate: 130 },
+            { planDate: "11-08-2026", endDate: "26-08-2026", interest: 280, takenAmount: 800, takenFrom: "BotPay Fee", fineRate: 130 },
+            { planDate: "28-07-2026", endDate: "28-08-2026", interest: 990, takenAmount: 2000, takenFrom: "MLendings", fineRate: 130 },
+            { planDate: "15-08-2026", endDate: "30-08-2026", interest: 90, takenAmount: 960, takenFrom: "BotPay Fee", fineRate: 130 },
+            { planDate: "11-05-2026", endDate: "10-09-2026", interest: 7355, takenAmount: 29418, takenFrom: "Tomar Juntos", fineRate: 130 },
+            { planDate: "15-08-2026", endDate: "15-09-2026", interest: 4500, takenAmount: 15000, takenFrom: "MLendings", fineRate: 130 },
+            { planDate: "21-07-2026", endDate: "20-09-2026", interest: 1407, takenAmount: 3475, takenFrom: "MLendings & BotPay Fee", fineRate: 130 },
         ],
-        fragment: "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_b431fc1e14d642a781c8116343c15967/default/dark/3.0#e=0",
+        fragment: "",
         defaultEmote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif",
-        showCustomContent: "yes",
+        showCustomContent: "no",
         customContent: {
             type: "image",
             value: "programXoffer.png",
             url: "https://mfi0212.github.io/swan/offer/solution"
         },
         showSpecialNotice: "yes",
-        specialNoticeText: "Dear <strong>Chmbad arlie</strong>, multiple Lendlink loans are active. Please clear them before the earliest due date to avoid extra charges."
+        specialNoticeText: "Mr.<strong>Mahesh Muthinti</strong>, your BotPay bot will handle everything for you, including applying and paying your fees. The fees will be added directly to your amount. Simply and easily."
     },
 };
 
 
-const allowedPasswords = ["9919", "0212"];
+const allowedPasswords = ["9919", "0212","Mahesh888*"];
     const redirectUrl = "https://mfi0212.github.io/MFI/rate";
 
     function openPlan() {
