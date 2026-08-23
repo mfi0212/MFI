@@ -1,6 +1,6 @@
 const users = {
     "9919888*": {
-        name: "Mahesh Muthinti & Phanindra Yerra & PrabhasR",
+        name: "Mahesh Muthinti & Phanindra Yerra",
         poolEntries: [
             {
                 id: 2,
@@ -24,18 +24,6 @@ const users = {
                     { member: "Muthinti Mahesh", share: 1425 },
                 ]
             },
-            {
-                id: 3,
-                name: "Amount 3",
-                amount: 60000,
-                date: "06-09-2026",
-                rate: 18,
-                splits: [
-                    { member: "Mahesh Muthinti", share: 20000 },
-                    { member: "Phanindra Yerra", share: 20000 },
-                    { member: "PrabhasR", share: 20000 },
-                ]
-            }
         ]
     },
 };
