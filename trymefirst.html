@@ -31,31 +31,31 @@
     --input-border: #c5d0de;
   }
 
+  /* PURE DARK BLACK THEME */
   [data-theme="dark"] {
-    --black-swan: #05080e;
+    --black-swan: #000000;
     --dark-blue: #002aff;
     --accent: #d4b45a;
-    --bg-body: #0c121c;
-    --bg-card: #141b28;
-    --bg-topbar: #05080e;
+    --bg-body: #000000;
+    --bg-card: #0a0a0a;
+    --bg-topbar: #000000;
     --bg-nav: #001a99;
-    --bg-banner: linear-gradient(120deg, #05080e, #001a99, #002aff);
-    --bg-footer: #05080e;
-    --bg-soft: #1a2332;
-    --bg-calc: #1a2535;
-    --bg-table-head: #1a2535;
-    --bg-table-even: #121925;
-    --text-main: #e2e8f0;
-    --text-muted: #a0aec0;
-    --text-light: #e2e8f0;
-    --text-footer: #718096;
+    --bg-banner: linear-gradient(120deg, #000000, #001a99, #002aff);
+    --bg-footer: #000000;
+    --bg-soft: #111111;
+    --bg-calc: #111111;
+    --bg-table-head: #111111;
+    --bg-table-even: #0d0d0d;
+    --text-main: #e8e8e8;
+    --text-muted: #999999;
+    --text-light: #e8e8e8;
+    --text-footer: #777777;
     --text-title: #4d7aff;
-    --border: #2d3a4d;
+    --border: #222222;
     --border-strong: #002aff;
-    --input-border: #2d3a4d;
+    --input-border: #333333;
   }
 
-  /* Telegram-inspired theme */
   [data-theme="telegram"] {
     --black-swan: #0e1621;
     --dark-blue: #2aabee;
@@ -80,29 +80,28 @@
     --input-border: #2b3a4a;
   }
 
-  /* Custom dark base – main color injected via JS as --dark-blue */
   [data-theme="custom"] {
-    --black-swan: #05080e;
-    --dark-blue: #002aff; /* overridden by JS */
+    --black-swan: #000000;
+    --dark-blue: #002aff;
     --accent: #d4b45a;
-    --bg-body: #0c121c;
-    --bg-card: #141b28;
-    --bg-topbar: #05080e;
+    --bg-body: #000000;
+    --bg-card: #0a0a0a;
+    --bg-topbar: #000000;
     --bg-nav: var(--dark-blue);
-    --bg-banner: linear-gradient(120deg, #05080e, var(--dark-blue), color-mix(in srgb, var(--dark-blue) 70%, white));
-    --bg-footer: #05080e;
-    --bg-soft: #1a2332;
-    --bg-calc: #1a2535;
-    --bg-table-head: #1a2535;
-    --bg-table-even: #121925;
-    --text-main: #e2e8f0;
-    --text-muted: #a0aec0;
-    --text-light: #e2e8f0;
-    --text-footer: #718096;
+    --bg-banner: linear-gradient(120deg, #000000, var(--dark-blue), color-mix(in srgb, var(--dark-blue) 70%, white));
+    --bg-footer: #000000;
+    --bg-soft: #111111;
+    --bg-calc: #111111;
+    --bg-table-head: #111111;
+    --bg-table-even: #0d0d0d;
+    --text-main: #e8e8e8;
+    --text-muted: #999999;
+    --text-light: #e8e8e8;
+    --text-footer: #777777;
     --text-title: var(--dark-blue);
-    --border: #2d3a4d;
+    --border: #222222;
     --border-strong: var(--dark-blue);
-    --input-border: #2d3a4d;
+    --input-border: #333333;
   }
 
   body {
@@ -123,7 +122,6 @@
     padding: 0 3px;
   }
 
-  /* Topbar */
   .topbar {
    background: #000000d9;
     color: var(--text-light);
@@ -132,6 +130,10 @@
     position: sticky;
     top: 0;
     z-index: 1000000;
+  }
+  [data-theme="dark"] .topbar,
+  [data-theme="custom"] .topbar {
+    background: #000000;
   }
   .topbar .inner {
     display: flex;
@@ -155,11 +157,10 @@
   }
   .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* Header */
   .header {
     background: var(--bg-card);
-    border-bottom: 3px solid var(--border-strong);
-    padding: 12px 0;
+    border-bottom: 1px solid var(--border-strong);
+    padding: 10px 0;
   }
   .header .inner {
     display: flex;
@@ -216,10 +217,8 @@
   [data-theme="telegram"] .hotline strong,
   [data-theme="custom"] .hotline strong { color: var(--text-title); }
 
-  /* Main */
   .main { padding: 12px 0; }
 
-  /* Quick links */
   .quick {
   background: var(--bg-card);
     border-top: 1px solid var(--border);
@@ -250,7 +249,6 @@
   }
   .quick a:hover { background: var(--dark-blue); color: #fff; }
 
-  /* Cards & Sections */
   .row { margin-bottom: 12px; }
   .col {
     background: var(--bg-card);
@@ -271,10 +269,10 @@
   [data-theme="custom"] .box-title { background: var(--dark-blue); }
   .box-body { padding: 14px; }
 
-  /* Special Banner */
+  /* Special Notice Banner */
   .special-banner {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 14px;
     padding: 14px;
     margin-bottom: 14px;
@@ -283,37 +281,32 @@
     background: var(--bg-soft);
   }
   .special-banner .special-icon {
-    font-size: 36px;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--dark-blue);
-    color: #fff;
-    border-radius: 50%;
+    font-size: 28px;
     flex-shrink: 0;
   }
-  .special-banner .special-content h3 {
-    font-size: 15px;
-    color: var(--text-title);
-    margin-bottom: 4px;
+  .special-banner .special-content {
+    flex: 1;
   }
   .special-banner .special-content p {
-    font-size: 13px;
-    color: var(--text-muted);
+    font-size: 14px;
+    color: var(--text-main);
+    line-height: 1.5;
   }
-  .special-banner .special-tag {
-    display: inline-block;
-    background: var(--dark-blue);
-    color: #fff;
-    font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 3px;
-    margin-top: 6px;
+  .special-banner .special-content strong {
+    color: var(--text-title);
   }
 
-  /* Reminder Banner */
+  /* Custom Content (image) */
+  .custom-content-box {
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .custom-content-box img {
+    max-width: 100%;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+
   .reminder-banner {
     display: flex;
     align-items: flex-start;
@@ -327,7 +320,7 @@
   [data-theme="dark"] .reminder-banner,
   [data-theme="telegram"] .reminder-banner,
   [data-theme="custom"] .reminder-banner {
-    background: #2d1515;
+    background: #1a0a0a;
     border-color: #fc8181;
   }
   .reminder-banner .reminder-icon {
@@ -353,7 +346,6 @@
     flex-wrap: wrap;
   }
 
-  /* Graph */
   .graph-container {
     padding: 16px;
     text-align: center;
@@ -377,7 +369,6 @@
     margin: 0 auto;
   }
 
-  /* Take Money */
   .take-money-box { max-width: 420px; margin: 0 auto; }
   .take-money-box input {
     width: 100%;
@@ -418,7 +409,6 @@
     margin: 6px 0;
   }
 
-  /* Turbo Plans */
   .turbo-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -450,7 +440,6 @@
   .turbo-card .limit small { font-size: 12px; font-weight: normal; color: var(--text-muted); }
   .turbo-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
 
-  /* Buttons */
   .btn {
     display: inline-block;
     background: var(--dark-blue);
@@ -482,7 +471,6 @@
   }
   .btn-danger:hover { background: #c53030; }
 
-  /* User Summary */
   .user-summary {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -499,7 +487,6 @@
   .summary-card .label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
   .summary-card .value { font-size: 17px; font-weight: bold; color: var(--text-title); }
 
-  /* Table */
   .table-wrapper { overflow-x: auto; }
   .loan-table {
     width: 100%;
@@ -524,7 +511,6 @@
 
   .hidden { display: none !important; }
 
-  /* Products */
   .product-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -551,7 +537,6 @@
   .access-yes { background: #c6f6d5; color: #276749; }
   .access-no  { background: #fed7d7; color: #c53030; }
 
-  /* Login required message */
   .login-required {
     text-align: center;
     padding: 40px 20px;
@@ -562,7 +547,6 @@
     margin-bottom: 10px;
   }
 
-  /* Search Results */
   .search-results {
     background: var(--bg-card);
     border: 1px solid var(--border-strong);
@@ -583,7 +567,6 @@
   }
   .search-item strong { color: var(--text-title); }
 
-  /* Footer */
   .footer {
     background: var(--bg-footer);
     color: var(--text-footer);
@@ -611,12 +594,11 @@
     text-align: center;
   }
 
-  /* Modal */
   .modal {
     display: none;
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(5, 8, 14, 0.75);
+    background: rgba(0, 0, 0, 0.85);
     z-index: 999;
     align-items: center;
     justify-content: center;
@@ -660,7 +642,6 @@
     color: var(--text-title);
   }
 
-  /* Applied services table */
   .applied-section { margin-top: 20px; }
   .applied-section h4 {
     font-size: 15px;
@@ -668,7 +649,6 @@
     margin-bottom: 10px;
   }
 
-  /* Theme modal extras */
   .theme-options {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -731,7 +711,6 @@
     background: none;
   }
 
-  /* Responsive */
   @media (max-width: 900px) {
     .turbo-grid { grid-template-columns: repeat(2, 1fr); }
     .product-grid { grid-template-columns: repeat(2, 1fr); }
@@ -740,14 +719,9 @@
     .hotline { display: none; }
   }
   @media (max-width: 600px) {
-    /* .turbo-grid { grid-template-columns: 1fr; }
-    .product-grid { grid-template-columns: 1fr; }
-    .user-summary { grid-template-columns: 1fr; }
-    .footer .inner { grid-template-columns: 1fr; } */
     .header .inner { flex-direction: column; align-items: stretch; }
     .search-box { width: 100%; }
     .logo { text-align: center; }
-    .banner { padding: 28px 12px; }
     .topbar .inner { justify-content: center; text-align: center; }
     .theme-options { grid-template-columns: 1fr; }
     .custom-colors { grid-template-columns: repeat(2, 1fr); }
@@ -779,8 +753,8 @@
         <button onclick="doSearch()">Search</button>
       </div>
       <div class="hotline">
-        If you facing issue fill<br>
-        <strong>ISSUE FORM NOW</strong>
+        If you any facing issue fill out<br>
+        <strong>THE ISSUE FORM</strong>
       </div>
     </div>
   </div>
@@ -794,7 +768,6 @@
       <div id="search-list"></div>
     </div>
 
-    <!-- Interest Graph -->
     <div class="row" id="graph">
       <div class="col">
         <div class="box-title">Today's Interest Rate</div>
@@ -813,7 +786,6 @@
       </div>
     </div>
 
-    <!-- Turbo Plans -->
     <div class="row" id="turbo">
       <div class="col">
         <div class="box-title">BS&MFI Turbo Plans</div>
@@ -822,36 +794,32 @@
             <h3>Normal</h3>
             <div class="limit">0₹ <small>/month</small></div>
             <p>Borrow Limit : 10,000₹</p>
-            <button class="btn" onclick="onclick(window.open('https://forms.gle/8yF1YLNokYxEE3nF9','_self'))">Apply Now</button>
+            <button class="btn" onclick="window.open('https://forms.gle/8yF1YLNokYxEE3nF9','_self')">Apply Now</button>
           </div>
           <div class="turbo-card">
             <h3>Premium</h3>
             <div class="limit">480₹ <small>/month</small></div>
             <p>Borrow Limit : 40,000₹</p>
-            <button class="btn" onclick="onclick(window.open('https://forms.gle/8yF1YLNokYxEE3nF9','_self'))">Apply Now</button>
+            <button class="btn" onclick="window.open('https://forms.gle/8yF1YLNokYxEE3nF9','_self')">Apply Now</button>
           </div>
           <div class="turbo-card">
             <h3>Premium+</h3>
             <div class="limit">960₹ <small>/month</small></div>
             <p>Borrow Limit : 80,000₹</p>
-            <button class="btn" onclick="onclick(window.open('https://forms.gle/8yF1YLNokYxEE3nF9','_self'))">Apply Now</button>
+            <button class="btn" onclick="window.open('https://forms.gle/8yF1YLNokYxEE3nF9','_self')">Apply Now</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Take Money -->
     <div class="row" id="takemoney">
       <div class="col">
         <div class="box-title">Take Money</div>
         <div class="box-body">
           <div class="take-money-box">
             <div id="tm-password-step">
-              <p style="margin-bottom:12px;color:var(--text-muted);text-align:center;">
-                Enter password to apply for amount<br>
-              </p>
-              <input type="password" id="tm-password" placeholder="Enter Password">
-              <button onclick="verifyTakeMoneyPassword()">Continue</button>
+              <input type="password" id="tm-password" placeholder="" style="opacity: 0;" >
+              <button onclick="verifyTakeMoneyPassword()">Check interest now</button>
             </div>
 
             <div id="tm-amount-step" class="hidden">
@@ -873,17 +841,13 @@
       </div>
     </div>
 
-    <!-- All Products (Login Required + Access Control) -->
     <div class="row" id="products">
       <div class="col">
         <div class="box-title">All our services</div>
-        <div class="box-body" id="products-container">
-          <!-- Filled by JavaScript -->
-        </div>
+        <div class="box-body" id="products-container"></div>
       </div>
     </div>
 
-    <!-- My Account -->
     <div class="row" id="account">
       <div class="col">
         <div class="box-title">
@@ -907,7 +871,18 @@
               <button class="btn btn-outline" style="padding:4px 12px;font-size:13px;margin-left:10px;" onclick="logout()">Logout</button>
             </p>
 
-            <!-- Reminder Banner (shown when return date is within 2 days) -->
+            <!-- Custom Content (image offer) -->
+            <div id="custom-content-box" class="custom-content-box hidden"></div>
+
+            <!-- Special Notice Banner -->
+            <div id="special-banner" class="special-banner hidden">
+              <div class="special-icon">🤖</div>
+              <div class="special-content">
+                <p id="special-message"></p>
+              </div>
+            </div>
+
+            <!-- Reminder Banner -->
             <div id="reminder-banner" class="reminder-banner hidden">
               <div class="reminder-icon">⚠️</div>
               <div class="reminder-content">
@@ -916,15 +891,6 @@
                 <div class="reminder-actions">
                   <button class="btn btn-danger" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Delay It Now</button>
                 </div>
-              </div>
-            </div>
-
-            <div id="special-banner" class="special-banner hidden">
-              <div class="special-icon" id="special-icon">🎁</div>
-              <div class="special-content">
-                <h3 id="special-title">Special Offer</h3>
-                <p id="special-message">You have a special gift!</p>
-                <div class="special-tag" id="special-tag">VIP</div>
               </div>
             </div>
 
@@ -963,7 +929,8 @@
                 <tbody id="loan-body"></tbody>
               </table>
             </div>
-<div class="applied-section" id="applied-section" style="display: none;">
+
+            <div class="applied-section" id="applied-section" style="display: none;">
               <h4>Applied Services & Fees</h4>
               <div class="table-wrapper">
                 <table class="loan-table">
@@ -1009,17 +976,17 @@
     <div class="footer-bottom">
      © BS&MFI Services, All Rights Reserved.
     </div>
-    
   </div>
-</div><div class="quick">
-      <a href="#graph">Interest</a>
-      <a href="#turbo">Turbo</a>
-      <a href="#takemoney">Borrow</a>
-      <a href="#products">Services</a>
-      <a href="#account">Account</a>
-    </div>
+</div>
 
-<!-- Simple Apply Modal -->
+<div class="quick">
+  <a href="#graph">Interest</a>
+  <a href="#turbo">Turbo</a>
+  <a href="#takemoney">Borrow</a>
+  <a href="#products">Services</a>
+  <a href="#account">Account</a>
+</div>
+
 <div class="modal" id="apply-modal">
   <div class="modal-content">
     <h3>Application Received</h3>
@@ -1028,7 +995,6 @@
   </div>
 </div>
 
-<!-- Fee Calculation Modal (Delay It / Split Pay / Buy Limit) -->
 <div class="modal" id="fee-modal">
   <div class="modal-content">
     <h3 id="fee-modal-title">Apply Service</h3>
@@ -1047,7 +1013,6 @@
   </div>
 </div>
 
-<!-- Theme Modal -->
 <div class="modal" id="theme-modal">
   <div class="modal-content" style="max-width:460px;">
     <h3>Choose Theme</h3>
@@ -1059,8 +1024,8 @@
         <strong>Light</strong>
       </div>
       <div class="theme-option" data-theme="dark" onclick="selectTheme('dark')">
-        <div class="swatch" style="background:linear-gradient(90deg,#0c121c,#002aff);"></div>
-        <strong>Black Dark</strong>
+        <div class="swatch" style="background:linear-gradient(90deg,#000000,#002aff);"></div>
+        <strong>Dark Black</strong>
       </div>
       <div class="theme-option" data-theme="telegram" onclick="selectTheme('telegram')">
         <div class="swatch" style="background:linear-gradient(90deg,#17212b,#2aabee);"></div>
@@ -1068,7 +1033,6 @@
       </div>
     </div>
 
-    <!-- Custom themes – only visible when user has customui:yes -->
     <div id="custom-theme-section" class="custom-section hidden">
       <h4>Custom Dark Themes (color choice)</h4>
       <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">Pick one of the 4 preset accents or choose any color. The selected color becomes the main accent on a dark base.</p>
@@ -1138,19 +1102,21 @@ function getFixedBars() {
   return bars;
 }
 
-// ========== Get effective interest for current user ==========
 function getEffectiveInterest() {
-  if (currentUser && users[currentUser] && users[currentUser].fixedInterest != null) {
-    return users[currentUser].fixedInterest;
+  if (currentUser && users[currentUser]) {
+    const fixed = users[currentUser].fixedInterest;
+    // Only use fixed rate if it exists AND is greater than 0
+    if (fixed != null && fixed > 0) {
+      return fixed;
+    }
   }
   return todayInterest;
 }
 
-// ========== Date helpers ==========
+// ========== Date helpers (DD-MM-YYYY) ==========
 function parseDate(str) {
-  // expects YYYY-MM-DD
   const parts = str.split('-');
-  return new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+  return new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
 }
 
 function daysBetween(d1, d2) {
@@ -1165,21 +1131,20 @@ function getTodayDate() {
   return new Date(now.getFullYear(), now.getMonth(), now.getDate());
 }
 
-// ========== Overdue calculation ==========
-// Overdue fee = 25 per day starting from the day AFTER return date
-// Status becomes Overdue when current date > return date
+// ========== Status calculation ==========
+// Overdue fee is ONLY applied AFTER the return date is crossed
 function computeLoanStatus(loan) {
   const today = getTodayDate();
   const returnDate = parseDate(loan.return);
-  const diff = daysBetween(returnDate, today); // positive = overdue days
+  const diff = daysBetween(returnDate, today); // positive = days after return date
 
   let overdueFee = 0;
   let status = 'Active';
   let daysInfo = '';
 
   if (diff > 0) {
-    // Past return date → overdue
-    overdueFee = diff * 25;
+    // Return date has been crossed → now apply the static overdue fee
+    overdueFee = (loan.overdueFee != null) ? loan.overdueFee : (diff * 25);
     status = 'Overdue';
     daysInfo = diff + ' day(s) overdue';
   } else if (diff === 0) {
@@ -1194,22 +1159,18 @@ function computeLoanStatus(loan) {
 
   return { overdueFee, status, daysInfo, daysDiff: diff };
 }
-
 // ========== THEME SYSTEM ==========
 function openThemeModal() {
-  // Show / hide custom section based on current user
   const customSec = document.getElementById('custom-theme-section');
   if (currentUser && users[currentUser] && users[currentUser].customui === 'yes') {
     customSec.classList.remove('hidden');
   } else {
     customSec.classList.add('hidden');
   }
-  // Highlight active theme
   const current = document.documentElement.getAttribute('data-theme') || 'light';
   document.querySelectorAll('.theme-option').forEach(el => {
     el.classList.toggle('active', el.getAttribute('data-theme') === current);
   });
-  // Highlight custom color if active
   const savedColor = localStorage.getItem('jh_custom_color');
   document.querySelectorAll('.custom-color-btn').forEach(el => {
     el.classList.toggle('active', el.getAttribute('data-color') === savedColor);
@@ -1225,7 +1186,6 @@ function closeThemeModal() {
 }
 
 function selectTheme(themeName) {
-  // Clear any custom color when switching to a non-custom theme
   if (themeName !== 'custom') {
     localStorage.removeItem('jh_custom_color');
   }
@@ -1240,7 +1200,6 @@ function selectCustomColor(hex) {
   }
   localStorage.setItem('jh_custom_color', hex);
   applyTheme('custom', hex);
-  // Update UI highlights
   document.querySelectorAll('.custom-color-btn').forEach(el => {
     el.classList.toggle('active', el.getAttribute('data-color') === hex);
   });
@@ -1255,10 +1214,8 @@ function applyTheme(themeName, customColor) {
   if (themeName === 'custom') {
     const color = customColor || localStorage.getItem('jh_custom_color') || '#002aff';
     html.style.setProperty('--dark-blue', color);
-    // Also keep a slightly lighter title color if needed
     html.style.setProperty('--text-title', color);
   } else {
-    // Remove inline overrides so CSS variables take over
     html.style.removeProperty('--dark-blue');
     html.style.removeProperty('--text-title');
   }
@@ -1268,10 +1225,9 @@ function applyTheme(themeName, customColor) {
     localStorage.setItem('jh_custom_color', customColor);
   }
 
-  // Update button label
   const labels = {
     light: 'Light',
-    dark: 'Black Dark',
+    dark: 'Dark Black',
     telegram: 'Telegram',
     custom: 'Custom'
   };
@@ -1281,22 +1237,21 @@ function applyTheme(themeName, customColor) {
 }
 
 function enforceCustomUIAccess() {
-  // If user does NOT have customui:yes, strip any custom theme from storage
   const hasCustom = currentUser && users[currentUser] && users[currentUser].customui === 'yes';
   const storedTheme = localStorage.getItem('jh_theme');
 
   if (!hasCustom && storedTheme === 'custom') {
     localStorage.removeItem('jh_theme');
     localStorage.removeItem('jh_custom_color');
-    applyTheme('dark'); // fallback to Black Dark
+    applyTheme('dark');
   }
 }
 
 // ========== Take Money ==========
 function verifyTakeMoneyPassword() {
   const pass = document.getElementById('tm-password').value;
-  if (pass !== '123456') {
-    alert('Wrong password. Use 123456 for demo.');
+  if (pass !== '') {
+    alert('');
     return;
   }
   document.getElementById('tm-password-step').classList.add('hidden');
@@ -1327,7 +1282,7 @@ function applyTakeMoney() {
   const amount = document.getElementById('tm-amount').value;
   const rate = getEffectiveInterest();
 
-  openServiceForm("Take Money");   // open form
+  openServiceForm("Take Money");
 
   document.getElementById('apply-msg').innerHTML = 
     `You have applied for <strong>Take Money</strong><br>
@@ -1336,7 +1291,7 @@ function applyTakeMoney() {
      The application form has been opened in a new tab.`;
   document.getElementById('apply-modal').classList.add('show');
 }
-// Google Form links for each service
+
 const formLinks = {
   "Delay It":       "https://forms.gle/cAz9REnqvGtcEhcT7",
   "Split Pay":      "https://forms.gle/7rj2DSnZTQg5TX468",
@@ -1349,46 +1304,61 @@ const formLinks = {
   "Tomar Juntos":   "https://forms.gle/TL3LQQpi9R6jXtd36",
   "Take Money":     "https://forms.gle/nLBmBgt2QEeYuaNa9",
 };
+
 function openServiceForm(serviceName) {
   const url = formLinks[serviceName];
   if (url) {
     window.open(url, "_blank");
   }
-}function applyProduct(name) {
-  openServiceForm(name);   // open Google Form if mapped
+}
+
+function applyProduct(name) {
+  openServiceForm(name);
 
   document.getElementById('apply-msg').innerHTML = 
     `You have successfully applied for <strong>${name}</strong>.<br>
      ${formLinks[name] ? "The application form has been opened in a new tab." : "Our team will contact you shortly."}`;
   document.getElementById('apply-modal').classList.add('show');
 }
-// ========== USERS + ACCESS RIGHTS ==========
+
+// ========== USERS ==========
 const users = {
-  "phanindra": {
-    password: "9919",
-    displayName: "phanindra",
+  "Mahesh Muthinti": {
+    password: "Mahesh888*",
+    displayName: "Mahesh Muthinti",
     premiumType: "Premium+",
-    fixedInterest: 25, 
+    fixedInterest: 0,
     customui: "yes",
-    special: {
-      icon: "👑",
-      title: "Premium Member Reward",
-      message: "Congratulations Alex! You have unlocked a special 5% cashback on your next Take Money. Your fixed interest rate of 28.5% is active.",
-      tag: "PREMIUM REWARD"
+
+    // NEW system (replaced old special)
+    showCustomContent: "no",
+    customContent: {
+      type: "image",
+      value: "programXoffer.png",
+      url: "https://mfi0212.github.io/swan/offer/solution"
     },
+    showSpecialNotice: "yes",
+    specialNoticeText: "Mr.<strong>Mahesh Muthinti</strong>, your BotPay bot will handle everything for you, including applying and paying your fees. The fees will be added directly to your amount. Simply and easily.",
+
     loans: [
-      { amount: 5000, interest: 365, borrowed: "2026-06-12", return: "2026-09-12" },
-      { amount: 10000, interest: 2500, borrowed: "2026-08-01", return: "2026-08-20" }
+      { amount: 800,  interest: 280,  borrowed: "11-08-2026", return: "26-08-2026", overdueFee: 15 },
+      { amount: 2000, interest: 990,  borrowed: "28-07-2026", return: "28-08-2026", overdueFee: 25 },
+      { amount: 960,  interest: 120,  borrowed: "15-08-2026", return: "30-08-2026", overdueFee: 0 },
+      { amount: 29418,interest: 7355, borrowed: "11-05-2026", return: "10-09-2026", overdueFee: 0 },
+      { amount: 15000,interest: 4500, borrowed: "15-08-2026", return: "15-09-2026", overdueFee: 0 },
+      { amount: 3475, interest: 1407, borrowed: "21-07-2026", return: "20-09-2026", overdueFee: 0 },
+      { amount: 2990, interest: 1170, borrowed: "24-07-2026", return: "23-09-2026", overdueFee: 0 },
     ],
     access: {
       "Delay It": true,
-      "Split Pay": true,
+      "Split Pay": false,
       "Buy Limit": false,
       "Pre-Saver": true,
       "Lendlink-Mid": false,
       "Mining bot": false,
-      "BotPay": false,
-      "BsRora-Atdo": true
+      "BotPay": true,
+      "Tomar Juntos": true,
+      "BsRora-Atdo": false,
     }
   },
 };
@@ -1398,21 +1368,17 @@ let pendingFeeService = null;
 let pendingFeeAmount = 0;
 let pendingFeeValue = 0;
 
-// ========== ALL PRODUCTS DEFINITION ==========
 const allProducts = [
   { name: "Delay It",      icon: "⏳", desc: "Extend repayment date", needsFee: true,  feeRate: 0.08, feeLabel: "Pay dee to continue" },
   { name: "Split Pay",     icon: "📅", desc: "Split payment into smaller amounts", needsFee: true,  feeRate: 0.05, feeLabel: "Pay fee to continue" },
   { name: "Buy Limit",     icon: "📈", desc: "Increase your borrowing limit", needsFee: true,  feeRate: 0.10, feeLabel: "Pay fee to continue" },
   { name: "Pre-Saver",     icon: "💰", desc: "Save first, enjoy better rates", needsFee: false },
-//   { name: "Lendlink-Mid",  icon: "🔗", desc: "Mid-term lending options", needsFee: false },
-//   { name: "BsRora Bot",    icon: "🤖", desc: "Smart automation bot", needsFee: false },
   { name: "Mining bot",    icon: "⛏️", desc: "Automated mining bot", needsFee: false },
   { name: "BotPay",        icon: "💳", desc: "Fast payment solution", needsFee: false },
   { name: "BsRora-Atdo",   icon: "⚡", desc: "Advanced automated system", needsFee: false },
   { name: "Tomar Juntos",   icon: "🧑‍🤝‍🧑", desc: "Borrow combine", needsFee: false }
 ];
 
-// ========== RENDER PRODUCTS (Login + Access Control) ==========
 function renderProducts() {
   const container = document.getElementById('products-container');
 
@@ -1454,7 +1420,6 @@ function renderProducts() {
 
   html += `</div>`;
 
-  // Also show locked services
   const locked = allProducts.filter(p => !user.access[p.name]);
   if (locked.length > 0) {
     html += `<p style="margin:20px 0 10px;color:var(--text-muted);font-size:13px;">Services you do not have access to:</p>
@@ -1476,7 +1441,6 @@ function renderProducts() {
   container.innerHTML = html;
 }
 
-// ========== HANDLE PRODUCT CLICK ==========
 function handleProductClick(name) {
   if (!currentUser) {
     alert('Login first');
@@ -1504,7 +1468,6 @@ function handleProductClick(name) {
   }
 }
 
-// ========== FEE CALCULATION ==========
 function calculateFee() {
   const amount = parseFloat(document.getElementById('fee-amount').value);
   if (!amount || amount < 100) {
@@ -1524,6 +1487,7 @@ function calculateFee() {
   document.getElementById('fee-result').classList.remove('hidden');
   document.getElementById('fee-apply-btn').disabled = false;
 }
+
 function confirmFeeApply() {
   if (!pendingFeeService || !pendingFeeAmount) return;
 
@@ -1538,7 +1502,6 @@ function confirmFeeApply() {
   });
   localStorage.setItem(key, JSON.stringify(list));
 
-  // Open the Google Form
   openServiceForm(pendingFeeService);
 
   closeFeeModal();
@@ -1559,7 +1522,6 @@ function closeFeeModal() {
   pendingFeeValue = 0;
 }
 
-// ========== RENDER APPLIED SERVICES ==========
 function renderAppliedServices() {
   if (!currentUser) return;
 
@@ -1588,7 +1550,6 @@ function renderAppliedServices() {
   });
 }
 
-// ========== Search ==========
 function doSearch() {
   const keyword = document.getElementById('search-input').value.trim().toLowerCase();
   const resultsBox = document.getElementById('search-results');
@@ -1620,19 +1581,16 @@ function clearSearch() {
   document.getElementById('search-input').value = '';
 }
 
-
 function closeModal() {
   document.getElementById('apply-modal').classList.remove('show');
 }
 
-// ========== Account ==========
 function showLogin() {
   document.getElementById('account').scrollIntoView({ behavior: 'smooth' });
 }
 
 function doLogin() {
   const password = document.getElementById('login-pass').value;
-  // Find user by password only
   let matchedUser = null;
   for (const key in users) {
     if (users[key].password === password) {
@@ -1649,16 +1607,22 @@ function doLogin() {
   showLoanDetails();
   renderProducts();
   updateInterestDisplay();
-  enforceCustomUIAccess(); // remove custom theme if this user is not allowed
+  enforceCustomUIAccess();
 }
 
 function updateInterestDisplay() {
   const rate = getEffectiveInterest();
   const note = document.getElementById('fixed-rate-note');
-  if (currentUser && users[currentUser] && users[currentUser].fixedInterest != null) {
-    note.style.display = 'inline';
-    note.textContent = `  |  Your Fixed Rate: ${users[currentUser].fixedInterest}%`;
-    note.style.color = '#38a169';
+  
+  if (currentUser && users[currentUser]) {
+    const fixed = users[currentUser].fixedInterest;
+    if (fixed != null && fixed > 0) {
+      note.style.display = 'inline';
+      note.textContent = `  |  Your Fixed Rate: ${fixed}%`;
+      note.style.color = '#38a169';
+    } else {
+      note.style.display = 'none';
+    }
   } else {
     note.style.display = 'none';
   }
@@ -1675,13 +1639,25 @@ function showLoanDetails() {
   document.getElementById('current-user').textContent = user.displayName;
   document.getElementById('account-status').textContent = 'Logged in';
 
-  // Special banner
+  // ===== Custom Content (image) =====
+  const customBox = document.getElementById('custom-content-box');
+  if (user.showCustomContent === "yes" && user.customContent) {
+    if (user.customContent.type === "image") {
+      customBox.innerHTML = `
+        <a href="${user.customContent.url}" target="_blank">
+          <img src="${user.customContent.value}" alt="Offer" style="max-width:100%;border-radius:6px;">
+        </a>
+      `;
+      customBox.classList.remove('hidden');
+    }
+  } else {
+    customBox.classList.add('hidden');
+  }
+
+  // ===== Special Notice =====
   const specialBox = document.getElementById('special-banner');
-  if (user.special) {
-    document.getElementById('special-icon').textContent = user.special.icon;
-    document.getElementById('special-title').textContent = user.special.title;
-    document.getElementById('special-message').textContent = user.special.message;
-    document.getElementById('special-tag').textContent = user.special.tag;
+  if (user.showSpecialNotice === "yes" && user.specialNoticeText) {
+    document.getElementById('special-message').innerHTML = user.specialNoticeText;
     specialBox.classList.remove('hidden');
   } else {
     specialBox.classList.add('hidden');
@@ -1693,53 +1669,58 @@ function showLoanDetails() {
   const totalAmount = user.loans.reduce((sum, l) => sum + l.amount, 0);
   document.getElementById('sum-total').textContent = totalAmount.toLocaleString();
 
-  // Interest rate display
-  const rate = getEffectiveInterest();
-  if (user.fixedInterest != null) {
-    document.getElementById('sum-interest').textContent = user.fixedInterest + '% (Fixed)';
-  } else {
-    document.getElementById('sum-interest').textContent = todayInterest + '% (Daily)';
-  }
+// Interest rate display
+if (user.fixedInterest != null && user.fixedInterest > 0) {
+  document.getElementById('sum-interest').textContent = user.fixedInterest + '% (Fixed)';
+} else {
+  document.getElementById('sum-interest').textContent = todayInterest + '% (Daily)';
+}
 
-  // Loan table with dynamic overdue
+  // Loan table
   const tbody = document.getElementById('loan-body');
   tbody.innerHTML = '';
 
-  // Collect reminders (≤ 2 days left, not yet overdue)
   const reminders = [];
 
   user.loans.forEach(loan => {
-    const { overdueFee, status, daysInfo, daysDiff } = computeLoanStatus(loan);
+  const { overdueFee, status, daysInfo, daysDiff } = computeLoanStatus(loan);
 
-    // Reminder: 1 or 2 days left (or due today)
-    if (daysDiff >= -2 && daysDiff <= 0) {
-      const daysLeft = Math.abs(daysDiff);
-      let msg = '';
-      if (daysDiff === 0) {
-        msg = `Loan of ${loan.amount.toLocaleString()} is <strong>due today</strong>. Clear it or use <strong>Delay It</strong> before the end of the day.`;
-      } else {
-        msg = `Loan of ${loan.amount.toLocaleString()} has to be returned in <strong>${daysLeft} day(s)</strong>. Clear it or use <strong>Delay It</strong> before the return date (${loan.return}).`;
-      }
-      reminders.push(msg);
+  // Reminder logic (same as before)
+  if (daysDiff >= -3 && daysDiff <= 0) {
+    const daysLeft = Math.abs(daysDiff);
+    let msg = '';
+    if (daysDiff === 0) {
+      msg = `Loan of ${loan.amount.toLocaleString()} is <strong>due today</strong>. Clear it or use <strong>Delay It</strong> before the end of the day.`;
+    } else {
+      msg = `Loan of ${loan.amount.toLocaleString()} has to be returned in <strong>${daysLeft} day(s)</strong>. Clear it or use <strong>Delay It</strong> before the return date (${loan.return}).`;
     }
+    reminders.push(msg);
+  }
 
-    const tr = document.createElement('tr');
-    const statusColor = status === 'Overdue' ? '#e53e3e' : (status === 'Due Today' ? '#dd6b20' : '#38a169');
-    tr.innerHTML = `
-      <td>${loan.amount.toLocaleString()}</td>
-      <td>${loan.interest}</td>
-      <td>${loan.borrowed}</td>
-      <td>${loan.return}</td>
-      <td>${daysInfo}</td>
-      <td style="color:${statusColor};font-weight:bold;">${status}</td>
-       <td style="color:${overdueFee > 0 ? '#e53e3e' : 'inherit'};font-weight:${overdueFee > 0 ? 'bold' : 'normal'};">
-        ${overdueFee > 0 ? overdueFee.toLocaleString() + ' (25×' + (overdueFee/25) + ' days)' : '0'}
-      </td>
-    `;
-    tbody.appendChild(tr);
-  });
+  // Color the Amount red when it is due soon / due today / overdue
+  const isUrgent = daysDiff >= -2;   // within 2 days left OR overdue
+  const amountColor = isUrgent ? '#e53e3e' : 'inherit';
+  const amountWeight = isUrgent ? 'bold' : 'normal';
 
-  // Show reminder banner if any
+  const tr = document.createElement('tr');
+  const statusColor = status === 'Overdue' ? '#e53e3e' : (status === 'Due Today' ? '#dd6b20' : '#38a169');
+
+  tr.innerHTML = `
+    <td style="color:${amountColor};font-weight:${amountWeight};">
+      ${loan.amount.toLocaleString()}
+    </td>
+    <td style="color:${amountColor};font-weight:${amountWeight};">${loan.interest}</td>
+    <td style="color:${amountColor};font-weight:${amountWeight};">${loan.borrowed}</td>
+    <td style="color:${amountColor};font-weight:${amountWeight};">${loan.return}</td>
+    <td style="color:${amountColor};font-weight:${amountWeight};">${daysInfo}</td>
+    <td style="color:${amountColor};font-weight:${amountWeight};">${status}</td>
+    <td style="color:${overdueFee > 0 ? '#e53e3e' : 'inherit'};font-weight:${overdueFee > 0 ? 'bold' : 'normal'};">
+      ${overdueFee > 0 ? overdueFee.toLocaleString() : '0'}
+    </td>
+  `;
+  tbody.appendChild(tr);
+});
+
   const reminderBox = document.getElementById('reminder-banner');
   const reminderMessages = document.getElementById('reminder-messages');
   if (reminders.length > 0) {
@@ -1762,14 +1743,13 @@ function logout() {
   document.getElementById('top-user').textContent = '';
   document.getElementById('account-status').textContent = '';
   document.getElementById('special-banner').classList.add('hidden');
+  document.getElementById('custom-content-box').classList.add('hidden');
   document.getElementById('reminder-banner').classList.add('hidden');
   renderProducts();
   updateInterestDisplay();
-  // After logout, also strip custom theme if it was only allowed for the previous user
   enforceCustomUIAccess();
 }
 
-// ========== BAR GRAPH ==========
 function drawBarGraph() {
   const canvas = document.getElementById('interestChart');
   const ctx = canvas.getContext('2d');
@@ -1825,22 +1805,17 @@ function drawBarGraph() {
   });
 }
 
-// ========== Init ==========
 window.onload = function() {
-  // Restore theme
   let savedTheme = localStorage.getItem('jh_theme') || 'light';
   const savedColor = localStorage.getItem('jh_custom_color');
 
-  // Temporarily set user from storage so enforce can run
   const savedUser = localStorage.getItem('jh_user');
   if (savedUser && users[savedUser]) {
     currentUser = savedUser;
   }
 
-  // If theme is custom but user is not allowed → force remove
   enforceCustomUIAccess();
 
-  // Re-read after possible cleanup
   savedTheme = localStorage.getItem('jh_theme') || 'light';
   if (savedTheme === 'custom' && savedColor) {
     applyTheme('custom', savedColor);
