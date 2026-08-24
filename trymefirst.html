@@ -1,1 +1,1848 @@
-no test...
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BS&MFI Services</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  :root, [data-theme="light"] {
+    --black-swan: #0b0f17;
+    --dark-blue: #002aff;
+    --accent: #c9a84c;
+    --bg-body: #eef1f6;
+    --bg-card: #ffffff;
+    --bg-topbar: #0b0f17;
+    --bg-nav: #002aff;
+    --bg-banner: linear-gradient(120deg, #0b0f17, #002aff, #0040ff);
+    --bg-footer: #0b0f17;
+    --bg-soft: #f0f4f8;
+    --bg-calc: #f0f5fa;
+    --bg-table-head: #e8eef5;
+    --bg-table-even: #f7fafc;
+    --text-main: #1a1a1a;
+    --text-muted: #555555;
+    --text-light: #e0e6ed;
+    --text-footer: #a0aec0;
+    --text-title: #002aff;
+    --border: #d0d8e4;
+    --border-strong: #002aff;
+    --input-border: #c5d0de;
+  }
+
+  [data-theme="dark"] {
+    --black-swan: #05080e;
+    --dark-blue: #002aff;
+    --accent: #d4b45a;
+    --bg-body: #0c121c;
+    --bg-card: #141b28;
+    --bg-topbar: #05080e;
+    --bg-nav: #001a99;
+    --bg-banner: linear-gradient(120deg, #05080e, #001a99, #002aff);
+    --bg-footer: #05080e;
+    --bg-soft: #1a2332;
+    --bg-calc: #1a2535;
+    --bg-table-head: #1a2535;
+    --bg-table-even: #121925;
+    --text-main: #e2e8f0;
+    --text-muted: #a0aec0;
+    --text-light: #e2e8f0;
+    --text-footer: #718096;
+    --text-title: #4d7aff;
+    --border: #2d3a4d;
+    --border-strong: #002aff;
+    --input-border: #2d3a4d;
+  }
+
+  /* Telegram-inspired theme */
+  [data-theme="telegram"] {
+    --black-swan: #0e1621;
+    --dark-blue: #2aabee;
+    --accent: #64b5ef;
+    --bg-body: #17212b;
+    --bg-card: #242f3d;
+    --bg-topbar: #0e1621;
+    --bg-nav: #2aabee;
+    --bg-banner: linear-gradient(120deg, #0e1621, #1e3a5f, #2aabee);
+    --bg-footer: #0e1621;
+    --bg-soft: #1c2733;
+    --bg-calc: #1c2733;
+    --bg-table-head: #1c2733;
+    --bg-table-even: #18222d;
+    --text-main: #f5f5f5;
+    --text-muted: #8b9aab;
+    --text-light: #f5f5f5;
+    --text-footer: #6d7f8f;
+    --text-title: #64b5ef;
+    --border: #2b3a4a;
+    --border-strong: #2aabee;
+    --input-border: #2b3a4a;
+  }
+
+  /* Custom dark base – main color injected via JS as --dark-blue */
+  [data-theme="custom"] {
+    --black-swan: #05080e;
+    --dark-blue: #002aff; /* overridden by JS */
+    --accent: #d4b45a;
+    --bg-body: #0c121c;
+    --bg-card: #141b28;
+    --bg-topbar: #05080e;
+    --bg-nav: var(--dark-blue);
+    --bg-banner: linear-gradient(120deg, #05080e, var(--dark-blue), color-mix(in srgb, var(--dark-blue) 70%, white));
+    --bg-footer: #05080e;
+    --bg-soft: #1a2332;
+    --bg-calc: #1a2535;
+    --bg-table-head: #1a2535;
+    --bg-table-even: #121925;
+    --text-main: #e2e8f0;
+    --text-muted: #a0aec0;
+    --text-light: #e2e8f0;
+    --text-footer: #718096;
+    --text-title: var(--dark-blue);
+    --border: #2d3a4d;
+    --border-strong: var(--dark-blue);
+    --input-border: #2d3a4d;
+  }
+
+  body {
+    font-family: "Microsoft YaHei", "SimHei", Arial, sans-serif;
+    font-size: 14px;
+    background: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.5;
+    transition: background 0.3s, color 0.3s;
+  }
+  a { text-decoration: none; color: var(--text-main); }
+  a:hover { color: var(--dark-blue); }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  /* Topbar */
+  .topbar {
+   background: #000000d9;
+    color: var(--text-light);
+    font-size: 12px;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000000;
+  }
+  .topbar .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .topbar a { color: #c5d0de; margin-left: 10px; }
+  .topbar a:hover { color: var(--accent); }
+  .user-info {color: var(--text-title);font-weight: bold; }
+  .theme-btn {
+    background: transparent;
+    border: 1px solid #4a5568;
+    color: #e2e8f0;
+    padding: 3px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: 8px;
+    border-radius: 3px;
+  }
+  .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Header */
+  .header {
+    background: var(--bg-card);
+    border-bottom: 3px solid var(--border-strong);
+    padding: 12px 0;
+  }
+  .header .inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--black-swan);
+    white-space: nowrap;
+  }
+  [data-theme="dark"] .logo,
+  [data-theme="telegram"] .logo,
+  [data-theme="custom"] .logo { color: var(--text-main); }
+  .logo span { color: var(--dark-blue); }
+  [data-theme="dark"] .logo span,
+  [data-theme="telegram"] .logo span,
+  [data-theme="custom"] .logo span { color: var(--text-title); }
+
+  .search-box { flex: 1; display: flex; min-width: 200px; }
+  .search-box input {
+    flex: 1;
+    height: 36px;
+    border: 2px solid var(--border-strong);
+    padding: 0 10px;
+    font-size: 14px;
+    background: var(--bg-card);
+    color: var(--text-main);
+    border-radius: 4px 0 0 4px;
+  }
+  .search-box button {
+    height: 36px;
+    background: var(--dark-blue);
+    color: #fff;
+    border: none;
+    padding: 0 16px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 0 4px 4px 0;
+  }
+  .hotline {
+    text-align: right;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .hotline strong {
+    display: block;
+    font-size: 16px;
+    color: var(--dark-blue);
+  }
+  [data-theme="dark"] .hotline strong,
+  [data-theme="telegram"] .hotline strong,
+  [data-theme="custom"] .hotline strong { color: var(--text-title); }
+
+  /* Main */
+  .main { padding: 12px 0; }
+
+  /* Quick links */
+  .quick {
+  background: var(--bg-card);
+    border-top: 1px solid var(--border);
+    margin-bottom: 12px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 0;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    overflow: scroll;
+    scrollbar-width: none;
+  }
+  .quick span { font-weight: bold; color: var(--dark-blue); }
+  [data-theme="dark"] .quick span,
+  [data-theme="telegram"] .quick span,
+  [data-theme="custom"] .quick span { color: var(--text-title); }
+  .quick a {
+    padding: 4px 10px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-main);
+    border-radius: 4px;
+  }
+  .quick a:hover { background: var(--dark-blue); color: #fff; }
+
+  /* Cards & Sections */
+  .row { margin-bottom: 12px; }
+  .col {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .box-title {
+    background: var(--dark-blue);
+    color: #fff;
+    padding: 10px 14px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  [data-theme="dark"] .box-title { background: #001a99; }
+  [data-theme="telegram"] .box-title { background: #1e88c9; }
+  [data-theme="custom"] .box-title { background: var(--dark-blue); }
+  .box-body { padding: 14px; }
+
+  /* Special Banner */
+  .special-banner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    margin-bottom: 14px;
+    border-radius: 6px;
+    border: 2px solid var(--border-strong);
+    background: var(--bg-soft);
+  }
+  .special-banner .special-icon {
+    font-size: 36px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--dark-blue);
+    color: #fff;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .special-banner .special-content h3 {
+    font-size: 15px;
+    color: var(--text-title);
+    margin-bottom: 4px;
+  }
+  .special-banner .special-content p {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .special-banner .special-tag {
+    display: inline-block;
+    background: var(--dark-blue);
+    color: #fff;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-top: 6px;
+  }
+
+  /* Reminder Banner */
+  .reminder-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px;
+    margin-bottom: 14px;
+    border-radius: 6px;
+    border: 2px solid #e53e3e;
+    background: #fff5f5;
+  }
+  [data-theme="dark"] .reminder-banner,
+  [data-theme="telegram"] .reminder-banner,
+  [data-theme="custom"] .reminder-banner {
+    background: #2d1515;
+    border-color: #fc8181;
+  }
+  .reminder-banner .reminder-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+  .reminder-banner .reminder-content h3 {
+    font-size: 15px;
+    color: #c53030;
+    margin-bottom: 4px;
+  }
+  [data-theme="dark"] .reminder-banner .reminder-content h3,
+  [data-theme="telegram"] .reminder-banner .reminder-content h3,
+  [data-theme="custom"] .reminder-banner .reminder-content h3 { color: #fc8181; }
+  .reminder-banner .reminder-content p {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .reminder-banner .reminder-actions {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  /* Graph */
+  .graph-container {
+    padding: 16px;
+    text-align: center;
+  }
+  .today-rate {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--text-title);
+    margin-bottom: 10px;
+  }
+  .today-rate span { color: #38a169; }
+  .chart-wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+  #interestChart {
+    width: 100%;
+    max-width: 750px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* Take Money */
+  .take-money-box { max-width: 420px; margin: 0 auto; }
+  .take-money-box input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid var(--input-border);
+    padding: 0 12px;
+    margin-bottom: 12px;
+    font-size: 15px;
+    background: var(--bg-card);
+    color: var(--text-main);
+    border-radius: 4px;
+  }
+  .take-money-box button {
+    width: 100%;
+    height: 42px;
+    background: var(--dark-blue);
+    color: #fff;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 8px;
+    border-radius: 4px;
+  }
+  .take-money-box button:hover { background: var(--black-swan); }
+  .interest-result {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    padding: 14px;
+    margin-top: 12px;
+    text-align: center;
+    border-radius: 6px;
+  }
+  .interest-result .rate {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-title);
+    margin: 6px 0;
+  }
+
+  /* Turbo Plans */
+  .turbo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 14px;
+  }
+  .turbo-card {
+    border: 2px solid var(--border);
+    text-align: center;
+    padding: 16px 12px;
+    position: relative;
+    border-radius: 6px;
+  }
+  .turbo-card.hot {
+    border-color: var(--border-strong);
+    background: var(--bg-soft);
+  }
+  .turbo-card .badge {
+    position: absolute;
+    top: -1px; right: -1px;
+    background: var(--black-swan);
+    color: #fff;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 0 6px 0 6px;
+  }
+  .turbo-card h3 { font-size: 16px; color: var(--text-title); margin-bottom: 6px; }
+  .turbo-card .limit { font-size: 22px; font-weight: bold; margin: 8px 0; }
+  .turbo-card .limit small { font-size: 12px; font-weight: normal; color: var(--text-muted); }
+  .turbo-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    background: var(--dark-blue);
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .btn:hover { background: var(--black-swan); }
+  .btn-outline {
+    background: transparent;
+    color: var(--dark-blue);
+    border: 1px solid var(--dark-blue);
+  }
+  [data-theme="dark"] .btn-outline,
+  [data-theme="telegram"] .btn-outline,
+  [data-theme="custom"] .btn-outline {
+    color: var(--text-title);
+    border-color: var(--text-title);
+  }
+  .btn-disabled {
+    background: #a0aec0 !important;
+    cursor: not-allowed !important;
+  }
+  .btn-danger {
+    background: #e53e3e;
+  }
+  .btn-danger:hover { background: #c53030; }
+
+  /* User Summary */
+  .user-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .summary-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    padding: 14px;
+    text-align: center;
+    border-radius: 6px;
+  }
+  .summary-card .label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+  .summary-card .value { font-size: 17px; font-weight: bold; color: var(--text-title); }
+
+  /* Table */
+  .table-wrapper { overflow-x: auto; }
+  .loan-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 500px;
+  }
+  .loan-table th {
+    background: var(--bg-table-head);
+    border: 1px solid var(--border);
+    padding: 10px 6px;
+    color: var(--text-title);
+    text-align: center;
+  }
+  .loan-table td {
+    border: 1px solid var(--border);
+    padding: 10px 6px;
+    text-align: center;
+  }
+  .loan-table tr:nth-child(even) { background: var(--bg-table-even); }
+
+  .hidden { display: none !important; }
+
+  /* Products */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 14px;
+  }
+  .product-card {
+    border: 1px solid var(--border);
+    padding: 16px 12px;
+    text-align: center;
+    border-radius: 6px;
+  }
+  .product-card:hover { border-color: var(--border-strong); }
+  .product-card .icon { font-size: 28px; margin-bottom: 8px; }
+  .product-card h3 { font-size: 15px; color: var(--text-title); margin-bottom: 6px; }
+  .product-card p { font-size: 13px; color: var(--text-muted); min-height: 40px; margin-bottom: 10px; }
+  .access-badge {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+  .access-yes { background: #c6f6d5; color: #276749; }
+  .access-no  { background: #fed7d7; color: #c53030; }
+
+  /* Login required message */
+  .login-required {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+  }
+  .login-required h3 {
+    color: var(--text-title);
+    margin-bottom: 10px;
+  }
+
+  /* Search Results */
+  .search-results {
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    margin-bottom: 12px;
+    display: none;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .search-results .box-title { background: var(--black-swan); }
+  .search-item {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .search-item strong { color: var(--text-title); }
+
+  /* Footer */
+  .footer {
+    background: var(--bg-footer);
+    color: var(--text-footer);
+    margin-top: 20px;
+    padding: 24px 0 16px;
+    font-size: 13px;
+  }
+  .footer .inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .footer h4 {
+    color: #e2e8f0;
+    font-size: 14px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #2d3748;
+    padding-bottom: 6px;
+  }
+  .footer a { display: block; color: var(--text-footer); margin-bottom: 6px; }
+  .footer a:hover { color: var(--accent); }
+  .footer-bottom {
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid #2d3748;
+    text-align: center;
+  }
+
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(5, 8, 14, 0.75);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .modal.show { display: flex; }
+  .modal-content {
+    background: var(--bg-card);
+    padding: 24px;
+    width: 100%;
+    max-width: 420px;
+    border: 3px solid var(--border-strong);
+    color: var(--text-main);
+    border-radius: 8px;
+  }
+  .modal-content h3 { color: var(--text-title); margin-bottom: 12px; font-size: 18px; }
+  .modal-content input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid var(--input-border);
+    padding: 0 12px;
+    margin-bottom: 12px;
+    font-size: 15px;
+    background: var(--bg-card);
+    color: var(--text-main);
+    border-radius: 4px;
+  }
+  .fee-preview {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .fee-preview .fee-amount {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--text-title);
+  }
+
+  /* Applied services table */
+  .applied-section { margin-top: 20px; }
+  .applied-section h4 {
+    font-size: 15px;
+    color: var(--text-title);
+    margin-bottom: 10px;
+  }
+
+  /* Theme modal extras */
+  .theme-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .theme-option {
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .theme-option:hover, .theme-option.active {
+    border-color: var(--border-strong);
+    background: var(--bg-soft);
+  }
+  .theme-option .swatch {
+    width: 100%;
+    height: 28px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .custom-section {
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    margin-top: 8px;
+  }
+  .custom-section h4 {
+    font-size: 14px;
+    color: var(--text-title);
+    margin-bottom: 10px;
+  }
+  .custom-colors {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .custom-color-btn {
+    height: 40px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+  }
+  .custom-color-btn.active { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+  .color-picker-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .color-picker-row input[type="color"] {
+    width: 48px;
+    height: 36px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .turbo-grid { grid-template-columns: repeat(2, 1fr); }
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .user-summary { grid-template-columns: repeat(2, 1fr); }
+    .footer .inner { grid-template-columns: repeat(2, 1fr); }
+    .hotline { display: none; }
+  }
+  @media (max-width: 600px) {
+    /* .turbo-grid { grid-template-columns: 1fr; }
+    .product-grid { grid-template-columns: 1fr; }
+    .user-summary { grid-template-columns: 1fr; }
+    .footer .inner { grid-template-columns: 1fr; } */
+    .header .inner { flex-direction: column; align-items: stretch; }
+    .search-box { width: 100%; }
+    .logo { text-align: center; }
+    .banner { padding: 28px 12px; }
+    .topbar .inner { justify-content: center; text-align: center; }
+    .theme-options { grid-template-columns: 1fr; }
+    .custom-colors { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div class="inner">
+      <div>Welcome to BS&MFI Services</div>
+      <div>
+        <span id="top-user" class="user-info"></span>
+        <a href="#" onclick="showLogin()">Account Login</a>
+        <a href="#" onclick="logout()" id="logout-btn" class="hidden">Logout</a>
+        <button class="theme-btn" onclick="openThemeModal()" id="theme-btn">Themes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="header">
+  <div class="container">
+    <div class="inner">
+      <div class="logo"><span>BS&MFI </span>Services</div>
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Search products..." onkeypress="if(event.key==='Enter') doSearch()">
+        <button onclick="doSearch()">Search</button>
+      </div>
+      <div class="hotline">
+        If you facing issue fill<br>
+        <strong>ISSUE FORM NOW</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="container">
+
+    <div class="search-results" id="search-results">
+      <div class="box-title">Search Results <a href="#" onclick="clearSearch()" style="color:#fff;">Clear ✕</a></div>
+      <div id="search-list"></div>
+    </div>
+
+    <!-- Interest Graph -->
+    <div class="row" id="graph">
+      <div class="col">
+        <div class="box-title">Today's Interest Rate</div>
+        <div class="graph-container">
+          <div class="today-rate">
+            Today’s Interest: <span id="today-rate-display">--%</span>
+            <span id="fixed-rate-note" style="font-size:13px;display:none;"></span>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="interestChart" width="750" height="240"></canvas>
+          </div>
+          <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">
+            Interest rate and all bars are fixed for the whole day. Logged-in users with a claimed fixed rate will see their personal rate used in calculations.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Turbo Plans -->
+    <div class="row" id="turbo">
+      <div class="col">
+        <div class="box-title">BS&MFI Turbo Plans</div>
+        <div class="turbo-grid">
+          <div class="turbo-card">
+            <h3>Normal</h3>
+            <div class="limit">20,000 <small>Limit</small></div>
+            <p>Basic plan for everyday needs</p>
+            <button class="btn" onclick="applyProduct('Normal Plan (20k)')">Apply Now</button>
+          </div>
+          <div class="turbo-card hot">
+            <div class="badge">Popular</div>
+            <h3>Premium</h3>
+            <div class="limit">40,000 <small>Limit</small></div>
+            <p>Higher limit + better rates</p>
+            <button class="btn" onclick="applyProduct('Premium Plan (40k)')">Apply Now</button>
+          </div>
+          <div class="turbo-card">
+            <h3>Premium+</h3>
+            <div class="limit">80,000 <small>Limit</small></div>
+            <p>Maximum limit & priority support</p>
+            <button class="btn" onclick="applyProduct('Premium+ Plan (80k)')">Apply Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Take Money -->
+    <div class="row" id="takemoney">
+      <div class="col">
+        <div class="box-title">Take Money</div>
+        <div class="box-body">
+          <div class="take-money-box">
+            <div id="tm-password-step">
+              <p style="margin-bottom:12px;color:var(--text-muted);text-align:center;">
+                Enter password to apply for amount<br>
+              </p>
+              <input type="password" id="tm-password" placeholder="Enter Password">
+              <button onclick="verifyTakeMoneyPassword()">Continue</button>
+            </div>
+
+            <div id="tm-amount-step" class="hidden">
+              <p style="margin-bottom:10px;text-align:center;color:var(--text-muted);">
+                Applicable Interest Rate: <strong id="tm-today-rate" style="color:var(--text-title);"></strong>
+              </p>
+              <input type="number" id="tm-amount" placeholder="Enter amount you want to take" min="100">
+              <button onclick="calculateTakeMoneyInterest()">Check Interest</button>
+
+              <div id="tm-result" class="interest-result hidden">
+                <div>Amount: <strong id="tm-res-amount">—</strong></div>
+                <div class="rate">Interest: <span id="tm-res-interest">—</span></div>
+                <div>Total to Return: <strong id="tm-res-total">—</strong></div>
+                <button class="btn" style="margin-top:12px;width:100%;" onclick="applyTakeMoney()">Apply Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- All Products (Login Required + Access Control) -->
+    <div class="row" id="products">
+      <div class="col">
+        <div class="box-title">All our services</div>
+        <div class="box-body" id="products-container">
+          <!-- Filled by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- My Account -->
+    <div class="row" id="account">
+      <div class="col">
+        <div class="box-title">
+          My Account - Loan Details
+          <span id="account-status" style="font-size:12px;font-weight:normal;"></span>
+        </div>
+        <div class="box-body">
+          <div id="login-section">
+            <div style="max-width:360px;margin:0 auto;">
+              <p style="margin-bottom:12px;color:var(--text-muted);text-align:center;">
+                Enter password to login
+              </p>
+              <input type="password" id="login-pass" placeholder="Password" style="width:100%;height:40px;margin-bottom:10px;padding:0 12px;border:1px solid var(--input-border);background:var(--bg-card);color:var(--text-main);border-radius:4px;">
+              <button class="btn" style="width:100%;height:42px;" onclick="doLogin()">Login to Account</button>
+            </div>
+          </div>
+
+          <div id="loan-section" class="hidden">
+            <p style="margin-bottom:12px;">
+              Welcome, <strong id="current-user"></strong>!
+              <button class="btn btn-outline" style="padding:4px 12px;font-size:13px;margin-left:10px;" onclick="logout()">Logout</button>
+            </p>
+
+            <!-- Reminder Banner (shown when return date is within 2 days) -->
+            <div id="reminder-banner" class="reminder-banner hidden">
+              <div class="reminder-icon">⚠️</div>
+              <div class="reminder-content">
+                <h3>Payment Reminder</h3>
+                <div id="reminder-messages"></div>
+                <div class="reminder-actions">
+                  <button class="btn btn-danger" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Delay It Now</button>
+                </div>
+              </div>
+            </div>
+
+            <div id="special-banner" class="special-banner hidden">
+              <div class="special-icon" id="special-icon">🎁</div>
+              <div class="special-content">
+                <h3 id="special-title">Special Offer</h3>
+                <p id="special-message">You have a special gift!</p>
+                <div class="special-tag" id="special-tag">VIP</div>
+              </div>
+            </div>
+
+            <div class="user-summary">
+              <div class="summary-card">
+                <div class="label">User Name</div>
+                <div class="value" id="sum-username">—</div>
+              </div>
+              <div class="summary-card">
+                <div class="label">Premium Type</div>
+                <div class="value" id="sum-premium">—</div>
+              </div>
+              <div class="summary-card">
+                <div class="label">Total Amount</div>
+                <div class="value" id="sum-total">—</div>
+              </div>
+              <div class="summary-card">
+                <div class="label">Your Interest Rate</div>
+                <div class="value" id="sum-interest">—</div>
+              </div>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="loan-table">
+                <thead>
+                  <tr>
+                    <th>Amount</th>
+                    <th>Interest</th>
+                    <th>Overdue Fee</th>
+                    <th>Borrowed Date</th>
+                    <th>Return Date</th>
+                    <th>Days Left / Overdue</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="loan-body"></tbody>
+              </table>
+            </div>
+
+            <!-- Applied Services with Fees -->
+            <div class="applied-section" id="applied-section">
+              <h4>Applied Services & Fees</h4>
+              <div class="table-wrapper">
+                <table class="loan-table">
+                  <thead>
+                    <tr>
+                      <th>Service</th>
+                      <th>Amount</th>
+                      <th>Fee</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="applied-body"></tbody>
+                </table>
+              </div>
+              <p id="no-applied" style="text-align:center;color:var(--text-muted);margin-top:10px;" class="hidden">No services applied yet.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  <div class="container">
+    <div class="inner">
+      <div>
+        <h4>About Us</h4>
+        <a href="#">Company Profile</a>
+        <a href="#">Safety & Compliance</a>
+      </div>
+      <div>
+        <h4>Products</h4>
+        <a href="#takemoney">Take Money</a>
+        <a href="#products">All Services</a>
+        <a href="#turbo">Turbo Plans</a>
+      </div>
+      <div>
+        <h4>Tools</h4>
+        <a href="#graph">Interest Graph</a>
+        <a href="#account">My Account</a>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <a href="#">Online Service</a>
+        <a href="#">Download App</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+     © BS&MFI Services, All Rights Reserved.
+    </div>
+    
+  </div>
+</div><div class="quick">
+      <a href="#graph">Interest</a>
+      <a href="#turbo">Turbo</a>
+      <a href="#takemoney">Borrow</a>
+      <a href="#products">Services</a>
+      <a href="#account">Account</a>
+    </div>
+
+<!-- Simple Apply Modal -->
+<div class="modal" id="apply-modal">
+  <div class="modal-content">
+    <h3>Application Received</h3>
+    <p id="apply-msg" style="margin-bottom:16px;"></p>
+    <button class="btn" style="width:100%;" onclick="closeModal()">OK</button>
+  </div>
+</div>
+
+<!-- Fee Calculation Modal (Delay It / Split Pay / Buy Limit) -->
+<div class="modal" id="fee-modal">
+  <div class="modal-content">
+    <h3 id="fee-modal-title">Apply Service</h3>
+    <p style="margin-bottom:12px;color:var(--text-muted);font-size:13px;" id="fee-modal-desc"></p>
+    <input type="number" id="fee-amount" placeholder="Enter amount" min="100">
+    <button class="btn" style="width:100%;margin-bottom:12px;" onclick="calculateFee()">Calculate Fee</button>
+
+    <div id="fee-result" class="fee-preview hidden">
+      <div>Service Fee</div>
+      <div class="fee-amount" id="fee-display">—</div>
+      <div style="font-size:13px;color:var(--text-muted);margin-top:4px;" id="fee-formula"></div>
+    </div>
+
+    <button class="btn" style="width:100%;" id="fee-apply-btn" onclick="confirmFeeApply()" disabled>Confirm & Apply</button>
+    <button class="btn btn-outline" style="width:100%;margin-top:8px;" onclick="closeFeeModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- Theme Modal -->
+<div class="modal" id="theme-modal">
+  <div class="modal-content" style="max-width:460px;">
+    <h3>Choose Theme</h3>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;">Select a default theme or (if available) a custom dark theme with your own accent color.</p>
+
+    <div class="theme-options" id="default-themes">
+      <div class="theme-option" data-theme="light" onclick="selectTheme('light')">
+        <div class="swatch" style="background:linear-gradient(90deg,#eef1f6,#002aff);"></div>
+        <strong>Light</strong>
+      </div>
+      <div class="theme-option" data-theme="dark" onclick="selectTheme('dark')">
+        <div class="swatch" style="background:linear-gradient(90deg,#0c121c,#002aff);"></div>
+        <strong>Black Dark</strong>
+      </div>
+      <div class="theme-option" data-theme="telegram" onclick="selectTheme('telegram')">
+        <div class="swatch" style="background:linear-gradient(90deg,#17212b,#2aabee);"></div>
+        <strong>Telegram</strong>
+      </div>
+    </div>
+
+    <!-- Custom themes – only visible when user has customui:yes -->
+    <div id="custom-theme-section" class="custom-section hidden">
+      <h4>Custom Dark Themes (color choice)</h4>
+      <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">Pick one of the 4 preset accents or choose any color. The selected color becomes the main accent on a dark base.</p>
+      <div class="custom-colors">
+        <div class="custom-color-btn" style="background:#e53e3e;" data-color="#e53e3e" onclick="selectCustomColor('#e53e3e')" title="Red"></div>
+        <div class="custom-color-btn" style="background:#38a169;" data-color="#38a169" onclick="selectCustomColor('#38a169')" title="Green"></div>
+        <div class="custom-color-btn" style="background:#805ad5;" data-color="#805ad5" onclick="selectCustomColor('#805ad5')" title="Purple"></div>
+        <div class="custom-color-btn" style="background:#dd6b20;" data-color="#dd6b20" onclick="selectCustomColor('#dd6b20')" title="Orange"></div>
+      </div>
+      <div class="color-picker-row">
+        <label style="font-size:13px;">Or pick any color:</label>
+        <input type="color" id="custom-color-picker" value="#002aff" onchange="selectCustomColor(this.value)">
+        <button class="btn" style="padding:6px 12px;font-size:13px;" onclick="selectCustomColor(document.getElementById('custom-color-picker').value)">Apply</button>
+      </div>
+    </div>
+
+    <button class="btn btn-outline" style="width:100%;margin-top:16px;" onclick="closeThemeModal()">Close</button>
+  </div>
+</div>
+
+<script>
+// ========== FIXED Interest for the Day ==========
+function getTodayInterest() {
+  const today = new Date().toDateString();
+  const stored = localStorage.getItem('jh_today_interest');
+  const storedDate = localStorage.getItem('jh_today_date');
+
+  if (stored && storedDate === today) {
+    return parseFloat(stored);
+  }
+
+  const dateStr = today;
+  let hash = 0;
+  for (let i = 0; i < dateStr.length; i++) {
+    hash = dateStr.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const rate = +(30 + (Math.abs(hash) % 500) / 100).toFixed(2);
+
+  localStorage.setItem('jh_today_interest', rate);
+  localStorage.setItem('jh_today_date', today);
+  return rate;
+}
+
+const todayInterest = getTodayInterest();
+
+function getFixedBars() {
+  const today = new Date().toDateString();
+  const stored = localStorage.getItem('jh_today_bars');
+  const storedDate = localStorage.getItem('jh_today_date');
+
+  if (stored && storedDate === today) {
+    return JSON.parse(stored);
+  }
+
+  const bars = [];
+  let seed = 0;
+  for (let i = 0; i < today.length; i++) seed += today.charCodeAt(i);
+
+  for (let i = 0; i < 10; i++) {
+    seed = (seed * 16807 + 7) % 2147483647;
+    const variation = ((seed % 400) / 100) - 2;
+    bars.push(+(Math.max(30, Math.min(35, todayInterest + variation)).toFixed(2)));
+  }
+  bars[9] = todayInterest;
+
+  localStorage.setItem('jh_today_bars', JSON.stringify(bars));
+  return bars;
+}
+
+// ========== Get effective interest for current user ==========
+function getEffectiveInterest() {
+  if (currentUser && users[currentUser] && users[currentUser].fixedInterest != null) {
+    return users[currentUser].fixedInterest;
+  }
+  return todayInterest;
+}
+
+// ========== Date helpers ==========
+function parseDate(str) {
+  // expects YYYY-MM-DD
+  const parts = str.split('-');
+  return new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+}
+
+function daysBetween(d1, d2) {
+  const oneDay = 24 * 60 * 60 * 1000;
+  const utc1 = Date.UTC(d1.getFullYear(), d1.getMonth(), d1.getDate());
+  const utc2 = Date.UTC(d2.getFullYear(), d2.getMonth(), d2.getDate());
+  return Math.floor((utc2 - utc1) / oneDay);
+}
+
+function getTodayDate() {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+}
+
+// ========== Overdue calculation ==========
+// Overdue fee = 25 per day starting from the day AFTER return date
+// Status becomes Overdue when current date > return date
+function computeLoanStatus(loan) {
+  const today = getTodayDate();
+  const returnDate = parseDate(loan.return);
+  const diff = daysBetween(returnDate, today); // positive = overdue days
+
+  let overdueFee = 0;
+  let status = 'Active';
+  let daysInfo = '';
+
+  if (diff > 0) {
+    // Past return date → overdue
+    overdueFee = diff * 25;
+    status = 'Overdue';
+    daysInfo = diff + ' day(s) overdue';
+  } else if (diff === 0) {
+    // Due today
+    status = 'Due Today';
+    daysInfo = 'Due today';
+  } else {
+    // Still time left
+    status = 'Active';
+    daysInfo = Math.abs(diff) + ' day(s) left';
+  }
+
+  return { overdueFee, status, daysInfo, daysDiff: diff };
+}
+
+// ========== THEME SYSTEM ==========
+function openThemeModal() {
+  // Show / hide custom section based on current user
+  const customSec = document.getElementById('custom-theme-section');
+  if (currentUser && users[currentUser] && users[currentUser].customui === 'yes') {
+    customSec.classList.remove('hidden');
+  } else {
+    customSec.classList.add('hidden');
+  }
+  // Highlight active theme
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  document.querySelectorAll('.theme-option').forEach(el => {
+    el.classList.toggle('active', el.getAttribute('data-theme') === current);
+  });
+  // Highlight custom color if active
+  const savedColor = localStorage.getItem('jh_custom_color');
+  document.querySelectorAll('.custom-color-btn').forEach(el => {
+    el.classList.toggle('active', el.getAttribute('data-color') === savedColor);
+  });
+  if (savedColor) {
+    document.getElementById('custom-color-picker').value = savedColor;
+  }
+  document.getElementById('theme-modal').classList.add('show');
+}
+
+function closeThemeModal() {
+  document.getElementById('theme-modal').classList.remove('show');
+}
+
+function selectTheme(themeName) {
+  // Clear any custom color when switching to a non-custom theme
+  if (themeName !== 'custom') {
+    localStorage.removeItem('jh_custom_color');
+  }
+  applyTheme(themeName);
+  closeThemeModal();
+}
+
+function selectCustomColor(hex) {
+  if (!currentUser || !users[currentUser] || users[currentUser].customui !== 'yes') {
+    alert('Custom themes are only available for users with custom UI access.');
+    return;
+  }
+  localStorage.setItem('jh_custom_color', hex);
+  applyTheme('custom', hex);
+  // Update UI highlights
+  document.querySelectorAll('.custom-color-btn').forEach(el => {
+    el.classList.toggle('active', el.getAttribute('data-color') === hex);
+  });
+  document.getElementById('custom-color-picker').value = hex;
+  closeThemeModal();
+}
+
+function applyTheme(themeName, customColor) {
+  const html = document.documentElement;
+  html.setAttribute('data-theme', themeName);
+
+  if (themeName === 'custom') {
+    const color = customColor || localStorage.getItem('jh_custom_color') || '#002aff';
+    html.style.setProperty('--dark-blue', color);
+    // Also keep a slightly lighter title color if needed
+    html.style.setProperty('--text-title', color);
+  } else {
+    // Remove inline overrides so CSS variables take over
+    html.style.removeProperty('--dark-blue');
+    html.style.removeProperty('--text-title');
+  }
+
+  localStorage.setItem('jh_theme', themeName);
+  if (themeName === 'custom' && customColor) {
+    localStorage.setItem('jh_custom_color', customColor);
+  }
+
+  // Update button label
+  const labels = {
+    light: 'Light',
+    dark: 'Black Dark',
+    telegram: 'Telegram',
+    custom: 'Custom'
+  };
+  document.getElementById('theme-btn').textContent = 'Themes (' + (labels[themeName] || themeName) + ')';
+
+  drawBarGraph();
+}
+
+function enforceCustomUIAccess() {
+  // If user does NOT have customui:yes, strip any custom theme from storage
+  const hasCustom = currentUser && users[currentUser] && users[currentUser].customui === 'yes';
+  const storedTheme = localStorage.getItem('jh_theme');
+
+  if (!hasCustom && storedTheme === 'custom') {
+    localStorage.removeItem('jh_theme');
+    localStorage.removeItem('jh_custom_color');
+    applyTheme('dark'); // fallback to Black Dark
+  }
+}
+
+// ========== Take Money ==========
+function verifyTakeMoneyPassword() {
+  const pass = document.getElementById('tm-password').value;
+  if (pass !== '123456') {
+    alert('Wrong password. Use 123456 for demo.');
+    return;
+  }
+  document.getElementById('tm-password-step').classList.add('hidden');
+  document.getElementById('tm-amount-step').classList.remove('hidden');
+
+  const rate = getEffectiveInterest();
+  const isFixed = currentUser && users[currentUser] && users[currentUser].fixedInterest != null;
+  document.getElementById('tm-today-rate').textContent = rate + '%' + (isFixed ? ' (Your Fixed Rate)' : ' (Today\'s Rate)');
+}
+
+function calculateTakeMoneyInterest() {
+  const amount = parseFloat(document.getElementById('tm-amount').value);
+  if (!amount || amount < 100) {
+    alert('Please enter amount (minimum 100)');
+    return;
+  }
+  const rate = getEffectiveInterest();
+  const interestAmount = amount * (rate / 100);
+  const total = amount + interestAmount;
+
+  document.getElementById('tm-res-amount').textContent = amount.toLocaleString();
+  document.getElementById('tm-res-interest').textContent = rate + '%  →  ' + interestAmount.toFixed(2);
+  document.getElementById('tm-res-total').textContent = total.toFixed(2);
+  document.getElementById('tm-result').classList.remove('hidden');
+}
+
+function applyTakeMoney() {
+  const amount = document.getElementById('tm-amount').value;
+  const rate = getEffectiveInterest();
+  document.getElementById('apply-msg').innerHTML = 
+    `You have applied for <strong>Take Money</strong><br>
+     Amount: ${Number(amount).toLocaleString()}<br>
+     Interest Rate: ${rate}%<br>
+     Application submitted successfully!`;
+  document.getElementById('apply-modal').classList.add('show');
+}
+
+// ========== USERS + ACCESS RIGHTS ==========
+const users = {
+  "phanindra": {
+    password: "9919",
+    displayName: "phanindra",
+    premiumType: "Premium+",
+    fixedInterest: 25,          // claimed fixed rate
+    customui: "yes",            // <-- enables 4 custom theme options + color picker
+    special: {
+      icon: "👑",
+      title: "Premium Member Reward",
+      message: "Congratulations Alex! You have unlocked a special 5% cashback on your next Take Money. Your fixed interest rate of 28.5% is active.",
+      tag: "PREMIUM REWARD"
+    },
+    loans: [
+      { amount: 5000, interest: 365, borrowed: "2026-06-12", return: "2026-09-12" },
+      { amount: 10000, interest: 2500, borrowed: "2026-08-01", return: "2026-08-20" }  // will be overdue
+    ],
+    access: {
+      "Delay It": true,
+      "Split Pay": true,
+      "Buy Limit": false,
+      "Pre-Saver": true,
+      "Lendlink-Mid": false,
+      "BsRora Bot": false,
+      "Mining bot": false,
+      "BotPay": false,
+      "BsRora-Atdo": true
+    }
+  },
+};
+
+let currentUser = null;
+let pendingFeeService = null;
+let pendingFeeAmount = 0;
+let pendingFeeValue = 0;
+
+// ========== ALL PRODUCTS DEFINITION ==========
+const allProducts = [
+  { name: "Delay It",      icon: "⏳", desc: "Extend repayment date", needsFee: true,  feeRate: 0.08, feeLabel: "8% of amount" },
+  { name: "Split Pay",     icon: "📅", desc: "Split payment into smaller amounts", needsFee: true,  feeRate: 0.05, feeLabel: "5% of amount" },
+  { name: "Buy Limit",     icon: "📈", desc: "Increase your borrowing limit", needsFee: true,  feeRate: 0.10, feeLabel: "10% of amount" },
+  { name: "Pre-Saver",     icon: "💰", desc: "Save first, enjoy better rates", needsFee: false },
+  { name: "Lendlink-Mid",  icon: "🔗", desc: "Mid-term lending options", needsFee: false },
+  { name: "BsRora Bot",    icon: "🤖", desc: "Smart automation bot", needsFee: false },
+  { name: "Mining bot",    icon: "⛏️", desc: "Automated mining bot", needsFee: false },
+  { name: "BotPay",        icon: "💳", desc: "Fast payment solution", needsFee: false },
+  { name: "BsRora-Atdo",   icon: "⚡", desc: "Advanced automated system", needsFee: false }
+];
+
+// ========== RENDER PRODUCTS (Login + Access Control) ==========
+function renderProducts() {
+  const container = document.getElementById('products-container');
+
+  if (!currentUser) {
+    container.innerHTML = `
+      <div class="login-required">
+        <h3>🔒 Login Required</h3>
+        <p>Please login to your account to view the services you have access to.</p>
+        <button class="btn" style="margin-top:16px;" onclick="showLogin()">Go to Login</button>
+      </div>
+    `;
+    return;
+  }
+
+  const user = users[currentUser];
+  const accessible = allProducts.filter(p => user.access[p.name] === true);
+
+  if (accessible.length === 0) {
+    container.innerHTML = `<div class="login-required"><p>You currently have no services available.</p></div>`;
+    return;
+  }
+
+  let html = `<p style="margin-bottom:14px;color:var(--text-muted);">
+    Showing <strong>${accessible.length}</strong> service(s) available for <strong>${user.displayName}</strong>
+  </p>
+  <div class="product-grid">`;
+
+  accessible.forEach(p => {
+    html += `
+      <div class="product-card">
+        <div class="icon">${p.icon}</div>
+        <div class="access-badge access-yes">✓ Access Granted</div>
+        <h3>${p.name}</h3>
+        <p>${p.desc}</p>
+        <button class="btn" onclick="handleProductClick('${p.name}')">Apply</button>
+      </div>
+    `;
+  });
+
+  html += `</div>`;
+
+  // Also show locked services
+  const locked = allProducts.filter(p => !user.access[p.name]);
+  if (locked.length > 0) {
+    html += `<p style="margin:20px 0 10px;color:var(--text-muted);font-size:13px;">Services you do not have access to:</p>
+    <div class="product-grid" style="opacity:0.6;">`;
+    locked.forEach(p => {
+      html += `
+        <div class="product-card">
+          <div class="icon">${p.icon}</div>
+          <div class="access-badge access-no">✗ No Access</div>
+          <h3>${p.name}</h3>
+          <p>${p.desc}</p>
+          <button class="btn btn-disabled" disabled>Locked</button>
+        </div>
+      `;
+    });
+    html += `</div>`;
+  }
+
+  container.innerHTML = html;
+}
+
+// ========== HANDLE PRODUCT CLICK ==========
+function handleProductClick(name) {
+  if (!currentUser) {
+    alert('Please login first');
+    showLogin();
+    return;
+  }
+
+  const user = users[currentUser];
+  if (!user.access[name]) {
+    alert('You do not have access to this service.');
+    return;
+  }
+
+  const product = allProducts.find(p => p.name === name);
+  if (product && product.needsFee) {
+    pendingFeeService = name;
+    document.getElementById('fee-modal-title').textContent = 'Apply: ' + name;
+    document.getElementById('fee-modal-desc').textContent = product.desc + ' — Enter amount to calculate the service fee.';
+    document.getElementById('fee-amount').value = '';
+    document.getElementById('fee-result').classList.add('hidden');
+    document.getElementById('fee-apply-btn').disabled = true;
+    document.getElementById('fee-modal').classList.add('show');
+  } else {
+    applyProduct(name);
+  }
+}
+
+// ========== FEE CALCULATION ==========
+function calculateFee() {
+  const amount = parseFloat(document.getElementById('fee-amount').value);
+  if (!amount || amount < 100) {
+    alert('Please enter a valid amount (minimum 100)');
+    return;
+  }
+
+  const product = allProducts.find(p => p.name === pendingFeeService);
+  if (!product) return;
+
+  const fee = +(amount * product.feeRate).toFixed(2);
+  pendingFeeAmount = amount;
+  pendingFeeValue = fee;
+
+  document.getElementById('fee-display').textContent = fee.toLocaleString() + ' (currency)';
+  document.getElementById('fee-formula').textContent = product.feeLabel + ' → ' + amount.toLocaleString() + ' × ' + (product.feeRate * 100) + '%';
+  document.getElementById('fee-result').classList.remove('hidden');
+  document.getElementById('fee-apply-btn').disabled = false;
+}
+
+function confirmFeeApply() {
+  if (!pendingFeeService || !pendingFeeAmount) return;
+
+  const key = 'jh_applied_' + currentUser;
+  let list = JSON.parse(localStorage.getItem(key) || '[]');
+  list.push({
+    service: pendingFeeService,
+    amount: pendingFeeAmount,
+    fee: pendingFeeValue,
+    date: new Date().toISOString().slice(0, 10),
+    status: 'Pending'
+  });
+  localStorage.setItem(key, JSON.stringify(list));
+
+  closeFeeModal();
+  document.getElementById('apply-msg').innerHTML = 
+    `You have successfully applied for <strong>${pendingFeeService}</strong>.<br>
+     Amount: ${pendingFeeAmount.toLocaleString()}<br>
+     Service Fee: <strong>${pendingFeeValue.toLocaleString()}</strong><br>
+     The fee has been recorded in your account.`;
+  document.getElementById('apply-modal').classList.add('show');
+
+  renderAppliedServices();
+}
+
+function closeFeeModal() {
+  document.getElementById('fee-modal').classList.remove('show');
+  pendingFeeService = null;
+  pendingFeeAmount = 0;
+  pendingFeeValue = 0;
+}
+
+// ========== RENDER APPLIED SERVICES ==========
+function renderAppliedServices() {
+  if (!currentUser) return;
+
+  const key = 'jh_applied_' + currentUser;
+  const list = JSON.parse(localStorage.getItem(key) || '[]');
+  const tbody = document.getElementById('applied-body');
+  const noMsg = document.getElementById('no-applied');
+
+  tbody.innerHTML = '';
+  if (list.length === 0) {
+    noMsg.classList.remove('hidden');
+    return;
+  }
+  noMsg.classList.add('hidden');
+
+  list.forEach(item => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${item.service}</td>
+      <td>${item.amount.toLocaleString()}</td>
+      <td style="font-weight:bold;color:var(--text-title);">${item.fee.toLocaleString()}</td>
+      <td>${item.date}</td>
+      <td>${item.status}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// ========== Search ==========
+function doSearch() {
+  const keyword = document.getElementById('search-input').value.trim().toLowerCase();
+  const resultsBox = document.getElementById('search-results');
+  const list = document.getElementById('search-list');
+  if (!keyword) { alert('Please enter a keyword'); return; }
+
+  const matched = allProducts.filter(p => 
+    p.name.toLowerCase().includes(keyword) || p.desc.toLowerCase().includes(keyword)
+  );
+
+  list.innerHTML = matched.length === 0 
+    ? `<div class="search-item">No results for "<strong>${keyword}</strong>"</div>`
+    : matched.map(p => `
+      <div class="search-item">
+        <div><strong>${p.name}</strong> <span style="font-size:12px;color:var(--text-muted);">${p.desc}</span></div>
+        <div>
+          <button class="btn" style="padding:5px 12px;font-size:13px;" onclick="handleProductClick('${p.name}')">Apply</button>
+          <a href="#products" style="margin-left:8px;font-size:13px;">View</a>
+        </div>
+      </div>
+    `).join('');
+
+  resultsBox.style.display = 'block';
+  resultsBox.scrollIntoView({ behavior: 'smooth' });
+}
+
+function clearSearch() {
+  document.getElementById('search-results').style.display = 'none';
+  document.getElementById('search-input').value = '';
+}
+
+// ========== Simple Apply (non-fee products) ==========
+function applyProduct(name) {
+  document.getElementById('apply-msg').innerHTML = 
+    `You have successfully applied for <strong>${name}</strong>.<br>Our team will contact you shortly.`;
+  document.getElementById('apply-modal').classList.add('show');
+}
+function closeModal() {
+  document.getElementById('apply-modal').classList.remove('show');
+}
+
+// ========== Account ==========
+function showLogin() {
+  document.getElementById('account').scrollIntoView({ behavior: 'smooth' });
+}
+
+function doLogin() {
+  const password = document.getElementById('login-pass').value;
+  // Find user by password only
+  let matchedUser = null;
+  for (const key in users) {
+    if (users[key].password === password) {
+      matchedUser = key;
+      break;
+    }
+  }
+  if (!matchedUser) {
+    alert('Wrong password');
+    return;
+  }
+  currentUser = matchedUser;
+  localStorage.setItem('jh_user', matchedUser);
+  showLoanDetails();
+  renderProducts();
+  updateInterestDisplay();
+  enforceCustomUIAccess(); // remove custom theme if this user is not allowed
+}
+
+function updateInterestDisplay() {
+  const rate = getEffectiveInterest();
+  const note = document.getElementById('fixed-rate-note');
+  if (currentUser && users[currentUser] && users[currentUser].fixedInterest != null) {
+    note.style.display = 'inline';
+    note.textContent = `  |  Your Fixed Rate: ${users[currentUser].fixedInterest}%`;
+    note.style.color = '#38a169';
+  } else {
+    note.style.display = 'none';
+  }
+}
+
+function showLoanDetails() {
+  if (!currentUser || !users[currentUser]) return;
+  const user = users[currentUser];
+
+  document.getElementById('login-section').classList.add('hidden');
+  document.getElementById('loan-section').classList.remove('hidden');
+  document.getElementById('logout-btn').classList.remove('hidden');
+  document.getElementById('top-user').textContent = 'Hi, ' + user.displayName;
+  document.getElementById('current-user').textContent = user.displayName;
+  document.getElementById('account-status').textContent = 'Logged in';
+
+  // Special banner
+  const specialBox = document.getElementById('special-banner');
+  if (user.special) {
+    document.getElementById('special-icon').textContent = user.special.icon;
+    document.getElementById('special-title').textContent = user.special.title;
+    document.getElementById('special-message').textContent = user.special.message;
+    document.getElementById('special-tag').textContent = user.special.tag;
+    specialBox.classList.remove('hidden');
+  } else {
+    specialBox.classList.add('hidden');
+  }
+
+  // Summary
+  document.getElementById('sum-username').textContent = user.displayName;
+  document.getElementById('sum-premium').textContent = user.premiumType;
+  const totalAmount = user.loans.reduce((sum, l) => sum + l.amount, 0);
+  document.getElementById('sum-total').textContent = totalAmount.toLocaleString();
+
+  // Interest rate display
+  const rate = getEffectiveInterest();
+  if (user.fixedInterest != null) {
+    document.getElementById('sum-interest').textContent = user.fixedInterest + '% (Fixed)';
+  } else {
+    document.getElementById('sum-interest').textContent = todayInterest + '% (Daily)';
+  }
+
+  // Loan table with dynamic overdue
+  const tbody = document.getElementById('loan-body');
+  tbody.innerHTML = '';
+
+  // Collect reminders (≤ 2 days left, not yet overdue)
+  const reminders = [];
+
+  user.loans.forEach(loan => {
+    const { overdueFee, status, daysInfo, daysDiff } = computeLoanStatus(loan);
+
+    // Reminder: 1 or 2 days left (or due today)
+    if (daysDiff >= -2 && daysDiff <= 0) {
+      const daysLeft = Math.abs(daysDiff);
+      let msg = '';
+      if (daysDiff === 0) {
+        msg = `Loan of ${loan.amount.toLocaleString()} is <strong>due today</strong>. Please clear it or use <strong>Delay It</strong> before the end of the day.`;
+      } else {
+        msg = `Loan of ${loan.amount.toLocaleString()} has to be returned in <strong>${daysLeft} day(s)</strong>. Clear it or use <strong>Delay It</strong> before the return date (${loan.return}).`;
+      }
+      reminders.push(msg);
+    }
+
+    const tr = document.createElement('tr');
+    const statusColor = status === 'Overdue' ? '#e53e3e' : (status === 'Due Today' ? '#dd6b20' : '#38a169');
+    tr.innerHTML = `
+      <td>${loan.amount.toLocaleString()}</td>
+      <td>${loan.interest}</td>
+      <td style="color:${overdueFee > 0 ? '#e53e3e' : 'inherit'};font-weight:${overdueFee > 0 ? 'bold' : 'normal'};">
+        ${overdueFee > 0 ? overdueFee.toLocaleString() + ' (25×' + (overdueFee/25) + ' days)' : '0'}
+      </td>
+      <td>${loan.borrowed}</td>
+      <td>${loan.return}</td>
+      <td>${daysInfo}</td>
+      <td style="color:${statusColor};font-weight:bold;">${status}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  // Show reminder banner if any
+  const reminderBox = document.getElementById('reminder-banner');
+  const reminderMessages = document.getElementById('reminder-messages');
+  if (reminders.length > 0) {
+    reminderMessages.innerHTML = reminders.map(m => `<p style="margin-bottom:6px;">${m}</p>`).join('');
+    reminderBox.classList.remove('hidden');
+  } else {
+    reminderBox.classList.add('hidden');
+  }
+
+  renderAppliedServices();
+  updateInterestDisplay();
+}
+
+function logout() {
+  currentUser = null;
+  localStorage.removeItem('jh_user');
+  document.getElementById('login-section').classList.remove('hidden');
+  document.getElementById('loan-section').classList.add('hidden');
+  document.getElementById('logout-btn').classList.add('hidden');
+  document.getElementById('top-user').textContent = '';
+  document.getElementById('account-status').textContent = '';
+  document.getElementById('special-banner').classList.add('hidden');
+  document.getElementById('reminder-banner').classList.add('hidden');
+  renderProducts();
+  updateInterestDisplay();
+  // After logout, also strip custom theme if it was only allowed for the previous user
+  enforceCustomUIAccess();
+}
+
+// ========== BAR GRAPH ==========
+function drawBarGraph() {
+  const canvas = document.getElementById('interestChart');
+  const ctx = canvas.getContext('2d');
+  const width = canvas.width;
+  const height = canvas.height;
+  ctx.clearRect(0, 0, width, height);
+
+  const bars = getFixedBars();
+
+  const minR = 29, maxR = 36;
+  const barCount = bars.length;
+  const gap = 12;
+  const barWidth = (width - (barCount + 1) * gap) / barCount;
+  const chartBottom = height - 30;
+  const chartHeight = chartBottom - 25;
+
+  ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--border').trim() || '#d0d8e4';
+  ctx.lineWidth = 1;
+  ctx.font = '11px sans-serif';
+  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#666';
+
+  for (let i = 0; i <= 4; i++) {
+    const val = minR + (maxR - minR) * (i / 4);
+    const y = chartBottom - (chartHeight * (i / 4));
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(width, y);
+    ctx.stroke();
+    ctx.fillText(val.toFixed(0) + '%', 4, y - 3);
+  }
+
+  bars.forEach((val, i) => {
+    const x = gap + i * (barWidth + gap);
+    const barH = ((val - minR) / (maxR - minR)) * chartHeight;
+    const y = chartBottom - barH;
+
+    ctx.fillStyle = (i === bars.length - 1) ? '#38a169' : '#3182ce';
+    ctx.fillRect(x, y, barWidth, barH);
+
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-main').trim() || '#333';
+    ctx.font = '11px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(val.toFixed(1) + '%', x + barWidth / 2, y - 5);
+  });
+
+  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#666';
+  ctx.font = '11px sans-serif';
+  ctx.textAlign = 'center';
+  const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Today'];
+  bars.forEach((_, i) => {
+    const x = gap + i * (barWidth + gap) + barWidth / 2;
+    ctx.fillText(labels[i], x, height - 8);
+  });
+}
+
+// ========== Init ==========
+window.onload = function() {
+  // Restore theme
+  let savedTheme = localStorage.getItem('jh_theme') || 'light';
+  const savedColor = localStorage.getItem('jh_custom_color');
+
+  // Temporarily set user from storage so enforce can run
+  const savedUser = localStorage.getItem('jh_user');
+  if (savedUser && users[savedUser]) {
+    currentUser = savedUser;
+  }
+
+  // If theme is custom but user is not allowed → force remove
+  enforceCustomUIAccess();
+
+  // Re-read after possible cleanup
+  savedTheme = localStorage.getItem('jh_theme') || 'light';
+  if (savedTheme === 'custom' && savedColor) {
+    applyTheme('custom', savedColor);
+  } else {
+    applyTheme(savedTheme);
+  }
+
+  document.getElementById('today-rate-display').textContent = todayInterest + '%';
+  drawBarGraph();
+
+  if (currentUser) {
+    showLoanDetails();
+  }
+
+  renderProducts();
+  updateInterestDisplay();
+};
+</script>
+
+</body>
+</html>
