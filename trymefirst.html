@@ -4,9 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BS&MFI Services</title>
+    <link rel="icon" href="mfi.logo.png" />
 <style>
   * { margin:0; padding:0; box-sizing:border-box; scrollbar-width: none;}
-
+* {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
   :root, [data-theme="light"] {
     --black-swan: #0b0f17;
     --dark-blue: #002aff;
@@ -1054,7 +1063,7 @@
 </div>
 
 <script>
-// ========== FIXED Interest for the Day ==========
+document.addEventListener('contextmenu', e => e.preventDefault());
 function getTodayInterest() {
   const today = new Date().toDateString();
   const stored = localStorage.getItem('jh_today_interest');
