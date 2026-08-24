@@ -383,7 +383,7 @@
     width: 100%;
     height: 40px;
     border: 1px solid var(--input-border);
-    padding: 0 12px;
+    padding: 0 12px;text-align: center;
     margin-bottom: 12px;
     font-size: 15px;
     background: var(--bg-card);
@@ -587,8 +587,7 @@
   .footer {
     background: var(--bg-footer);
     color: var(--text-footer);
-    margin-top: 20px;
-    padding: 24px 0 16px;
+    padding: 16px;
     font-size: 13px;
   }
   .footer .inner {
@@ -625,13 +624,15 @@
   }
   .modal.show { display: flex; }
   .modal-content {
-    background: var(--bg-card);
-    padding: 24px;
+       background: var(--bg-card);
+    padding: 15px;
     width: 100%;
     max-width: 420px;
     border: 3px solid var(--border-strong);
     color: var(--text-main);
     border-radius: 8px;
+    max-height: 500px;
+    overflow: scroll;
   }
   .modal-content h3 { color: var(--text-title); margin-bottom: 12px; font-size: 18px; }
   .modal-content input {
@@ -819,22 +820,21 @@
         <div class="turbo-grid">
           <div class="turbo-card">
             <h3>Normal</h3>
-            <div class="limit">20,000 <small>Limit</small></div>
-            <p>Basic plan for everyday needs</p>
-            <button class="btn" onclick="applyProduct('Normal Plan (20k)')">Apply Now</button>
+            <div class="limit">0₹ <small>/month</small></div>
+            <p>Borrow Limit : 10,000₹</p>
+            <button class="btn" onclick="onclick(window.open('https://forms.gle/8yF1YLNokYxEE3nF9','_self'))">Apply Now</button>
           </div>
-          <div class="turbo-card hot">
-            <div class="badge">Popular</div>
+          <div class="turbo-card">
             <h3>Premium</h3>
-            <div class="limit">40,000 <small>Limit</small></div>
-            <p>Higher limit + better rates</p>
-            <button class="btn" onclick="applyProduct('Premium Plan (40k)')">Apply Now</button>
+            <div class="limit">480₹ <small>/month</small></div>
+            <p>Borrow Limit : 40,000₹</p>
+            <button class="btn" onclick="onclick(window.open('https://forms.gle/8yF1YLNokYxEE3nF9','_self'))">Apply Now</button>
           </div>
           <div class="turbo-card">
             <h3>Premium+</h3>
-            <div class="limit">80,000 <small>Limit</small></div>
-            <p>Maximum limit & priority support</p>
-            <button class="btn" onclick="applyProduct('Premium+ Plan (80k)')">Apply Now</button>
+            <div class="limit">960₹ <small>/month</small></div>
+            <p>Borrow Limit : 80,000₹</p>
+            <button class="btn" onclick="onclick(window.open('https://forms.gle/8yF1YLNokYxEE3nF9','_self'))">Apply Now</button>
           </div>
         </div>
       </div>
@@ -953,19 +953,17 @@
                   <tr>
                     <th>Amount</th>
                     <th>Interest</th>
-                    <th>Overdue Fee</th>
-                    <th>Borrowed Date</th>
-                    <th>Return Date</th>
-                    <th>Days Left / Overdue</th>
+                    <th>Taken on</th>
+                    <th>Return on</th>
+                    <th>Days Passed</th>
                     <th>Status</th>
+                    <th>Overdue Fee</th>
                   </tr>
                 </thead>
                 <tbody id="loan-body"></tbody>
               </table>
             </div>
-
-            <!-- Applied Services with Fees -->
-            <div class="applied-section" id="applied-section">
+<div class="applied-section" id="applied-section" style="display: none;">
               <h4>Applied Services & Fees</h4>
               <div class="table-wrapper">
                 <table class="loan-table">
@@ -995,25 +993,17 @@
   <div class="container">
     <div class="inner">
       <div>
-        <h4>About Us</h4>
-        <a href="#">Company Profile</a>
-        <a href="#">Safety & Compliance</a>
+        <h4>New ins</h4>
+        <a href="#">New Enter Form</a>
       </div>
       <div>
-        <h4>Products</h4>
-        <a href="#takemoney">Take Money</a>
-        <a href="#products">All Services</a>
-        <a href="#turbo">Turbo Plans</a>
-      </div>
-      <div>
-        <h4>Tools</h4>
-        <a href="#graph">Interest Graph</a>
-        <a href="#account">My Account</a>
+        <h4>Transfer</h4>
+        <a href="#takemoney">BsGifter</a>
       </div>
       <div>
         <h4>Support</h4>
-        <a href="#">Online Service</a>
-        <a href="#">Download App</a>
+        <a href="#">Im late</a>
+        <a href="#">BsHelper</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1320,7 +1310,7 @@ function verifyTakeMoneyPassword() {
 function calculateTakeMoneyInterest() {
   const amount = parseFloat(document.getElementById('tm-amount').value);
   if (!amount || amount < 100) {
-    alert('Please enter amount (minimum 100)');
+    alert('Enter amount (minimum 100)');
     return;
   }
   const rate = getEffectiveInterest();
@@ -1336,22 +1326,50 @@ function calculateTakeMoneyInterest() {
 function applyTakeMoney() {
   const amount = document.getElementById('tm-amount').value;
   const rate = getEffectiveInterest();
+
+  openServiceForm("Take Money");   // open form
+
   document.getElementById('apply-msg').innerHTML = 
     `You have applied for <strong>Take Money</strong><br>
      Amount: ${Number(amount).toLocaleString()}<br>
      Interest Rate: ${rate}%<br>
-     Application submitted successfully!`;
+     The application form has been opened in a new tab.`;
   document.getElementById('apply-modal').classList.add('show');
 }
+// Google Form links for each service
+const formLinks = {
+  "Delay It":       "https://forms.gle/cAz9REnqvGtcEhcT7",
+  "Split Pay":      "https://forms.gle/7rj2DSnZTQg5TX468",
+  "Buy Limit":      "https://forms.gle/UjVvfCS6D6UoxyQW8",
+  "Pre-Saver":      "https://forms.gle/3Z6eqPk6SmEDYZCu8",
+  "Lendlink-Mid":   "https://forms.gle/Yj9vDP3NPv9pMTAo9",
+  "BsRora Bot":     "",
+  "BsRora-Atdo":    "",
+  "Mining bot":    "",
+  "Tomar Juntos":   "https://forms.gle/TL3LQQpi9R6jXtd36",
+  "Take Money":     "https://forms.gle/nLBmBgt2QEeYuaNa9",
+};
+function openServiceForm(serviceName) {
+  const url = formLinks[serviceName];
+  if (url) {
+    window.open(url, "_blank");
+  }
+}function applyProduct(name) {
+  openServiceForm(name);   // open Google Form if mapped
 
+  document.getElementById('apply-msg').innerHTML = 
+    `You have successfully applied for <strong>${name}</strong>.<br>
+     ${formLinks[name] ? "The application form has been opened in a new tab." : "Our team will contact you shortly."}`;
+  document.getElementById('apply-modal').classList.add('show');
+}
 // ========== USERS + ACCESS RIGHTS ==========
 const users = {
   "phanindra": {
     password: "9919",
     displayName: "phanindra",
     premiumType: "Premium+",
-    fixedInterest: 25,          // claimed fixed rate
-    customui: "yes",            // <-- enables 4 custom theme options + color picker
+    fixedInterest: 25, 
+    customui: "yes",
     special: {
       icon: "👑",
       title: "Premium Member Reward",
@@ -1360,7 +1378,7 @@ const users = {
     },
     loans: [
       { amount: 5000, interest: 365, borrowed: "2026-06-12", return: "2026-09-12" },
-      { amount: 10000, interest: 2500, borrowed: "2026-08-01", return: "2026-08-20" }  // will be overdue
+      { amount: 10000, interest: 2500, borrowed: "2026-08-01", return: "2026-08-20" }
     ],
     access: {
       "Delay It": true,
@@ -1368,7 +1386,6 @@ const users = {
       "Buy Limit": false,
       "Pre-Saver": true,
       "Lendlink-Mid": false,
-      "BsRora Bot": false,
       "Mining bot": false,
       "BotPay": false,
       "BsRora-Atdo": true
@@ -1383,15 +1400,16 @@ let pendingFeeValue = 0;
 
 // ========== ALL PRODUCTS DEFINITION ==========
 const allProducts = [
-  { name: "Delay It",      icon: "⏳", desc: "Extend repayment date", needsFee: true,  feeRate: 0.08, feeLabel: "8% of amount" },
-  { name: "Split Pay",     icon: "📅", desc: "Split payment into smaller amounts", needsFee: true,  feeRate: 0.05, feeLabel: "5% of amount" },
-  { name: "Buy Limit",     icon: "📈", desc: "Increase your borrowing limit", needsFee: true,  feeRate: 0.10, feeLabel: "10% of amount" },
+  { name: "Delay It",      icon: "⏳", desc: "Extend repayment date", needsFee: true,  feeRate: 0.08, feeLabel: "Pay dee to continue" },
+  { name: "Split Pay",     icon: "📅", desc: "Split payment into smaller amounts", needsFee: true,  feeRate: 0.05, feeLabel: "Pay fee to continue" },
+  { name: "Buy Limit",     icon: "📈", desc: "Increase your borrowing limit", needsFee: true,  feeRate: 0.10, feeLabel: "Pay fee to continue" },
   { name: "Pre-Saver",     icon: "💰", desc: "Save first, enjoy better rates", needsFee: false },
-  { name: "Lendlink-Mid",  icon: "🔗", desc: "Mid-term lending options", needsFee: false },
-  { name: "BsRora Bot",    icon: "🤖", desc: "Smart automation bot", needsFee: false },
+//   { name: "Lendlink-Mid",  icon: "🔗", desc: "Mid-term lending options", needsFee: false },
+//   { name: "BsRora Bot",    icon: "🤖", desc: "Smart automation bot", needsFee: false },
   { name: "Mining bot",    icon: "⛏️", desc: "Automated mining bot", needsFee: false },
   { name: "BotPay",        icon: "💳", desc: "Fast payment solution", needsFee: false },
-  { name: "BsRora-Atdo",   icon: "⚡", desc: "Advanced automated system", needsFee: false }
+  { name: "BsRora-Atdo",   icon: "⚡", desc: "Advanced automated system", needsFee: false },
+  { name: "Tomar Juntos",   icon: "🧑‍🤝‍🧑", desc: "Borrow combine", needsFee: false }
 ];
 
 // ========== RENDER PRODUCTS (Login + Access Control) ==========
@@ -1402,7 +1420,7 @@ function renderProducts() {
     container.innerHTML = `
       <div class="login-required">
         <h3>🔒 Login Required</h3>
-        <p>Please login to your account to view the services you have access to.</p>
+        <p>Login to your account to view the services you have access to.</p>
         <button class="btn" style="margin-top:16px;" onclick="showLogin()">Go to Login</button>
       </div>
     `;
@@ -1461,7 +1479,7 @@ function renderProducts() {
 // ========== HANDLE PRODUCT CLICK ==========
 function handleProductClick(name) {
   if (!currentUser) {
-    alert('Please login first');
+    alert('Login first');
     showLogin();
     return;
   }
@@ -1490,7 +1508,7 @@ function handleProductClick(name) {
 function calculateFee() {
   const amount = parseFloat(document.getElementById('fee-amount').value);
   if (!amount || amount < 100) {
-    alert('Please enter a valid amount (minimum 100)');
+    alert('Enter a valid amount (minimum 100)');
     return;
   }
 
@@ -1506,7 +1524,6 @@ function calculateFee() {
   document.getElementById('fee-result').classList.remove('hidden');
   document.getElementById('fee-apply-btn').disabled = false;
 }
-
 function confirmFeeApply() {
   if (!pendingFeeService || !pendingFeeAmount) return;
 
@@ -1521,12 +1538,15 @@ function confirmFeeApply() {
   });
   localStorage.setItem(key, JSON.stringify(list));
 
+  // Open the Google Form
+  openServiceForm(pendingFeeService);
+
   closeFeeModal();
   document.getElementById('apply-msg').innerHTML = 
     `You have successfully applied for <strong>${pendingFeeService}</strong>.<br>
      Amount: ${pendingFeeAmount.toLocaleString()}<br>
      Service Fee: <strong>${pendingFeeValue.toLocaleString()}</strong><br>
-     The fee has been recorded in your account.`;
+     The application form has been opened in a new tab.`;
   document.getElementById('apply-modal').classList.add('show');
 
   renderAppliedServices();
@@ -1573,7 +1593,7 @@ function doSearch() {
   const keyword = document.getElementById('search-input').value.trim().toLowerCase();
   const resultsBox = document.getElementById('search-results');
   const list = document.getElementById('search-list');
-  if (!keyword) { alert('Please enter a keyword'); return; }
+  if (!keyword) { alert('Enter a keyword'); return; }
 
   const matched = allProducts.filter(p => 
     p.name.toLowerCase().includes(keyword) || p.desc.toLowerCase().includes(keyword)
@@ -1600,12 +1620,7 @@ function clearSearch() {
   document.getElementById('search-input').value = '';
 }
 
-// ========== Simple Apply (non-fee products) ==========
-function applyProduct(name) {
-  document.getElementById('apply-msg').innerHTML = 
-    `You have successfully applied for <strong>${name}</strong>.<br>Our team will contact you shortly.`;
-  document.getElementById('apply-modal').classList.add('show');
-}
+
 function closeModal() {
   document.getElementById('apply-modal').classList.remove('show');
 }
@@ -1701,7 +1716,7 @@ function showLoanDetails() {
       const daysLeft = Math.abs(daysDiff);
       let msg = '';
       if (daysDiff === 0) {
-        msg = `Loan of ${loan.amount.toLocaleString()} is <strong>due today</strong>. Please clear it or use <strong>Delay It</strong> before the end of the day.`;
+        msg = `Loan of ${loan.amount.toLocaleString()} is <strong>due today</strong>. Clear it or use <strong>Delay It</strong> before the end of the day.`;
       } else {
         msg = `Loan of ${loan.amount.toLocaleString()} has to be returned in <strong>${daysLeft} day(s)</strong>. Clear it or use <strong>Delay It</strong> before the return date (${loan.return}).`;
       }
@@ -1713,13 +1728,13 @@ function showLoanDetails() {
     tr.innerHTML = `
       <td>${loan.amount.toLocaleString()}</td>
       <td>${loan.interest}</td>
-      <td style="color:${overdueFee > 0 ? '#e53e3e' : 'inherit'};font-weight:${overdueFee > 0 ? 'bold' : 'normal'};">
-        ${overdueFee > 0 ? overdueFee.toLocaleString() + ' (25×' + (overdueFee/25) + ' days)' : '0'}
-      </td>
       <td>${loan.borrowed}</td>
       <td>${loan.return}</td>
       <td>${daysInfo}</td>
       <td style="color:${statusColor};font-weight:bold;">${status}</td>
+       <td style="color:${overdueFee > 0 ? '#e53e3e' : 'inherit'};font-weight:${overdueFee > 0 ? 'bold' : 'normal'};">
+        ${overdueFee > 0 ? overdueFee.toLocaleString() + ' (25×' + (overdueFee/25) + ' days)' : '0'}
+      </td>
     `;
     tbody.appendChild(tr);
   });
