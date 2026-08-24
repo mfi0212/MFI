@@ -103,9 +103,9 @@ body {
 }
 
 div#sectionsContainer {
-  padding-top: 30px;
-  max-width: 650px;
-  width: 97%;
+  padding-top: 105px;
+    max-width: 650px;
+    width: 100%;
 }
 
 .container {
@@ -266,7 +266,7 @@ border: none;
 }
 
 .search-box {
-    position: fixed;
+   position: fixed;
     top: 0px;
     width: 100%;
     display: flex;
@@ -276,8 +276,13 @@ border: none;
     padding: 20px 10px 0 10px;
     background: linear-gradient(180deg, #000000c9, #00000000);
     max-width: 600px;
+    flex-direction: column;
+    gap: 20px;
 }
-
+h2 {
+    font-weight: 500;
+    font-size: 20px;
+}
 .searchsection {
 background: #181818d9;
     backdrop-filter: blur(3px);
@@ -327,10 +332,10 @@ img.closesymbol {
 }
 
 .section {
-  position: relative;
-  padding: 3px;
-  width: 100%;
-  max-width: 600px;
+    position: relative;
+    padding: 0px 10px;
+    width: 100%;
+    max-width: 600px;
 }
 
 .section:last-child {
@@ -339,13 +344,13 @@ img.closesymbol {
 
 .section h2 {
   font-size: 17px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  padding: 0 20px;
-  margin-top: 20px;
-  color: #0011ff;
-  text-align: center;
-  letter-spacing: 0;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding: 0 20px;
+    margin-top: 10px;
+    color: #0011ff;
+    text-align: center;
+    letter-spacing: 0;
 }
 
 .site-list {
@@ -465,6 +470,7 @@ footer {
 <div class="container">
 
   <div class="search-box">
+    <h2>BS&MFI Services</h2>
     <div class="searchcontainer">
       <div class="searchsection">
         <span class="search-icon"><img class="closesymbol" src="service-icons/search_icon.png" alt=""></span>
