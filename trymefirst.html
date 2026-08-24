@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BS&MFI Services</title>
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; }
+  * { margin:0; padding:0; box-sizing:border-box; scrollbar-width: none;}
 
   :root, [data-theme="light"] {
     --black-swan: #0b0f17;
@@ -120,7 +120,7 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 0 3px;
   }
 
   /* Topbar */
@@ -516,8 +516,9 @@
   }
   .loan-table td {
     border: 1px solid var(--border);
-    padding: 10px 6px;
+    padding: 10px;
     text-align: center;
+    white-space: nowrap;
   }
   .loan-table tr:nth-child(even) { background: var(--bg-table-even); }
 
