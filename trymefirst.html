@@ -592,7 +592,13 @@ opacity:50%;
     gap: 8px;
   }
   .search-item strong { color: var(--text-title); }
-
+#logout-btn {
+    background: #cc0000;
+    padding: 4px 8px;
+    border-radius: 999px;
+    border: none;
+    color: white;
+}
   .footer {
     background: var(--bg-footer);
     color: var(--text-footer);
@@ -752,7 +758,6 @@ opacity:50%;
     .header .inner { flex-direction: column; align-items: stretch; }
     .search-box { width: 100%; }
     .logo { text-align: center; }
-    .topbar .inner { justify-content: center; text-align: center; }
     .theme-options { grid-template-columns: 1fr; }
     .custom-colors { grid-template-columns: repeat(2, 1fr); }
   }
@@ -763,12 +768,14 @@ opacity:50%;
 <div class="topbar">
   <div class="container">
     <div class="inner">
-      <div>Welcome to BS&MFI Services</div>
-      <div>
+      <div style="justify-content: space-between;
+    display: flex;
+    width: 100%;">
         <span id="top-user" class="user-info"></span>
         <a href="#" onclick="logout()" id="logout-btn" class="hidden">Logout</a>
-        <button class="theme-btn" onclick="openThemeModal()" id="theme-btn">Themes</button>
       </div>
+      <div>Welcome to BS&MFI Services</div>
+      <button class="theme-btn" onclick="openThemeModal()" id="theme-btn">Themes</button>
     </div>
   </div>
 </div>
@@ -913,7 +920,7 @@ opacity:50%;
           <div id="loan-section" class="hidden">
             <p style="margin-bottom:12px;">
               Welcome, <strong id="current-user"></strong>!
-              <button class="btn btn-outline" style="padding:4px 12px;font-size:13px;margin-left:10px;" onclick="logout()">Logout</button>
+              <button id="logout-btn" onclick="logout()">Logout</button>
             </p>
 
             <!-- Custom Content (image offer) -->
