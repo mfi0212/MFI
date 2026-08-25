@@ -331,8 +331,8 @@ font-size: 12px;
   [data-theme="dark"] .reminder-banner,
   [data-theme="telegram"] .reminder-banner,
   [data-theme="custom"] .reminder-banner {
-    background: #1a0a0a;
-    border-color: #fc8181;
+    background: #460000;
+    border: 2px solid #e53e3e;
   }
   .reminder-banner .reminder-icon {
     font-size: 28px;
@@ -526,7 +526,7 @@ font-size: 12px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 12px;
-    padding: 14px;
+    padding: 0px;
   }
   .product-card {
     border: 1px solid var(--border);
@@ -617,11 +617,11 @@ font-size: 12px;
   }
   .modal.show { display: flex; }
   .modal-content {
-       background: var(--bg-card);
-    padding: 15px;
+         background: var(--bg-card);
+    padding: 10px;
     width: 100%;
     max-width: 420px;
-    border: 3px solid var(--border-strong);
+    border: 2px solid var(--border-strong);
     color: var(--text-main);
     border-radius: 8px;
     max-height: 500px;
@@ -720,6 +720,7 @@ font-size: 12px;
     padding: 0;
     cursor: pointer;
     background: none;
+    margin-bottom: 0;
   }
 
   @media (max-width: 900px) {
@@ -774,7 +775,7 @@ font-size: 12px;
   <div class="container">
 
     <div class="search-results" id="search-results">
-      <div class="box-title">Search Results <a href="#" onclick="clearSearch()" style="color:#fff;">Clear ✕</a></div>
+      <div class="box-title"><a href="#" onclick="clearSearch()" style="color:#fff;">Clear ✕</a></div>
       <div id="search-list"></div>
     </div>
 
@@ -971,16 +972,16 @@ font-size: 12px;
     <div class="inner">
       <div>
         <h4>New ins</h4>
-        <a href="#">New Enter Form</a>
+        <a href="https://mfi0212.github.io/bs.mfi/entrysheet">New Enter Form</a>
       </div>
       <div>
         <h4>Transfer</h4>
-        <a href="#takemoney">BsGifter</a>
+        <a href="https://mfi0212.github.io/bs.mfi/bsgifter">BsGifter</a>
       </div>
       <div>
         <h4>Support</h4>
-        <a href="#">Im late</a>
-        <a href="#">BsHelper</a>
+        <a href="https://mfi0212.github.io/bs.mfi/imlate">Im late</a>
+        <a href="https://mfi0212.github.io/bs.mfi/abt.hlp">BsHelper</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1308,9 +1309,9 @@ const formLinks = {
   "Buy Limit":      "https://forms.gle/UjVvfCS6D6UoxyQW8",
   "Pre-Saver":      "https://forms.gle/3Z6eqPk6SmEDYZCu8",
   "Lendlink-Mid":   "https://forms.gle/Yj9vDP3NPv9pMTAo9",
-  "BsRora Bot":     "",
-  "BsRora-Atdo":    "",
-  "Mining bot":    "",
+  "BotPay":         "https://mfi0212.github.io/bs.mfi/BsRora/payment.bot",
+  "BsRora-Atdo":    "https://mfi0212.github.io/bs.mfi/BsRora/bsrora.atdo",
+  "Mining bot":     "https://mfi0212.github.io/bs.mfi/BsRora/miningbot",
   "Tomar Juntos":   "https://forms.gle/TL3LQQpi9R6jXtd36",
   "Take Money":     "https://forms.gle/nLBmBgt2QEeYuaNa9",
 };
@@ -1324,6 +1325,12 @@ function openServiceForm(serviceName) {
 
 function applyProduct(name) {
   openServiceForm(name);
+
+  // No popup for direct bot/service pages
+  const noPopup = ["BotPay", "BsRora-Atdo", "Mining bot"];
+  if (noPopup.includes(name)) {
+    return;
+  }
 
   document.getElementById('apply-msg').innerHTML = 
     `You have successfully applied for <strong>${name}</strong>.<br>
