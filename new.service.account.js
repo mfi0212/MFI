@@ -318,9 +318,9 @@ let pendingFeeAmount = 0;
 let pendingFeeValue = 0;
 
 const allProducts = [
-  { name: "Delay It",      icon: "⏳", desc: "Extend repayment date", needsFee: true,  feeRate: 0.08, feeLabel: "Pay dee to continue" },
-  { name: "Split Pay",     icon: "📅", desc: "Split payment into smaller amounts", needsFee: true,  feeRate: 0.05, feeLabel: "Pay fee to continue" },
-  { name: "Buy Limit",     icon: "📈", desc: "Increase your borrowing limit", needsFee: true,  feeRate: 0.10, feeLabel: "Pay fee to continue" },
+  { name: "Delay It",      icon: "⏳", desc: "Extend repayment date", needsFee: true,  feeRate: 0.065, feeLabel: "Pay dee to continue" },
+  { name: "Split Pay",     icon: "📅", desc: "Split payment into smaller amounts", needsFee: true,  feeRate: 0.075, feeLabel: "Pay fee to continue" },
+  { name: "Buy Limit",     icon: "📈", desc: "Increase your borrowing limit", needsFee: true,  feeRate: 0.08, feeLabel: "Pay fee to continue" },
   { name: "Pre-Saver",     icon: "💰", desc: "Save first, enjoy better rates", needsFee: false },
   { name: "Mining bot",    icon: "⛏️", desc: "Automated mining bot", needsFee: false },
   { name: "BotPay",        icon: "💳", desc: "Fast payment solution", needsFee: false },
