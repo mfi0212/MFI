@@ -133,7 +133,7 @@
 
   .topbar {
 font-size: 13px;
-    padding: 10px 0;
+    padding: 10px 5px;
     position: sticky;
     top: 0;
     z-index: 1000000;
@@ -154,7 +154,8 @@ font-size: 13px;
   }
   .topbar a { margin-left: 10px; }
   .topbar a:hover { color: var(--accent); }
-  .user-info {color: var(--text-title);font-weight: bold; }
+  .user-info {color: var(--text-title);font-weight: bold;
+    font-size: 18px;}
   .theme-btn {
         background: #7a7a7a8f;
     border: none;
@@ -288,21 +289,23 @@ background: var(--bg-card);
 
   /* Special Notice Banner */
   .special-banner {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 14px;
+        display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0px;
     margin-bottom: 14px;
-    border-radius: 6px;
-    border: 1.5px solid var(--border-strong);
-    background: var(--bg-soft);
+    border-radius: 5px;
+    background: black;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
   }
   .special-banner .special-icon {
-    font-size: 28px;
-    flex-shrink: 0;
+        font-size: 16px;
   }
   .special-banner .special-content {
-    flex: 1;
+    flex: 1;display: contents;
   }
   .special-banner .special-content p {
     font-size: 14px;
@@ -937,7 +940,7 @@ opacity:50%;
             <div id="special-banner" class="special-banner hidden">
               <div class="special-icon">🤖</div>
               <div class="special-content">
-                <p id="special-message"></p>
+                <marquee id="special-message" behavior="" direction="left"></marquee>
               </div>
             </div>
 
