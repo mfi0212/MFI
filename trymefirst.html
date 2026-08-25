@@ -133,7 +133,7 @@
 
   .topbar {
 font-size: 12px;
-    padding: 10px 0;
+    padding: 5px 0 5px 0;
     position: sticky;
     top: 0;
     z-index: 1000000;
@@ -196,7 +196,7 @@ font-size: 12px;
   .search-box input {
     flex: 1;
     height: 36px;
-    border: 2px solid var(--border-strong);
+    border: 1px solid var(--border-strong);
     padding: 0 10px;
     font-size: 14px;
     background: var(--bg-card);
@@ -227,13 +227,13 @@ font-size: 12px;
   [data-theme="telegram"] .hotline strong,
   [data-theme="custom"] .hotline strong { color: var(--text-title); }
 
-  .main { padding: 12px 0; }
+  .main { padding: 11px 0; }
 
   .quick {
-  background: var(--bg-card);
+ background: var(--bg-card);
     border-top: 1px solid var(--border);
     margin-bottom: 12px;
-    padding: 10px;
+    padding: 5px 0 15px 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -288,7 +288,7 @@ font-size: 12px;
     padding: 14px;
     margin-bottom: 14px;
     border-radius: 6px;
-    border: 2px solid var(--border-strong);
+    border: 1px solid var(--border-strong);
     background: var(--bg-soft);
   }
   .special-banner .special-icon {
@@ -325,14 +325,14 @@ font-size: 12px;
     padding: 14px;
     margin-bottom: 14px;
     border-radius: 6px;
-    border: 2px solid #e53e3e;
+    border: 1px solid #e53e3e;
     background: #fff5f5;
   }
   [data-theme="dark"] .reminder-banner,
   [data-theme="telegram"] .reminder-banner,
   [data-theme="custom"] .reminder-banner {
     background: #460000;
-    border: 2px solid #e53e3e;
+    border: 1px solid #e53e3e;
   }
   .reminder-banner .reminder-icon {
     font-size: 28px;
@@ -349,6 +349,9 @@ font-size: 12px;
   .reminder-banner .reminder-content p {
     font-size: 13px;
     color: var(--text-muted);
+    background: #000000bf;
+    padding: 10px;
+    border-radius: 5px;
   }
   .reminder-banner .reminder-actions {
     margin-top: 8px;
@@ -427,7 +430,7 @@ font-size: 12px;
     padding: 14px;
   }
   .turbo-card {
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     text-align: center;
     padding: 16px 12px;
     position: relative;
@@ -496,7 +499,7 @@ font-size: 12px;
     border-radius: 6px;
   }
   .summary-card .label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
-  .summary-card .value { font-size: 17px; font-weight: bold; color: var(--text-title); }
+  .summary-card .value { font-size: 17px; font-weight: bold; color: var(--text-title); line-height: 1.4; }
 
   .table-wrapper { overflow-x: auto; }
   .loan-table {
@@ -541,7 +544,7 @@ font-size: 12px;
   .access-badge {
     display: inline-block;
     font-size: 11px;
-    padding: 2px 8px;
+    padding: 1px 8px;
     border-radius: 3px;
     margin-bottom: 8px;
   }
@@ -568,7 +571,7 @@ font-size: 12px;
   }
   .search-results .box-title { background: var(--black-swan); }
   .search-item {
-    padding: 12px 14px;
+    padding: 11px 14px;
     border-bottom: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
@@ -621,7 +624,7 @@ font-size: 12px;
     padding: 10px;
     width: 100%;
     max-width: 420px;
-    border: 2px solid var(--border-strong);
+    border: 1px solid var(--border-strong);
     color: var(--text-main);
     border-radius: 8px;
     max-height: 500px;
@@ -667,7 +670,7 @@ font-size: 12px;
     margin-bottom: 16px;
   }
   .theme-option {
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: 6px;
     padding: 12px;
     text-align: center;
@@ -701,12 +704,12 @@ font-size: 12px;
   }
   .custom-color-btn {
     height: 40px;
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: 6px;
     cursor: pointer;
     position: relative;
   }
-  .custom-color-btn.active { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+  .custom-color-btn.active { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
   .color-picker-row {
     display: flex;
     align-items: center;
@@ -1683,8 +1686,18 @@ function showLoanDetails() {
   // Summary
   document.getElementById('sum-username').textContent = user.displayName;
   document.getElementById('sum-premium').textContent = user.premiumType;
+
+  // ===== FIXED: Total Amount now shows Amount + Interest separately =====
   const totalAmount = user.loans.reduce((sum, l) => sum + l.amount, 0);
-  document.getElementById('sum-total').textContent = totalAmount.toLocaleString();
+  const totalInterest = user.loans.reduce((sum, l) => sum + l.interest, 0);
+  const grandTotal = totalAmount + totalInterest;
+
+  document.getElementById('sum-total').innerHTML = `
+    ${totalAmount.toLocaleString()}<br>
+    ${totalInterest.toLocaleString()} interest<br>
+    <div style="border-top:1px solid var(--border);margin:6px 0 4px;"></div>
+    <strong>${grandTotal.toLocaleString()}</strong>
+  `;
 
 // Interest rate display
 if (user.fixedInterest != null && user.fixedInterest > 0) {
