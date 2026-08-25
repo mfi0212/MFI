@@ -3,7 +3,6 @@ const usersDB = {
         name: "Mahesh Muthinti",
         coins: 0,
         loans: [
-            { planDate: "11-08-2026", endDate: "26-08-2026", interest: 280, takenAmount: 800, takenFrom: "BotPay Fee", fineRate: 130 },
             { planDate: "28-07-2026", endDate: "28-08-2026", interest: 990, takenAmount: 2000, takenFrom: "MLendings", fineRate: 130 },
             { planDate: "15-08-2026", endDate: "30-08-2026", interest: 90, takenAmount: 960, takenFrom: "BotPay Fee", fineRate: 130 },
             { planDate: "11-05-2026", endDate: "10-09-2026", interest: 7355, takenAmount: 29418, takenFrom: "Tomar Juntos", fineRate: 130 },
