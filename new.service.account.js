@@ -98,7 +98,7 @@ function computeLoanStatus(loan) {
   } else {
     // Still time left
     status = 'Active';
-    daysInfo = Math.abs(diff) + ' day(s)';
+    daysInfo = Math.abs(diff);
   }
 
   return { overdueFee, status, daysInfo, daysDiff: diff };
