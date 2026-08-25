@@ -132,13 +132,14 @@
   }
 
   .topbar {
-   background: #000000d9;
-    color: var(--text-light);
-    font-size: 12px;
+font-size: 12px;
     padding: 10px 0;
     position: sticky;
     top: 0;
     z-index: 1000000;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 0 5px #0000004a;
   }
   [data-theme="dark"] .topbar,
   [data-theme="custom"] .topbar {
@@ -151,17 +152,17 @@
     flex-wrap: wrap;
     gap: 8px;
   }
-  .topbar a { color: #c5d0de; margin-left: 10px; }
+  .topbar a { margin-left: 10px; }
   .topbar a:hover { color: var(--accent); }
   .user-info {color: var(--text-title);font-weight: bold; }
   .theme-btn {
     background: transparent;
     border: 1px solid #4a5568;
-    color: #e2e8f0;
     padding: 3px 10px;
     font-size: 12px;
     cursor: pointer;
     margin-left: 8px;
+        color: var(--text-main);
     border-radius: 3px;
   }
   .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
@@ -242,6 +243,7 @@
     bottom: 0;
     width: 100%;
     overflow: scroll;
+    box-shadow: 0 0 5px #0000004a;
     scrollbar-width: none;
   }
   .quick span { font-weight: bold; color: var(--dark-blue); }
@@ -745,7 +747,6 @@
       <div>Welcome to BS&MFI Services</div>
       <div>
         <span id="top-user" class="user-info"></span>
-        <a href="#" onclick="showLogin()">Account Login</a>
         <a href="#" onclick="logout()" id="logout-btn" class="hidden">Logout</a>
         <button class="theme-btn" onclick="openThemeModal()" id="theme-btn">Themes</button>
       </div>
@@ -1063,7 +1064,7 @@
 </div>
 
 <script>
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 function getTodayInterest() {
   const today = new Date().toDateString();
   const stored = localStorage.getItem('jh_today_interest');
