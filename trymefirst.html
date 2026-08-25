@@ -24,7 +24,7 @@ body {
 }
 :root,
 [data-theme="light"] {
-  --black-swan: #0b0f17;
+  --black-swan: #0023d1;
   --dark-blue: #002aff;
   --accent: #c9a84c;
   --bg-body: #eef1f6;
@@ -47,7 +47,7 @@ body {
   --input-border: #c5d0de;
 } /* PURE DARK BLACK THEME */
 [data-theme="dark"] {
-  --black-swan: #000000;
+  --black-swan: #0023d1;
   --dark-blue: #002aff;
   --accent: white;
   --bg-body: #000000;
@@ -70,7 +70,7 @@ body {
   --input-border: #333333;
 }
 [data-theme="telegram"] {
-  --black-swan: #0e1621;
+  --black-swan: #028fdb;
   --dark-blue: #2aabee;
   --accent: #64b5ef;
   --bg-body: #17212b;
@@ -260,21 +260,21 @@ a:hover {
   padding: 11px 0;
 }
 .quick {
-  background: var(--bg-card);
-  border-top: 1px solid var(--border);
-  margin-bottom: 12px;
-  padding: 5px 0 15px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border-radius: 0;
-  position: sticky;
-  bottom: 0;
-  width: 100%;
-  overflow: scroll;
-  box-shadow: 0 0 5px #0000004a;
-  scrollbar-width: none;
+ background: var(--bg-card);
+    border-top: 1px solid var(--border);
+    margin-bottom: 12px;
+    padding: 5px 0 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 5px;
+    border-radius: 0;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    overflow: scroll;
+    box-shadow: 0 0 5px #0000004a;
+    scrollbar-width: none;
 }
 .quick span {
   font-weight: bold;
@@ -518,14 +518,19 @@ a:hover {
   margin-bottom: 12px;
 }
 .advertisment {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  overflow: scroll;
-  padding: 0 0 10px 0;
+      display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: scroll;
+    padding: 0 0 10px 0;
+    gap: 3px;
 }
 img.advertisments {
   width: 150px;
+  opacity: 100%;
+}
+img.advertisments:hover{
+  opacity: 80%;
 }
 .btn {
   display: inline-block;
@@ -552,8 +557,10 @@ img.advertisments {
   border-color: var(--text-title);
 }
 .btn-disabled {
-  background: #a0aec0 !important;
   cursor: not-allowed !important;
+}
+.btn-disabled:hover{
+      background: var(--dark-blue);
 }
 .btn-danger {
   background: #e53e3e;
@@ -614,9 +621,9 @@ img.advertisments {
   text-align: center;
   white-space: nowrap;
 }
-.loan-table tr:nth-child(even) {
+/* .loan-table tr:nth-child(even) {
   background: var(--bg-table-even);
-}
+} */
 .hidden {
   display: none !important;
 }
