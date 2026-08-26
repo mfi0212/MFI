@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 function getTodayInterest() {
   const today = new Date().toDateString();
   const stored = localStorage.getItem('jh_today_interest');
@@ -862,12 +862,3 @@ window.onload = function() {
     if (current) setActive(current);
   });
 })();
-
-function closeSite() {
-  window.close();
-
-  // Fallback if the browser blocks closing the tab
-  setTimeout(() => {
-    history.back();
-  }, 100);
-}
