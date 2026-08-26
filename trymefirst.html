@@ -33,7 +33,7 @@
     --bg-topbar: #0b0f17;
     --bg-nav: #002aff;
     --bg-banner: linear-gradient(120deg, #0b0f17, #002aff, #0040ff);
-    --bg-footer: #0b0f17;
+    --bg-footer: black;
     --bg-soft: #f0f4f8;
     --bg-calc: #f0f5fa;
     --bg-table-head: #e8eef5;
@@ -82,7 +82,7 @@
     --bg-topbar: #0e1621;
     --bg-nav: #2aabee;
     --bg-banner: linear-gradient(120deg, #0e1621, #1e3a5f, #2aabee);
-    --bg-footer: #0e1621;
+    --bg-footer: black;
     --bg-soft: #1c2733;
     --bg-calc: #1c2733;
     --bg-table-head: #1c2733;
@@ -154,7 +154,7 @@
 }
   .topbar {
 font-size: 13px;
-    padding: 10px 0;
+    padding: 5px 0 5px 0;
     position: sticky;
     top: 0;
     z-index: 1000000;
@@ -173,6 +173,7 @@ font-size: 13px;
     flex-wrap: wrap;
     font-size: 20px;
     font-weight: 600;
+    gap: 5px;
   }
   .topbar a { margin-left: 10px; }
   .topbar a:hover { color: var(--accent); }
@@ -802,14 +803,15 @@ opacity:50%;
         <a href="#" onclick="logout()" id="logout-btn" class="hidden">Logout</a>
       </div>
       <div>Welcome to BS&MFI Services</div>
-      <button style="display: none;" class="theme-btn" onclick="openThemeModal()" id="theme-btn">Themes</button>
+      <button class="theme-btn" onclick="openThemeModal()" id="theme-btn">Themes</button>
     </div>
   </div>
 </div>
 <div class="versiontypes">
-  <img style="width: 150px;
+  <img style="    width: 150px;
     margin: 30px;
-    background: black;
+    background: #000000eb;
+    border: 2px solid blue;
     border-radius: 15px;" src="servicesmfilogo.png" alt="">
   <div class="logo">
     Web apps
