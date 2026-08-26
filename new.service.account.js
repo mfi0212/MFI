@@ -792,3 +792,73 @@ window.onload = function() {
   renderProducts();
   updateInterestDisplay();
 };
+
+
+
+/* ===== ACTIVE NAVBAR HIGHLIGHT (Scroll Spy) ===== */
+(function() {
+  // Map section ID → data-section value
+  const sectionMap = {
+    graph: 'interest',   // #graph → data-section="interest"
+    turbo: 'turbo',
+    takemoney: 'takemoney',
+    products: 'products',
+    account: 'account'
+  };
+
+  const sections = Object.keys(sectionMap);
+  const navLinks = document.querySelectorAll('.quick a[data-section]');
+
+  function setActive(sectionId) {
+    const activeKey = sectionMap[sectionId] || sectionId;
+    navLinks.forEach(link => {
+      if (link.getAttribute('data-section') === activeKey) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setActive(entry.target.id);
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '-15% 0px -15% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  // Instant highlight on click
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const key = link.getAttribute('data-section');
+      // Find the real section id from the map
+      const realId = Object.keys(sectionMap).find(k => sectionMap[k] === key) || key;
+      setActive(realId);
+    });
+  });
+
+  // Initial check on page load
+  window.addEventListener('load', () => {
+    let current = null;
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.5 && rect.bottom >= window.innerHeight * 0.3) {
+          current = id;
+        }
+      }
+    });
+    if (current) setActive(current);
+  });
+})();
