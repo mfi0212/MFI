@@ -708,12 +708,13 @@ img.advertisments {
   margin-bottom: 10px;
 }
 .search-results {
-  background: var(--bg-card);
-  border: 1px solid var(--border-strong);
-  margin-bottom: 12px;
-  display: none;
-  border-radius: 6px;
-  overflow: hidden;
+     background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    display: none;
+    border-radius: 6px;
+    overflow: hidden;
+    max-width: 1200px;
+    margin: 10px auto 0;
 }
 .search-results .box-title {
   background: var(--black-swan);
@@ -966,22 +967,22 @@ img.advertisments {
             </div>
         </div>
         <div class="header">
-        <div class="container">
-            <div class="inner">
-                <div class="search-box">
-                    <input type="text" id="search-input" placeholder="Search services...." onkeypress="if(event.key==='Enter') doSearch()">
-                    <button onclick="doSearch()">Search</button>
-                </div>
-            </div>
-        </div>
-    </div>
+          <div class="container">
+              <div class="inner">
+                  <div class="search-box">
+                      <input type="text" id="search-input" placeholder="Search services...." onkeypress="if(event.key==='Enter') doSearch()">
+                      <button onclick="doSearch()">Search</button>
+                  </div>
+              </div>
+          </div>
+          <div class="search-results" id="search-results">
+            <div class="box-title"><a href="#" onclick="clearSearch()" style="color:#fff;">Clear ✕</a></div>
+          <div id="search-list"></div>
+      </div>
+      </div>
     </div>
     <div class="main">
         <div class="container">
-            <div class="search-results" id="search-results">
-                <div class="box-title"><a href="#" onclick="clearSearch()" style="color:#fff;">Clear ✕</a></div>
-                <div id="search-list"></div>
-            </div>
             <div class="advertisment" >
               <img src="https://i.pinimg.com/originals/92/98/b8/9298b8aa90e9bc71a6162878ee24cbeb.gif" class="advertisments" alt="">
             </div>
