@@ -616,69 +616,48 @@ function showLoanDetails() {
   document.getElementById('sum-username').textContent = user.displayName;
   document.getElementById('sum-premium').textContent = user.premiumType;
 
-  // ===== FIXED: Total Amount now shows Amount + Interest separately =====
+  // Total Amount (amount + interest only)
   const totalAmount = user.loans.reduce((sum, l) => sum + l.amount, 0);
   const totalInterest = user.loans.reduce((sum, l) => sum + l.interest, 0);
   const grandTotal = totalAmount + totalInterest;
 
-  document.getElementById('sum-total').innerHTML = `
-    ${totalAmount.toLocaleString()}<br>
-    ${totalInterest.toLocaleString()} interest<br>
-    <div style="border-top:1px solid var(--border);margin:6px 0 4px;"></div>
-    <strong>${grandTotal.toLocaleString()}</strong>
-  `;
+  const sumTotalEl = document.getElementById('sum-total');
+  sumTotalEl.innerHTML = `<strong>${grandTotal.toLocaleString()}</strong>`;
+  sumTotalEl.style.cursor = 'pointer';
+  sumTotalEl.onclick = function () {
+    openTotalPopup(totalAmount, totalInterest, grandTotal);
+  };
 
-// Interest rate display
-if (user.fixedInterest != null && user.fixedInterest > 0) {
-  document.getElementById('sum-interest').textContent = user.fixedInterest + '% (Fixed)';
-} else {
-  document.getElementById('sum-interest').textContent = todayInterest + '% (Daily)';
-}
-
-  // Loan table
-  const tbody = document.getElementById('loan-body');
-  tbody.innerHTML = '';
-
-  const reminders = [];
-
-  user.loans.forEach(loan => {
-  const { overdueFee, status, daysInfo, daysDiff } = computeLoanStatus(loan);
-
-  // Reminder logic (same as before)
-  if (daysDiff >= -3 && daysDiff <= 0) {
-    const daysLeft = Math.abs(daysDiff);
-    let msg = '';
-    if (daysDiff === 0) {
-      msg = `Loan of ${loan.amount.toLocaleString()} is <strong>due today</strong>. Clear it or use <strong>Delay It</strong> before the end of the day.`;
-    } else {
-      msg = `Loan of ${loan.amount.toLocaleString()} has to be returned in <strong>${daysLeft} day(s)</strong>. Clear it or use <strong>Delay It</strong> before the return date (${loan.return}).`;
-    }
-    reminders.push(msg);
+  // Interest rate display
+  if (user.fixedInterest != null && user.fixedInterest > 0) {
+    document.getElementById('sum-interest').textContent = user.fixedInterest + '% (Fixed)';
+  } else {
+    document.getElementById('sum-interest').textContent = todayInterest + '% (Daily)';
   }
 
-  // Color the Amount red when it is due soon / due today / overdue
-  const isUrgent = daysDiff >= -2;   // within 2 days left OR overdue
-  const amountColor = isUrgent ? '#e53e3e' : 'inherit';
-  const amountWeight = isUrgent ? 'bold' : 'normal';
+  // ===== Amount tabs + detail view (Amount 1, Amount 2, ...) =====
+  window._loanList = user.loans;
+  window._activeLoanIndex = 0;
+  renderAmountSwitcher(user.loans, 0);
 
-  const tr = document.createElement('tr');
-  const statusColor = status === 'Overdue' ? '#e53e3e' : (status === 'Due Today' ? '#dd6b20' : '#38a169');
+  const reminders = [];
+  user.loans.forEach((loan, idx) => {
+    const { overdueFee, status, daysInfo, daysDiff } = computeLoanStatus(loan);
+    const thisTotal = loan.amount + loan.interest + (overdueFee > 0 ? overdueFee : 0);
 
-  tr.innerHTML = `
-    <td style="color:${amountColor};font-weight:${amountWeight};">
-      ${loan.amount.toLocaleString()}
-    </td>
-    <td style="color:${amountColor};font-weight:${amountWeight};">${loan.interest}</td>
-    <td style="color:${amountColor};font-weight:${amountWeight};">${loan.borrowed}</td>
-    <td style="color:${amountColor};font-weight:${amountWeight};">${loan.return}</td>
-    <td style="color:${amountColor};font-weight:${amountWeight};">${daysInfo}</td>
-    <td style="color:${amountColor};font-weight:${amountWeight};">${status}</td>
-    <td style="color:${overdueFee > 0 ? '#e53e3e' : 'inherit'};font-weight:${overdueFee > 0 ? 'bold' : 'normal'};">
-      ${overdueFee > 0 ? overdueFee.toLocaleString() : '0'}
-    </td>
-  `;
-  tbody.appendChild(tr);
-});
+    if (daysDiff >= -3 && daysDiff <= 0) {
+      const daysLeft = Math.abs(daysDiff);
+      let msg = '';
+      if (daysDiff === 0) {
+        msg = `<strong>Amount ${idx + 1}</strong> (${loan.amount.toLocaleString()}) is <strong>due today</strong>. Total (amount + interest${overdueFee > 0 ? ' + overdue' : ''}): <strong>${thisTotal.toLocaleString()}</strong>. Clear it or use <strong>Delay It</strong>.`;
+      } else {
+        msg = `<strong>Amount ${idx + 1}</strong> (${loan.amount.toLocaleString()}) has to be returned in <strong>${daysLeft} day(s)</strong>. Total (amount + interest): <strong>${(loan.amount + loan.interest).toLocaleString()}</strong>. Clear it or use <strong>Delay It</strong> before ${loan.return}.`;
+      }
+      reminders.push(msg);
+    } else if (daysDiff > 0) {
+      reminders.push(`<strong>Amount ${idx + 1}</strong> (${loan.amount.toLocaleString()}) is <strong>overdue</strong> by ${daysDiff} day(s). Total (amount + interest + overdue): <strong>${thisTotal.toLocaleString()}</strong>. Use <strong>Delay It</strong>.`);
+    }
+  });
 
   const reminderBox = document.getElementById('reminder-banner');
   const reminderMessages = document.getElementById('reminder-messages');
@@ -691,6 +670,60 @@ if (user.fixedInterest != null && user.fixedInterest > 0) {
 
   renderAppliedServices();
   updateInterestDisplay();
+}
+
+/* ===== Amount switcher UI ===== */
+function renderAmountSwitcher(loans, activeIndex) {
+  const tabsEl = document.getElementById('amount-tabs');
+  const detailEl = document.getElementById('amount-detail-container');
+  if (!tabsEl || !detailEl) return;
+
+  if (!loans || loans.length === 0) {
+    tabsEl.innerHTML = '';
+    detailEl.innerHTML = '<div class="no-loans">No loan amounts found.</div>';
+    return;
+  }
+
+  window._activeLoanIndex = activeIndex;
+  tabsEl.innerHTML = loans.map((loan, i) =>
+    `<button type="button" class="amount-tab ${i === activeIndex ? 'active' : ''}" onclick="switchAmount(${i})">Amount ${i + 1}</button>`
+  ).join('');
+
+  const loan = loans[activeIndex];
+  const { overdueFee, status, daysInfo, daysDiff } = computeLoanStatus(loan);
+  const totalAI = loan.amount + loan.interest;
+
+  detailEl.innerHTML = `
+    <div class="amount-detail-card">
+      <div class="detail-row"><span class="detail-label">Amount</span><span class="detail-value">${loan.amount.toLocaleString()}</span></div>
+      <div class="detail-row"><span class="detail-label">Interest</span><span class="detail-value">${loan.interest.toLocaleString()}</span></div>
+      <div class="detail-row"><span class="detail-label">Taken on</span><span class="detail-value">${loan.borrowed}</span></div>
+      <div class="detail-row"><span class="detail-label">Return on</span><span class="detail-value">${loan.return}</span></div>
+      <div class="detail-row"><span class="detail-label">Days Left</span><span class="detail-value">${daysInfo}</span></div>
+      <div class="detail-row"><span class="detail-label">Status</span><span class="detail-value">${status}</span></div>
+      <div class="detail-row ${overdueFee > 0 ? 'overdue' : ''}"><span class="detail-label">Overdue Fee</span><span class="detail-value">${overdueFee > 0 ? overdueFee.toLocaleString() : '0'}</span></div>
+      <div class="detail-row total-row"><span class="detail-label">Total (amount + interest)</span><span class="detail-value">${totalAI.toLocaleString()}</span></div>
+    </div>
+  `;
+}
+
+function switchAmount(index) {
+  if (!window._loanList) return;
+  renderAmountSwitcher(window._loanList, index);
+}
+
+function openTotalPopup(amount, interest, total) {
+  const modal = document.getElementById('total-popup-modal');
+  if (!modal) return;
+  document.getElementById('tp-amount').textContent = amount.toLocaleString();
+  document.getElementById('tp-interest').textContent = interest.toLocaleString();
+  document.getElementById('tp-total').textContent = total.toLocaleString();
+  modal.classList.add('show');
+}
+
+function closeTotalPopup() {
+  const modal = document.getElementById('total-popup-modal');
+  if (modal) modal.classList.remove('show');
 }
 
 function logout() {
