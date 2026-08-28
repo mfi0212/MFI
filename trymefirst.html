@@ -147,7 +147,7 @@ font-size: 12px;
     background: var(--bg-card);
     border-bottom: 1px solid var(--border);
     box-shadow: 0 0 5px #0000004a;
-    background-image: url('https://i.pinimg.com/originals/92/98/b8/9298b8aa90e9bc71a6162878ee24cbeb.gif');
+    background-image: url(https://i.pinimg.com/originals/92/98/b8/9298b8a….gif);
     background-size: cover;
     background-position-y: -90px;
 }
@@ -173,17 +173,21 @@ font-size: 12px;
   font-weight: bold;
 }
 .theme-btn {
-    background: var(--dark-blue);
-    border: 1px solid #4a5568;
-    padding: 3px 8px;
-    font-size: 12px;
-    cursor: pointer;
-    margin-left: 8px;
-    color: var(--text-main);
-    border-radius: 3px;
+  background: transparent;
+  border: 1px solid #4a5568;
+  padding: 3px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 8px;
+  color: var(--text-main);
+  border-radius: 3px;
+}
+.theme-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 .header {
-  /* background: var(--bg-card); */
+  background: var(--bg-card);
   /* border-bottom: 1px solid var(--border-strong); */
   padding: 10px 0 5px 0;
 }
@@ -545,7 +549,7 @@ button.amount-tab.active {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 10px;display: none;
+    gap: 10px;
     border-radius: 6px;
     margin-bottom: 10px;
 }
