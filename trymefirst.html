@@ -140,7 +140,7 @@ a:hover {
 }
 .topbar {
   font-size: 12px;
-  padding: 5px 0 0 0;
+  padding: 5px 0 5px 0;
   position: sticky;
   top: 0;
   z-index: 1000000;
@@ -185,8 +185,8 @@ a:hover {
 }
 .header {
   background: var(--bg-card);
-  /* border-bottom: 1px solid var(--border-strong); */
-  padding: 10px 0 5px 0;
+  border-bottom: 1px solid var(--border-strong);
+  padding: 10px 0;
 }
 .header .inner {
   display: flex;
@@ -708,13 +708,12 @@ img.advertisments {
   margin-bottom: 10px;
 }
 .search-results {
-     background: var(--bg-card);
-    border: 1px solid var(--border-strong);
-    display: none;
-    border-radius: 6px;
-    overflow: hidden;
-    max-width: 1200px;
-    margin: 10px auto 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  margin-bottom: 12px;
+  display: none;
+  border-radius: 6px;
+  overflow: hidden;
 }
 .search-results .box-title {
   background: var(--black-swan);
@@ -918,12 +917,13 @@ color: var(--text-footer);
     font-weight: 700;
 }
 img.advertisments {
-   width: 100%;
-        border-radius: 5px;
-        object-fit: cover;
-        height: 100px;
-        object-position: 0 -80px;
+  width: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+    height: 100px;
+    object-position: 0 -322px;
 }
+
   .hotline {
     display: none;
   }
@@ -966,24 +966,27 @@ img.advertisments {
                 </div>
             </div>
         </div>
-        <div class="header">
-          <div class="container">
-              <div class="inner">
-                  <div class="search-box">
-                      <input type="text" id="search-input" placeholder="Search services...." onkeypress="if(event.key==='Enter') doSearch()">
-                      <button onclick="doSearch()">Search</button>
-                  </div>
-              </div>
-          </div>
-          <div class="search-results" id="search-results">
-            <div class="box-title"><a href="#" onclick="clearSearch()" style="color:#fff;">Clear ✕</a></div>
-          <div id="search-list"></div>
-      </div>
-      </div>
+    </div>
+    <div class="header">
+        <div class="container">
+            <div class="inner">
+                <div class="logo"><span>BS&MFI </span>Services</div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search services...." onkeypress="if(event.key==='Enter') doSearch()">
+                    <button onclick="doSearch()">Search</button>
+                </div>
+                <div class="hotline"> If you any facing issue fill out
+                    <br> <strong>THE ISSUE FORM</strong> </div>
+            </div>
+        </div>
     </div>
     <div class="main">
         <div class="container">
-            <div class="advertisment" >
+            <div class="search-results" id="search-results">
+                <div class="box-title"><a href="#" onclick="clearSearch()" style="color:#fff;">Clear ✕</a></div>
+                <div id="search-list"></div>
+            </div>
+             <div class="advertisment" >
               <img src="https://i.pinimg.com/originals/92/98/b8/9298b8aa90e9bc71a6162878ee24cbeb.gif" class="advertisments" alt="">
             </div>
             <div id="reminder-banner" class="reminder-banner hidden">
