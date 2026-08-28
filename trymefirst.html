@@ -797,7 +797,7 @@ color: var(--text-footer);
   bottom: 0;
   background: rgba(0, 0, 0, 0.85);
   z-index: 9999999999;
-  align-items: end;
+  align-items: center;
   justify-content: center;
   padding: 0;
 }
@@ -805,14 +805,14 @@ color: var(--text-footer);
   display: flex;
 }
 .modal-content {
-    background: var(--bg-card);
+        background: var(--bg-card);
     padding: 10px;
     width: 99%;
     max-width: 420px;
     border: 1.5px solid var(--border);
     color: var(--text-main);
-    border-radius: 15px 15px 0 0;
-    max-height: 500px;
+    border-radius: 10px;
+    max-height: 400px;
     overflow: scroll;
 }
 .modal-content h3 {
@@ -931,6 +931,33 @@ color: var(--text-footer);
   .footer .inner {
     grid-template-columns: repeat(2, 1fr);
   }
+  .modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999999999;
+  align-items: end;
+  justify-content: center;
+  padding: 0;
+}
+.modal.show {
+  display: flex;
+}
+.modal-content {
+    background: var(--bg-card);
+    padding: 10px;
+    width: 99%;
+    max-width: 420px;
+    border: 1.5px solid var(--border);
+    color: var(--text-main);
+    border-radius: 15px 15px 0 0;
+    max-height: 300px;
+    overflow: scroll;
+}
   .footermfilogo h4 {
     font-size: 50px;
     font-weight: 700;
