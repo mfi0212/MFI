@@ -170,12 +170,12 @@ function applyTheme(themeName, customColor) {
   }
 
   const labels = {
-    light: '',
-    dark: '',
-    telegram: '',
-    custom: ''
+    light: 'Light',
+    dark: 'Dark Black',
+    telegram: 'Telegram',
+    custom: 'Custom'
   };
-  // document.getElementById('theme-btn').textContent = 'Themes (' + (labels[themeName] || themeName) + ')';
+  document.getElementById('theme-btn').textContent = 'Themes (' + (labels[themeName] || themeName) + ')';
 
   drawBarGraph();
 }
