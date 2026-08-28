@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 function getTodayInterest() {
   const today = new Date().toDateString();
   const stored = localStorage.getItem('jh_today_interest');
@@ -302,11 +302,11 @@ const users = {
       "Delay It": true,
       "Split Pay": false,
       "Buy Limit": false,
-      "Pre-Saver": true,
+      "Pre-Saver": false,
       "Lendlink-Mid": false,
       "Mining bot": false,
       "BotPay": true,
-      "Tomar Juntos": true,
+      "Tomar Juntos": false,
       "BsRora-Atdo": false,
     }
   },
