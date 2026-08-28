@@ -9,7 +9,7 @@
    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Roboto:ital,wght@0,100..900;1,100..900&family=Six+Caps&family=Stalemate&display=swap" rel="stylesheet">
   <style>
 * {
-	font-family: "Roboto", sans-serif;margin:0; padding:0; box-sizing:border-box;scrollbar-width: none;letter-spacing: 0.5px;}
+	font-family: "Roboto", sans-serif;margin:0; padding:0; box-sizing:border-box;scrollbar-width: thin;letter-spacing: 0.5px;}
 * {
   -webkit-tap-highlight-color: transparent;
 }
@@ -261,10 +261,11 @@ font-size: 12px;
   padding: 11px 0;
 }
 div#amount-tabs {
-    overflow: scroll;
+    overflow-x: auto;
     white-space: nowrap;
-    gap: 4px;
+    gap: 10px;
     display: flex;
+    padding: 0 0 10px 0;
 }
 button.amount-tab {
    padding: 7px 10px;
@@ -954,7 +955,7 @@ color: var(--text-footer);
     max-width: 420px;
     border: 1.5px solid var(--border);
     color: var(--text-main);
-    border-radius: 15px 15px 0 0;
+    border-radius: 6px 6px 0 0;
     max-height: 400px;
     overflow: scroll;
 }
