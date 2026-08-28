@@ -1,4 +1,4 @@
-// document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('contextmenu', e => e.preventDefault());
 function getTodayInterest() {
   const today = new Date().toDateString();
   const stored = localStorage.getItem('jh_today_interest');
@@ -291,12 +291,12 @@ const users = {
     specialNoticeText: "Mr.<strong>Mahesh Muthinti</strong>, your BotPay bot will handle everything for you, including applying and paying your fees. The fees will be added directly to your amount. Simply and easily.",
 
     loans: [
-      { amount: 960,  interest: 250,  borrowed: "15-08-2026", return: "30-08-2026", overdueFee: 0 },
       { amount: 29418,interest: 7355, borrowed: "11-05-2026", return: "10-09-2026", overdueFee: 0 },
       { amount: 15000,interest: 4500, borrowed: "15-08-2026", return: "15-09-2026", overdueFee: 0 },
       { amount: 3475, interest: 1407, borrowed: "21-07-2026", return: "20-09-2026", overdueFee: 0 },
       { amount: 2990, interest: 1170, borrowed: "24-07-2026", return: "23-09-2026", overdueFee: 0 },
       { amount: 3940, interest: 1280,  borrowed: "28-07-2026", return: "28-09-2026", overdueFee: 25 },
+      { amount: 1210,  interest: 495,  borrowed: "15-08-2026", return: "29-09-2026", overdueFee: 0 },
     ],
     access: {
       "Delay It": true,
