@@ -4,13 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BS&MFI Services</title>
+    <title>BS&MFI Services | My account</title>
     <link rel="icon" href="mfi.logo.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+     <link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
+  
    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Roboto:ital,wght@0,100..900;1,100..900&family=Six+Caps&family=Stalemate&display=swap" rel="stylesheet">
   <style>
 * {
-	font-family: "Roboto", sans-serif;margin:0; padding:0; box-sizing:border-box;scrollbar-width: thin;letter-spacing: 0.5px;
-scrollbar-color: gray transparent;
+	font-family: "Roboto", sans-serif;margin:0; padding:0; box-sizing:border-box;scrollbar-width: thin;
+scrollbar-color: gray transparent;scroll-behavior: smooth;
 }
 * {
   -webkit-tap-highlight-color: transparent;
@@ -72,8 +75,8 @@ body {
   --black-swan: #028fdb;
   --dark-blue: #2aabee;
   --accent: #64b5ef;
-  --bg-body: #17212b;
-  --bg-card: #242f3d;
+  --bg-body: #0e1621;
+  --bg-card: #17212b;
   --bg-topbar: #0e1621;
   --bg-nav: #2aabee;
   --bg-banner: linear-gradient(120deg, #0e1621, #1e3a5f, #2aabee);
@@ -155,11 +158,12 @@ font-size: 12px;
   background: #000000;
 } */
 .topbar .inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
+ display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    flex-direction: column;
 }
 .topbar a {
   margin-left: 10px;
@@ -180,10 +184,10 @@ font-size: 12px;
   margin-left: 8px;
   color: var(--text-main);
   border-radius: 3px;
+  opacity: 100%;
 }
 .theme-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  opacity: 80%;
 }
 .header {
   background: var(--bg-card);
@@ -217,9 +221,10 @@ font-size: 12px;
   color: var(--text-title);
 }
 .search-box {
-  flex: 1;
-  display: flex;
-  min-width: 200px;
+    flex: 1;
+    display: flex;
+    max-width: 500px;
+    width: 100%;
 }
 .search-box input {
     flex: 1;
@@ -275,13 +280,12 @@ div#amount-tabs {
     padding: 0 0 10px 0;
 }
 button.amount-tab {
-  padding: 5px 10px;
+   padding: 7px 10px;
     font-size: 13px;
     color: var(--text-main);
     border-radius: 4px;
     background: var(--bg-soft);
     border: 1.5px solid var(--border);
-    opacity: 60%;
 }
 .detail-row {
     display: flex;
@@ -291,18 +295,18 @@ button.amount-tab {
     padding: 5px 10px;
 }
 button.amount-tab.active {
-   border-bottom: solid 2px var(--text-title);
-    color: var(--text-title);
-    opacity: 100%;
+    background: var(--dark-blue);
+    color: #fff;
 }
 .quick {
- background: var(--bg-card);
+background: var(--bg-card);
     border-top: 1.5px solid var(--border);
-    padding: 5px 0 15px 0;
-    display: flex;margin-bottom: 0px;
+    padding: 6px;
+    display: flex;
+    margin-bottom: 0px;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 7px;
     border-radius: 0;
     position: sticky;
     bottom: 0;
@@ -343,21 +347,22 @@ button.amount-tab.active {
 }
 .box-title {
     background: var(--bg-soft);
+    color: var(--dark-blue);
     padding: 10px 14px;
     font-size: 15px;
     font-weight: bold;
     text-align: center;
     border-bottom: 1.5px solid var(--border);
 }
-[data-theme="dark"] .box-title {
-  background: var(--bg-soft);
+/* [data-theme="dark"] .box-title {
+  background: #001a99;
 }
 [data-theme="telegram"] .box-title {
-  background: var(--bg-soft);
+  background: #1e88c9;
 }
 [data-theme="custom"] .box-title {
-  background: var(--bg-soft);
-}
+  background: var(--dark-blue);
+} */
 .box-body {
  padding: 12px 10px;
 } /* Special Notice Banner */
@@ -442,10 +447,10 @@ button.amount-tab.active {
   text-align: center;
 }
 .today-rate {
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--text-title);
-  margin-bottom: 10px;
+     font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--dark-blue);
 }
 .today-rate span {
   color: #38a169;
@@ -579,7 +584,7 @@ div#loan-amount-ui {
     gap:7px;
 }
 div#amount-tabs {
-   overflow: scroll;
+   overflow-x: auto;
     white-space: nowrap;
     gap: 10px;
     display: flex;
@@ -658,7 +663,7 @@ span.detail-value {
     color: white;
     padding: 3px 5px;
     border-radius: 999px;
-    border: none;
+    border: none;display: none;
 }
 .loan-table {
   width: 100%;
@@ -933,6 +938,60 @@ color: var(--text-footer);
   background: none;
   margin-bottom: 0;
 }
+.menu-btn {
+        border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 15px;
+    background: transparent;
+    }
+    .dropdown {
+      position: absolute;
+    top: 30%;
+    right: 33%;
+    background: transparent;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    min-width: 150px;
+    overflow-y: scroll;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.2s ease;
+    z-index: 100;
+    border: 1.5px solid var(--border);
+    background: var(--bg-card);
+    height: 300px;
+    }
+
+    .dropdown.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown a {
+              display: block;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: background 0.15s;
+    color: var(--text-main);
+    text-align: center;
+    opacity: 50%;
+    }
+
+    .dropdown a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown a:hover {
+      opacity: 100%;
+          color: var(--dark-blue);
+    }
 @media (max-width: 900px) {
   .turbo-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -993,6 +1052,11 @@ img.advertisments {
     flex-direction: column;
     align-items: stretch;
   }
+  .dropdown {
+    position: absolute;
+    top: 30%;
+    right: 1%;
+  }
   .search-box {
     width: 100%;
   }
@@ -1020,11 +1084,34 @@ img.advertisments {
     <div class="topbar">
         <div class="container">
             <div class="inner">
-                <div>Welcome to BS&MFI Services</div>
-                <div> <span id="top-user" class="user-info"></span> <a href="#" onclick="logout()" id="logout-btn" class="hidden">Logout</a>
+                <div style="    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 50px;
+    max-width: 500px;
+    padding: 0 10px;
+    font-family: 'Hahmlet', serif;">BS&MFI Services  <button class="menu-btn" id="menuBtn" title="More options">
+      <i style="    color: var(--text-main);" class="fa-solid fa-ellipsis-vertical"></i>
+    </button></div>
+                <div> <span id="top-user" class="user-info"></span> 
+                  <a href="#"  id="logout-btn" class="hidden">Logout</a>
                     <button class="theme-btn" onclick="openThemeModal()" id="theme-btn">Themes</button>
                 </div>
             </div>
+
+    <div class="dropdown" id="dropdown">
+      <a href="https://mfi0212.github.io/MFI/new.service">BS&MFI home page</a>
+      <a href="https://mfi0212.github.io/MFI/service.solutions/all.solution">All Solutions</a>
+      <a href="https://mfi0212.github.io/MFI/service.solutions/botpay">BotPay</a>
+      <a href="https://mfi0212.github.io/MFI/service.solutions/bsrora-atdo">BsRora-Atdo</a>
+      <a href="https://mfi0212.github.io/MFI/service.solutions/bsrora">BsRora</a>
+      <a href="https://mfi0212.github.io/MFI/service.solutions/buy-limit">Buy Limit</a>
+      <a href="https://mfi0212.github.io/MFI/service.solutions/delay-it">Delay It</a>
+      <a href="https://mfi0212.github.io/MFI/service.solutions/mining-bot">Mining Bot</a>
+      <a href="https://mfi0212.github.io/MFI/service.solutions/pre-saver">Pre-Saver</a>
+      <a href="https://mfi0212.github.io/MFI/service.solutions/split-pay">Split Pay</a>
+    </div>
         </div>
         <div class="header">
           <div class="container">
@@ -1068,7 +1155,7 @@ img.advertisments {
                     </div>
                 </div>
             </div>
-            <div class="row" id="turbo">
+            <!-- <div class="row" id="turbo">
                 <div class="col">
                     <div class="box-title">BS&MFI Turbo Plans</div>
                     <div class="turbo-grid">
@@ -1091,7 +1178,7 @@ img.advertisments {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="row" id="takemoney">
                 <div class="col">
                     <div class="box-title">Take Money</div>
@@ -1130,7 +1217,7 @@ img.advertisments {
                             <div style="max-width:360px;margin:0 auto;">
                                 <p style="margin-bottom:12px;color:var(--text-muted);text-align:center;"> Enter password to login </p>
                                 <input type="text" id="login-pass" placeholder="Password" style="width:100%;height:40px;margin-bottom:10px;padding:0 12px;border:1.5px solid var(--input-border);background:var(--bg-card);color:var(--text-main);border-radius:4px;">
-                                <button class="btn" style="width:100%;height:42px;" onclick="doLogin()">Login to Account</button>
+                                <!-- <button class="btn" style="width:100%;height:42px;" onclick="doLogin()">Login to Account</button> -->
                             </div>
                         </div>
                         <div id="loan-section" class="hidden">
@@ -1244,7 +1331,26 @@ img.advertisments {
     </div>
   </div>
 </div>
-    <div class="quick"> <a href="#graph">Interest</a> <a href="#turbo">Turbo</a> <a href="#takemoney">Borrow</a> <a href="#products">Services</a> <a href="#account">Account</a> </div>
+    <div class="quick"> 
+      <a href="#graph">Interest</a> 
+      <!-- <a href="#turbo">Turbo</a>  -->
+      <a href="#takemoney">Borrow</a>
+        <svg style="    height: 45px;
+    width: 45px;
+    background: red;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 0 4px 4px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 8px;" onclick="logout()" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M212.31-140Q182-140 161-161q-21-21-21-51.31v-535.38Q140-778 161-799q21-21 51.31-21h268.07v60H212.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v535.38q0 4.62 3.85 8.46 3.84 3.85 8.46 3.85h268.07v60H212.31Zm436.92-169.23-41.54-43.39L705.08-450H363.85v-60h341.23l-97.39-97.38 41.54-43.39L820-480 649.23-309.23Z"/></svg>
+       <a href="#products">Services</a> 
+       <a href="#account">Account</a> 
+    </div>
     <div class="modal" id="apply-modal">
         <div class="modal-content">
             <h3>Application Received</h3>
