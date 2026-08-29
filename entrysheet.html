@@ -1,30 +1,35 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" /> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /> <title>BS&MFI | Entrance Form</title> <link rel="icon" type="image/x-icon" href="mansion.mfi.logo.png"> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet"> <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans"> <style> * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Noto Sans", sans-serif; scrollbar-width: none; letter-spacing: 0.2px; } body { background-color: #ffffff; text-align: center; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .hero.is-primary.is-bold { background-image: linear-gradient(135deg, #003cff 0%, #008bff 100%); } .hero.is-primary { background: linear-gradient(135deg, #003cff 0%, #008bff 100%); } .hero-body .title { font-size: 20px; font-weight: 400; color: rgb(0, 0, 0); }.label:not(:last-child) { margin-bottom: .5em; font-family: "Hahmlet", serif; } .hero.is-primary .title{ font-family: "Hahmlet", serif; } .container { max-width: 600px; margin: 2rem auto; padding: 0px 2rem; background: transparent; }img { max-width: 200px; width: 45%; } .box{ background-color: #fff; box-shadow: 0 .5em 1em -.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02); color: #4a4a4a; display: block; padding: 1.25rem; margin: 10px; padding: 23px;border-radius: 0px; } .label { font-weight: 600; color: #000000; margin-bottom: 0.5rem; text-align: left; } .control{ text-align: left; } .hero-body { flex-grow: 1; flex-shrink: 0; padding: 3rem 1.5rem; background: #0007ff; } .input { border-radius: 0px; padding: 20px 25px; outline: none; transition: border-color 0.3s ease; border-radius: 11px; width: 400px; }.field:not(:last-child) { margin-bottom: 40px; } button#enter-fee-button { background-color: #ffffff75; color: black; border-radius: 103px; position: fixed; left: 10px; bottom: 10px; backdrop-filter: blur(5px); border: solid 1px #0000003b; box-shadow: none; padding: 5px 20px; } .input:focus { border-color: #1e40af; box-shadow: 0 0 0 0.125em rgba(30, 64, 175, 0); } .field.is-grouped{ display: flex ; justify-content: space-between; } .modal-content { max-width: 500px; margin: 0 auto; } .modal .box { text-align: center; } .modal .box p { margin-bottom: 1.5rem; color: #363636; font-size: 1.1rem; } #message { display: none; margin: 20px; padding: 1rem; font-weight: bold; text-align: center; transition: opacity 0.3s ease; } button{ border-radius: 100px; margin: 10px; } .button.is-success{ background-color: #0031ff; border-color: transparent; border-radius: 0px; padding: 20px; }.button.is-primary.is-hovered, .button.is-primary:hover { background-color: #008eff; border-color: transparent; color: black; } .button.is-primary { background-color: #0007ff; color: white; border-radius: 0px; } button:hover{ background: none; }.button.is-success.is-hovered, .button.is-success:hover { background-color: #00b7ff; border-color: transparent; color: black; } </style> </head> <body> <section class="hero is-primary is-bold"> <marquee behavior="" direction="left" style=" background: #ffffff; padding: 6px; position: fixed; font-size: 13px; z-index: 10000; font-weight: 600; color: black;"> Complete all required details accurately and pay the entrance fee to create your account. Once everything is finalized, message your coordinator to activate the account. </marquee> <div class="hero-body"> <div class="container"> <h1 class="title"><img src="enterencemfilogo.png" alt=""><BR>Entrance Form</h1> </div> </div> </section> <div class="field"> <div class="control"> <button style=" margin: 20px;" class="button is-primary" type="button"autocomplete="off" onclick="window.open('https://forms.gle/aoafKScjhK2VkrvE8', '_blank')" > Upload Aadhar & Passbook here </button> </div> </div> <form id="data-form" class="container"> <div class="field"> <label class="label">Your Name</label> <div class="control"> <input class="input" type="text" placeholder="Enter Your Name" name="Name" autocomplete="off" required /> </div> </div> <div class="field"> <label class="label">Primary Phone Number</label> <div class="control"> <input class="input" type="tel"autocomplete="off" placeholder="Enter Primary Phone Number" name="Phone1" pattern="[0-9]{10}" required /> </div> </div> <div class="field"> <label class="label">Secondary Phone Number</label> <div class="control"> <input class="input" type="tel"autocomplete="off" placeholder="Enter Secondary Phone Number" name="Phone2" pattern="[0-9]{10}" /> </div> </div> <div class="field"> <label class="label">Password to Your New Account</label> <div class="control"> <input class="input" type="password"autocomplete="off" placeholder="Enter Password" name="Password" required /> </div> </div> <div class="field"> <label class="label">Coordinator Name with ID</label> <div class="control"> <input class="input" type="text"autocomplete="off" placeholder="Enter Coordinator Name and ID" name="Coordinator" required /> </div> </div> <div class="field is-grouped"> <div class="control"> <button style=" margin: 0px;" class="button is-primary" type="button" id="enter-fee-button"> Entrance Fee </button> </div> <div class="control"> <button class="button is-success" type="submit" id="send-button"> Submit Now </button> </div> </div> </form> <div id="message"></div> <div id="modal" class="modal"> <div class="modal-background"></div> <div class="modal-content"> <div class="box"> <p> You have to pay 480₹ as entrance fee to create the account on your name. This allows usto create and store the details of yours, so we have to buy the storage for your account. Send your fee to your coordinator. </p> <button class="button is-primary" id="modal-close">Close</button> </div> </div> </div>
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>BS&MFI Services | New Entrance Form</title> <link rel="icon" type="image/x-icon" href="mfi.logo.png"> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet"> <style> * { margin: 0; padding: 0; box-sizing: border-box; scrollbar-width: thin; scrollbar-color: #8e8e93 transparent; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: #ffffff; color: #0f172a; line-height: 1.5; -webkit-font-smoothing: antialiased; min-height: 100vh; } /* Marquee */ .top-banner { background: #f8fafc; border: 1px solid #e2e8f0; padding: 0; font-size: 14px; font-weight: 500; color: black; text-align: center; position: sticky; top: 0; z-index: 50; } /* Header */ .header { text-align: center; padding: 36px 20px 20px; } .header img { max-width: 160px; width: 40%; margin-bottom: 12px; } .header h1 { font-size: 1.75rem; font-weight: 700; color: #0f172a; letter-spacing: -0.4px; } .header h3{ font-family: "Hahmlet", serif; font-weight: 500; } /* Upload button */ .upload-btn-wrap { text-align: center; margin-bottom: 28px; } /* Form */ .form-container { max-width: 480px; margin: 0 auto; padding: 0 20px 60px; } .field { margin-bottom: 22px; text-align: left; } .label { display: block; font-size: 0.9rem; font-weight: 600; color: #0f172a; margin-bottom: 8px; } .input { width: 100%; padding: 13px 16px; font-size: 0.95rem; border: 1.5px solid #e2e8f0; border-radius: 10px; background: #ffffff; color: #0f172a; outline: none; transition: border-color 0.2s, box-shadow 0.2s; font-family: inherit; } .input:focus { border-color: #0025ff; } .input::placeholder { color: #94a3b8; } /* Buttons row */ .buttons-row { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; } .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; font-size: 0.95rem; font-weight: 500; border-radius: 10px; border: none; cursor: pointer; transition: all 0.2s ease; font-family: inherit; text-decoration: none; } .btn-primary { background: #0025ff; color: #ffffff; flex: 1; min-width: 140px; } .btn-primary:hover { background: #001695; } .btn-outline { background: #ffffff; color: #2563eb; border: 1.5px solid #e2e8f0; flex: 1; min-width: 140px; } .btn-outline:hover { border-color: #2563eb; background: #f8fafc; } .btn:disabled { opacity: 0.6; cursor: not-allowed; } /* Message */ #message { display: none; margin: 20px auto; max-width: 480px; padding: 14px 18px; border-radius: 10px; font-weight: 500; text-align: center; font-size: 0.95rem; } /* Modal */ .modal { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.4); z-index: 100; align-items: center; justify-content: center; padding: 20px; } .modal.is-active { display: flex; } .modal-box { background: #ffffff; border-radius: 14px; padding: 28px 24px; max-width: 420px; width: 100%; text-align: center; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12); } .modal-box p { font-size: 0.95rem; color: #475569; margin-bottom: 24px; line-height: 1.6; } .modal-box .btn { min-width: 120px; } /* Mobile */ @media (max-width: 500px) { .header h1 { font-size: 1.5rem; } .buttons-row { flex-direction: column; } } </style> </head> <body> <!-- Top banner --> <div class="top-banner"> <marquee behavior="" direction="left">Complete all required details accurately and pay the entrance fee to create your account. Once everything is finalized, message your coordinator to activate the account.</marquee> </div> <!-- Header --> <div class="header"> <h3>BS&MFI</h3> <h1>New Entrance Form</h1> </div> <!-- Upload button --> <div class="upload-btn-wrap"> <button class="btn btn-primary" type="button" onclick="window.open('https://forms.gle/aoafKScjhK2VkrvE8', '_blank')"> Upload Aadhar & Passbook here </button> </div> <!-- Form --> <form id="data-form" class="form-container"> <div class="field"> <label class="label">Your Name</label> <input class="input" type="text" placeholder="Enter Your Name" name="Name" autocomplete="off" required /> </div> <div class="field"> <label class="label">Primary Phone Number</label> <input class="input" type="tel" placeholder="Enter Primary Phone Number" name="Phone1" pattern="[0-9]{10}" autocomplete="off" required /> </div> <div class="field"> <label class="label">Secondary Phone Number</label> <input class="input" type="tel" placeholder="Enter Secondary Phone Number" name="Phone2" pattern="[0-9]{10}" autocomplete="off" /> </div> <div class="field"> <label class="label">Password to Your New Account</label> <input class="input" type="password" placeholder="Enter Password" name="Password" autocomplete="off" required /> </div> <div class="field"> <label class="label">Coordinator Name with ID</label> <input class="input" type="text" placeholder="Enter Coordinator Name and ID" name="Coordinator" autocomplete="off" required /> </div> <div class="buttons-row"> <button class="btn btn-outline" type="button" id="enter-fee-button"> Entrance Fee </button> <button class="btn btn-primary" type="submit" id="send-button"> Submit Now </button> </div> </form> <div id="message"></div> <!-- Modal --> <div id="modal" class="modal"> <div class="modal-box"> <p> You have to pay <strong>480₹</strong> as entrance fee to create the account on your name. This allows us to create and store your details. Send your fee to your coordinator. </p> <button class="btn btn-primary" id="modal-close">Close</button> </div> </div>
   <script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
     const form = document.getElementById('data-form');
     const enterFeeButton = document.getElementById('enter-fee-button');
     const sendButton = document.getElementById('send-button');
     const messageDiv = document.getElementById('message');
     const modal = document.getElementById('modal');
     const modalClose = document.getElementById('modal-close');
+
     enterFeeButton.addEventListener('click', () => {
       modal.classList.add('is-active');
     });
+
     modalClose.addEventListener('click', () => {
       modal.classList.remove('is-active');
     });
+
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.classList.remove('is-active');
       }
     });
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       messageDiv.textContent = 'Submitting...';
       messageDiv.style.display = 'block';
-      messageDiv.style.backgroundColor = '#0007ff';
-      messageDiv.style.color = '#856404';
+      messageDiv.style.backgroundColor = '#eff6ff';
+      messageDiv.style.color = '#0025ff';
       sendButton.disabled = true;
-      sendButton.classList.add('is-loading');
+
       try {
         const formData = new FormData(form);
         const formDataObj = Object.fromEntries(formData);
@@ -41,44 +46,24 @@
         const data = await response.json();
         if (data.status === 'success') {
           messageDiv.textContent = data.message || 'Data submitted successfully!';
-          messageDiv.style.backgroundColor = '#48c78e';
-          messageDiv.style.color = 'white';
+          messageDiv.style.backgroundColor = '#ecfdf5';
+          messageDiv.style.color = '#065f46';
           form.reset();
         } else {
           throw new Error(data.message || 'Submission failed');
         }
       } catch (error) {
         messageDiv.textContent = `Error: ${error.message}`;
-        messageDiv.style.backgroundColor = '#f14668';
-        messageDiv.style.color = 'white';
+        messageDiv.style.backgroundColor = '#fef2f2';
+        messageDiv.style.color = '#991b1b';
       } finally {
         sendButton.disabled = false;
-        sendButton.classList.remove('is-loading');
-
         setTimeout(() => {
           messageDiv.textContent = '';
           messageDiv.style.display = 'none';
         }, 4000);
       }
     });
-        document.addEventListener("DOMContentLoaded", () => {
-            const customMenu = document.querySelector(".custom-menu");
-
-            document.addEventListener("contextmenu", (event) => {
-                event.preventDefault();
-                if (customMenu) {
-                    customMenu.style.display = "block";
-                    customMenu.style.top = `${event.pageY}px`;
-                    customMenu.style.left = `${event.pageX}px`;
-                }
-            });
-
-            document.addEventListener("click", () => {
-                if (customMenu) {
-                    customMenu.style.display = "none";
-                }
-            });
-        });
-    </script>
+  </script>
 </body>
 </html>
