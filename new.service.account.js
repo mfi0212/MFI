@@ -279,13 +279,11 @@ const users = {
     premiumType: "Premium+",
     fixedInterest: 0,
     customui: "yes",
-
-    // NEW system (replaced old special)
-    showCustomContent: "no",
+    showCustomContent: "yes",
     customContent: {
       type: "image",
-      value: "programXoffer.png",
-      url: "https://mfi0212.github.io/swan/offer/solution"
+      value: "https://mfi0212.github.io/MFI/servoces.special.offer/offer.png",
+      url: "https://mfi0212.github.io/MFI/servoces.special.offer/eligible.offer"
     },
     showSpecialNotice: "yes",
     specialNoticeText: "Mr.<strong>Mahesh Muthinti</strong>, your BotPay bot will handle everything for you, including applying and paying your fees. The fees will be added directly to your amount. Simply and easily.",
