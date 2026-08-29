@@ -1,87 +1,96 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>BS&MFI | BsGifter</title> <link rel="icon" type="image/x-icon" href="mansion.mfi.logo.png"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"> <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans"> <style> * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Noto Sans", sans-serif; scrollbar-width: none; letter-spacing: 0.2px; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } body { background: #f5f5f7; color: #1d1d1f; min-height: 100vh; padding-bottom: 120px; } .container { max-width: 420px; margin: 0 auto; padding: 0 24px; } .header { display: flex; align-items: center; justify-content: space-between; padding: 40px 0 30px; } .logo { display: flex; align-items: center; gap: 10px; } .logo-circle { width: 38px; height: 38px; background: #0025ff; color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; } /* Mode Toggle */ .mode-toggle { background: #ffffff; border-radius: 9999px; padding: 6px; display: flex; box-shadow: 0 4px 15px rgba(0,0,0,0.06); margin-bottom: 30px; } .mode-btn { flex: 1; padding: 12px 0; border-radius: 9999px; text-align: center; font-weight: 600; font-size: 15px; cursor: pointer; transition: all 0.3s ease; } .mode-active { background: #0025ff; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.06); } /* Apple Light Card */ .apple-card { background: linear-gradient(145deg, #ffffff 0%, #f8f8f8 100%); border-radius: 34px; height: 340px; padding: 32px; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); } .card-top { display: flex; justify-content: space-between; } .gift-icon { font-size: 38px; color: #0025ff; } .card-info { text-align: right; } .brand { font-size: 13px; letter-spacing: 2px; font-weight: 500; } .card-number { font-family: monospace; font-size: 18px; margin-top: 6px; letter-spacing: 3px; } .amount-section { text-align: center; margin-top: 55px; } .amount { font-size: 56px; font-weight: 700; letter-spacing: -2.5px; } .amount-label { font-size: 15px; color: #6e6e73; margin-top: 6px; } .card-bottom { position: absolute; bottom: 32px; left: 32px; right: 32px; display: flex; justify-content: space-between; align-items: flex-end; } /* Gift ID Box */ .id-box { background: white; border-radius: 22px; padding: 22px 26px; display: flex; align-items: center; justify-content: space-between; margin-top: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); } .gift-id { font-family: 'SF Mono', monospace; font-size: 27px; letter-spacing: 4px; font-weight: 500; } .copy-btn { background: #0025ff; color: white; border: none; padding: 12px 24px; border-radius: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; cursor: pointer; } .copy-btn:active { transform: scale(0.94); } /* New Fee Check Section */ .fee-section { background: white; border-radius: 28px; padding: 32px 24px; margin-top: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); } .fee-title { font-size: 18px; font-weight: 600; text-align: center; margin-bottom: 20px; } .input-group { position: relative; margin-bottom: 20px; } .input-group input { width: 100%; padding: 16px 20px; border: 2px solid #e0e0e0; border-radius: 16px; font-size: 17px; font-family: monospace; outline: none; transition: all 0.3s; } .input-group input:focus { border-color: #0025ff; } .check-btn { width: 100%; background: #0025ff; color: white; border: none; padding: 16px; border-radius: 16px; font-size: 17px; font-weight: 600; cursor: pointer; } .result { margin-top: 24px; text-align: center; display: none; } .result.show { display: block; } .fee-amount { font-size: 48px; font-weight: 700; color: #34c759; margin: 10px 0; } .loading { text-align: center; padding: 20px; display: none; } /* Action Button */ .action-btn { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); width: calc(100% - 48px); max-width: 420px; color: white; border: none; height: 64px; border-radius: 9999px; font-size: 18px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 12px; box-shadow: 0 15px 30px -8px rgba(0, 113, 227, 0.4); cursor: pointer; transition: all 0.2s; } .action-btn:active { transform: translateX(-50%) scale(0.96); } </style> </head> <body> <div class="container"> <div class="header"> <div class="logo"> <div class="logo-circle"><i class="fa-solid fa-code-compare"></i></div> <span style="font-size: 29px; font-weight: 700; letter-spacing: -1px;">BsGifter</span> </div> </div> <!-- Mode Toggle --> <div class="mode-toggle"> <div onclick="switchMode(0)" id="sender-mode" class="mode-btn mode-active">Sender</div> <div onclick="switchMode(1)" id="receiver-mode" class="mode-btn">Receiver</div> <div onclick="switchMode(2)" id="fee-mode" class="mode-btn">Check Fee</div> </div> <!-- Sender View --> <div id="sender-view"> <div class="apple-card"> <div class="card-top"> <i class="fa-solid fa-gift gift-icon"></i> <div class="card-info"> <div class="brand">BS&MFI House</div> <div class="card-number">•••• •••• ••••</div> </div> </div> <div class="amount-section"> <div class="amount">Sender</div> <div class="amount-label">Send gifts easily</div> </div> <div class="card-bottom"> <div> <small style="font-size:12px; opacity:0.7;">Updated</small><br> 2026 </div> <div style="font-size:38px; opacity:0.3;">BS</div> </div> </div> <div class="id-box"> <div id="gift-id-sender" class="gift-id">BSG-X7K9P2</div> <button onclick="copyID('sender')" class="copy-btn"> <i class="fa-solid fa-copy"></i> Copy </button> </div> </div> <!-- Receiver View --> <div id="receiver-view" style="display: none;"> <div class="apple-card"> <div class="card-top"> <i class="fa-solid fa-gift gift-icon"></i> <div class="card-info"> <div class="brand">BS&MFI House</div> <div class="card-number">•••• •••• ••••</div> </div> </div> <div class="amount-section"> <div class="amount">Receiver</div> <div class="amount-label">Receive gifts easily</div> </div> <div class="card-bottom"> <div> <small style="font-size:12px; opacity:0.7;">Updated</small><br> 12/29 </div> <div style="font-size:38px; opacity:0.3;">BS</div> </div> </div> <div class="id-box"> <div id="gift-id-receiver" class="gift-id">BSG-X7K9P2</div> <button onclick="copyID('receiver')" class="copy-btn"> <i class="fa-solid fa-copy"></i> Copy </button> </div> </div> <!-- Fee Check View --> <div id="fee-view" style="display: none;"> <div class="fee-section"> <div class="fee-title">Check Gift Fee</div> <div class="input-group"> <input type="text" id="gift-id-input" placeholder="Enter ID to verify" maxlength="30"> </div> <button onclick="checkFee()" id="check-btn" class="check-btn"> Check Fee </button> <div class="loading" id="loading"> <i class="fa-solid fa-spinner fa-spin" style="font-size: 24px; color: #0025ff;"></i> <p style="margin-top: 12px; color: #6e6e73;">Verifying Gift ID...</p> </div> <div class="result" id="result"> <p style="color: #6e6e73; font-size: 15px;">Gift ID</p> <p id="result-id" style="font-family: monospace; font-size: 19px; font-weight: 600; margin: 8px 0;"></p> <p style="color: #6e6e73; font-size: 15px; margin-top: 20px;">Processing Fee</p> <div class="fee-amount" id="result-fee">₹650</div> <p style="color: #34c759; font-weight: 600;">Ready to process</p> </div> </div> </div> </div> <!-- Action Button --> <button onclick="goToForm()" id="action-btn" class="action-btn" style="background: #ff3b30;"> SEND NOW <i class="fa-solid fa-arrow-right"></i> </button>
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>BS&MFI | BsGifter</title> <link rel="icon" type="image/x-icon" href="mansion.mfi.logo.png"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"> <style> @import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Roboto:ital,wght@0,100..900;1,100..900&family=Six+Caps&family=Stalemate&display=swap'); * { font-family: "Roboto", sans-serif; margin: 0; padding: 0; box-sizing: border-box; scrollbar-width: thin; /* letter-spacing: 0.5px; */ scrollbar-color: gray transparent; } body { /* font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif; */ background: #fafafa; color: #111; min-height: 100vh; padding-bottom: 100px; -webkit-user-select: none; user-select: none; letter-spacing: -0.01em; } .container { max-width: 400px; margin: 0 auto; padding: 0 20px; } /* Header */ .header { display: flex; align-items: center; padding: 32px 0 28px; } .logo { display: flex; align-items: center; gap: 10px; } .logo-circle { width: 32px; height: 32px; background: #111; color: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; } .logo span { font-size: 20px; font-weight: 600; letter-spacing: -0.03em; } /* Mode Toggle */ .mode-toggle { background: #f0f0f0; border-radius: 12px; padding: 4px; display: flex; margin-bottom: 28px; } .mode-btn { flex: 1; padding: 10px 0; border-radius: 10px; text-align: center; font-weight: 500; font-size: 13px; color: #666; cursor: pointer; transition: all 0.2s ease; } .mode-active { background: #fff; color: #111; box-shadow: 0 1px 3px rgba(0,0,0,0.08); } /* Card */ .apple-card { background: #fff; border-radius: 20px; height: 280px; padding: 28px; position: relative; border: 1px solid #eee; } .card-top { display: flex; justify-content: space-between; align-items: flex-start; } .gift-icon { font-size: 22px; color: #111; } .card-info { text-align: right; } .brand { font-size: 11px; letter-spacing: 1.5px; font-weight: 500; color: #888; text-transform: uppercase; } .card-number { font-family: "SF Mono", "Menlo", monospace; font-size: 14px; margin-top: 4px; letter-spacing: 2px; color: #ccc; } .amount-section { text-align: center; margin-top: 48px; } .amount { font-size: 36px; font-weight: 600; letter-spacing: -0.04em; } .amount-label { font-size: 14px; color: #888; margin-top: 6px; font-weight: 400; } .card-bottom { position: absolute; bottom: 28px; left: 28px; right: 28px; display: flex; justify-content: space-between; align-items: flex-end; } .card-bottom small { font-size: 11px; color: #aaa; } .card-bottom > div:last-child { font-size: 24px; color: #e5e5e5; font-weight: 600; } /* ID Box */ .id-box { background: #fff; border-radius: 16px; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; margin-top: 20px; border: 1px solid #eee; } .gift-id { font-family: "SF Mono", "Menlo", monospace; font-size: 18px; letter-spacing: 2px; font-weight: 500; } .copy-btn { background: #111; color: #fff; border: none; padding: 10px 16px; border-radius: 10px; font-weight: 500; font-size: 13px; display: flex; align-items: center; gap: 6px; cursor: pointer; transition: opacity 0.15s; } .copy-btn:active { opacity: 0.7; } /* Fee Section */ .fee-section { background: #fff; border-radius: 20px; padding: 28px 24px; border: 1px solid #eee; } .fee-title { font-size: 16px; font-weight: 600; text-align: center; margin-bottom: 24px; letter-spacing: -0.02em; } .input-group { margin-bottom: 16px; } .input-group input { width: 100%; padding: 14px 16px; border: 1px solid #e5e5e5; border-radius: 12px; font-size: 15px; font-family: "SF Mono", "Menlo", monospace; outline: none; background: #fafafa; transition: border-color 0.2s; } .input-group input:focus { border-color: #111; background: #fff; } .check-btn { width: 100%; background: #111; color: #fff; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 500; cursor: pointer; transition: opacity 0.15s; } .check-btn:active { opacity: 0.7; } .result { margin-top: 28px; text-align: center; display: none; } .result.show { display: block; } .result p { font-size: 13px; color: #888; } .fee-amount { font-size: 36px; font-weight: 600; color: #111; margin: 8px 0; letter-spacing: -0.03em; } .loading { text-align: center; padding: 24px 0; display: none; } .loading p { margin-top: 10px; color: #888; font-size: 13px; } /* Action Button */ .action-btn { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); max-width: 400px; color: #fff; border: none; height: 52px; border-radius: 14px; font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: opacity 0.15s, transform 0.15s; letter-spacing: -0.01em; } .action-btn:active { transform: translateX(-50%) scale(0.98); opacity: 0.9; } </style> </head> <body> <div class="container"> <div class="header"> <div class="logo"> <div class="logo-circle"><i class="fa-solid fa-code-compare"></i></div> <span>BsGifter</span> </div> </div> <!-- Mode Toggle --> <div class="mode-toggle"> <div onclick="switchMode(0)" id="sender-mode" class="mode-btn mode-active">Sender</div> <div onclick="switchMode(1)" id="receiver-mode" class="mode-btn">Receiver</div> <div onclick="switchMode(2)" id="fee-mode" class="mode-btn">Check Fee</div> </div> <!-- Sender View --> <div id="sender-view"> <div class="apple-card"> <div class="card-top"> <i class="fa-solid fa-gift gift-icon"></i> <div class="card-info"> <div class="brand">BS&MFI House</div> <div class="card-number">•••• •••• ••••</div> </div> </div> <div class="amount-section"> <div class="amount">Sender</div> <div class="amount-label">Send gifts easily</div> </div> <div class="card-bottom"> <div> <small>Updated</small><br> <span style="font-size:13px; color:#666;">2026</span> </div> <div>BS</div> </div> </div> <div class="id-box"> <div id="gift-id-sender" class="gift-id">BSG-X7K9P2</div> <button onclick="copyID('sender')" class="copy-btn"> <i class="fa-solid fa-copy"></i> Copy </button> </div> </div> <!-- Receiver View --> <div id="receiver-view" style="display: none;"> <div class="apple-card"> <div class="card-top"> <i class="fa-solid fa-gift gift-icon"></i> <div class="card-info"> <div class="brand">BS&MFI House</div> <div class="card-number">•••• •••• ••••</div> </div> </div> <div class="amount-section"> <div class="amount">Receiver</div> <div class="amount-label">Receive gifts easily</div> </div> <div class="card-bottom"> <div> <small>Updated</small><br> <span style="font-size:13px; color:#666;">12/29</span> </div> <div>BS</div> </div> </div> <div class="id-box"> <div id="gift-id-receiver" class="gift-id">BSG-X7K9P2</div> <button onclick="copyID('receiver')" class="copy-btn"> <i class="fa-solid fa-copy"></i> Copy </button> </div> </div> <!-- Fee Check View --> <div id="fee-view" style="display: none;"> <div class="fee-section"> <div class="fee-title">Check Gift Fee</div> <div class="input-group"> <input type="text" id="gift-id-input" placeholder="Enter Gift ID" maxlength="30"> </div> <button onclick="checkFee()" id="check-btn" class="check-btn"> Check Fee </button> <div class="loading" id="loading"> <i class="fa-solid fa-spinner fa-spin" style="font-size: 20px; color: #111;"></i> <p>Verifying Gift ID...</p> </div> <div class="result" id="result"> <p>Gift ID</p> <p id="result-id" style="font-family: monospace; font-size: 16px; font-weight: 500; margin: 6px 0; color: #111;"></p> <p style="margin-top: 20px;">Processing Fee</p> <div class="fee-amount" id="result-fee">₹650</div> <p id="result-status" style="font-weight: 500; color: #111;">Ready to process</p> </div> </div> </div> </div> <!-- Action Button --> <button onclick="goToForm()" id="action-btn" class="action-btn" style="background: #111;"> SEND NOW <i class="fa-solid fa-arrow-right"></i> </button>
 <script>
-    let currentMode = 0;
-    function generateGiftID() {
-      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-      let id = "BSG-";
-      for (let i = 0; i < 6; i++) {
-        id += chars[Math.floor(Math.random() * chars.length)];
-      }
-      return id;
+  let currentMode = 0;
+
+  function generateGiftID() {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let id = "BSG-";
+    for (let i = 0; i < 6; i++) {
+      id += chars[Math.floor(Math.random() * chars.length)];
     }
-    document.getElementById("gift-id-sender").textContent = generateGiftID();
-    document.getElementById("gift-id-receiver").textContent = generateGiftID();
+    return id;
+  }
 
-    document.addEventListener('contextmenu', e => e.preventDefault());
+  document.getElementById("gift-id-sender").textContent = generateGiftID();
+  document.getElementById("gift-id-receiver").textContent = generateGiftID();
 
-    function switchMode(mode) {
-      currentMode = mode;
-      
-      document.getElementById('sender-mode').classList.toggle('mode-active', mode === 0);
-      document.getElementById('receiver-mode').classList.toggle('mode-active', mode === 1);
-      document.getElementById('fee-mode').classList.toggle('mode-active', mode === 2);
+  document.addEventListener('contextmenu', e => e.preventDefault());
 
-      document.getElementById('sender-view').style.display = mode === 0 ? 'block' : 'none';
-      document.getElementById('receiver-view').style.display = mode === 1 ? 'block' : 'none';
-      document.getElementById('fee-view').style.display = mode === 2 ? 'block' : 'none';
-      const btn = document.getElementById('action-btn');
-      if (mode === 0) {
-        btn.innerHTML = `SEND NOW <i class="fa-solid fa-arrow-right"></i>`;
-        btn.style.background = '#ff3b30';
-      } else if (mode === 1) {
-        btn.innerHTML = `SUBMIT RECEIVER DETAILS <i class="fa-solid fa-arrow-right"></i>`;
-        btn.style.background = '#34c759';
+  function switchMode(mode) {
+    currentMode = mode;
+    
+    document.getElementById('sender-mode').classList.toggle('mode-active', mode === 0);
+    document.getElementById('receiver-mode').classList.toggle('mode-active', mode === 1);
+    document.getElementById('fee-mode').classList.toggle('mode-active', mode === 2);
+
+    document.getElementById('sender-view').style.display = mode === 0 ? 'block' : 'none';
+    document.getElementById('receiver-view').style.display = mode === 1 ? 'block' : 'none';
+    document.getElementById('fee-view').style.display = mode === 2 ? 'block' : 'none';
+
+    const btn = document.getElementById('action-btn');
+    if (mode === 0) {
+      btn.innerHTML = `SEND NOW <i class="fa-solid fa-arrow-right"></i>`;
+      btn.style.background = '#111';
+    } else if (mode === 1) {
+      btn.innerHTML = `SUBMIT RECEIVER DETAILS <i class="fa-solid fa-arrow-right"></i>`;
+      btn.style.background = '#111';
+    } else {
+      btn.innerHTML = `GO TO FORM <i class="fa-solid fa-arrow-right"></i>`;
+      btn.style.background = '#111';
+    }
+  }
+
+  function copyID(mode) {
+    const idElement = mode === 'sender' 
+      ? document.getElementById('gift-id-sender') 
+      : document.getElementById('gift-id-receiver');
+    
+    navigator.clipboard.writeText(idElement.textContent).then(() => {
+      const btn = event.currentTarget;
+      const original = btn.innerHTML;
+      btn.innerHTML = `<i class="fa-solid fa-check"></i> Copied`;
+      setTimeout(() => btn.innerHTML = original, 2000);
+    });
+  }
+
+  function checkFee() {
+    const input = document.getElementById('gift-id-input').value.trim();
+    const loading = document.getElementById('loading');
+    const result = document.getElementById('result');
+    const checkBtn = document.getElementById('check-btn');
+
+    if (!input) {
+      alert("Please enter a Gift ID");
+      return;
+    }
+
+    result.classList.remove('show');
+    loading.style.display = 'block';
+    checkBtn.style.display = 'none';
+
+    setTimeout(() => {
+      loading.style.display = 'none';
+      result.classList.add('show');
+      document.getElementById('result-id').textContent = input;
+
+      if (input === "17/5/26/STROFF/LOTSPN") {
+        document.getElementById('result-fee').textContent = "₹330";
+        document.getElementById('result-fee').style.color = "#111";
+        document.getElementById('result-status').textContent = "Ready to process";
+        document.getElementById('result-status').style.color = "#111";
       } else {
-        btn.innerHTML = `GO TO FORM <i class="fa-solid fa-arrow-right"></i>`;
-        btn.style.background = '#0025ff';
+        document.getElementById('result-fee').textContent = "Offer not found";
+        document.getElementById('result-fee').style.color = "#999";
+        document.getElementById('result-status').textContent = "";
       }
-    }
-
-    function copyID(mode) {
-      const idElement = mode === 'sender' 
-        ? document.getElementById('gift-id-sender') 
-        : document.getElementById('gift-id-receiver');
       
-      navigator.clipboard.writeText(idElement.textContent).then(() => {
-        const btn = event.currentTarget;
-        const original = btn.innerHTML;
-        btn.innerHTML = `<i class="fa-solid fa-check"></i> Copied`;
-        setTimeout(() => btn.innerHTML = original, 2000);
-      });
-    }
+      checkBtn.style.display = 'block';
+    }, 5000);
+  }
 
-    function checkFee() {
-      const input = document.getElementById('gift-id-input').value.trim();
-      const loading = document.getElementById('loading');
-      const result = document.getElementById('result');
-      const checkBtn = document.getElementById('check-btn');
-
-      if (!input) {
-        alert("Please enter a Gift ID");
-        return;
-      }
-      result.classList.remove('show');
-      loading.style.display = 'block';
-      checkBtn.style.display = 'none';
-      setTimeout(() => {
-        loading.style.display = 'none';
-        result.classList.add('show');
-        document.getElementById('result-id').textContent = input;
-        if (input === "17/5/26/STROFF/LOTSPN") {
-          document.getElementById('result-fee').textContent = "₹330";
-          document.getElementById('result-fee').style.color = "#34c759";
-        } else {
-          document.getElementById('result-fee').textContent = "offer not found";
-          document.getElementById('result-fee').style.color = "red";
-        }
-        
-        checkBtn.style.display = 'block';
-      }, 5000);
-    }
-
-    function goToForm() {
-      window.location.href = "https://forms.gle/gxjjh5EHZNFi5254A";
-    }
-  </script>
+  function goToForm() {
+    window.location.href = "https://forms.gle/gxjjh5EHZNFi5254A";
+  }
+</script>
 </body>
 </html>
