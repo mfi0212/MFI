@@ -895,3 +895,15 @@ window.onload = function() {
     if (current) setActive(current);
   });
 })();
+const btn = document.getElementById('menuBtn');
+    const dropdown = document.getElementById('dropdown');
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle('show');
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', () => {
+      dropdown.classList.remove('show');
+    });
