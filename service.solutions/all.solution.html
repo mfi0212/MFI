@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BS&MFI | Solutions</title>
+  <link rel="icon" href="solution.logo.png" />
+  <link rel="stylesheet" href="services.css">
+  <link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
+  <script src="services.js"></script>
+  <style>
+    /* Simple extra styles for the solutions grid */
+    .top-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 20px 0 30px;
+    }
+    .top-actions a button {
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 10px;
+    }
+    .solution-card {
+      background: var(--card, #fff);
+      border: 1px solid var(--border, #e2e8f0);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    .solution-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+    }
+    .solution-card p {
+      flex: 1;
+      margin: 0 0 16px;
+      font-size: 0.95rem;
+      color: var(--muted, #555);
+    }
+    .solution-card .explore {
+      align-self: flex-start;
+    }
+  </style>
+</head>
+<body>
+  <div class="theme-switcher">
+    BS&MFI
+    <div class="themeoptions">
+      <button onclick="setTheme('light')">Light</button>
+      <button onclick="setTheme('dark')">Dark</button>
+      <button onclick="setTheme('telegram')">Telegram</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>BS&amp;MFI Services</h1>
+    <p class="subtitle">Apply for amounts &amp; offers — no member involvement needed</p>
+
+    <!-- Account & New Entry -->
+    <div class="top-actions">
+      <a href="#"><button class="explore">Account</button></a>
+      <a href="#"><button class="explore">New Entry</button></a>
+    </div>
+
+    <div class="note">
+      <strong>Note:</strong> The applicable fee must be available in your account balance before applying. If the fee is not paid, the application cannot be processed.
+    </div>
+
+    <h2>10 Solutions</h2>
+
+    <div class="solutions-grid">
+
+      <!-- 1 -->
+      <div class="solution-card">
+        <h3>1. BsRora</h3>
+        <p>Apply for amounts and offers with automatic fee payment — no manual involvement needed.</p>
+        <a href="https://mfi0212.github.io/MFI/BsRora/bsrora.atdo"><button class="explore">Visit</button></a>
+      </div>
+
+      <!-- 2 -->
+      <div class="solution-card">
+        <h3>2. QuickApply</h3>
+        <p>Fast application for standard amounts with clear status updates.</p>
+        <a href="#"><button class="explore">Visit</button></a>
+      </div>
+
+      <!-- 3 -->
+      <div class="solution-card">
+        <h3>3. OfferHub</h3>
+        <p>Browse and claim special offers available to members.</p>
+        <a href="#"><button class="explore">Visit</button></a>
+      </div>
+
+      <!-- 4 -->
+      <div class="solution-card">
+        <h3>4. AutoFee Pay</h3>
+        <p>Automatic fee deduction that works in the background.</p>
+        <a href="#"><button class="explore">Visit</button></a>
+      </div>
+
+      <!-- 5 -->
+      <div class="solution-card">
+        <h3>5. StatusTrack</h3>
+        <p>Track all applications with real-time stage updates.</p>
+        <a href="#"><button class="explore">Visit</button></a>
+      </div>
+
+      <!-- 6 -->
+      <div class="solution-card">
+        <h3>6. Balance Guard</h3>
+        <p>Checks balance before any fee-based application is submitted.</p>
+        <a href="#"><button class="explore">Visit</button></a>
+      </div>
+
+      <!-- 7 -->
+      <div class="solution-card">
+        <h3>7. Member Portal</h3>
+        <p>Central place to view history and manage all requests.</p>
+        <a href="#"><button class="explore">Visit</button></a>
+      </div>
+
+      <!-- 8 -->
+      <div class="solution-card">
+        <h3>8. Support Desk</h3>
+        <p>Get help, raise queries or request cancellations quickly.</p>
+        <a href="#"><button class="explore">Visit</button></a>
+      </div>
+
+      <!-- 9 -->
+      <div class="solution-card">
+        <h3>9. Bulk Apply</h3>
+        <p>Submit multiple applications in one go with batch processing.</p>
+        <a href="#"><button class="explore">Visit</button></a>
+      </div>
+
+      <!-- 10 -->
+      <div class="solution-card">
+        <h3>10. New Entry</h3>
+        <p>Create a fresh application or request for any available solution.</p>
+        <a href="#"><button class="explore">Visit</button></a>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>© BS&amp;MFI Services, All Rights Reserved.</footer>
+</body>
+</html>
