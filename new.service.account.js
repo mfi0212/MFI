@@ -700,7 +700,7 @@ function renderAmountSwitcher(loans, activeIndex) {
       <div class="detail-row"><span class="detail-label">Days Left</span><span class="detail-value">${daysInfo}</span></div>
       <div class="detail-row"><span class="detail-label">Status</span><span class="detail-value">${status}</span></div>
       <div class="detail-row ${overdueFee > 0 ? 'overdue' : ''}"><span class="detail-label">Overdue Fee</span><span class="detail-value">${overdueFee > 0 ? overdueFee.toLocaleString() : '0'}</span></div>
-      <div class="detail-row total-row"><span class="detail-label">Total (amount + interest)</span><span class="detail-value">${totalAI.toLocaleString()}</span></div>
+      <div class="detail-row total-row" style='    border-bottom: none;flex-direction: column;'><span class="detail-label">Total amount to return</span><span class="detail-value" style='font-size: 30px;font-weight: 700;'>${totalAI.toLocaleString()}</span></div>
     </div>
   `;
 }
