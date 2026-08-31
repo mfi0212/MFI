@@ -277,9 +277,9 @@ const users = {
     password: "Mahesh888*",
     displayName: "Mahesh Muthinti",
     premiumType: "Premium+",
-    fixedInterest: 0,
+    fixedInterest: 30,
     customui: "yes",
-    showCustomContent: "yes",
+    showCustomContent: "no",
     customContent: {
       type: "image",
       value: "https://mfi0212.github.io/MFI/servoces.special.offer/offer.png",
@@ -295,6 +295,7 @@ const users = {
       { amount: 2990, interest: 1170, borrowed: "24-07-2026", return: "23-09-2026", overdueFee: 0 },
       { amount: 3940, interest: 1280,  borrowed: "28-07-2026", return: "28-09-2026", overdueFee: 25 },
       { amount: 1210,  interest: 495,  borrowed: "15-08-2026", return: "29-09-2026", overdueFee: 0 },
+      { amount: 1000,interest: 300, borrowed: "31-09-2026", return: "30-09-2026", overdueFee: 0 },
     ],
     access: {
       "Delay It": true,
@@ -620,7 +621,12 @@ function showLoanDetails() {
   const grandTotal = totalAmount + totalInterest;
 
   const sumTotalEl = document.getElementById('sum-total');
-  sumTotalEl.innerHTML = `<strong>${grandTotal.toLocaleString()}</strong>`;
+  sumTotalEl.innerHTML = `<span style='font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 4px;' class="detail-label">Total amount</span><strong  style="font-size: 17px;
+    font-weight: bold;
+    color: var(--dark-blue);
+    line-height: 1.4;">${grandTotal.toLocaleString()}</strong>`;
   sumTotalEl.style.cursor = 'pointer';
   sumTotalEl.onclick = function () {
     openTotalPopup(totalAmount, totalInterest, grandTotal);
@@ -630,7 +636,7 @@ function showLoanDetails() {
   if (user.fixedInterest != null && user.fixedInterest > 0) {
     document.getElementById('sum-interest').textContent = user.fixedInterest + '% (Fixed)';
   } else {
-    document.getElementById('sum-interest').textContent = todayInterest + '% (Daily)';
+    document.getElementById('sum-interest').textContent = todayInterest + '% (Today)';
   }
 
   // ===== Amount tabs + detail view (Amount 1, Amount 2, ...) =====
