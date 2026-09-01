@@ -241,7 +241,7 @@ const formLinks = {
   "Split Pay":      "https://forms.gle/7rj2DSnZTQg5TX468",
   "Buy Limit":      "https://forms.gle/UjVvfCS6D6UoxyQW8",
   "Pre-Saver":      "https://forms.gle/3Z6eqPk6SmEDYZCu8",
-  "Lendlink-Mid":   "https://forms.gle/Yj9vDP3NPv9pMTAo9",
+  "STL":   "https://mfi0212.github.io/MFI/1.5.days",
   "BotPay":         "https://mfi0212.github.io/MFI/BsRora/payment.bot",
   "BsRora-Atdo":    "https://mfi0212.github.io/MFI/BsRora/bsrora.atdo",
   "Mining bot":     "https://mfi0212.github.io/MFI/BsRora/miningbot",
@@ -307,6 +307,7 @@ const users = {
       "BotPay": true,
       "Tomar Juntos": false,
       "BsRora-Atdo": false,
+      "STL": false,
     }
   },
 };
@@ -324,7 +325,8 @@ const allProducts = [
   { name: "Mining bot",    icon: "⛏️", desc: "Automated mining bot", needsFee: false },
   { name: "BotPay",        icon: "💳", desc: "Fast payment solution", needsFee: false },
   { name: "BsRora-Atdo",   icon: "⚡", desc: "Advanced automated system", needsFee: false },
-  { name: "Tomar Juntos",   icon: "🧑‍🤝‍🧑", desc: "Borrow combine", needsFee: false }
+  { name: "Tomar Juntos",   icon: "🧑‍🤝‍🧑", desc: "Borrow combine", needsFee: false },
+  { name: "STL",   icon: "💹", desc: "Short Term Loans", needsFee: false },
 ];
 
 function renderProducts() {
