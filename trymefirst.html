@@ -21,7 +21,15 @@
       --danger: #e91429;
       --warning: #ffa42b;
     }
-
+* {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
     * {
       margin: 0;
       padding: 0;
@@ -527,16 +535,15 @@
   </div>
 
 <script>
+document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('DOMContentLoaded', function() {
-
-  // Simple user database (password → user data)
   const users = {
     "5949": {
       name: "Phani test",
       maxDays: 15,
       maxAmount: 1000,
-      dailyRate: 0.03,          // 3% per day
-      fineRate: 0.05,           // 5% of total due per overdue day
+      dailyRate: 0.03,       
+      fineRate: 0.05,         
       loans: [{
         takenAmount: 500,
         planDate: "15-08-2026",
