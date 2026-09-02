@@ -664,8 +664,8 @@ span.detail-value {
     scrollbar-width: thin;
 }
 .btn-outline {
-  border: 1.5px solid transparent;
-    background: var(--dark-blue);
+     background: var(--scrollbar);
+
 }
 
 .btn-disabled {
@@ -806,13 +806,16 @@ span.detail-value {
   margin-bottom: 10px;
 }
 .search-results {
-     background: var(--bg-card);
-    border: 1.5px solid var(--border-strong);
+        border: 1.5px solid var(--border-strong);
     display: none;
-    border-radius: 6px;
+    border-radius: 20px;
     overflow: hidden;
-    max-width: 1200px;
+    max-width: 500px;
     margin: 10px auto 0;
+    background: var(--bg-soft);
+    backdrop-filter: blur(3px);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    width: 99%;
 }
 .search-results .box-title {
   background: var(--black-swan);
@@ -875,7 +878,7 @@ color: var(--text-footer);
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgb(0 0 0 / 65%);
   z-index: 9999999999;
   align-items: center;
   justify-content: center;
@@ -885,15 +888,15 @@ color: var(--text-footer);
   display: flex;
 }
 .modal-content {
-    background: var(--bg-card);
+   background: var(--bg-card);
     width: 99%;
     max-width: 420px;
-    border: 1.5px solid var(--border);
     color: var(--text-main);
     border-radius: 35px;
     max-height: 1000px;
     padding: 10px;
     text-align: center;
+    backdrop-filter: blur(15px);
 }
 .modal-content h3 {
       color: var(--dark-blue);
@@ -1117,16 +1120,7 @@ background: #27272785;
 }
 
   .modal {
-  display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.85);
-        z-index: 9999999999;
         align-items: end;
-        justify-content: center;
         padding: 7px 0px;
 }
 .modal.show {
@@ -1219,7 +1213,14 @@ img.advertisments {
               </div>
           </div>
           <div class="search-results" id="search-results">
-            <div class="box-title"><a href="#" onclick="clearSearch()" style="color:#fff;">Clear ✕</a></div>
+            <div class="box-title"><a href="#" onclick="clearSearch()" style="color: #000000;
+    border-radius: 999px;
+    padding: 5px 10px;
+    margin: -8px;
+    border: none;
+    background: red;
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    font-weight: 600;">Clear ✕</a></div>
           <div id="search-list"></div>
       </div>
       </div>
