@@ -297,7 +297,7 @@ height: 36px;
 div#amount-tabs {
     overflow-x: auto;
     white-space: nowrap;
-    gap: 10px;
+    gap: 10px;scrollbar-width: thin;
     display: flex;
     padding: 0 5px 10px 5px;
 }
@@ -658,19 +658,14 @@ span.detail-value {
 .scrollthemes {
    overflow: auto;
     height: 200px;
-    padding: 10px;
+    padding: 10px 15px;
+    scrollbar-width: thin;
 }
 .btn-outline {
-  background: transparent;
-  color: var(--dark-blue);
   border: 1.5px solid transparent;
+    background: var(--dark-blue);
 }
-[data-theme="dark"] .btn-outline,
-[data-theme="telegram"] .btn-outline,
-[data-theme="custom"] .btn-outline {
- color: var(--dark-blue);
-    border-color: var(--dark-blue);
-}
+
 .btn-disabled {
   cursor: not-allowed !important;
 }
@@ -943,12 +938,12 @@ color: var(--text-footer);
   margin-bottom: 16px;
 }
 .theme-option {
-  border: 1.5px solid var(--border);
-  border-radius: 6px;
-  padding: 12px;
-  text-align: center;
-  cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
+ border: 2px solid var(--border);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
 }
 .theme-option:hover,
 .theme-option.active {
@@ -1137,10 +1132,10 @@ background: #27272785;
   display: flex;
 }
 .modal-content {
-            background: var(--bg-card);
+           background: var(--bg-card);
         width: 99%;
-        border-radius: 30px;
-        padding: 10px;
+        border-radius: 35px;
+        padding: 15px;
 }
   .footermfilogo h4 {
     font-size: 50px;
@@ -1498,7 +1493,7 @@ img.advertisments {
     <div class="modal" id="theme-modal">
         <div class="modal-content" style="max-width:460px;">
             <h3>Choose Theme</h3>
-            <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;">Select a default theme or (if available) a custom dark theme with your own accent color.</p>
+            <p style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">Select a default theme or (if available) a custom dark theme with your own accent color.</p>
             <div class="scrollthemes">
               <div class="theme-options" id="default-themes">
                 <div class="theme-option" data-theme="light" onclick="selectTheme('light')">
