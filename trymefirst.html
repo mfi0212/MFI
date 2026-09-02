@@ -901,15 +901,15 @@ color: var(--text-footer);
     font-size: 18px;
 }
 .modal-content input {
-  width: 100%;
-  height: 40px;
-  border: 1.5px solid var(--input-border);
-  padding: 0 12px;
-  margin-bottom: 12px;
-  font-size: 15px;
-  background: var(--bg-card);
-  color: var(--text-main);
-  border-radius: 4px;
+ width: 100%;
+    border: 1.5px solid var(--input-border);
+    padding: 10px;
+    margin-bottom: 12px;
+    font-size: 19px;
+    background: var(--bg-card);
+    color: var(--text-main);
+    border-radius: 15px;
+    text-align: center;
 }
 .fee-preview {
   background: var(--bg-soft);
@@ -974,11 +974,11 @@ color: var(--text-footer);
   gap: 8px;
 }
 .custom-color-btn {
-  height: 40px;
-  border: 1.5px solid var(--border);
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
+      height: 40px;
+    border: 1.5px solid var(--border);
+    border-radius: 60px;
+    cursor: pointer;
+    position: relative;
 }
 .custom-color-btn.active {
   border-color: var(--accent);
@@ -1115,25 +1115,25 @@ background: #27272785;
 
   .modal {
   display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
-  z-index: 9999999999;
-  align-items: end;
-  justify-content: center;
-  padding: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 9999999999;
+        align-items: end;
+        justify-content: center;
+        padding: 7px 0px;
 }
 .modal.show {
   display: flex;
 }
 .modal-content {
-    background: var(--bg-card);
+            background: var(--bg-card);
         width: 99%;
-        border-radius: 15px 15px 0 0;
-        padding: 5px 10px 30px 5px;
+        border-radius: 30px;
+        padding: 10px;
 }
   .footermfilogo h4 {
     font-size: 50px;
@@ -1510,7 +1510,9 @@ img.advertisments {
                   <div class="color-picker-row">
                       <label style="font-size:13px;">Or pick any color:</label>
                       <input type="color" id="custom-color-picker" value="#002aff" onchange="selectCustomColor(this.value)">
-                      <button class="btn" style="padding:6px 12px;font-size:13px;" onclick="selectCustomColor(document.getElementById('custom-color-picker').value)">Apply</button>
+                      <button class="btn" style="padding: 6px 12px;
+    font-size: 16px;
+    width: fit-content;" onclick="selectCustomColor(document.getElementById('custom-color-picker').value)">Apply</button>
                   </div>
               </div>
             </div>
