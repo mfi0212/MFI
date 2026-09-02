@@ -30,12 +30,12 @@ body {
   --dark-blue: #002aff;
   --accent: white;
   --bg-body: #eef1f6;
-  --bg-card: #ffffff;
+  --bg-card: #ffffffcf;
   --bg-topbar: #0b0f17;
   --bg-nav: #002aff;
   --bg-banner: linear-gradient(120deg, #0b0f17, #002aff, #0040ff);
   --bg-footer: #0b0f17;
-  --bg-soft: #f0f4f8;
+  --bg-soft: #f0f4f8c7;
   --bg-calc: #f0f5fa;
   --bg-table-head: #e8eef5;
   --bg-table-even: #f7fafc;
@@ -54,21 +54,21 @@ body {
   --dark-blue: #002aff;
   --accent: white;
   --bg-body: #000000;
-  --bg-card: #0a0a0a;
+  --bg-card: #171717cf;
   --bg-topbar: #000000;
   --bg-nav: #001a99;
   --bg-banner: linear-gradient(120deg, #000000, #001a99, #002aff);
   --bg-footer: #000000;
-  --bg-soft: #111111;
-  --bg-calc: #111111;
-  --bg-table-head: #111111;
+  --bg-soft: #1f1f1fba;
+  --bg-calc: #1f1f1fba;
+  --bg-table-head: #201c1c0a;
   --bg-table-even: #0d0d0d;
   --text-main: #e8e8e8;
   --text-muted: #999999;
   --text-light: #e8e8e8;
   --text-footer: #777777;
   --text-title: #4d7aff;
-  --border: #222222;
+  --border: #2f2f2f;
   --border-strong: #002aff;
   --input-border: #333333;
   --scrollbar: #636366;
@@ -78,12 +78,12 @@ body {
   --dark-blue: #2aabee;
   --accent: #64b5ef;
   --bg-body: #0e1621;
-  --bg-card: #17212b;
+  --bg-card: #1f2e3dad;
   --bg-topbar: #0e1621;
   --bg-nav: #2aabee;
   --bg-banner: linear-gradient(120deg, #0e1621, #1e3a5f, #2aabee);
   --bg-footer: #0e1621;
-  --bg-soft: #1c2733;
+  --bg-soft: #223243ba;
   --bg-calc: #1c2733;
   --bg-table-head: #1c2733;
   --bg-table-even: #18222d;
@@ -102,7 +102,7 @@ body {
   --dark-blue: #002aff;
   --accent: white;
   --bg-body: #000000;
-  --bg-card: #0a0a0a;
+  --bg-card: #121212cf;
   --bg-topbar: #000000;
   --bg-nav: var(--dark-blue);
   --bg-banner: linear-gradient(
@@ -121,7 +121,7 @@ body {
   --text-light: #e8e8e8;
   --text-footer: #777777;
   --text-title: var(--dark-blue);
-  --border: #222222;
+  --border: #2f2f2f;
   --border-strong: var(--dark-blue);
   --input-border: #333333;
   --scrollbar: #333333;
@@ -154,7 +154,7 @@ font-size: 12px;
     position: sticky;
     top: 0;
     z-index: 1000000;
-    background: linear-gradient(180deg, black 50%, transparent);
+    background: linear-gradient(180deg, var(--bg-card) 50%, transparent);
 }
 /* [data-theme="dark"] .topbar,
 [data-theme="custom"] .topbar {
@@ -233,7 +233,7 @@ strong#current-user {
     width: 100%;
    border-radius: 999px;
         padding: 5px;
-        background: #181818d9;
+           background: var(--bg-soft);
         backdrop-filter: blur(3px);
         box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
 }
@@ -251,7 +251,9 @@ strong#current-user {
     background: transparent;
         opacity: 50%;
 }
-
+.search-box button svg{
+    fill:var(--text-main)
+}
 .search-box input {
    flex: 1;
     height: 36px;
@@ -373,7 +375,7 @@ font-size: 13px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: #181818d9;
+       background: var(--bg-soft);
     backdrop-filter: blur(3px);
     box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
     transform: translate(-50%, 0);
@@ -389,7 +391,7 @@ font-size: 13px;
 }
 .col {
   background: var(--bg-card);
-  border: 1.5px solid var(--border);
+  /* border: 1.5px solid var(--border); */
   border-radius: 30px;
   overflow: hidden;
 }
@@ -717,7 +719,7 @@ span.detail-value {
   overflow-x: auto;
 }
 #logout-btn {
-    background: #540000;
+    background: #ff000080;
     color: white;
     border-radius: 999px;
     border: none;
@@ -1013,7 +1015,7 @@ border: none;
         width: 45px;
         height: 45px;
         border-radius: 50%;
-        background: #181818d9;
+           background: var(--bg-soft);
         backdrop-filter: blur(3px);
         box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
     }
@@ -1032,7 +1034,7 @@ border: none;
     transition: all 0.2s ease;
     z-index: 100;
     border: none;
-    background: #181818d9;
+       background: var(--bg-soft);
     backdrop-filter: blur(3px);
     box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
     padding: 5px;
@@ -1081,7 +1083,7 @@ border: none;
   }
   .quick {
     width: 100%;
-    background: linear-gradient(0deg, #0000009c 50%, transparent);
+    background:linear-gradient(0deg, var(--bg-card) 50%, transparent);
     padding: 20px;
     position: fixed;
     bottom: 0;
@@ -1101,7 +1103,7 @@ background: #27272785;
         flex-direction: row;
         justify-content: space-around;
         border-radius: 999px;
-        background: #181818d9;
+           background: var(--bg-soft);
         backdrop-filter: blur(3px);
         box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
         position: sticky;
