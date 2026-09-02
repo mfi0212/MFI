@@ -224,31 +224,46 @@ strong#current-user {
 [data-theme="custom"] .logo span {
   color: var(--text-title);
 }
-.search-box {
-    flex: 1;
+
+.search-box{
+        flex: 1;
     display: flex;
     max-width: 500px;
     width: 100%;
+   border-radius: 999px;
+        padding: 5px;
+        background: #181818d9;
+        backdrop-filter: blur(3px);
+        box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
 }
 .search-box input {
-    flex: 1;
-    height: 36px;
-    border: 1.5px solid var(--border-strong);
-    padding: 0 10px;
-    font-size: 14px;
-    background: transparent;
-    color: var(--text-main);
-    border-radius: 4px 0 0 4px;
-    outline: none;
+               background: transparent;
+        color: var(--text-main);
+        outline: none;
+        border: none;
+        font-size: 18px;
 }
 .search-box input:focus{
-    border: 2.5px solid var(--border-strong);
+        border: none;
+}
+.search-box button {
+    background: transparent;
+        opacity: 50%;
+}
+
+.search-box input {
+   flex: 1;
+    height: 36px;
+    padding: 0 15px;
+    background: transparent;
+    color: var(--text-main);
+    border-radius: 9990px;
+    outline: none;
 }
 
 .search-box button {
 height: 36px;
     width: 36px;
-    background: var(--dark-blue);
     color: #fff;
     border: none;
     cursor: pointer;
@@ -699,15 +714,17 @@ span.detail-value {
   overflow-x: auto;
 }
 #logout-btn {
-    background: red;
+    background: #540000;
     color: white;
     border-radius: 999px;
     border: none;
-    width: 40px;
-    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 45px;
+    height: 45px;
+    backdrop-filter: blur(3px);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
 }
 .loan-table {
   width: 100%;
@@ -872,9 +889,9 @@ color: var(--text-footer);
     max-width: 420px;
     border: 1.5px solid var(--border);
     color: var(--text-main);
-    border-radius: 10px;
+    border-radius: 35px;
     max-height: 1000px;
-    padding: 5px 10px 10px 5px;
+    padding: 10px;
     text-align: center;
 }
 .modal-content h3 {
@@ -982,38 +999,40 @@ color: var(--text-footer);
   margin-bottom: 0;
 }
 .menu-btn {
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent);
-    font-size: 17px;
-    background: transparent;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+        font-size: 17px;
+        background: transparent;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: #181818d9;
+        backdrop-filter: blur(3px);
+        box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
     }
     .menu-btn:hover{
       background: var(--border);
     }
     .dropdown {
-      position: absolute;
-    top: 45%;
-    right: 33%;
-    background: transparent;
-    border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    min-width: 150px;
-    overflow-y: scroll;
+           position: absolute;
+    top: 50%;
+    left: 23%;
+    border-radius: 20px;
+    min-width: 200px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
     transition: all 0.2s ease;
     z-index: 100;
-    border: 1.5px solid var(--border);
-    background: var(--bg-card);
-    height: 300px;
+    border: none;
+    background: #181818d9;
+    backdrop-filter: blur(3px);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    padding: 5px;
     }
 
     .dropdown.show {
@@ -1051,6 +1070,9 @@ color: var(--text-footer);
   .user-summary {
     grid-template-columns: repeat(2, 1fr);
   }
+  .footer {
+    padding: 20px 0 70px 0px;
+}
   .footer .inner {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1065,7 +1087,7 @@ background: #27272785;
         align-items: center;
         gap: 0;
         border-radius: 0;
-        width: 90%;
+        width: 87%;
         overflow: scroll;
         scrollbar-width: none;
         position: fixed;
@@ -1089,56 +1111,7 @@ background: #27272785;
     border-radius: 999px;
           gap: 0;
 }
-.menu-btn {
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent);
-    font-size: 17px;
-    background: transparent;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: #181818d9;
-    backdrop-filter: blur(3px);
-    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-}
-#logout-btn {
-    background: #540000;
-    color: white;
-    border-radius: 999px;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 45px;
-    height: 45px;
-    backdrop-filter: blur(3px);
-    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-}
-.search-box{
-   border-radius: 999px;
-        padding: 5px;
-        background: #181818d9;
-        backdrop-filter: blur(3px);
-        box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-}
-.search-box input {
-               background: transparent;
-        color: var(--text-main);
-        outline: none;
-        border: none;
-        font-size: 18px;
-}
-.search-box input:focus{
-        border: none;
-}
-.search-box button {
-    background: transparent;
-        opacity: 50%;
-}
+
   .modal {
   display: none;
   position: fixed;
@@ -1184,14 +1157,13 @@ img.advertisments {
    position: absolute;
         top: 55%;
         left: 1%;
-        background: #181818d9;
-        backdrop-filter: blur(3px);
-        box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-        border-radius: 21px;
-        border: none;
-        scrollbar-width: none;
-        width: 50%;
+        padding: 10px;
+        border-radius: 20px;
   }
+  .dropdown-services {
+    height: 300px;
+    overflow-y: scroll;
+}
   .search-box {
     width: 100%;
   }
@@ -1247,16 +1219,18 @@ img.advertisments {
       </div>
       </div>
     <div class="dropdown" id="dropdown">
-      <a href="https://mfi0212.github.io/MFI/new.service">BS&MFI home page</a>
-      <a href="https://mfi0212.github.io/MFI/service.solutions/all.solution">All Solutions</a>
-      <a href="https://mfi0212.github.io/MFI/service.solutions/botpay">BotPay</a>
-      <a href="https://mfi0212.github.io/MFI/service.solutions/bsrora-atdo">BsRora-Atdo</a>
-      <a href="https://mfi0212.github.io/MFI/service.solutions/bsrora">BsRora</a>
-      <a href="https://mfi0212.github.io/MFI/service.solutions/buy-limit">Buy Limit</a>
-      <a href="https://mfi0212.github.io/MFI/service.solutions/delay-it">Delay It</a>
-      <a href="https://mfi0212.github.io/MFI/service.solutions/mining-bot">Mining Bot</a>
-      <a href="https://mfi0212.github.io/MFI/service.solutions/pre-saver">Pre-Saver</a>
-      <a href="https://mfi0212.github.io/MFI/service.solutions/split-pay">Split Pay</a>
+        <div class="dropdown-services">
+            <a href="https://mfi0212.github.io/MFI/new.service">BS&MFI home page</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/all.solution">All Solutions</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/botpay">BotPay</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/bsrora-atdo">BsRora-Atdo</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/bsrora">BsRora</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/buy-limit">Buy Limit</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/delay-it">Delay It</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/mining-bot">Mining Bot</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/pre-saver">Pre-Saver</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/split-pay">Split Pay</a>
+        </div>
     </div>
         </div>
     </div>
