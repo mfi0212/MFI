@@ -1,4 +1,5 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
+
 function getTodayInterest() {
   const today = new Date().toDateString();
   const stored = localStorage.getItem('jh_today_interest');
@@ -103,7 +104,8 @@ function computeLoanStatus(loan) {
 
   return { overdueFee, status, daysInfo, daysDiff: diff };
 }
-// ========== THEME SYSTEM ==========
+
+// ========== THEME SYSTEM (FIXED) ==========
 function openThemeModal() {
   const customSec = document.getElementById('custom-theme-section');
   if (currentUser && users[currentUser] && users[currentUser].customui === 'yes') {
@@ -181,7 +183,9 @@ function applyTheme(themeName, customColor) {
     html.style.removeProperty('--black-swan');
   }
 
+  // Always save the base theme
   localStorage.setItem('jh_theme', base);
+
   if (color) {
     localStorage.setItem('jh_custom_color', color);
   }
@@ -200,15 +204,17 @@ function applyTheme(themeName, customColor) {
 
 function enforceCustomUIAccess() {
   const hasCustom = currentUser && users[currentUser] && users[currentUser].customui === 'yes';
-  const storedTheme = localStorage.getItem('jh_theme');
   const storedColor = localStorage.getItem('jh_custom_color');
 
-  if (!hasCustom) {
-    if (storedTheme === 'custom' || storedColor) {
-      localStorage.removeItem('jh_theme');
-      localStorage.removeItem('jh_custom_color');
-      applyTheme('light');
-    }
+  // Only remove custom color if user does NOT have permission
+  // Base theme (light/dark/telegram) is NEVER deleted
+  if (!hasCustom && storedColor) {
+    localStorage.removeItem('jh_custom_color');
+
+    // Re-apply current base theme without the custom color
+    let base = localStorage.getItem('jh_theme') || 'light';
+    if (base === 'custom') base = 'dark';
+    applyTheme(base);
   }
 }
 
@@ -262,7 +268,7 @@ const formLinks = {
   "Split Pay":      "https://forms.gle/7rj2DSnZTQg5TX468",
   "Buy Limit":      "https://forms.gle/UjVvfCS6D6UoxyQW8",
   "Pre-Saver":      "https://forms.gle/3Z6eqPk6SmEDYZCu8",
-  "STL":   "https://mfi0212.github.io/MFI/1.5.days",
+  "STL":            "https://mfi0212.github.io/MFI/1.5.days",
   "BotPay":         "https://mfi0212.github.io/MFI/BsRora/payment.bot",
   "BsRora-Atdo":    "https://mfi0212.github.io/MFI/BsRora/bsrora.atdo",
   "Mining bot":     "https://mfi0212.github.io/MFI/BsRora/miningbot",
@@ -292,7 +298,6 @@ function applyProduct(name) {
   document.getElementById('apply-modal').classList.add('show');
 }
 
-
 let currentUser = null;
 let pendingFeeService = null;
 let pendingFeeAmount = 0;
@@ -306,8 +311,8 @@ const allProducts = [
   { name: "Mining bot",    icon: "⛏️", desc: "Automated mining bot", needsFee: false },
   { name: "BotPay",        icon: "💳", desc: "Fast payment solution", needsFee: false },
   { name: "BsRora-Atdo",   icon: "⚡", desc: "Advanced automated system", needsFee: false },
-  { name: "Tomar Juntos",   icon: "🧑‍🤝‍🧑", desc: "Borrow combine", needsFee: false },
-  { name: "STL",   icon: "💹", desc: "Short Term Loans", needsFee: false },
+  { name: "Tomar Juntos",  icon: "🧑‍🤝‍🧑", desc: "Borrow combine", needsFee: false },
+  { name: "STL",           icon: "💹", desc: "Short Term Loans", needsFee: false },
 ];
 
 function renderProducts() {
@@ -793,13 +798,19 @@ window.onload = function() {
     currentUser = savedUser;
   }
 
+  // Clean old "custom" value
+  if (savedTheme === 'custom') {
+    savedTheme = 'dark';
+    localStorage.setItem('jh_theme', 'dark');
+  }
+
   enforceCustomUIAccess();
 
-  // Re-read after enforce (in case it was reset)
+  // Re-read after enforce (in case custom color was removed)
   savedTheme = localStorage.getItem('jh_theme') || 'light';
-  if (savedTheme === 'custom') savedTheme = 'dark'; // migrate old users
+  const finalColor = localStorage.getItem('jh_custom_color');
 
-  applyTheme(savedTheme, savedColor || undefined);
+  applyTheme(savedTheme, finalColor || undefined);
 
   document.getElementById('today-rate-display').textContent = todayInterest + '%';
   drawBarGraph();
@@ -811,8 +822,6 @@ window.onload = function() {
   renderProducts();
   updateInterestDisplay();
 };
-
-
 
 /* ===== ACTIVE NAVBAR HIGHLIGHT (Scroll Spy) ===== */
 (function() {
@@ -881,15 +890,16 @@ window.onload = function() {
     if (current) setActive(current);
   });
 })();
+
 const btn = document.getElementById('menuBtn');
-    const dropdown = document.getElementById('dropdown');
+const dropdown = document.getElementById('dropdown');
 
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      dropdown.classList.toggle('show');
-    });
+btn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  dropdown.classList.toggle('show');
+});
 
-    // Close when clicking outside
-    document.addEventListener('click', () => {
-      dropdown.classList.remove('show');
-    });
+// Close when clicking outside
+document.addEventListener('click', () => {
+  dropdown.classList.remove('show');
+});
