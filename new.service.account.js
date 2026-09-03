@@ -566,7 +566,7 @@ function showLoanDetails() {
   document.getElementById('login-section').classList.add('hidden');
   document.getElementById('loan-section').classList.remove('hidden');
   document.getElementById('logout-btn').classList.remove('hidden');
-  document.getElementById('top-user').textContent = 'Hi, ' + user.displayName;
+  document.getElementById('top-user').textContent = '' + user.displayName;
   document.getElementById('current-user').textContent = user.displayName;
   document.getElementById('account-status').textContent = 'Logged in';
 
