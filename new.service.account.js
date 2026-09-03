@@ -1,5 +1,4 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
-
 function getTodayInterest() {
   const today = new Date().toDateString();
   const stored = localStorage.getItem('jh_today_interest');
@@ -502,7 +501,10 @@ function doSearch() {
       <div class="search-item">
         <div><strong>${p.name}</strong> <span style="font-size:12px;color:var(--text-muted);">${p.desc}</span></div>
         <div>
-          <button class="btn" style="padding:5px 12px;font-size:13px;" onclick="handleProductClick('${p.name}')">Apply</button>
+          <button class="btn" style="padding: 5px 12px;
+    font-size: 13px;
+    width: fit-content;
+    opacity: 100%;" onclick="handleProductClick('${p.name}')">Apply</button>
           <a href="#products" style="margin-left:8px;font-size:13px;">View</a>
         </div>
       </div>
