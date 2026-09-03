@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 function getTodayInterest() {
   const today = new Date().toDateString();
   const stored = localStorage.getItem('jh_today_interest');
@@ -111,12 +111,10 @@ function openThemeModal() {
   } else {
     customSec.classList.add('hidden');
   }
-
   const current = document.documentElement.getAttribute('data-theme') || 'light';
   document.querySelectorAll('.theme-option').forEach(el => {
     el.classList.toggle('active', el.getAttribute('data-theme') === current);
   });
-
   const savedColor = localStorage.getItem('jh_custom_color');
   document.querySelectorAll('.custom-color-btn').forEach(el => {
     el.classList.toggle('active', el.getAttribute('data-color') === savedColor);
@@ -124,7 +122,6 @@ function openThemeModal() {
   if (savedColor) {
     document.getElementById('custom-color-picker').value = savedColor;
   }
-
   document.getElementById('theme-modal').classList.add('show');
 }
 
@@ -133,7 +130,9 @@ function closeThemeModal() {
 }
 
 function selectTheme(themeName) {
-  // Keep any existing custom accent color when switching base themes
+  if (themeName !== 'custom') {
+    localStorage.removeItem('jh_custom_color');
+  }
   applyTheme(themeName);
   closeThemeModal();
 }
@@ -143,15 +142,8 @@ function selectCustomColor(hex) {
     alert('Custom themes are only available for users with custom UI access.');
     return;
   }
-
   localStorage.setItem('jh_custom_color', hex);
-
-  // Apply the color on the CURRENT base theme (Light / Dark / Telegram)
-  let base = document.documentElement.getAttribute('data-theme') || 'light';
-  if (base === 'custom') base = 'dark'; // migrate old "custom" → dark
-
-  applyTheme(base, hex);
-
+  applyTheme('custom', hex);
   document.querySelectorAll('.custom-color-btn').forEach(el => {
     el.classList.toggle('active', el.getAttribute('data-color') === hex);
   });
@@ -161,39 +153,29 @@ function selectCustomColor(hex) {
 
 function applyTheme(themeName, customColor) {
   const html = document.documentElement;
+  html.setAttribute('data-theme', themeName);
 
-  // Never keep the old "custom" data-theme
-  let base = (themeName === 'custom') ? 'dark' : themeName;
-  html.setAttribute('data-theme', base);
-
-  const color = customColor || localStorage.getItem('jh_custom_color');
-
-  if (color) {
-    // Custom accent works on Light, Dark and Telegram
+  if (themeName === 'custom') {
+    const color = customColor || localStorage.getItem('jh_custom_color') || '#002aff';
     html.style.setProperty('--dark-blue', color);
     html.style.setProperty('--text-title', color);
-    html.style.setProperty('--border-strong', color);
-    html.style.setProperty('--black-swan', color);
   } else {
     html.style.removeProperty('--dark-blue');
     html.style.removeProperty('--text-title');
-    html.style.removeProperty('--border-strong');
-    html.style.removeProperty('--black-swan');
   }
 
-  localStorage.setItem('jh_theme', base);
-  if (color) {
-    localStorage.setItem('jh_custom_color', color);
+  localStorage.setItem('jh_theme', themeName);
+  if (themeName === 'custom' && customColor) {
+    localStorage.setItem('jh_custom_color', customColor);
   }
 
   const labels = {
     light: 'Light',
     dark: 'Dark Black',
-    telegram: 'Telegram'
+    telegram: 'Telegram',
+    custom: 'Custom'
   };
-  const accentNote = color ? ' + Custom' : '';
-  document.getElementById('theme-btn').textContent =
-    'Themes (' + (labels[base] || base) + accentNote + ')';
+  document.getElementById('theme-btn').textContent = 'Themes (' + (labels[themeName] || themeName) + ')';
 
   drawBarGraph();
 }
@@ -201,14 +183,11 @@ function applyTheme(themeName, customColor) {
 function enforceCustomUIAccess() {
   const hasCustom = currentUser && users[currentUser] && users[currentUser].customui === 'yes';
   const storedTheme = localStorage.getItem('jh_theme');
-  const storedColor = localStorage.getItem('jh_custom_color');
 
-  if (!hasCustom) {
-    if (storedTheme === 'custom' || storedColor) {
-      localStorage.removeItem('jh_theme');
-      localStorage.removeItem('jh_custom_color');
-      applyTheme('light');
-    }
+  if (!hasCustom && storedTheme === 'custom') {
+    localStorage.removeItem('jh_theme');
+    localStorage.removeItem('jh_custom_color');
+    applyTheme('dark');
   }
 }
 
@@ -292,6 +271,46 @@ function applyProduct(name) {
   document.getElementById('apply-modal').classList.add('show');
 }
 
+// ========== USERS ==========
+const users = {
+  "Mahesh Muthinti": {
+    password: "Mahesh888*",
+    displayName: "Mahesh Muthinti",
+    premiumType: "Premium+",
+    fixedInterest: 30,
+    customui: "yes",
+    showCustomContent: "no",
+    customContent: {
+      type: "image",
+      value: "https://mfi0212.github.io/MFI/servoces.special.offer/offer.png",
+      url: "https://mfi0212.github.io/MFI/servoces.special.offer/eligible.offer"
+    },
+    showSpecialNotice: "yes",
+    specialNoticeText: "Mr.<strong>Mahesh Muthinti</strong>, your BotPay bot will handle everything for you, including applying and paying your fees. The fees will be added directly to your amount. Simply and easily.",
+
+    loans: [
+      { amount: 29418,interest: 7355, borrowed: "11-05-2026", return: "10-09-2026", overdueFee: 0 },
+      { amount: 15000,interest: 4500, borrowed: "15-08-2026", return: "15-09-2026", overdueFee: 0 },
+      { amount: 3475, interest: 1407, borrowed: "21-07-2026", return: "20-09-2026", overdueFee: 0 },
+      { amount: 2990, interest: 1170, borrowed: "24-07-2026", return: "23-09-2026", overdueFee: 0 },
+      { amount: 3940, interest: 1280,  borrowed: "28-07-2026", return: "28-09-2026", overdueFee: 25 },
+      { amount: 1210,  interest: 495,  borrowed: "15-08-2026", return: "29-09-2026", overdueFee: 0 },
+      { amount: 1000,interest: 450, borrowed: "31-09-2026", return: "30-09-2026", overdueFee: 0 },
+    ],
+    access: {
+      "Delay It": true,
+      "Split Pay": false,
+      "Buy Limit": false,
+      "Pre-Saver": false,
+      "Lendlink-Mid": false,
+      "Mining bot": false,
+      "BotPay": true,
+      "Tomar Juntos": false,
+      "BsRora-Atdo": false,
+      "STL": false,
+    }
+  },
+};
 
 let currentUser = null;
 let pendingFeeService = null;
@@ -354,7 +373,8 @@ function renderProducts() {
   const locked = allProducts.filter(p => !user.access[p.name]);
   if (locked.length > 0) {
     html += `<p style="margin:20px 0 10px;color:var(--text-muted);font-size:13px;">Services you do not have access to:</p>
-    <div class="product-grid" style="opacity:0.6;">`;
+    <div class="product-grid" style="opacity: 0.6;
+    cursor: not-allowed;">`;
     locked.forEach(p => {
       html += `
         <div class="product-card">
@@ -795,11 +815,12 @@ window.onload = function() {
 
   enforceCustomUIAccess();
 
-  // Re-read after enforce (in case it was reset)
   savedTheme = localStorage.getItem('jh_theme') || 'light';
-  if (savedTheme === 'custom') savedTheme = 'dark'; // migrate old users
-
-  applyTheme(savedTheme, savedColor || undefined);
+  if (savedTheme === 'custom' && savedColor) {
+    applyTheme('custom', savedColor);
+  } else {
+    applyTheme(savedTheme);
+  }
 
   document.getElementById('today-rate-display').textContent = todayInterest + '%';
   drawBarGraph();
