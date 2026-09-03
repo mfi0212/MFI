@@ -4,4 +4,4 @@ function setTheme(theme) {
 }
 const saved = localStorage.getItem('theme') || 'light';
 setTheme(saved);
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
