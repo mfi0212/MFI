@@ -8,8 +8,8 @@
     <link rel="icon" href="mfi.logo.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
      <link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-   <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Roboto:ital,wght@0,100..900;1,100..900&family=Six+Caps&family=Stalemate&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Roboto:ital,wght@0,100..900;1,100..900&family=Six+Caps&family=Stalemate&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
 * {
 	font-family: 'Inter', system-ui, -apple-system, sans-serif;margin:0; padding:0; box-sizing:border-box;scrollbar-width: thin;
@@ -154,7 +154,7 @@ font-size: 12px;
     position: sticky;
     top: 0;
     z-index: 1000000;
-    background: linear-gradient(180deg, var(--bg-card) 50%, transparent);
+    background: linear-gradient(180deg, var(--bg-body), transparent);
 }
 /* [data-theme="dark"] .topbar,
 [data-theme="custom"] .topbar {
@@ -1067,6 +1067,12 @@ border: none;
       opacity: 100%;
           color: var(--dark-blue);
     }
+    .bottomoptions a:nth-child(5){
+      display: none;
+    }
+    .bottomoptions a:nth-child(4){
+          display: flex;
+    }
 @media (max-width: 900px) {
   .turbo-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1085,7 +1091,7 @@ border: none;
   }
   .quick {
     width: 100%;
-    background:linear-gradient(0deg, var(--bg-card) 50%, transparent);
+    background:linear-gradient(0deg, var(--bg-body), transparent);
     padding: 20px;
     position: fixed;
     bottom: 0;
@@ -1153,7 +1159,15 @@ img.advertisments {
   .header .inner {
     flex-direction: column;
     align-items: stretch;
-  }
+  } .bottomoptions a:nth-child(5){
+          display: flex;
+    }
+    .bottomoptions a:nth-child(4){
+      display: none;
+    }
+    #account{
+        display: none;
+    }
   .dropdown {
    position: absolute;
         top: 55%;
@@ -1194,7 +1208,7 @@ img.advertisments {
         <div class="container" style="    display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;padding: 20px 5px 5px 5px">
+    width: 100%;padding: 15px 5px 5px 5px">
             <div class="inner">
                <button class="menu-btn" id="menuBtn" title="More options"><i style="    color: var(--text-main);" class="fa-solid fa-ellipsis-vertical"></i></button></div>
                 <div>
@@ -1467,7 +1481,11 @@ img.advertisments {
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M303.85-700v-43.08q0-24.75 17.62-42.37 17.63-17.62 42.38-17.62h232.3q24.75 0 42.38 17.62 17.62 17.62 17.62 42.37V-700H708q17.85 0 32.35 9.85 14.49 9.84 21.19 25.84l91.69 209.08q3.38 8.38 5.08 17.35 1.69 8.96 1.69 16.83V-240q0 24.75-17.63 42.37Q824.75-180 800-180H160q-24.75 0-42.37-17.63Q100-215.25 100-240v-180.92q0-9.16 1.69-17.54 1.7-8.39 5.08-16.77l91.69-209.08q6.7-16 21.19-25.84Q234.15-700 252-700h51.85Zm60 0h232.3v-43.08h-232.3V-700ZM290-466.15v-40h60v40h260v-40h60v40h112.92L708-640H252l-74.92 173.85H290Zm0 60H160V-240h640v-166.15H670v40h-60v-40H350v40h-60v-40Zm190-30Zm0-30Zm0 60Z"/></svg>
             Services
         </a> 
-        <a href="#account">
+        <a href="#account" class="system-active" >
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-238.31q54-53 125.5-83.5t154.5-30.5q83 0 154.5 30.5t125.5 83.5v-509.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H212.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v509.38Zm372.08-238.07Q610-514.31 610-568.46t-37.92-92.08q-37.93-37.92-92.08-37.92t-92.08 37.92Q350-622.61 350-568.46t37.92 92.08q37.93 37.92 92.08 37.92t92.08-37.92ZM212.31-140Q182-140 161-161q-21-21-21-51.31v-535.38Q140-778 161-799q21-21 51.31-21h535.38Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H212.31Zm34.77-60h465.84Q662-246.69 601.89-269.5 541.77-292.31 480-292.31q-61 0-122.12 22.81-61.11 22.81-110.8 69.5Zm183.5-319.04Q410-539.61 410-568.46t20.58-49.42q20.57-20.58 49.42-20.58t49.42 20.58Q550-597.31 550-568.46t-20.58 49.42q-20.57 20.58-49.42 20.58t-49.42-20.58ZM480-499.15Z"/></svg>
+            Account
+        </a> 
+         <a href="accverify.html" class="mobile-active">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-238.31q54-53 125.5-83.5t154.5-30.5q83 0 154.5 30.5t125.5 83.5v-509.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H212.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v509.38Zm372.08-238.07Q610-514.31 610-568.46t-37.92-92.08q-37.93-37.92-92.08-37.92t-92.08 37.92Q350-622.61 350-568.46t37.92 92.08q37.93 37.92 92.08 37.92t92.08-37.92ZM212.31-140Q182-140 161-161q-21-21-21-51.31v-535.38Q140-778 161-799q21-21 51.31-21h535.38Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H212.31Zm34.77-60h465.84Q662-246.69 601.89-269.5 541.77-292.31 480-292.31q-61 0-122.12 22.81-61.11 22.81-110.8 69.5Zm183.5-319.04Q410-539.61 410-568.46t20.58-49.42q20.57-20.58 49.42-20.58t49.42 20.58Q550-597.31 550-568.46t-20.58 49.42q-20.57 20.58-49.42 20.58t-49.42-20.58ZM480-499.15Z"/></svg>
             Account
         </a> 
@@ -1498,7 +1516,7 @@ img.advertisments {
     <div class="modal" id="theme-modal">
         <div class="modal-content" style="max-width:460px;">
             <h3>Choose Theme</h3>
-            <p style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">Select a default theme or (if available) a custom dark theme with your own accent color.</p>
+            <p style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">Select a default theme or (if available) a custom accent color that works on Light, Dark or Telegram.</p>
             <div class="scrollthemes">
               <div class="theme-options" id="default-themes">
                 <div class="theme-option" data-theme="light" onclick="selectTheme('light')">
@@ -1509,8 +1527,11 @@ img.advertisments {
                     <div class="swatch" style="background:linear-gradient(90deg,#17212b,#2aabee);"></div> <strong>Telegram</strong> </div>
               </div>
               <div id="custom-theme-section" class="custom-section hidden">
-                  <h4>Custom Dark Themes (color choice)</h4>
-                  <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">Pick one of the 4 preset accents or choose any color. The selected color becomes the main accent on a dark base.</p>
+                  <h4>Custom Accent Color</h4>
+                  <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">
+                    Pick a color — it applies on top of the currently selected theme (Light, Dark, or Telegram).
+                    Perfect for a <strong>Light theme with your own accent color</strong>.
+                  </p>
                   <div class="custom-colors">
                       <div class="custom-color-btn" style="background:#e53e3e;" data-color="#e53e3e" onclick="selectCustomColor('#e53e3e')" title="Red"></div>
                       <div class="custom-color-btn" style="background:#38a169;" data-color="#38a169" onclick="selectCustomColor('#38a169')" title="Green"></div>
@@ -1530,5 +1551,6 @@ img.advertisments {
         </div>
     </div>
     <script src="new.service.account.js"></script>
+    <script src="new-service-amount-details.js"></script>
 </body>
 </html>
