@@ -125,6 +125,19 @@ body {
   --border-strong: var(--dark-blue);
   --input-border: #333333;
   --scrollbar: #333333;
+}@keyframes springPopup {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 50px) scale(0.88);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -6px) scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
 }
 body {
   font-family: "Microsoft YaHei", "SimHei", Arial, sans-serif;
@@ -246,6 +259,16 @@ strong#current-user {
 }
 .search-box input:focus{
         border: none;
+}
+a,
+button,
+input{
+ transition: all 0.2s ease-in-out;
+}
+a:active,
+button:active,
+input:active{
+  transform: scale(0.95);
 }
 .search-box button {
     background: transparent;
@@ -891,7 +914,7 @@ color: var(--text-footer);
   display: flex;
 }
 .modal-content {
-   background: var(--bg-card);
+background: var(--bg-card);
     width: 99%;
     max-width: 420px;
     color: var(--text-main);
@@ -900,6 +923,10 @@ color: var(--text-footer);
     padding: 10px;
     text-align: center;
     backdrop-filter: blur(15px);
+    animation: springPopup 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 .modal-content h3 {
       color: var(--dark-blue);
@@ -1021,9 +1048,7 @@ border: none;
         backdrop-filter: blur(3px);
         box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
     }
-    .menu-btn:hover{
-      background: var(--border);
-    }
+    
     .dropdown {
            position: absolute;
     top: 50%;
@@ -1067,12 +1092,7 @@ border: none;
       opacity: 100%;
           color: var(--dark-blue);
     }
-    .bottomoptions a:nth-child(5){
-      display: none;
-    }
-    .bottomoptions a:nth-child(4){
-          display: flex;
-    }
+    
 @media (max-width: 900px) {
   .turbo-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1159,15 +1179,7 @@ img.advertisments {
   .header .inner {
     flex-direction: column;
     align-items: stretch;
-  } .bottomoptions a:nth-child(5){
-          display: flex;
-    }
-    .bottomoptions a:nth-child(4){
-      display: none;
-    }
-    #account{
-        display: none;
-    }
+  } 
   .dropdown {
    position: absolute;
         top: 55%;
@@ -1481,11 +1493,7 @@ img.advertisments {
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M303.85-700v-43.08q0-24.75 17.62-42.37 17.63-17.62 42.38-17.62h232.3q24.75 0 42.38 17.62 17.62 17.62 17.62 42.37V-700H708q17.85 0 32.35 9.85 14.49 9.84 21.19 25.84l91.69 209.08q3.38 8.38 5.08 17.35 1.69 8.96 1.69 16.83V-240q0 24.75-17.63 42.37Q824.75-180 800-180H160q-24.75 0-42.37-17.63Q100-215.25 100-240v-180.92q0-9.16 1.69-17.54 1.7-8.39 5.08-16.77l91.69-209.08q6.7-16 21.19-25.84Q234.15-700 252-700h51.85Zm60 0h232.3v-43.08h-232.3V-700ZM290-466.15v-40h60v40h260v-40h60v40h112.92L708-640H252l-74.92 173.85H290Zm0 60H160V-240h640v-166.15H670v40h-60v-40H350v40h-60v-40Zm190-30Zm0-30Zm0 60Z"/></svg>
             Services
         </a> 
-        <a href="#account" class="system-active" >
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-238.31q54-53 125.5-83.5t154.5-30.5q83 0 154.5 30.5t125.5 83.5v-509.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H212.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v509.38Zm372.08-238.07Q610-514.31 610-568.46t-37.92-92.08q-37.93-37.92-92.08-37.92t-92.08 37.92Q350-622.61 350-568.46t37.92 92.08q37.93 37.92 92.08 37.92t92.08-37.92ZM212.31-140Q182-140 161-161q-21-21-21-51.31v-535.38Q140-778 161-799q21-21 51.31-21h535.38Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H212.31Zm34.77-60h465.84Q662-246.69 601.89-269.5 541.77-292.31 480-292.31q-61 0-122.12 22.81-61.11 22.81-110.8 69.5Zm183.5-319.04Q410-539.61 410-568.46t20.58-49.42q20.57-20.58 49.42-20.58t49.42 20.58Q550-597.31 550-568.46t-20.58 49.42q-20.57 20.58-49.42 20.58t-49.42-20.58ZM480-499.15Z"/></svg>
-            Account
-        </a> 
-         <a href="accverify.html" class="mobile-active">
+        <a href="#account">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-238.31q54-53 125.5-83.5t154.5-30.5q83 0 154.5 30.5t125.5 83.5v-509.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H212.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v509.38Zm372.08-238.07Q610-514.31 610-568.46t-37.92-92.08q-37.93-37.92-92.08-37.92t-92.08 37.92Q350-622.61 350-568.46t37.92 92.08q37.93 37.92 92.08 37.92t92.08-37.92ZM212.31-140Q182-140 161-161q-21-21-21-51.31v-535.38Q140-778 161-799q21-21 51.31-21h535.38Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H212.31Zm34.77-60h465.84Q662-246.69 601.89-269.5 541.77-292.31 480-292.31q-61 0-122.12 22.81-61.11 22.81-110.8 69.5Zm183.5-319.04Q410-539.61 410-568.46t20.58-49.42q20.57-20.58 49.42-20.58t49.42 20.58Q550-597.31 550-568.46t-20.58 49.42q-20.57 20.58-49.42 20.58t-49.42-20.58ZM480-499.15Z"/></svg>
             Account
         </a> 
