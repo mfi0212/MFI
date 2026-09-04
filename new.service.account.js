@@ -1,4 +1,5 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
+
 function getTodayInterest() {
   const today = new Date().toDateString();
   const stored = localStorage.getItem('jh_today_interest');
@@ -537,7 +538,6 @@ function doLogin() {
     }
   }
   if (!matchedUser) {
-    alert('Wrong password');
     return;
   }
   currentUser = matchedUser;
@@ -735,7 +735,117 @@ function logout() {
   updateInterestDisplay();
   enforceCustomUIAccess();
 }
+// ==================== iOS-style Notification System ====================
+    function showIOSNotification(title, message, type = 'info', duration = 2100) {
+      const container = document.getElementById('ios-toast-container');
+      if (!container) return;
 
+      const toast = document.createElement('div');
+      toast.className = `ios-toast ${type}`;
+
+      let icon = 'i';
+      if (type === 'success') icon = '<img src="service-icons/done_icon.png" alt="">';
+      else if (type === 'warning') icon = '!';
+      else if (type === 'error') icon = '<img src="service-icons/close_icon.png" alt="">';
+      else if (type === 'info') icon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M509.61-140q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-535.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H509.61q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H509.61Zm-28.38-310H170q-12.77 0-21.38-8.62Q140-467.23 140-480t8.62-21.38Q157.23-510 170-510h311.23l-76.92-76.92q-8.31-8.31-8.5-20.27-.19-11.96 8.5-21.27 8.69-9.31 21.08-9.62 12.38-.3 21.69 9l123.77 123.77q10.84 10.85 10.84 25.31 0 14.46-10.84 25.31L447.08-330.92q-8.92 8.92-21.19 8.8-12.27-.11-21.58-9.42-8.69-9.31-8.38-21.38.3-12.08 9-20.77l76.3-76.31Z"/></svg>';
+
+      toast.innerHTML = `
+        <div class="ios-toast-icon">${icon}</div>
+        <div class="ios-toast-content">
+          <div class="ios-toast-title">${title}</div>
+          <div class="ios-toast-message">${message}</div>
+        </div>
+      `;
+
+      container.appendChild(toast);
+
+      // Trigger show animation
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          toast.classList.add('show');
+        });
+      });
+
+      // Auto hide
+      setTimeout(() => {
+        toast.classList.remove('show');
+        toast.classList.add('hide');
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 550);
+      }, duration);
+    }
+
+    // ==================== Patch existing functions for notifications ====================
+    // Wait for original scripts to load, then wrap key functions
+    window.addEventListener('load', function() {
+      // --- LOGIN ---
+      if (typeof window.doLogin === 'function') {
+        const originalDoLogin = window.doLogin;
+        window.doLogin = function() {
+          const result = originalDoLogin.apply(this, arguments);
+          // Show notification after a short delay so UI updates first
+          setTimeout(() => {
+            const userEl = document.getElementById('current-user');
+            const loanSection = document.getElementById('loan-section');
+            if (loanSection && !loanSection.classList.contains('hidden')) {
+              const name = userEl ? userEl.textContent.trim() : 'User';
+              showIOSNotification('Logged in', `Welcome back, ${name}!`, 'success');
+            } else {
+              // If still on login screen, might be wrong password
+              showIOSNotification('Login failed', 'Incorrect password. Try again.', 'error');
+            }
+          }, 180);
+          return result;
+        };
+      }
+
+      // --- LOGOUT ---
+      if (typeof window.logout === 'function') {
+        const originalLogout = window.logout;
+        window.logout = function() {
+          const result = originalLogout.apply(this, arguments);
+          setTimeout(() => {
+            showIOSNotification('Logged out', 'You have been successfully logged out.', 'info');
+          }, 150);
+          return result;
+        };
+      }
+
+      // --- THEME SELECT ---
+      if (typeof window.selectTheme === 'function') {
+        const originalSelectTheme = window.selectTheme;
+        window.selectTheme = function(theme) {
+          const result = originalSelectTheme.apply(this, arguments);
+          const themeNames = {
+            light: 'Light',
+            dark: 'Dark Black',
+            telegram: 'Telegram',
+            custom: 'Custom'
+          };
+          const name = themeNames[theme] || theme;
+          setTimeout(() => {
+            showIOSNotification('Theme changed', `${name} theme applied successfully.`, 'success');
+          }, 200);
+          return result;
+        };
+      }
+
+      // --- CUSTOM COLOR ---
+      if (typeof window.selectCustomColor === 'function') {
+        const originalSelectCustomColor = window.selectCustomColor;
+        window.selectCustomColor = function(color) {
+          const result = originalSelectCustomColor.apply(this, arguments);
+          setTimeout(() => {
+            showIOSNotification('Accent updated', `Custom color ${color} applied.`, 'success');
+          }, 200);
+          return result;
+        };
+      }
+    });
+
+    // Also expose a global helper so other scripts can use it
+    window.showIOSNotification = showIOSNotification;
 function drawBarGraph() {
   const canvas = document.getElementById('interestChart');
   const ctx = canvas.getContext('2d');
