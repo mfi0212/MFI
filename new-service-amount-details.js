@@ -1,4 +1,3 @@
-// ========== USERS ==========
 const users = {
   "Mahesh Muthinti": {
     password: "Mahesh888*",
@@ -21,7 +20,7 @@ const users = {
       { amount: 3475, interest: 1407, borrowed: "21-07-2026", return: "20-09-2026", overdueFee: 0 },
       { amount: 2990, interest: 1170, borrowed: "24-07-2026", return: "23-09-2026", overdueFee: 0 },
       { amount: 3940, interest: 1280,  borrowed: "28-07-2026", return: "28-09-2026", overdueFee: 25 },
-      { amount: 1210,  interest: 495,  borrowed: "15-08-2026", return: "29-09-2026", overdueFee: 0 },
+      { amount: 1210,  interest: 650,  borrowed: "15-08-2026", return: "29-09-2026", overdueFee: 0 },
       { amount: 1000,interest: 450, borrowed: "31-09-2026", return: "30-09-2026", overdueFee: 0 },
     ],
     access: {
