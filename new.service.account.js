@@ -14,13 +14,13 @@ function getTodayInterest() {
   for (let i = 0; i < dateStr.length; i++) {
     hash = dateStr.charCodeAt(i) + ((hash << 5) - hash);
   }
-  const rate = +(30 + (Math.abs(hash) % 500) / 100).toFixed(2);
+  // 35.00% – 39.99%
+  const rate = +(35 + (Math.abs(hash) % 500) / 100).toFixed(2);
 
   localStorage.setItem('jh_today_interest', rate);
   localStorage.setItem('jh_today_date', today);
   return rate;
 }
-
 const todayInterest = getTodayInterest();
 
 function getFixedBars() {
@@ -38,10 +38,10 @@ function getFixedBars() {
 
   for (let i = 0; i < 10; i++) {
     seed = (seed * 16807 + 7) % 2147483647;
-    const variation = ((seed % 400) / 100) - 2;
-    bars.push(+(Math.max(30, Math.min(35, todayInterest + variation)).toFixed(2)));
+    const variation = ((seed % 400) / 100) - 2;   // ±2%
+    bars.push(+(Math.max(35, Math.min(40, todayInterest + variation)).toFixed(2)));
   }
-  bars[9] = todayInterest;
+  bars[9] = todayInterest;   // last bar = exact today’s rate
 
   localStorage.setItem('jh_today_bars', JSON.stringify(bars));
   return bars;
@@ -201,7 +201,9 @@ function applyTheme(themeName, customColor) {
 
   drawBarGraph();
 }
-
+localStorage.removeItem('jh_today_interest');
+localStorage.removeItem('jh_today_bars');
+localStorage.removeItem('jh_today_date');
 function enforceCustomUIAccess() {
   const hasCustom = currentUser && users[currentUser] && users[currentUser].customui === 'yes';
   const storedColor = localStorage.getItem('jh_custom_color');
@@ -844,9 +846,8 @@ function logout() {
       }
     });
 
-    // Also expose a global helper so other scripts can use it
     window.showIOSNotification = showIOSNotification;
-function drawBarGraph() {
+ function drawBarGraph() {
   const canvas = document.getElementById('interestChart');
   const ctx = canvas.getContext('2d');
   const width = canvas.width;
@@ -855,7 +856,7 @@ function drawBarGraph() {
 
   const bars = getFixedBars();
 
-  const minR = 29, maxR = 36;
+  const minR = 34, maxR = 41;   // ← new scale
   const barCount = bars.length;
   const gap = 12;
   const barWidth = (width - (barCount + 1) * gap) / barCount;
