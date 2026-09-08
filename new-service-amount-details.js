@@ -1,3 +1,4 @@
+// ========== USERS ==========
 const users = {
   "Mahesh Muthinti": {
     password: "Mahesh888*",
@@ -25,12 +26,43 @@ const users = {
     ],
     access: {
       "Delay It": true,
+      "Split Pay": true,
+      "Buy Limit": true,
+      "Pre-Saver": true,
+      "Lendlink-Mid": false,
+      "Tomar Juntos": false,
+      "Mining bot": false,
+      "BotPay": true,
+      "BsRora-Atdo": false,
+      "STL": false,
+    }
+  },
+    "Deepak Tallapudi": {
+    password: "Deepak@1",
+    displayName: "Deepak Tallapudi",
+    premiumType: "Normal",
+    fixedInterest: 0,
+    customui: "no",
+    showCustomContent: "no",
+    customContent: {
+      type: "image",
+      value: "https://mfi0212.github.io/MFI/servoces.special.offer/offer.png",
+      url: "https://mfi0212.github.io/MFI/servoces.special.offer/eligible.offer"
+    },
+    showSpecialNotice: "no",
+    specialNoticeText: "",
+
+    loans: [
+      
+    ],
+    access: {
+      "Delay It": true,
       "Split Pay": false,
-      "Buy Limit": false,
+      "Buy Limit": true,
       "Pre-Saver": false,
       "Lendlink-Mid": false,
       "Mining bot": false,
-      "BotPay": true,
+      "BotPay":  false,
       "Tomar Juntos": false,
       "BsRora-Atdo": false,
       "STL": false,
