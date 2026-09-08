@@ -53,7 +53,7 @@ const users = {
     specialNoticeText: "",
 
     loans: [
-      
+      { amount: 5000,interest: 1500, borrowed: "08-09-2026", return: "07-10-2026", overdueFee: 0 },
     ],
     access: {
       "Delay It": true,
