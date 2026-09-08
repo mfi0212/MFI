@@ -11,8 +11,8 @@ const users = {
       value: "https://mfi0212.github.io/MFI/servoces.special.offer/offer.png",
       url: "https://mfi0212.github.io/MFI/servoces.special.offer/eligible.offer"
     },
-    showSpecialNotice: "yes",
-    specialNoticeText: "Mr.<strong>Mahesh Muthinti</strong>, your BotPay bot will handle everything for you, including applying and paying your fees. The fees will be added directly to your amount. Simply and easily.",
+    showSpecialNotice: "no",
+    specialNoticeText: "",
 
     loans: [
       { amount: 29418,interest: 7710, borrowed: "11-05-2026", return: "12-09-2026", overdueFee: 0 },
