@@ -1,5 +1,4 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
-
 function getTodayInterest() {
   const today = new Date().toDateString();
   const stored = localStorage.getItem('jh_today_interest');
@@ -1016,3 +1015,10 @@ btn.addEventListener('click', (e) => {
 document.addEventListener('click', () => {
   dropdown.classList.remove('show');
 });
+function goBack() {
+    if (window.history.length > 1) {
+        window.history.back();
+    } else {
+        alert("✅ Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
+    }
+}
