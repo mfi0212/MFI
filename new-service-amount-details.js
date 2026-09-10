@@ -18,10 +18,10 @@ const users = {
      
     ],
     access: {
-      "Delay It": true,
-      "Split Pay": true,
-      "Buy Limit": true,
-      "Pre-Saver": true,
+      "Delay It": false,
+      "Split Pay": false,
+      "Buy Limit": false,
+      "Pre-Saver": false,
       "Lendlink-Mid": false,
       "Tomar Juntos": false,
       "Mining bot": false,
