@@ -1,61 +1,461 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>BS&MFI | Turbo</title> <link rel="icon" href="mfi.logo.png" /> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"> <style> @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&display=swap'); * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Red Hat Display", sans-serif;scrollbar-width: none; } body { font-family: 'Inter', sans-serif; background-color: #f0f2f5; color: #1f2a44; margin: 0; padding: 32px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; letter-spacing: 0.4px; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .header { text-align: center; margin-bottom: 40px; } .header h1 { font-size: 28px; font-weight: 700; color: #1f2a44; margin: 0; } .header p { font-size: 16px; color: #67728a; margin-top: 8px; max-width: 600px; } .container { max-width: 1200px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; } .card { background: linear-gradient(145deg, #ffffff, #f8fafc); border-radius: 16px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); padding: 20px; transition: transform 0.2s ease, box-shadow 0.2s ease; border: none; max-width: 600px; width: 100%; position: relative; } .card:hover { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); } .card img { width: 50px; height: 50px; margin: 13px auto 12px; display: block; border-radius: 13px; background: transparent; padding: 8px; border: solid 2px #00000052; } .card h2 { font-size: 22px; font-weight: 600; color: #0048ff; margin: 0 0 16px; text-align: center; } .card ul { list-style: none; padding: 0; margin: 0; } .card ul li { font-size: 14px; color: #3c4b64; margin: 8px 0; display: flex; align-items: flex-start; line-height: 1.4; } .card ul li::before { content: "•"; color: #00aaff; font-size: 16px; margin-right: 8px; line-height: 1.4; } .highlight { font-weight: 900; color: #000000; margin: 0px 5px; display: contents; } .badge { display: inline-block; background-color: #0048ff2e; color: #0048ff; font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 12px; margin-bottom: 12px; } .offer-badge { background-color: #28a745; color: white; font-size: 11px; padding: 3px 8px; border-radius: 8px; margin-right: 5px; display: inline-block; } .discount-text { font-size: 11px; font-weight: bold; color: #0048ff; display: inline-block; } .end-date { position: absolute; top: 23px; right: 10px; font-size: 10px; color: black; background: #ff000036; padding: 3px 10px; border-radius: 6px; } button { padding: 11px; width: 100%; font-size: 15px; border: none; border-radius: 13px; margin: 10px auto 0px; cursor: pointer; letter-spacing: 0.6px; font-weight: 600; filter: drop-shadow(0px 5px 5px lightgray); } select, .price-display { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; } .price-display { background: #f0f8ff; text-align: center; font-weight: bold; color: #0048ff; } .strikethrough { text-decoration: line-through; color: #67728a; margin-right: 8px; } @media (max-width: 768px) { body { padding: 16px; } .container { grid-template-columns: 1fr; width: 100%; } .header h1 { font-size: 24px; } .header p { font-size: 14px; } .end-date { font-size: 9px; padding: 3px 6px; } } </style> </head> <body> <div class="header"> <h1>BS&MFI Turbo</h1> <p>Power by @BS&MFI</p> </div> <div class="container"> <div class="card"> <div class="badge">Mini</div> <div id="endDateDisplay" class="end-date"></div> <img src="https://media.tenor.com/pT6HQx4wIogAAAAj/twitch-rpx-syria.gif" alt="Normal Plan Icon" aria-label="Normal Plan Icon"> <h2 style="display: flex; justify-content: center; align-items: baseline; gap: 10px;"> Premium <p style="color: green; font-size: 13px; font-weight: 500;">₹0.00/mon</p> </h2> <ul> <li>Borrow upto : <span class="highlight">40,000</span></li> <li>Splitpay available: <span class="highlight">No</span></li> <li>Day limit : <span class="highlight">30 days</span></li> <li>Can Extand upto : <span class="highlight">30 days</span></li> <li>Offer available : <span class="highlight">Yes</span></li> </ul> <!-- <div id="offerStatus"></div> <select id="monthsSelect"> <option value="1">1 Month</option> <option value="3">3 Months</option> <option value="5">5 Months</option> <option value="8">8 Months</option> </select> <div id="priceDisplay" class="price-display">Select duration to see price</div> <a href="https://forms.gle/rQKT3RizYfpT9FjM7"><button style="background-image: linear-gradient(45deg, rgb(255 169 0), rgb(255 0 198), #5b5bff, #56ffcc); color: white;">Take Premium</button></a> --> <button style="background: #c3c3c387;">Current plan</button> </div> <!-- Turbo Plan --> <div class="card"> <div class="badge">Tele</div> <img src="https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/animated/10000/2.gif" alt="Tele-STAR Plan Icon" aria-label="Tele-STAR Plan Icon"> <h2 style="display: flex; justify-content: center; align-items: baseline; gap: 10px;"> Business <p style="color: green; font-size: 13px; font-weight: 500;">₹940.00/mon</p> </h2> <ul> <li>Borrow upto : <span class="highlight">80,000+</span></li> <li>Splitpay available: <span class="highlight">Yes</span></li> <li>Day limit : <span class="highlight">60 days</span></li> <li>Can Extand upto : <span class="highlight">30 days</span></li> <li>Offer available : <span class="highlight">Yes</span></li> </ul> <a href="https://forms.gle/rQKT3RizYfpT9FjM7"><button style="background-image: linear-gradient(45deg, rgb(255 169 0), rgb(255 0 198), #5b5bff, #56ffcc); color: white;">Take Premium</button></a> </div> </div>
-<script>
-        const startDate = new Date('2025-01-01');
-        const endDate = new Date('2025-12-31');
-        const basePrice = 450;
-        const discountedPrices = {
-            1: 285, 3: 770, 5: 1153, 8: 1540
-        };
-        const fullPrices = {};
-        for (let i = 1; i <= 8; i++) {
-            fullPrices[i] = basePrice * i;
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>వడ్డీ ట్రాకర్</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #fff;
+      color: #2b2b2b;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+    }* {
+            -webkit-tap-highlight-color: transparent;
         }
-        const monthsSelect = document.getElementById('monthsSelect');
-        const priceDisplay = document.getElementById('priceDisplay');
-        const offerStatus = document.getElementById('offerStatus');
-        const endDateDisplay = document.getElementById('endDateDisplay');
-        function updatePrice() {
-            const now = new Date();
-            const isOfferActive = now >= startDate && now <= endDate;
-            if (!isOfferActive) {
-                monthsSelect.style.display = 'none';
-                priceDisplay.style.display = 'none';
-                offerStatus.style.display = 'none';
-                endDateDisplay.style.display = 'none';
-                return;
-            }
-            monthsSelect.style.display = 'block';
-            priceDisplay.style.display = 'block';
-            offerStatus.style.display = 'block';
-            endDateDisplay.style.display = 'block';
-            endDateDisplay.textContent = `Ends: ${endDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
-            const months = parseInt(monthsSelect.value);
-            const originalTotal = fullPrices[months];
-            const discountedTotal = discountedPrices[months];
-            const monthly = Math.round(discountedTotal / months);
-            const discountPercent = months <= 6 ? 15 : 25;
-            offerStatus.innerHTML = `<div class="offer-badge">Offer Active!</div><span class="discount-text">${discountPercent}% Off</span>`;
-             priceDisplay.innerHTML = `Total amount: <span class="strikethrough">₹${originalTotal}.00</span>₹${discountedTotal}.00`;
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
-        monthsSelect.addEventListener('change', updatePrice);
-        updatePrice();
-        document.addEventListener("DOMContentLoaded", () => {
-            const customMenu = document.querySelector(".custom-menu");
-            document.addEventListener("contextmenu", (event) => {
-                event.preventDefault();
-                if (customMenu) {
-                    customMenu.style.display = "block";
-                    customMenu.style.top = `${event.pageY}px`;
-                    customMenu.style.left = `${event.pageX}px`;
-                }
-            });
-            document.addEventListener("click", () => {
-                if (customMenu) {
-                    customMenu.style.display = "none";
-                }
-            });
-        });
-    </script>
+    .container {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 20px 15px 40px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .header h2 {
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .today {
+      font-size: 15px;
+      white-space: nowrap;
+    }
+    .navigation {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .nav-btn {
+      flex: 1;
+      min-height: 38px;
+      padding: 8px;
+      background: #fff;
+      color: #2b2b2b;
+      border: 1px solid #2b2b2b;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: #2b2b2b;
+      color: #fff;
+    }
+    .section { display: none; }
+    .section.active { display: block; }
+    .section-title {
+      margin-bottom: 12px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .user {
+      margin-bottom: 12px;
+      padding: 14px;
+      border: 1px solid #2b2b2b;
+      border-radius: 5px;
+    }
+    .user-name {
+      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .entry {
+      margin-bottom: 8px;
+      padding: 10px;
+      border: 1px solid #2b2b2b;
+      border-radius: 4px;
+    }
+    .entry:last-child { margin-bottom: 0; }
+    .entry div {
+         font-size: 17px;
+    line-height: 35px;
+    font-weight: 400;
+    }
+    .paid-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .paid-input {
+      width: 100px;
+      padding: 6px 8px;
+      border: 1px solid #2b2b2b;
+      border-radius: 3px;
+      text-align: right;
+      font-size: 14px;
+      outline: none;
+    }
+    .paid-input:focus {
+      outline: 2px solid #2b2b2b;
+      outline-offset: 1px;
+    }
+    .remaining {
+          margin-top: 6px !important;
+    background: #2b2b2b;
+    color: #fff !important;
+    border-radius: 3px;
+    text-align: center;
+    }
+    .notes-box {
+      padding: 14px;
+      border: 1px solid #2b2b2b;
+      border-radius: 5px;
+    }
+    .note-input {
+      display: block;
+      width: 100%;
+      min-height: 120px;
+      padding: 10px;
+      resize: vertical;
+      border: 1px solid #2b2b2b;
+      border-radius: 3px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      outline: none;
+    }
+    .note-input:focus {
+      outline: 2px solid #2b2b2b;
+      outline-offset: 1px;
+    }
+    .save-btn {
+      width: 100%;
+      margin-top: 8px;
+      padding: 10px;
+      background: #2b2b2b;
+      color: #fff;
+      border: 1px solid #2b2b2b;
+      border-radius: 3px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .save-btn:hover {
+      background: #fff;
+      color: #2b2b2b;
+    }
+    .notes-list { margin-top: 12px; }
+    .note {
+      position: relative;
+      margin-bottom: 8px;
+      padding: 10px 40px 10px 10px;
+      border: 1px solid #2b2b2b;
+      border-radius: 4px;
+    }
+    .note:last-child { margin-bottom: 0; }
+    .note-text {
+      font-size: 14px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .note-date {
+      margin-top: 6px;
+      font-size: 11px;
+    }
+    .delete-note {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 26px;
+      height: 26px;
+      background: #2b2b2b;
+      color: #fff;
+      border: 1px solid #2b2b2b;
+      border-radius: 3px;
+      font-size: 16px;
+      line-height: 24px;
+      cursor: pointer;
+    }
+    .delete-note:hover {
+      background: #fff;
+      color: #2b2b2b;
+    }
+    .empty-notes {
+      padding: 16px 5px;
+      text-align: center;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2 id="title">వడ్డీ</h2>
+      <div class="today" id="todayDate"></div>
+      <button class="nav-btn" onclick="toggleLanguage()">తె/ENG</button>
+    </div>
+
+    <div class="navigation">
+      <button class="nav-btn active" id="interestNav" onclick="showSection('interest')">వడ్డీ</button>
+      <button class="nav-btn" id="notesNav" onclick="showSection('notes')">గమనికలు</button>
+    </div>
+
+    <section id="interestSection" class="section active">
+      <h3 class="section-title" id="interestTitle">వడ్డీ వివరాలు</h3>
+      <div id="app"></div>
+    </section>
+
+    <section id="notesSection" class="section">
+      <h3 class="section-title" id="notesTitle">గమనికలు</h3>
+      <div class="notes-box">
+        <textarea id="noteInput" class="note-input" placeholder="ఇక్కడ ఏదైనా రాయండి..."></textarea>
+        <button class="save-btn" id="saveButton" onclick="saveNote()">సేవ్ చేయండి</button>
+        <div id="notesList" class="notes-list"></div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // ===================== ONLY EDIT THIS PART =====================
+    const users = [
+      {
+        name: "Ramesh",
+        entries: [
+          { amount: 40000, interest: 2, takenDate: "2026-05-30", interestPaid: 0 },
+        ]
+      },
+    ];
+    // ===============================================================
+
+    let currentLang = "te";
+
+    const lang = {
+      en: {
+        title: "Interest",
+        today: "Today",
+        interestTitle: "Interest Details",
+        notesTitle: "Notes",
+        amount: "Amount",
+        interest: "Interest",
+        takenDate: "Taken Date",
+        days: "Days",
+        interestPaid: "Interest Paid",
+        remaining: "Remaining Interest",
+        interestNav: "Interest",
+        notesNav: "Notes",
+        placeholder: "Write something here...",
+        save: "Save",
+        emptyNotes: "No notes saved yet.",
+        delete: "Delete"
+      },
+      te: {
+        title: "వడ్డీ",
+        today: "ఈరోజు",
+        interestTitle: "వడ్డీ వివరాలు",
+        notesTitle: "గమనికలు",
+        amount: "మొత్తం",
+        interest: "వడ్డీ",
+        takenDate: "తీసుకున్న తేదీ",
+        days: "రోజులు",
+        interestPaid: "చెల్లించిన వడ్డీ",
+        remaining: "మిగిలిన వడ్డీ",
+        interestNav: "వడ్డీ",
+        notesNav: "గమనికలు",
+        placeholder: "ఇక్కడ ఏదైనా రాయండి...",
+        save: "సేవ్ చేయండి",
+        emptyNotes: "ఇంకా గమనికలు సేవ్ చేయలేదు.",
+        delete: "తొలగించు"
+      }
+    };
+
+    const monthNames = {
+      en: ["January","February","March","April","May","June","July","August","September","October","November","December"],
+      te: ["జనవరి","ఫిబ్రవరి","మార్చి","ఏప్రిల్","మే","జూన్","జూలై","ఆగస్టు","సెప్టెంబర్","అక్టోబర్","నవంబర్","డిసెంబర్"]
+    };
+
+    function showSection(section) {
+      const interestSection = document.getElementById("interestSection");
+      const notesSection = document.getElementById("notesSection");
+      const interestNav = document.getElementById("interestNav");
+      const notesNav = document.getElementById("notesNav");
+
+      if (section === "interest") {
+        interestSection.classList.add("active");
+        notesSection.classList.remove("active");
+        interestNav.classList.add("active");
+        notesNav.classList.remove("active");
+      }
+      if (section === "notes") {
+        interestSection.classList.remove("active");
+        notesSection.classList.add("active");
+        interestNav.classList.remove("active");
+        notesNav.classList.add("active");
+        renderNotes();
+      }
+    }
+
+    function parseDate(dateStr) {
+      const parts = dateStr.split("-");
+      return new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+    }
+
+    function formatDateWithMonth(dateStr) {
+      const d = parseDate(dateStr);
+      return `${d.getDate()} ${monthNames[currentLang][d.getMonth()]} ${d.getFullYear()}`;
+    }
+
+    function getDays(takenDate) {
+      const start = parseDate(takenDate);
+      const today = new Date();
+      start.setHours(0, 0, 0, 0);
+      today.setHours(0, 0, 0, 0);
+      return Math.max(0, Math.floor((today - start) / 86400000));
+    }
+
+    function showToday() {
+      const today = new Date();
+      document.getElementById("todayDate").innerText =
+        `${lang[currentLang].today}: ${today.getDate()} ${monthNames[currentLang][today.getMonth()]} ${today.getFullYear()}`;
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === "en" ? "te" : "en";
+      updateLanguage();
+      render();
+      renderNotes();
+    }
+
+    function updateLanguage() {
+      const t = lang[currentLang];
+      document.documentElement.lang = currentLang;
+      document.title = t.title;
+      document.getElementById("title").innerText = t.title;
+      document.getElementById("interestTitle").innerText = t.interestTitle;
+      document.getElementById("notesTitle").innerText = t.notesTitle;
+      document.getElementById("interestNav").innerText = t.interestNav;
+      document.getElementById("notesNav").innerText = t.notesNav;
+      document.getElementById("noteInput").placeholder = t.placeholder;
+      document.getElementById("saveButton").innerText = t.save;
+      showToday();
+    }
+
+    function render() {
+      const app = document.getElementById("app");
+      const t = lang[currentLang];
+      app.innerHTML = "";
+
+      users.forEach((user, userIndex) => {
+        const entriesHTML = user.entries.map((entry, entryIndex) => {
+          const days = getDays(entry.takenDate);
+          const totalInterest = Math.round((entry.amount * entry.interest * days) / (100 * 30));
+          const remaining = Math.max(0, totalInterest - entry.interestPaid);
+
+          return `
+            <div class="entry">
+              <div>${t.amount}: ₹${Number(entry.amount).toLocaleString("en-IN")}</div>
+              <div>${t.interest}: ${entry.interest}%</div>
+              <div>${t.takenDate}: ${formatDateWithMonth(entry.takenDate)}</div>
+              <div>${t.days}: ${days}</div>
+              <div class="paid-row">
+                <span>${t.interestPaid}:</span>
+                <input class="paid-input" type="number" min="0" value="${entry.interestPaid}"
+                  oninput="updatePaid(${userIndex}, ${entryIndex}, this.value)">
+              </div>
+              <div class="remaining">${t.remaining}: ₹${remaining.toLocaleString("en-IN")}</div>
+            </div>
+          `;
+        }).join("");
+
+        app.innerHTML += `
+          <div class="user">
+            <div class="user-name">${user.name}</div>
+            ${entriesHTML}
+          </div>
+        `;
+      });
+    }
+
+    function updatePaid(userIndex, entryIndex, value) {
+      users[userIndex].entries[entryIndex].interestPaid = Number(value) || 0;
+      render();
+    }
+
+    const NOTES_KEY = "interestTrackerNotes";
+
+    function getNotes() {
+      try {
+        return JSON.parse(localStorage.getItem(NOTES_KEY)) || [];
+      } catch {
+        return [];
+      }
+    }
+
+    function saveNote() {
+      const input = document.getElementById("noteInput");
+      const text = input.value.trim();
+      if (!text) {
+        input.focus();
+        return;
+      }
+      const notes = getNotes();
+      notes.unshift({ id: Date.now(), text, date: new Date().toISOString() });
+      localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+      input.value = "";
+      renderNotes();
+    }
+
+    function deleteNote(id) {
+      const notes = getNotes().filter(note => note.id !== id);
+      localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+      renderNotes();
+    }
+
+    function formatNoteDate(dateString) {
+      const date = new Date(dateString);
+      const hours = String(date.getHours()).padStart(2, "0");
+      const minutes = String(date.getMinutes()).padStart(2, "0");
+      return `${date.getDate()} ${monthNames[currentLang][date.getMonth()]} ${date.getFullYear()}, ${hours}:${minutes}`;
+    }
+
+    function escapeHTML(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function renderNotes() {
+      const list = document.getElementById("notesList");
+      const notes = getNotes();
+      const t = lang[currentLang];
+
+      if (notes.length === 0) {
+        list.innerHTML = `<div class="empty-notes">${t.emptyNotes}</div>`;
+        return;
+      }
+
+      list.innerHTML = notes.map(note => `
+        <div class="note">
+          <button class="delete-note" onclick="deleteNote(${note.id})" title="${t.delete}">×</button>
+          <div class="note-text">${escapeHTML(note.text)}</div>
+          <div class="note-date">${formatNoteDate(note.date)}</div>
+        </div>
+      `).join("");
+    }
+
+    updateLanguage();
+    render();
+    renderNotes();
+  </script>
 </body>
 </html>
-
