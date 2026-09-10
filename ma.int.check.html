@@ -92,7 +92,9 @@
     display: flex;
     justify-content: space-between;
     }
-    /* Title (label) vs Details (value) font-weight difference */
+    .entry div:nth-child(2){
+      display: none;
+    }
     .entry .label {
       font-weight: 600;
     }
@@ -256,7 +258,7 @@ footer {
         amount: "Amount",
         interest: "Interest",
         takenDate: "Taken Date",
-        days: "Days",
+        days: "Days Passed",
         interestPaid: "Interest Paid",
         remaining: "Remaining Interest",
         interestNav: "Interest",
@@ -274,7 +276,7 @@ footer {
         amount: "మొత్తం",
         interest: "వడ్డీ",
         takenDate: "తీసుకున్న తేదీ",
-        days: "రోజులు",
+        days: "గడిచినా రోజులు",
         interestPaid: "చెల్లించిన వడ్డీ",
         remaining: "మిగిలిన వడ్డీ",
         interestNav: "వడ్డీ",
