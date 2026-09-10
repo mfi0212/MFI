@@ -11,15 +11,16 @@
       color: #2b2b2b;
       font-family: Arial, sans-serif;
       min-height: 100vh;
-    }* {
-            -webkit-tap-highlight-color: transparent;
-        }
-        body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
+    }
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
     .container {
       max-width: 750px;
       margin: 0 auto;
@@ -87,9 +88,17 @@
     }
     .entry:last-child { margin-bottom: 0; }
     .entry div {
-         font-size: 17px;
+     font-size: 17px;
     line-height: 35px;
-    font-weight: 400;
+    display: flex;
+    justify-content: space-between;
+    }
+    /* Title (label) vs Details (value) font-weight difference */
+    .entry .label {
+      font-weight: 600;
+    }
+    .entry .value {
+      font-weight: 400;
     }
     .paid-row {
       display: flex;
@@ -111,11 +120,11 @@
       outline-offset: 1px;
     }
     .remaining {
-          margin-top: 6px !important;
-    background: #2b2b2b;
-    color: #fff !important;
-    border-radius: 3px;
-    text-align: center;
+      margin-top: 6px !important;
+      background: #2b2b2b;
+      color: #fff !important;
+      border-radius: 3px;
+      text-align: center;
     }
     .notes-box {
       padding: 14px;
@@ -205,17 +214,14 @@
       <div class="today" id="todayDate"></div>
       <button class="nav-btn" onclick="toggleLanguage()">తె/ENG</button>
     </div>
-
     <div class="navigation">
       <button class="nav-btn active" id="interestNav" onclick="showSection('interest')">వడ్డీ</button>
       <button class="nav-btn" id="notesNav" onclick="showSection('notes')">గమనికలు</button>
     </div>
-
     <section id="interestSection" class="section active">
       <h3 class="section-title" id="interestTitle">వడ్డీ వివరాలు</h3>
       <div id="app"></div>
     </section>
-
     <section id="notesSection" class="section">
       <h3 class="section-title" id="notesTitle">గమనికలు</h3>
       <div class="notes-box">
@@ -225,7 +231,6 @@
       </div>
     </section>
   </div>
-
   <script>
     // ===================== ONLY EDIT THIS PART =====================
     const users = [
@@ -237,9 +242,7 @@
       },
     ];
     // ===============================================================
-
     let currentLang = "te";
-
     const lang = {
       en: {
         title: "Interest",
@@ -278,18 +281,15 @@
         delete: "తొలగించు"
       }
     };
-
     const monthNames = {
       en: ["January","February","March","April","May","June","July","August","September","October","November","December"],
       te: ["జనవరి","ఫిబ్రవరి","మార్చి","ఏప్రిల్","మే","జూన్","జూలై","ఆగస్టు","సెప్టెంబర్","అక్టోబర్","నవంబర్","డిసెంబర్"]
     };
-
     function showSection(section) {
       const interestSection = document.getElementById("interestSection");
       const notesSection = document.getElementById("notesSection");
       const interestNav = document.getElementById("interestNav");
       const notesNav = document.getElementById("notesNav");
-
       if (section === "interest") {
         interestSection.classList.add("active");
         notesSection.classList.remove("active");
@@ -304,17 +304,14 @@
         renderNotes();
       }
     }
-
     function parseDate(dateStr) {
       const parts = dateStr.split("-");
       return new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
     }
-
     function formatDateWithMonth(dateStr) {
       const d = parseDate(dateStr);
       return `${d.getDate()} ${monthNames[currentLang][d.getMonth()]} ${d.getFullYear()}`;
     }
-
     function getDays(takenDate) {
       const start = parseDate(takenDate);
       const today = new Date();
@@ -322,20 +319,17 @@
       today.setHours(0, 0, 0, 0);
       return Math.max(0, Math.floor((today - start) / 86400000));
     }
-
     function showToday() {
       const today = new Date();
       document.getElementById("todayDate").innerText =
         `${lang[currentLang].today}: ${today.getDate()} ${monthNames[currentLang][today.getMonth()]} ${today.getFullYear()}`;
     }
-
     function toggleLanguage() {
       currentLang = currentLang === "en" ? "te" : "en";
       updateLanguage();
       render();
       renderNotes();
     }
-
     function updateLanguage() {
       const t = lang[currentLang];
       document.documentElement.lang = currentLang;
@@ -349,34 +343,30 @@
       document.getElementById("saveButton").innerText = t.save;
       showToday();
     }
-
     function render() {
       const app = document.getElementById("app");
       const t = lang[currentLang];
       app.innerHTML = "";
-
       users.forEach((user, userIndex) => {
         const entriesHTML = user.entries.map((entry, entryIndex) => {
           const days = getDays(entry.takenDate);
           const totalInterest = Math.round((entry.amount * entry.interest * days) / (100 * 30));
           const remaining = Math.max(0, totalInterest - entry.interestPaid);
-
           return `
             <div class="entry">
-              <div>${t.amount}: ₹${Number(entry.amount).toLocaleString("en-IN")}</div>
-              <div>${t.interest}: ${entry.interest}%</div>
-              <div>${t.takenDate}: ${formatDateWithMonth(entry.takenDate)}</div>
-              <div>${t.days}: ${days}</div>
+              <div><span class="label">${t.amount}:</span> <span class="value">₹${Number(entry.amount).toLocaleString("en-IN")}</span></div>
+              <div><span class="label">${t.interest}:</span> <span class="value">${entry.interest}%</span></div>
+              <div><span class="label">${t.takenDate}:</span> <span class="value">${formatDateWithMonth(entry.takenDate)}</span></div>
+              <div><span class="label">${t.days}:</span> <span class="value">${days}</span></div>
               <div class="paid-row">
-                <span>${t.interestPaid}:</span>
+                <span class="label">${t.interestPaid}:</span>
                 <input class="paid-input" type="number" min="0" value="${entry.interestPaid}"
                   oninput="updatePaid(${userIndex}, ${entryIndex}, this.value)">
               </div>
-              <div class="remaining">${t.remaining}: ₹${remaining.toLocaleString("en-IN")}</div>
+              <div class="remaining"><span class="label">${t.remaining}:</span> <span class="value">₹${remaining.toLocaleString("en-IN")}</span></div>
             </div>
           `;
         }).join("");
-
         app.innerHTML += `
           <div class="user">
             <div class="user-name">${user.name}</div>
@@ -385,14 +375,11 @@
         `;
       });
     }
-
     function updatePaid(userIndex, entryIndex, value) {
       users[userIndex].entries[entryIndex].interestPaid = Number(value) || 0;
       render();
     }
-
     const NOTES_KEY = "interestTrackerNotes";
-
     function getNotes() {
       try {
         return JSON.parse(localStorage.getItem(NOTES_KEY)) || [];
@@ -400,7 +387,6 @@
         return [];
       }
     }
-
     function saveNote() {
       const input = document.getElementById("noteInput");
       const text = input.value.trim();
@@ -414,36 +400,30 @@
       input.value = "";
       renderNotes();
     }
-
     function deleteNote(id) {
       const notes = getNotes().filter(note => note.id !== id);
       localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
       renderNotes();
     }
-
     function formatNoteDate(dateString) {
       const date = new Date(dateString);
       const hours = String(date.getHours()).padStart(2, "0");
       const minutes = String(date.getMinutes()).padStart(2, "0");
       return `${date.getDate()} ${monthNames[currentLang][date.getMonth()]} ${date.getFullYear()}, ${hours}:${minutes}`;
     }
-
     function escapeHTML(text) {
       const div = document.createElement("div");
       div.textContent = text;
       return div.innerHTML;
     }
-
     function renderNotes() {
       const list = document.getElementById("notesList");
       const notes = getNotes();
       const t = lang[currentLang];
-
       if (notes.length === 0) {
         list.innerHTML = `<div class="empty-notes">${t.emptyNotes}</div>`;
         return;
       }
-
       list.innerHTML = notes.map(note => `
         <div class="note">
           <button class="delete-note" onclick="deleteNote(${note.id})" title="${t.delete}">×</button>
@@ -452,7 +432,6 @@
         </div>
       `).join("");
     }
-
     updateLanguage();
     render();
     renderNotes();
