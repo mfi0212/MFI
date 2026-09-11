@@ -953,15 +953,19 @@ display: inline-block;
   margin-bottom: 10px;
 }
 .search-results {
-    border: solid 1.5px var(--black-swan);
+       border: solid 1.5px var(--black-swan);
     display: none;
     border-radius: 20px;
     overflow: hidden;
     max-width: 500px;
-    margin: 10px auto 0;
+    margin: 5px auto 0;
     background: var(--bg-soft);
     backdrop-filter: blur(3px);
-    width: 100%;
+    width: 98%;
+    position: sticky;
+    top: 70px;
+    z-index: 10000000;
+
 }
 .search-results .box-title {
   background: var(--black-swan);
@@ -1574,16 +1578,8 @@ img.advertisments {
             <a href="https://mfi0212.github.io/MFI/service.solutions/pre-saver">Pre-Saver</a>
             <a href="https://mfi0212.github.io/MFI/service.solutions/split-pay">Split Pay</a>
         </div>
-    </div><div class="search-results" id="search-results">
-            <div style="text-align: left;" class="box-title"><a href="#" onclick="clearSearch()" style="color: red;
-                border-radius: 999px;
-                padding: 5px 10px;
-                margin: -8px;
-                border: none;
-                background: var(--bg-body);
-                font-weight: 600;">Clear ✕</a></div>
-                      <div id="search-list"></div>
-              </div>
+    </div>
+    
        
           </div>
             </div>
@@ -1598,6 +1594,17 @@ img.advertisments {
               </div>
           </div>
         </div>
+        <div class="search-results" id="search-results">
+              <div style="text-align: left;" class="box-title"><a href="#" onclick="clearSearch()" style="color: red;
+                border-radius: 999px;
+                padding: 5px 10px;
+                margin: -8px;
+                border: none;
+                background: var(--bg-body);
+                font-weight: 600;">Clear ✕</a>
+              </div>
+              <div id="search-list"></div>
+            </div>
     <div class="main">
         <div class="container">
             <div class="advertisment" >
