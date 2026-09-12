@@ -3,34 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>వడ్డీ ట్రాకర్</title><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+  <title>వడ్డీ ట్రాకర్</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0;font-family: "Noto Sans", sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Noto Sans", sans-serif; }
     body {
       background: #fff;
       color: #2b2b2b;
       min-height: 100vh;
-    }
-    * {
-      -webkit-tap-highlight-color: transparent;
-    }
-    body {
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
     }
+    * { -webkit-tap-highlight-color: transparent; }
     .container {
-     max-width: 750px;
-    margin: 0 auto;
-    padding: 10px;
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 10px;
     }
     .header {
-          display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0;
-    margin: 15px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0;
+      margin: 15px 0;
     }
     .header h2 {
       font-size: 22px;
@@ -44,21 +41,37 @@
       display: flex;
       gap: 6px;
       margin-bottom: 16px;
+      flex-wrap: wrap;
     }
     .nav-btn {
-     min-height: 38px;
-    background: #fff;
-    color: #2b2b2b;
-    border: 1px solid #2b2b2b;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-    width: 85px;
+      min-height: 38px;
+      background: #fff;
+      color: #2b2b2b;
+      border: 1px solid #2b2b2b;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      width: 85px;
     }
     .nav-btn:hover,
     .nav-btn.active {
       background: #2b2b2b;
       color: #fff;
+    }
+    .total-btn {
+      min-height: 38px;
+      background: #2b2b2b;
+      color: #fff;
+      border: 1px solid #2b2b2b;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 0 14px;
+      margin-left: auto;
+    }
+    .total-btn:hover {
+      background: #fff;
+      color: #2b2b2b;
     }
     .section { display: none; }
     .section.active { display: block; }
@@ -86,20 +99,14 @@
     }
     .entry:last-child { margin-bottom: 0; }
     .entry div {
-     font-size: 17px;
-    line-height: 35px;
-    display: flex;
-    justify-content: space-between;
+      font-size: 17px;
+      line-height: 35px;
+      display: flex;
+      justify-content: space-between;
     }
-    .entry div:nth-child(2){
-      display: none;
-    }
-    .entry .label {
-      font-weight: 600;
-    }
-    .entry .value {
-      font-weight: 400;
-    }
+    .entry div:nth-child(2){ display: none; }
+    .entry .label { font-weight: 600; }
+    .entry .value { font-weight: 400; }
     .paid-row {
       display: flex;
       align-items: center;
@@ -107,25 +114,34 @@
       gap: 10px;
     }
     .paid-input {
-     width: 100px;
-    padding: 3px 8px;
-    border: none;
-    border-radius: 3px;
-    text-align: right;
-    font-size: 17px;
-    outline: none;
+      width: 100px;
+      padding: 3px 8px;
+      border: none;
+      border-radius: 3px;
+      text-align: right;
+      font-size: 17px;
+      outline: none;
     }
     .paid-input:focus {
       outline: 2px solid #2b2b2b;
       outline-offset: 1px;
     }
     .remaining {
-     margin-top: 6px !important;
-    background: #2b2b2b;
-    color: #fff !important;
-    border-radius: 3px;
-    text-align: center;
-    padding: 0 5px;
+      margin-top: 6px !important;
+      background: #2b2b2b;
+      color: #fff !important;
+      border-radius: 3px;
+      text-align: center;
+      padding: 0 5px;
+    }
+    .entry-total {
+      margin-top: 6px !important;
+      background: #ffdb00;
+      color: #2b2b2b !important;
+      border-radius: 3px;
+      text-align: center;
+      padding: 0 5px;
+      font-weight: 700;
     }
     .notes-box {
       padding: 14px;
@@ -174,63 +190,156 @@
     }
     .note:last-child { margin-bottom: 0; }
     .note-text {
-     font-size: 24px;
-    white-space: pre-wrap;
-    word-break: break-word;
+      font-size: 24px;
+      white-space: pre-wrap;
+      word-break: break-word;
     }
     .note-date {
       margin-top: 6px;
       font-size: 11px;
     }
     .delete-note {
-          position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 26px;
-    height: 26px;
-    background: red;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 30px;
-    cursor: pointer;
-    font-weight: 300;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-footer {
-    font-size: 10px;
-    text-align: center;
-    color: gray;
-}
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 26px;
+      height: 26px;
+      background: red;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 30px;
+      cursor: pointer;
+      font-weight: 300;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    footer {
+      font-size: 10px;
+      text-align: center;
+      color: gray;
+      margin-bottom: 20px;
+    }
     .empty-notes {
       padding: 16px 5px;
       text-align: center;
       font-size: 13px;
     }
+
+    /* ===== POPUP / MODAL ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-overlay.show {
+      display: flex;
+    }
+    .modal {
+      background: #fff;
+      border: 2px solid #2b2b2b;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 420px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 18px;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .modal-header h3 {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      background: #2b2b2b;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 22px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .modal-item {
+      border: 1px solid #2b2b2b;
+      border-radius: 5px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+    .modal-item .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .modal-item .row:last-child { margin-bottom: 0; }
+    .modal-item .total-line {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed #2b2b2b;
+      font-weight: 700;
+    }
+    .modal-summary {
+      margin-top: 14px;
+      background: #2b2b2b;
+      color: #fff;
+      border-radius: 5px;
+      padding: 12px;
+      font-size: 16px;
+    }
+    .modal-summary .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .modal-summary .row:last-child {
+      margin-bottom: 0;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid #fff;
+      font-weight: 700;
+      font-size: 17px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <div style="    text-align: center;
-    padding: 10px 0;
-    background: #ffdb00;">
+    <div style="text-align: center; padding: 10px 0; background: #ffdb00;">
       <a href="https://mfi0212.github.io/personal/gold.market.divert.user.html">బంగారం market</a>
     </div>
+
     <div class="header">
       <h2 id="title">వడ్డీ</h2>
       <div class="today" id="todayDate"></div>
       <button class="nav-btn" onclick="toggleLanguage()">తె/ENG</button>
     </div>
+
     <div class="navigation">
       <button class="nav-btn active" id="interestNav" onclick="showSection('interest')">వడ్డీ</button>
       <button class="nav-btn" id="notesNav" onclick="showSection('notes')">గమనికలు</button>
+      <button class="total-btn" id="totalBtn" onclick="openTotalPopup()">మొత్తం</button>
     </div>
+
     <section id="interestSection" class="section active">
       <h3 class="section-title" id="interestTitle">వడ్డీ వివరాలు</h3>
       <div id="app"></div>
     </section>
+
     <section id="notesSection" class="section">
       <h3 class="section-title" id="notesTitle">గమనికలు</h3>
       <div class="notes-box">
@@ -240,7 +349,20 @@ footer {
       </div>
     </section>
   </div>
+
   <footer>Black Swan, All right reserved. Version(v.01.11.9)</footer>
+
+  <!-- TOTAL POPUP -->
+  <div class="modal-overlay" id="totalModal" onclick="closeTotalPopup(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 id="modalTitle">మొత్తం వివరాలు</h3>
+        <button class="modal-close" onclick="closeTotalPopup()">×</button>
+      </div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
   <script>
     // ===================== ONLY EDIT THIS PART =====================
     const users = [
@@ -254,7 +376,9 @@ footer {
       },
     ];
     // ===============================================================
+
     let currentLang = "te";
+
     const lang = {
       en: {
         title: "Interest",
@@ -267,8 +391,17 @@ footer {
         days: "Days Passed",
         interestPaid: "Interest Paid",
         remaining: "Remaining Interest",
+        entryTotal: "Total (Amt + Interest)",
         interestNav: "Interest",
         notesNav: "Notes",
+        totalBtn: "Total",
+        modalTitle: "Total Summary",
+        principal: "Principal",
+        remainingInterest: "Remaining Interest",
+        entryTotalLabel: "Total",
+        sumPrincipal: "Total Principal",
+        sumInterest: "Total Remaining Interest",
+        grandTotal: "Grand Total",
         placeholder: "Write something here...",
         save: "Save",
         emptyNotes: "No notes saved yet.",
@@ -285,23 +418,35 @@ footer {
         days: "గడిచినా రోజులు",
         interestPaid: "చెల్లించిన వడ్డీ",
         remaining: "మిగిలిన వడ్డీ",
+        entryTotal: "మొత్తం",
         interestNav: "వడ్డీ",
         notesNav: "గమనికలు",
+        totalBtn: "మొత్తం",
+        modalTitle: "మొత్తం వివరాలు",
+        principal: "అసలు",
+        remainingInterest: "మిగిలిన వడ్డీ",
+        entryTotalLabel: "మొత్తం",
+        sumPrincipal: "మొత్తం అసలు",
+        sumInterest: "మొత్తం మిగిలిన వడ్డీ",
+        grandTotal: "మొత్తం మొత్తం",
         placeholder: "ఇక్కడ ఏదైనా రాయండి...",
         save: "సేవ్ చేయండి",
         emptyNotes: "ఇంకా గమనికలు సేవ్ చేయలేదు.",
         delete: "తొలగించు"
       }
     };
+
     const monthNames = {
       en: ["January","February","March","April","May","June","July","August","September","October","November","December"],
       te: ["జనవరి","ఫిబ్రవరి","మార్చి","ఏప్రిల్","మే","జూన్","జూలై","ఆగస్టు","సెప్టెంబర్","అక్టోబర్","నవంబర్","డిసెంబర్"]
     };
+
     function showSection(section) {
       const interestSection = document.getElementById("interestSection");
       const notesSection = document.getElementById("notesSection");
       const interestNav = document.getElementById("interestNav");
       const notesNav = document.getElementById("notesNav");
+
       if (section === "interest") {
         interestSection.classList.add("active");
         notesSection.classList.remove("active");
@@ -316,14 +461,17 @@ footer {
         renderNotes();
       }
     }
+
     function parseDate(dateStr) {
       const parts = dateStr.split("-");
       return new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
     }
+
     function formatDateWithMonth(dateStr) {
       const d = parseDate(dateStr);
       return `${d.getDate()} ${monthNames[currentLang][d.getMonth()]} ${d.getFullYear()}`;
     }
+
     function getDays(takenDate) {
       const start = parseDate(takenDate);
       const today = new Date();
@@ -331,17 +479,20 @@ footer {
       today.setHours(0, 0, 0, 0);
       return Math.max(0, Math.floor((today - start) / 86400000));
     }
+
     function showToday() {
       const today = new Date();
       document.getElementById("todayDate").innerText =
         `${lang[currentLang].today}: ${today.getDate()} ${monthNames[currentLang][today.getMonth()]} ${today.getFullYear()}`;
     }
+
     function toggleLanguage() {
       currentLang = currentLang === "en" ? "te" : "en";
       updateLanguage();
       render();
       renderNotes();
     }
+
     function updateLanguage() {
       const t = lang[currentLang];
       document.documentElement.lang = currentLang;
@@ -351,19 +502,30 @@ footer {
       document.getElementById("notesTitle").innerText = t.notesTitle;
       document.getElementById("interestNav").innerText = t.interestNav;
       document.getElementById("notesNav").innerText = t.notesNav;
+      document.getElementById("totalBtn").innerText = t.totalBtn;
+      document.getElementById("modalTitle").innerText = t.modalTitle;
       document.getElementById("noteInput").placeholder = t.placeholder;
       document.getElementById("saveButton").innerText = t.save;
       showToday();
     }
+
+    function getEntryData(entry) {
+      const days = getDays(entry.takenDate);
+      const totalInterest = Math.round((entry.amount * entry.interest * days) / (100 * 30));
+      const remaining = Math.max(0, totalInterest - entry.interestPaid);
+      const total = entry.amount + remaining;
+      return { days, totalInterest, remaining, total };
+    }
+
     function render() {
       const app = document.getElementById("app");
       const t = lang[currentLang];
       app.innerHTML = "";
+
       users.forEach((user, userIndex) => {
         const entriesHTML = user.entries.map((entry, entryIndex) => {
-          const days = getDays(entry.takenDate);
-          const totalInterest = Math.round((entry.amount * entry.interest * days) / (100 * 30));
-          const remaining = Math.max(0, totalInterest - entry.interestPaid);
+          const { days, remaining, total } = getEntryData(entry);
+
           return `
             <div class="entry">
               <div><span class="label">${t.amount}:</span> <span class="value">₹${Number(entry.amount).toLocaleString("en-IN")}</span></div>
@@ -375,10 +537,18 @@ footer {
                 <input class="paid-input" type="number" min="0" value="${entry.interestPaid}"
                   oninput="updatePaid(${userIndex}, ${entryIndex}, this.value)">
               </div>
-              <div class="remaining"><span class="label">${t.remaining}:</span> <span class="value">₹${remaining.toLocaleString("en-IN")}</span></div>
+              <div class="remaining">
+                <span class="label">${t.remaining}:</span>
+                <span class="value">₹${remaining.toLocaleString("en-IN")}</span>
+              </div>
+              <div class="entry-total">
+                <span class="label">${t.entryTotal}:</span>
+                <span class="value">₹${total.toLocaleString("en-IN")}</span>
+              </div>
             </div>
           `;
         }).join("");
+
         app.innerHTML += `
           <div class="user">
             <div class="user-name">${user.name}</div>
@@ -387,11 +557,63 @@ footer {
         `;
       });
     }
+
     function updatePaid(userIndex, entryIndex, value) {
       users[userIndex].entries[entryIndex].interestPaid = Number(value) || 0;
       render();
     }
+
+    // ========== TOTAL POPUP ==========
+    function openTotalPopup() {
+      const t = lang[currentLang];
+      const body = document.getElementById("modalBody");
+      let html = "";
+
+      let grandPrincipal = 0;
+      let grandRemaining = 0;
+
+      users.forEach(user => {
+        user.entries.forEach((entry, idx) => {
+          const { remaining, total } = getEntryData(entry);
+          grandPrincipal += entry.amount;
+          grandRemaining += remaining;
+
+         
+        });
+      });
+
+      const grandTotal = grandPrincipal + grandRemaining;
+
+      html += `
+        <div class="modal-summary">
+          <div class="row">
+            <span>${t.sumPrincipal}:</span>
+            <span>₹${grandPrincipal.toLocaleString("en-IN")}</span>
+          </div>
+          <div class="row">
+            <span>${t.sumInterest}:</span>
+            <span>₹${grandRemaining.toLocaleString("en-IN")}</span>
+          </div>
+          <div class="row">
+            <span>${t.grandTotal}:</span>
+            <span>₹${grandTotal.toLocaleString("en-IN")}</span>
+          </div>
+        </div>
+      `;
+
+      body.innerHTML = html;
+      document.getElementById("totalModal").classList.add("show");
+    }
+
+    function closeTotalPopup(e) {
+      if (!e || e.target.id === "totalModal") {
+        document.getElementById("totalModal").classList.remove("show");
+      }
+    }
+
+    // ========== NOTES ==========
     const NOTES_KEY = "interestTrackerNotes";
+
     function getNotes() {
       try {
         return JSON.parse(localStorage.getItem(NOTES_KEY)) || [];
@@ -399,6 +621,7 @@ footer {
         return [];
       }
     }
+
     function saveNote() {
       const input = document.getElementById("noteInput");
       const text = input.value.trim();
@@ -412,30 +635,36 @@ footer {
       input.value = "";
       renderNotes();
     }
+
     function deleteNote(id) {
       const notes = getNotes().filter(note => note.id !== id);
       localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
       renderNotes();
     }
+
     function formatNoteDate(dateString) {
       const date = new Date(dateString);
       const hours = String(date.getHours()).padStart(2, "0");
       const minutes = String(date.getMinutes()).padStart(2, "0");
       return `${date.getDate()} ${monthNames[currentLang][date.getMonth()]} ${date.getFullYear()}, ${hours}:${minutes}`;
     }
+
     function escapeHTML(text) {
       const div = document.createElement("div");
       div.textContent = text;
       return div.innerHTML;
     }
+
     function renderNotes() {
       const list = document.getElementById("notesList");
       const notes = getNotes();
       const t = lang[currentLang];
+
       if (notes.length === 0) {
         list.innerHTML = `<div class="empty-notes">${t.emptyNotes}</div>`;
         return;
       }
+
       list.innerHTML = notes.map(note => `
         <div class="note">
           <button class="delete-note" onclick="deleteNote(${note.id})" title="${t.delete}">×</button>
@@ -444,6 +673,8 @@ footer {
         </div>
       `).join("");
     }
+
+    // Init
     updateLanguage();
     render();
     renderNotes();
