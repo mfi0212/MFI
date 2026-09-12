@@ -877,3 +877,31 @@ const btn = document.getElementById('menuBtn');
     document.addEventListener('click', () => {
       dropdown.classList.remove('show');
     });
+
+ const progressBar = document.getElementById('progressBar');
+    const progressPercent = document.getElementById('progress-percent');
+    const loadingScreen = document.getElementById('loading-screen');
+    const mainContent = document.getElementById('main-content');
+
+    // Random loading time between 4 and 10 seconds
+    const duration = Math.floor(Math.random() * 6000) + 4000; // 4000–10000 ms
+    const startTime = performance.now();
+
+    function updateProgress(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min((elapsed / duration) * 100, 100);
+
+      progressBar.style.width = progress + '%';
+      progressPercent.textContent = Math.floor(progress) + '%';
+
+      if (progress < 100) {
+        requestAnimationFrame(updateProgress);
+      } else {
+        setTimeout(() => {
+          loadingScreen.classList.add('hidden');
+          mainContent.style.display = 'block';
+        }, 100);
+      }
+    }
+
+    requestAnimationFrame(updateProgress);
