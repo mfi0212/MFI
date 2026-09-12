@@ -14,6 +14,8 @@
 * {
 	font-family: 'Inter', system-ui, -apple-system, sans-serif;
 	margin:0; padding:0; box-sizing:border-box;
+	scrollbar-width: thin;
+	scrollbar-color: var(--scrollbar) transparent;
 	scroll-behavior: smooth;
 	letter-spacing: 0.2px;
 }
@@ -128,27 +130,6 @@ body {
   --input-border: #333333;
   --scrollbar: #333333;
 }
-::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--scrollbar);
-            border-radius: 6px;
-            border: 3px solid transparent;
-            background-clip: content-box;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--scrollbar);
-            background-clip: content-box;
-        }
-
 @keyframes springPopup {
   0% {
     opacity: 0;
@@ -365,7 +346,7 @@ height: 36px;
 div#amount-tabs {
     overflow-x: auto;
     white-space: nowrap;
-    gap: 10px;
+    gap: 10px;scrollbar-width: thin;
     display: flex;
     padding: 0 5px 10px 5px;
 }
@@ -791,7 +772,7 @@ display: inline-block;
       overflow: auto;
     height: 200px;
     padding: 10px 15px;
-    
+    scrollbar-width: thin;
 }
 .btn-outline {
      background: var(--scrollbar);
@@ -1301,13 +1282,7 @@ border: none;
     border-radius: 50%;
     left: 20px;
 }
-.search-icon:hover{
-      background: var(--dark-blue);
-      transform: scale(1.03);
-    }
-    .search-icon:active {
-      transform: scale(0.92);
-    }
+
     .dropdown.show {
       opacity: 1;
       visibility: visible;
@@ -1448,14 +1423,14 @@ width: 40px;
 
 
 .search-icon {
-   background: var(--bg-soft);
+    background: var(--bg-soft);
         backdrop-filter: blur(3px);
         box-shadow: 0 0 0.5px 0 black;
         border-top: solid 1px #ffffff1f;
         border-bottom: solid 1px #ffffff1f;
         height: 65px;
         position: sticky;
-        width: 72px;
+        width: 65px;
         border-radius: 50%;
         display: flex;
         justify-content: center;
@@ -1495,21 +1470,20 @@ background: #27272785;
         align-items: center;
         gap: 0;
         height: auto;
-        width: 95%;
         flex-direction: row;
         justify-content: space-around;
         border-radius: 999px;
         background: var(--bg-soft);
         backdrop-filter: blur(3px);
-            box-shadow: 0 0 0.5px 0 black;
-    border-top: solid 1px #ffffff1f;
-    border-bottom: solid 1px #ffffff1f;
+        box-shadow: 0 0 0.5px 0 black;
+        border-top: solid 1px #ffffff1f;
+        border-bottom: solid 1px #ffffff1f;
         left: unset;
         bottom: 0;
-        height: fit-content;
         transform: unset;
         top: 0;
         position: sticky;
+        width: 80%;
 }
 .bottomoptions a {
    font-size: 13px;
@@ -1565,6 +1539,7 @@ img.advertisments {
   .dropdown-services {
    height: 300px;
         overflow-y: scroll;
+        scrollbar-width: thin;
 }
   .search-box {
     width: 100%;
