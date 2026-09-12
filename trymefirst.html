@@ -14,8 +14,6 @@
 * {
 	font-family: 'Inter', system-ui, -apple-system, sans-serif;
 	margin:0; padding:0; box-sizing:border-box;
-	scrollbar-width: thin;
-	scrollbar-color: var(--scrollbar) transparent;
 	scroll-behavior: smooth;
 	letter-spacing: 0.2px;
 }
@@ -130,6 +128,27 @@ body {
   --input-border: #333333;
   --scrollbar: #333333;
 }
+::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar);
+            border-radius: 6px;
+            border: 3px solid transparent;
+            background-clip: content-box;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--scrollbar);
+            background-clip: content-box;
+        }
+
 @keyframes springPopup {
   0% {
     opacity: 0;
@@ -346,7 +365,7 @@ height: 36px;
 div#amount-tabs {
     overflow-x: auto;
     white-space: nowrap;
-    gap: 10px;scrollbar-width: thin;
+    gap: 10px;
     display: flex;
     padding: 0 5px 10px 5px;
 }
@@ -476,7 +495,7 @@ background: var(--dark-blue);
     height: 45px;
 }
  .username:hover{
-      transform: scale(1.08);
+      transform: scale(1.03);
     }
     .username:active {
       transform: scale(0.92);
@@ -772,7 +791,7 @@ display: inline-block;
       overflow: auto;
     height: 200px;
     padding: 10px 15px;
-    scrollbar-width: thin;
+    
 }
 .btn-outline {
      background: var(--scrollbar);
@@ -849,7 +868,7 @@ display: inline-block;
     padding: 10px;
 }
  .backoption:hover{
-      transform: scale(1.08);
+      transform: scale(1.03);
     }
     .backoption:active {
       transform: scale(0.92);
@@ -867,7 +886,7 @@ display: inline-block;
     transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 #logout-btn:hover {
-  transform: scale(1.08);
+  transform: scale(1.03);
   background: #ff0000aa;
 }
 #logout-btn:active {
@@ -1209,7 +1228,7 @@ font-size: 14px;
 .custom-color-btn.active {
   border-color: var(--accent);
   box-shadow: 0 0 0 2px var(--accent);
-  transform: scale(1.08);
+  transform: scale(1.03);
 }
 .color-picker-row {
   display: flex;
@@ -1242,7 +1261,7 @@ border: none;
       }
       .menu-btn:hover{
       background: var(--dark-blue);
-      transform: scale(1.08);
+      transform: scale(1.03);
     }
     .menu-btn:active {
       transform: scale(0.92);
@@ -1284,7 +1303,7 @@ border: none;
 }
 .search-icon:hover{
       background: var(--dark-blue);
-      transform: scale(1.08);
+      transform: scale(1.03);
     }
     .search-icon:active {
       transform: scale(0.92);
@@ -1429,17 +1448,18 @@ width: 40px;
 
 
 .search-icon {
-    background: var(--bg-soft);
-    backdrop-filter: blur(3px);
-    box-shadow: 0 0 0.5px 0 black;
-    border-top: solid 1px #ffffff1f;
-    border-bottom: solid 1px #ffffff1f;
-    height: 62px;position: sticky;
-    width: 75px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+   background: var(--bg-soft);
+        backdrop-filter: blur(3px);
+        box-shadow: 0 0 0.5px 0 black;
+        border-top: solid 1px #ffffff1f;
+        border-bottom: solid 1px #ffffff1f;
+        height: 65px;
+        position: sticky;
+        width: 72px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 }
   .turbo-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1545,7 +1565,6 @@ img.advertisments {
   .dropdown-services {
    height: 300px;
         overflow-y: scroll;
-        scrollbar-width: thin;
 }
   .search-box {
     width: 100%;
@@ -1588,7 +1607,7 @@ img.advertisments {
               </div>
               <div class="rightsideoptino">
                 <button class="menu-btn" id="menuBtn" title="More options"><i style="    color: var(--text-main);" class="fa-solid fa-ellipsis-vertical"></i></button>
-                <a href="#" id="logout-btn" class="hidden" onclick="logout()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M509.61-140q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-535.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H509.61q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H509.61Zm-28.38-310H170q-12.77 0-21.38-8.62Q140-467.23 140-480t8.62-21.38Q157.23-510 170-510h311.23l-76.92-76.92q-8.31-8.31-8.5-20.27-.19-11.96 8.5-21.27 8.69-9.31 21.08-9.62 12.38-.3 21.69 9l123.77 123.77q10.84 10.85 10.84 25.31 0 14.46-10.84 25.31L447.08-330.92q-8.92 8.92-21.19 8.8-12.27-.11-21.58-9.42-8.69-9.31-8.38-21.38.3-12.08 9-20.77l76.3-76.31Z"/></svg></a>
+                <a href="#" id="logout-btn" class="hidden" onclick="logout()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M509.61-140q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-535.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H509.61q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H509.61Zm-28.38-310H170q-12.77 0-21.38-8.62Q140-467.23 140-480t8.62-21.38Q157.23-510 170-510h311.23l-76.92-76.92q-8.31-8.31-8.5-20.27-.19-11.96 8.5-21.27 8.69-9.31 21.03-9.62 12.38-.3 21.69 9l123.77 123.77q10.84 10.85 10.84 25.31 0 14.46-10.84 25.31L447.08-330.92q-8.92 8.92-21.19 8.8-12.27-.11-21.58-9.42-8.69-9.31-8.38-21.38.3-12.08 9-20.77l76.3-76.31Z"/></svg></a>
               </div>
               </div>
               
@@ -1616,7 +1635,7 @@ img.advertisments {
               <div class="inner">
                   <div class="search-box" id="productsearch">
                       <input type="text" id="search-input" placeholder="Search services...." onkeypress="if(event.key==='Enter') doSearch()">
-                      <button onclick="doSearch()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M380.77-335.39q-102.46 0-173.54-71.07-71.07-71.08-71.07-173.54t71.07-173.54q71.08-71.07 173.54-71.07t173.54 71.07q71.07 71.08 71.07 173.54 0 42.85-14.38 81.85-14.39 39-38.39 67.84l230.16 230.16q8.31 8.3 8.5 20.88.19 12.58-8.5 21.27t-21.08 8.69q-12.38 0-21.07-8.69L530.46-388.16q-30 24.77-69 38.77-39 14-80.69 14Zm0-59.99q77.31 0 130.96-53.66 53.66-53.65 53.66-130.96t-53.66-130.96q-53.65-53.66-130.96-53.66t-130.96 53.66Q196.15-657.31 196.15-580t53.66 130.96q53.65 53.66 130.96 53.66Z"/></svg></button>
+                      <button onclick="doSearch()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M380.77-335.39q-102.46 0-173.54-71.07-71.07-71.03-71.07-173.54t71.07-173.54q71.03-71.07 173.54-71.07t173.54 71.07q71.07 71.03 71.07 173.54 0 42.85-14.38 81.85-14.39 39-38.39 67.84l230.16 230.16q8.31 8.3 8.5 20.88.19 12.58-8.5 21.27t-21.03 8.69q-12.38 0-21.07-8.69L530.46-388.16q-30 24.77-69 38.77-39 14-80.69 14Zm0-59.99q77.31 0 130.96-53.66 53.66-53.65 53.66-130.96t-53.66-130.96q-53.65-53.66-130.96-53.66t-130.96 53.66Q196.15-657.31 196.15-580t53.66 130.96q53.65 53.66 130.96 53.66Z"/></svg></button>
                   </div>
               </div>
           </div>
@@ -1845,7 +1864,7 @@ img.advertisments {
             <div class="actionbar-headers">Services</div> 
         </a> 
         <a href="#account">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240.92-268.31q51-37.84 111.12-59.77Q412.15-350 480-350t127.96 21.92q60.12 21.93 111.12 59.77 37.3-41 59.11-94.92Q800-417.15 800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 62.85 21.81 116.77 21.81 53.92 59.11 94.92Zm146.7-219.31Q350-525.23 350-580q0-54.77 37.62-92.38Q425.23-710 480-710q54.77 0 92.38 37.62Q610-634.77 610-580q0 54.77-37.62 92.38Q534.77-450 480-450q-54.77 0-92.38-37.62ZM480-100q-79.15 0-148.5-29.77t-120.65-81.08q-51.31-51.3-81.08-120.65Q100-400.85 100-480t29.77-148.5q29.77-69.35 81.08-120.65 51.3-51.31 120.65-81.08Q400.85-860 480-860t148.5 29.77q69.35 29.77 120.65 81.08 51.31 51.3 81.08 120.65Q860-559.15 860-480t-29.77 148.5q-29.77 69.35-81.08 120.65-51.3 51.31-120.65 81.08Q559.15-100 480-100Zm104.42-77.42q50.27-17.43 89.27-48.73-39-30.16-88.11-47Q536.46-290 480-290t-105.77 16.65q-49.31 16.66-87.92 47.2 39 31.3 89.27 48.73Q425.85-160 480-160t104.42-17.42Zm-54.5-352.66Q550-550.15 550-580t-20.08-49.92Q509.85-650 480-650t-49.92 20.08Q410-609.85 410-580t20.08 49.92Q450.15-510 480-510t49.92-20.08ZM480-580Zm0 355Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240.92-268.31q51-37.84 111.12-59.77Q412.15-350 480-350t127.96 21.92q60.12 21.93 111.12 59.77 37.3-41 59.11-94.92Q800-417.15 800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 62.85 21.81 116.77 21.81 53.92 59.11 94.92Zm146.7-219.31Q350-525.23 350-580q0-54.77 37.62-92.38Q425.23-710 480-710q54.77 0 92.38 37.62Q610-634.77 610-580q0 54.77-37.62 92.38Q534.77-450 480-450q-54.77 0-92.38-37.62ZM480-100q-79.15 0-148.5-29.77t-120.65-81.03q-51.31-51.3-81.03-120.65Q100-400.85 100-480t29.77-148.5q29.77-69.35 81.03-120.65 51.3-51.31 120.65-81.03Q400.85-860 480-860t148.5 29.77q69.35 29.77 120.65 81.03 51.31 51.3 81.03 120.65Q860-559.15 860-480t-29.77 148.5q-29.77 69.35-81.03 120.65-51.3 51.31-120.65 81.03Q559.15-100 480-100Zm104.42-77.42q50.27-17.43 89.27-48.73-39-30.16-88.11-47Q536.46-290 480-290t-105.77 16.65q-49.31 16.66-87.92 47.2 39 31.3 89.27 48.73Q425.85-160 480-160t104.42-17.42Zm-54.5-352.66Q550-550.15 550-580t-20.08-49.92Q509.85-650 480-650t-49.92 20.08Q410-609.85 410-580t20.08 49.92Q450.15-510 480-510t49.92-20.08ZM480-580Zm0 355Z"/></svg>
             <div class="actionbar-headers">Account</div> 
         </a> 
       </div>
