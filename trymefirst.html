@@ -14,8 +14,8 @@
 * {
 	font-family: 'Inter', system-ui, -apple-system, sans-serif;
 	margin:0; padding:0; box-sizing:border-box;
-	scrollbar-width: thin;
-	scrollbar-color: var(--scrollbar) transparent;
+	/* scrollbar-width: thin;
+	scrollbar-color: var(--scrollbar) transparent; */
 	scroll-behavior: smooth;
 	letter-spacing: 0.2px;
 }
@@ -1558,6 +1558,27 @@ img.advertisments {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+ ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar);
+            border-radius: 9999px;
+            border: 3px solid transparent;
+            background-clip: content-box;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background: var(--scrollbar);
+            background-clip: content-box;
+        }
+
 </style>
 </head>
 
