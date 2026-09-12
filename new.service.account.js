@@ -1022,3 +1022,26 @@ function goBack() {
         alert("✅ Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
     }
 }
+const progressBar = document.getElementById('progressBar');
+    const progressPercent = document.getElementById('progress-percent');
+    const loadingScreen = document.getElementById('loading-screen');
+    const mainContent = document.getElementById('main-content');
+    const duration = Math.floor(Math.random() * 6000) + 4000;
+    const startTime = performance.now();
+    function updateProgress(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min((elapsed / duration) * 100, 100);
+
+      progressBar.style.width = progress + '%';
+      progressPercent.textContent = Math.floor(progress) + '%';
+
+      if (progress < 100) {
+        requestAnimationFrame(updateProgress);
+      } else {
+        setTimeout(() => {
+          loadingScreen.classList.add('hidden');
+          mainContent.style.display = 'block';
+        }, 100);
+      }
+    }
+    requestAnimationFrame(updateProgress);
