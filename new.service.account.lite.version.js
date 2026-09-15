@@ -884,7 +884,7 @@ const btn = document.getElementById('menuBtn');
     const mainContent = document.getElementById('main-content');
 
     // Random loading time between 4 and 10 seconds
-    const duration = Math.floor(Math.random() * 6000) + 4000; // 4000–10000 ms
+    const duration = Math.floor(Math.random() * 8000) + 5000; // 4000–10000 ms
     const startTime = performance.now();
 
     function updateProgress(now) {
