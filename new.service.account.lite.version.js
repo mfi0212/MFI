@@ -905,3 +905,12 @@ const btn = document.getElementById('menuBtn');
     }
 
     requestAnimationFrame(updateProgress);
+
+
+    function goBack() {
+    if (window.history.length > 1) {
+        window.history.back();
+    } else {
+        alert("✅ Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
+    }
+}
