@@ -1026,7 +1026,7 @@ const progressBar = document.getElementById('progressBar');
     const progressPercent = document.getElementById('progress-percent');
     const loadingScreen = document.getElementById('loading-screen');
     const mainContent = document.getElementById('main-content');
-    const duration = Math.floor(Math.random() * 5000) + 3000;
+    const duration = Math.floor(Math.random() * 6000) + 3000;
     const startTime = performance.now();
     function updateProgress(now) {
       const elapsed = now - startTime;
@@ -1045,3 +1045,12 @@ const progressBar = document.getElementById('progressBar');
       }
     }
     requestAnimationFrame(updateProgress);
+    function closeLoadingCard() {
+  const card = document.querySelector('.loading-card');
+
+  card.classList.add('closing');
+
+  card.addEventListener('animationend', () => {
+    card.remove();
+  }, { once: true });
+}
