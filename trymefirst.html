@@ -1175,16 +1175,11 @@ body:has(#bsmfi-loader:not(.hidden)) {
 <script>
 const siteGroups = [
   { heading: "Return Management", sites: [
-    { name: "BsRora", desc: "Let the bot do", url: "https://mfi0212.github.io/MFI/service.solutions/all.solution" },
+    { name: "BsRora", desc: "Let the bot do", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
     { name: "BS&MFI House", desc: "BS&MFI home page", url: "https://mfi0212.github.io/MFI/new.service" },
-    { name: "BS&MFI Solutions", desc: "Return date extender", url: "https://mfi0212.github.io/MFI/service.solutions/all.solution" },
+    { name: "BS&MFI Solutions", desc: "Return date extender", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
     { name: "Interest", desc: "Check interest", url: "https://mfi0212.github.io/MFI/new.service.account#graph" },
-    { name: "Delay it", desc: "From solutions", url: "https://mfi0212.github.io/MFI/service.solutions/delay-it" },
-    { name: "BsRora-Atdo", desc: "From solutions", url: "https://mfi0212.github.io/MFI/service.solutions/bsrora-atdo" },
-    { name: "BotPay", desc: "From solutions", url: "https://mfi0212.github.io/MFI/service.solutions/botpay" },
-    { name: "Split Pay", desc: "From solutions", url: "https://mfi0212.github.io/MFI/service.solutions/split-pay" },
-    { name: "Pre Saver", desc: "From solutions", url: "https://mfi0212.github.io/MFI/service.solutions/pre-saver" },
-    { name: "My Solutions", desc: "Your active services", url: "https://mfi0212.github.io/MFI/new.service.account#products" },
+    { name: "My Solutions", desc: "Your active services", url: "https://mfi0212.github.io/MFI/new.service.account.lite.version#products" },
     { name: "I'm late", desc: "Important Note", url: "https://mfi0212.github.io/MFI/imlate" },
     { name: "BsPsgenerater", desc: "Password generator", url: "https://blackswan19.github.io/Educate/password" },
     { name: "BsReminder", desc: "Date wise notes", url: "https://blackswan19.github.io/bscrop/reminder" },
@@ -1482,7 +1477,7 @@ function showToast(type, title, message) {
     toast.classList.remove("show");
     toast.classList.add("hide");
     setTimeout(() => toast.remove(), 350);
-  }, 3500);
+  }, 1000000000);
 }
 
 // ===== LOADING + PASSWORD LOGIC =====
