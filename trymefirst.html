@@ -1,1566 +1,1523 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="telegram">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BS&MFI Services | Lite Version</title>
-  <script src="new.service.account.lite.version.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
-  <link rel="icon" href="mfi.logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Six+Caps&family=Stack+Sans+Headline:wght@200..700&family=Stalemate&display=swap" rel="stylesheet">
+<html lang="en" data-theme="light">
 
-<style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BS&MFI Services | My account</title>
+    <link rel="icon" href="mfi.logo.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
 * {
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Roboto", system-ui, -apple-system, sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
   -webkit-tap-highlight-color: transparent;
-  letter-spacing: 0.1px;
 }
 
 body {
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
-  font-size: 15px;
+  font-size: 14px;
   background: var(--bg-body);
   color: var(--text-main);
-  line-height: 1.45;
-  transition: background 0.3s ease, color 0.3s ease;
+  line-height: 1.5;
+  transition: background 0.25s ease, color 0.25s ease;
+  overscroll-behavior: none;
 }
 
-/* ===== TELEGRAM ANDROID THEME (default) ===== */
 :root,
-[data-theme="telegram"] {
-  --black-swan: #028fdb;
-  --dark-blue: #2aabee;
-  --accent: #64b5ef;
-  --bg-body: #0e1621;
-  --bg-card: #182533;
-  --bg-topbar: #17212b;
-  --bg-nav: #2aabee;
-  --bg-banner: linear-gradient(120deg, #0e1621, #1e3a5f, #2aabee);
-  --bg-footer: #0e1621;
-  --bg-soft: #1c2a3a;
-  --bg-calc: #1c2733;
-  --bg-table-head: #1c2733;
-  --bg-table-even: #18222d;
-  --text-main: #f5f5f5;
-  --text-muted: #8b9aab;
-  --text-light: #f5f5f5;
-  --text-footer: #6d7f8f;
-  --text-title: #64b5ef;
-  --border: #2b3a4a;
-  --border-strong: #2aabee;
-  --input-border: #2b3a4a;
-  --scrollbar: #52677a;
-}
-
-/* Keep other themes available if needed */
 [data-theme="light"] {
-  --black-swan: #0023d1;
-  --dark-blue: #002aff;
-  --accent: white;
-  --bg-body: #eef1f6;
-  --bg-card: #ffffffcf;
-  --bg-topbar: #0b0f17;
-  --bg-nav: #002aff;
-  --bg-banner: linear-gradient(120deg, #0b0f17, #002aff, #0040ff);
-  --bg-footer: #0b0f17;
-  --bg-soft: #f0f4f8c7;
-  --bg-calc: #f0f5fa;
-  --bg-table-head: #e8eef5;
-  --bg-table-even: #f7fafc;
-  --text-main: #1a1a1a;
-  --text-muted: #555555;
-  --text-light: #e0e6ed;
-  --text-footer: #a0aec0;
-  --text-title: #002aff;
-  --border: #d0d8e4;
-  --border-strong: #002aff;
-  --input-border: #c5d0de;
-  --scrollbar: #8e8e93;
+  --black-swan: #1565C0;
+  --dark-blue: #1976D2;
+  --accent: #FFFFFF;
+  --bg-body: #F5F5F5;
+  --bg-card: #FFFFFF;
+  --bg-topbar: #1976D2;
+  --bg-nav: #FFFFFF;
+  --bg-banner: linear-gradient(135deg, #1565C0, #1976D2);
+  --bg-footer: #212121;
+  --bg-soft: #EEEEEE;
+  --bg-calc: #F5F5F5;
+  --bg-table-head: #E3F2FD;
+  --bg-table-even: #FAFAFA;
+  --text-main: #212121;
+  --text-muted: #757575;
+  --text-light: #FFFFFF;
+  --text-footer: #BDBDBD;
+  --text-title: #1565C0;
+  --border: #E0E0E0;
+  --border-strong: #1976D2;
+  --input-border: #BDBDBD;
+  --scrollbar: #BDBDBD;
+  --elevation-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  --elevation-2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  --elevation-3: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  --radius: 12px;
+  --radius-sm: 0px;
 }
 
 [data-theme="dark"] {
-  --black-swan: #0023d1;
+  --black-swan: #90CAF9;
+  --dark-blue: blue;
+  --accent: #FFFFFF;
+  --bg-body: black;
+  --bg-card: #1E1E1E;
+  --bg-topbar: #1E1E1E;
+  --bg-nav: #1E1E1E;
+  --bg-banner: linear-gradient(135deg, #0D47A1, #1565C0);
+  --bg-footer: #000000;
+  --bg-soft: #2C2C2C;
+  --bg-calc: #2C2C2C;
+  --bg-table-head: #2C2C2C;
+  --bg-table-even: #252525;
+  --text-main: #E0E0E0;
+  --text-muted: #9E9E9E;
+  --text-light: #FFFFFF;
+  --text-footer: #757575;
+  --text-title: #90CAF9;
+  --border: #333333;
+  --border-strong: #42A5F5;
+  --input-border: #424242;
+  --scrollbar: #616161;
+  --elevation-1: 0 1px 3px rgba(0,0,0,0.4);
+  --elevation-2: 0 3px 6px rgba(0,0,0,0.5);
+  --elevation-3: 0 10px 20px rgba(0,0,0,0.6);
+}
+
+[data-theme="telegram"] {
+  --black-swan: #0288D1;
+  --dark-blue: #29B6F6;
+  --accent: #81D4FA;
+  --bg-body: #0E1621;
+  --bg-card: #17212B;
+  --bg-topbar: #17212B;
+  --bg-nav: #17212B;
+  --bg-banner: linear-gradient(135deg, #0E1621, #1E3A5F);
+  --bg-footer: #0E1621;
+  --bg-soft: #1b1b1b;
+  --bg-calc: #1C2733;
+  --bg-table-head: #1C2733;
+  --bg-table-even: #18222D;
+  --text-main: #F5F5F5;
+  --text-muted: #8B9AAB;
+  --text-light: #F5F5F5;
+  --text-footer: #6D7F8F;
+  --text-title: #64B5EF;
+  --border: #2B3A4A;
+  --border-strong: #29B6F6;
+  --input-border: #2B3A4A;
+  --scrollbar: #52677A;
+  --elevation-1: 0 1px 3px rgba(0,0,0,0.4);
+  --elevation-2: 0 3px 6px rgba(0,0,0,0.5);
+  --elevation-3: 0 10px 20px rgba(0,0,0,0.6);
+}
+
+[data-theme="custom"] {
+  --black-swan: #000000;
   --dark-blue: #002aff;
   --accent: white;
   --bg-body: #000000;
-  --bg-card: #161616;
-  --bg-topbar: #000000;
-  --bg-nav: #001a99;
-  --bg-banner: linear-gradient(120deg, #000000, #001a99, #002aff);
+  --bg-card: #0A0A0A;
+  --bg-topbar: #0A0A0A;
+  --bg-nav: #0A0A0A;
+  --bg-banner: linear-gradient(135deg, #000000, var(--dark-blue));
   --bg-footer: #000000;
-  --bg-soft: #1f1f1fba;
-  --bg-calc: #1f1f1fba;
-  --bg-table-head: #201c1c0a;
-  --bg-table-even: #0d0d0d;
-  --text-main: #e8e8e8;
+  --bg-soft: #111111;
+  --bg-calc: #111111;
+  --bg-table-head: #111111;
+  --bg-table-even: #0D0D0D;
+  --text-main: #E8E8E8;
   --text-muted: #999999;
-  --text-light: #e8e8e8;
+  --text-light: #E8E8E8;
   --text-footer: #777777;
-  --text-title: #4d7aff;
-  --border: black;
-  --border-strong: #002aff;
+  --text-title: var(--dark-blue);
+  --border: #222222;
+  --border-strong: var(--dark-blue);
   --input-border: #333333;
-  --scrollbar: #636366;
+  --scrollbar: #333333;
+  --elevation-1: 0 1px 3px rgba(0,0,0,0.5);
+  --elevation-2: 0 3px 6px rgba(0,0,0,0.6);
+  --elevation-3: 0 10px 20px rgba(0,0,0,0.7);
 }
 
-@keyframes fadeSlideleft {
-  from { opacity: 0; transform: translateX(40px); }
-  to { opacity: 1; transform: translateX(0); }
+a {
+  text-decoration: none;
+  color: var(--text-main);
 }
 
-@keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(30px) scale(0.95); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.serlogo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.servicelogo {
-  font-size: 220px;
-  font-weight: 100;
-  font-family: "Six Caps", sans-serif;
-  text-transform: uppercase;
+a:hover {
   color: var(--dark-blue);
-  transform: scaleY(1.5);
 }
 
-a { text-decoration: none; color: var(--text-main); }
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding:5px;
+}
 
-.servicenmae {
-  font-size: 18px;
-  color: #ffffff8f;
-  text-align: center;
+/* ===== TOPBAR (Android App Bar) ===== */
+.topbar {
+ position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: transparent;
+    color: var(--text-light);
+    padding: 0;
+    backdrop-filter: blur(50px);
+}
+
+.topbar .inner {
+      display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.topbar a {
+  color: var(--text-light);
+  margin-left: 8px;
+}
+
+.topbar a:hover {
+  color: var(--accent);
+}
+
+strong#current-user {
+  color: var(--dark-blue);
+}
+
+.user-info {
+  color: var(--text-light);
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.theme-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 8px;
+  color: var(--text-light);
+  border-radius: 16px;
   font-weight: 500;
 }
 
-body.site-locked > *:not(#bsmfi-loader):not(#servicePasswordPopup) {
-  visibility: hidden;
+.theme-btn:active {
+  background: rgba(255,255,255,0.15);
 }
 
-.audio-controls {
-  margin: 0;
-  display: none;
-  flex-direction: column;
+/* Header title row */
+.topbar > .container > .inner > div:first-child {
+  display: flex !important;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  width: 100%;
+  padding: 12px 4px 8px;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.15px;
+  color: var(--text-light);
+  text-transform: none;
 }
 
-.audio-progress-bar {
-  height: 2px;
-  background: rgba(255, 255, 255, 0);
-  border-radius: 0px;
+.topbar svg.backoption {
+  fill: var(--text-light) !important;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.topbar svg.backoption:active {
+  background: rgba(255,255,255,0.15);
+}
+
+.menu-btn {
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  font-size: 18px;
+  background: transparent;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.menu-btn:active {
+  background: rgba(255,255,255,0.15);
+}
+
+.menu-btn i {
+  color: var(--text-light) !important;
+}
+
+/* Search box - Material style */
+.header {
+  padding: 0 0 5px;
+}
+
+.header .inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+}
+
+.search-box {
+  flex: 1;
+  display: flex;
+  max-width: 100%;
+  background: var(--bg-soft);
+  border-radius: 24px;
   overflow: hidden;
+  height: 40px;
 }
 
-.audio-progress-fill {
-  height: 100%;
-  width: 0%;
-  background: rgba(255, 255, 255, 0);
-  border-radius: 6px;
-  transition: width 0.45s ease-out;
+.search-box input {
+  flex: 1;
+  height: 40px;
+  border: none;
+  padding: 0 16px;
+  font-size: 15px;
+  background: transparent;
+  color: var(--text-light);
+  outline: none;
 }
 
-div#mainContent {
+.search-box input::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+.search-box button {
+  height: 40px;
+  width: 48px;
+  background: transparent;
+  color: var(--text-light);
+  border: none;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.audio-progress-container {
-  line-height: 0;
+.search-box button svg {
+  fill: var(--text-light) !important;
+}
+
+.search-results {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  display: none;
+  overflow: hidden;
+  margin: 8px 12px 0;
+  box-shadow: var(--elevation-2);
+}
+
+.search-results .box-title {
+  background: var(--dark-blue);
+  color: white;
+  padding: 12px 16px;
+  font-weight: 500;
+}
+
+.search-item {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-item:active {
+  background: var(--bg-soft);
+}
+
+/* Dropdown menu */
+.dropdown {
+  position: absolute;
+  top: 56px;
+  right: 12px;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--elevation-3);
+  min-width: 200px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+}
+
+.dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown a {
+  display: block;
+  padding: 14px 20px;
+  font-size: 15px;
+  color: var(--text-main);
+  text-align: left;
+  opacity: 1;
+  transition: background 0.15s;
+}
+
+.dropdown a:active {
+  background: var(--bg-soft);
+}
+
+/* ===== MAIN CONTENT ===== */
+.main {
+  padding: 12px 0 80px; /* space for bottom nav */
+}
+
+.row {
+  margin-bottom: 12px;
+}
+
+.col {
+
+  border: none;
+}
+
+.box-title {
+  background: transparent;
+  color: var(--dark-blue);
+  padding: 16px 16px 8px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.15px;
+}
+
+
+/* Special banners */
+.special-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-soft);
+}
+
+.reminder-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: var(--radius);
+  background: #FFEBEE;
+  box-shadow: var(--elevation-1);
+}
+
+[data-theme="dark"] .reminder-banner,
+[data-theme="telegram"] .reminder-banner,
+[data-theme="custom"] .reminder-banner {
+  background: #3E2723;
+}
+
+.reminder-banner .reminder-content h3 {
+  font-size: 15px;
+  color: #C62828;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.reminder-banner .reminder-content p {
+  font-size: 13px;
+  background: rgba(255,255,255,0.5);
+  padding: 10px;
+  border-radius: var(--radius-sm);
+}
+
+/* Graph / Interest */
+.graph-container {
   text-align: center;
+}
+
+.today-rate {
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 12px;
+  color: var(--text-muted);
+}
+
+.today-rate span {
+  color: #2E7D32;
+  font-weight: 500;
+}
+
+.chart-wrapper {
   width: 100%;
+  overflow-x: auto;
+}
+
+#interestChart {
+  width: 100%;
+  max-width: 750px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Take Money */
+.take-money-box {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.take-money-box input {
+  width: 100%;
+  height: 48px;
+  border: 1.5px solid var(--input-border);
+  text-align: center;
+  margin-bottom: 12px;
+  font-size: 16px;
+  background: var(--bg-card);
+  color: var(--text-main);
+  border-radius: var(--radius-sm);
+  padding: 0 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.take-money-box input:focus {
+  border-color: var(--dark-blue);
+}
+
+.take-money-box button {
+  width: 100%;
+  height: 48px;
+  background: var(--dark-blue);
+  color: white;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 24px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: var(--elevation-1);
+  transition: box-shadow 0.2s, background 0.2s;
+}
+
+.take-money-box button:active {
+  box-shadow: none;
+  background: var(--black-swan);
+}
+
+.interest-result {
+  background: var(--bg-soft);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.interest-result .rate {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-title);
+  margin: 8px 0;
+}
+
+/* Amount tabs */
+div#amount-tabs {
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 8px;
+  display: flex;
+  padding: 0 4px 12px;
+  scrollbar-width: none;
+}
+
+button.amount-tab {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: var(--text-main);
+  border-radius: 20px;
+  background: var(--bg-soft);
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+button.amount-tab.active {
+  background: var(--dark-blue);
+  color: #fff;
+  box-shadow: var(--elevation-1);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-row:active {
+  background: var(--bg-soft);
+}
+
+span.detail-value {
+  color: var(--dark-blue);
+  font-weight: 500;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dark-blue);
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  border-radius: 24px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: var(--elevation-1);
+  transition: box-shadow 0.2s, background 0.2s;
+  min-height: 40px;
+}
+
+.btn:active {
+  box-shadow: none;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--dark-blue);
+  border: 1.5px solid var(--dark-blue);
+  box-shadow: none;
+}
+
+.btn-danger {
+  background: #D32F2F;
+}
+
+.btn-danger:active {
+  background: #B71C1C;
+}
+
+.btn-disabled {
+  opacity: 0.6;
+  cursor: not-allowed !important;
+}
+
+/* User summary cards */
+.user-summary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.summary-card {
+  background: var(--bg-soft);
+  padding: 14px 10px;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.summary-card .label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  font-weight: 400;
+}
+
+.summary-card .value {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--dark-blue);
+  line-height: 1.3;
+}
+
+/* Tables */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+}
+
+.loan-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 480px;
+}
+
+.loan-table th {
+  background: var(--bg-table-head);
+  border: none;
+  padding: 12px 8px;
+  color: var(--text-title);
+  text-align: center;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.loan-table td {
+  border-bottom: 1px solid var(--border);
+  padding: 12px 8px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Product grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  padding: 0;
+}
+
+.product-card {
+  border: none;
+  background: var(--bg-soft);
+  padding: 16px 12px;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s;
+}
+
+.product-card:active {
+  background: var(--border);
+}
+
+.product-card .icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.product-card h3 {
+  font-size: 14px;
+  color: var(--dark-blue);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.product-card p {
+  font-size: 12px;
+  color: var(--text-muted);
+  min-height: 36px;
   margin-bottom: 10px;
 }
 
-.bottomloadingopt {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 30px;
-  width: 100%;
-  margin-top: 180px;
-}
-
-img.audioloadgif {
-  width: 280px;
-  margin-bottom: -5px;
-  height: 100px;
-  object-fit: cover;
-}
-
-div#audioStatus {
-  font-size: 10px;
-  color: #ffffff87;
-}
-
-button#muteToggle {
-  border-radius: 50%;
-  border: none;
-  width: 50px;
-  height: 50px;
-  padding: 15px;
-  font-size: 17px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  transition: all 0.25s ease;
-  background: var(--bg-soft);
-}
-
-button#muteToggle:active { transform: scale(0.9); }
-
-.loadintroopt {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 500px;
-  align-items: center;
-  padding: 0 20px;
-  gap: 10px;
-}
-
-button#startAudioBtn {
-  border: none;
-  border-radius: 100px;
-  padding: 20px;
-  font-size: 18px;
-  transition: all 0.25s ease;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  height: 50px;
-  font-weight: 400;
-  background: var(--bg-soft);
-}
-
-button#startAudioBtn:active { transform: scale(0.92); }
-
-h3 {
-  font-weight: 500;
-  font-size: 16px;
-  color: var(--text-main);
-}
-
-div#sectionsContainer strong {
-  position: relative;
-}
-
-/* ===== HEADER (Telegram style) ===== */
-.header {
-position: fixed;
-    top: 0;
-    width: 100%;
-    max-width: 600px;
-    z-index: 1500;
-    padding: 11px 5px 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background: transparent;
-    gap: 8px;
-    backdrop-filter: blur(100px);
-}
-
-strong {
-  font-size: 18px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-main);
-  gap: 2px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.mficolblogo {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #2aabee, #64b5ef);
-  padding: 3px;
-}
-
-/* Search - Telegram style */
-#searchInput {
-padding: 10px 20px;
-    font-size: 18px;
-    transition: all 0.25s ease;
-    border-radius: 999px;
-    outline: none;
-    text-align: left;
-    width: 100%;
-    border: none;
-    background: var(--bg-card);
-    color: var(--text-main);
-    margin-top: 4px;
-}
-
-#searchInput::placeholder {
-  color: var(--text-muted);
-}
-
-#searchInput:focus {
-  outline: none;
-  background: #243447;
-}
-
-.clear-btn {
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
-  opacity: 0;
-  transform: translateY(-50%) scale(0.4);
-  pointer-events: none;
-  transition: all 0.25s ease;
-}
-
-.clear-btn.visible {
-  opacity: 1;
-  transform: translateY(-50%) scale(1);
-  pointer-events: auto;
-}
-
-.clear-btn:active {
-  transform: translateY(-50%) scale(0.85);
-}
-
-.clear-btn svg {
-  width: 12px;
-  height: 12px;
-  stroke: #fff;
-  stroke-width: 2.2;
-  stroke-linecap: round;
-}
-
-img.closesymbol {
-  width: 32px;
-  border-radius: 50%;
-  margin: -4px 0;
-  height: 32px;
-}
-
-#sectionsContainer {
-  padding-top: 110px;
-    max-width: 600px;
-    padding-bottom: 75px;
-    width: 100%;
-}
-
-.section h2 {
-  font-size: 13px;
-    font-weight: 600;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    display: block;
-    display: none;
-}
-
-.site-list {
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-}
-
-.fullnamewidth { max-width: 600px; }
-
-/* List items - Telegram chat style */
-.site-item {
-  display: flex;
-  align-items: center;
-  padding: 12px 10px;
-  color: var(--text-main);
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  border-radius: 0;
-  margin: 0;
-  background: transparent;
-  transition: background 0.2s ease;
-  animation: fadeSlideleft 0.4s ease;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-}
-
-.site-item:active {
-  background: rgba(42, 171, 238, 0.12);
-}
-
-.site-item.pinned {
-  background: var(--bg-card);
-}
-
-.site-info {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.togglestyle {
-  background: transparent;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.togglestyletwo {
-  width: 220px;
-}
-
-/* Pin toggle - Telegram switch style */
-.pin-toggle {
-  width: 36px;
-  height: 20px;
-  background: #7272727a;
-  border-radius: 20px;
-  position: relative;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: background 0.25s ease;
-}
-
-.pin-toggle.on {
-  background: var(--dark-blue);
-}
-
-.pin-toggle::after {
-  content: '';
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 16px;
-  height: 16px;
-  background: #ffffff;
-  border-radius: 50%;
-  transform: translateX(0);
-  transition: transform 0.25s ease;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-}
-
-.pin-toggle.on::after {
-  transform: translateX(16px);
-}
-
-.helper-button {
-  z-index: 1000;
-  text-decoration: none;
-  border-radius: 50%;
-  height: 40px;
-  width: 40px;
-  display: flex;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-}
-
-.helper-button a { display: contents; }
-.helper-button:active { transform: scale(0.9); opacity: 0.7; }
-
-.letter-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  margin-right: 14px;
-  flex-shrink: 0;
-  font-size: 20px;
-  color: #ffffff;
-  background: var(--dark-blue) !important;
-  filter: none !important;
-}
-
-/* Bottom navigation - Telegram style */
-.bottomnavbar {
- position: fixed;
-    bottom: 0;
-    gap: 8px;
-    text-align: center;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    left: 0;
-}
-
-.bottom-nav {
-  max-width: 360px;
-    display: flex;
-    padding: 4px;
-    color: #fff;
-    border-radius: 999px;
-    justify-content: space-between;
-    gap: 0;
-    align-items: center;
-    width: 80%;
-    height: 56px;
-    background: var(--bg-card);
-    backdrop-filter: blur(10px);
-}
-
-.nav-item {
-     display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    padding: 4px;
-    border-radius: 9999px;
-    width: 100%;
-    transition: all 0.2s ease;
-}
-
-.nav-item svg {
-  width: 25px;
-  height: 25px;
-}
-
-.nav-item,
-.nav-item svg {
-  color: var(--text-muted);
-  fill: var(--text-muted);
-}
-
-.nav-item.active,
-.nav-item.active svg,
-.nav-item:hover,
-.nav-item:hover svg {
-  color: var(--dark-blue);
-  fill: var(--dark-blue);
-  background: var(--bg-body);
-}
-
-.nav-item:active {
-  transform: scale(0.92);
-}
-
-.nav-item span {
+.access-badge {
+  display: inline-block;
   font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-bottom: 8px;
   font-weight: 500;
 }
 
-/* Floating button */
-.fiftopt {
-  background: var(--dark-blue);
-  border-radius: 50%;
-  height: 52px;
-  width: 52px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 12px rgba(42, 171, 238, 0.35);
+.access-yes {
+  background: #C8E6C9;
+  color: #2E7D32;
 }
 
-.fiftopt button {
-  height: 52px;
-  width: 52px;
-  background-color: transparent;
+.access-no {
+  background: #FFCDD2;
+  color: #C62828;
+}
+
+/* Turbo cards (if used later) */
+.turbo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 12px 10px;
+}
+
+.turbo-card {
   border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: var(--bg-soft);
+  text-align: center;
+  padding: 16px 12px;
+  position: relative;
+  border-radius: var(--radius);
 }
 
-.fiftopt svg {
-  fill: white !important;
-  color: white !important;
+.turbo-card.hot {
+  background: #E3F2FD;
 }
 
-/* ===== MODALS ===== */
-#redirectModal {
-  position: fixed;
+.turbo-card .badge {
+  position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: none;
-  align-items: end;
-  z-index: 999999999;
-  padding-bottom: 12px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  right: 0;
+  background: var(--dark-blue);
+  color: #fff;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 0 var(--radius) 0 var(--radius-sm);
+  font-weight: 500;
 }
 
-#redirectModal.active {
+/* ===== BOTTOM NAVIGATION (Android style) ===== */
+.quick {
+position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-soft);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 900;
+    padding: 3px;
+    gap: 0;
+    overflow: hidden;
+    flex-direction: row;
+    width: 75%;
+    scrollbar-width: none;
+    margin: 10px 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    backdrop-filter: blur(100px);
+    border-radius: 999px;
+}
+
+.quick a {
+ flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 4px;
+    transition: color 0.2s;
+    text-align: center;
+    border-radius: 999px;
+    width: 100%;
+}
+
+.quick a:active,
+.quick a:hover {
+ color: var(--dark-blue);
+    background: var(--bg-body);
+}
+
+.quick svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.quick span {
+  display: none;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  color: var(--text-footer);
+  padding: 24px 0 80px;
+  font-size: 13px;
+  background: var(--bg-footer);
+  border-top: none;
+}
+
+.footer .inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 0 16px;
+}
+
+.footer h4 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.footer a {
+  display: block;
+  color: var(--dark-blue);
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+.footermfilogo h4 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.footer-bottom {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  text-align: center;
+  font-size: 12px;
+}
+
+/* ===== MODALS (Material Dialog style) ===== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 9999;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+}
+
+.modal.show {
   display: flex;
-  opacity: 1;
 }
 
 .modal-content {
-  width: 94%;
-  max-width: 420px;
-  border-radius: 16px;
-  padding: 0 0 16px 0;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-  left: 50%;
-  transform: translate(-50%, 30px) scale(0.96);
   background: var(--bg-card);
-  opacity: 0;
-  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+  width: 100%;
+  max-width: 480px;
+  border-radius: 16px 16px 0 0;
   color: var(--text-main);
-  border: 1px solid var(--border);
-}
-
-#redirectModal.active .modal-content {
-  transform: translate(-50%, 0) scale(1);
-  opacity: 1;
+  padding: 20px 16px 24px;
+  text-align: center;
+  box-shadow: var(--elevation-3);
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modal-content h3 {
-  letter-spacing: 0;
-  margin: 12px 0 10px 0;
-  font-weight: 600;
+  color: var(--text-title);
+  margin-bottom: 12px;
   font-size: 18px;
-}
-
-.modal-content p {
-  font-size: 15px;
-  line-height: 1.5;
-  margin-bottom: 16px;
-  font-weight: 400;
-  width: 85%;
-  color: var(--text-muted);
-}
-
-strong#modalPageName {
-  color: var(--dark-blue);
-  font-size: 15px;
   font-weight: 500;
-  text-transform: none;
-  display: contents;
 }
 
-.acuntpopup {
-  width: 100%;
-  border-radius: 16px 16px 0 0;
-  margin: 0;
-  padding: 20px 12px 8px;
-  background: transparent;
-}
-
-.modal-actions {
-  display: flex;
-  gap: 10px;
-  width: 90%;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.modal-btn {
-  flex: 1;
-  padding: 12px;
-  border: none;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 44px;
-  gap: 6px;
-}
-
-.modal-btn.cancel {
-  background: #3e546a;
-  color: white;
-}
-
-.modal-btn.proceed {
-  background-color: var(--dark-blue);
-  color: white;
-}
-
-.modal-btn:active {
-  transform: scale(0.96);
-  opacity: 0.9;
-}
-
-#modalTitle {
-  color: var(--text-main);
-}
-
-.close-modal {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  font-size: 24px;
-  color: var(--text-muted);
-  cursor: pointer;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.botmmainopt {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* Device Popup */
-.device-popup {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 100000000;
-  align-items: end;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.device-popup.active {
-  display: flex;
-  opacity: 1;
-}
-
-.popup-content {
-  padding: 20px 16px;
-  text-align: center;
-  position: relative;
-  bottom: 12px;
-  width: 94%;
-  max-width: 400px;
-  border-radius: 16px;
-  line-height: 1.5;
-  background: var(--bg-card);
-  transform: translateY(30px) scale(0.96);
-  opacity: 0;
-  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.1);
-  border: 1px solid var(--border);
-}
-
-.device-popup.active .popup-content {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-}
-
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  margin: 12px 0 16px;
-}
-
-.buttons .modal-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-}
-
-/* Password Popup - Telegram style */
-.password-popup-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999999999999999999999;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.password-popup {
-  text-align: center;
-  width: min(340px, 100%);
-  padding: 28px 24px;
-}
-
-.password-popup-title {
-  font-size: 20px;
-  font-weight: 600;
-  margin: 12px 0 6px;
-  color: var(--text-main);
-}
-
-.password-popup-text {
-  font-size: 14px;
-  opacity: 0.7;
-  margin-bottom: 20px;
-  color: var(--text-muted);
-}
-
-#servicePasswordInput {
+.modal-content input {
   width: 100%;
   height: 48px;
+  border: 1.5px solid var(--input-border);
   padding: 0 16px;
-  color: var(--text-main);
-  border: none;
-  border-radius: 12px;
-  outline: none;
+  margin-bottom: 12px;
   font-size: 16px;
-  box-sizing: border-box;
+  background: var(--bg-card);
+  color: var(--text-main);
+  border-radius: var(--radius-sm);
+  outline: none;
+}
+
+.modal-content input:focus {
+  border-color: var(--dark-blue);
+}
+
+.fee-preview {
+  background: var(--bg-soft);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 16px;
   text-align: center;
+}
+
+.fee-preview .fee-amount {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-title);
+}
+
+/* Theme modal */
+.theme-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.theme-option {
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.theme-option:active,
+.theme-option.active {
+  border-color: var(--dark-blue);
   background: var(--bg-soft);
 }
 
-#servicePasswordInput:focus {
-  background: #243447;
-}
-
-#servicePasswordError {
-  min-height: 20px;
-  margin-top: 8px;
-  font-size: 13px;
-  color: #ff6b6b;
-  display: block;
-}
-
-.password-popup button {
+.theme-option .swatch {
   width: 100%;
-  height: 48px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 500;
+  height: 32px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.scrollthemes {
+  overflow: auto;
+  max-height: 320px;
+  padding: 4px;
+}
+
+.custom-section {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  margin-top: 12px;
+}
+
+.custom-colors {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.custom-color-btn {
+  height: 44px;
+  border: 2px solid transparent;
+  border-radius: 50%;
   cursor: pointer;
-  background: var(--dark-blue);
-  color: #ffffff;
-  transition: all 0.2s ease;
 }
 
-.password-popup button:active {
-  transform: scale(0.97);
-  opacity: 0.9;
+.custom-color-btn.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--dark-blue);
 }
 
-/* Toast - Telegram style */
-.toast-container {
-  position: fixed;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999999999;
+.color-picker-row {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 10px;
-  width: 90%;
-  max-width: 340px;
+  margin-top: 12px;
+}
+
+/* Loading screen */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  background: var(--bg-body);
+  transition: opacity 0.4s, visibility 0.4s;
+}
+
+#loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
 }
 
-.toast {
-border-radius: 12px;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    transform: translateY(-20px) scale(0.95);
-    opacity: 0;
-    transition: all 0.3s ease;
-    pointer-events: auto;
-    background: transparent;
-    border: 1px solid var(--border);
-    box-shadow: 0 4px 16px rgb(0 0 0 / 25%);
-    backdrop-filter: blur(20px);
-}
-
-.toast.show {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-}
-
-.toast.hide {
-  transform: translateY(-16px) scale(0.95);
-  opacity: 0;
-}
-
-.toast-icon {
-  width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    font-weight: 100;
-    flex-shrink: 0;
-    color: white;
-    background: var(--dark-blue) !important;
-}
-
-.toast-title {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 1px;
-}
-
-.toast-message {
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.toast-icon-img {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-}
-
-/* Loader */
-html:has(#bsmfi-loader:not(.hidden)),
-body:has(#bsmfi-loader:not(.hidden)) {
-  overflow: hidden !important;
-  height: 100% !important;
-  touch-action: none;
-}
-
-.loading-overlay {
-  position: fixed;
-  inset: 0;
-  background-color: #0e1621;
+.loading-card {
+  width: 260px;
+  padding: 28px;
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  z-index: 2000;
-  opacity: 1;
-  transition: opacity 0.5s ease;
-  padding: 30px 0;
+  background: var(--bg-card);
+  box-shadow: var(--elevation-2);
 }
 
-@media (max-width: 800px) {
-  .viewnotice { display: none; }
+.spinner {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 20px;
+  position: relative;
 }
-</style>
-</head>
-<body class="site-locked">
 
-<div data-popup id="bsmfi-loader"
-  style="
-    position: fixed;
-    inset: 0;
-    background: #0e1621;
-    display: flex;
+.spinner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: var(--dark-blue);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.loading-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.progress-track {
+  height: 4px;
+  background: var(--bg-soft);
+  border-radius: 2px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--dark-blue);
+  border-radius: 2px;
+  transition: width 0.25s linear;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  width: 100%;
+}
+
+/* Utility */
+.hidden {
+  display: none !important;
+}
+
+#logout-btn {
+  background: #D32F2F;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 16px;
+  border: none;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Advertisement */
+.advertisment {
+  display: none;
+  margin-bottom: 12px;
+}
+
+img.advertisments {
+  width: 100%;
+  border-radius: var(--radius);
+  object-fit: cover;
+  height: 120px;
+}
+
+/* Desktop adjustments */
+@media (min-width: 768px) {
+  .modal {
+    align-items: center;
+  }
+  .modal-content {
+    border-radius: 16px;
+    max-width: 420px;
+  }
+  .user-summary {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .footer .inner {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .quick {
+           max-width: 300px;
+        left: 50%;
+        transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 600px) {
+  .header .inner {
     flex-direction: column;
-    justify-content: center;
+  }
+  .search-box {
+    width: 100%;
+  }
+}
+    </style>
+</head>
+<body>
+
+  <div id="loading-screen">
+    <div class="loading-card">
+      <div class="spinner"></div>
+      <div class="loading-title">Data Loading</div>
+      <div class="loading-subtitle">just wait few minutes to load data</div>
+
+      <div class="progress-section">
+        <div class="progress-track">
+          <div class="progress-fill" id="progressBar"></div>
+        </div>
+        <div class="progress-info">
+          <span>Progress</span>
+          <span id="progress-percent">0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+<body>
+    <div class="topbar">
+        <div class="container">
+            <div class="inner">
+                <div style="display: flex;
+    justify-content: space-between;
     align-items: center;
-    z-index: 99999;
-    overflow: hidden;
-  ">
+    width: 100%;
+    gap: 50px;
+    max-width: 500px;
+    padding: 0 0 5px 0;
+    font-weight: 400;
+    font-family: 'Hahmlet', serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;">
+    <svg class="backoption" onclick="goBack()" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m294.92-450 206.77 206.77q8.92 8.92 8.81 20.88-.12 11.96-9.42 21.27-9.31 8.69-21.08 9-11.77.31-21.08-9L205.31-454.69q-5.62-5.62-7.92-11.85-2.31-6.23-2.31-13.46t2.31-13.46q2.3-6.23 7.92-11.85l253.61-253.61q8.31-8.31 20.58-8.5 12.27-.19 21.58 8.5 9.3 9.31 9.3 21.38 0 12.08-9.3 21.39L294.92-510H750q12.77 0 21.38 8.62Q780-492.77 780-480t-8.62 21.38Q762.77-450 750-450H294.92Z"/></svg>
+    BS&MFI Services Lite<button class="menu-btn" id="menuBtn" title="More options">
+      <i style="    color: var(--text-main);" class="fa-solid fa-ellipsis-vertical"></i>
+    </button></div>
+                <div> <span id="top-user" class="user-info"></span> 
+                  <a href="#"  id="logout-btn" class="hidden" onclick="logout()">Logout</a>
+                    <button class="theme-btn" onclick="openThemeModal()" id="theme-btn">Themes</button>
+                </div>
+            </div>
 
-  <img
-    id="loader-image"
-    src="enterencemfilogo.png"
-    alt="BS&MFI"
-    style="
-      width: 150px;
-      object-fit: cover;
-      opacity: 1;
-      transform: scale(1);
-      transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
-    "
-  >
-
-  <div
-    id="welcome-text"
-    style="
-      position: absolute;
-      color: #f5f5f7;
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: -0.2px;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(16px) scale(0.97);
-      transition:
-        opacity 0.9s ease,
-        transform 0.9s ease;
-      padding: 0 24px;
-    "
-  >
-    <h5 style="color: rgba(255,255,255,0.6); font-size: 14px; font-weight: 400;">
-      Powered by
-    </h5>
-    <span style="color:white;">
-      BS&MFI House
-    </span>
-  </div>
-</div>
-
-<div id="servicePasswordPopup" class="password-popup-overlay">
-  <div class="password-popup">
-    <img style="width: 48%; border-radius: 50%;" src="mfi.gif" alt="">
-    <div class="password-popup-title">
-      Password Required
+    <div class="dropdown" id="dropdown">
+      <a href="https://mfi0212.github.io/MFI/new.service">BS&MFI home page</a>
+      <a href="https://mfi0212.github.io/MFI/service.solutions/lite.all.solution">All Solutions</a>
     </div>
-    <div class="password-popup-text">
-      Enter your password to continue.
-    </div>
-    <input
-      type="text"
-      id="servicePasswordInput"
-      placeholder="Password"
-      autocomplete="off"
-    >
-    <div id="servicePasswordError"></div>
-    <button type="button" onclick="checkServicePassword()">
-      Continue
-    </button>
-  </div>
-</div>
-
-<div id="mainContent">
-  <div class="header">
-    <div class="logo">
-      <strong class="fullnamewidth">
-        <img style="width: 38px; border-radius: 50%; margin-right: 6px;" src="mfi.gif" alt=""> BS&MFI Lite
-      </strong>
-      
-      <div style="    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--bg-card);
-    backdrop-filter: blur(10px);
-    border-radius: 999px;
-    gap: 5px;">
-        <div class="helper-button">
-        <a href="https://mfi0212.github.io/MFI/starpre">
-          <svg style="height: 26px; opacity: 85%; width: 26px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8b9aab"><path d="m418.38-217.15 225.54-272.08H480.69l30.16-235.46-202.08 292.92h140.54l-30.93 214.62ZM399.15-388H277.77q-16.62 0-24.31-14.38-7.69-14.39 2.23-29.54l263.39-382.39q3.92-5.38 12.3-8.34 8.39-2.97 15.77.11 7.39 3.08 12.2 10.73 4.8 7.66 4.57 15.27L530.62-533h145.92q18.38 0 26.08 16.38 7.69 16.39-4.23 30.54L408.92-136.61q-5.92 6.15-13.8 8.5-7.89 2.34-15.66-1.74-7.77-4.07-10.69-10.46-2.92-6.38-2.46-15.77L399.15-388zm77.08-82.69Z"/></svg>
-        </a>
-      </div>
-      
-      <div class="helper-button">
-        <p id="triggerIcon" style="position: relative; top: 1px;">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8b9aab"><path d="M475.54-540.69Zm-32 372.69H120q-13.6 0-22.8-9.76-9.2-9.76-9.2-23.34t9.75-22.74Q107.5-233 121-233h322.54q13.6 0 22.8 9.19 9.2 9.19 9.2 22.77t-9.2 23.31q-9.2 9.73-22.8 9.73ZM215.62-288.38q-38.35 0-64.48-26.14Q125-340.66 125-379v-322.38q0-38.35 26.14-64.48Q177.27-792 215.62-792h581.23q13.6 0 22.8 9.19 9.2 9.18 9.2 22.77 0 13.58-9.2 23.31-9.2 9.73-22.8 9.73H214.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93V-378q0 9.23 7.69 16.92 7.69 7.7 16.93 7.7h228.92q13.6 0 22.8 9.18 9.2 9.19 9.2 22.77t-9.2 23.31q-9.2 9.74-22.8 9.74H215.62zm598.07 41.3v-290.07q0-5.39-3.84-9.23-3.85-3.85-9.23-3.85H665.38q-5.38 0-9.23 3.85-3.84 3.84-3.84 9.23v290.07q0 5.39 3.84 9.23Q660-234 665.38-234h135.24q5.38 0 9.23-3.85 3.84-3.84 3.84-9.23ZM654.77-168q-27.19 0-47.83-20.63-20.63-20.64-20.63-47.83v-312.31q0-28.11 20.63-47.78 20.64-19.68 47.83-19.68h157.46q28.11 0 47.79 19.68 19.67 19.67 19.67 47.78v312.31q0 27.19-19.67 47.83Q840.34-168 812.23-168H654.77zm78.09-253q15.93 0 26.5-10.53 10.56-10.54 10.56-26.25 0-15.94-10.55-26.5-10.56-10.57-26.7-10.57-15.9 0-26.25 10.56-10.34 10.55-10.34 26.7 0 15.9 10.53 26.24Q717.14-421 732.86-421zm.14 28.38Z"/></svg>
-        </p>
+        </div>
+        <div class="header">
+          <div class="container" style="padding: 5px 5px 0 5px;">
+              <div class="inner">
+                  <div class="search-box">
+                      <input type="text" id="search-input" placeholder="Search services...." onkeypress="if(event.key==='Enter') doSearch()">
+                      <button onclick="doSearch()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M791.09-88.74 535.84-344.17q-29.71 22.04-72.37 35.18-42.67 13.14-87.9 13.14-119.65 0-202.79-83.14-83.13-83.15-83.13-202.82 0-119.67 83.15-202.77 83.15-83.09 202.81-83.09 119.67 0 202.77 83.13 83.1 83.13 83.1 202.78 0 45.48-12.26 85.76-12.26 40.28-35.31 71.57l256.44 256.67-79.26 79.02ZM375.47-409.02q72.99 0 122.91-49.83 49.92-49.82 49.92-122.81 0-72.99-49.92-122.92-49.92-49.92-122.91-49.92t-122.82 49.92q-49.82 49.93-49.82 122.92 0 72.99 49.82 122.81 49.83 49.83 122.82 49.83Z"/></svg></button>
+                  </div>
+              </div>
+          </div>
+          <div class="search-results" id="search-results">
+            <div class="box-title"><a href="#" onclick="clearSearch()" style="color:#fff;">Clear ✕</a></div>
+          <div id="search-list"></div>
       </div>
       </div>
     </div>
-
-    <div class="search-container" style="width:100%; position:relative;">
-      <div class="liquid-search-wrapper" id="searchWrapper" style="position:relative; width:100%;">
-        <input type="text" id="searchInput" placeholder="Search" autocomplete="off"/>
-        <button class="clear-btn" id="clearBtn">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12"/></svg>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div id="sectionsContainer"></div>
-
-  <div class="device-popup" id="devicePopup">
-    <div class="popup-content">
-      <h3 style="margin-bottom: 10px; font-size: 18px; margin-top: 0;">What would you like to visit?</h3>
-      <div class="buttons">
-        <button onclick="window.open('https://mfi0212.github.io/MFI/desktop.acc','_parent')" class="modal-btn proceed">
-          <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px" fill="#ffffff"><path d="M75.77-137.54q-13.54 0-23.27-9.73t-9.73-23.27q0-13.54 9.73-23.27t23.27-9.73h808.46q13.54 0 23.27 9.73t9.73 23.27q0 13.54-9.73 23.27t-23.27 9.73H75.77Zm102.85-106q-38.35 0-64.48-26.14Q88-295.81 88-334.15v-398.77q0-38.34 26.14-64.48 26.13-26.14 64.48-26.14h602.76q38.35 0 64.48 26.14Q872-771.26 872-732.92v398.77q0 38.34-26.14 64.47-26.13 26.14-64.48 26.14H178.62Zm0-66h602.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.92v-398.77q0-9.23-7.69-16.93-7.69-7.69-16.93-7.69H178.62q-9.24 0-16.93 7.69-7.69 7.7-7.69 16.93v398.77q0 9.23 7.69 16.92 7.69 7.69 16.93 7.69Zm-24.62 0v-448 448Z"/></svg> System
-        </button>
-        <button onclick="window.open('https://mfi0212.github.io/MFI/accverify','_parent')" class="modal-btn proceed">
-          <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px" fill="#ffffff"><path d="M299.62-48q-38.85 0-64.74-25.88Q209-99.77 209-138.62v-682.76q0-38.35 26.14-64.48Q261.27-912 299.62-912h361.84q38.85 0 64.73 25.88 25.89 25.89 25.89 64.74v118.61q16.92 3.62 28.42 17.39 11.5 13.76 11.5 30.92v68.77q0 17.15-11.5 30.92Q769-541 752.08-537.38v398.76q0 38.85-25.89 64.74Q700.31-48 661.46-48H299.62Zm-1-65h363.84q10.77 0 17.69-6.92 6.93-6.93 6.93-17.7v-684.76q0-10.77-6.93-17.7-6.92-6.92-17.69-6.92H298.62q-10.77 0-17.7 6.92-6.92 6.93-6.92 17.7v684.76q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92ZM274-113v-734 734Zm237.5-588.5q12.81-12.81 12.81-30.96 0-18.16-12.81-30.96-12.81-12.81-30.96-12.81-18.16 0-30.96 12.81-12.81 12.8-12.81 30.96 0 18.15 12.81 30.96 12.8 12.81 30.96 12.81 18.15 0 30.96-12.81Z"/></svg> Mobile
-        </button>
-      </div>
-      <button id="closePopup" class="modal-btn cancel" style="width: 100%;">
-        <img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close Now
-      </button>
-    </div>
-  </div>
-
-  <div class="bottomnavbar">
-    <div class="bottom-nav">
-      <div class="nav-item active" id="nav-all" onclick="showAll()">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M160-88q-13.64 0-22.82-9.73T128-121.07q0-13.61 9.73-22.77T161-153h398.62q13.63 0 22.81 9.16 9.19 9.16 9.19 22.77t-9.19 23.34Q573.25-88 559.62-88H160Zm0-160.38q-13.64 0-22.82-9.74-9.18-9.73-9.18-23.33 0-13.61 9.73-22.77t23.27-9.16h639q13.64 0 22.82 9.16t9.18 22.77q0 13.6-9.18 23.33-9.18 9.74-22.82 9.74H160Zm58.62-160.39q-38.35 0-64.48-26.14Q128-461.04 128-499.38v-282q0-38.35 26.14-64.48Q180.27-872 218.62-872h522.76q38.35 0 64.48 26.14Q832-819.73 832-781.38v282q0 38.34-26.14 64.47-26.13 26.14-64.48 26.14H218.62Zm-1-65h524.76q10.77 0 17.7-6.92 6.92-6.93 6.92-17.69v-284q0-10.77-6.92-17.7-6.93-6.92-17.7-6.92H217.62q-10.77 0-17.7 6.92-6.92 6.93-6.92 17.7v284q0 10.76 6.92 17.69 6.93 6.92 17.7 6.92Zm-24.62 0V-807v333.23Z"/></svg>
-        <span>All</span>
-      </div>
-
-      <div onclick="window.open('https://mfi0212.github.io/MFI/new.service.account.lite.version#takemoney','_parent')" class="nav-item">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m615.85-676.08 204.61-203.61q9.62-9.62 22.27-9.35 12.65.27 22.5 10.12 9.62 9.61 9.62 22.77 0 13.15-9.62 22.77L648.46-615.62q-13.69 13.7-32.61 13.7-18.93 0-32.62-13.7L479.46-720.38q-9.84-9.85-10.61-23.16-.77-13.31 9.84-23.15 9.85-10.62 23.66-9.85 13.8.77 23.65 10.62l89.85 89.84Zm-32.16 542.23q3.85 1.54 6.93 1.54 3.07 0 6.92-1.54l238.61-73.69q-1.15-18.23-5.53-22.27-4.39-4.04-21.39-4.04H609.54q-27.46 0-50.08-2-22.61-2-44.23-9.53l-62.54-21.08q-13.31-5.69-18.84-17.27-5.54-11.58-.85-24.89 4.69-12.53 16.77-18.19 12.08-5.65 25.38-.96l53 19.46q19.31 6.54 37.73 7.89 18.43 1.34 61.12.57h-.77 13q0-18.69-7.38-27.23-7.39-8.54-20.23-13.07l-235.16-86.47q-2.31-.76-4.23-1.15-1.92-.38-4.23-.38h-67v214.3l282.69 80Zm-13.23 65.54L301-145.85q-4.69 26.7-30.69 42.27Q244.31-88 211.38-88h-32.76q-38.85 0-64.74-25.88Q88-139.77 88-178.62v-224.92q0-38.85 25.88-64.73 25.89-25.88 64.74-25.88h189.61q7.46 0 15.81 1.61 8.34 1.62 16.58 4.62l234.15 86.69q33.46 13.15 49.96 33.31 16.5 20.15 16.5 68.07h108q46.15 0 70.39 29.62 24.23 29.61 24.23 70.38 0 21-13 35.77-13 14.77-29.47 19.93L622-68.54q-12.69 3.46-25.38 3.85-12.7.38-26.16-3.62ZM155-178.62q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92h30.76q10.77 0 17.7-5.77 6.92-5.77 6.92-18.85v-250.53h-55.38q-10.77 0-17.7 6.92-6.92 6.92-6.92 17.69v225.92Z"/></svg>
-        <span>Borrow</span>
-      </div>
-      <div class="nav-item" onclick="showRedirectPopup('Account', 'https://mfi0212.github.io/MFI/new.service.account.lite.version#account')">
-        <img style="width: 22px; border-radius: 50%; filter: saturate(0.6);" src="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg" alt="">
-        <span>Account</span>
-      </div>
-      <div class="nav-item" onclick="window.open('https://mfi0212.github.io/MFI/bsmfi_search','_parent')">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M380.77-335.39q-102.46 0-173.54-71.07-71.07-71.03-71.07-173.54t71.07-173.54q71.03-71.07 173.54-71.07t173.54 71.07q71.07 71.03 71.07 173.54 0 42.85-14.38 81.85-14.39 39-38.39 67.84l230.16 230.16q8.31 8.3 8.5 20.88.19 12.58-8.5 21.27t-21.03 8.69q-12.38 0-21.07-8.69L530.46-388.16q-30 24.77-69 38.77-39 14-80.69 14Zm0-59.99q77.31 0 130.96-53.66 53.66-53.65 53.66-130.96t-53.66-130.96q-53.65-53.66-130.96-53.66t-130.96 53.66Q196.15-657.31 196.15-580t53.66 130.96q53.65 53.66 130.96 53.66Z"></path></svg>
-        <span>Search</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="redirectModal">
+    <div class="main">
+        <div class="container">
+            <div class="advertisment" >
+              <img src="https://i.pinimg.com/originals/d0/90/fd/d090fd8442f252a252bddb861afe8adf.gif" class="advertisments" alt="">
+            </div>
+            <div id="reminder-banner" class="reminder-banner hidden">
+                <div class="reminder-icon">⚠️</div>
+                <div class="reminder-content">
+                    <h3>Payment Reminder</h3>
+                    <div id="reminder-messages"></div>
+                    <div class="reminder-actions">
+                        <button class="btn btn-danger" onclick="document.getElementById('products').scrollIntoView({behavior:'auto'})">Delay It Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="graph">
+                <div class="col">
+                    <div class="box-title">Today's Interest Rate</div>
+                    <div class="graph-container">
+                        <div class="today-rate"> Today’s Interest: <span id="today-rate-display">--%</span> <span id="fixed-rate-note" style="font-size:13px;display:none;"></span> </div>
+                        <div class="chart-wrapper">
+                            <canvas id="interestChart" width="750" height="240"></canvas>
+                        </div>
+                        <p style="    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    text-align: left;
+    border-left: solid 4px var(--dark-blue);
+    padding: 10px;
+    background: var(--bg-soft);
+    border-radius: 0 6px 6px 0;"> Interest rate and all bars are fixed for the whole day. Logged-in users with a claimed fixed rate will see their personal rate used in calculations. </p>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row" id="turbo">
+                <div class="col">
+                    <div class="box-title">BS&MFI Turbo Plans</div>
+                    <div class="turbo-grid">
+                        <div class="turbo-card">
+                            <h3>Normal</h3>
+                            <div class="limit">0₹ <small>/month</small></div>
+                            <p>Borrow Limit : 10,000₹</p>
+                        </div>
+                        <div class="turbo-card">
+                            <h3>Premium</h3>
+                            <div class="limit">480₹ <small>/month</small></div>
+                            <p>Borrow Limit : 40,000₹</p>
+                            <button class="btn" onclick="window.open('https://forms.gle/7c9bppM7DnPGdZHm6','_self')">Apply Now</button>
+                        </div>
+                        <div class="turbo-card">
+                            <h3>Premium+</h3>
+                            <div class="limit">960₹ <small>/month</small></div>
+                            <p>Borrow Limit : 80,000₹</p>
+                            <button class="btn" onclick="window.open('https://forms.gle/7c9bppM7DnPGdZHm6','_self')">Apply Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="row" id="takemoney">
+                <div class="col">
+                    <div class="box-title">Take Money</div>
+                    <div class="box-body">
+                        <div class="take-money-box">
+                            <div id="tm-password-step">
+                                <input type="text" id="tm-password" placeholder="" style="opacity: 0;">
+                                <button onclick="verifyTakeMoneyPassword()">Check interest now</button>
+                            </div>
+                            <div id="tm-amount-step" class="hidden">
+                                <p style="margin-bottom:10px;text-align:center;color:var(--text-muted);"> Applicable Interest Rate: <strong id="tm-today-rate" style="color:var(--text-title);"></strong> </p>
+                                <input type="number" id="tm-amount" placeholder="Enter amount you want to take" min="100">
+                                <button onclick="calculateTakeMoneyInterest()">Check Interest</button>
+                                <div id="tm-result" class="interest-result hidden">
+                                    <div>Amount: <strong id="tm-res-amount">—</strong></div>
+                                    <div class="rate">Interest: <span id="tm-res-interest">—</span></div>
+                                    <div>Total to Return: <strong id="tm-res-total">—</strong></div>
+                                    <button class="btn" style="margin-top:12px;width:100%;" onclick="applyTakeMoney()">Apply Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="products">
+                <div class="col">
+                    <div class="box-title">All our services</div>
+                    <div class="box-body" id="products-container"></div>
+                </div>
+            </div>
+            <div class="row" id="account">
+                <div class="col">
+                    <div class="box-title"> My Account - Loan Details <span id="account-status" style="font-size:12px;font-weight:normal;"></span> </div>
+                    <div class="box-body">
+                        <div id="login-section">
+                            <div style="max-width:360px;margin:0 auto;">
+                                <p style="margin-bottom:12px;color:var(--text-muted);text-align:center;"> Enter password to login </p>
+                                <input type="text" id="login-pass" placeholder="Password" style="width:100%;height:40px;margin-bottom:10px;padding:0 12px;border:1.5px solid var(--input-border);background:var(--bg-card);color:var(--text-main);border-radius:4px;">
+                                <button class="btn" style="width:100%;height:42px;" onclick="doLogin()">Login to Account</button>
+                            </div>
+                        </div>
+                        <div id="loan-section" class="hidden">
+                            <p style="margin-bottom:12px;"> Welcome, <strong id="current-user"></strong>!
+                                <button class="btn btn-outline" id="logout-btn" onclick="logout()">Logout</button>
+                            </p>
+                            <!-- Custom Content (image offer) -->
+                            <div id="custom-content-box" class="custom-content-box hidden"></div>
+                            <!-- Special Notice Banner -->
+                             <div id="special-banner" class="special-banner hidden">
+              <div class="special-icon">🤖</div>
+              <div class="special-content">
+                <marquee id="special-message" behavior="" direction="left"></marquee>
+              </div>
+            </div>
+                            <div class="user-summary">
+                                <div class="summary-card">
+                                    <div class="label">User Name</div>
+                                    <div class="value" id="sum-username">—</div>
+                                </div>
+                                <div class="summary-card">
+                                    <div class="label">Premium Type</div>
+                                    <div class="value" id="sum-premium">—</div>
+                                </div>
+                                <div class="summary-card" id="sum-total">
+                                    <div class="label">Total Amount</div>
+                                    <div class="value">—</div>
+                                </div>
+                                <div class="summary-card">
+                                    <div class="label">Your Interest Rate</div>
+                                    <div class="value" id="sum-interest">—</div>
+                                </div>
+                            </div>
+                            
+            <div class="modal" id="total-popup-modal">
   <div class="modal-content">
-    <div class="acuntpopup">
-      <img style="width: 90px;" src="service-icons/account_divert_icon.webp" alt="">
-      <h3 id="modalTitle">Visit My Account ?</h3>
+    <h3>Total Amount</h3>
+    <div class="amount-detail-card" style="margin-bottom:14px;">
+      <div class="detail-row">
+        <span class="detail-label">Amount</span>
+        <span class="detail-value" id="tp-amount">—</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Interest</span>
+        <span class="detail-value" id="tp-interest">—</span>
+      </div>
+      <div class="detail-row total-row">
+        <span class="detail-label">Total (amount + interest)</span>
+        <span class="detail-value" id="tp-total">—</span>
+      </div>
     </div>
-    <p id="modalMessage">We are redirecting you to visit your account<strong style="display: none;" id="modalPageName"></strong>...!</p>
-    
-    <div class="modal-actions">
-      <button class="modal-btn cancel" onclick="closeModal()">
-        <img class="closesymbol" src="service-icons/close_icon.png" alt=""> Cancel
-      </button>
-      <button class="modal-btn proceed" onclick="proceedToLink()">
-        <img class="closesymbol" src="service-icons/done_icon.png" alt=""> Continue
-      </button>
-    </div>
+    <button class="btn" style="width:100%;" onclick="closeTotalPopup()">OK</button>
   </div>
 </div>
 
-<!-- Toast Container -->
-<div class="toast-container" id="toastContainer"></div>
+            <div id="loan-amount-ui">
+              <div class="amount-tabs-wrapper">
+                <div class="amount-tabs" id="amount-tabs"></div>
+              </div>
+              <div id="amount-detail-container"></div>
+            </div>
 
-<!-- Load the password / users file -->
-<script src="new-service-amount-details.js"></script>
-
-<script>
-const siteGroups = [
-  { heading: "Return Management", sites: [
-    { name: "BsRora", desc: "Let the bot do", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
-    { name: "BS&MFI House", desc: "BS&MFI home page", url: "https://mfi0212.github.io/MFI/new.service" },
-    { name: "BS&MFI Solutions", desc: "Return date extender", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
-    { name: "Interest", desc: "Check interest", url: "https://mfi0212.github.io/MFI/new.service.account#graph" },
-    { name: "My Solutions", desc: "Your active services", url: "https://mfi0212.github.io/MFI/new.service.account.lite.version#products" },
-    { name: "I'm late", desc: "Important Note", url: "https://mfi0212.github.io/MFI/imlate" },
-    { name: "BsPsgenerater", desc: "Password generator", url: "https://blackswan19.github.io/Educate/password" },
-    { name: "BsReminder", desc: "Date wise notes", url: "https://blackswan19.github.io/bscrop/reminder" },
-    { name: "BsBookpad", desc: "Download the notes", url: "https://blackswan19.github.io/Educate/bookpad" },
-    { name: "BsAdstoper", desc: "Ad blocker", url: "https://blackswan19.github.io/Educate/stoper" },
-    { name: "BsFilestore", desc: "Store privacy files in folders", url: "https://blackswan19.github.io/Educate/hider" },
-    { name: "BsMediastorage", desc: "Store files with privacy", url: "https://blackswan19.github.io/Educate/hider" },
-  ]}
-];
-
-let pinnedSites = JSON.parse(localStorage.getItem('pinnedBSMFI')) || [];
-let currentView = 'all';
-
-function getColor(name) {
-  let hash = 0;
-  for (let i = 0; i < name.length; i++) {
-    hash = name.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  const hue = Math.abs(hash) % 360;
-  return `hsl(${hue}, 70%, 55%)`;
-}
-
-function getInitial(name) {
-  return name.trim()[0]?.toUpperCase() || "?";
-}
-
-function isPinned(name) {
-  return pinnedSites.some(p => p.name === name);
-}
-
-function togglePin(site) {
-  if (isPinned(site.name)) {
-    pinnedSites = pinnedSites.filter(p => p.name !== site.name);
-    showToast('info', 'Unpinned', site.name + ' removed from pinned');
-  } else {
-    pinnedSites.push(site);
-    showToast('success', 'Pinned', site.name + ' added to pinned');
-  }
-  localStorage.setItem('pinnedBSMFI', JSON.stringify(pinnedSites));
-  renderCurrentView();
-}
-
-function createSiteItem(site) {
-  const a = document.createElement("a");
-  a.href = site.url || "#";
-  a.target = "_parent";
-  a.className = `site-item ${isPinned(site.name) ? 'pinned' : ''}`;
-
-  const bg = getColor(site.name);
-  const initial = getInitial(site.name);
-  const isOn = isPinned(site.name);
-
-  a.innerHTML = `
-    <div class="letter-icon" style="background: ${bg};">${initial}</div>
-    <div class="site-info" style="flex:1">
-      <div class="togglestyletwo">
-        <h3>${site.name}</h3>
-      </div>
-      <div class="togglestyle">
-        <div class="pin-toggle ${isOn ? 'on' : ''}" data-name="${site.name}"></div>
+            <div class="applied-section" id="applied-section" style="display: none;">
+              <h4>Applied Services & Fees</h4>
+              <div class="table-wrapper">
+                <table class="loan-table">
+                  <thead>
+                    <tr>
+                      <th>Service</th>
+                      <th>Amount</th>
+                      <th>Fee</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="applied-body"></tbody>
+                </table>
+              </div>
+              <p id="no-applied" style="text-align:center;color:var(--text-muted);margin-top:10px;" class="hidden">No services applied yet.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  `;
 
-  const toggle = a.querySelector('.pin-toggle');
-  toggle.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    togglePin(site);
-  });
+  </div>
+</div>
 
-  return a;
-}
-
-function renderCurrentView() {
-  const container = document.getElementById("sectionsContainer");
-  container.innerHTML = "";
-
-  if (currentView === 'pinned') {
-    if (pinnedSites.length === 0) {
-      container.innerHTML = `<div style="text-align:center; padding:80px 20px; color:var(--text-muted);"><h2 style="color:var(--text-muted);">No Pinned Services</h2><p>Tap the toggle to pin services.</p></div>`;
-      return;
-    }
-    const section = document.createElement("div");
-    section.className = "section";
-    section.innerHTML = `<h2>Pinned Services</h2>`;
-    const list = document.createElement("div");
-    list.className = "site-list";
-    pinnedSites.forEach(site => list.appendChild(createSiteItem(site)));
-    section.appendChild(list);
-    container.appendChild(section);
-    return;
-  }
-
-  if (pinnedSites.length > 0) {
-    const pinnedSection = document.createElement("div");
-    pinnedSection.className = "section";
-    pinnedSection.innerHTML = `<h2>Pinned</h2>`;
-    const list = document.createElement("div");
-    list.className = "site-list";
-    pinnedSites.forEach(site => list.appendChild(createSiteItem(site)));
-    pinnedSection.appendChild(list);
-    container.appendChild(pinnedSection);
-  }
-
-  const pinnedNames = new Set(pinnedSites.map(s => s.name));
-
-  siteGroups.forEach(group => {
-    const filteredSites = group.sites.filter(site => !pinnedNames.has(site.name));
-    if (filteredSites.length === 0) return;
-
-    const section = document.createElement("div");
-    section.className = "section";
-    section.innerHTML = `<h2>${group.heading}</h2>`;
-
-    const list = document.createElement("div");
-    list.className = "site-list";
-    filteredSites.forEach(site => list.appendChild(createSiteItem(site)));
-    section.appendChild(list);
-    container.appendChild(section);
-  });
-}
-
-function showAll() {
-  currentView = 'all';
-  document.getElementById('nav-all').classList.add('active');
-  renderCurrentView();
-}
-
-function showPinnedOnly() {
-  currentView = 'pinned';
-  document.getElementById('nav-all').classList.remove('active');
-  renderCurrentView();
-}
-
-// ===== Search Logic =====
-const searchWrapper = document.getElementById("searchWrapper");
-const searchInput = document.getElementById("searchInput");
-const clearBtn = document.getElementById("clearBtn");
-
-searchInput.addEventListener("focus", () => {
-  searchWrapper.classList.add("focused");
-  updateClear();
-});
-
-searchInput.addEventListener("blur", () => {
-  searchWrapper.classList.remove("focused");
-  setTimeout(updateClear, 150);
-});
-
-searchInput.addEventListener("input", (e) => {
-  updateClear();
-  const term = e.target.value.toLowerCase().trim();
-  if (!term) { renderCurrentView(); return; }
-
-  const container = document.getElementById("sectionsContainer");
-  container.innerHTML = "";
-
-  let foundAny = false;
-  siteGroups.forEach(group => {
-    const filteredSites = group.sites.filter(site => 
-      site.name.toLowerCase().includes(term) || site.desc.toLowerCase().includes(term)
-    );
-    if (filteredSites.length === 0) return;
-    foundAny = true;
-
-    const section = document.createElement("div");
-    section.className = "section";
-    section.innerHTML = `<h2>${group.heading}</h2>`;
-    const list = document.createElement("div");
-    list.className = "site-list";
-    filteredSites.forEach(site => list.appendChild(createSiteItem(site)));
-    section.appendChild(list);
-    container.appendChild(section);
-  });
-
-  if (!foundAny) {
-    container.innerHTML = `<div style="text-align:center; padding:60px 20px; color:var(--text-muted);">No service found as<br><strong style="color:var(--text-main);">${term}</strong></div>`;
-  }
-});
-
-clearBtn.addEventListener("mousedown", (e) => {
-  e.preventDefault();
-  searchInput.value = "";
-  searchInput.focus();
-  updateClear();
-  renderCurrentView();
-});
-
-function updateClear() {
-  if (searchInput.value.length > 0 && document.activeElement === searchInput) {
-    clearBtn.classList.add("visible");
-  } else {
-    clearBtn.classList.remove("visible");
-  }
-}
-
-renderCurrentView();
-
-// ===== Modal Functions =====
-let currentRedirectUrl = "";
-
-function showRedirectPopup(pageName, url) {
-  currentRedirectUrl = url;
-  document.getElementById('modalPageName').textContent = pageName;
-  const modal = document.getElementById('redirectModal');
-  modal.style.display = 'flex';
-  requestAnimationFrame(() => {
-    modal.classList.add('active');
-  });
-}
-
-function closeModal() {
-  const modal = document.getElementById("redirectModal");
-  modal.classList.remove('active');
-  setTimeout(() => {
-    modal.style.display = "none";
-  }, 300);
-}
-
-function proceedToLink() {
-  if (currentRedirectUrl) window.location.href = currentRedirectUrl;
-}
-
-document.getElementById('redirectModal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
-
-// Device Popup
-const triggerIcon = document.getElementById('triggerIcon');
-const devicePopup = document.getElementById('devicePopup');
-const closePopupBtn = document.getElementById('closePopup');
-
-function openDevicePopup() {
-  devicePopup.style.display = 'flex';
-  requestAnimationFrame(() => {
-    devicePopup.classList.add('active');
-  });
-}
-
-function closeDevicePopup() {
-  devicePopup.classList.remove('active');
-  setTimeout(() => {
-    devicePopup.style.display = "none";
-  }, 300);
-}
-
-triggerIcon.addEventListener('click', openDevicePopup);
-closePopupBtn.addEventListener('click', closeDevicePopup);
-devicePopup.addEventListener('click', (e) => {
-  if (e.target === devicePopup) closeDevicePopup();
-});
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === "Escape") {
-    if (devicePopup.classList.contains('active')) closeDevicePopup();
-    if (document.getElementById('redirectModal').classList.contains('active')) closeModal();
-  }
-});
-
-// ===== Toast System =====
-function showToast(type, title, message) {
-  const container = document.getElementById("toastContainer");
-  const toast = document.createElement("div");
-  toast.className = `toast ${type}`;
-
-  const icons = {
-    success: "",
-    error:   "",
-    info:    ""
-  };
-
-  const iconSrc = icons[type];
-  const iconHTML = iconSrc
-    ? `<img src="${iconSrc}" alt="${type}" class="toast-icon-img">`
-    : "ℹ";
-
-  toast.innerHTML = `
-    <div class="toast-icon">${iconHTML}</div>
-    <div>
-      <div class="toast-title">${title}</div>
-      <div class="toast-message">${message}</div>
+<div class="footer">
+    <div class="container">
+      <div class="inner">
+        <div>
+          <h4>New ins</h4>
+          <a href="https://mfi0212.github.io/MFI/entrysheet">New Enter Form</a>
+        </div>
+        <div>
+          <h4>Transfer</h4>
+          <a href="https://mfi0212.github.io/MFI/bsgifter">BsGifter</a>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <a href="https://mfi0212.github.io/MFI/imlate">Im late</a>
+          <a href="https://mfi0212.github.io/MFI/abt.hlp">BsHelper</a>
+        </div>
+        <div class="footermfilogo" >
+          <marquee onclick="window.open('https://mfi0212.github.io/MFI/new.service','_self')" style="height: 50px;cursor: pointer;" behavior="" direction="up"><h4>BS&MFI</h4></marquee>
+        </div>
     </div>
-  `;
-
-  container.appendChild(toast);
-
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      toast.classList.add("show");
-    });
-  });
-
-  setTimeout(() => {
-    toast.classList.remove("show");
-    toast.classList.add("hide");
-    setTimeout(() => toast.remove(), 350);
-  }, 3500);
-}
-
-// ===== LOADING + PASSWORD LOGIC =====
-window.addEventListener("load", function () {
-  const loader = document.getElementById("bsmfi-loader");
-  const image = document.getElementById("loader-image");
-  const welcome = document.getElementById("welcome-text");
-
-  document.body.classList.add("site-locked");
-
-  setTimeout(() => {
-    image.style.opacity = "0";
-    image.style.transform = "scale(0.9)";
-
-    setTimeout(() => {
-      welcome.style.opacity = "1";
-      welcome.style.transform = "translateY(0) scale(1)";
-    }, 50);
-  }, 50);
-
-  setTimeout(() => {
-    loader.style.transition = "opacity 0.6s ease";
-    loader.style.opacity = "0";
-
-    setTimeout(() => {
-      loader.remove();
-      openServicePasswordPopup();
-    }, 50);
-  }, 1800);
-});
-
-function openServicePasswordPopup() {
-  const popup = document.getElementById("servicePasswordPopup");
-  const input = document.getElementById("servicePasswordInput");
-  const error = document.getElementById("servicePasswordError");
-
-  popup.style.display = "flex";
-  input.value = "";
-  error.textContent = "";
-
-  setTimeout(() => {
-    input.focus();
-  }, 120);
-}
-
-function closeServicePasswordPopup() {
-  document.getElementById("servicePasswordPopup").style.display = "none";
-}
-
-function checkServicePassword() {
-  const input = document.getElementById("servicePasswordInput");
-  const error = document.getElementById("servicePasswordError");
-  const enteredPassword = input.value.trim();
-
-  if (typeof users === "undefined" || !users) {
-    error.textContent = "Password system not loaded.";
-    return;
-  }
-
-  const matchedUser = Object.values(users).find(
-    user => user.password === enteredPassword
-  );
-
-  if (matchedUser) {
-    window.currentUser = matchedUser.displayName || matchedUser.name || "User";
-
-    document.getElementById("servicePasswordPopup").style.display = "none";
-    document.body.classList.remove("site-locked");
-
-    console.log("Logged in as:", window.currentUser);
-    return;
-  }
-
-  error.textContent = "Incorrect password.";
-  input.value = "";
-  input.focus();
-}
-
-document.getElementById("servicePasswordInput").addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    checkServicePassword();
-  }
-});
-</script>
+    <div class="footer-bottom">
+     © BS&MFI Services, All Rights Reserved.
+    </div>
+  </div>
+</div>
+    <div class="quick"> 
+      <a href="#graph">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M306.54-527.31q-52.42 0-89.48-37.06Q180-601.42 180-653.85q0-52.42 37.06-89.48 37.06-37.05 89.48-37.05t89.48 37.05q37.06 37.06 37.06 89.48 0 52.43-37.06 89.48-37.06 37.06-89.48 37.06Zm-.02-60q27.71 0 47.13-19.4 19.43-19.4 19.43-47.11 0-27.72-19.4-47.14t-47.12-19.42q-27.71 0-47.14 19.4Q240-681.58 240-653.87q0 27.72 19.4 47.14t47.12 19.42ZM653.85-180q-52.43 0-89.48-37.06-37.06-37.06-37.06-89.48t37.06-89.48q37.05-37.06 89.48-37.06 52.42 0 89.48 37.06 37.05 37.06 37.05 89.48t-37.05 89.48Q706.27-180 653.85-180Zm47.11-79.4q19.42-19.4 19.42-47.12 0-27.71-19.4-47.13-19.4-19.43-47.11-19.43-27.72 0-47.14 19.4t-19.42 47.12q0 27.71 19.4 47.14Q626.11-240 653.82-240q27.72 0 47.14-19.4Zm-475.34 75.55-41.77-41.77 550.92-550.92 41.77 41.77-550.92 550.92Z"/></svg>
+        Interest
+      </a> 
+      <!-- <a href="#turbo">Turbo</a>  -->
+      <a href="#takemoney">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M548.92-518 393.15-673.77l42.77-41.77 113 113 227-226 41.77 41.77L548.92-518ZM300-216.92l290.31 82.15 238.77-74q-3.08-13.61-12.77-20.88-9.7-7.27-21.7-7.27H598.77q-26.23 0-44.54-2t-37.62-8.77l-90.3-29.85 17.77-58.77 81 28.16q18.15 6.15 41.92 8.38 23.77 2.23 67.61 2.85 0-14.85-6.69-25.62-6.69-10.77-17.61-14.54l-232.08-85.23q-1.15-.38-2.12-.57-.96-.2-2.11-.2h-74v206.16ZM100-100v-383.07h273.61q6.24 0 12.66 1.3 6.42 1.31 12.04 3.31l233.07 85.85q27.23 10.07 45.23 35.65 18 25.58 18 60.04h100q43.08 0 70.2 27.81 27.11 27.8 27.11 72.19v32.3L592.31-71.54 300-154.92V-100H100Zm60-60h80v-263.08h-80V-160Z"/></svg>
+        Borrow
+      </a>
+        <a href="#products">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M303.85-700v-43.08q0-24.75 17.62-42.37 17.63-17.62 42.38-17.62h232.3q24.75 0 42.38 17.62 17.62 17.62 17.62 42.37V-700H708q17.85 0 32.35 9.85 14.49 9.84 21.19 25.84l91.69 209.08q3.38 8.38 5.08 17.35 1.69 8.96 1.69 16.83V-240q0 24.75-17.63 42.37Q824.75-180 800-180H160q-24.75 0-42.37-17.63Q100-215.25 100-240v-180.92q0-9.16 1.69-17.54 1.7-8.39 5.08-16.77l91.69-209.08q6.7-16 21.19-25.84Q234.15-700 252-700h51.85Zm60 0h232.3v-43.08h-232.3V-700ZM290-466.15v-40h60v40h260v-40h60v40h112.92L708-640H252l-74.92 173.85H290Zm0 60H160V-240h640v-166.15H670v40h-60v-40H350v40h-60v-40Zm190-30Zm0-30Zm0 60Z"/></svg>
+        Services
+      </a> 
+       <a href="#account">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-238.31q54-53 125.5-83.5t154.5-30.5q83 0 154.5 30.5t125.5 83.5v-509.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H212.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v509.38Zm372.08-238.07Q610-514.31 610-568.46t-37.92-92.08q-37.93-37.92-92.08-37.92t-92.08 37.92Q350-622.61 350-568.46t37.92 92.08q37.93 37.92 92.08 37.92t92.08-37.92ZM212.31-140Q182-140 161-161q-21-21-21-51.31v-535.38Q140-778 161-799q21-21 51.31-21h535.38Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H212.31Zm34.77-60h465.84Q662-246.69 601.89-269.5 541.77-292.31 480-292.31q-61 0-122.12 22.81-61.11 22.81-110.8 69.5Zm183.5-319.04Q410-539.61 410-568.46t20.58-49.42q20.57-20.58 49.42-20.58t49.42 20.58Q550-597.31 550-568.46t-20.58 49.42q-20.57 20.58-49.42 20.58t-49.42-20.58ZM480-499.15Z"/></svg>
+        Account
+      </a> 
+    </div>
+    <div class="modal" id="apply-modal">
+        <div class="modal-content">
+            <h3>Application Received</h3>
+            <p id="apply-msg" style="margin-bottom:16px;"></p>
+            <button class="btn" style="width:100%;" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+    <div class="modal" id="fee-modal">
+        <div class="modal-content">
+            <h3 id="fee-modal-title">Apply Service</h3>
+            <p style="margin-bottom:12px;color:var(--text-muted);font-size:13px;" id="fee-modal-desc"></p>
+            <input type="number" id="fee-amount" placeholder="Enter amount" min="100">
+            <button class="btn" style="width:100%;margin-bottom:12px;" onclick="calculateFee()">Calculate Fee</button>
+            <div id="fee-result" class="fee-preview hidden">
+                <div>Service Fee</div>
+                <div class="fee-amount" id="fee-display">—</div>
+                <div style="font-size:13px;color:var(--text-muted);margin-top:4px;" id="fee-formula"></div>
+            </div>
+            <button class="btn" style="width:100%;" id="fee-apply-btn" onclick="confirmFeeApply()" disabled>Confirm & Apply</button>
+            <button class="btn btn-outline" style="width:100%;margin-top:8px;" onclick="closeFeeModal()">Cancel</button>
+        </div>
+    </div>
+    <div class="modal" id="theme-modal">
+        <div class="modal-content" style="max-width:460px;">
+            <h3>Choose Theme</h3>
+            <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;">Select a default theme or (if available) a custom dark theme with your own accent color.</p>
+            <div class="scrollthemes">
+              <div class="theme-options" id="default-themes">
+                <div class="theme-option" data-theme="light" onclick="selectTheme('light')">
+                    <div class="swatch" style="background:linear-gradient(90deg,#eef1f6,#002aff);"></div> <strong>Light</strong> </div>
+                <div class="theme-option" data-theme="dark" onclick="selectTheme('dark')">
+                    <div class="swatch" style="background:linear-gradient(90deg,#000000,#002aff);"></div> <strong>Dark Black</strong> </div>
+                <div class="theme-option" data-theme="telegram" onclick="selectTheme('telegram')">
+                    <div class="swatch" style="background:linear-gradient(90deg,#17212b,#2aabee);"></div> <strong>Telegram</strong> </div>
+              </div>
+              <div style="display: none;" id="custom-theme-section" class="custom-section hidden">
+                  <h4>Custom Dark Themes (color choice)</h4>
+                  <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">Pick one of the 4 preset accents or choose any color. The selected color becomes the main accent on a dark base.</p>
+                  <div class="custom-colors">
+                      <div class="custom-color-btn" style="background:#e53e3e;" data-color="#e53e3e" onclick="selectCustomColor('#e53e3e')" title="Red"></div>
+                      <div class="custom-color-btn" style="background:#38a169;" data-color="#38a169" onclick="selectCustomColor('#38a169')" title="Green"></div>
+                      <div class="custom-color-btn" style="background:#805ad5;" data-color="#805ad5" onclick="selectCustomColor('#805ad5')" title="Purple"></div>
+                      <div class="custom-color-btn" style="background:#dd6b20;" data-color="#dd6b20" onclick="selectCustomColor('#dd6b20')" title="Orange"></div>
+                  </div>
+                  <div class="color-picker-row">
+                      <label style="font-size:13px;">Or pick any color:</label>
+                      <input type="color" id="custom-color-picker" value="#002aff" onchange="selectCustomColor(this.value)">
+                      <button class="btn" style="padding:6px 12px;font-size:13px;" onclick="selectCustomColor(document.getElementById('custom-color-picker').value)">Apply</button>
+                  </div>
+              </div>
+            </div>
+            <button class="btn btn-outline" style="width:100%;margin-top:16px;" onclick="closeThemeModal()">Close</button>
+        </div>
+    </div>
+    <script src="new.service.account.lite.version.js"></script>
+    <script src="new-service-amount-details.js"></script>
 </body>
 </html>
