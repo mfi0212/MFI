@@ -270,12 +270,12 @@ div#sectionsContainer strong {
 
 /* ===== HEADER (Telegram style) ===== */
 .header {
- position: fixed;
+position: fixed;
     top: 0;
     width: 100%;
     max-width: 600px;
     z-index: 1500;
-    padding: 12px 12px 8px;
+    padding: 11px 5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -300,7 +300,6 @@ strong {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0 4px;
 }
 
 .mficolblogo {
@@ -313,17 +312,17 @@ strong {
 
 /* Search - Telegram style */
 #searchInput {
-  padding: 10px 16px;
-  font-size: 15px;
-  transition: all 0.25s ease;
-  border-radius: 22px;
-  outline: none;
-  text-align: left;
-  width: 100%;
-  border: none;
-  background:var(--bg-card);
-  color: var(--text-main);
-  margin-top: 4px;
+padding: 10px 20px;
+    font-size: 18px;
+    transition: all 0.25s ease;
+    border-radius: 999px;
+    outline: none;
+    text-align: left;
+    width: 100%;
+    border: none;
+    background: var(--bg-card);
+    color: var(--text-main);
+    margin-top: 4px;
 }
 
 #searchInput::placeholder {
@@ -1070,12 +1069,16 @@ body:has(#bsmfi-loader:not(.hidden)) {
   <div class="header">
     <div class="logo">
       <strong class="fullnamewidth">
-        <img style="width: 38px; border-radius: 50%; margin-right: 6px;" src="mfi.gif" alt=""> BS&MFI
+        <img style="width: 38px; border-radius: 50%; margin-right: 6px;" src="mfi.gif" alt=""> BS&MFI Lite
       </strong>
       
-      <div style="display: flex;
+      <div style="    display: flex;
     justify-content: center;
-    align-items: center;">
+    align-items: center;
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    border-radius: 999px;
+    gap: 5px;">
         <div class="helper-button">
         <a href="https://mfi0212.github.io/MFI/starpre">
           <svg style="height: 26px; opacity: 85%; width: 26px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8b9aab"><path d="m418.38-217.15 225.54-272.08H480.69l30.16-235.46-202.08 292.92h140.54l-30.93 214.62ZM399.15-388H277.77q-16.62 0-24.31-14.38-7.69-14.39 2.23-29.54l263.39-382.39q3.92-5.38 12.3-8.34 8.39-2.97 15.77.11 7.39 3.08 12.2 10.73 4.8 7.66 4.57 15.27L530.62-533h145.92q18.38 0 26.08 16.38 7.69 16.39-4.23 30.54L408.92-136.61q-5.92 6.15-13.8 8.5-7.89 2.34-15.66-1.74-7.77-4.07-10.69-10.46-2.92-6.38-2.46-15.77L399.15-388zm77.08-82.69Z"/></svg>
@@ -1126,7 +1129,7 @@ body:has(#bsmfi-loader:not(.hidden)) {
         <span>All</span>
       </div>
 
-      <div onclick="window.open('file:///D:/BS%26MFI/new.service.account.html#takemoney','_parent')" class="nav-item">
+      <div onclick="window.open('https://mfi0212.github.io/MFI/new.service.account.lite.version#takemoney','_parent')" class="nav-item">
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m615.85-676.08 204.61-203.61q9.62-9.62 22.27-9.35 12.65.27 22.5 10.12 9.62 9.61 9.62 22.77 0 13.15-9.62 22.77L648.46-615.62q-13.69 13.7-32.61 13.7-18.93 0-32.62-13.7L479.46-720.38q-9.84-9.85-10.61-23.16-.77-13.31 9.84-23.15 9.85-10.62 23.66-9.85 13.8.77 23.65 10.62l89.85 89.84Zm-32.16 542.23q3.85 1.54 6.93 1.54 3.07 0 6.92-1.54l238.61-73.69q-1.15-18.23-5.53-22.27-4.39-4.04-21.39-4.04H609.54q-27.46 0-50.08-2-22.61-2-44.23-9.53l-62.54-21.08q-13.31-5.69-18.84-17.27-5.54-11.58-.85-24.89 4.69-12.53 16.77-18.19 12.08-5.65 25.38-.96l53 19.46q19.31 6.54 37.73 7.89 18.43 1.34 61.12.57h-.77 13q0-18.69-7.38-27.23-7.39-8.54-20.23-13.07l-235.16-86.47q-2.31-.76-4.23-1.15-1.92-.38-4.23-.38h-67v214.3l282.69 80Zm-13.23 65.54L301-145.85q-4.69 26.7-30.69 42.27Q244.31-88 211.38-88h-32.76q-38.85 0-64.74-25.88Q88-139.77 88-178.62v-224.92q0-38.85 25.88-64.73 25.89-25.88 64.74-25.88h189.61q7.46 0 15.81 1.61 8.34 1.62 16.58 4.62l234.15 86.69q33.46 13.15 49.96 33.31 16.5 20.15 16.5 68.07h108q46.15 0 70.39 29.62 24.23 29.61 24.23 70.38 0 21-13 35.77-13 14.77-29.47 19.93L622-68.54q-12.69 3.46-25.38 3.85-12.7.38-26.16-3.62ZM155-178.62q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92h30.76q10.77 0 17.7-5.77 6.92-5.77 6.92-18.85v-250.53h-55.38q-10.77 0-17.7 6.92-6.92 6.92-6.92 17.69v225.92Z"/></svg>
         <span>Borrow</span>
       </div>
