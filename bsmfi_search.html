@@ -1,70 +1,75 @@
-<!DOCTYPE html> <html lang="en" data-theme="dark"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <title>BS&MFI Services</title> <link rel="icon" href="mfi.logo.png" /> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Six+Caps&family=Stack+Sans+Headline:wght@200..700&family=Stalemate&display=swap" rel="stylesheet"> <style> * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; margin: 0; padding: 0; font-family: "Google Sans Flex", sans-serif; scrollbar-width: none; letter-spacing: 0.3px; } :root { --bg-primary: #000000; --bg-secondary: #17171c; --bg-message: #1c1c24; --text-primary: #ffffff; --text-secondary: #a0a0b0; --accent: #0021ff; --accent-dark: #0021ff; --border: #2a2a35; } body { --c-glass: #bbbbbc; --c-light: #fff; --c-dark: #000; --c-content: rgb(255, 255, 255); --c-action: #0052f5; --glass-reflex-dark: 1; --glass-reflex-light: 1; --saturation: 150%; color: var(--c-content); } ::placeholder { color: rgb(179, 179, 179); } body:has(input[value="dark"]:checked) { --c-glass: #bbbbbc; --c-light: #fff; --c-dark: #000; --c-content: #e1e1e1; --c-action: #03d5ff; --c-bg: #1b1b1d; } body:has(input[value="dim"]:checked) { --c-light: #99deff; --c-dark: #20001b; --c-glass: hsl(335 250% 74% / 1); --c-content: #d5dbe2; --c-action: #ff48a9; --c-bg: #152433; } a { text-decoration: none; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } * { margin: 0; scrollbar-width: none; box-sizing: border-box; } body { background: var(--bg-primary); color: var(--text-primary); min-height: 100vh; padding: 0px; } .exploreside svg { position: relative; width: 28px; height: 29px; opacity: 50%; } div#sectionsContainer { padding-top: 100px; max-width: 650px; width: 97%; } .container { margin: 0 auto; display: flex; justify-content: center; align-items: center; max-width: 600px; } .mficolblogo { width: 60px; height: 60px; background: linear-gradient(45deg, #0021ffbd 34%, #00d0ffcc); position: relative; z-index: 100000; border: none; filter: saturate(2); padding: 5px; border-radius: 100px; backdrop-filter: blur(2px); } .logo span svg { width: 18px; } .header { text-align: center; cursor: pointer; width: 100%; transition: all 0.3s ease; position: fixed; top: 0; left: 50%; right: 0; z-index: 50; padding: 20px 10px 0 10px; display: flex; align-items: self-start; justify-content: space-between; background: linear-gradient(180deg, #000000c9 50%, #00000000); max-width: 600px; transform: translate(-50%, 0); } .back-btn { border: none; width: 45px; height: 45px; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 9999px; transition: all 0.3s ease; color: #fff; filter: saturate(6); background: #181818d9; backdrop-filter: blur(3px); box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17; } .back-btn:hover { transform: scale(1.03); } .back-btn:active { transform: scale(0.90); } .exclamation { color: rgb(255 255 255); display: flex; justify-content: center; align-items: center; border: solid 1px #ffffff00; filter: saturate(2); backdrop-filter: blur(3px); padding: 10px; border-radius: 100px; background: rgb(255 0 0 / 53%); white-space: nowrap; font-size: 17px; border: none; height: 45px; box-shadow: none; transition: all 0.3s ease; } .exclamation:active { transform: scale(0.90); } .header h1 { font-weight: 600; cursor: pointer; border-radius: 99px; background: transparent; color: #ffffffef; font-size: 15px; transition: all 0.3s ease; } .logo span { padding: 8px 5px 8px 10px; font-size: 15px; font-weight: 500; position: relative; top: -10px; border-radius: 100px; display: flex; justify-content: center; align-items: center; color: #fff; filter: saturate(6); background: #181818d9; backdrop-filter: blur(3px); box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17; } .logo { display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 0px; border-radius: 100px; transition: all 0.3s ease; } .logo:hover { transform: scale(1.03); } .logo:active { transform: scale(0.90); } .mfigif { width: 45px; height: 45px; border-radius: 50%; border: none; padding: 3px; display: flex; justify-content: center; align-items: center; transition: all 0.3s ease; filter: saturate(6); background: #181818d9; backdrop-filter: blur(3px); box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17; } .header img:hover { transform: scale(1.03); } .header img:active { transform: scale(0.90); } .search-box { position: fixed; bottom: 0px; width: 100%; display: flex; justify-content: space-evenly; align-items: center; z-index: 1; gap: 0px; padding: 0 0 20px 0; max-width: 600px; background: linear-gradient(0deg, #000000c9 50%, #00000000); } .searchsection { background: #181818d9; backdrop-filter: blur(3px); box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17; display: flex; transition: all 0.3s ease; justify-content: center; align-items: center; height: 45px; border-radius: 9999px; filter: saturate(6); padding: 5px; } .searchsection:active { transform: scale(0.90); } #searchInput { font-size: 18px; border: none; outline: none; width: 100%; color: #fff; background: transparent; padding: 10px 0; } .search-icon { display: flex; justify-content: center; align-items: center; padding: 10px; } img.closesymbol { width: 35px; height: 35px; margin: -5px; } .searchcontainer { width: 90%; display: flex; justify-content: center; align-items: center; gap: 10px; } .section { position: relative; padding: 3px; width: 100%; max-width: 600px; } .section:last-child { margin-bottom: 85px; } .section h2 { font-size: 17px; font-weight: 600; margin-bottom: 10px; padding: 0 20px; margin-top: 20px; color: #0011ff; text-align: center; letter-spacing: 0; } .site-list { padding: 10px; filter: saturate(2); border-radius: 40px; background: #ffffff0d; } .site-item { display: flex; align-items: center; padding: 8px 10px; text-decoration: none; opacity: 65%; color: var(--text-primary); transition: background 0.18s; transition: all 0.3s ease; border-radius: 10px; } .site-item:active { transform: scale(0.95); } .site-item:hover { opacity: 100%; background: #3a3a3a; } a.site-item:first-child { border-radius: 25px 25px 10px 10px; } a.site-item:last-child { border-radius: 10px 10px 25px 25px; } .letter-icon { width: 35px; height: 35px; border-radius: 13px; font-weight: 700; margin-right: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; text-transform: uppercase; color: #000000; filter: invert(1); } .site-info { flex: 1; min-width: 0; display: flex; justify-content: center; flex-direction: column; margin-right: -15px; } .site-info:last-child { border: none; } .site-info h3 { font-size: 16px; font-weight: 300; border-bottom: solid 1px #ffffff30; padding: 8px 0 8px 0; } .site-info p { font-size: 11px; color: #ffffff8a; white-space: nowrap; overflow: hidden; display: none; text-overflow: ellipsis; font-weight: 100; } .section:first-child { border: none; margin-top: 25px; } .no-results { text-align: center; padding: 80px 20px; color: gray; font-size: 1.1rem; display: none; position: fixed; top: 50px; } footer { text-align: center; font-size: 12px; color: #ffffff85; background: black; position: sticky; bottom: 0px; padding: 5px 0px; } @media (max-width: 500px) { .letter-icon { font-size: 1.25rem; } } </style> </head> <body> <div class="container"> <div class="header"> <button onclick="goBack()" class="back-btn"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m371.77-481 307.61 307.62q11.85 11.84 12.24 30.15.38 18.31-11.47 30.15-11.84 11.85-30.15 11.85t-30.15-11.85l-303.7-304.46q-13.69-13.69-19.65-30.11-5.96-16.43-5.96-33.35t5.96-33.35q5.96-16.42 19.65-30.11l303.7-303.69q11.84-11.85 29.77-12.23 17.92-.39 29.76 11.46 11.85 11.84 11.85 30.15t-11.85 30.15L371.77-481Z"/></svg> </button> <div class="logo"> <img class="mficolblogo" src="https://github.com/goforbg/telegram-emoji-gifs/blob/master/thunder.gif?raw=true" alt=""> <span>BS&MFI Services<img style="width: 20px; height: 15px; background: transparent; border: none; box-shadow: none; backdrop-filter: none; opacity: 70%; margin: -3px;" src="service-icons/rightside_arrow.png" alt=""></span> </div> <img class="mfigif" onclick="alert('Welcome to BS&MFI Services')" src="mfi.gif" alt=""> </div> <div id="sectionsContainer"></div> <div class="no-results" id="noResults"> Nothing found </div> <div class="search-box"> <div class="searchcontainer"> <div class="searchsection"> <span class="search-icon"><img class="closesymbol" src="service-icons/search_icon.png" alt=""></span> <input type="text" id="searchInput" placeholder="Search" autocomplete="off"/> </div> <a href=""><button class="back-btn" style="width: 46px;height: 46px;"> <svg style="width: 30px; height: 30px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-437.85 277.08-234.92q-8.31 8.3-20.89 8.5-12.57.19-21.27-8.5-8.69-8.7-8.69-21.08 0-12.38 8.69-21.08L437.85-480 234.92-682.92q-8.3-8.31-8.5-20.89-.19-12.57 8.5-21.27 8.7-8.69 21.08-8.69 12.38 0 21.08 8.69L480-522.15l202.92-202.93q8.31-8.3 20.89-8.5 12.57-.19 21.27 8.5 8.69 8.7 8.69 21.08 0 12.38-8.69 21.08L522.15-480l202.93 202.92q8.3 8.31 8.5 20.89.19 12.57-8.5 21.27-8.7 8.69-21.08 8.69-12.38 0-21.08-8.69L480-437.85Z"/></svg> </button></a> </div> </div> </div>
+<!DOCTYPE html> <html lang="en" data-theme="dark"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <title>BS&MFI Services</title> <link rel="icon" href="mfi.logo.png" /> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"> <style> * { font-family: "Roboto", "Inter", sans-serif; margin: 0; padding: 0; box-sizing: border-box; scrollbar-width: none; letter-spacing: 0.3px; -webkit-tap-highlight-color: transparent; } /* ========== THEME VARIABLES ========== */ :root, [data-theme="dark"] { --bg-body: #000000; --bg-container: linear-gradient(180deg, #000000, transparent); --bg-section: #191919; --bg-input: #191919; --bg-icon: #191919; --bg-hover: #ffffff17; --text-primary: #e6edf3; --text-secondary: #8b949e; --text-heading: blue; --accent: white; --accent-soft: blue; --border: #30363d; --border-soft: rgba(255, 255, 255, 0.08); --icon-bg: blue; --footer-bg: linear-gradient(0deg, #000000 65%, transparent); --shadow: 0 4px 20px rgba(0, 0, 0, 0.35); --theme-btn-bg: #21262d; --theme-btn-active: blue; } [data-theme="light"] { --bg-body: #f0f4f8; --bg-container: linear-gradient(180deg, #f0f4f8, transparent); --bg-section: #ffffff; --bg-input: #ffffff; --bg-icon: #e8f0fe; --bg-hover: #e8f0fe; --text-primary: #1a1a2e; --text-secondary: #5f6b7a; --text-heading: #1a73e8; --accent: #1a73e8; --accent-soft: #4285f4; --border: #dadce0; --border-soft: rgba(0, 0, 0, 0.06); --icon-bg: #1a73e8; --footer-bg: linear-gradient(0deg, #f0f4f8 65%, transparent); --shadow: 0 4px 18px rgba(26, 115, 232, 0.12); --theme-btn-bg: #e8f0fe; --theme-btn-active: #1a73e8; } [data-theme="telegram"] { --bg-body: #0e1621; --bg-container: linear-gradient(180deg, #0e1621, transparent); --bg-section: #17212b; --bg-input: #242f3d; --bg-icon: #242f3d; --bg-hover: #2b5278; --text-primary: #f5f5f5; --text-secondary: #7d8b99; --text-heading: #6ab3f3; --accent: #2aabee; --accent-soft: #5ac8fa; --border: #242f3d; --border-soft: rgba(255, 255, 255, 0.06); --icon-bg: #2aabee; --footer-bg: linear-gradient(0deg, #0e1621 65%, transparent); --shadow: 0 4px 20px rgba(0, 0, 0, 0.4); --theme-btn-bg: #242f3d; --theme-btn-active: #2aabee; } body { background: var(--bg-body); color: var(--text-primary); min-height: 100vh; padding: 0; transition: background 0.3s ease, color 0.3s ease; -webkit-user-select: none; user-select: none; } .container { max-width: 600px; margin: 0 auto; position: sticky; top: 0; z-index: 10000; padding: 12px 8px 0; background: var(--bg-container); } /* Theme switcher */ .themeoptions { display: flex; justify-content: center; gap: 10px; padding: 0 4px; height: 45px; width: fit-content; padding: 0 13px; gap: 15px; background: var(--bg-section); box-shadow: 0 0 0.5px 0 black; border-top: solid 1px #ffffff1f; border-bottom: solid 1px #ffffff1f; backdrop-filter: blur(3px); border-radius: 999px; } .themeoptions button { border: none; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.25s ease; outline: none; background: transparent; color: var(--text-secondary); } .themeoptions button:hover { transform: scale(1.08); color: var(--accent); border-color: var(--accent); } .themeoptions button.active { color: var(--theme-btn-active); } /* Search box */ .search-box { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 4px; } .search-icon { display: flex; justify-content: center; align-items: center; background: var(--bg-section); border: none; border-radius: 50%; height: 46px; width: 46px; flex-shrink: 0; cursor: pointer;box-shadow: 0 0 0.5px 0 black; transition: background 0.2s; border-top: solid 1px #ffffff1f; border-bottom: solid 1px #ffffff1f; } .search-icon:hover { background: var(--bg-hover); } .search-icon svg { width: 24px; height: 24px; fill: var(--text-secondary); } .inputsection { flex: 1; padding: 0 6px 0 14px; font-size: 17px; border-radius: 999px; background:var(--bg-section); border: none; color: var(--text-primary); height: 46px; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;box-shadow: 0 0 0.5px 0 black; border-top: solid 1px #ffffff1f; border-bottom: solid 1px #ffffff1f; } .searcharea { display: flex; align-items: center; gap: 10px; flex: 1; } .searcharea svg { width: 22px; height: 22px; fill: var(--text-secondary); flex-shrink: 0; } input#searchInput { background: transparent; border: none; font-size: 16px; color: var(--text-primary); outline: none; width: 100%; letter-spacing: 0; } #searchInput::placeholder { color: var(--text-secondary); opacity: 0.85; } .clear-btn { background: transparent; color: var(--text-secondary); border-radius: 50%; padding: 6px; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: color 0.2s; } .clear-btn:hover { color: var(--accent); } .clear-btn svg { width: 20px; height: 20px; fill: currentColor; } /* Sections */ #sectionsContainer { margin-top: 14px; width: 99%; max-width: 600px; margin-left: auto; margin-right: auto; margin-bottom: 30px; } .section { overflow: hidden; } .section h2 { font-size: 14px; font-weight: 600;display: none; color: var(--text-heading); padding: 14px 16px 8px; text-transform: uppercase; letter-spacing: 0.6px; } .site-item { display: flex; align-items: center; padding: 10px; color: var(--text-primary); text-decoration: none; transition: background 0.18s; border-top: 1px solid var(--border-soft); } .site-item:first-of-type { border-top: none; } .site-item:hover { background: var(--bg-hover); } .letter-icon { width: 45px; height: 45px; margin-right: 10px; border-radius: 50%; color: #fff; font-weight: 400; font-size: 23px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; text-transform: uppercase; background: var(--icon-bg); } .site-info { flex: 1; min-width: 0; } .site-info h3 { font-size: 15px; font-weight: 500; margin: 0 0 2px; color: var(--text-primary); } .site-info p { font-size: 12.5px; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 400; max-width: 90%; } .no-results { text-align: center; padding: 70px 20px; color: var(--text-secondary); font-size: 1.05rem; display: none; } footer { text-align: center; font-size: 12px; color: var(--text-secondary); position: fixed; bottom: 0; left: 0; right: 0; padding: 12px 0 10px; background: var(--footer-bg); z-index: 50; pointer-events: none; } </style> </head> <body> <div class="container"> <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;font-weight: 600; font-size: 20px; padding-bottom: 10px;"> <div> BS&MFI Services</div> <div class="themeoptions"> <button onclick="setTheme('light')" id="btn-light" title="Light theme"> <i class="fa-solid fa-sun"></i> </button> <button onclick="setTheme('dark')" id="btn-dark" title="Dark theme" class="active"> <i class="fa-solid fa-moon"></i> </button> <button onclick="setTheme('telegram')" id="btn-telegram" title="Telegram theme"> <i class="fa-brands fa-telegram"></i> </button> </div> </div> <div class="search-box"> <div class="search-icon" onclick="goBack()"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"> <path d="m313-440 196 196q12 12 11.5 28T508-188q-12 11-28 11.5T452-188L188-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l264-264q11-11 27.5-11t28.5 11q12 12 12 28.5T508-715L313-520h447q17 0 28.5 11.5T800-480q0 17-11.5 28.5T760-440H313Z"/> </svg> </div> <div class="inputsection"> <div class="searcharea"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"> <path d="M380-320q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l224 224q11 11 11 28t-11 28q-11 11-28 11t-28-11L532-372q-30 24-69 38t-83 14Zm0-80q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/> </svg> <input type="text" id="searchInput" placeholder="Search here" autocomplete="off"/> </div> <a href="javascript:void(0)" class="clear-btn" onclick="clearSearch()" title="Clear"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"> <path d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"/> </svg> </a> </div> </div> </div> <div id="sectionsContainer"></div> <div class="no-results" id="noResults"> Nothing found </div> <footer> © BS&MFI Services. All rights reserved. </footer>
 <script>
 const siteGroups = [
   {
     heading: "Return Management",
     sites: [
-      { name: "BS&MFI Solutions", desc: "Helps to return the amount with different solutions", url: "https://mfi0212.github.io/swan/offer/solution", icon: "fab fa-youtube" },
-      { name: "BsRora", desc: "Let the bot do", url: "https://mfi0212.github.io/MFI/BsRora/bsora.main.page" },
+      { name: "BS&MFI Solutions", desc: "Helps to return the amount with different solutions", url: "https://mfi0212.github.io/MFI/service.solutions/all.solution" },
+      { name: "BsRora-Atdo details", desc: "More info", url: "https://mfi0212.github.io/MFI/service.solutions/bsrora-atdo" },
+      { name: "BsRora-Atdo", desc: "Let the bot do", url: "https://mfi0212.github.io/MFI/BsRora/bsrora.atdo" },
+      { name: "Apply for BsRora-Atdo", desc: "Apply form", url: "https://docs.google.com/forms/d/e/1FAIpQLSdXHYOEhD9pdYno0fWa3Z8nxrK4_cEf6n7JXW6Ug_zgeE3FeA/viewform" },
     ]
   },
   {
     heading: "New in & issue",
     sites: [
-      { name: "Turbo", desc: "Subcription plans", url: "https://mfi0212.github.io/MFI/starpre" },
-      { name: "Enterance Form", desc: "New members form", url: "https://mfi0212.github.io/MFI/entrysheet", icon: "fas fa-code" },
-      { name: "Helper", desc: "I have issue form", url: "https://mfi0212.github.io/MFI/abt.hlp", icon: "fas fa-film" },
+      { name: "BotPay details", desc: "More info", url: "https://mfi0212.github.io/MFI/service.solutions/botpay" },
+      { name: "Apply for BotPay", desc: "Apply form", url: "https://docs.google.com/forms/d/e/1FAIpQLSdXHYOEhD9pdYno0fWa3Z8nxrK4_cEf6n7JXW6Ug_zgeE3FeA/viewform" },
+      { name: "BotPay", desc: "Let the bot do", url: "https://mfi0212.github.io/MFI/BsRora/payment.bot" },
+      { name: "BsRora details", desc: "More info", url: "https://mfi0212.github.io/MFI/service.solutions/bsrora" },
+      { name: "Apply for BsRora", desc: "Apply form", url: "https://docs.google.com/forms/d/e/1FAIpQLSdXHYOEhD9pdYno0fWa3Z8nxrK4_cEf6n7JXW6Ug_zgeE3FeA/viewform" },
+      { name: "BsRora", desc: "Let the bot do", url: "https://mfi0212.github.io/MFI/BsRora/bsrora" },
+      { name: "Buy Limit details", desc: "More info", url: "https://mfi0212.github.io/MFI/service.solutions/buy-limit" },
+      { name: "Apply for Buy Limit", desc: "Apply form", url: "https://docs.google.com/forms/d/e/1FAIpQLSf69ANV9wjH301M_2LzEeLbU_YQP5ZdKNnqgsf9SEMrxgJgCA/viewform" },
     ]
   },
   {
     heading: "Offer & Earns",
     sites: [
-      { name: "BsGifter", desc: "Gifts exchanger", url: "https://blackswan19.github.io/golden/FM/bsgifter", icon: "fas fa-book-open" },
-      { name: "Lendlink-Mid", desc: "Turn your money into income", url: "https://mfi0212.github.io/swan/lndlnk-mid", icon: "fas fa-book-open" },
-      { name: "Stars", desc: "Interest reducer.", url: "https://blackswan19.github.io/golden/FM/starspage", icon: "fab fa-reddit" },
+      { name: "Delay It details", desc: "More info", url: "https://mfi0212.github.io/MFI/service.solutions/delay-it" },
+      { name: "Delay It", desc: "Gifts exchanger", url: "https://docs.google.com/forms/d/e/1FAIpQLScTfb1HGdUCPk3-Q4Jb3vwHk0CVrHe41FSyPZUk7fthSTnA7A/viewform" },
+      { name: "Mining Bot details", desc: "More info", url: "https://mfi0212.github.io/MFI/service.solutions/mining-bot" },
+      { name: "Apply for Mining Bot", desc: "Apply form", url: "https://docs.google.com/forms/d/e/1FAIpQLSdXHYOEhD9pdYno0fWa3Z8nxrK4_cEf6n7JXW6Ug_zgeE3FeA/viewform" },
+      { name: "Mining Bot", desc: "Let the bot do", url: "https://mfi0212.github.io/MFI/BsRora/miningbot" },
+      { name: "Pre-Saver details", desc: "Pre-save offer or offers on a perticular day", url: "https://mfi0212.github.io/MFI/service.solutions/pre-saver" },
+      { name: "Apply for Pre-Saver", desc: "More info", url: "https://docs.google.com/forms/d/e/1FAIpQLSd91IBc4OrDdguFRy5vMkEGbVpSip8Au4RydaWNzgqYAdqClg/viewform" },
     ]
   },
   {
     heading: "VIPs & Premium+ Services",
     sites: [
-      { name: "BsMansion", desc: "Store offer to use after", url: "https://mfi0212.github.io/MFI/bsmansion", icon: "fas fa-robot" },
-      { name: "Chloennaouii", desc: "Discover Your Discount", url: "https://mfi0212.github.io/MFI/cholennaouii.main", icon: "fab fa-instagram" },
-      { name: "BYSWN", desc: "Discover Your Discount", url: "https://mfi0212.github.io/MFI/BYSWN", icon: "fab fa-instagram" },
-      { name: "Quantam SWU", desc: "GIFs & Stickers", url: "https://mfi0212.github.io/MFI/quantam/quantam.main.page", icon: "fab fa-instagram" },
+      { name: "Split Pay details", desc: "Helps member to return big amount into smaller amounts", url: "https://mfi0212.github.io/MFI/service.solutions/split-pay" },
+      { name: "Apply for Split Pay", desc: "Apply form", url: "https://docs.google.com/forms/d/e/1FAIpQLSe07qOtIB-HXWqQrYa6DB_EGBGj97YlG639KUfmwlk1ZAGFmw/viewform" },
+      { name: "Interst", desc: "Interest checker", url: "https://mfi0212.github.io/MFI/new.service.account#graph" },
+      { name: "Take Money", desc: "To check interest & apply for amount", url: "https://mfi0212.github.io/MFI/new.service.account#takemoney" },
+      { name: "Active Solutions", desc: "To check active soltions", url: "https://mfi0212.github.io/MFI/new.service.account#products" },
+      { name: "My Account", desc: "To check active amounts & their details", url: "https://mfi0212.github.io/MFI/new.service.account#account" },
+      { name: "Account Search", desc: "To search amounts in your accout", url: "https://mfi0212.github.io/MFI/new.service.account#productsearch" },
     ]
   },
   {
     heading: "Services",
     sites: [
-      { name: "All Services", desc: "All service from BS&MFI", url: "https://blackswan19.github.io/BS/bslends", icon: "fas fa-code" },
-      { name: "BsLends", desc: "A service from BS&MFI", url: "https://mfi0212.github.io/MFI/rate", icon: "fas fa-code" },
-      { name: "MLending", desc: "A service from BS&MFI", url: "https://blackswan19.github.io/golden/FM/themain", icon: "fas fa-code" },
-      { name: "Tomar Juntos", desc: "A service from Split Pay", url: "https://mfi0212.github.io/MFI/multi.mem.acc", icon: "fas fa-code" },
-      { name: "Short Term Loan", desc: "Quick amounts for 1 to 15 days.", url: "https://mfi0212.github.io/MFI/1.5.days", icon: "fab fa-x-twitter" },
+      { name: "All Services", desc: "All service from BS&MFI", url: "https://blackswan19.github.io/BS/bslends" },
+      { name: "BsLends", desc: "A service from BS&MFI", url: "https://mfi0212.github.io/MFI/rate" },
+      { name: "MLendings", desc: "A service from BS&MFI", url: "https://blackswan19.github.io/golden/FM/themain" },
+      { name: "Tomar Juntos", desc: "A service from Split Pay", url: "https://mfi0212.github.io/MFI/multi.mem.acc" },
+      { name: "Short Term Loan", desc: "Quick amounts for 1 to 15 days.", url: "https://mfi0212.github.io/MFI/1.5.days" },
     ]
   },
   {
     heading: "Collaboration",
     sites: [
-      { name: "BsPsgenerater", desc: "Password generator", url: "https://blackswan19.github.io/Educate/password", icon: "fas fa-code" },
-      { name: "BsReminder", desc: "Date wise notes", url: "https://blackswan19.github.io/bscrop/reminder", icon: "fas fa-code" },
-      { name: "BsBookpad", desc: "Download the notes", url: "https://blackswan19.github.io/Educate/bookpad", icon: "fas fa-code" },
-      { name: "BsAdstoper", desc: "Ad blocker", url: "https://blackswan19.github.io/Educate/stoper", icon: "fas fa-code" },
-      { name: "BsFilestore", desc: "Store privacy files in folders", url: "https://blackswan19.github.io/Educate/hider", icon: "fas fa-code" },
-      { name: "BsMediastorage", desc: "Store files with privacy", url: "https://blackswan19.github.io/Educate/hider", icon: "fas fa-code" },
+      { name: "BsPsgenerater", desc: "Password generator", url: "https://blackswan19.github.io/Educate/password" },
+      { name: "BsReminder", desc: "Date wise notes", url: "https://blackswan19.github.io/bscrop/reminder" },
+      { name: "BsBookpad", desc: "Download the notes", url: "https://blackswan19.github.io/Educate/bookpad" },
+      { name: "BsAdstoper", desc: "Ad blocker", url: "https://blackswan19.github.io/Educate/stoper" },
+      { name: "BsFilestore", desc: "Store privacy files in folders", url: "https://blackswan19.github.io/Educate/hider" },
+      { name: "BsMediastorage", desc: "Store files with privacy", url: "https://blackswan19.github.io/Educate/hider" },
     ]
   }
 ];
 document.addEventListener('contextmenu', e => e.preventDefault());
-function getColor(name) {
-  let hash = 0;
-  for (let i = 0; i < name.length; i++) {
-    hash = name.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  const hue = Math.abs(hash) % 360;
-  return `hsl(${hue}, 75%, 58%)`;
-}
-
 function getInitial(name) {
   return name.trim()[0]?.toUpperCase() || "?";
 }
@@ -81,32 +86,25 @@ function renderAll() {
     h2.textContent = group.heading;
     section.appendChild(h2);
 
-    const list = document.createElement("div");
-    list.className = "site-list";
-
     group.sites.forEach(site => {
       const a = document.createElement("a");
       a.href = site.url;
       a.target = "_parent";
       a.className = "site-item";
 
-      const bg = getColor(site.name);
       const initial = getInitial(site.name);
 
       a.innerHTML = `
-        <div class="letter-icon" style="background: ${bg};">${initial}</div>
+        <div class="letter-icon">${initial}</div>
         <div class="site-info">
           <h3>${site.name}</h3>
-        </div>
-        <div class="exploreside">
-          <img style="width: 20px; height: 15px;" src="service-icons/rightside_arrow.png" alt="">
+          <p>${site.desc}</p>
         </div>
       `;
 
-      list.appendChild(a);
+      section.appendChild(a);
     });
 
-    section.appendChild(list);
     container.appendChild(section);
   });
 }
@@ -144,40 +142,30 @@ function renderFiltered(query = "") {
     h2.textContent = group.heading;
     section.appendChild(h2);
 
-    const list = document.createElement("div");
-    list.className = "site-list";
-
     matches.forEach(site => {
       const a = document.createElement("a");
       a.href = site.url;
       a.target = "_parent";
       a.className = "site-item";
 
-      const bg = getColor(site.name);
       const initial = getInitial(site.name);
 
       a.innerHTML = `
-        <div class="letter-icon" style="background: ${bg};">${initial}</div>
+        <div class="letter-icon">${initial}</div>
         <div class="site-info">
           <h3>${site.name}</h3>
           <p>${site.desc}</p>
         </div>
-        <div class="exploreside">
-          <img style="width: 20px; height: 15px;" src="service-icons/rightside_arrow.png" alt="">
-        </div>
       `;
 
-      list.appendChild(a);
+      section.appendChild(a);
     });
 
-    section.appendChild(list);
     container.appendChild(section);
   });
 
   noResults.style.display = found ? "none" : "block";
 }
-
-renderAll();
 
 function goBack() {
   if (window.history.length > 1) {
@@ -186,6 +174,34 @@ function goBack() {
     alert("Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
   }
 }
+
+function clearSearch() {
+  const input = document.getElementById("searchInput");
+  input.value = "";
+  renderFiltered("");
+  input.focus();
+}
+
+/* ========== THEME SWITCHER ========== */
+function setTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  localStorage.setItem("bsmfi-theme", theme);
+
+  // Update active button
+  document.querySelectorAll(".themeoptions button").forEach(btn => {
+    btn.classList.remove("active");
+  });
+  const activeBtn = document.getElementById("btn-" + theme);
+  if (activeBtn) activeBtn.classList.add("active");
+}
+
+// Load saved theme or default to dark
+(function initTheme() {
+  const saved = localStorage.getItem("bsmfi-theme") || "dark";
+  setTheme(saved);
+})();
+
+renderAll();
 
 document.getElementById("searchInput").addEventListener("input", e => {
   renderFiltered(e.target.value);
