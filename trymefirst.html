@@ -343,7 +343,7 @@ div#sectionsContainer strong {
   width: 100%;
   max-width: 600px;
   z-index: 1500;
-  padding: 20px 10px 0px 10px;
+  padding: 15px 10px 0px 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -353,17 +353,17 @@ div#sectionsContainer strong {
 }
 
 strong {
-  font-size: 20px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  position: fixed;
-  left: 50%;
-  transform: translate(-50%, 0);
-  top: 5px;
-  flex-direction: column;
+ font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: 10px;
+    flex-direction: column;
 }
 
 .logo {
@@ -382,17 +382,18 @@ strong {
 }
 
 #searchInput {
-  padding: 5px;
-  font-size: 14px;
-  transition: all 0.3s ease-in-out;
-  border-radius: 9999px;
-  outline: none;
-  text-align: center;
-  width: 100px;
-  z-index: 100000;
-  border: none;
-  background: var(--bg-soft);
-  color: #fff;
+padding: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 9999px;
+    outline: none;
+    text-align: center;
+    width: 100px;
+    border: none;
+    background: var(--bg-soft);
+    color: #fff;
+    backdrop-filter: blur(1000px);
+    margin-top: 20px;
 }
 
 .nav-item span {
@@ -408,7 +409,7 @@ strong {
 
 .clear-btn {
   position: absolute;
-  right: 12px;
+  right: 12px;display: none;
   top: 50%;
   width: 22px;
   height: 22px;
@@ -458,7 +459,7 @@ img.closesymbol {
   padding-top: 125px;
   max-width: 600px;
   padding-bottom: 97px;
-  width: 100%;
+  width: 99%;
 }
 
 .section h2 {
@@ -1273,7 +1274,8 @@ body:has(#bsmfi-loader:not(.hidden)) {
   <div class="header">
     <div class="logo">
       <strong class="fullnamewidth">
-        <img style="width: 40px;" src="service-icons/bslends_logo.webp" alt=""> BsLends
+        <img style="    width: 45px;
+    border-radius: 50%;" src="mfi.gif" alt=""> BS&MFI
       </strong>
       
       <div class="helper-button">
