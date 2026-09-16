@@ -1079,7 +1079,6 @@ h1 {
 
 .toast-message {
   font-size: 13px;
-  color: rgba(255,255,255,0.65);
 }
 
 @media (max-width: 800px) {
@@ -1687,7 +1686,7 @@ function showToast(type, title, message) {
     toast.classList.remove("show");
     toast.classList.add("hide");
     setTimeout(() => toast.remove(), 400);
-  }, 3000);
+  }, 10000000000);
 }
 
 // ===== LOADING + PASSWORD LOGIC =====
