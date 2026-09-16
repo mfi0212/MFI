@@ -107,6 +107,10 @@ a { text-decoration: none; color: white; }
   font-weight: 500;
 }
 
+body.site-locked > *:not(#bsmfi-loader):not(#servicePasswordPopup) {
+  visibility: hidden;
+}
+
 .audio-controls {
   margin: 0;
   display: none;
@@ -270,30 +274,31 @@ strong {
   padding: 4px;
 }
 
-    #searchInput {
-padding: 5px;
-    font-size: 14px;
-    transition: all 0.3s ease-in-out;
-    border-radius: 9999px;
-    outline: none;
-    text-align: center;
-    width: 100px;
-    z-index: 100000;
-    border: none;
-    background: #161616;
-    color: #fff;
-    }
-.nav-item span {
-    font-size: 11px;
+#searchInput {
+  padding: 5px;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+  border-radius: 9999px;
+  outline: none;
+  text-align: center;
+  width: 100px;
+  z-index: 100000;
+  border: none;
+  background: #161616;
+  color: #fff;
 }
-    #searchInput:focus {
-    outline: none;
-    width: 100%;
-    padding: 10px;
-    font-size: 20px;
-    background: rgb(45, 45, 45);
-    }
 
+.nav-item span {
+  font-size: 11px;
+}
+
+#searchInput:focus {
+  outline: none;
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  background: rgb(45, 45, 45);
+}
 
 .clear-btn {
   position: absolute;
@@ -902,19 +907,19 @@ h1 {
 }
 
 .toast {
-    background: rgb(34 34 34 / 85%);
-    border-radius: 20px;
-    padding: 14px 18px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
-    transform: translateY(-50px) scale(0.9);
-    opacity: 0;
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    pointer-events: auto;
-    backdrop-filter: blur(3px);
-    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+  background: rgb(34 34 34 / 85%);
+  border-radius: 20px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+  transform: translateY(-50px) scale(0.9);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: auto;
+  backdrop-filter: blur(3px);
+  box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
 }
 
 .toast.show {
@@ -929,8 +934,8 @@ h1 {
 }
 
 .toast-icon {
- width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -940,10 +945,6 @@ h1 {
   flex-shrink: 0;
   color: white;
 }
-
-/* .toast.success .toast-icon { background: #30d158; }
-.toast.error .toast-icon { background: #ff453a; }
-.toast.info .toast-icon { background: #0a84ff; } */
 
 .toast-title {
   font-size: 15px;
@@ -959,6 +960,7 @@ h1 {
 @media (max-width: 800px) {
   .viewnotice { display: none; }
 }
+
 .toast-icon {
   display: flex;
   align-items: center;
@@ -967,13 +969,102 @@ h1 {
 }
 
 .toast-icon-img {
-    width: 35px;
-    height: 35px;
-    object-fit: contain;
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}
+
+/* ================= PASSWORD POPUP ================= */
+.password-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999999999999999999999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 20px;
+}
+
+.password-popup {
+  text-align: center;
+  width: min(360px, 100%);
+  padding: 25px;
+  border-radius: 28px;
+}
+
+.password-popup-title {
+  font-size: 21px;
+  font-weight: 600;
+  margin: 12px;
+}
+
+.password-popup-text {
+  font-size: 14px;
+  opacity: 0.65;
+  margin-bottom: 20px;
+}
+
+#servicePasswordInput {
+  width: 100%;
+  height: 48px;
+  padding: 0 15px;
+  border: solid 1.5px transparent;
+  border-radius: 15px;
+  outline: none;
+  color: var(--text);
+  background: var(--bg-card);
+  font-size: 15px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#servicePasswordInput:focus {
+  border: solid 1.5px rgba(255, 255, 255, 0.4);
+}
+
+#servicePasswordInput::placeholder {
+  color: var(--text-muted);
+}
+
+#servicePasswordError {
+  min-height: 20px;
+  margin-top: 8px;
+  font-size: 13px;
+  color: red;
+  display: block;
+}
+
+.password-popup button {
+  width: 100%;
+  height: 48px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 9999px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  background: var(--accent);
+  color: #ffffff;
+  border-top: solid 1px #ffffff4f;
+  border-bottom: solid 1px #ffffff4f;
+}
+
+.password-popup button:active {
+  transform: scale(0.98);
+}
+
+html:has(#bsmfi-loader:not(.hidden)),
+body:has(#bsmfi-loader:not(.hidden)) {
+  overflow: hidden !important;
+  height: 100% !important;
+  touch-action: none;
 }
 </style>
 </head>
-<body>
+<body class="site-locked">
 
 <div class="viewnotice">
   <div class="contentmsg">
@@ -986,49 +1077,85 @@ h1 {
   </div>
 </div>
 
-<div class="servicedivrtpopup" id="popup">
-  <img class="servicedivrtlogo" src="mfi.gif" alt="BSMFI Logo">
-  <h1>BS&MFI</h1>
-  <div class="subtitle">services</div>
-  <input type="text" id="codeInput" placeholder="Enter password" autocomplete="off"/>
-  <button onclick="openPlan()">Continue</button>
-  <div class="error" id="error"></div>
-  <div class="footer-note">BsLends</div>
+<!-- =====================================================
+     LOADING SCREEN
+===================================================== -->
+<div data-popup id="bsmfi-loader"
+  style="
+    position: fixed;
+    inset: 0;
+    background: rgb(0, 0, 72);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    overflow: hidden;
+  ">
+
+  <img
+    id="loader-image"
+    src="enterencemfilogo.png"
+    alt="BS&MFI"
+    style="
+      width: 165px;
+      object-fit: cover;
+      opacity: 1;
+      transform: scale(1);
+      transition:
+        opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+    "
+  >
+
+  <div
+    id="welcome-text"
+    style="
+      position: absolute;
+      color: #f5f5f7;
+      font-size: 1.65rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(18px) scale(0.96);
+      transition:
+        opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 0 24px;
+    "
+  >
+    <h5 style="color: rgba(255,255,255,0.655); font-size: 15px;">
+      Powered by
+    </h5>
+    <span style="color:white;">
+      BS&MFI House
+    </span>
+  </div>
 </div>
 
-<div class="loading-overlay" id="loadingOverlay">
-  <div class="serlogo">
-    <p>Welcome to</p>
-    <div class="servicelogo">BsLends</div>
-    <p>Services</p>
-  </div>
-  
-  <div class="botmmainopt">
-    <div class="audio-controls" id="audioControls">
-      <div class="audio-progress-container">
-        <div class="audio-progress-bar">
-          <div id="audioProgressFill" class="audio-progress-fill"></div>
-        </div>
-        <img class="audioloadgif" src="service-icons/loading_screen_load_icon.gif" alt="">
-        <div class="audio-status" id="audioStatus">Waiting for you to start...</div>
-      </div>
+<!-- =====================================================
+     PASSWORD POPUP
+===================================================== -->
+<div id="servicePasswordPopup" class="password-popup-overlay">
+  <div class="password-popup">
+    <img style="width: 50%; border-radius: 50%;" src="mfi.gif" alt="">
+    <div class="password-popup-title">
+      Password Required
     </div>
-    <button class="start-btn" id="startAudioBtn">
-      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M296-270q-42 35-87.5 32T129-269q-34-28-46.5-73.5T99-436l75-124q-25-22-39.5-53T120-680q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47q-9 0-18-1t-17-3l-77 130q-11 18-7 35.5t17 28.5q13 11 31 12.5t35-12.5l420-361q42-35 88-31.5t80 31.5q34 28 46 73.5T861-524l-75 124q25 22 39.5 53t14.5 67q0 66-47 113t-113 47q-66 0-113-47t-47-113q0-66 47-113t113-47q9 0 17.5 1t16.5 3l78-130q11-18 7-35.5T782-630q-13-11-31-12.5T716-630L296-270Zm40.5-353.5Q360-647 360-680t-23.5-56.5Q313-760 280-760t-56.5 23.5Q200-713 200-680t23.5 56.5Q247-600 280-600t56.5-23.5Zm400 400Q760-247 760-280t-23.5-56.5Q713-360 680-360t-56.5 23.5Q600-313 600-280t23.5 56.5Q647-200 680-200t56.5-23.5ZM280-680Zm400 400Z"/></svg> 
-      Connect
+    <div class="password-popup-text">
+      Enter your password to continue.
+    </div>
+    <input
+      type="text"
+      id="servicePasswordInput"
+      placeholder="Password"
+      autocomplete="off"
+    >
+    <div id="servicePasswordError"></div>
+    <button type="button" onclick="checkServicePassword()">
+      Continue
     </button>
-    <div class="loadintroopt">
-      <button class="mute-btn" id="muteToggle" title="Mute / Unmute">
-        <svg xmlns="http://www.w3.org/2000/svg" id="Filled" viewBox="0 0 24 24" width="512" height="512"><path d="M20.8,4.293A1,1,0,0,0,19.39,5.707a8.911,8.911,0,0,1,0,12.586A1,1,0,1,0,20.8,19.707,10.911,10.911,0,0,0,20.8,4.293Z"/><path d="M18.093,7.293a1,1,0,1,0-1.414,1.414,4.664,4.664,0,0,1,0,6.586,1,1,0,1,0,1.414,1.414A6.665,6.665,0,0,0,18.093,7.293Z"/><path d="M13.819.207A12.055,12.055,0,0,0,6.268,5H5a5.006,5.006,0,0,0-5,5v4a5.006,5.006,0,0,0,5,5H6.269a12.051,12.051,0,0,0,7.55,4.793A1,1,0,0,0,15,22.81V1.19A1,1,0,0,0,13.819.207Z"/></svg>
-      </button>
-      <img src="loadinglogo.png" alt="Loading Doughnut" class="loading-logo">
-      <a style="display: flex;" onclick="showToast('info', 'Welcome', 'Welcome to BsLends Service from BS&MFI Services')">
-        <img style="width: 50px; height: 50px; border-radius: 62px; padding: 2px; background: #181818d9; backdrop-filter: blur(5px); box-shadow: inset 1px 1px 0px 0px #ffffff1a, inset -1px -1px 0px 0px #ffffff1a;" src="mfi.gif" alt="">
-      </a>
-    </div>
-    <audio id="introAudio" preload="auto">
-      <source src="PlayboiCarti-Not Real.mp3" type="audio/mpeg">
-    </audio>
   </div>
 </div>
 
@@ -1068,7 +1195,6 @@ h1 {
   <div class="device-popup" id="devicePopup">
     <div class="popup-content">
       <h3 style="margin-bottom: 10px; font-size: 20px; margin-top: -10px;">What would you like to visit?</h3>
-      <script src="amoutdetails.js"></script>
       <div class="buttons">
         <button onclick="window.open('https://mfi0212.github.io/MFI/desktop.acc','_parent')" class="modal-btn proceed">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M75.77-137.54q-13.54 0-23.27-9.73t-9.73-23.27q0-13.54 9.73-23.27t23.27-9.73h808.46q13.54 0 23.27 9.73t9.73 23.27q0 13.54-9.73 23.27t-23.27 9.73H75.77Zm102.85-106q-38.35 0-64.48-26.14Q88-295.81 88-334.15v-398.77q0-38.34 26.14-64.48 26.13-26.14 64.48-26.14h602.76q38.35 0 64.48 26.14Q872-771.26 872-732.92v398.77q0 38.34-26.14 64.47-26.13 26.14-64.48 26.14H178.62Zm0-66h602.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.92v-398.77q0-9.23-7.69-16.93-7.69-7.69-16.93-7.69H178.62q-9.24 0-16.93 7.69-7.69 7.7-7.69 16.93v398.77q0 9.23 7.69 16.92 7.69 7.69 16.93 7.69Zm-24.62 0v-448 448Z"/></svg> System
@@ -1132,6 +1258,9 @@ h1 {
 <!-- Toast Container -->
 <div class="toast-container" id="toastContainer"></div>
 
+<!-- Load the password / users file -->
+<script src="new-service-amount-details.js"></script>
+
 <script>
 const siteGroups = [
   { heading: "Return Management", sites: [
@@ -1152,7 +1281,7 @@ const siteGroups = [
     { name: "BsMediastorage", desc: "Store files with privacy", url: "https://blackswan19.github.io/Educate/hider" },
   ]}
 ];
-// document.addEventListener('contextmenu', e => e.preventDefault());
+
 let pinnedSites = JSON.parse(localStorage.getItem('pinnedBSMFI')) || [];
 let currentView = 'all';
 
@@ -1344,73 +1473,6 @@ function updateClear() {
 
 renderCurrentView();
 
-// ===== Loading Audio =====
-const loadingOverlay = document.getElementById("loadingOverlay");
-const startBtn = document.getElementById("startAudioBtn");
-const audioControls = document.getElementById("audioControls");
-const progressFill = document.getElementById("audioProgressFill");
-const audioStatus = document.getElementById("audioStatus");
-const audio = document.getElementById("introAudio");
-const muteToggle = document.getElementById("muteToggle");
-
-let stopTime = 0;
-let progressInterval;
-
-muteToggle?.addEventListener("click", () => {
-  audio.muted = !audio.muted;
-  muteToggle.innerHTML = audio.muted 
-    ? '<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="m14.004,23.814c-.061,0-.121-.005-.181-.017-2.999-.551-5.752-2.299-7.554-4.794h-1.271C2.241,19.003-.002,16.76-.002,14.003v-4.005C-.002,7.241,2.241,4.998,4.998,4.998h1.271C8.068,2.505,10.821.758,13.822.204c.294-.052.594.025.821.215.229.19.36.472.36.769v21.627c0,.297-.132.579-.36.769-.181.151-.407.231-.64.231Z"/></svg>' 
-    : '<svg xmlns="http://www.w3.org/2000/svg" id="Filled" viewBox="0 0 24 24" width="512" height="512"><path d="M20.8,4.293A1,1,0,0,0,19.39,5.707a8.911,8.911,0,0,1,0,12.586A1,1,0,1,0,20.8,19.707,10.911,10.911,0,0,0,20.8,4.293Z"/><path d="M18.093,7.293a1,1,0,1,0-1.414,1.414,4.664,4.664,0,0,1,0,6.586,1,1,0,1,0,1.414,1.414A6.665,6.665,0,0,0,18.093,7.293Z"/><path d="M13.819.207A12.055,12.055,0,0,0,6.268,5H5a5.006,5.006,0,0,0-5,5v4a5.006,5.006,0,0,0,5,5H6.269a12.051,12.051,0,0,0,7.55,4.793A1,1,0,0,0,15,22.81V1.19A1,1,0,0,0,13.819.207Z"/></svg>';
-});
-
-startBtn?.addEventListener("click", async () => {
-  startBtn.style.display = "none";
-  audioControls.style.display = "flex";
-
-  try {
-        if (audio.readyState < 1) {
-            await new Promise(resolve => audio.addEventListener("loadedmetadata", resolve, { once: true }));
-        }
-
-         stopTime = audio.duration * 0.0 ||0;
-        //  stopTime = audio.duration * 0.20 || 15;
-
-        progressFill.style.width = "0%";
-        audioStatus.textContent = "0% • Loading...";
-
-        await audio.play();
-
-    progressInterval = setInterval(() => {
-      if (audio.currentTime >= stopTime) {
-        progressFill.style.width = "100%";
-        audioStatus.textContent = "100% • Complete";
-        audio.pause();
-        clearInterval(progressInterval);
-
-        setTimeout(() => {
-          loadingOverlay.style.opacity = "0";
-          setTimeout(() => {
-            loadingOverlay.style.display = "none";
-            document.getElementById("mainContent").style.opacity = "1";
-          }, 800);
-        }, 600);
-        return;
-      }
-
-      let percent = Math.min(100, (audio.currentTime / stopTime) * 100);
-      progressFill.style.width = percent + "%";
-      audioStatus.textContent = Math.round(percent) + "% • Loading...";
-    }, 40);
-
-  } catch(e) {
-    console.error(e);
-    setTimeout(() => {
-      loadingOverlay.style.opacity = "0";
-      setTimeout(() => loadingOverlay.style.display = "none", 800);
-    }, 1500);
-  }
-});
-
 // ===== Modal Functions =====
 let currentRedirectUrl = "";
 
@@ -1471,6 +1533,7 @@ document.addEventListener('keydown', (e) => {
     if (document.getElementById('redirectModal').classList.contains('active')) closeModal();
   }
 });
+
 // ===== Toast System =====
 function showToast(type, title, message) {
   const container = document.getElementById("toastContainer");
@@ -1480,7 +1543,7 @@ function showToast(type, title, message) {
   const icons = {
     success: "service-icons/notice.pop.up.pinned.png",
     error:   "service-icons/notice.pop.up.unpinned.png",
-    info:    "service-icons/notice.pop.up.unpinned.png"   // add your info icon path
+    info:    "service-icons/notice.pop.up.unpinned.png"
   };
 
   const iconSrc = icons[type];
@@ -1508,8 +1571,95 @@ function showToast(type, title, message) {
     toast.classList.remove("show");
     toast.classList.add("hide");
     setTimeout(() => toast.remove(), 400);
-  }, 100000000000); // changed from 1000000000 (was ~11 days)
+  }, 3000);
 }
+
+// ===== LOADING + PASSWORD LOGIC =====
+window.addEventListener("load", function () {
+  const loader = document.getElementById("bsmfi-loader");
+  const image = document.getElementById("loader-image");
+  const welcome = document.getElementById("welcome-text");
+
+  // Keep site locked
+  document.body.classList.add("site-locked");
+
+  // Logo animation
+  setTimeout(() => {
+    image.style.opacity = "0";
+    image.style.transform = "scale(0.88)";
+
+    setTimeout(() => {
+      welcome.style.opacity = "1";
+      welcome.style.transform = "translateY(0) scale(1)";
+    }, 700);
+  }, 2000);
+
+  // Remove loader after ~4 seconds and show password popup
+  setTimeout(() => {
+    loader.style.transition = "opacity 0.8s ease";
+    loader.style.opacity = "0";
+
+    setTimeout(() => {
+      loader.remove();
+      openServicePasswordPopup();
+    }, 800);
+  }, 4000);
+});
+
+function openServicePasswordPopup() {
+  const popup = document.getElementById("servicePasswordPopup");
+  const input = document.getElementById("servicePasswordInput");
+  const error = document.getElementById("servicePasswordError");
+
+  popup.style.display = "flex";
+  input.value = "";
+  error.textContent = "";
+
+  setTimeout(() => {
+    input.focus();
+  }, 150);
+}
+
+function closeServicePasswordPopup() {
+  document.getElementById("servicePasswordPopup").style.display = "none";
+}
+
+function checkServicePassword() {
+  const input = document.getElementById("servicePasswordInput");
+  const error = document.getElementById("servicePasswordError");
+  const enteredPassword = input.value.trim();
+
+  // users object comes from new-service-amount-details.js
+  if (typeof users === "undefined" || !users) {
+    error.textContent = "Password system not loaded.";
+    return;
+  }
+
+  const matchedUser = Object.values(users).find(
+    user => user.password === enteredPassword
+  );
+
+  if (matchedUser) {
+    window.currentUser = matchedUser.displayName || matchedUser.name || "User";
+
+    document.getElementById("servicePasswordPopup").style.display = "none";
+    document.body.classList.remove("site-locked");
+
+    console.log("Logged in as:", window.currentUser);
+    return;
+  }
+
+  error.textContent = "Incorrect password.";
+  input.value = "";
+  input.focus();
+}
+
+// Enter key support
+document.getElementById("servicePasswordInput").addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    checkServicePassword();
+  }
+});
 </script>
 </body>
 </html>
