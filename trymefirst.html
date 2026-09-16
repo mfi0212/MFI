@@ -205,7 +205,7 @@ body {
   padding: 0 0 5px 0;
 }
 
-a { text-decoration: none; color: white; }
+a { text-decoration: none; color: var(--text-main); }
 
 .servicenmae {
   font-size: 18px;
@@ -328,9 +328,9 @@ button#startAudioBtn {
 button#startAudioBtn:active { transform: scale(0.90); }
 
 h3 {
-  font-weight: 400;
-  font-size: 17px;
-  color: white;
+     font-weight: 400;
+    font-size: 17px;
+    color: var(--text-main);
 }
 
 div#sectionsContainer strong {
@@ -394,7 +394,9 @@ padding: 5px;
     color: #fff;
     backdrop-filter: blur(1000px);
     margin-top: 20px;
+        box-shadow: 0 0 0.5px 0 black;
 }
+
 
 .nav-item span {
   font-size: 11px;
@@ -456,7 +458,7 @@ img.closesymbol {
 .nav-item span { font-size: 11px; }
 
 #sectionsContainer {
-  padding-top: 125px;
+  padding-top: 130px;
   max-width: 600px;
   padding-bottom: 97px;
   width: 99%;
@@ -648,7 +650,11 @@ a.site-item:hover {
   width: 23px;
   height: 23px;
 }
-
+.nav-item,
+svg{
+    color: var(--text-main);
+    fill: var(--text-main);
+}
 .nav-item:hover,
 .nav-item:hover svg{ 
     fill: var(--dark-blue); 
@@ -877,6 +883,7 @@ svg#Filled {
   display: flex;
   justify-content: center;
   align-items: center;
+      box-shadow: 0 0 0.5px 0 black;
 }
 
 /* Password Popup */
@@ -1024,22 +1031,20 @@ h1 {
 }
 
 .toast {
-  background: rgb(34 34 34 / 85%);
   border-radius: 20px;
   padding: 14px 18px;
   display: flex;
   align-items: center;
   gap: 15px;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
   transform: translateY(-50px) scale(0.9);
   opacity: 0;
   transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   pointer-events: auto;
-  backdrop-filter: blur(3px);
-  box-shadow: 0 0 0.5px 0 black;
-
-            border-top: solid 1px #ffffff1f;
-            border-bottom: solid 1px #ffffff1f;
+     background: var(--bg-soft);
+    backdrop-filter: blur(3px);
+    box-shadow: 0 0 0.5px 0 black;
+    border-top: solid 1px #ffffff1f;
+    border-bottom: solid 1px #ffffff1f;
 }
 
 .toast.show {
@@ -1089,9 +1094,9 @@ h1 {
 }
 
 .toast-icon-img {
-  width: 35px;
-  height: 35px;
-  object-fit: contain;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
 }
 
 /* ================= PASSWORD POPUP ================= */
@@ -1128,7 +1133,7 @@ h1 {
 }
 
 #servicePasswordInput {
- width: 100%;
+width: 100%;
     height: 48px;
     padding: 0 15px;
     border: solid 1.5px transparent;
@@ -1137,8 +1142,10 @@ h1 {
     font-size: 17px;
     box-sizing: border-box;
     text-align: center;
-    background: #ffffff2e;
-    color: white;
+    background: #ffffff47;
+    box-shadow: 0 0 0.5px 0 black;
+    border-top: solid 1px #ffffff1f;
+    border-bottom: solid 1px #ffffff1f;
 }
 
 #servicePasswordInput:focus {
@@ -1163,7 +1170,7 @@ h1 {
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
-  background: #0000e0;
+  background: var(--dark-blue);
   color: #ffffff;
   border-top: solid 1px #ffffff4f;
   border-bottom: solid 1px #ffffff4f;
@@ -1342,7 +1349,7 @@ body:has(#bsmfi-loader:not(.hidden)) {
     </div>
     <div class="fiftopt">
       <button class="nav-item" onclick="window.open('https://mfi0212.github.io/MFI/bsmfi_search','_parent')">
-        <img class="closesymbol" src="service-icons/search_icon.png" alt="">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M380.77-335.39q-102.46 0-173.54-71.07-71.07-71.03-71.07-173.54t71.07-173.54q71.03-71.07 173.54-71.07t173.54 71.07q71.07 71.03 71.07 173.54 0 42.85-14.38 81.85-14.39 39-38.39 67.84l230.16 230.16q8.31 8.3 8.5 20.88.19 12.58-8.5 21.27t-21.03 8.69q-12.38 0-21.07-8.69L530.46-388.16q-30 24.77-69 38.77-39 14-80.69 14Zm0-59.99q77.31 0 130.96-53.66 53.66-53.65 53.66-130.96t-53.66-130.96q-53.65-53.66-130.96-53.66t-130.96 53.66Q196.15-657.31 196.15-580t53.66 130.96q53.65 53.66 130.96 53.66Z"></path></svg>
       </button>
     </div>
   </div>
