@@ -87,31 +87,24 @@ function computeLoanStatus(loan) {
   return { overdueFee, status, daysInfo, daysDiff: diff };
 }
 
-// ========== THEME SYSTEM (FIXED) ==========
 function openThemeModal() {
-  // const customSec = document.getElementById('custom-theme-section');
-  // if (currentUser && users[currentUser] && users[currentUser].customui === 'yes') {
-  //   customSec.classList.remove('hidden');
-  // } else {
-  //   customSec.classList.add('hidden');
-  // }
+  const customSec = document.getElementById('custom-theme-section');
+  if (customSec) {
+    customSec.classList.add('hidden');   // permanently hide
+  }
 
   const current = document.documentElement.getAttribute('data-theme') || 'light';
   document.querySelectorAll('.theme-option').forEach(el => {
     el.classList.toggle('active', el.getAttribute('data-theme') === current);
   });
 
-  const savedColor = localStorage.getItem('jh_custom_color');
+  // Remove custom-color active states
   document.querySelectorAll('.custom-color-btn').forEach(el => {
-    el.classList.toggle('active', el.getAttribute('data-color') === savedColor);
+    el.classList.remove('active');
   });
-  if (savedColor) {
-    document.getElementById('custom-color-picker').value = savedColor;
-  }
 
   document.getElementById('theme-modal').classList.add('show');
 }
-
 function closeThemeModal() {
   document.getElementById('theme-modal').classList.remove('show');
 }
@@ -123,10 +116,10 @@ function selectTheme(themeName) {
 }
 
 function selectCustomColor(hex) {
-  // if (!currentUser || !users[currentUser] || users[currentUser].customui !== 'yes') {
-  //   alert('Custom themes are only available for users with custom UI access.');
-  //   return;
-  // }
+  if (!currentUser || !users[currentUser] || users[currentUser].customui !== 'yes') {
+    alert('Custom themes are only available for users with custom UI access.');
+    return;
+  }
 
   localStorage.setItem('jh_custom_color', hex);
 
@@ -185,15 +178,12 @@ function applyTheme(themeName, customColor) {
 }
 
 function enforceCustomUIAccess() {
-  // const hasCustom = currentUser && users[currentUser] && users[currentUser].customui === 'yes';
   const storedColor = localStorage.getItem('jh_custom_color');
 
-  // Only remove custom color if user does NOT have permission
-  // Base theme (light/dark/telegram) is NEVER deleted
-  if (!hasCustom && storedColor) {
+  if (storedColor) {
     localStorage.removeItem('jh_custom_color');
 
-    // Re-apply current base theme without the custom color
+    // Re-apply current base theme without any custom color
     let base = localStorage.getItem('jh_theme') || 'light';
     if (base === 'custom') base = 'dark';
     applyTheme(base);
