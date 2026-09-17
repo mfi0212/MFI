@@ -89,12 +89,12 @@ function computeLoanStatus(loan) {
 
 // ========== THEME SYSTEM (FIXED) ==========
 function openThemeModal() {
-  const customSec = document.getElementById('custom-theme-section');
-  if (currentUser && users[currentUser] && users[currentUser].customui === 'yes') {
-    customSec.classList.remove('hidden');
-  } else {
-    customSec.classList.add('hidden');
-  }
+  // const customSec = document.getElementById('custom-theme-section');
+  // if (currentUser && users[currentUser] && users[currentUser].customui === 'yes') {
+  //   customSec.classList.remove('hidden');
+  // } else {
+  //   customSec.classList.add('hidden');
+  // }
 
   const current = document.documentElement.getAttribute('data-theme') || 'light';
   document.querySelectorAll('.theme-option').forEach(el => {
@@ -123,10 +123,10 @@ function selectTheme(themeName) {
 }
 
 function selectCustomColor(hex) {
-  if (!currentUser || !users[currentUser] || users[currentUser].customui !== 'yes') {
-    alert('Custom themes are only available for users with custom UI access.');
-    return;
-  }
+  // if (!currentUser || !users[currentUser] || users[currentUser].customui !== 'yes') {
+  //   alert('Custom themes are only available for users with custom UI access.');
+  //   return;
+  // }
 
   localStorage.setItem('jh_custom_color', hex);
 
@@ -185,7 +185,7 @@ function applyTheme(themeName, customColor) {
 }
 
 function enforceCustomUIAccess() {
-  const hasCustom = currentUser && users[currentUser] && users[currentUser].customui === 'yes';
+  // const hasCustom = currentUser && users[currentUser] && users[currentUser].customui === 'yes';
   const storedColor = localStorage.getItem('jh_custom_color');
 
   // Only remove custom color if user does NOT have permission
