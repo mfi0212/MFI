@@ -36,7 +36,7 @@ const users = {
     premiumType: "Normal",
     fixedInterest: 0,
     customui: "no",
-    showCustomContent: "no",
+    showCustomContent: "yes",
     customContent: {
       type: "image",
       value: "https://mfi0212.github.io/MFI/servoces.special.offer/offer.png",
@@ -62,10 +62,10 @@ const users = {
     }
   },
     "Tony Montana": {
-    password: "9",
+    password: "",
     displayName: "Tony Montana",
     premiumType: "Premium+",
-    fixedInterest: 0,
+    fixedInterest: 20,
     customui: "yes",
     showCustomContent: "no",
     customContent: {
