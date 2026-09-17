@@ -90,7 +90,7 @@ function computeLoanStatus(loan) {
 function openThemeModal() {
   const customSec = document.getElementById('custom-theme-section');
   if (customSec) {
-    customSec.classList.add('hidden');   // permanently hide
+    customSec.classList.add('hidden');   // always hide
   }
 
   const current = document.documentElement.getAttribute('data-theme') || 'light';
@@ -98,12 +98,11 @@ function openThemeModal() {
     el.classList.toggle('active', el.getAttribute('data-theme') === current);
   });
 
-  // Remove custom-color active states
-  document.querySelectorAll('.custom-color-btn').forEach(el => {
-    el.classList.remove('active');
-  });
-
   document.getElementById('theme-modal').classList.add('show');
+}
+function selectCustomColor(hex) {
+  // Custom colors completely disabled (no localStorage touch)
+  return;
 }
 function closeThemeModal() {
   document.getElementById('theme-modal').classList.remove('show');
@@ -135,62 +134,32 @@ function selectCustomColor(hex) {
   document.getElementById('custom-color-picker').value = hex;
   closeThemeModal();
 }
-
-function applyTheme(themeName, customColor) {
+function applyTheme(themeName) {
   const html = document.documentElement;
 
-  // Never keep the old "custom" data-theme
   let base = (themeName === 'custom') ? 'dark' : themeName;
   html.setAttribute('data-theme', base);
 
-  const color = customColor || localStorage.getItem('jh_custom_color');
+  // Never touch custom colors
+  html.style.removeProperty('--dark-blue');
+  html.style.removeProperty('--text-title');
+  html.style.removeProperty('--border-strong');
+  html.style.removeProperty('--black-swan');
 
-  if (color) {
-    // Custom accent works on Light, Dark and Telegram
-    html.style.setProperty('--dark-blue', color);
-    html.style.setProperty('--text-title', color);
-    html.style.setProperty('--border-strong', color);
-    html.style.setProperty('--black-swan', color);
-  } else {
-    html.style.removeProperty('--dark-blue');
-    html.style.removeProperty('--text-title');
-    html.style.removeProperty('--border-strong');
-    html.style.removeProperty('--black-swan');
-  }
-
-  // Always save the base theme
   localStorage.setItem('jh_theme', base);
-
-  if (color) {
-    localStorage.setItem('jh_custom_color', color);
-  }
 
   const labels = {
     light: 'Light',
     dark: 'Dark Black',
     telegram: 'Telegram'
   };
-  const accentNote = color ? ' + Custom' : '';
   document.getElementById('theme-btn').textContent =
-    'Themes (' + (labels[base] || base) + accentNote + ')';
+    'Themes (' + (labels[base] || base) + ')';
 
   drawBarGraph();
 }
 
-function enforceCustomUIAccess() {
-  const storedColor = localStorage.getItem('jh_custom_color');
 
-  if (storedColor) {
-    localStorage.removeItem('jh_custom_color');
-
-    // Re-apply current base theme without any custom color
-    let base = localStorage.getItem('jh_theme') || 'light';
-    if (base === 'custom') base = 'dark';
-    applyTheme(base);
-  }
-}
-
-// ========== Take Money ==========
 function verifyTakeMoneyPassword() {
   const pass = document.getElementById('tm-password').value;
   if (pass !== '') {
@@ -517,7 +486,6 @@ function doLogin() {
   showLoanDetails();
   renderProducts();
   updateInterestDisplay();
-  enforceCustomUIAccess();
 }
 
 function updateInterestDisplay() {
@@ -705,7 +673,7 @@ function logout() {
   document.getElementById('reminder-banner').classList.add('hidden');
   renderProducts();
   updateInterestDisplay();
-  enforceCustomUIAccess();
+  
 }
 
 // ==================== iOS-style Notification System ====================
@@ -871,29 +839,20 @@ function drawBarGraph() {
     labelsEl.appendChild(lab);
   });
 }
-
 window.onload = function() {
   let savedTheme = localStorage.getItem('jh_theme') || 'light';
-  const savedColor = localStorage.getItem('jh_custom_color');
 
   const savedUser = localStorage.getItem('jh_user');
   if (savedUser && users[savedUser]) {
     currentUser = savedUser;
   }
 
-  // Clean old "custom" value
   if (savedTheme === 'custom') {
     savedTheme = 'dark';
     localStorage.setItem('jh_theme', 'dark');
   }
 
-  enforceCustomUIAccess();
-
-  // Re-read after enforce (in case custom color was removed)
-  savedTheme = localStorage.getItem('jh_theme') || 'light';
-  const finalColor = localStorage.getItem('jh_custom_color');
-
-  applyTheme(savedTheme, finalColor || undefined);
+  applyTheme(savedTheme);
 
   document.getElementById('today-rate-display').textContent = todayInterest + '%';
   drawBarGraph();
