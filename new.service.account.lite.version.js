@@ -1,50 +1,32 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
 function getTodayInterest() {
   const today = new Date().toDateString();
-  const stored = localStorage.getItem('jh_today_interest');
-  const storedDate = localStorage.getItem('jh_today_date');
-
-  if (stored && storedDate === today) {
-    return parseFloat(stored);
+  let history = JSON.parse(localStorage.getItem('jh_interest_history') || '[]');
+  const existing = history.find(h => h.date === today);
+  if (existing) {
+    return existing.rate;
   }
-
-  const dateStr = today;
   let hash = 0;
-  for (let i = 0; i < dateStr.length; i++) {
-    hash = dateStr.charCodeAt(i) + ((hash << 5) - hash);
+  for (let i = 0; i < today.length; i++) {
+    hash = today.charCodeAt(i) + ((hash << 5) - hash);
   }
-  // 35.00% – 39.99%
-  const rate = +(35 + (Math.abs(hash) % 500) / 100).toFixed(2);
+  const rate = +(30 + (Math.abs(hash) % 500) / 100).toFixed(2);
 
-  localStorage.setItem('jh_today_interest', rate);
-  localStorage.setItem('jh_today_date', today);
+  history.push({ date: today, rate });
+  if (history.length > 7) {
+    history = history.slice(-7);
+  }
+  localStorage.setItem('jh_interest_history', JSON.stringify(history));
   return rate;
 }
-
 const todayInterest = getTodayInterest();
 
-function getFixedBars() {
-  const today = new Date().toDateString();
-  const stored = localStorage.getItem('jh_today_bars');
-  const storedDate = localStorage.getItem('jh_today_date');
-
-  if (stored && storedDate === today) {
-    return JSON.parse(stored);
+function getInterestHistory() {
+  const history = JSON.parse(localStorage.getItem('jh_interest_history') || '[]');
+  if (history.length === 0) {
+    return [todayInterest];
   }
-
-  const bars = [];
-  let seed = 0;
-  for (let i = 0; i < today.length; i++) seed += today.charCodeAt(i);
-
-  for (let i = 0; i < 10; i++) {
-    seed = (seed * 16807 + 7) % 2147483647;
-    const variation = ((seed % 400) / 100) - 2;   // ±2%
-    bars.push(+(Math.max(35, Math.min(40, todayInterest + variation)).toFixed(2)));
-  }
-  bars[9] = todayInterest;   // last bar = exact today’s rate
-
-  localStorage.setItem('jh_today_bars', JSON.stringify(bars));
-  return bars;
+  return history.map(h => h.rate);
 }
 
 function getEffectiveInterest() {
@@ -104,7 +86,8 @@ function computeLoanStatus(loan) {
 
   return { overdueFee, status, daysInfo, daysDiff: diff };
 }
-// ========== THEME SYSTEM ==========
+
+// ========== THEME SYSTEM (FIXED) ==========
 function openThemeModal() {
   const customSec = document.getElementById('custom-theme-section');
   if (currentUser && users[currentUser] && users[currentUser].customui === 'yes') {
@@ -112,10 +95,12 @@ function openThemeModal() {
   } else {
     customSec.classList.add('hidden');
   }
+
   const current = document.documentElement.getAttribute('data-theme') || 'light';
   document.querySelectorAll('.theme-option').forEach(el => {
     el.classList.toggle('active', el.getAttribute('data-theme') === current);
   });
+
   const savedColor = localStorage.getItem('jh_custom_color');
   document.querySelectorAll('.custom-color-btn').forEach(el => {
     el.classList.toggle('active', el.getAttribute('data-color') === savedColor);
@@ -123,6 +108,7 @@ function openThemeModal() {
   if (savedColor) {
     document.getElementById('custom-color-picker').value = savedColor;
   }
+
   document.getElementById('theme-modal').classList.add('show');
 }
 
@@ -131,9 +117,7 @@ function closeThemeModal() {
 }
 
 function selectTheme(themeName) {
-  if (themeName !== 'custom') {
-    localStorage.removeItem('jh_custom_color');
-  }
+  // Keep any existing custom accent color when switching base themes
   applyTheme(themeName);
   closeThemeModal();
 }
@@ -143,8 +127,15 @@ function selectCustomColor(hex) {
     alert('Custom themes are only available for users with custom UI access.');
     return;
   }
+
   localStorage.setItem('jh_custom_color', hex);
-  applyTheme('custom', hex);
+
+  // Apply the color on the CURRENT base theme (Light / Dark / Telegram)
+  let base = document.documentElement.getAttribute('data-theme') || 'light';
+  if (base === 'custom') base = 'dark'; // migrate old "custom" → dark
+
+  applyTheme(base, hex);
+
   document.querySelectorAll('.custom-color-btn').forEach(el => {
     el.classList.toggle('active', el.getAttribute('data-color') === hex);
   });
@@ -154,43 +145,58 @@ function selectCustomColor(hex) {
 
 function applyTheme(themeName, customColor) {
   const html = document.documentElement;
-  html.setAttribute('data-theme', themeName);
 
-  if (themeName === 'custom') {
-    const color = customColor || localStorage.getItem('jh_custom_color') || '#002aff';
+  // Never keep the old "custom" data-theme
+  let base = (themeName === 'custom') ? 'dark' : themeName;
+  html.setAttribute('data-theme', base);
+
+  const color = customColor || localStorage.getItem('jh_custom_color');
+
+  if (color) {
+    // Custom accent works on Light, Dark and Telegram
     html.style.setProperty('--dark-blue', color);
     html.style.setProperty('--text-title', color);
+    html.style.setProperty('--border-strong', color);
+    html.style.setProperty('--black-swan', color);
   } else {
     html.style.removeProperty('--dark-blue');
     html.style.removeProperty('--text-title');
+    html.style.removeProperty('--border-strong');
+    html.style.removeProperty('--black-swan');
   }
 
-  localStorage.setItem('jh_theme', themeName);
-  if (themeName === 'custom' && customColor) {
-    localStorage.setItem('jh_custom_color', customColor);
+  // Always save the base theme
+  localStorage.setItem('jh_theme', base);
+
+  if (color) {
+    localStorage.setItem('jh_custom_color', color);
   }
 
   const labels = {
     light: 'Light',
     dark: 'Dark Black',
-    telegram: 'Telegram',
-    custom: 'Custom'
+    telegram: 'Telegram'
   };
-  document.getElementById('theme-btn').textContent = 'Themes (' + (labels[themeName] || themeName) + ')';
+  const accentNote = color ? ' + Custom' : '';
+  document.getElementById('theme-btn').textContent =
+    'Themes (' + (labels[base] || base) + accentNote + ')';
 
   drawBarGraph();
 }
-localStorage.removeItem('jh_today_interest');
-localStorage.removeItem('jh_today_bars');
-localStorage.removeItem('jh_today_date');
+
 function enforceCustomUIAccess() {
   const hasCustom = currentUser && users[currentUser] && users[currentUser].customui === 'yes';
-  const storedTheme = localStorage.getItem('jh_theme');
+  const storedColor = localStorage.getItem('jh_custom_color');
 
-  if (!hasCustom && storedTheme === 'custom') {
-    localStorage.removeItem('jh_theme');
+  // Only remove custom color if user does NOT have permission
+  // Base theme (light/dark/telegram) is NEVER deleted
+  if (!hasCustom && storedColor) {
     localStorage.removeItem('jh_custom_color');
-    applyTheme('dark');
+
+    // Re-apply current base theme without the custom color
+    let base = localStorage.getItem('jh_theme') || 'light';
+    if (base === 'custom') base = 'dark';
+    applyTheme(base);
   }
 }
 
@@ -244,7 +250,7 @@ const formLinks = {
   "Split Pay":      "https://forms.gle/7rj2DSnZTQg5TX468",
   "Buy Limit":      "https://forms.gle/UjVvfCS6D6UoxyQW8",
   "Pre-Saver":      "https://forms.gle/3Z6eqPk6SmEDYZCu8",
-  "STL":   "https://mfi0212.github.io/MFI/1.5.days",
+  "STL":            "https://mfi0212.github.io/MFI/1.5.days",
   "BotPay":         "https://mfi0212.github.io/MFI/BsRora/payment.bot",
   "BsRora-Atdo":    "https://mfi0212.github.io/MFI/BsRora/bsrora.atdo",
   "Mining bot":     "https://mfi0212.github.io/MFI/BsRora/miningbot",
@@ -273,6 +279,7 @@ function applyProduct(name) {
      ${formLinks[name] ? "The application form has been opened in a new tab." : "Our team will contact you shortly."}`;
   document.getElementById('apply-modal').classList.add('show');
 }
+
 let currentUser = null;
 let pendingFeeService = null;
 let pendingFeeAmount = 0;
@@ -286,8 +293,8 @@ const allProducts = [
   { name: "Mining bot",    icon: "⛏️", desc: "Automated mining bot", needsFee: false },
   { name: "BotPay",        icon: "💳", desc: "Fast payment solution", needsFee: false },
   { name: "BsRora-Atdo",   icon: "⚡", desc: "Advanced automated system", needsFee: false },
-  { name: "Tomar Juntos",   icon: "🧑‍🤝‍🧑", desc: "Borrow combine", needsFee: false },
-  { name: "STL",   icon: "💹", desc: "Short Term Loans", needsFee: false },
+  { name: "Tomar Juntos",  icon: "🧑‍🤝‍🧑", desc: "Borrow combine", needsFee: false },
+  { name: "STL",           icon: "💹", desc: "Short Term Loans", needsFee: false },
 ];
 
 function renderProducts() {
@@ -334,8 +341,7 @@ function renderProducts() {
   const locked = allProducts.filter(p => !user.access[p.name]);
   if (locked.length > 0) {
     html += `<p style="margin:20px 0 10px;color:var(--text-muted);font-size:13px;">Services you do not have access to:</p>
-    <div class="product-grid" style="opacity: 0.6;
-    cursor: not-allowed;">`;
+    <div class="product-grid" style="opacity:0.6;">`;
     locked.forEach(p => {
       html += `
         <div class="product-card">
@@ -478,7 +484,10 @@ function doSearch() {
       <div class="search-item">
         <div><strong>${p.name}</strong> <span style="font-size:12px;color:var(--text-muted);">${p.desc}</span></div>
         <div>
-          <button class="btn" style="padding:5px 12px;font-size:13px;" onclick="handleProductClick('${p.name}')">Apply</button>
+          <button class="btn" style="padding: 5px 12px;
+    font-size: 13px;
+    width: fit-content;
+    opacity: 100%;" onclick="handleProductClick('${p.name}')">Apply</button>
           <a href="#products" style="margin-left:8px;font-size:13px;">View</a>
         </div>
       </div>
@@ -511,7 +520,6 @@ function doLogin() {
     }
   }
   if (!matchedUser) {
-    alert('Wrong password');
     return;
   }
   currentUser = matchedUser;
@@ -547,7 +555,7 @@ function showLoanDetails() {
   document.getElementById('login-section').classList.add('hidden');
   document.getElementById('loan-section').classList.remove('hidden');
   document.getElementById('logout-btn').classList.remove('hidden');
-  document.getElementById('top-user').textContent = 'Hi, ' + user.displayName;
+  document.getElementById('top-user').textContent = '' + user.displayName;
   document.getElementById('current-user').textContent = user.displayName;
   document.getElementById('account-status').textContent = 'Logged in';
 
@@ -710,60 +718,167 @@ function logout() {
   enforceCustomUIAccess();
 }
 
-function drawBarGraph() {
-  const canvas = document.getElementById('interestChart');
-  const ctx = canvas.getContext('2d');
-  const width = canvas.width;
-  const height = canvas.height;
-  ctx.clearRect(0, 0, width, height);
+// ==================== iOS-style Notification System ====================
+function showIOSNotification(title, message, type = 'info', duration = 2100) {
+  const container = document.getElementById('ios-toast-container');
+  if (!container) return;
 
-  const bars = getFixedBars();
+  const toast = document.createElement('div');
+  toast.className = `ios-toast ${type}`;
 
-  const minR = 34, maxR = 41;   // ← new scale
-  const barCount = bars.length;
-  const gap = 12;
-  const barWidth = (width - (barCount + 1) * gap) / barCount;
-  const chartBottom = height - 30;
-  const chartHeight = chartBottom - 25;
+  let icon = 'i';
+  if (type === 'success') icon = '<img src="service-icons/done_icon.png" alt="">';
+  else if (type === 'warning') icon = '!';
+  else if (type === 'error') icon = '<img src="service-icons/close_icon.png" alt="">';
+  else if (type === 'info') icon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M509.61-140q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-535.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H509.61q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H509.61Zm-28.38-310H170q-12.77 0-21.38-8.62Q140-467.23 140-480t8.62-21.38Q157.23-510 170-510h311.23l-76.92-76.92q-8.31-8.31-8.5-20.27-.19-11.96 8.5-21.27 8.69-9.31 21.08-9.62 12.38-.3 21.69 9l123.77 123.77q10.84 10.85 10.84 25.31 0 14.46-10.84 25.31L447.08-330.92q-8.92 8.92-21.19 8.8-12.27-.11-21.58-9.42-8.69-9.31-8.38-21.38.3-12.08 9-20.77l76.3-76.31Z"/></svg>';
 
-  // ... rest of the function stays exactly the same
+  toast.innerHTML = `
+    <div class="ios-toast-icon">${icon}</div>
+    <div class="ios-toast-content">
+      <div class="ios-toast-title">${title}</div>
+      <div class="ios-toast-message">${message}</div>
+    </div>
+  `;
 
-  ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--border').trim() || '#d0d8e4';
-  ctx.lineWidth = 1;
-  ctx.font = '11px sans-serif';
-  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#666';
+  container.appendChild(toast);
 
-  for (let i = 0; i <= 4; i++) {
-    const val = minR + (maxR - minR) * (i / 4);
-    const y = chartBottom - (chartHeight * (i / 4));
-    ctx.beginPath();
-    ctx.moveTo(0, y);
-    ctx.lineTo(width, y);
-    ctx.stroke();
-    ctx.fillText(val.toFixed(0) + '%', 4, y - 3);
-  }
-
-  bars.forEach((val, i) => {
-    const x = gap + i * (barWidth + gap);
-    const barH = ((val - minR) / (maxR - minR)) * chartHeight;
-    const y = chartBottom - barH;
-
-    ctx.fillStyle = (i === bars.length - 1) ? '#38a169' : '#3182ce';
-    ctx.fillRect(x, y, barWidth, barH);
-
-    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-main').trim() || '#333';
-    ctx.font = '11px sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText(val.toFixed(1) + '%', x + barWidth / 2, y - 5);
+  // Trigger show animation
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      toast.classList.add('show');
+    });
   });
 
-  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#666';
-  ctx.font = '11px sans-serif';
-  ctx.textAlign = 'center';
-  const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Today'];
-  bars.forEach((_, i) => {
-    const x = gap + i * (barWidth + gap) + barWidth / 2;
-    ctx.fillText(labels[i], x, height - 8);
+  // Auto hide
+  setTimeout(() => {
+    toast.classList.remove('show');
+    toast.classList.add('hide');
+    setTimeout(() => {
+      if (toast.parentNode) toast.parentNode.removeChild(toast);
+    }, 550);
+  }, duration);
+}
+
+// ==================== Patch existing functions for notifications ====================
+window.addEventListener('load', function() {
+  // --- LOGIN ---
+  if (typeof window.doLogin === 'function') {
+    const originalDoLogin = window.doLogin;
+    window.doLogin = function() {
+      const result = originalDoLogin.apply(this, arguments);
+      // Show notification after a short delay so UI updates first
+      setTimeout(() => {
+        const userEl = document.getElementById('current-user');
+        const loanSection = document.getElementById('loan-section');
+        if (loanSection && !loanSection.classList.contains('hidden')) {
+          const name = userEl ? userEl.textContent.trim() : 'User';
+          showIOSNotification('Logged in', `Welcome back, ${name}!`, 'success');
+        } else {
+          // If still on login screen, might be wrong password
+          showIOSNotification('Login failed', 'Incorrect password. Try again.', 'error');
+        }
+      }, 180);
+      return result;
+    };
+  }
+
+  // --- LOGOUT ---
+  if (typeof window.logout === 'function') {
+    const originalLogout = window.logout;
+    window.logout = function() {
+      const result = originalLogout.apply(this, arguments);
+      setTimeout(() => {
+        showIOSNotification('Logged out', 'You have been successfully logged out.', 'info');
+      }, 150);
+      return result;
+    };
+  }
+
+  // --- THEME SELECT ---
+  if (typeof window.selectTheme === 'function') {
+    const originalSelectTheme = window.selectTheme;
+    window.selectTheme = function(theme) {
+      const result = originalSelectTheme.apply(this, arguments);
+      const themeNames = {
+        light: 'Light',
+        dark: 'Dark Black',
+        telegram: 'Telegram',
+        custom: 'Custom'
+      };
+      const name = themeNames[theme] || theme;
+      setTimeout(() => {
+        showIOSNotification('Theme changed', `${name} theme applied successfully.`, 'success');
+      }, 200);
+      return result;
+    };
+  }
+
+  // --- CUSTOM COLOR ---
+  if (typeof window.selectCustomColor === 'function') {
+    const originalSelectCustomColor = window.selectCustomColor;
+    window.selectCustomColor = function(color) {
+      const result = originalSelectCustomColor.apply(this, arguments);
+      setTimeout(() => {
+        showIOSNotification('Accent updated', `Custom color ${color} applied.`, 'success');
+      }, 200);
+      return result;
+    };
+  }
+});
+
+window.showIOSNotification = showIOSNotification;
+
+// ========== HTML/CSS Bar Graph (replaces canvas) ==========
+function drawBarGraph() {
+  const container = document.getElementById('bars-container');
+  const labelsEl = document.getElementById('graph-labels');
+  if (!container || !labelsEl) return;
+
+  const rates = getInterestHistory(); // last 7 rates (oldest → newest)
+  const minR = 29;
+  const maxR = 36;
+  const range = maxR - minR;
+
+  // Day labels
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const history = JSON.parse(localStorage.getItem('jh_interest_history') || '[]');
+  let labels = history.map(h => {
+    const d = new Date(h.date);
+    return dayNames[d.getDay()];
+  });
+
+  // Ensure we always show 7 slots
+  while (rates.length < 7) {
+    rates.unshift(rates[0] || todayInterest);
+    labels.unshift('–');
+  }
+
+  container.innerHTML = '';
+  labelsEl.innerHTML = '';
+
+  rates.forEach((rate, i) => {
+    const isToday = i === rates.length - 1;
+    const heightPct = Math.max(8, ((rate - minR) / range) * 100);
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'bar-wrapper';
+
+    const bar = document.createElement('div');
+    bar.className = 'bar' + (isToday ? ' today' : '');
+    bar.style.height = heightPct + '%';
+
+    const value = document.createElement('div');
+    value.className = 'bar-value';
+    value.textContent = rate.toFixed(1) + '%';
+
+    bar.appendChild(value);
+    wrapper.appendChild(bar);
+    container.appendChild(wrapper);
+
+    // label
+    const lab = document.createElement('span');
+    lab.textContent = isToday ? 'Today' : labels[i];
+    labelsEl.appendChild(lab);
   });
 }
 
@@ -776,14 +891,19 @@ window.onload = function() {
     currentUser = savedUser;
   }
 
+  // Clean old "custom" value
+  if (savedTheme === 'custom') {
+    savedTheme = 'dark';
+    localStorage.setItem('jh_theme', 'dark');
+  }
+
   enforceCustomUIAccess();
 
+  // Re-read after enforce (in case custom color was removed)
   savedTheme = localStorage.getItem('jh_theme') || 'light';
-  if (savedTheme === 'custom' && savedColor) {
-    applyTheme('custom', savedColor);
-  } else {
-    applyTheme(savedTheme);
-  }
+  const finalColor = localStorage.getItem('jh_custom_color');
+
+  applyTheme(savedTheme, finalColor || undefined);
 
   document.getElementById('today-rate-display').textContent = todayInterest + '%';
   drawBarGraph();
@@ -795,8 +915,6 @@ window.onload = function() {
   renderProducts();
   updateInterestDisplay();
 };
-
-
 
 /* ===== ACTIVE NAVBAR HIGHLIGHT (Scroll Spy) ===== */
 (function() {
@@ -865,52 +983,57 @@ window.onload = function() {
     if (current) setActive(current);
   });
 })();
+
 const btn = document.getElementById('menuBtn');
-    const dropdown = document.getElementById('dropdown');
+const dropdown = document.getElementById('dropdown');
 
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      dropdown.classList.toggle('show');
-    });
+btn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  dropdown.classList.toggle('show');
+});
 
-    // Close when clicking outside
-    document.addEventListener('click', () => {
-      dropdown.classList.remove('show');
-    });
+// Close when clicking outside
+document.addEventListener('click', () => {
+  dropdown.classList.remove('show');
+});
 
- const progressBar = document.getElementById('progressBar');
-    const progressPercent = document.getElementById('progress-percent');
-    const loadingScreen = document.getElementById('loading-screen');
-    const mainContent = document.getElementById('main-content');
+function goBack() {
+  if (window.history.length > 1) {
+    window.history.back();
+  } else {
+    alert("✅ Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
+  }
+}
 
-    // Random loading time between 4 and 10 seconds
-    const duration = Math.floor(Math.random() * 8000) + 5000; // 4000–10000 ms
-    const startTime = performance.now();
+const progressBar = document.getElementById('progressBar');
+const progressPercent = document.getElementById('progress-percent');
+const loadingScreen = document.getElementById('loading-screen');
+const mainContent = document.getElementById('main-content');
+const duration = Math.floor(Math.random() * 3500) + 1750;
+const startTime = performance.now();
 
-    function updateProgress(now) {
-      const elapsed = now - startTime;
-      const progress = Math.min((elapsed / duration) * 100, 100);
+function updateProgress(now) {
+  const elapsed = now - startTime;
+  const progress = Math.min((elapsed / duration) * 100, 100);
 
-      progressBar.style.width = progress + '%';
-      progressPercent.textContent = Math.floor(progress) + '%';
+  progressBar.style.width = progress + '%';
+  progressPercent.textContent = Math.floor(progress) + '%';
 
-      if (progress < 100) {
-        requestAnimationFrame(updateProgress);
-      } else {
-        setTimeout(() => {
-          loadingScreen.classList.add('hidden');
-          mainContent.style.display = 'block';
-        }, 100);
-      }
-    }
-
+  if (progress < 100) {
     requestAnimationFrame(updateProgress);
+  } else {
+    setTimeout(() => {
+      loadingScreen.classList.add('hidden');
+      mainContent.style.display = 'block';
+    }, 100);
+  }
+}
+requestAnimationFrame(updateProgress);
 
-
-    function goBack() {
-    if (window.history.length > 1) {
-        window.history.back();
-    } else {
-        alert("✅ Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
-    }
+function closeLoadingCard() {
+  const card = document.querySelector('.loading-card');
+  card.classList.add('closing');
+  card.addEventListener('animationend', () => {
+    card.remove();
+  }, { once: true });
 }
