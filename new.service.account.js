@@ -1,49 +1,32 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
 function getTodayInterest() {
   const today = new Date().toDateString();
-  const stored = localStorage.getItem('jh_today_interest');
-  const storedDate = localStorage.getItem('jh_today_date');
-
-  if (stored && storedDate === today) {
-    return parseFloat(stored);
+  let history = JSON.parse(localStorage.getItem('jh_interest_history') || '[]');
+  const existing = history.find(h => h.date === today);
+  if (existing) {
+    return existing.rate;
   }
-
-  const dateStr = today;
   let hash = 0;
-  for (let i = 0; i < dateStr.length; i++) {
-    hash = dateStr.charCodeAt(i) + ((hash << 5) - hash);
+  for (let i = 0; i < today.length; i++) {
+    hash = today.charCodeAt(i) + ((hash << 5) - hash);
   }
-  // 35.00% – 39.99%
-  const rate = +(35 + (Math.abs(hash) % 500) / 100).toFixed(2);
+  const rate = +(30 + (Math.abs(hash) % 500) / 100).toFixed(2);
 
-  localStorage.setItem('jh_today_interest', rate);
-  localStorage.setItem('jh_today_date', today);
+  history.push({ date: today, rate });
+  if (history.length > 7) {
+    history = history.slice(-7);
+  }
+  localStorage.setItem('jh_interest_history', JSON.stringify(history));
   return rate;
 }
 const todayInterest = getTodayInterest();
 
-function getFixedBars() {
-  const today = new Date().toDateString();
-  const stored = localStorage.getItem('jh_today_bars');
-  const storedDate = localStorage.getItem('jh_today_date');
-
-  if (stored && storedDate === today) {
-    return JSON.parse(stored);
+function getInterestHistory() {
+  const history = JSON.parse(localStorage.getItem('jh_interest_history') || '[]');
+  if (history.length === 0) {
+    return [todayInterest];
   }
-
-  const bars = [];
-  let seed = 0;
-  for (let i = 0; i < today.length; i++) seed += today.charCodeAt(i);
-
-  for (let i = 0; i < 10; i++) {
-    seed = (seed * 16807 + 7) % 2147483647;
-    const variation = ((seed % 400) / 100) - 2;   // ±2%
-    bars.push(+(Math.max(35, Math.min(40, todayInterest + variation)).toFixed(2)));
-  }
-  bars[9] = todayInterest;   // last bar = exact today’s rate
-
-  localStorage.setItem('jh_today_bars', JSON.stringify(bars));
-  return bars;
+  return history.map(h => h.rate);
 }
 
 function getEffectiveInterest() {
@@ -200,9 +183,7 @@ function applyTheme(themeName, customColor) {
 
   drawBarGraph();
 }
-localStorage.removeItem('jh_today_interest');
-localStorage.removeItem('jh_today_bars');
-localStorage.removeItem('jh_today_date');
+
 function enforceCustomUIAccess() {
   const hasCustom = currentUser && users[currentUser] && users[currentUser].customui === 'yes';
   const storedColor = localStorage.getItem('jh_custom_color');
@@ -736,168 +717,168 @@ function logout() {
   updateInterestDisplay();
   enforceCustomUIAccess();
 }
+
 // ==================== iOS-style Notification System ====================
-    function showIOSNotification(title, message, type = 'info', duration = 2100) {
-      const container = document.getElementById('ios-toast-container');
-      if (!container) return;
+function showIOSNotification(title, message, type = 'info', duration = 2100) {
+  const container = document.getElementById('ios-toast-container');
+  if (!container) return;
 
-      const toast = document.createElement('div');
-      toast.className = `ios-toast ${type}`;
+  const toast = document.createElement('div');
+  toast.className = `ios-toast ${type}`;
 
-      let icon = 'i';
-      if (type === 'success') icon = '<img src="service-icons/done_icon.png" alt="">';
-      else if (type === 'warning') icon = '!';
-      else if (type === 'error') icon = '<img src="service-icons/close_icon.png" alt="">';
-      else if (type === 'info') icon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M509.61-140q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-535.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H509.61q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H509.61Zm-28.38-310H170q-12.77 0-21.38-8.62Q140-467.23 140-480t8.62-21.38Q157.23-510 170-510h311.23l-76.92-76.92q-8.31-8.31-8.5-20.27-.19-11.96 8.5-21.27 8.69-9.31 21.08-9.62 12.38-.3 21.69 9l123.77 123.77q10.84 10.85 10.84 25.31 0 14.46-10.84 25.31L447.08-330.92q-8.92 8.92-21.19 8.8-12.27-.11-21.58-9.42-8.69-9.31-8.38-21.38.3-12.08 9-20.77l76.3-76.31Z"/></svg>';
+  let icon = 'i';
+  if (type === 'success') icon = '<img src="service-icons/done_icon.png" alt="">';
+  else if (type === 'warning') icon = '!';
+  else if (type === 'error') icon = '<img src="service-icons/close_icon.png" alt="">';
+  else if (type === 'info') icon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M509.61-140q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-535.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H509.61q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H509.61Zm-28.38-310H170q-12.77 0-21.38-8.62Q140-467.23 140-480t8.62-21.38Q157.23-510 170-510h311.23l-76.92-76.92q-8.31-8.31-8.5-20.27-.19-11.96 8.5-21.27 8.69-9.31 21.08-9.62 12.38-.3 21.69 9l123.77 123.77q10.84 10.85 10.84 25.31 0 14.46-10.84 25.31L447.08-330.92q-8.92 8.92-21.19 8.8-12.27-.11-21.58-9.42-8.69-9.31-8.38-21.38.3-12.08 9-20.77l76.3-76.31Z"/></svg>';
 
-      toast.innerHTML = `
-        <div class="ios-toast-icon">${icon}</div>
-        <div class="ios-toast-content">
-          <div class="ios-toast-title">${title}</div>
-          <div class="ios-toast-message">${message}</div>
-        </div>
-      `;
+  toast.innerHTML = `
+    <div class="ios-toast-icon">${icon}</div>
+    <div class="ios-toast-content">
+      <div class="ios-toast-title">${title}</div>
+      <div class="ios-toast-message">${message}</div>
+    </div>
+  `;
 
-      container.appendChild(toast);
+  container.appendChild(toast);
 
-      // Trigger show animation
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          toast.classList.add('show');
-        });
-      });
-
-      // Auto hide
-      setTimeout(() => {
-        toast.classList.remove('show');
-        toast.classList.add('hide');
-        setTimeout(() => {
-          if (toast.parentNode) toast.parentNode.removeChild(toast);
-        }, 550);
-      }, duration);
-    }
-
-    // ==================== Patch existing functions for notifications ====================
-    // Wait for original scripts to load, then wrap key functions
-    window.addEventListener('load', function() {
-      // --- LOGIN ---
-      if (typeof window.doLogin === 'function') {
-        const originalDoLogin = window.doLogin;
-        window.doLogin = function() {
-          const result = originalDoLogin.apply(this, arguments);
-          // Show notification after a short delay so UI updates first
-          setTimeout(() => {
-            const userEl = document.getElementById('current-user');
-            const loanSection = document.getElementById('loan-section');
-            if (loanSection && !loanSection.classList.contains('hidden')) {
-              const name = userEl ? userEl.textContent.trim() : 'User';
-              showIOSNotification('Logged in', `Welcome back, ${name}!`, 'success');
-            } else {
-              // If still on login screen, might be wrong password
-              showIOSNotification('Login failed', 'Incorrect password. Try again.', 'error');
-            }
-          }, 180);
-          return result;
-        };
-      }
-
-      // --- LOGOUT ---
-      if (typeof window.logout === 'function') {
-        const originalLogout = window.logout;
-        window.logout = function() {
-          const result = originalLogout.apply(this, arguments);
-          setTimeout(() => {
-            showIOSNotification('Logged out', 'You have been successfully logged out.', 'info');
-          }, 150);
-          return result;
-        };
-      }
-
-      // --- THEME SELECT ---
-      if (typeof window.selectTheme === 'function') {
-        const originalSelectTheme = window.selectTheme;
-        window.selectTheme = function(theme) {
-          const result = originalSelectTheme.apply(this, arguments);
-          const themeNames = {
-            light: 'Light',
-            dark: 'Dark Black',
-            telegram: 'Telegram',
-            custom: 'Custom'
-          };
-          const name = themeNames[theme] || theme;
-          setTimeout(() => {
-            showIOSNotification('Theme changed', `${name} theme applied successfully.`, 'success');
-          }, 200);
-          return result;
-        };
-      }
-
-      // --- CUSTOM COLOR ---
-      if (typeof window.selectCustomColor === 'function') {
-        const originalSelectCustomColor = window.selectCustomColor;
-        window.selectCustomColor = function(color) {
-          const result = originalSelectCustomColor.apply(this, arguments);
-          setTimeout(() => {
-            showIOSNotification('Accent updated', `Custom color ${color} applied.`, 'success');
-          }, 200);
-          return result;
-        };
-      }
+  // Trigger show animation
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      toast.classList.add('show');
     });
-
-    window.showIOSNotification = showIOSNotification;
- function drawBarGraph() {
-  const canvas = document.getElementById('interestChart');
-  const ctx = canvas.getContext('2d');
-  const width = canvas.width;
-  const height = canvas.height;
-  ctx.clearRect(0, 0, width, height);
-
-  const bars = getFixedBars();
-
-  const minR = 34, maxR = 41;   // ← new scale
-  const barCount = bars.length;
-  const gap = 12;
-  const barWidth = (width - (barCount + 1) * gap) / barCount;
-  const chartBottom = height - 30;
-  const chartHeight = chartBottom - 25;
-
-  ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--border').trim() || '#d0d8e4';
-  ctx.lineWidth = 1;
-  ctx.font = '11px sans-serif';
-  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#666';
-
-  for (let i = 0; i <= 4; i++) {
-    const val = minR + (maxR - minR) * (i / 4);
-    const y = chartBottom - (chartHeight * (i / 4));
-    ctx.beginPath();
-    ctx.moveTo(0, y);
-    ctx.lineTo(width, y);
-    ctx.stroke();
-    ctx.fillText(val.toFixed(0) + '%', 4, y - 3);
-  }
-
-  bars.forEach((val, i) => {
-    const x = gap + i * (barWidth + gap);
-    const barH = ((val - minR) / (maxR - minR)) * chartHeight;
-    const y = chartBottom - barH;
-
-    ctx.fillStyle = (i === bars.length - 1) ? '#38a169' : '#3182ce';
-    ctx.fillRect(x, y, barWidth, barH);
-
-    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-main').trim() || '#333';
-    ctx.font = '11px sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText(val.toFixed(1) + '%', x + barWidth / 2, y - 5);
   });
 
-  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#666';
-  ctx.font = '11px sans-serif';
-  ctx.textAlign = 'center';
-  const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Today'];
-  bars.forEach((_, i) => {
-    const x = gap + i * (barWidth + gap) + barWidth / 2;
-    ctx.fillText(labels[i], x, height - 8);
+  // Auto hide
+  setTimeout(() => {
+    toast.classList.remove('show');
+    toast.classList.add('hide');
+    setTimeout(() => {
+      if (toast.parentNode) toast.parentNode.removeChild(toast);
+    }, 550);
+  }, duration);
+}
+
+// ==================== Patch existing functions for notifications ====================
+window.addEventListener('load', function() {
+  // --- LOGIN ---
+  if (typeof window.doLogin === 'function') {
+    const originalDoLogin = window.doLogin;
+    window.doLogin = function() {
+      const result = originalDoLogin.apply(this, arguments);
+      // Show notification after a short delay so UI updates first
+      setTimeout(() => {
+        const userEl = document.getElementById('current-user');
+        const loanSection = document.getElementById('loan-section');
+        if (loanSection && !loanSection.classList.contains('hidden')) {
+          const name = userEl ? userEl.textContent.trim() : 'User';
+          showIOSNotification('Logged in', `Welcome back, ${name}!`, 'success');
+        } else {
+          // If still on login screen, might be wrong password
+          showIOSNotification('Login failed', 'Incorrect password. Try again.', 'error');
+        }
+      }, 180);
+      return result;
+    };
+  }
+
+  // --- LOGOUT ---
+  if (typeof window.logout === 'function') {
+    const originalLogout = window.logout;
+    window.logout = function() {
+      const result = originalLogout.apply(this, arguments);
+      setTimeout(() => {
+        showIOSNotification('Logged out', 'You have been successfully logged out.', 'info');
+      }, 150);
+      return result;
+    };
+  }
+
+  // --- THEME SELECT ---
+  if (typeof window.selectTheme === 'function') {
+    const originalSelectTheme = window.selectTheme;
+    window.selectTheme = function(theme) {
+      const result = originalSelectTheme.apply(this, arguments);
+      const themeNames = {
+        light: 'Light',
+        dark: 'Dark Black',
+        telegram: 'Telegram',
+        custom: 'Custom'
+      };
+      const name = themeNames[theme] || theme;
+      setTimeout(() => {
+        showIOSNotification('Theme changed', `${name} theme applied successfully.`, 'success');
+      }, 200);
+      return result;
+    };
+  }
+
+  // --- CUSTOM COLOR ---
+  if (typeof window.selectCustomColor === 'function') {
+    const originalSelectCustomColor = window.selectCustomColor;
+    window.selectCustomColor = function(color) {
+      const result = originalSelectCustomColor.apply(this, arguments);
+      setTimeout(() => {
+        showIOSNotification('Accent updated', `Custom color ${color} applied.`, 'success');
+      }, 200);
+      return result;
+    };
+  }
+});
+
+window.showIOSNotification = showIOSNotification;
+
+// ========== HTML/CSS Bar Graph (replaces canvas) ==========
+function drawBarGraph() {
+  const container = document.getElementById('bars-container');
+  const labelsEl = document.getElementById('graph-labels');
+  if (!container || !labelsEl) return;
+
+  const rates = getInterestHistory(); // last 7 rates (oldest → newest)
+  const minR = 29;
+  const maxR = 36;
+  const range = maxR - minR;
+
+  // Day labels
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const history = JSON.parse(localStorage.getItem('jh_interest_history') || '[]');
+  let labels = history.map(h => {
+    const d = new Date(h.date);
+    return dayNames[d.getDay()];
+  });
+
+  // Ensure we always show 7 slots
+  while (rates.length < 7) {
+    rates.unshift(rates[0] || todayInterest);
+    labels.unshift('–');
+  }
+
+  container.innerHTML = '';
+  labelsEl.innerHTML = '';
+
+  rates.forEach((rate, i) => {
+    const isToday = i === rates.length - 1;
+    const heightPct = Math.max(8, ((rate - minR) / range) * 100);
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'bar-wrapper';
+
+    const bar = document.createElement('div');
+    bar.className = 'bar' + (isToday ? ' today' : '');
+    bar.style.height = heightPct + '%';
+
+    const value = document.createElement('div');
+    value.className = 'bar-value';
+    value.textContent = rate.toFixed(1) + '%';
+
+    bar.appendChild(value);
+    wrapper.appendChild(bar);
+    container.appendChild(wrapper);
+
+    // label
+    const lab = document.createElement('span');
+    lab.textContent = isToday ? 'Today' : labels[i];
+    labelsEl.appendChild(lab);
   });
 }
 
@@ -1015,41 +996,43 @@ btn.addEventListener('click', (e) => {
 document.addEventListener('click', () => {
   dropdown.classList.remove('show');
 });
+
 function goBack() {
-    if (window.history.length > 1) {
-        window.history.back();
-    } else {
-        alert("✅ Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
-    }
+  if (window.history.length > 1) {
+    window.history.back();
+  } else {
+    alert("✅ Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
+  }
 }
+
 const progressBar = document.getElementById('progressBar');
-    const progressPercent = document.getElementById('progress-percent');
-    const loadingScreen = document.getElementById('loading-screen');
-    const mainContent = document.getElementById('main-content');
-    const duration = Math.floor(Math.random() * 1500) + 750;
-    const startTime = performance.now();
-    function updateProgress(now) {
-      const elapsed = now - startTime;
-      const progress = Math.min((elapsed / duration) * 100, 100);
+const progressPercent = document.getElementById('progress-percent');
+const loadingScreen = document.getElementById('loading-screen');
+const mainContent = document.getElementById('main-content');
+const duration = Math.floor(Math.random() * 1500) + 750;
+const startTime = performance.now();
 
-      progressBar.style.width = progress + '%';
-      progressPercent.textContent = Math.floor(progress) + '%';
+function updateProgress(now) {
+  const elapsed = now - startTime;
+  const progress = Math.min((elapsed / duration) * 100, 100);
 
-      if (progress < 100) {
-        requestAnimationFrame(updateProgress);
-      } else {
-        setTimeout(() => {
-          loadingScreen.classList.add('hidden');
-          mainContent.style.display = 'block';
-        }, 100);
-      }
-    }
+  progressBar.style.width = progress + '%';
+  progressPercent.textContent = Math.floor(progress) + '%';
+
+  if (progress < 100) {
     requestAnimationFrame(updateProgress);
-    function closeLoadingCard() {
+  } else {
+    setTimeout(() => {
+      loadingScreen.classList.add('hidden');
+      mainContent.style.display = 'block';
+    }, 100);
+  }
+}
+requestAnimationFrame(updateProgress);
+
+function closeLoadingCard() {
   const card = document.querySelector('.loading-card');
-
   card.classList.add('closing');
-
   card.addEventListener('animationend', () => {
     card.remove();
   }, { once: true });
