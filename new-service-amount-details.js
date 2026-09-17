@@ -1,35 +1,4 @@
 const users = {
-  "Mahesh Muthinti": {
-    password: "Mahesh888*",
-    displayName: "Mahesh Muthinti",
-    premiumType: "normal",
-    fixedInterest: 30,
-    customui: "no",
-    showCustomContent: "no",
-    customContent: {
-      type: "image",
-      value: "https://mfi0212.github.io/MFI/servoces.special.offer/offer.png",
-      url: "https://mfi0212.github.io/MFI/servoces.special.offer/eligible.offer"
-    },
-    showSpecialNotice: "no",
-    specialNoticeText: "",
-
-    loans: [
-     
-    ],
-    access: {
-      "Delay It": false,
-      "Split Pay": false,
-      "Buy Limit": false,
-      "Pre-Saver": false,
-      "Lendlink-Mid": false,
-      "Tomar Juntos": false,
-      "Mining bot": false,
-      "BotPay": false,
-      "BsRora-Atdo": false,
-      "STL": false,
-    }
-  },
     "Deepak Tallapudi": {
     password: "Deepak@1",
     displayName: "Deepak Tallapudi",
@@ -62,7 +31,7 @@ const users = {
     }
   },
     "Tony Montana": {
-    password: "",
+    password: "99",
     displayName: "Tony Montana",
     premiumType: "Premium+",
     fixedInterest: 20,
