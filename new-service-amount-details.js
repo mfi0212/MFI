@@ -5,7 +5,7 @@ const users = {
     premiumType: "Normal",
     fixedInterest: 0,
     customui: "no",
-    showCustomContent: "yes",
+    showCustomContent: "no",
     customContent: {
       type: "image",
       value: "https://mfi0212.github.io/MFI/servoces.special.offer/offer.png",
