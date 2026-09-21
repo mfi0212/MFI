@@ -69,7 +69,7 @@
       width: 100%;
       max-width: 720px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 10px;
     }
 
     /* ——— Loading ——— */
@@ -1343,22 +1343,27 @@
       <div id="authenticated-content" class="hidden">
 
         <div class="row" id="graph">
-          <div class="col">
-            <div class="box-title">Today’s Interest Rate</div>
-            <div class="graph-container">
-              <div class="today-rate">Today’s Interest: <span id="today-rate-display">—%</span> <span id="fixed-rate-note" style="font-size:12px;display:none;"></span></div>
-              <div class="chart-wrapper">
-                <div class="interest-graph">
-                  <div class="bars-container" id="bars-container"></div>
-                  <div class="graph-labels" id="graph-labels"></div>
+              <div class="col">
+                    <div class="box-title">Today's Interest Rate</div>
+                    <div class="graph-container">
+                        <div class="today-rate"> Today’s Interest: <span id="today-rate-display">--%</span> <span id="fixed-rate-note" style="font-size:13px;display:none;"></span> </div>
+                        <div class="chart-wrapper">
+                        <div class="interest-graph">
+                        <div class="bars-container" id="bars-container"></div>
+                        <div class="graph-labels" id="graph-labels"></div>
+                    </div>
+                        </div>
+                        <p style="font-size: 13px;
+                            color: var(--text-muted);
+                            margin-top: 8px;
+                            text-align: left;
+                            padding: 10px;
+                            background: var(--bg-soft);
+                            border-radius: 20px;
+                            text-align: center;"> Interest rate and all bars are fixed for the whole day. Logged-in users with a claimed fixed rate will see their personal rate used in calculations. </p>
+                    </div>
                 </div>
-              </div>
-              <p style="font-size:12px;color:var(--text-muted);margin-top:16px;letter-spacing:0.03em;line-height:1.6;">
-                Interest rate and all bars are fixed for the whole day. Logged-in users with a claimed fixed rate will see their personal rate used in calculations.
-              </p>
             </div>
-          </div>
-        </div>
 
         <div class="row" id="takemoney">
           <div class="col">
@@ -1703,25 +1708,25 @@
       };
     }
 
-    /* ========== Loading progress ========== */
-    (function () {
-      var bar = document.getElementById('progressBar');
-      var pct = document.getElementById('progress-percent');
-      var screen = document.getElementById('loading-screen');
-      var p = 0;
-      var t = setInterval(function () {
-        p += Math.random() * 18 + 8;
-        if (p >= 100) {
-          p = 100;
-          clearInterval(t);
-          setTimeout(function () {
-            if (screen) screen.classList.add('hidden');
-          }, 280);
-        }
-        if (bar) bar.style.width = p + '%';
-        if (pct) pct.textContent = Math.floor(p) + '%';
-      }, 120);
-    })();
+    // /* ========== Loading progress ========== */
+    // (function () {
+    //   var bar = document.getElementById('progressBar');
+    //   var pct = document.getElementById('progress-percent');
+    //   var screen = document.getElementById('loading-screen');
+    //   var p = 0;
+    //   var t = setInterval(function () {
+    //     p += Math.random() * 18 + 8;
+    //     if (p >= 100) {
+    //       p = 100;
+    //       clearInterval(t);
+    //       setTimeout(function () {
+    //         if (screen) screen.classList.add('hidden');
+    //       }, 280);
+    //     }
+    //     if (bar) bar.style.width = p + '%';
+    //     if (pct) pct.textContent = Math.floor(p) + '%';
+    //   }, 120);
+    // })();
   </script>
 </body>
 </html>
