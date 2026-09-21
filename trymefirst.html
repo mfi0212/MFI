@@ -1,13 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BS&MFI Services | My Account</title>
-  <link rel="icon" href="mfi.logo.png" />
+  <title>BS&MFI | Solutions</title>
+  <link rel="icon" href="solution.logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -17,1716 +18,926 @@
     }
 
     :root {
-      --bg: #f9f7f4;
-      --bg-card: #ffffff;
-      --bg-soft: #f3f0eb;
+      --bg: #faf9f7;
+      --bg-elevated: #ffffff;
+      --bg-card: #f5f4f1;
       --text: #1a1a1a;
-      --text-muted: #6b6560;
-      --accent: #1a1a1a;
-      --gold: #b8975a;
-      --gold-light: #d4bc8a;
-      --border: #e8e4de;
-      --border-strong: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --text-muted: #8a8a8a;
+      --accent: #b08d57;
+      --accent-soft: rgba(176, 141, 87, 0.12);
+      --border: #e8e6e1;
+      --border-light: #ddd9d2;
+      --note-bg: #f7f5f0;
+      --button-bg: #1a1a1a;
+      --button-text: #faf9f7;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
     }
 
     html {
+      background: var(--bg);
       scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      font-size: 14px;
-      font-weight: 400;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
-      letter-spacing: 0.02em;
       min-height: 100vh;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    h1, h2, h3, h4, .logo, .box-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-    }
-
-    a {
-      text-decoration: none;
-      color: var(--text);
-      transition: color 0.25s ease, opacity 0.25s ease;
-    }
-
-    a:hover {
-      color: var(--gold);
-    }
-
-    button, input {
-      font-family: inherit;
-      transition: all 0.25s ease;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 10px;
-    }
-
-    /* ——— Loading ——— */
-    #loading-screen {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 99999;
-      background: var(--bg);
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
-
-    #loading-screen.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .loading-card {
-      text-align: center;
-      padding: 48px 40px;
-    }
-
-    .spinner {
-      width: 28px;
-      height: 28px;
-      margin: 0 auto 28px;
-      border: 1.5px solid var(--border);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .loading-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .loading-subtitle {
-      font-size: 12px;
-      color: var(--text-muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .progress-section {
-      margin-top: 32px;
-      width: 180px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .progress-track {
-      height: 1px;
-      background: var(--border);
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: var(--accent);
-      transition: width 0.25s linear;
-    }
-
-    .progress-info {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    #progress-percent {
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    /* ——— Top bar ——— */
-    .topbar {
+    /* Sticky top bar — ultra minimal light */
+    .top-bar {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(249, 247, 244, 0.92);
-      backdrop-filter: blur(12px);
+      background: rgba(250, 249, 247, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      padding: 14px 0;
+      padding: 18px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
 
-    .topbar .inner {
+    .top-logo-style {
+      font-family: "Cormorant Garamond", "Times New Roman", serif;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 20px;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--text);
+      position: relative;
+    }
+
+    .top-logo-style img {
+      width: 28px;
+      height: 28px;
+      border-radius: 0;
+      object-fit: cover;
     }
 
     .backoption {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 0;
       cursor: pointer;
-      color: var(--text);
+      fill: var(--text-secondary);
+      transition: fill 0.3s ease;
+      position: absolute;
+      left: 24px;
     }
 
     .backoption:hover {
-      border-color: var(--accent);
-      background: var(--bg-card);
+      fill: var(--accent);
     }
 
-    .backoption svg {
-      fill: var(--text);
-      width: 18px;
-      height: 18px;
-    }
-
-    .username {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      padding: 6px 18px;
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      cursor: default;
-    }
-
-    .user-info {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 16px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      color: var(--text);
-    }
-
-    .rightsideoptino {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .menu-btn {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 0;
-      cursor: pointer;
-      color: var(--text);
-      font-size: 14px;
-    }
-
-    .menu-btn:hover {
-      border-color: var(--accent);
-      background: var(--bg-card);
-    }
-
-    #logout-btn {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 0;
-      color: var(--text);
-    }
-
-    #logout-btn:hover {
-      border-color: #a33;
-      color: #a33;
-    }
-
-    #logout-btn svg {
-      fill: currentColor;
-      width: 18px;
-      height: 18px;
-    }
-
-    /* ——— Full-screen Menu & Search Popups ——— */
-    .fullscreen-popup {
-      position: fixed;
-      inset: 0;
-      z-index: 20000;
-      background: var(--bg);
-      display: flex;
-      flex-direction: column;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(12px);
-      transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease;
-    }
-
-    .fullscreen-popup.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .popup-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 20px;
-      border-bottom: 1px solid var(--border);
-      background: rgba(249, 247, 244, 0.95);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 2;
-    }
-
-    .popup-header h2 {
-      font-size: 16px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-weight: 500;
-    }
-
-    .popup-close {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      color: var(--text);
-      font-size: 18px;
-    }
-
-    .popup-close:hover {
-      border-color: var(--accent);
-      background: var(--bg-card);
-    }
-
-    .popup-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 24px 20px 40px;
-      max-width: 520px;
-      margin: 0 auto;
+    /* Search bar — refined */
+    .search-wrapper {
+      position: relative;
       width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
     }
 
-    .popup-section {
-      margin-bottom: 32px;
-    }
-
-    .popup-section-title {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .popup-link {
-      display: block;
-      padding: 14px 0;
-      font-size: 14px;
-      letter-spacing: 0.04em;
-      color: var(--text);
-      border-bottom: 1px solid var(--border);
-      transition: color 0.2s ease, padding-left 0.2s ease;
-    }
-
-    .popup-link:last-child {
-      border-bottom: none;
-    }
-
-    .popup-link:hover {
-      color: var(--gold);
-      padding-left: 6px;
-    }
-
-    .search-popup-input-wrap {
-      display: flex;
-      align-items: center;
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      margin-bottom: 20px;
-    }
-
-    .search-popup-input-wrap input {
-      flex: 1;
-      height: 48px;
-      border: none;
+    .search-wrapper input {
+      width: 100%;
       background: transparent;
-      padding: 0 16px;
-      font-size: 14px;
-      letter-spacing: 0.04em;
       color: var(--text);
-      outline: none;
-    }
-
-    .search-popup-input-wrap input::placeholder {
-      color: var(--text-muted);
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .search-popup-input-wrap button {
-      width: 48px;
-      height: 48px;
       border: none;
-      background: transparent;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0.55;
-    }
-
-    .search-popup-input-wrap button:hover {
-      opacity: 1;
-    }
-
-    .search-popup-input-wrap button svg {
-      fill: var(--text);
-      width: 18px;
-      height: 18px;
-    }
-
-    #search-list {
-      min-height: 60px;
-    }
-
-    .search-item {
-      padding: 14px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--border-light);
+      border-radius: 0;
+      padding: 12px 12px 12px 36px;
       font-size: 13px;
-      gap: 12px;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      outline: none;
+      transition: border-color 0.35s ease;
     }
 
-    .search-item:last-child {
-      border-bottom: none;
+    .search-wrapper input::placeholder {
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 11px;
     }
 
-    .search-item strong {
-      font-weight: 500;
+    .search-wrapper input:focus {
+      border-bottom-color: var(--accent);
+    }
+
+    .search-wrapper i {
+      position: absolute;
+      left: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 13px;
+      pointer-events: none;
+      transition: color 0.3s ease;
+    }
+
+    .search-wrapper:focus-within i {
       color: var(--accent);
     }
 
-    .search-empty {
+    .search-result-msg {
       text-align: center;
-      padding: 40px 16px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       color: var(--text-muted);
-      font-size: 13px;
-      letter-spacing: 0.04em;
+      padding: 8px 0 0;
+      display: none;
     }
 
-    /* ——— Main ——— */
-    .main {
-      padding: 24px 0 40px;
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      background: transparent;
+      padding: 48px 28px 60px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .row {
-      margin-bottom: 20px;
+    .container:last-of-type {
+      border-bottom: none;
     }
 
-    .col {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      overflow: hidden;
+    h1 {
+      font-family: "Cormorant Garamond", "Times New Roman", serif;
+      font-size: 2.4rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 8px;
+      text-align: center;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      line-height: 1.2;
     }
 
-    .box-title {
-      background: var(--accent);
-      color: #fff;
-      padding: 14px 20px;
-      font-size: 15px;
+    .subtitle {
+      font-size: 0.8rem;
+      font-weight: 300;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      font-weight: 500;
-    }
-
-    .box-body {
-      padding: 10px;
-    }
-
-    /* ——— Interest graph ——— */
-    .graph-container {
-      padding: 20px;
-      text-align: center;
-    }
-
-    .today-rate {
-      font-size: 13px;
-      letter-spacing: 0.06em;
       color: var(--text-muted);
-      margin-bottom: 20px;
-      text-transform: uppercase;
-    }
-
-    .today-rate span {
-      color: var(--gold);
-      font-weight: 500;
-      font-size: 18px;
-    }
-
-    .bars-container {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      height: 160px;
-      gap: 10px;
-      padding: 0 8px;
-      margin-top: -40px;
-    }
-
-    .bar-wrapper {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 100%;
-      justify-content: flex-end;
-    }
-
-    .bar {
-      width: 100%;
-      max-width: 36px;
-      background: var(--bg-soft);
-      border: 1px solid var(--border);
-      position: relative;
-      transition: height 0.4s ease;
-    }
-
-    .bar.today {
-      background: var(--accent);
-      border-color: var(--accent);
-    }
-
-    .bar-value {
-      position: absolute;
-      top: -22px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      color: var(--text);
-      white-space: nowrap;
-    }
-
-    .graph-labels {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 12px;
-      font-size: 10px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      padding: 0 8px;
-    }
-
-    .graph-labels span {
-      flex: 1;
       text-align: center;
-    }
-
-    /* ——— Take money ——— */
-    .take-money-box {
-      max-width: 360px;
-      margin: 0 auto;
-    }
-
-    .take-money-box input {
-      width: 100%;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      color: var(--text);
-      text-align: center;
-      padding: 14px 16px;
-      font-size: 15px;
-      letter-spacing: 0.04em;
-      margin-bottom: 14px;
-      outline: none;
-      border-radius: 0;
-    }
-
-    .take-money-box input:focus {
-      border-color: var(--accent);
-    }
-
-    .take-money-box input::placeholder {
-      color: var(--text-muted);
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .take-money-box button,
-    .btn {
-      width: 100%;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 14px 20px;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: 0;
-    }
-
-    .take-money-box button:hover,
-    .btn:hover {
-      background: #333;
-    }
-
-    .take-money-box button:active,
-    .btn:active {
-      opacity: 0.9;
-    }
-
-    .interest-result {
-      background: var(--bg-soft);
-      border: 1px solid var(--border);
-      padding: 20px;
-      margin-top: 16px;
-      text-align: center;
-    }
-
-    .interest-result .rate {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
-      font-weight: 500;
-      color: var(--gold);
-      margin: 8px 0;
-    }
-
-    /* ——— Products / Services ——— */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .product-card {
-      border: 1px solid var(--border);
-      background: var(--bg);
-      padding: 24px 16px;
-      text-align: center;
-      transition: border-color 0.25s ease, background 0.25s ease;
-    }
-
-    .product-card:hover {
-      border-color: var(--accent);
-      background: var(--bg-card);
-    }
-
-    .product-card .icon {
-      font-size: 22px;
-      margin-bottom: 12px;
-      opacity: 0.7;
-    }
-
-    .product-card h3 {
-      font-size: 14px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-      color: var(--text);
-    }
-
-    .product-card p {
-      font-size: 12px;
-      color: var(--text-muted);
-      min-height: 36px;
-      margin-bottom: 12px;
-      line-height: 1.5;
-    }
-
-    .access-badge {
-      display: inline-block;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      margin-bottom: 10px;
-    }
-
-    .access-yes {
-      background: #e8f0e8;
-      color: #2d5a2d;
-    }
-
-    .access-no {
-      background: #f5e8e8;
-      color: #8a3030;
-    }
-
-    /* ——— Account / Login ——— */
-    #login-section {
-      max-width: 320px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    #login-section p {
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 20px;
-    }
-
-    #login-pass {
-      width: 100%;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      color: var(--text);
-      text-align: center;
-      padding: 14px 16px;
-      font-size: 15px;
-      letter-spacing: 0.08em;
-      margin-bottom: 14px;
-      outline: none;
-      border-radius: 0;
-    }
-
-    #login-pass:focus {
-      border-color: var(--accent);
-    }
-
-    #login-pass::placeholder {
-      color: var(--text-muted);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .save-pass-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 16px;
-      font-size: 12px;
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
-    }
-
-    .save-pass-row input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
-      accent-color: var(--accent);
-      cursor: pointer;
-    }
-
-    .user-summary {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .summary-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      padding: 18px 14px;
-      text-align: center;
-    }
-
-    .summary-card .label {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .summary-card .value {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    .amount-detail-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      padding: 4px 0;
-    }
-
-    .detail-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border);
-      font-size: 13px;
-    }
-
-    .detail-row:last-child {
-      border-bottom: none;
-    }
-
-    .detail-value {
-      font-weight: 500;
-      color: var(--gold);
-    }
-
-    #amount-tabs {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 0 0 12px;
-      scrollbar-width: none;
-    }
-
-    #amount-tabs::-webkit-scrollbar {
-      display: none;
-    }
-
-    button.amount-tab {
-      flex-shrink: 0;
-      padding: 8px 18px;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      cursor: pointer;
-      border-radius: 0;
-    }
-
-    button.amount-tab.active {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
-    }
-
-    button.amount-tab:hover:not(.active) {
-      border-color: var(--accent);
-      color: var(--text);
-    }
-
-    .loan-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12px;
-      min-width: 480px;
-    }
-
-    .loan-table th {
-      background: var(--bg-soft);
-      border: 1px solid var(--border);
-      padding: 12px 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 500;
-      color: var(--text);
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    .loan-table td {
-      border: 1px solid var(--border);
-      padding: 12px 10px;
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    .table-wrapper {
-      overflow-x: auto;
-    }
-
-    .reminder-banner {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 18px;
-      margin-bottom: 20px;
-      border: 1px solid #d4a5a5;
-      background: #faf5f5;
-    }
-
-    .reminder-banner .reminder-icon {
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-
-    .reminder-banner .reminder-content h3 {
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #8a3030;
-      margin-bottom: 6px;
-    }
-
-    .reminder-banner .reminder-content p {
-      font-size: 13px;
-      color: var(--text);
-      background: #fff;
-      padding: 10px 12px;
-      border: 1px solid var(--border);
-      text-align: left;
-    }
-
-    .btn-danger {
-      background: #8a3030;
-      margin-top: 10px;
-    }
-
-    .btn-danger:hover {
-      background: #6b2424;
-    }
-
-    .special-banner {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 16px;
-      margin-bottom: 16px;
-      border: 1px solid var(--border);
-      background: var(--bg);
-    }
-
-    .special-banner .special-content {
-      flex: 1;
-      overflow: hidden;
-    }
-
-    .special-banner marquee {
-      font-size: 13px;
-      color: var(--text);
-    }
-
-    /* ——— Bottom nav ——— */
-    .quick {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 900;
-      background: rgba(249, 247, 244, 0.95);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid var(--border);
-      padding: 8px 12px 12px;
-    }
-
-    .bottomoptions {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      max-width: 720px;
-      margin: 0 auto;
-      gap: 4px;
-    }
-
-    .bottomoptions a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      padding: 8px 6px;
-      flex: 1;
-      color: var(--text-muted);
-      font-size: 9px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      background: none;
-      border: none;
-    }
-
-    .bottomoptions a:hover,
-    .bottomoptions a:focus {
-      color: var(--accent);
-    }
-
-    .bottomoptions a svg {
-      fill: currentColor;
-      width: 20px;
-      height: 20px;
-    }
-
-    .actionbar-headers {
-      display: block;
-      font-size: 9px;
-      letter-spacing: 0.06em;
-    }
-
-    /* ——— Modals (fee / apply) ——— */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(26, 26, 26, 0.45);
-      z-index: 9999;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .modal.show {
-      display: flex;
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal-content {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      width: 100%;
-      max-width: 400px;
-      padding: 32px 28px;
-      text-align: center;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-
-    .modal-content h3 {
-      font-size: 18px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      color: var(--text);
-    }
-
-    .modal-content input {
-      width: 100%;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      color: var(--text);
-      text-align: center;
-      padding: 14px;
-      font-size: 15px;
-      margin-bottom: 14px;
-      outline: none;
-      border-radius: 0;
-    }
-
-    .modal-content input:focus {
-      border-color: var(--accent);
-    }
-
-    .fee-preview {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      padding: 16px;
-      margin-bottom: 16px;
-      text-align: center;
-    }
-
-    .fee-preview .fee-amount {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 24px;
-      font-weight: 500;
-      color: var(--gold);
-      margin: 6px 0;
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .btn-outline:hover {
-      background: var(--bg-soft);
-      border-color: var(--accent);
-    }
-
-    /* ——— Login gate ——— */
-    .login-gate-message {
-      text-align: center;
-      padding: 60px 24px 20px;
-      background: var(--bg-card);
-    }
-
-    .login-gate-message h2 {
-      font-size: 20px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      font-weight: 500;
-    }
-
-    .login-gate-message p {
-      font-size: 13px;
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
-      max-width: 320px;
-      margin: 0 auto 24px;
+      margin-bottom: 2.8rem;
       line-height: 1.7;
     }
 
-    .login-gate-message .gold-line {
-      width: 40px;
-      height: 1px;
-      background: var(--gold);
-      margin: 0 auto 24px;
-    }
-
-    /* Toast */
-    #ios-toast-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 99999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      pointer-events: none;
-      padding-top: 24px;
-      gap: 10px;
-    }
-
-    .ios-toast {
-      pointer-events: auto;
-      max-width: 360px;
-      width: 90%;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      transform: translateY(-120%);
-      opacity: 0;
-      transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .ios-toast.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .ios-toast.hide {
-      transform: translateY(-120%);
-      opacity: 0;
-    }
-
-    .ios-toast-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      background: var(--accent);
-      color: #fff;
-      flex-shrink: 0;
-    }
-
-    .ios-toast-title {
-      font-size: 12px;
+    h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.15rem;
       font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text);
-      margin-bottom: 2px;
-    }
-
-    .ios-toast-message {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    .copyright-mini {
-      text-align: center;
-      padding: 24px 20px 100px;
-      font-size: 10px;
+      color: var(--accent);
+      margin: 2.4rem 0 1rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      position: relative;
+      line-height: 1.75;
+      padding-left: 1.4rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+    }
+
+    ul li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 300;
+      font-size: 0.85rem;
+    }
+
+    .note {
+      background: var(--note-bg);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--accent);
+      padding: 18px 20px;
+      margin: 2rem 0;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      border-radius: 0;
+    }
+
+    .note strong {
+      color: var(--accent);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 1.35rem 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-item h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.45rem;
+      letter-spacing: 0.04em;
+    }
+
+    .faq-item p {
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    .float-options {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      padding: 32px 0 8px;
+      flex-wrap: wrap;
+    }
+
+    a {
+      display: contents;
+      text-decoration: none;
+    }
+
+    button.explore {
+      padding: 14px 36px;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--text);
+      outline: none;
+      border-radius: 0;
+      min-width: 160px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button.explore:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    button.explore:active {
+      transform: scale(0.98);
+    }
+
+    /* Fee table */
+    .fee-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.88rem;
+    }
+
+    .fee-table th,
+    .fee-table td {
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+      text-align: left;
+      font-weight: 300;
+    }
+
+    .fee-table th {
+      background: var(--bg-card);
+      color: var(--accent);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+
+    .fee-table td {
+      color: var(--text-secondary);
+      background: var(--bg-elevated);
+    }
+
+    .fee-table tr:hover td {
+      background: var(--note-bg);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 11px;
+      padding: 40px 20px 50px;
       color: var(--text-muted);
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+
+    /* Highlight when scrolled to */
+    .container.highlight {
+      animation: highlightPulse 1.4s ease;
+    }
+
+    @keyframes highlightPulse {
+      0% { background: rgba(176, 141, 87, 0.08); }
+      100% { background: transparent; }
     }
 
     @media (max-width: 600px) {
-      .user-summary {
-        grid-template-columns: 1fr 1fr;
+      .top-bar {
+        padding: 14px 16px;
       }
-      .product-grid {
-        grid-template-columns: 1fr 1fr;
+
+      .backoption {
+        left: 16px;
+      }
+
+      .top-logo-style {
+        font-size: 18px;
+        letter-spacing: 0.28em;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+        letter-spacing: 0.14em;
+      }
+
+      .subtitle {
+        font-size: 0.72rem;
+        margin-bottom: 2rem;
+      }
+
+      h2 {
+        font-size: 1rem;
+        margin-top: 2rem;
+      }
+
+      .container {
+        padding: 36px 20px 48px;
+      }
+
+      ul li {
+        font-size: 0.85rem;
+      }
+
+      button.explore {
+        min-height: 48px;
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .float-options {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .search-wrapper input {
+        min-height: 44px;
+        font-size: 14px;
       }
     }
 
-    @media (min-width: 768px) {
-      .product-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    html:has(.fullscreen-popup.show),
-    body:has(.fullscreen-popup.show) {
-      overflow: hidden;
+    ::selection {
+      background: rgba(176, 141, 87, 0.22);
+      color: var(--text);
     }
   </style>
 </head>
 <body>
 
-  <div id="loading-screen">
-    <div class="loading-card">
-      <div class="spinner"></div>
-      <div class="loading-title">Loading</div>
-      <div class="loading-subtitle">Please wait</div>
-      <div class="progress-section">
-        <div class="progress-track">
-          <div class="progress-fill" id="progressBar"></div>
-        </div>
-        <div class="progress-info">
-          <span>Progress</span>
-          <span id="progress-percent">0%</span>
-        </div>
-      </div>
+  <div class="top-bar">
+    <div class="top-logo-style">
+      <svg class="backoption" onclick="goBack()" xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px">
+        <path d="m294.92-450 206.77 206.77q8.92 8.92 8.81 20.88-.12 11.96-9.42 21.27-9.31 8.69-21.08 9-11.77.31-21.08-9L205.31-454.69q-5.62-5.62-7.92-11.85-2.31-6.23-2.31-13.46t2.31-13.46q2.3-6.23 7.92-11.85l253.61-253.61q8.31-8.31 20.58-8.5 12.27-.19 21.58 8.5 9.3 9.31 9.3 21.38 0 12.08-9.3 21.39L294.92-510H750q12.77 0 21.38 8.62Q780-492.77 780-480t-8.62 21.38Q762.77-450 750-450H294.92Z"/>
+      </svg>
+      <img src="mfi.gif" alt="">
+      BS&amp;MFI
+    </div>
+
+    <div class="search-wrapper">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" placeholder="Search service (e.g. BotPay, Delay It, Mining Bot...)" autocomplete="off">
+    </div>
+    <div class="search-result-msg" id="searchMsg"></div>
+  </div>
+
+  <!-- ===================== BotPay ===================== -->
+  <div class="container" id="botpay" data-name="botpay">
+    <h1>BotPay</h1>
+    <p class="subtitle">Pay service fees and add amounts directly to your account</p>
+
+    <h2>About Us</h2>
+    <ul>
+      <li>BotPay takes the required amount, pays the fee for the selected services, and adds the amounts directly to your account.</li>
+      <li>It simplifies fee payment and credit so you can complete transactions in fewer steps.</li>
+    </ul>
+
+    <h2>How BotPay works?</h2>
+    <ul>
+      <li>Choose the service or amount you want to process.</li>
+      <li>BotPay calculates and pays the applicable fee.</li>
+      <li>The remaining or credited amount is added directly to your account.</li>
+      <li>Fast and transparent — you see the fee and final credit before confirming.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Note</strong><br>
+      The fee is deducted before the amount is credited. Ensure sufficient balance or payment method is available to complete the transaction.
+    </div>
+
+    <h2>FAQ's</h2>
+    <div class="faq-item">
+      <h3>What does BotPay do exactly?</h3>
+      <p>It takes the amount, pays the service fee, and adds the processed amount directly to your account.</p>
+    </div>
+    <div class="faq-item">
+      <h3>When is the fee charged?</h3>
+      <p>The fee is paid as part of the same transaction, before the final amount is credited to your account.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How long does it take for the amount to appear?</h3>
+      <p>In most cases the amount is added shortly after successful fee payment and confirmation.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I use BotPay for multiple services at once?</h3>
+      <p>Yes, where the system allows. Each service fee will be calculated and shown clearly before you confirm.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What if the fee payment fails?</h3>
+      <p>If the fee cannot be paid, the amount will not be credited. You can retry after fixing the payment method or balance.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is there any extra charge for using BotPay?</h3>
+      <p>Only the standard service fee is charged. There is no additional BotPay processing fee unless clearly stated for a specific offer.</p>
+    </div>
+    <div class="float-options">
+      <a href="https://forms.gle/BfmizdoQin1pDhBg6"><button class="explore">Apply</button></a>
+      <a href="https://mfi0212.github.io/MFI/BsRora/payment.bot"><button class="explore">Visit</button></a>
     </div>
   </div>
 
-  <div id="ios-toast-container"></div>
+  <!-- ===================== BsRora-Atdo ===================== -->
+  <div class="container" id="bsrora-atdo" data-name="bsrora-atdo bs rora atdo">
+    <h1>BsRora-Atdo</h1>
+    <p class="subtitle">View all available offers till date</p>
 
-  <!-- Top bar -->
-  <div class="topbar">
-    <div class="inner">
-      <div>
-        <svg class="backoption" onclick="goBack()" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m367.38-480 301.31 301.31q11.92 11.92 11.62 28.07-.31 16.16-12.23 28.08-11.93 11.92-28.08 11.92t-28.08-11.92L305.08-428.77q-10.85-10.85-16.08-24.31-5.23-13.46-5.23-26.92t5.23-26.92q5.23-13.46 16.08-24.31l306.84-306.85q11.93-11.92 28.39-11.61 16.46.31 28.38 12.23 11.92 11.92 11.92 28.08 0 16.15-11.92 28.07L367.38-480Z"/></svg>
-      </div>
-      <div>
-        <div class="username">
-          <span id="top-user" class="user-info">Guest</span>
-        </div>
-      </div>
-      <div class="rightsideoptino">
-        <button class="menu-btn" id="menuBtn" title="More options" onclick="openMenuPopup()"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-        <a href="#" id="logout-btn" class="hidden" onclick="logout()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M509.61-140q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-535.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H509.61q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H509.61Zm-28.38-310H170q-12.77 0-21.38-8.62Q140-467.23 140-480t8.62-21.38Q157.23-510 170-510h311.23l-76.92-76.92q-8.31-8.31-8.5-20.27-.19-11.96 8.5-21.27 8.69-9.31 21.03-9.62 12.38-.3 21.69 9l123.77 123.77q10.84 10.85 10.84 25.31 0 14.46-10.84 25.31L447.08-330.92q-8.92 8.92-21.19 8.8-12.27-.11-21.58-9.42-8.69-9.31-8.38-21.38.3-12.08 9-20.77l76.3-76.31Z"/></svg></a>
-      </div>
+    <h2>About Us</h2>
+    <ul>
+      <li>BsRora-Atdo displays every offer that is currently available up to the present date in one clear place.</li>
+      <li>Members can quickly check what offers are open without searching through multiple sections.</li>
+    </ul>
+
+    <h2>How BsRora-Atdo works?</h2>
+    <ul>
+      <li>Shows a complete list of all active and available offers.</li>
+      <li>Offers are updated regularly so you always see the latest status.</li>
+      <li>Simple view — no complicated filters required to see what is available.</li>
+      <li>Helps you decide which offer to apply for through BsRora or other services.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Note</strong><br>
+      The list shows offers available till the current date. Expired or closed offers are not displayed. Always check the validity before applying.
+    </div>
+
+    <h2>FAQ's</h2>
+    <div class="faq-item">
+      <h3>What does “till date” mean?</h3>
+      <p>It means all offers that are still valid and open as of today. Past or expired offers are not shown.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How often is the offer list updated?</h3>
+      <p>The list is updated regularly as new offers are added or existing ones expire.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I apply for an offer directly from this page?</h3>
+      <p>BsRora-Atdo is mainly for viewing. To apply, use the related apply service (e.g. BsRora) after selecting an offer.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Are VIP or private offers also shown here?</h3>
+      <p>Standard available offers are listed. Private or VIP-only offers may appear only for eligible members.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Why is an offer I saw earlier missing?</h3>
+      <p>It may have expired, been fully claimed, or temporarily closed. Only currently available offers are displayed.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is there any fee just to view the offers?</h3>
+      <p>No. Viewing the list of available offers is free.</p>
+    </div>
+    <div class="float-options">
+      <a href="https://forms.gle/BfmizdoQin1pDhBg6"><button class="explore">Apply</button></a>
+      <a href="https://mfi0212.github.io/MFI/BsRora/bsrora.atdo"><button class="explore">Visit</button></a>
     </div>
   </div>
 
-  <!-- Full-screen MENU popup (includes former footer links) -->
-  <div class="fullscreen-popup" id="menu-popup">
-    <div class="popup-header">
-      <h2>Menu</h2>
-      <button class="popup-close" onclick="closeMenuPopup()" aria-label="Close">✕</button>
-    </div>
-    <div class="popup-body">
-      <div class="popup-section">
-        <div class="popup-section-title">Services</div>
-        <a class="popup-link" href="https://mfi0212.github.io/MFI/new.service">BS&amp;MFI Home</a>
-        <a class="popup-link" href="https://mfi0212.github.io/MFI/service.solutions/all.solution">All Solutions</a>
-        <a class="popup-link" href="https://mfi0212.github.io/MFI/services.main.page.lite">Version S</a>
-        <a class="popup-link" href="https://mfi0212.github.io/MFI/service.solutions/botpay">BotPay</a>
-        <a class="popup-link" href="https://mfi0212.github.io/MFI/service.solutions/bsrora-atdo">BsRora-Atdo</a>
-        <a class="popup-link" href="https://mfi0212.github.io/MFI/service.solutions/bsrora">BsRora</a>
-        <a class="popup-link" href="https://mfi0212.github.io/MFI/service.solutions/buy-limit">Buy Limit</a>
-        <a class="popup-link" href="https://mfi0212.github.io/MFI/service.solutions/delay-it">Delay It</a>
-        <a class="popup-link" href="https://mfi0212.github.io/MFI/service.solutions/mining-bot">Mining Bot</a>
-        <a class="popup-link" href="https://mfi0212.github.io/MFI/service.solutions/pre-saver">Pre-Saver</a>
-        <a class="popup-link" href="https://mfi0212.github.io/MFI/service.solutions/split-pay">Split Pay</a>
-      </div>
-      <div class="popup-section">
-        <div class="popup-section-title">New Ins</div>
-        <a class="popup-link" href="https://mfi0212.github.io/MFI/entrysheet">New Enter Form</a>
-      </div>
-      <div class="popup-section">
-        <div class="popup-section-title">Transfer</div>
-        <a class="popup-link" href="https://mfi0212.github.io/MFI/bsgifter">BsGifter</a>
-      </div>
-      <div class="popup-section">
-        <div class="popup-section-title">Support</div>
-        <a class="popup-link" href="https://mfi0212.github.io/MFI/imlate">Im Late</a>
-        <a class="popup-link" href="https://mfi0212.github.io/MFI/abt.hlp">BsHelper</a>
-      </div>
-      <div class="popup-section" style="text-align:center;padding-top:8px;">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:0.2em;color:var(--text);">BS&amp;MFI</div>
-        <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:8px;">© All Rights Reserved</div>
-      </div>
-    </div>
-  </div>
+  <!-- ===================== BsRora ===================== -->
+  <div class="container" id="bsrora" data-name="bsrora bs rora">
+    <h1>BsRora</h1>
+    <p class="subtitle">Apply for amounts &amp; offers — no member involvement needed</p>
 
-  <!-- Full-screen SEARCH popup -->
-  <div class="fullscreen-popup" id="search-popup">
-    <div class="popup-header">
-      <h2>Search</h2>
-      <button class="popup-close" onclick="closeSearchPopup()" aria-label="Close">✕</button>
+    <h2>About Us</h2>
+    <ul>
+      <li>BsRora lets you apply for amounts and offers, and pay the required fees automatically without any manual involvement from the member side.</li>
+      <li>The system handles the full application and fee payment process in the background for a smooth experience.</li>
+    </ul>
+
+    <h2>How BsRora works?</h2>
+    <ul>
+      <li>Select the amount or offer you want to apply for.</li>
+      <li>Confirm and the system automatically processes the fee payment.</li>
+      <li>No need for the member to sit and complete each step manually.</li>
+      <li>Transparent process with clear status updates.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Note</strong><br>
+      The applicable fee must be available in your account balance before applying. If the fee is not paid, the application cannot be processed.
     </div>
-    <div class="popup-body">
-      <div class="search-popup-input-wrap">
-        <input type="text" id="search-input" placeholder="Search services…" onkeypress="if(event.key==='Enter') doSearch()">
-        <button type="button" onclick="doSearch()" aria-label="Search">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M380.77-335.39q-102.46 0-173.54-71.07-71.07-71.03-71.07-173.54t71.07-173.54q71.03-71.07 173.54-71.07t173.54 71.07q71.07 71.03 71.07 173.54 0 42.85-14.38 81.85-14.39 39-38.39 67.84l230.16 230.16q8.31 8.3 8.5 20.88.19 12.58-8.5 21.27t-21.03 8.69q-12.38 0-21.07-8.69L530.46-388.16q-30 24.77-69 38.77-39 14-80.69 14Zm0-59.99q77.31 0 130.96-53.66 53.66-53.65 53.66-130.96t-53.66-130.96q-53.65-53.66-130.96-53.66t-130.96 53.66Q196.15-657.31 196.15-580t53.66 130.96q53.65 53.66 130.96 53.66Z"/></svg>
-        </button>
-      </div>
-      <div id="search-list">
-        <div class="search-empty">Type a keyword and press Search</div>
-      </div>
+
+    <h2>FAQ's</h2>
+    <div class="faq-item">
+      <h3>What can I apply for with BsRora?</h3>
+      <p>You can apply for available amounts and special offers listed in the system.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do I need to pay the fee myself every time?</h3>
+      <p>No. Once you confirm, BsRora automatically deducts and pays the fee without further member involvement.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What if my balance is insufficient for the fee?</h3>
+      <p>The application will not go through. Please ensure enough balance is available before applying.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How long does the process take?</h3>
+      <p>Most applications are processed within a few minutes after confirmation.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I cancel an application after submitting?</h3>
+      <p>Cancellation depends on the stage of processing. Contact support if the request is still pending.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is there any extra charge for automatic processing?</h3>
+      <p>No. Only the standard fee for the amount or offer is charged. There are no hidden auto-processing charges.</p>
+    </div>
+    <div class="float-options">
+      <a href="https://forms.gle/BfmizdoQin1pDhBg6"><button class="explore">Apply</button></a>
+      <a href="https://mfi0212.github.io/MFI/BsRora/bsrora"><button class="explore">Visit</button></a>
     </div>
   </div>
 
-  <div class="main">
-    <div class="container">
+  <!-- ===================== Buy Limit ===================== -->
+  <div class="container" id="buy-limit" data-name="buy limit buylimit">
+    <h1>Buy Limit</h1>
+    <p class="subtitle">Limit extender</p>
 
-      <div id="reminder-banner" class="reminder-banner hidden">
-        <div class="reminder-icon">⚠</div>
-        <div class="reminder-content">
-          <h3>Payment Reminder</h3>
-          <div id="reminder-messages"></div>
-          <div class="reminder-actions">
-            <button class="btn btn-danger" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Delay It Now</button>
-          </div>
-        </div>
-      </div>
+    <h2>About Us</h2>
+    <ul>
+      <li>Buy Limit by BS&amp;MFI Solutions helps to borrow more than the borrow limit with transparent fees. Our service lets you borrow when you reach the limit.</li>
+    </ul>
 
-      <!-- LOGIN GATE -->
-      <div id="login-gate" class="row">
-        <div class="col">
-          <div class="login-gate-message">
-            <h2>Private Access</h2>
-            <div class="gold-line"></div>
-            <p>Please sign in to view interest rates, services, and your account details.</p>
-          </div>
-          <div class="box-body" style="padding-top:0;">
-            <div id="login-section">
-              <p>Enter password to continue</p>
-              <input type="text" id="login-pass" placeholder="Password" autocomplete="current-password">
-              <div class="save-pass-row">
-                <input type="checkbox" id="save-password-check">
-                <label for="save-password-check">Save password</label>
-              </div>
-              <button class="btn" onclick="handleSignIn()">Sign In</button>
-            </div>
-          </div>
-        </div>
-      </div>
+    <h2>How Buy Limit works?</h2>
+    <ul>
+      <li>You can borrow more than your account borrow amount limit.</li>
+      <li>Transparent fees with no hidden costs.</li>
+      <li>Fast approval process.</li>
+    </ul>
 
-      <!-- Authenticated content (hidden until Sign In) -->
-      <div id="authenticated-content" class="hidden">
+    <div class="note">
+      <strong>Note</strong><br>
+      The Buy Limit fee must be paid upfront along with the first 50%. This allows you to Buy Limit and borrow the amount.
+    </div>
 
-        <div class="row" id="graph">
-              <div class="col">
-                    <div class="box-title">Today's Interest Rate</div>
-                    <div class="graph-container">
-                        <div class="today-rate"> Today’s Interest: <span id="today-rate-display">--%</span> <span id="fixed-rate-note" style="font-size:13px;display:none;"></span> </div>
-                        <div class="chart-wrapper">
-                        <div class="interest-graph">
-                        <div class="bars-container" id="bars-container"></div>
-                        <div class="graph-labels" id="graph-labels"></div>
-                    </div>
-                        </div>
-                        <p style="font-size: 13px;
-                            color: var(--text-muted);
-                            margin-top: 8px;
-                            text-align: left;
-                            padding: 10px;
-                            background: var(--bg-soft);
-                            border-radius: 20px;
-                            text-align: center;"> Interest rate and all bars are fixed for the whole day. Logged-in users with a claimed fixed rate will see their personal rate used in calculations. </p>
-                    </div>
-                </div>
-            </div>
-
-        <div class="row" id="takemoney">
-          <div class="col">
-            <div class="box-title">Take Money</div>
-            <div class="box-body">
-              <div class="take-money-box">
-                <div id="tm-password-step">
-                  <input type="text" id="tm-password" disabled placeholder="Click below to continue">
-                  <button onclick="verifyTakeMoneyPassword()">Check Interest Now</button>
-                </div>
-                <div id="tm-amount-step" class="hidden">
-                  <p style="margin-bottom:12px;text-align:center;color:var(--text-muted);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;">
-                    Applicable Interest Rate: <strong id="tm-today-rate" style="color:var(--gold);"></strong>
-                  </p>
-                  <input type="number" id="tm-amount" placeholder="Enter amount" min="100">
-                  <button onclick="calculateTakeMoneyInterest()">Check Interest</button>
-                  <div id="tm-result" class="interest-result hidden">
-                    <div>Amount: <strong id="tm-res-amount">—</strong></div>
-                    <div class="rate">Interest: <span id="tm-res-interest">—</span></div>
-                    <div>Total to Return: <strong id="tm-res-total">—</strong></div>
-                    <button class="btn" style="margin-top:16px;" onclick="applyTakeMoney()">Apply Now</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row" id="products">
-          <div class="col">
-            <div class="box-title">All Our Services</div>
-            <div class="box-body" id="products-container"></div>
-          </div>
-        </div>
-
-        <div class="row" id="account">
-          <div class="col">
-            <div class="box-title">My Account — Loan Details <span id="account-status" style="font-size:11px;font-weight:400;letter-spacing:0.06em;"></span></div>
-            <div class="box-body">
-              <div id="loan-section">
-                <p style="margin-bottom:16px;font-size:13px;">Welcome, <strong id="current-user"></strong></p>
-                <div id="custom-content-box" class="custom-content-box hidden"></div>
-                <div id="special-banner" class="special-banner hidden">
-                  <div class="special-icon">◆</div>
-                  <div class="special-content">
-                    <marquee id="special-message" behavior="" direction="left"></marquee>
-                  </div>
-                </div>
-                <div class="user-summary">
-                  <div class="summary-card">
-                    <div class="label">User Name</div>
-                    <div class="value" id="sum-username">—</div>
-                  </div>
-                  <div class="summary-card">
-                    <div class="label">Premium Type</div>
-                    <div class="value" id="sum-premium">—</div>
-                  </div>
-                  <div class="summary-card" id="sum-total">
-                    <div class="label">Total Amount</div>
-                    <div class="value">—</div>
-                  </div>
-                  <div class="summary-card">
-                    <div class="label">Your Interest Rate</div>
-                    <div class="value" id="sum-interest">—</div>
-                  </div>
-                </div>
-
-                <div class="modal" id="total-popup-modal">
-                  <div class="modal-content">
-                    <h3>Total Amount</h3>
-                    <div class="amount-detail-card" style="margin-bottom:16px;">
-                      <div class="detail-row">
-                        <span class="detail-label">Amount</span>
-                        <span class="detail-value" id="tp-amount">—</span>
-                      </div>
-                      <div class="detail-row">
-                        <span class="detail-label">Interest</span>
-                        <span class="detail-value" id="tp-interest">—</span>
-                      </div>
-                      <div class="detail-row">
-                        <span class="detail-label">Total (amount + interest)</span>
-                        <span class="detail-value" id="tp-total">—</span>
-                      </div>
-                    </div>
-                    <button class="btn" onclick="closeTotalPopup()">OK</button>
-                  </div>
-                </div>
-
-                <div id="loan-amount-ui">
-                  <div class="amount-tabs-wrapper">
-                    <div class="amount-tabs" id="amount-tabs"></div>
-                  </div>
-                  <div id="amount-detail-container"></div>
-                </div>
-
-                <div class="applied-section" id="applied-section" style="display:none;margin-top:24px;">
-                  <h4 style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;color:var(--text);">Applied Services &amp; Fees</h4>
-                  <div class="table-wrapper">
-                    <table class="loan-table">
-                      <thead>
-                        <tr>
-                          <th>Service</th>
-                          <th>Amount</th>
-                          <th>Fee</th>
-                          <th>Date</th>
-                          <th>Status</th>
-                        </tr>
-                      </thead>
-                      <tbody id="applied-body"></tbody>
-                    </table>
-                  </div>
-                  <p id="no-applied" style="text-align:center;color:var(--text-muted);margin-top:12px;font-size:12px;" class="hidden">No services applied yet.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /authenticated-content -->
-
+    <h2>FAQ's</h2>
+    <div class="faq-item">
+      <h3>How many times can I Buy Limit?</h3>
+      <p>It's based on the amount you are borrowing.</p>
+    </div>
+    <div class="float-options">
+      <a href="https://forms.gle/1zdHcJxTddk6R81T6"><button class="explore">Apply</button></a>
     </div>
   </div>
 
-  <div class="copyright-mini">© BS&amp;MFI Services · All Rights Reserved</div>
+  <!-- ===================== Delay It ===================== -->
+  <div class="container" id="delay-it" data-name="delay it delayit">
+    <h1>Delay It</h1>
+    <p class="subtitle">Return date extender</p>
 
-  <!-- Bottom navigation -->
-  <div class="quick">
-    <div class="bottomoptions">
-      <a href="#graph">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M306.54-527.31q-52.42 0-89.48-37.06Q180-601.42 180-653.85q0-52.42 37.06-89.48 37.06-37.05 89.48-37.05t89.48 37.05q37.06 37.06 37.06 89.48 0 52.43-37.06 89.48-37.06 37.06-89.48 37.06Zm-.02-60q27.71 0 47.13-19.4 19.43-19.4 19.43-47.11 0-27.72-19.4-47.14t-47.12-19.42q-27.71 0-47.14 19.4Q240-681.58 240-653.87q0 27.72 19.4 47.14t47.12 19.42ZM653.85-180q-52.43 0-89.48-37.06-37.06-37.06-37.06-89.48t37.06-89.48q37.05-37.06 89.48-37.06 52.42 0 89.48 37.06 37.05 37.06 37.05 89.48t-37.05 89.48Q706.27-180 653.85-180Zm47.11-79.4q19.42-19.4 19.42-47.12 0-27.71-19.4-47.13-19.4-19.43-47.11-19.43-27.72 0-47.14 19.4t-19.42 47.12q0 27.71 19.4 47.14Q626.11-240 653.82-240q27.72 0 47.14-19.4Zm-475.34 75.55-41.77-41.77 550.92-550.92 41.77 41.77-550.92 550.92Z"/></svg>
-        <div class="actionbar-headers">Interest</div>
-      </a>
-      <a href="#takemoney">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M548.92-518 393.15-673.77l42.77-41.77 113 113 227-226 41.77 41.77L548.92-518ZM300-216.92l290.31 82.15 238.77-74q-3.08-13.61-12.77-20.88-9.7-7.27-21.7-7.27H598.77q-26.23 0-44.54-2t-37.62-8.77l-90.3-29.85 17.77-58.77 81 28.16q18.15 6.15 41.92 8.38 23.77 2.23 67.61 2.85 0-14.85-6.69-25.62-6.69-10.77-17.61-14.54l-232.08-85.23q-1.15-.38-2.12-.57-.96-.2-2.11-.2h-74v206.16ZM100-100v-383.07h273.61q6.24 0 12.66 1.3 6.42 1.31 12.04 3.31l233.07 85.85q27.23 10.07 45.23 35.65 18 25.58 18 60.04h100q43.08 0 70.2 27.81 27.11 27.8 27.11 72.19v32.3L592.31-71.54 300-154.92V-100H100Zm60-60h80v-263.08h-80V-160Z"/></svg>
-        <div class="actionbar-headers">Borrow</div>
-      </a>
-      <a href="#products">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M278.39-152.31q-26.18 0-46.49-17.15-20.31-17.14-24.82-43.31l-56.24-337.04q-2.76-16.57 7.69-29.54 10.44-12.96 27.7-12.96h587.54q17.26 0 27.7 12.96 10.45 12.97 7.69 29.54l-56.24 337.04q-4.51 26.17-24.82 43.31-20.31 17.15-46.49 17.15H278.39Zm-62.39-380 49.46 309.62q.77 4.61 4.04 7.5 3.27 2.88 7.89 2.88h405.22q4.62 0 7.89-2.88 3.27-2.89 4.04-7.5L744-532.31H216Zm184 150h160q12.75 0 21.37-8.63 8.63-8.63 8.63-21.38 0-12.76-8.63-21.37-8.62-8.62-21.37-8.62H400q-12.75 0-21.37 8.63-8.63 8.63-8.63 21.38 0 12.76 8.63 21.38 8.62 8.61 21.37 8.61ZM240-640q-12.75 0-21.37-8.63-8.63-8.63-8.63-21.38 0-12.76 8.63-21.37Q227.25-700 240-700h480q12.75 0 21.37 8.63 8.63 8.63 8.63 21.38 0 12.76-8.63 21.37Q732.75-640 720-640H240Zm80-107.69q-12.75 0-21.37-8.63-8.63-8.63-8.63-21.38 0-12.76 8.63-21.37 8.62-8.62 21.37-8.62h320q12.75 0 21.37 8.63 8.63 8.63 8.63 21.38 0 12.76-8.63 21.37-8.62 8.62-21.37 8.62H320Zm-54.54 535.38h429.08H265.46Z"/></svg>
-        <div class="actionbar-headers">Services</div>
-      </a>
-      <a href="#account">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M240.92-268.31q51-37.84 111.12-59.77Q412.15-350 480-350t127.96 21.92q60.12 21.93 111.12 59.77 37.3-41 59.11-94.92Q800-417.15 800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 62.85 21.81 116.77 21.81 53.92 59.11 94.92Zm146.7-219.31Q350-525.23 350-580q0-54.77 37.62-92.38Q425.23-710 480-710q54.77 0 92.38 37.62Q610-634.77 610-580q0 54.77-37.62 92.38Q534.77-450 480-450q-54.77 0-92.38-37.62ZM480-100q-79.15 0-148.5-29.77t-120.65-81.03q-51.31-51.3-81.03-120.65Q100-400.85 100-480t29.77-148.5q29.77-69.35 81.03-120.65 51.3-51.31 120.65-81.03Q400.85-860 480-860t148.5 29.77q69.35 29.77 120.65 81.03 51.31 51.3 81.03 120.65Q860-559.15 860-480t-29.77 148.5q-29.77 69.35-81.03 120.65-51.3 51.31-120.65 81.03Q559.15-100 480-100Zm104.42-77.42q50.27-17.43 89.27-48.73-39-30.16-88.11-47Q536.46-290 480-290t-105.77 16.65q-49.31 16.66-87.92 47.2 39 31.3 89.27 48.73Q425.85-160 480-160t104.42-17.42Zm-54.5-352.66Q550-550.15 550-580t-20.08-49.92Q509.85-650 480-650t-49.92 20.08Q410-609.85 410-580t20.08 49.92Q450.15-510 480-510t49.92-20.08ZM480-580Zm0 355Z"/></svg>
-        <div class="actionbar-headers">Account</div>
-      </a>
-      <a href="javascript:void(0)" onclick="openSearchPopup()">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M381.66-326q-106.13 0-179.65-73.45-73.51-73.46-73.51-179.5 0-106.05 73.45-179.55 73.46-73.5 179.5-73.5Q487.5-832 561-758.49q73.5 73.52 73.5 179.65 0 42.84-13.5 81.59T584-429l221.62 221.14Q816.5-197 816.5-181.5t-11 26.5q-11 11-26.5 11t-26.38-10.87L531.16-376.5q-29.66 24-68.16 37.25T381.66-326Zm-.16-75q74.5 0 126.25-51.75T559.5-579q0-74.5-51.75-126.25T381.5-757q-74.5 0-126.25 51.75T203.5-579q0 74.5 51.75 126.25T381.5-401Z"/></svg>
-        <div class="actionbar-headers">Search</div>
-      </a>
+    <h2>About Us</h2>
+    <ul>
+      <li>Delay It by BS&amp;MFI Solutions helps to extend your payment deadlines with transparent fees. Our service provides the flexibility you need to manage your returns.</li>
+    </ul>
+
+    <h2>How Delay It works?</h2>
+    <ul>
+      <li>You can extend the return date of the amount.</li>
+      <li>Transparent fees with no hidden costs.</li>
+      <li>Fast extend process.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Note</strong><br>
+      The Process Fee must be paid before applying for Delay It. If not, we can't provide the extension.
+    </div>
+
+    <h2>FAQ's</h2>
+    <div class="faq-item">
+      <h3>What is the minimum amount I can extend?</h3>
+      <p>The minimum amount is ₹500.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How is the fee calculated?</h3>
+      <p>The fee of the amount multiplied by the number of days you choose.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I apply for multiple extensions?</h3>
+      <p>Yes, you can apply multiple times. Each extension is treated separately with its own fee.</p>
+    </div>
+    <div class="faq-item">
+      <h3>If today is my return date, can I still extend?</h3>
+      <p>No, you must apply at least 24 hours before the original return date.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How many days can I extend?</h3>
+      <p>Standard range is 15–30 days. Premium members can go up to 60 days.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Will my credit score be affected?</h3>
+      <p>No. Delay It is a paid service and does not impact your credit report.</p>
+    </div>
+    <div class="float-options">
+      <a href="https://forms.gle/EBSsPPgt4UzHjFf56"><button class="explore">Apply</button></a>
     </div>
   </div>
 
-  <!-- Modals -->
-  <div class="modal" id="apply-modal">
-    <div class="modal-content">
-      <h3>Application Received</h3>
-      <p id="apply-msg" style="margin-bottom:20px;font-size:13px;color:var(--text-muted);"></p>
-      <button class="btn" onclick="closeModal()">OK</button>
+  <!-- ===================== Mining Bot ===================== -->
+  <div class="container" id="mining-bot" data-name="mining bot miningbot">
+    <h1>Mining Bot</h1>
+    <p class="subtitle">Earn points automatically — no need to stay online</p>
+
+    <h2>About Us</h2>
+    <ul>
+      <li>Mining Bot runs by itself and earns points for you without requiring the member to sit and keep the mining process active.</li>
+      <li>The points you earn help make you eligible for offers and other benefits on the platform.</li>
+    </ul>
+
+    <h2>How Mining Bot works?</h2>
+    <ul>
+      <li>Activate the Mining Bot once — it continues working in the background.</li>
+      <li>Points are credited automatically based on the bot’s activity.</li>
+      <li>You do not need to stay logged in or keep the page open.</li>
+      <li>Accumulated points improve your eligibility for special offers.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Note</strong><br>
+      Mining Bot works on its own after activation. Points are used only for eligibility and related benefits — they are not a direct cash balance unless stated otherwise.
+    </div>
+
+    <h2>FAQ's</h2>
+    <div class="faq-item">
+      <h3>Do I need to keep my device on while mining?</h3>
+      <p>No. Once activated, the Mining Bot runs by itself. You do not need to stay online or keep mining manually.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What are the points used for?</h3>
+      <p>Points help make the member eligible for offers and certain platform benefits.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How fast do points accumulate?</h3>
+      <p>Accumulation depends on the bot’s activity level and current platform settings. Progress is shown in your account.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I run multiple Mining Bots?</h3>
+      <p>Availability of multiple bots depends on your membership level and current rules. Check your account for limits.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is there any fee to start Mining Bot?</h3>
+      <p>Activation or upgrade fees (if any) will be clearly shown before you start. Standard mining after activation does not require constant extra payments.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Will points expire?</h3>
+      <p>Point validity rules are set by the platform. Check the terms in your account or with support for exact expiry details.</p>
+    </div>
+    <div class="float-options">
+      <a href="https://forms.gle/BfmizdoQin1pDhBg6"><button class="explore">Apply</button></a>
+      <a href="https://mfi0212.github.io/MFI/BsRora/miningbot"><button class="explore">Visit</button></a>
     </div>
   </div>
 
-  <div class="modal" id="fee-modal">
-    <div class="modal-content">
-      <h3 id="fee-modal-title">Apply Service</h3>
-      <p style="margin-bottom:14px;color:var(--text-muted);font-size:12px;letter-spacing:0.04em;" id="fee-modal-desc"></p>
-      <input type="number" id="fee-amount" placeholder="Enter amount" min="100">
-      <button class="btn" style="margin-bottom:12px;" onclick="calculateFee()">Calculate Fee</button>
-      <div id="fee-result" class="fee-preview hidden">
-        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);">Service Fee</div>
-        <div class="fee-amount" id="fee-display">—</div>
-        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;" id="fee-formula"></div>
-      </div>
-      <button class="btn" id="fee-apply-btn" onclick="confirmFeeApply()" disabled>Confirm &amp; Apply</button>
-      <button class="btn btn-outline" style="margin-top:10px;" onclick="closeFeeModal()">Cancel</button>
+  <!-- ===================== Pre-Saver ===================== -->
+  <div class="container" id="pre-saver" data-name="pre-saver presaver pre saver">
+    <h1>Pre-Saver</h1>
+    <p class="subtitle">Save on time</p>
+
+    <h2>About Us</h2>
+    <ul>
+      <li>By using Pre-Saver you can save the particular upcoming offer or amounts on a particular date.</li>
+    </ul>
+
+    <h2>Fees</h2>
+    <table class="fee-table">
+      <thead>
+        <tr>
+          <th>Amount Range</th>
+          <th>Fee</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>₹500 – ₹5,000</td><td>₹150</td></tr>
+        <tr><td>₹5,000 – ₹10,000</td><td>₹300</td></tr>
+        <tr><td>₹10,000 – ₹15,000</td><td>₹450</td></tr>
+        <tr><td>₹15,000 – ₹20,000</td><td>₹600</td></tr>
+        <tr><td>₹20,000 – ₹25,000</td><td>₹750</td></tr>
+        <tr><td>₹25,000 – ₹30,000</td><td>₹900</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <strong>Note</strong><br>
+      You have to pay the fee first.
+    </div>
+
+    <h2>How Pre-Saver works?</h2>
+    <ul>
+      <li>Pre-saves the offers and amounts on the date you want.</li>
+      <li>Fast approval process.</li>
+    </ul>
+
+    <h2>For VIP members</h2>
+    <div class="faq-item">
+      <h3>1. Private Offer</h3>
+      <p>VIPs get private offers.</p>
+    </div>
+    <div class="faq-item">
+      <h3>2. Customize Offer</h3>
+      <p>VIPs can customise their offer based on their needs.</p>
+    </div>
+    <div class="faq-item">
+      <h3>3. RLO (Rare Limited Offer)</h3>
+      <p>VIPs can get very rare limited offers every 2–3 months.</p>
+    </div>
+
+    <h2>FAQ's</h2>
+    <div class="faq-item">
+      <h3>Can I pre-save whenever I want?</h3>
+      <p>Yes, if you are VIP then you can use it whenever you want.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Where can I find the fee for Pre-Saver?</h3>
+      <p>The fee for Pre-Saver is based on the offer or amount you are applying (ask coordinator).</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I pre-save whenever I want? But I'm not VIP!</h3>
+      <p>No, but you can apply whenever an offer is available soon.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is there any withdrawal fee?</h3>
+      <p>No fee if you withdraw after 30 days. Early withdrawal has a 1% fee.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I set different rules for different accounts?</h3>
+      <p>Yes, you can create multiple Pre-Saver goals (Travel, Emergency, etc.).</p>
+    </div>
+    <div class="faq-item">
+      <h3>How secure is my saved money?</h3>
+      <p>100% secure with bank-level encryption and insurance up to ₹5 lakh.</p>
+    </div>
+    <div class="float-options">
+      <a href="https://forms.gle/Mj8HxNATQCuY5ciw9"><button class="explore">Apply</button></a>
     </div>
   </div>
 
-  <script src="new.service.account.js"></script>
-  <script src="new-service-amount-details.js"></script>
+  <!-- ===================== Split Pay ===================== -->
+  <div class="container" id="split-pay" data-name="split pay splitpay half split">
+    <h1>Split Pay</h1>
+    <p class="subtitle">Flexible Repayment</p>
+
+    <h2>About Us</h2>
+    <ul>
+      <li>With Split half pay, you can pay half of the total amount and extend the remaining half with a flexibility while ensuring smooth repayment.</li>
+    </ul>
+
+    <h2>How Half Split Pay works?</h2>
+    <ul>
+      <li>Paying 50% of the amount now and split the remaining 50% in instalments.</li>
+      <li>Fast approval and simple process.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Note</strong><br>
+      The split fee must be paid upfront along with the first 50%. This allows you to split the remaining amount.
+    </div>
+
+    <h2>FAQ's</h2>
+    <div class="faq-item">
+      <h3>What is the minimum amount I can split?</h3>
+      <p>The minimum amount is ₹2000.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How is the fee divided?</h3>
+      <p>The fee is shared equally among all participants.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I choose different number of splits?</h3>
+      <p>Yes — you can select between 2 to 8 splits.</p>
+    </div>
+    <div class="float-options">
+      <a href="https://forms.gle/Ww9Ke4V35P4mmebQA"><button class="explore">Apply</button></a>
+    </div>
+  </div>
+
+  <footer>© BS&amp;MFI Services — All Rights Reserved</footer>
 
   <script>
-    /* ========== Save password (still requires Sign In click) ========== */
-    (function loadSavedPassword() {
-      var saved = localStorage.getItem('mfi_saved_password');
-      var check = document.getElementById('save-password-check');
-      var input = document.getElementById('login-pass');
-      if (saved && input) {
-        input.value = saved;
-        if (check) check.checked = true;
-      }
-    })();
-
-    function handleSignIn() {
-      var input = document.getElementById('login-pass');
-      var check = document.getElementById('save-password-check');
-      if (!input) return;
-
-      var pwd = input.value || '';
-
-      if (check && check.checked && pwd) {
-        localStorage.setItem('mfi_saved_password', pwd);
+    function goBack() {
+      if (window.history.length > 1) {
+        window.history.back();
       } else {
-        localStorage.removeItem('mfi_saved_password');
+        window.location.href = "/";
+      }
+    }
+
+    const searchInput = document.getElementById("searchInput");
+    const searchMsg = document.getElementById("searchMsg");
+    const sections = document.querySelectorAll(".container[data-name]");
+
+    function normalize(str) {
+      return str.toLowerCase().replace(/[^a-z0-9]/g, "");
+    }
+
+    searchInput.addEventListener("input", function () {
+      const query = this.value.trim().toLowerCase();
+
+      sections.forEach(s => s.classList.remove("highlight"));
+
+      if (!query) {
+        searchMsg.style.display = "none";
+        return;
       }
 
-      if (typeof window.doLogin === 'function') {
-        window.doLogin();
-      }
+      let found = null;
 
-      setTimeout(function () {
-        showAuthenticated();
-      }, 350);
-    }
+      for (const section of sections) {
+        const name = section.getAttribute("data-name").toLowerCase();
+        const title = section.querySelector("h1").textContent.toLowerCase();
 
-    /* ========== Login gate ========== */
-    function isLoggedIn() {
-      return !!(
-        localStorage.getItem('mfi_user') ||
-        localStorage.getItem('currentUser') ||
-        localStorage.getItem('loggedInUser') ||
-        sessionStorage.getItem('mfi_user') ||
-        (window.currentUser && window.currentUser !== '')
-      );
-    }
-
-    function showAuthenticated() {
-      var gate = document.getElementById('login-gate');
-      var content = document.getElementById('authenticated-content');
-      var logoutBtn = document.getElementById('logout-btn');
-      if (gate) gate.classList.add('hidden');
-      if (content) content.classList.remove('hidden');
-      if (logoutBtn) logoutBtn.classList.remove('hidden');
-    }
-
-    function showGate() {
-      var gate = document.getElementById('login-gate');
-      var content = document.getElementById('authenticated-content');
-      var logoutBtn = document.getElementById('logout-btn');
-      if (gate) gate.classList.remove('hidden');
-      if (content) content.classList.add('hidden');
-      if (logoutBtn) logoutBtn.classList.add('hidden');
-    }
-
-    var originalLogout = window.logout;
-    window.logout = function () {
-      if (typeof originalLogout === 'function') {
-        originalLogout.apply(this, arguments);
-      }
-      showGate();
-      var topUser = document.getElementById('top-user');
-      if (topUser) topUser.textContent = 'Guest';
-    };
-
-    window.addEventListener('load', function () {
-      setTimeout(function () {
-        if (isLoggedIn()) {
-          showAuthenticated();
-        } else {
-          showGate();
+        if (name.includes(query) || title.includes(query) || normalize(title).includes(normalize(query))) {
+          found = section;
+          break;
         }
-      }, 500);
-    });
+      }
 
-    document.addEventListener('DOMContentLoaded', function () {
-      var loan = document.getElementById('loan-section');
-      if (loan) {
-        var observer = new MutationObserver(function () {
-          if (loan && !loan.classList.contains('hidden')) {
-            showAuthenticated();
-          }
-        });
-        observer.observe(loan, { attributes: true, attributeFilter: ['class'] });
+      if (found) {
+        found.scrollIntoView({ behavior: "smooth", block: "start" });
+        found.classList.add("highlight");
+        searchMsg.textContent = "Found: " + found.querySelector("h1").textContent;
+        searchMsg.style.display = "block";
+        searchMsg.style.color = "#b08d57";
+      } else {
+        searchMsg.textContent = "No matching service found";
+        searchMsg.style.display = "block";
+        searchMsg.style.color = "#8a8a8a";
       }
     });
 
-    /* ========== Full-screen Menu popup ========== */
-    function openMenuPopup() {
-      var p = document.getElementById('menu-popup');
-      if (p) p.classList.add('show');
-    }
-
-    function closeMenuPopup() {
-      var p = document.getElementById('menu-popup');
-      if (p) p.classList.remove('show');
-    }
-
-    /* ========== Full-screen Search popup ========== */
-    function openSearchPopup() {
-      var p = document.getElementById('search-popup');
-      if (p) {
-        p.classList.add('show');
-        var input = document.getElementById('search-input');
-        if (input) setTimeout(function () { input.focus(); }, 200);
+    searchInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        this.dispatchEvent(new Event("input"));
       }
-    }
-
-    function closeSearchPopup() {
-      var p = document.getElementById('search-popup');
-      if (p) p.classList.remove('show');
-    }
-
-    /* Fallback doSearch (external JS can override) */
-    if (typeof window.doSearch !== 'function') {
-      window.doSearch = function () {
-        var input = document.getElementById('search-input');
-        var list = document.getElementById('search-list');
-        if (!input || !list) return;
-        var q = (input.value || '').trim().toLowerCase();
-        if (!q) {
-          list.innerHTML = '<div class="search-empty">Type a keyword and press Search</div>';
-          return;
-        }
-        var items = [
-          { name: 'BotPay', url: 'https://mfi0212.github.io/MFI/service.solutions/botpay' },
-          { name: 'BsRora', url: 'https://mfi0212.github.io/MFI/service.solutions/bsrora' },
-          { name: 'BsRora-Atdo', url: 'https://mfi0212.github.io/MFI/service.solutions/bsrora-atdo' },
-          { name: 'Buy Limit', url: 'https://mfi0212.github.io/MFI/service.solutions/buy-limit' },
-          { name: 'Delay It', url: 'https://mfi0212.github.io/MFI/service.solutions/delay-it' },
-          { name: 'Mining Bot', url: 'https://mfi0212.github.io/MFI/service.solutions/mining-bot' },
-          { name: 'Pre-Saver', url: 'https://mfi0212.github.io/MFI/service.solutions/pre-saver' },
-          { name: 'Split Pay', url: 'https://mfi0212.github.io/MFI/service.solutions/split-pay' },
-          { name: 'All Solutions', url: 'https://mfi0212.github.io/MFI/service.solutions/all.solution' }
-        ];
-        var matches = items.filter(function (i) {
-          return i.name.toLowerCase().indexOf(q) !== -1;
-        });
-        if (!matches.length) {
-          list.innerHTML = '<div class="search-empty">No results for “' + q + '”</div>';
-          return;
-        }
-        list.innerHTML = matches.map(function (m) {
-          return '<div class="search-item"><strong>' + m.name + '</strong><a href="' + m.url + '" style="font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--gold);">Open</a></div>';
-        }).join('');
-      };
-    }
-
-    if (typeof window.clearSearch !== 'function') {
-      window.clearSearch = function () {
-        var input = document.getElementById('search-input');
-        var list = document.getElementById('search-list');
-        if (input) input.value = '';
-        if (list) list.innerHTML = '<div class="search-empty">Type a keyword and press Search</div>';
-      };
-    }
-
-    // /* ========== Loading progress ========== */
-    // (function () {
-    //   var bar = document.getElementById('progressBar');
-    //   var pct = document.getElementById('progress-percent');
-    //   var screen = document.getElementById('loading-screen');
-    //   var p = 0;
-    //   var t = setInterval(function () {
-    //     p += Math.random() * 18 + 8;
-    //     if (p >= 100) {
-    //       p = 100;
-    //       clearInterval(t);
-    //       setTimeout(function () {
-    //         if (screen) screen.classList.add('hidden');
-    //       }, 280);
-    //     }
-    //     if (bar) bar.style.width = p + '%';
-    //     if (pct) pct.textContent = Math.floor(p) + '%';
-    //   }, 120);
-    // })();
+    });
   </script>
 </body>
 </html>
