@@ -13,9 +13,9 @@
       --border: #1a1a1a;
       --card: #ffffff;
       --muted-bg: #f4f4f4;
-      --primary: #1a1a1a;
+      --primary: #0025ff;
       --primary-fg: #ffffff;
-      --accent: #ffdb00;
+      --accent: #0025ff;
       --destructive: #c0392b;
     }
 
@@ -53,12 +53,13 @@
       text-align: center;
       padding: 10px 12px;
       background: var(--accent);
+      color: var(--primary-fg);
       border-bottom: 2px solid var(--border);
       font-size: 0.8125em;
       font-weight: 600;
     }
     .top-banner a {
-      color: var(--fg);
+      color: var(--primary-fg);
       text-decoration: none;
     }
 
@@ -159,12 +160,12 @@
       color: var(--bg);
     }
     .total-btn {
-      background: var(--fg);
-      color: var(--bg);
+      background: var(--primary);
+      color: var(--primary-fg);
     }
     .total-btn:hover {
-      background: var(--accent);
-      color: var(--fg);
+      background: var(--fg);
+      color: var(--bg);
     }
 
     /* sections */
@@ -224,8 +225,8 @@
     }
     .paid-input {
       width: 110px;
-      padding: 6px 0px;
-      border: 2px solid transparent;
+      padding: 6px 8px;
+      border: 1px solid var(--border);
       background: var(--bg);
       text-align: right;
       font-size: 0.9375em;
@@ -234,8 +235,8 @@
       outline: none;
     }
     .paid-input:focus {
-      outline: 2px solid var(--fg);
-      outline-offset: -2px;padding: 6px 8px;
+      outline: 2px solid var(--primary);
+      outline-offset: -2px;
     }
 
     .remaining {
@@ -248,8 +249,8 @@
       font-weight: 600;
     }
     .entry-total {
-      background: var(--accent);
-      color: var(--fg);
+      background: var(--primary);
+      color: var(--primary-fg);
       padding: 8px 12px;
       display: flex;
       justify-content: space-between;
@@ -282,8 +283,8 @@
     .save-btn {
       width: 100%;
       padding: 12px;
-      background: var(--fg);
-      color: var(--bg);
+      background: var(--primary);
+      color: var(--primary-fg);
       border: none;
       border-bottom: 2px solid var(--border);
       font-size: 0.875em;
@@ -292,8 +293,8 @@
       font-family: inherit;
     }
     .save-btn:hover {
-      background: var(--accent);
-      color: var(--fg);
+      background: var(--fg);
+      color: var(--bg);
     }
     .notes-list { }
     .note {
@@ -393,8 +394,8 @@
       background: var(--destructive);
     }
     .modal-summary {
-      background: var(--fg);
-      color: var(--bg);
+      background: var(--primary);
+      color: var(--primary-fg);
       padding: 14px 12px;
     }
     .modal-summary .row {
@@ -407,7 +408,7 @@
       margin-bottom: 0;
       margin-top: 10px;
       padding-top: 10px;
-      border-top: 1px solid rgba(255,255,255,0.3);
+      border-top: 1px solid rgba(255,255,255,0.35);
       font-weight: 700;
       font-size: 1em;
     }
