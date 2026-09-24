@@ -62,7 +62,7 @@ const users = {
     }
   },
     "Tony Montana": {
-    password: "",
+    password: "929",
     displayName: "Tony Montana",
     premiumType: "Premium+",
     fixedInterest: 0,
