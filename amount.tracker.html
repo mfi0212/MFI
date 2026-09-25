@@ -8,6 +8,7 @@
     /* delphitools "dense / flush / hairline" — square, hairline-ruled, no soft cards */
     :root {
       --radius: 0;
+      --fs: 14px;
       --background: oklch(0.97 0.02 90);
       --foreground: oklch(0.25 0.05 140);
       --card: oklch(0.98 0.015 90);
@@ -27,7 +28,6 @@
       --interest: oklch(0.55 0.14 55);
       --cleared: oklch(0.45 0.12 145);
       --balance: oklch(0.55 0.2 25);
-      --fs: 14px;
     }
 
     .dark {
@@ -54,7 +54,7 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; border-color: var(--border); }
 
-    html { color-scheme: light; font-size: var(--fs); }
+    html { color-scheme: light; }
     html.dark { color-scheme: dark; }
 
     body {
@@ -64,7 +64,7 @@
       padding: 0;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
-      font-size: 1rem;
+      font-size: var(--fs);
       line-height: 1.4;
       font-variant-numeric: tabular-nums;
     }
@@ -78,10 +78,11 @@
       background: var(--card);
     }
 
+    /* top bar / chrome */
     .topbar {
       display: flex;
       align-items: stretch;
-      min-height: 3rem;
+      min-height: 48px;
       border-bottom: 2px solid var(--border);
       background: var(--card);
     }
@@ -90,9 +91,9 @@
       flex: 1;
       display: flex;
       align-items: center;
-      padding: 0 1rem;
+      padding: 0 16px;
       font-weight: 700;
-      font-size: 1.07rem;
+      font-size: 1.07em;
       letter-spacing: -0.02em;
     }
 
@@ -105,44 +106,16 @@
       border-left: 1px solid var(--border);
     }
 
-    .fs-control {
-      display: flex;
-      align-items: stretch;
-      min-width: 0;
+    /* segmented (hairline grid) */
+    .segmented {
+      display: grid;
+      gap: 1px;
+      background-color: var(--border);
+      border: 1px solid var(--border);
     }
-
-    .fs-label {
-      display: flex;
-      align-items: center;
-      padding: 0 0.6rem;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--muted-foreground);
-      white-space: nowrap;
-      background: var(--muted);
-      border-right: 1px solid var(--border);
-    }
-
-    .fs-control input[type="range"] {
-      width: 90px;
-      margin: 0 0.4rem;
-      align-self: center;
-      accent-color: var(--primary);
-      cursor: pointer;
-    }
-
-    .fs-value {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 2.4rem;
-      padding: 0 0.4rem;
-      font-size: 0.85rem;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-      color: var(--foreground);
-      border-left: 1px solid var(--border);
-      background: var(--card);
+    .segmented > * {
+      border: 0 !important;
+      border-radius: 0 !important;
     }
 
     .lang-switch {
@@ -151,22 +124,22 @@
       gap: 1px;
       background: var(--border);
       border: none;
-      min-width: 10rem;
+      min-width: 160px;
     }
 
     .lang-btn {
-      padding: 0 1rem;
+      padding: 0 16px;
       background: var(--card);
       color: var(--muted-foreground);
       font-weight: 600;
-      font-size: 0.93rem;
+      font-size: 0.93em;
       font-family: inherit;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 3rem;
+      min-height: 48px;
     }
     .lang-btn:hover { background: var(--muted); color: var(--foreground); }
     .lang-btn.active {
@@ -174,23 +147,48 @@
       color: var(--primary-foreground);
     }
 
-    .theme-btn {
-      padding: 0 1rem;
+    .theme-btn, .fs-wrap {
+      padding: 0 12px;
       background: var(--card);
       color: var(--muted-foreground);
       font-weight: 600;
-      font-size: 0.93rem;
+      font-size: 0.93em;
       font-family: inherit;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 3rem;
-      min-width: 3rem;
+      gap: 6px;
+      min-height: 48px;
     }
-    .theme-btn:hover { background: var(--muted); color: var(--foreground); }
+    .theme-btn:hover, .fs-wrap:hover { background: var(--muted); color: var(--foreground); }
 
+    .fs-wrap select {
+      width: auto;
+      min-width: 52px;
+      padding: 4px 6px;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      font-size: 0.93em;
+      font-family: inherit;
+      background: var(--background);
+      color: var(--foreground);
+      cursor: pointer;
+      font-variant-numeric: tabular-nums;
+    }
+    .fs-wrap select:focus {
+      outline: 2px solid var(--ring);
+      outline-offset: -1px;
+    }
+    .fs-label {
+      font-size: 0.85em;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    /* panels */
     .panel {
       border-bottom: 2px solid var(--border);
       background: var(--card);
@@ -199,12 +197,12 @@
     .panel-head {
       display: flex;
       align-items: center;
-      min-height: 2.5rem;
-      padding: 0 1rem;
+      min-height: 40px;
+      padding: 0 16px;
       border-bottom: 1px solid var(--border);
       background: var(--muted);
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.86em;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       color: var(--muted-foreground);
@@ -212,14 +210,15 @@
 
     .panel-body { padding: 0; }
 
+    /* form */
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 0;
     }
 
     .field {
-      padding: 0.75rem 1rem;
+      padding: 12px 16px;
       border-right: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       min-width: 0;
@@ -228,9 +227,9 @@
 
     label {
       display: block;
-      font-size: 0.78rem;
+      font-size: 0.79em;
       font-weight: 600;
-      margin-bottom: 0.4rem;
+      margin-bottom: 6px;
       color: var(--muted-foreground);
       text-transform: uppercase;
       letter-spacing: 0.03em;
@@ -238,10 +237,10 @@
 
     input, select {
       width: 100%;
-      padding: 0.5rem 0.65rem;
+      padding: 8px 10px;
       border: 1px solid var(--border);
       border-radius: 0;
-      font-size: 1rem;
+      font-size: 1em;
       font-family: inherit;
       background: var(--background);
       color: var(--foreground);
@@ -262,10 +261,10 @@
       cursor: pointer;
       border: none;
       border-radius: 0;
-      font-size: 0.93rem;
+      font-size: 0.93em;
       font-weight: 600;
       font-family: inherit;
-      padding: 0.75rem 1.1rem;
+      padding: 12px 18px;
       transition: background 0.1s, color 0.1s;
     }
 
@@ -273,16 +272,16 @@
       background: var(--primary);
       color: var(--primary-foreground);
       flex: 1;
-      min-height: 3rem;
-      font-size: 1rem;
+      min-height: 48px;
+      font-size: 1em;
     }
     .btn-primary:hover { filter: brightness(1.08); }
 
     .btn-danger {
       background: transparent;
       color: var(--destructive);
-      padding: 0.4rem 0.65rem;
-      font-size: 0.85rem;
+      padding: 6px 10px;
+      font-size: 0.86em;
       border: 1px solid var(--border);
     }
     .btn-danger:hover { background: var(--destructive); color: white; }
@@ -290,8 +289,8 @@
     .btn-edit {
       background: transparent;
       color: var(--foreground);
-      padding: 0.4rem 0.65rem;
-      font-size: 0.85rem;
+      padding: 6px 10px;
+      font-size: 0.86em;
       border: 1px solid var(--border);
     }
     .btn-edit:hover { background: var(--muted); }
@@ -299,15 +298,15 @@
     .btn-save {
       background: var(--primary);
       color: var(--primary-foreground);
-      padding: 0.4rem 0.65rem;
-      font-size: 0.85rem;
+      padding: 6px 10px;
+      font-size: 0.86em;
     }
 
     .btn-download {
       background: transparent;
       color: var(--foreground);
-      padding: 0.4rem 0.65rem;
-      font-size: 0.85rem;
+      padding: 6px 10px;
+      font-size: 0.86em;
       border: 1px solid var(--border);
     }
     .btn-download:hover { background: var(--muted); }
@@ -315,60 +314,60 @@
     .btn-download-all {
       background: var(--primary);
       color: var(--primary-foreground);
-      padding: 0 1rem;
-      font-size: 0.93rem;
-      min-height: 2.25rem;
+      padding: 0 16px;
+      font-size: 0.93em;
+      min-height: 36px;
       border-left: 1px solid var(--border);
-      display: inline-flex;
-      align-items: center;
     }
     .btn-download-all:hover { filter: brightness(1.08); }
 
+    /* filter bar */
     .filter-bar {
       display: flex;
       align-items: stretch;
-      min-height: 2.5rem;
+      min-height: 40px;
       border-bottom: 1px solid var(--border);
       background: var(--muted);
     }
 
     .filter-bar label {
       margin: 0;
-      padding: 0 0.75rem;
+      padding: 0 12px;
       display: flex;
       align-items: center;
       white-space: nowrap;
       border-right: 1px solid var(--border);
-      font-size: 0.78rem;
+      font-size: 0.79em;
     }
 
     .filter-bar select {
-      max-width: 15rem;
+      max-width: 240px;
       border: none;
       border-right: 1px solid var(--border);
       background: var(--card);
       border-radius: 0;
-      height: 2.5rem;
+      height: 40px;
     }
 
     .count-badge {
       display: flex;
       align-items: center;
-      padding: 0 0.75rem;
-      font-size: 0.85rem;
+      padding: 0 12px;
+      font-size: 0.86em;
       font-weight: 600;
       color: var(--muted-foreground);
       margin-right: auto;
     }
 
+    /* table — hairline */
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.93rem;
+      font-size: 0.93em;
     }
 
     th, td {
-      padding: 0.65rem 0.75rem;
+      padding: 10px 12px;
       text-align: left;
       border-bottom: 1px solid var(--border);
       border-right: 1px solid var(--border);
@@ -378,7 +377,7 @@
     th {
       background: var(--muted);
       font-weight: 700;
-      font-size: 0.78rem;
+      font-size: 0.79em;
       text-transform: uppercase;
       letter-spacing: 0.03em;
       color: var(--muted-foreground);
@@ -394,38 +393,35 @@
 
     .actions {
       display: flex;
-      gap: 0.25rem;
+      gap: 4px;
       flex-wrap: wrap;
     }
 
     .empty {
       text-align: center;
-      padding: 3rem 1rem;
+      padding: 48px 16px;
       color: var(--muted-foreground);
-      font-size: 0.93rem;
+      font-size: 0.93em;
     }
 
     .edit-input {
-      width: 5.5rem;
-      padding: 0.25rem 0.5rem;
-      font-size: 0.93rem;
-      margin-right: 0.25rem;
+      width: 90px;
+      padding: 4px 8px;
+      font-size: 0.93em;
+      margin-right: 4px;
     }
 
     footer {
       text-align: center;
-      padding: 0.75rem 1rem;
-      font-size: 0.78rem;
+      padding: 12px 16px;
+      font-size: 0.79em;
       color: var(--muted-foreground);
       border-top: 1px solid var(--border);
     }
 
     @media (max-width: 700px) {
       .container { border-left: none; border-right: none; }
-      .fs-control input[type="range"] { width: 60px; }
-      .topbar { flex-wrap: wrap; }
-      .topbar-title { min-height: 2.5rem; width: 100%; border-bottom: 1px solid var(--border); }
-      .topbar-actions { width: 100%; }
+      .fs-label { display: none; }
       table, thead, tbody, th, td, tr { display: block; }
       thead { display: none; }
       tr {
@@ -436,7 +432,7 @@
       td {
         border: none;
         border-bottom: 1px solid var(--border);
-        padding: 0.5rem 0.75rem;
+        padding: 8px 12px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -445,7 +441,7 @@
       td::before {
         content: attr(data-label);
         font-weight: 700;
-        font-size: 0.78rem;
+        font-size: 0.79em;
         text-transform: uppercase;
         letter-spacing: 0.03em;
         color: var(--muted-foreground);
@@ -457,13 +453,26 @@
 </head>
 <body>
   <div class="container">
+    <!-- Top bar -->
     <div class="topbar">
       <div class="topbar-title" id="pageTitle">Amount Tracker</div>
       <div class="topbar-actions">
-        <div class="fs-control" title="Font size (12–23px)">
-          <span class="fs-label" id="lblFs">Aa</span>
-          <input type="range" id="fsRange" min="12" max="23" step="1" value="14" oninput="setFontSize(this.value)">
-          <span class="fs-value" id="fsValue">14</span>
+        <div class="fs-wrap" title="Font size">
+          <span class="fs-label" id="lblFontSize">Size</span>
+          <select id="fontSizeSelect" onchange="setFontSize(this.value)" aria-label="Font size">
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14" selected>14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+          </select>
         </div>
         <div class="lang-switch">
           <button class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</button>
@@ -473,6 +482,7 @@
       </div>
     </div>
 
+    <!-- Add Form -->
     <div class="panel">
       <div class="panel-head" id="formTitle">Add Entry</div>
       <div class="panel-body">
@@ -505,6 +515,7 @@
       </div>
     </div>
 
+    <!-- Table + Filter -->
     <div class="panel" style="border-bottom: none;">
       <div class="filter-bar">
         <label id="lblFilter">Filter by Borrower</label>
@@ -526,6 +537,7 @@
   </div>
 
   <script>
+    // ========== TRANSLATIONS ==========
     const i18n = {
       en: {
         pageTitle: "Amount Tracker",
@@ -555,7 +567,7 @@
         btnDownload: "Download",
         btnDelete: "Delete",
         btnSave: "Save",
-        lblFs: "Aa",
+        lblFontSize: "Size",
         imgTitleSingle: "Amount Details",
         imgTitleBorrower: "Borrower Summary",
         imgBorrower: "Borrower",
@@ -600,7 +612,7 @@
         btnDownload: "డౌన్‌లోడ్",
         btnDelete: "తొలగించు",
         btnSave: "సేవ్",
-        lblFs: "అ",
+        lblFontSize: "పరిమాణం",
         imgTitleSingle: "మొత్తం వివరాలు",
         imgTitleBorrower: "అప్పు తీసుకున్నవారి సారాంశం",
         imgBorrower: "అప్పు తీసుకున్నవారు",
@@ -622,6 +634,7 @@
     let lang = localStorage.getItem('amountTrackerLang') || 'en';
     let entries = JSON.parse(localStorage.getItem('amountTracker') || '[]');
 
+    // theme
     (function initTheme() {
       const saved = localStorage.getItem('amountTrackerTheme');
       if (saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -635,21 +648,20 @@
         document.documentElement.classList.contains('dark') ? 'dark' : 'light');
     }
 
-    (function initFontSize() {
-      const saved = parseInt(localStorage.getItem('amountTrackerFs'), 10);
-      const val = (saved >= 12 && saved <= 23) ? saved : 14;
-      document.getElementById('fsRange').value = val;
-      document.getElementById('fsValue').textContent = val;
-      document.documentElement.style.setProperty('--fs', val + 'px');
-    })();
-
-    function setFontSize(val) {
-      val = Math.max(12, Math.min(23, parseInt(val, 10) || 14));
-      document.documentElement.style.setProperty('--fs', val + 'px');
-      document.getElementById('fsValue').textContent = val;
-      document.getElementById('fsRange').value = val;
-      localStorage.setItem('amountTrackerFs', String(val));
+    // font size 12–23
+    function setFontSize(px) {
+      const n = Math.min(23, Math.max(12, parseInt(px, 10) || 14));
+      document.documentElement.style.setProperty('--fs', n + 'px');
+      localStorage.setItem('amountTrackerFontSize', String(n));
+      const sel = document.getElementById('fontSizeSelect');
+      if (sel) sel.value = String(n);
     }
+
+    (function initFontSize() {
+      const saved = localStorage.getItem('amountTrackerFontSize');
+      const n = saved ? parseInt(saved, 10) : 14;
+      setFontSize(isNaN(n) ? 14 : n);
+    })();
 
     document.getElementById('takenOn').valueAsDate = new Date();
 
@@ -679,7 +691,7 @@
       document.getElementById('lblFilter').textContent = t('lblFilter');
       document.getElementById('downloadBorrowerBtn').textContent = t('downloadBorrower');
       document.getElementById('emptyMsg').textContent = t('empty');
-      document.getElementById('lblFs').textContent = t('lblFs');
+      document.getElementById('lblFontSize').textContent = t('lblFontSize');
     }
 
     function calculateInterest(principal, monthlyRate, takenOn) {
@@ -780,6 +792,7 @@
       return '₹' + Math.round(num).toLocaleString('en-IN');
     }
 
+    // ========== DOWNLOAD IMAGES (delphi-style square frames) ==========
     function drawWatermark(ctx, width, height) {
       ctx.save();
       ctx.font = 'bold 12px ui-monospace, monospace';
@@ -1030,6 +1043,7 @@
       container.innerHTML = html;
     }
 
+    // Initial load
     setLang(lang);
   </script>
 </body>
