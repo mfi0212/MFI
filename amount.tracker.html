@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Amount Tracker</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f0f2f5;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #1a1a2e;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #555;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 15px;
+      background: white;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: #4a6cf7;
+      box-shadow: 0 0 0 3px rgba(74,108,247,0.15);
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 18px;
+      transition: 0.15s;
+    }
+    .btn-primary {
+      background: #4a6cf7;
+      color: white;
+    }
+    .btn-primary:hover { background: #3b5bdb; }
+    .btn-danger {
+      background: #ff4d4f;
+      color: white;
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+    .btn-danger:hover { background: #e03e40; }
+    .btn-edit {
+      background: #52c41a;
+      color: white;
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+    .btn-edit:hover { background: #389e0d; }
+    .btn-save {
+      background: #1890ff;
+      color: white;
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .filter-bar label {
+      margin: 0;
+      white-space: nowrap;
+    }
+    .filter-bar select {
+      max-width: 280px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      padding: 12px 10px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    th {
+      background: #f8f9fc;
+      font-weight: 600;
+      color: #555;
+      white-space: nowrap;
+    }
+    tr:hover { background: #fafbff; }
+    .amount { font-weight: 600; color: #1a1a2e; }
+    .interest { color: #e67e22; }
+    .cleared { color: #27ae60; }
+    .balance { color: #e74c3c; font-weight: 600; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .empty {
+      text-align: center;
+      padding: 40px;
+      color: #999;
+    }
+    .edit-input {
+      width: 90px;
+      padding: 6px 8px;
+      font-size: 14px;
+    }
+    .count-badge {
+      background: #eef2ff;
+      color: #4a6cf7;
+      font-size: 13px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    @media (max-width: 700px) {
+      table, thead, tbody, th, td, tr { display: block; }
+      thead { display: none; }
+      tr {
+        margin-bottom: 16px;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        padding: 12px;
+      }
+      td {
+        border: none;
+        padding: 6px 0;
+        display: flex;
+        justify-content: space-between;
+      }
+      td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #777;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>User Amount Tracker</h1>
+
+    <!-- Add Form -->
+    <div class="card">
+      <h2 style="margin-bottom:16px;font-size:18px;">Add New Entry</h2>
+      <div class="form-grid">
+        <div>
+          <label>User Name (Borrower)</label>
+          <input type="text" id="name" placeholder="e.g. Rahul" list="nameSuggestions">
+          <datalist id="nameSuggestions"></datalist>
+        </div>
+        <div>
+          <label>Amount (₹)</label>
+          <input type="number" id="amount" placeholder="10000" min="0">
+        </div>
+        <div>
+          <label>Taken On</label>
+          <input type="date" id="takenOn">
+        </div>
+        <div>
+          <label>Interest Rate (% per month)</label>
+          <input type="number" id="rate" placeholder="2" min="0" step="0.1">
+        </div>
+        <div>
+          <label>Cleared Amount (₹)</label>
+          <input type="number" id="cleared" placeholder="0" min="0" value="0">
+        </div>
+      </div>
+      <button class="btn-primary" onclick="addEntry()">+ Add Entry</button>
+    </div>
+
+    <!-- Table + Filter -->
+    <div class="card">
+      <div class="filter-bar">
+        <label>Filter by Borrower:</label>
+        <select id="borrowerFilter" onchange="render()">
+          <option value="">All Borrowers</option>
+        </select>
+        <span class="count-badge" id="entryCount">0 entries</span>
+      </div>
+
+      <div id="tableContainer">
+        <p class="empty">No entries yet. Add one above.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ========== LOCAL STORAGE ==========
+    let entries = JSON.parse(localStorage.getItem('amountTracker') || '[]');
+
+    // Set today's date as default
+    document.getElementById('takenOn').valueAsDate = new Date();
+
+    // Interest calculation - MONTHLY rate
+    function calculateInterest(principal, monthlyRate, takenOn) {
+      const start = new Date(takenOn);
+      const now = new Date();
+      const days = Math.max(0, (now - start) / (1000 * 60 * 60 * 24));
+      const months = days / 30.44;
+      return (principal * monthlyRate * months) / 100;
+    }
+
+    function save() {
+      localStorage.setItem('amountTracker', JSON.stringify(entries));
+      updateBorrowerList();
+      render();
+    }
+
+    function getUniqueNames() {
+      const names = [...new Set(entries.map(e => e.name))];
+      return names.sort((a, b) => a.localeCompare(b));
+    }
+
+    function updateBorrowerList() {
+      const select = document.getElementById('borrowerFilter');
+      const datalist = document.getElementById('nameSuggestions');
+      const currentValue = select.value;
+
+      // Update filter dropdown
+      select.innerHTML = '<option value="">All Borrowers</option>';
+      getUniqueNames().forEach(name => {
+        const opt = document.createElement('option');
+        opt.value = name;
+        opt.textContent = name;
+        select.appendChild(opt);
+      });
+      select.value = currentValue; // keep selected if still exists
+
+      // Update datalist for autocomplete while typing
+      datalist.innerHTML = '';
+      getUniqueNames().forEach(name => {
+        const opt = document.createElement('option');
+        opt.value = name;
+        datalist.appendChild(opt);
+      });
+    }
+
+    function addEntry() {
+      const name = document.getElementById('name').value.trim();
+      const amount = parseFloat(document.getElementById('amount').value);
+      const takenOn = document.getElementById('takenOn').value;
+      const rate = parseFloat(document.getElementById('rate').value);
+      const cleared = parseFloat(document.getElementById('cleared').value) || 0;
+
+      if (!name || isNaN(amount) || amount <= 0 || !takenOn || isNaN(rate)) {
+        alert('Please fill Name, Amount, Taken On and Interest Rate correctly.');
+        return;
+      }
+
+      entries.push({
+        id: Date.now(),
+        name,
+        amount,
+        takenOn,
+        rate,
+        cleared
+      });
+
+      // Clear form
+      document.getElementById('name').value = '';
+      document.getElementById('amount').value = '';
+      document.getElementById('rate').value = '';
+      document.getElementById('cleared').value = '0';
+      document.getElementById('takenOn').valueAsDate = new Date();
+
+      save();
+    }
+
+    function deleteEntry(id) {
+      if (confirm('Delete this entry?')) {
+        entries = entries.filter(e => e.id !== id);
+        save();
+      }
+    }
+
+    function startEdit(id) {
+      const row = document.getElementById('row-' + id);
+      const clearedCell = row.querySelector('.cleared-cell');
+      const current = entries.find(e => e.id === id).cleared;
+
+      clearedCell.innerHTML = `
+        <input type="number" class="edit-input" id="edit-${id}" value="${current}" min="0">
+        <button class="btn-save" onclick="saveEdit(${id})">Save</button>
+      `;
+    }
+
+    function saveEdit(id) {
+      const val = parseFloat(document.getElementById('edit-' + id).value);
+      if (isNaN(val) || val < 0) {
+        alert('Enter a valid cleared amount');
+        return;
+      }
+      const entry = entries.find(e => e.id === id);
+      entry.cleared = val;
+      save();
+    }
+
+    function formatDate(dateStr) {
+      const d = new Date(dateStr);
+      return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+    }
+
+    function formatMoney(num) {
+      return '₹' + Math.round(num).toLocaleString('en-IN');
+    }
+
+    function render() {
+      const container = document.getElementById('tableContainer');
+      const filterValue = document.getElementById('borrowerFilter').value;
+
+      // Filter entries
+      let filtered = entries;
+      if (filterValue) {
+        filtered = entries.filter(e => e.name === filterValue);
+      }
+
+      // Update count
+      document.getElementById('entryCount').textContent = 
+        filtered.length + (filtered.length === 1 ? ' entry' : ' entries');
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<p class="empty">No entries found.</p>';
+        return;
+      }
+
+      let html = `
+        <table>
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Amount</th>
+              <th>Taken On</th>
+              <th>Rate / month</th>
+              <th>Interest Till Date</th>
+              <th>Cleared</th>
+              <th>Balance</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      filtered.forEach(e => {
+        const interest = calculateInterest(e.amount, e.rate, e.takenOn);
+        const totalDue = e.amount + interest;
+        const balance = totalDue - e.cleared;
+
+        html += `
+          <tr id="row-${e.id}">
+            <td data-label="User">${e.name}</td>
+            <td data-label="Amount" class="amount">${formatMoney(e.amount)}</td>
+            <td data-label="Taken On">${formatDate(e.takenOn)}</td>
+            <td data-label="Rate">${e.rate}% /mo</td>
+            <td data-label="Interest" class="interest">${formatMoney(interest)}</td>
+            <td data-label="Cleared" class="cleared-cell cleared">${formatMoney(e.cleared)}</td>
+            <td data-label="Balance" class="balance">${formatMoney(balance)}</td>
+            <td data-label="Actions" class="actions">
+              <button class="btn-edit" onclick="startEdit(${e.id})">Edit Cleared</button>
+              <button class="btn-danger" onclick="deleteEntry(${e.id})">Delete</button>
+            </td>
+          </tr>
+        `;
+      });
+
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    }
+
+    // Initial load
+    updateBorrowerList();
+    render();
+  </script>
+</body>
+</html>
