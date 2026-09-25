@@ -3,225 +3,640 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Amount Tracker</title>
+  <title>Amount Tracker</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: #f0f2f5;
-      padding: 20px;
-      color: #333;
+    /* delphitools "dense / flush / hairline" — square, hairline-ruled, no soft cards */
+    :root {
+      --radius: 0;
+      --background: oklch(0.97 0.02 90);
+      --foreground: oklch(0.25 0.05 140);
+      --card: oklch(0.98 0.015 90);
+      --card-foreground: oklch(0.25 0.05 140);
+      --primary: oklch(0.45 0.12 145);
+      --primary-foreground: oklch(0.97 0.02 90);
+      --secondary: oklch(0.94 0.025 90);
+      --secondary-foreground: oklch(0.35 0.08 145);
+      --muted: oklch(0.93 0.02 90);
+      --muted-foreground: oklch(0.5 0.04 140);
+      --accent: oklch(0.91 0.04 95);
+      --accent-foreground: oklch(0.35 0.08 145);
+      --destructive: oklch(0.55 0.2 25);
+      --border: oklch(0.88 0.03 95);
+      --input: oklch(0.88 0.03 95);
+      --ring: oklch(0.45 0.12 145);
+      --interest: oklch(0.55 0.14 55);
+      --cleared: oklch(0.45 0.12 145);
+      --balance: oklch(0.55 0.2 25);
     }
+
+    .dark {
+      --background: oklch(0.18 0.03 145);
+      --foreground: oklch(0.92 0.025 90);
+      --card: oklch(0.22 0.035 145);
+      --card-foreground: oklch(0.92 0.025 90);
+      --primary: oklch(0.75 0.1 95);
+      --primary-foreground: oklch(0.2 0.04 145);
+      --secondary: oklch(0.25 0.035 145);
+      --secondary-foreground: oklch(0.88 0.02 90);
+      --muted: oklch(0.25 0.03 145);
+      --muted-foreground: oklch(0.65 0.04 100);
+      --accent: oklch(0.28 0.04 145);
+      --accent-foreground: oklch(0.88 0.02 90);
+      --destructive: oklch(0.6 0.18 25);
+      --border: oklch(0.3 0.04 145);
+      --input: oklch(0.3 0.04 145);
+      --ring: oklch(0.75 0.1 95);
+      --interest: oklch(0.75 0.12 75);
+      --cleared: oklch(0.75 0.1 95);
+      --balance: oklch(0.65 0.18 25);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; border-color: var(--border); }
+
+    html { color-scheme: light; }
+    html.dark { color-scheme: dark; }
+tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+}
+    body {
+      font-family: "iA Writer Quattro", ui-monospace, "SFMono-Regular", "Cascadia Code", "Segoe UI Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      background: var(--background);
+      color: var(--foreground);
+      padding: 0;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      font-size: 14px;
+      line-height: 1.4;
+      font-variant-numeric: tabular-nums;
+    }
+
     .container {
       max-width: 1100px;
       margin: 0 auto;
+      border-left: 2px solid var(--border);
+      border-right: 2px solid var(--border);
+      min-height: 100vh;
+      background: var(--card);
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 24px;
-      color: #1a1a2e;
+
+    /* top bar / chrome */
+    .topbar {
+      display: flex;
+      align-items: stretch;
+      min-height: 48px;
+      border-bottom: 2px solid var(--border);
+      background: var(--card);
     }
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+    .topbar-title {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.02em;
     }
+
+    .topbar-actions {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .topbar-actions > * {
+      border-left: 1px solid var(--border);
+    }
+
+    /* segmented (hairline grid) */
+    .segmented {
+      display: grid;
+      gap: 1px;
+      background-color: var(--border);
+      border: 1px solid var(--border);
+    }
+    .segmented > * {
+      border: 0 !important;
+      border-radius: 0 !important;
+    }
+
+    .lang-switch {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: none;
+      min-width: 160px;
+    }
+
+    .lang-btn {
+      padding: 0 16px;
+      background: var(--card);
+      color: var(--muted-foreground);
+      font-weight: 600;
+      font-size: 13px;
+      font-family: inherit;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+    }
+    .lang-btn:hover { background: var(--muted); color: var(--foreground); }
+    .lang-btn.active {
+      background: var(--primary);
+      color: var(--primary-foreground);
+    }
+
+    .theme-btn {
+      padding: 0 16px;
+      background: var(--card);
+      color: var(--muted-foreground);
+      font-weight: 600;
+      font-size: 13px;
+      font-family: inherit;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      min-width: 48px;
+    }
+    .theme-btn:hover { background: var(--muted); color: var(--foreground); }
+
+    /* panels */
+    .panel {
+      border-bottom: 2px solid var(--border);
+      background: var(--card);
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--muted);
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted-foreground);
+    }
+
+    .panel-body { padding: 0; }
+
+    /* form */
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin-bottom: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0;
     }
+
+    .field {
+      padding: 12px 16px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      min-width: 0;
+    }
+    .field:last-child { border-right: none; }
+
     label {
       display: block;
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 600;
       margin-bottom: 6px;
-      color: #555;
+      color: var(--muted-foreground);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
+
     input, select {
       width: 100%;
-      padding: 10px 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 15px;
-      background: white;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      font-size: 14px;
+      font-family: inherit;
+      background: var(--background);
+      color: var(--foreground);
+      font-variant-numeric: tabular-nums;
     }
     input:focus, select:focus {
-      outline: none;
-      border-color: #4a6cf7;
-      box-shadow: 0 0 0 3px rgba(74,108,247,0.15);
+      outline: 2px solid var(--ring);
+      outline-offset: -1px;
+      border-color: var(--ring);
     }
+
+    .form-actions {
+      display: flex;
+      border-top: 1px solid var(--border);
+    }
+
     button {
       cursor: pointer;
       border: none;
-      border-radius: 8px;
-      font-size: 14px;
+      border-radius: 0;
+      font-size: 13px;
       font-weight: 600;
-      padding: 10px 18px;
-      transition: 0.15s;
+      font-family: inherit;
+      padding: 12px 18px;
+      transition: background 0.1s, color 0.1s;
     }
+
     .btn-primary {
-      background: #4a6cf7;
-      color: white;
+      background: var(--primary);
+      color: var(--primary-foreground);
+      flex: 1;
+      min-height: 48px;
+      font-size: 14px;
     }
-    .btn-primary:hover { background: #3b5bdb; }
+    .btn-primary:hover { filter: brightness(1.08); }
+
     .btn-danger {
-      background: #ff4d4f;
-      color: white;
-      padding: 6px 12px;
-      font-size: 13px;
+      background: transparent;
+      color: var(--destructive);
+      padding: 6px 10px;
+      font-size: 12px;
+      border: 1px solid var(--border);
     }
-    .btn-danger:hover { background: #e03e40; }
+    .btn-danger:hover { background: var(--destructive); color: white; }
+
     .btn-edit {
-      background: #52c41a;
-      color: white;
-      padding: 6px 12px;
-      font-size: 13px;
+      background: transparent;
+      color: var(--foreground);
+      padding: 6px 10px;
+      font-size: 12px;
+      border: 1px solid var(--border);
     }
-    .btn-edit:hover { background: #389e0d; }
+    .btn-edit:hover { background: var(--muted); }
+
     .btn-save {
-      background: #1890ff;
-      color: white;
-      padding: 6px 12px;
-      font-size: 13px;
+      background: var(--primary);
+      color: var(--primary-foreground);
+      padding: 6px 10px;
+      font-size: 12px;
     }
+
+    .btn-download {
+      background: transparent;
+      color: var(--foreground);
+      padding: 6px 10px;
+      font-size: 12px;
+      border: 1px solid var(--border);
+    }
+    .btn-download:hover { background: var(--muted); }
+
+    .btn-download-all {
+      background: var(--primary);
+      color: var(--primary-foreground);
+      padding: 0 16px;
+      font-size: 13px;
+      min-height: 36px;
+      border-left: 1px solid var(--border);
+    }
+    .btn-download-all:hover { filter: brightness(1.08); }
+
+    /* filter bar */
     .filter-bar {
       display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
+      align-items: stretch;
+      min-height: 40px;
+      border-bottom: 1px solid var(--border);
+      background: var(--muted);
     }
+
     .filter-bar label {
       margin: 0;
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
       white-space: nowrap;
+      border-right: 1px solid var(--border);
+      font-size: 11px;
     }
+
     .filter-bar select {
-      max-width: 280px;
+      max-width: 240px;
+      border: none;
+      border-right: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 0;
+      height: 40px;
     }
+
+    .count-badge {
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted-foreground);
+      margin-right: auto;
+    }
+
+    /* table — hairline */
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 14px;
+      font-size: 13px;
     }
+
     th, td {
-      padding: 12px 10px;
+      padding: 10px 12px;
       text-align: left;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
     }
+    th:last-child, td:last-child { border-right: none; }
+
     th {
-      background: #f8f9fc;
-      font-weight: 600;
-      color: #555;
+      background: var(--muted);
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--muted-foreground);
       white-space: nowrap;
     }
-    tr:hover { background: #fafbff; }
-    .amount { font-weight: 600; color: #1a1a2e; }
-    .interest { color: #e67e22; }
-    .cleared { color: #27ae60; }
-    .balance { color: #e74c3c; font-weight: 600; }
-    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    tr:hover td { background: var(--accent); }
+
+    .amount { font-weight: 700; color: var(--foreground); }
+    .interest { color: var(--interest); font-weight: 600; }
+    .cleared { color: var(--cleared); }
+    .balance { color: var(--balance); font-weight: 700; }
+
+    .actions {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
     .empty {
       text-align: center;
-      padding: 40px;
-      color: #999;
+      padding: 48px 16px;
+      color: var(--muted-foreground);
+      font-size: 13px;
     }
+
     .edit-input {
       width: 90px;
-      padding: 6px 8px;
-      font-size: 14px;
-    }
-    .count-badge {
-      background: #eef2ff;
-      color: #4a6cf7;
+      padding: 4px 8px;
       font-size: 13px;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-weight: 600;
+      margin-right: 4px;
     }
+
+    footer {
+      text-align: center;
+      padding: 12px 16px;
+      font-size: 11px;
+      color: var(--muted-foreground);
+      border-top: 1px solid var(--border);
+    }
+
     @media (max-width: 700px) {
+      .container { border-left: none; border-right: none; }
       table, thead, tbody, th, td, tr { display: block; }
       thead { display: none; }
       tr {
-        margin-bottom: 16px;
-        border: 1px solid #eee;
-        border-radius: 10px;
-        padding: 12px;
+        margin: 0;
+        border-bottom: 2px solid var(--border);
+        padding: 0;
       }
       td {
         border: none;
-        padding: 6px 0;
+        border-bottom: 1px solid var(--border);
+        padding: 8px 12px;
         display: flex;
         justify-content: space-between;
+        align-items: center;
       }
+      td:last-child { border-bottom: none; }
       td::before {
         content: attr(data-label);
-        font-weight: 600;
-        color: #777;
+        font-weight: 700;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        color: var(--muted-foreground);
       }
+      .field { border-right: none; }
+      .form-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>User Amount Tracker</h1>
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="topbar-title" id="pageTitle">Amount Tracker</div>
+      <div class="topbar-actions">
+        <div class="lang-switch">
+          <button class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</button>
+          <button class="lang-btn" id="btnTe" onclick="setLang('te')">తెలుగు</button>
+        </div>
+        <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle theme">◐</button>
+      </div>
+    </div>
 
     <!-- Add Form -->
-    <div class="card">
-      <h2 style="margin-bottom:16px;font-size:18px;">Add New Entry</h2>
-      <div class="form-grid">
-        <div>
-          <label>User Name (Borrower)</label>
-          <input type="text" id="name" placeholder="e.g. Rahul" list="nameSuggestions">
-          <datalist id="nameSuggestions"></datalist>
+    <div class="panel">
+      <div class="panel-head" id="formTitle">Add Entry</div>
+      <div class="panel-body">
+        <div class="form-grid">
+          <div class="field">
+            <label id="lblName">User Name (Borrower)</label>
+            <input type="text" id="name" placeholder="e.g. Rahul" list="nameSuggestions">
+            <datalist id="nameSuggestions"></datalist>
+          </div>
+          <div class="field">
+            <label id="lblAmount">Amount (₹)</label>
+            <input type="number" id="amount" placeholder="10000" min="0">
+          </div>
+          <div class="field">
+            <label id="lblTakenOn">Taken On</label>
+            <input type="date" id="takenOn">
+          </div>
+          <div class="field">
+            <label id="lblRate">Interest Rate (% / mo)</label>
+            <input type="number" id="rate" placeholder="2" min="0" step="0.1">
+          </div>
+          <div class="field">
+            <label id="lblCleared">Cleared Amount (₹)</label>
+            <input type="number" id="cleared" placeholder="0" min="0" value="0">
+          </div>
         </div>
-        <div>
-          <label>Amount (₹)</label>
-          <input type="number" id="amount" placeholder="10000" min="0">
-        </div>
-        <div>
-          <label>Taken On</label>
-          <input type="date" id="takenOn">
-        </div>
-        <div>
-          <label>Interest Rate (% per month)</label>
-          <input type="number" id="rate" placeholder="2" min="0" step="0.1">
-        </div>
-        <div>
-          <label>Cleared Amount (₹)</label>
-          <input type="number" id="cleared" placeholder="0" min="0" value="0">
+        <div class="form-actions">
+          <button class="btn-primary" id="btnAdd" onclick="addEntry()">+ Add Entry</button>
         </div>
       </div>
-      <button class="btn-primary" onclick="addEntry()">+ Add Entry</button>
     </div>
 
     <!-- Table + Filter -->
-    <div class="card">
+    <div class="panel" style="border-bottom: none;">
       <div class="filter-bar">
-        <label>Filter by Borrower:</label>
+        <label id="lblFilter">Filter by Borrower</label>
         <select id="borrowerFilter" onchange="render()">
           <option value="">All Borrowers</option>
         </select>
         <span class="count-badge" id="entryCount">0 entries</span>
+        <button class="btn-download-all" id="downloadBorrowerBtn" onclick="downloadBorrower()" style="display:none;">
+          Download This Borrower
+        </button>
       </div>
 
       <div id="tableContainer">
-        <p class="empty">No entries yet. Add one above.</p>
+        <p class="empty" id="emptyMsg">No entries yet. Add one above.</p>
       </div>
     </div>
+
+    <footer>Efiles · All rights reserved · Version(v.02.22.9)</footer>
   </div>
 
   <script>
-    // ========== LOCAL STORAGE ==========
+    // ========== TRANSLATIONS ==========
+    const i18n = {
+      en: {
+        pageTitle: "Amount Tracker",
+        formTitle: "Add Entry",
+        lblName: "User Name (Borrower)",
+        lblAmount: "Amount (₹)",
+        lblTakenOn: "Taken On",
+        lblRate: "Interest Rate (% / mo)",
+        lblCleared: "Cleared Amount (₹)",
+        btnAdd: "+ Add Entry",
+        lblFilter: "Filter by Borrower",
+        allBorrowers: "All Borrowers",
+        downloadBorrower: "Download This Borrower",
+        empty: "No entries yet. Add one above.",
+        noEntries: "No entries found.",
+        entries: "entries",
+        entry: "entry",
+        thUser: "User",
+        thAmount: "Amount",
+        thTakenOn: "Taken On",
+        thRate: "Rate / mo",
+        thInterest: "Interest Till Date",
+        thCleared: "Cleared",
+        thBalance: "Balance",
+        thActions: "Actions",
+        btnEdit: "Edit",
+        btnDownload: "Download",
+        btnDelete: "Delete",
+        btnSave: "Save",
+        imgTitleSingle: "Amount Details",
+        imgTitleBorrower: "Borrower Summary",
+        imgBorrower: "Borrower",
+        imgAmount: "Amount",
+        imgTakenOn: "Taken On",
+        imgRate: "Interest Rate",
+        imgRateUnit: "% per month",
+        imgInterest: "Interest Till Date",
+        imgCleared: "Cleared Amount",
+        imgBalance: "Balance",
+        imgTotal: "TOTAL",
+        imgRateShort: "Rate",
+        imgInterestShort: "Interest",
+        imgClearedShort: "Cleared",
+        imgBalanceShort: "Balance"
+      },
+      te: {
+        pageTitle: "మొత్తం ట్రాకర్",
+        formTitle: "ఎంట్రీ జోడించండి",
+        lblName: "వినియోగదారు పేరు",
+        lblAmount: "మొత్తం (₹)",
+        lblTakenOn: "తీసుకున్న తేదీ",
+        lblRate: "వడ్డీ రేటు (% నెలకు)",
+        lblCleared: "క్లియర్ చేసిన మొత్తం (₹)",
+        btnAdd: "+ ఎంట్రీ జోడించండి",
+        lblFilter: "అప్పు తీసుకున్నవారి ప్రకారం",
+        allBorrowers: "అందరు",
+        downloadBorrower: "ఈ వ్యక్తి డౌన్‌లోడ్",
+        empty: "ఇంకా ఎంట్రీలు లేవు. పైన జోడించండి.",
+        noEntries: "ఎంట్రీలు కనుగొనబడలేదు.",
+        entries: "ఎంట్రీలు",
+        entry: "ఎంట్రీ",
+        thUser: "వినియోగదారు",
+        thAmount: "మొత్తం",
+        thTakenOn: "తీసుకున్న తేదీ",
+        thRate: "రేటు / నెల",
+        thInterest: "నేటి వరకు వడ్డీ",
+        thCleared: "క్లియర్",
+        thBalance: "బ్యాలెన్స్",
+        thActions: "చర్యలు",
+        btnEdit: "ఎడిట్",
+        btnDownload: "డౌన్‌లోడ్",
+        btnDelete: "తొలగించు",
+        btnSave: "సేవ్",
+        imgTitleSingle: "మొత్తం వివరాలు",
+        imgTitleBorrower: "అప్పు తీసుకున్నవారి సారాంశం",
+        imgBorrower: "అప్పు తీసుకున్నవారు",
+        imgAmount: "మొత్తం",
+        imgTakenOn: "తీసుకున్న తేదీ",
+        imgRate: "వడ్డీ రేటు",
+        imgRateUnit: "% నెలకు",
+        imgInterest: "నేటి వరకు వడ్డీ",
+        imgCleared: "క్లియర్ చేసిన మొత్తం",
+        imgBalance: "బ్యాలెన్స్",
+        imgTotal: "మొత్తం",
+        imgRateShort: "రేటు",
+        imgInterestShort: "వడ్డీ",
+        imgClearedShort: "క్లియర్",
+        imgBalanceShort: "బ్యాలెన్స్"
+      }
+    };
+
+    let lang = localStorage.getItem('amountTrackerLang') || 'en';
     let entries = JSON.parse(localStorage.getItem('amountTracker') || '[]');
 
-    // Set today's date as default
+    // theme
+    (function initTheme() {
+      const saved = localStorage.getItem('amountTrackerTheme');
+      if (saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('amountTrackerTheme',
+        document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    }
+
     document.getElementById('takenOn').valueAsDate = new Date();
 
-    // Interest calculation - MONTHLY rate
+    function t(key) {
+      return i18n[lang][key] || key;
+    }
+
+    function setLang(l) {
+      lang = l;
+      localStorage.setItem('amountTrackerLang', lang);
+      document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+      document.getElementById('btnTe').classList.toggle('active', lang === 'te');
+      applyTranslations();
+      updateBorrowerList();
+      render();
+    }
+
+    function applyTranslations() {
+      document.getElementById('pageTitle').textContent = t('pageTitle');
+      document.getElementById('formTitle').textContent = t('formTitle');
+      document.getElementById('lblName').textContent = t('lblName');
+      document.getElementById('lblAmount').textContent = t('lblAmount');
+      document.getElementById('lblTakenOn').textContent = t('lblTakenOn');
+      document.getElementById('lblRate').textContent = t('lblRate');
+      document.getElementById('lblCleared').textContent = t('lblCleared');
+      document.getElementById('btnAdd').textContent = t('btnAdd');
+      document.getElementById('lblFilter').textContent = t('lblFilter');
+      document.getElementById('downloadBorrowerBtn').textContent = t('downloadBorrower');
+      document.getElementById('emptyMsg').textContent = t('empty');
+    }
+
     function calculateInterest(principal, monthlyRate, takenOn) {
       const start = new Date(takenOn);
       const now = new Date();
@@ -237,8 +652,7 @@
     }
 
     function getUniqueNames() {
-      const names = [...new Set(entries.map(e => e.name))];
-      return names.sort((a, b) => a.localeCompare(b));
+      return [...new Set(entries.map(e => e.name))].sort((a, b) => a.localeCompare(b));
     }
 
     function updateBorrowerList() {
@@ -246,17 +660,15 @@
       const datalist = document.getElementById('nameSuggestions');
       const currentValue = select.value;
 
-      // Update filter dropdown
-      select.innerHTML = '<option value="">All Borrowers</option>';
+      select.innerHTML = `<option value="">${t('allBorrowers')}</option>`;
       getUniqueNames().forEach(name => {
         const opt = document.createElement('option');
         opt.value = name;
         opt.textContent = name;
         select.appendChild(opt);
       });
-      select.value = currentValue; // keep selected if still exists
+      select.value = currentValue;
 
-      // Update datalist for autocomplete while typing
       datalist.innerHTML = '';
       getUniqueNames().forEach(name => {
         const opt = document.createElement('option');
@@ -273,31 +685,22 @@
       const cleared = parseFloat(document.getElementById('cleared').value) || 0;
 
       if (!name || isNaN(amount) || amount <= 0 || !takenOn || isNaN(rate)) {
-        alert('Please fill Name, Amount, Taken On and Interest Rate correctly.');
+        alert(lang === 'te' ? 'దయచేసి పేరు, మొత్తం, తేదీ మరియు వడ్డీ రేటు సరిగా నమోదు చేయండి.' : 'Please fill Name, Amount, Taken On and Interest Rate correctly.');
         return;
       }
 
-      entries.push({
-        id: Date.now(),
-        name,
-        amount,
-        takenOn,
-        rate,
-        cleared
-      });
+      entries.push({ id: Date.now(), name, amount, takenOn, rate, cleared });
 
-      // Clear form
       document.getElementById('name').value = '';
       document.getElementById('amount').value = '';
       document.getElementById('rate').value = '';
       document.getElementById('cleared').value = '0';
       document.getElementById('takenOn').valueAsDate = new Date();
-
       save();
     }
 
     function deleteEntry(id) {
-      if (confirm('Delete this entry?')) {
+      if (confirm(lang === 'te' ? 'ఈ ఎంట్రీని తొలగించాలా?' : 'Delete this entry?')) {
         entries = entries.filter(e => e.id !== id);
         save();
       }
@@ -307,49 +710,238 @@
       const row = document.getElementById('row-' + id);
       const clearedCell = row.querySelector('.cleared-cell');
       const current = entries.find(e => e.id === id).cleared;
-
       clearedCell.innerHTML = `
         <input type="number" class="edit-input" id="edit-${id}" value="${current}" min="0">
-        <button class="btn-save" onclick="saveEdit(${id})">Save</button>
+        <button class="btn-save" onclick="saveEdit(${id})">${t('btnSave')}</button>
       `;
     }
 
     function saveEdit(id) {
       const val = parseFloat(document.getElementById('edit-' + id).value);
       if (isNaN(val) || val < 0) {
-        alert('Enter a valid cleared amount');
+        alert(lang === 'te' ? 'సరైన మొత్తం నమోదు చేయండి' : 'Enter a valid cleared amount');
         return;
       }
-      const entry = entries.find(e => e.id === id);
-      entry.cleared = val;
+      entries.find(e => e.id === id).cleared = val;
       save();
     }
 
     function formatDate(dateStr) {
       const d = new Date(dateStr);
-      return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+      return d.toLocaleDateString(lang === 'te' ? 'te-IN' : 'en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
     }
 
     function formatMoney(num) {
       return '₹' + Math.round(num).toLocaleString('en-IN');
     }
 
+    // ========== DOWNLOAD IMAGES (delphi-style square frames) ==========
+    function drawWatermark(ctx, width, height) {
+      ctx.save();
+      ctx.font = 'bold 12px ui-monospace, monospace';
+      ctx.fillStyle = 'rgba(0,0,0,0.2)';
+      ctx.textAlign = 'center';
+      ctx.fillText('powered by BsBookpad', width / 2, height - 14);
+      ctx.restore();
+    }
+
+    function getThemeColors() {
+      const dark = document.documentElement.classList.contains('dark');
+      return {
+        bg: dark ? '#1a2e24' : '#f7f5ef',
+        card: dark ? '#243830' : '#faf9f5',
+        fg: dark ? '#ebe6d8' : '#1a2e24',
+        muted: dark ? '#8a9a8e' : '#6b7a6e',
+        primary: dark ? '#d4c48a' : '#2d6a4f',
+        primaryFg: dark ? '#1a2e24' : '#f7f5ef',
+        border: dark ? '#3a4d42' : '#d4d0c4',
+        balance: dark ? '#e07a5f' : '#c44536',
+        headerBg: dark ? '#d4c48a' : '#2d6a4f'
+      };
+    }
+
+    function downloadSingle(id) {
+      const e = entries.find(x => x.id === id);
+      if (!e) return;
+
+      const interest = calculateInterest(e.amount, e.rate, e.takenOn);
+      const balance = e.amount + interest - e.cleared;
+      const c = getThemeColors();
+
+      const canvas = document.createElement('canvas');
+      const width = 600;
+      const height = 420;
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = c.bg;
+      ctx.fillRect(0, 0, width, height);
+
+      // 2px frame
+      ctx.strokeStyle = c.border;
+      ctx.lineWidth = 2;
+      ctx.strokeRect(1, 1, width - 2, height - 2);
+
+      // header bar
+      ctx.fillStyle = c.headerBg;
+      ctx.fillRect(2, 2, width - 4, 56);
+
+      ctx.fillStyle = c.primaryFg;
+      ctx.font = 'bold 20px ui-monospace, monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(t('imgTitleSingle'), width / 2, 38);
+
+      ctx.textAlign = 'left';
+      let y = 100;
+      const left = 40;
+      const lineHeight = 38;
+
+      const rows = [
+        [t('imgBorrower'), e.name],
+        [t('imgAmount'), formatMoney(e.amount)],
+        [t('imgTakenOn'), formatDate(e.takenOn)],
+        [t('imgRate'), e.rate + ' ' + t('imgRateUnit')],
+        [t('imgInterest'), formatMoney(interest)],
+        [t('imgCleared'), formatMoney(e.cleared)],
+        [t('imgBalance'), formatMoney(balance)]
+      ];
+
+      rows.forEach(([label, value], i) => {
+        ctx.font = '13px ui-monospace, monospace';
+        ctx.fillStyle = c.muted;
+        ctx.fillText(label, left, y);
+
+        ctx.font = 'bold 15px ui-monospace, monospace';
+        ctx.fillStyle = i === 6 ? c.balance : c.fg;
+        ctx.fillText(value, left + 220, y);
+        y += lineHeight;
+      });
+
+      drawWatermark(ctx, width, height);
+
+      const link = document.createElement('a');
+      link.download = `${e.name}_amount_${e.id}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    function downloadBorrower() {
+      const filterValue = document.getElementById('borrowerFilter').value;
+      if (!filterValue) {
+        alert(lang === 'te' ? 'దయచేసి ముందుగా ఒక వ్యక్తిని ఎంచుకోండి' : 'Please select a borrower first');
+        return;
+      }
+
+      const filtered = entries.filter(e => e.name === filterValue);
+      if (filtered.length === 0) return;
+
+      const c = getThemeColors();
+      const rowHeight = 32;
+      const height = 90 + (filtered.length * rowHeight) + 70;
+      const width = 720;
+
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = c.bg;
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.strokeStyle = c.border;
+      ctx.lineWidth = 2;
+      ctx.strokeRect(1, 1, width - 2, height - 2);
+
+      ctx.fillStyle = c.headerBg;
+      ctx.fillRect(2, 2, width - 4, 52);
+
+      ctx.fillStyle = c.primaryFg;
+      ctx.font = 'bold 18px ui-monospace, monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(t('imgTitleBorrower') + ' — ' + filterValue, width / 2, 34);
+
+      // header row
+      ctx.fillStyle = c.card;
+      ctx.fillRect(12, 64, width - 24, 28);
+
+      ctx.fillStyle = c.muted;
+      ctx.font = 'bold 11px ui-monospace, monospace';
+      ctx.textAlign = 'left';
+      const cols = [20, 140, 260, 350, 460, 570];
+      ctx.fillText(t('imgAmount'), cols[0], 82);
+      ctx.fillText(t('imgTakenOn'), cols[1], 82);
+      ctx.fillText(t('imgRateShort'), cols[2], 82);
+      ctx.fillText(t('imgInterestShort'), cols[3], 82);
+      ctx.fillText(t('imgClearedShort'), cols[4], 82);
+      ctx.fillText(t('imgBalanceShort'), cols[5], 82);
+
+      let y = 110;
+      let totalAmount = 0, totalInterest = 0, totalCleared = 0, totalBalance = 0;
+
+      filtered.forEach((e, idx) => {
+        const interest = calculateInterest(e.amount, e.rate, e.takenOn);
+        const balance = e.amount + interest - e.cleared;
+
+        totalAmount += e.amount;
+        totalInterest += interest;
+        totalCleared += e.cleared;
+        totalBalance += balance;
+
+        if (idx % 2 === 0) {
+          ctx.fillStyle = c.card;
+          ctx.fillRect(12, y - 18, width - 24, rowHeight);
+        }
+
+        ctx.fillStyle = c.fg;
+        ctx.font = '12px ui-monospace, monospace';
+        ctx.fillText(formatMoney(e.amount), cols[0], y);
+        ctx.fillText(formatDate(e.takenOn), cols[1], y);
+        ctx.fillText(e.rate + '%', cols[2], y);
+        ctx.fillText(formatMoney(interest), cols[3], y);
+        ctx.fillText(formatMoney(e.cleared), cols[4], y);
+        ctx.fillStyle = c.balance;
+        ctx.font = 'bold 12px ui-monospace, monospace';
+        ctx.fillText(formatMoney(balance), cols[5], y);
+
+        y += rowHeight;
+      });
+
+      // totals
+      y += 8;
+      ctx.fillStyle = c.headerBg;
+      ctx.fillRect(12, y - 18, width - 24, 32);
+
+      ctx.fillStyle = c.primaryFg;
+      ctx.font = 'bold 12px ui-monospace, monospace';
+      ctx.fillText(t('imgTotal'), cols[0], y);
+      ctx.fillText(formatMoney(totalAmount), cols[0] + 60, y);
+      ctx.fillText(formatMoney(totalInterest), cols[3], y);
+      ctx.fillText(formatMoney(totalCleared), cols[4], y);
+      ctx.fillText(formatMoney(totalBalance), cols[5], y);
+
+      drawWatermark(ctx, width, height);
+
+      const link = document.createElement('a');
+      link.download = `${filterValue}_summary.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
     function render() {
       const container = document.getElementById('tableContainer');
       const filterValue = document.getElementById('borrowerFilter').value;
+      const downloadBtn = document.getElementById('downloadBorrowerBtn');
 
-      // Filter entries
-      let filtered = entries;
-      if (filterValue) {
-        filtered = entries.filter(e => e.name === filterValue);
-      }
+      downloadBtn.style.display = filterValue ? 'inline-flex' : 'none';
 
-      // Update count
-      document.getElementById('entryCount').textContent = 
-        filtered.length + (filtered.length === 1 ? ' entry' : ' entries');
+      let filtered = filterValue ? entries.filter(e => e.name === filterValue) : entries;
+
+      document.getElementById('entryCount').textContent =
+        filtered.length + ' ' + (filtered.length === 1 ? t('entry') : t('entries'));
 
       if (filtered.length === 0) {
-        container.innerHTML = '<p class="empty">No entries found.</p>';
+        container.innerHTML = `<p class="empty">${t('noEntries')}</p>`;
         return;
       }
 
@@ -357,14 +949,14 @@
         <table>
           <thead>
             <tr>
-              <th>User</th>
-              <th>Amount</th>
-              <th>Taken On</th>
-              <th>Rate / month</th>
-              <th>Interest Till Date</th>
-              <th>Cleared</th>
-              <th>Balance</th>
-              <th>Actions</th>
+              <th>${t('thUser')}</th>
+              <th>${t('thAmount')}</th>
+              <th>${t('thTakenOn')}</th>
+              <th>${t('thRate')}</th>
+              <th>${t('thInterest')}</th>
+              <th>${t('thCleared')}</th>
+              <th>${t('thBalance')}</th>
+              <th>${t('thActions')}</th>
             </tr>
           </thead>
           <tbody>
@@ -372,21 +964,23 @@
 
       filtered.forEach(e => {
         const interest = calculateInterest(e.amount, e.rate, e.takenOn);
-        const totalDue = e.amount + interest;
-        const balance = totalDue - e.cleared;
+        const balance = e.amount + interest - e.cleared;
 
         html += `
           <tr id="row-${e.id}">
-            <td data-label="User">${e.name}</td>
-            <td data-label="Amount" class="amount">${formatMoney(e.amount)}</td>
-            <td data-label="Taken On">${formatDate(e.takenOn)}</td>
-            <td data-label="Rate">${e.rate}% /mo</td>
-            <td data-label="Interest" class="interest">${formatMoney(interest)}</td>
-            <td data-label="Cleared" class="cleared-cell cleared">${formatMoney(e.cleared)}</td>
-            <td data-label="Balance" class="balance">${formatMoney(balance)}</td>
-            <td data-label="Actions" class="actions">
-              <button class="btn-edit" onclick="startEdit(${e.id})">Edit Cleared</button>
-              <button class="btn-danger" onclick="deleteEntry(${e.id})">Delete</button>
+            <td data-label="${t('thUser')}">${e.name}</td>
+            <td data-label="${t('thAmount')}" class="amount">${formatMoney(e.amount)}</td>
+            <td data-label="${t('thTakenOn')}">${formatDate(e.takenOn)}</td>
+            <td data-label="${t('thRate')}">${e.rate}%</td>
+            <td data-label="${t('thInterest')}" class="interest">${formatMoney(interest)}</td>
+            <td data-label="${t('thCleared')}" class="cleared-cell cleared">${formatMoney(e.cleared)}</td>
+            <td data-label="${t('thBalance')}" class="balance">${formatMoney(balance)}</td>
+            <td data-label="${t('thActions')}">
+              <div class="actions">
+                <button class="btn-edit" onclick="startEdit(${e.id})">${t('btnEdit')}</button>
+                <button class="btn-download" onclick="downloadSingle(${e.id})">${t('btnDownload')}</button>
+                <button class="btn-danger" onclick="deleteEntry(${e.id})">${t('btnDelete')}</button>
+              </div>
             </td>
           </tr>
         `;
@@ -397,8 +991,7 @@
     }
 
     // Initial load
-    updateBorrowerList();
-    render();
+    setLang(lang);
   </script>
 </body>
 </html>
