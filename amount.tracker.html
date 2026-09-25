@@ -27,6 +27,7 @@
       --interest: oklch(0.55 0.14 55);
       --cleared: oklch(0.45 0.12 145);
       --balance: oklch(0.55 0.2 25);
+      --fs: 14px;
     }
 
     .dark {
@@ -53,7 +54,7 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; border-color: var(--border); }
 
-    html { color-scheme: light; }
+    html { color-scheme: light; font-size: var(--fs); }
     html.dark { color-scheme: dark; }
 
     body {
@@ -63,44 +64,9 @@
       padding: 0;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
-      font-size: var(--fs-base, 14px);
+      font-size: 1rem;
       line-height: 1.4;
       font-variant-numeric: tabular-nums;
-    }
-
-    /* font-size scale (driven by html[data-fs]) */
-    html[data-fs="sm"] {
-      --fs-base: 12px;
-      --fs-title: 13px;
-      --fs-label: 10px;
-      --fs-th: 10px;
-      --fs-td: 12px;
-      --fs-btn: 12px;
-      --fs-btn-sm: 11px;
-      --fs-panel: 10px;
-      --topbar-h: 40px;
-    }
-    html[data-fs="md"], html:not([data-fs]) {
-      --fs-base: 14px;
-      --fs-title: 15px;
-      --fs-label: 11px;
-      --fs-th: 11px;
-      --fs-td: 13px;
-      --fs-btn: 13px;
-      --fs-btn-sm: 12px;
-      --fs-panel: 11px;
-      --topbar-h: 48px;
-    }
-    html[data-fs="lg"] {
-      --fs-base: 16px;
-      --fs-title: 17px;
-      --fs-label: 12px;
-      --fs-th: 12px;
-      --fs-td: 15px;
-      --fs-btn: 14px;
-      --fs-btn-sm: 13px;
-      --fs-panel: 12px;
-      --topbar-h: 52px;
     }
 
     .container {
@@ -112,11 +78,10 @@
       background: var(--card);
     }
 
-    /* top bar / chrome */
     .topbar {
       display: flex;
       align-items: stretch;
-      min-height: var(--topbar-h, 48px);
+      min-height: 3rem;
       border-bottom: 2px solid var(--border);
       background: var(--card);
     }
@@ -125,9 +90,9 @@
       flex: 1;
       display: flex;
       align-items: center;
-      padding: 0 16px;
+      padding: 0 1rem;
       font-weight: 700;
-      font-size: var(--fs-title, 15px);
+      font-size: 1.07rem;
       letter-spacing: -0.02em;
     }
 
@@ -140,16 +105,44 @@
       border-left: 1px solid var(--border);
     }
 
-    /* segmented (hairline grid) */
-    .segmented {
-      display: grid;
-      gap: 1px;
-      background-color: var(--border);
-      border: 1px solid var(--border);
+    .fs-control {
+      display: flex;
+      align-items: stretch;
+      min-width: 0;
     }
-    .segmented > * {
-      border: 0 !important;
-      border-radius: 0 !important;
+
+    .fs-label {
+      display: flex;
+      align-items: center;
+      padding: 0 0.6rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted-foreground);
+      white-space: nowrap;
+      background: var(--muted);
+      border-right: 1px solid var(--border);
+    }
+
+    .fs-control input[type="range"] {
+      width: 90px;
+      margin: 0 0.4rem;
+      align-self: center;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .fs-value {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2.4rem;
+      padding: 0 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--foreground);
+      border-left: 1px solid var(--border);
+      background: var(--card);
     }
 
     .lang-switch {
@@ -158,56 +151,46 @@
       gap: 1px;
       background: var(--border);
       border: none;
-      min-width: 160px;
+      min-width: 10rem;
     }
 
-    .lang-btn, .fs-btn {
-      padding: 0 14px;
+    .lang-btn {
+      padding: 0 1rem;
       background: var(--card);
       color: var(--muted-foreground);
       font-weight: 600;
-      font-size: var(--fs-btn, 13px);
+      font-size: 0.93rem;
       font-family: inherit;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: var(--topbar-h, 48px);
+      min-height: 3rem;
     }
-    .lang-btn:hover, .fs-btn:hover { background: var(--muted); color: var(--foreground); }
-    .lang-btn.active, .fs-btn.active {
+    .lang-btn:hover { background: var(--muted); color: var(--foreground); }
+    .lang-btn.active {
       background: var(--primary);
       color: var(--primary-foreground);
     }
 
-    .fs-switch {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      border: none;
-      min-width: 120px;
-    }
-
     .theme-btn {
-      padding: 0 16px;
+      padding: 0 1rem;
       background: var(--card);
       color: var(--muted-foreground);
       font-weight: 600;
-      font-size: var(--fs-btn, 13px);
+      font-size: 0.93rem;
       font-family: inherit;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: var(--topbar-h, 48px);
-      min-width: var(--topbar-h, 48px);
+      min-height: 3rem;
+      min-width: 3rem;
     }
     .theme-btn:hover { background: var(--muted); color: var(--foreground); }
 
-    /* panels */
     .panel {
       border-bottom: 2px solid var(--border);
       background: var(--card);
@@ -216,12 +199,12 @@
     .panel-head {
       display: flex;
       align-items: center;
-      min-height: 40px;
-      padding: 0 16px;
+      min-height: 2.5rem;
+      padding: 0 1rem;
       border-bottom: 1px solid var(--border);
       background: var(--muted);
       font-weight: 700;
-      font-size: var(--fs-panel, 11px);
+      font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       color: var(--muted-foreground);
@@ -229,15 +212,14 @@
 
     .panel-body { padding: 0; }
 
-    /* form */
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
       gap: 0;
     }
 
     .field {
-      padding: 12px 16px;
+      padding: 0.75rem 1rem;
       border-right: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       min-width: 0;
@@ -246,9 +228,9 @@
 
     label {
       display: block;
-      font-size: var(--fs-label, 11px);
+      font-size: 0.78rem;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 0.4rem;
       color: var(--muted-foreground);
       text-transform: uppercase;
       letter-spacing: 0.03em;
@@ -256,10 +238,10 @@
 
     input, select {
       width: 100%;
-      padding: 8px 10px;
+      padding: 0.5rem 0.65rem;
       border: 1px solid var(--border);
       border-radius: 0;
-      font-size: var(--fs-base, 14px);
+      font-size: 1rem;
       font-family: inherit;
       background: var(--background);
       color: var(--foreground);
@@ -280,10 +262,10 @@
       cursor: pointer;
       border: none;
       border-radius: 0;
-      font-size: var(--fs-btn, 13px);
+      font-size: 0.93rem;
       font-weight: 600;
       font-family: inherit;
-      padding: 12px 18px;
+      padding: 0.75rem 1.1rem;
       transition: background 0.1s, color 0.1s;
     }
 
@@ -291,16 +273,16 @@
       background: var(--primary);
       color: var(--primary-foreground);
       flex: 1;
-      min-height: var(--topbar-h, 48px);
-      font-size: var(--fs-base, 14px);
+      min-height: 3rem;
+      font-size: 1rem;
     }
     .btn-primary:hover { filter: brightness(1.08); }
 
     .btn-danger {
       background: transparent;
       color: var(--destructive);
-      padding: 6px 10px;
-      font-size: var(--fs-btn-sm, 12px);
+      padding: 0.4rem 0.65rem;
+      font-size: 0.85rem;
       border: 1px solid var(--border);
     }
     .btn-danger:hover { background: var(--destructive); color: white; }
@@ -308,8 +290,8 @@
     .btn-edit {
       background: transparent;
       color: var(--foreground);
-      padding: 6px 10px;
-      font-size: var(--fs-btn-sm, 12px);
+      padding: 0.4rem 0.65rem;
+      font-size: 0.85rem;
       border: 1px solid var(--border);
     }
     .btn-edit:hover { background: var(--muted); }
@@ -317,15 +299,15 @@
     .btn-save {
       background: var(--primary);
       color: var(--primary-foreground);
-      padding: 6px 10px;
-      font-size: var(--fs-btn-sm, 12px);
+      padding: 0.4rem 0.65rem;
+      font-size: 0.85rem;
     }
 
     .btn-download {
       background: transparent;
       color: var(--foreground);
-      padding: 6px 10px;
-      font-size: var(--fs-btn-sm, 12px);
+      padding: 0.4rem 0.65rem;
+      font-size: 0.85rem;
       border: 1px solid var(--border);
     }
     .btn-download:hover { background: var(--muted); }
@@ -333,60 +315,60 @@
     .btn-download-all {
       background: var(--primary);
       color: var(--primary-foreground);
-      padding: 0 16px;
-      font-size: var(--fs-btn, 13px);
-      min-height: 36px;
+      padding: 0 1rem;
+      font-size: 0.93rem;
+      min-height: 2.25rem;
       border-left: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
     }
     .btn-download-all:hover { filter: brightness(1.08); }
 
-    /* filter bar */
     .filter-bar {
       display: flex;
       align-items: stretch;
-      min-height: 40px;
+      min-height: 2.5rem;
       border-bottom: 1px solid var(--border);
       background: var(--muted);
     }
 
     .filter-bar label {
       margin: 0;
-      padding: 0 12px;
+      padding: 0 0.75rem;
       display: flex;
       align-items: center;
       white-space: nowrap;
       border-right: 1px solid var(--border);
-      font-size: var(--fs-label, 11px);
+      font-size: 0.78rem;
     }
 
     .filter-bar select {
-      max-width: 240px;
+      max-width: 15rem;
       border: none;
       border-right: 1px solid var(--border);
       background: var(--card);
       border-radius: 0;
-      height: 40px;
+      height: 2.5rem;
     }
 
     .count-badge {
       display: flex;
       align-items: center;
-      padding: 0 12px;
-      font-size: var(--fs-btn-sm, 12px);
+      padding: 0 0.75rem;
+      font-size: 0.85rem;
       font-weight: 600;
       color: var(--muted-foreground);
       margin-right: auto;
     }
 
-    /* table — hairline */
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: var(--fs-td, 13px);
+      font-size: 0.93rem;
     }
 
     th, td {
-      padding: 10px 12px;
+      padding: 0.65rem 0.75rem;
       text-align: left;
       border-bottom: 1px solid var(--border);
       border-right: 1px solid var(--border);
@@ -396,7 +378,7 @@
     th {
       background: var(--muted);
       font-weight: 700;
-      font-size: var(--fs-th, 11px);
+      font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.03em;
       color: var(--muted-foreground);
@@ -412,34 +394,38 @@
 
     .actions {
       display: flex;
-      gap: 4px;
+      gap: 0.25rem;
       flex-wrap: wrap;
     }
 
     .empty {
       text-align: center;
-      padding: 48px 16px;
+      padding: 3rem 1rem;
       color: var(--muted-foreground);
-      font-size: var(--fs-td, 13px);
+      font-size: 0.93rem;
     }
 
     .edit-input {
-      width: 90px;
-      padding: 4px 8px;
-      font-size: var(--fs-td, 13px);
-      margin-right: 4px;
+      width: 5.5rem;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.93rem;
+      margin-right: 0.25rem;
     }
 
     footer {
       text-align: center;
-      padding: 12px 16px;
-      font-size: var(--fs-label, 11px);
+      padding: 0.75rem 1rem;
+      font-size: 0.78rem;
       color: var(--muted-foreground);
       border-top: 1px solid var(--border);
     }
 
     @media (max-width: 700px) {
       .container { border-left: none; border-right: none; }
+      .fs-control input[type="range"] { width: 60px; }
+      .topbar { flex-wrap: wrap; }
+      .topbar-title { min-height: 2.5rem; width: 100%; border-bottom: 1px solid var(--border); }
+      .topbar-actions { width: 100%; }
       table, thead, tbody, th, td, tr { display: block; }
       thead { display: none; }
       tr {
@@ -450,7 +436,7 @@
       td {
         border: none;
         border-bottom: 1px solid var(--border);
-        padding: 8px 12px;
+        padding: 0.5rem 0.75rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -459,7 +445,7 @@
       td::before {
         content: attr(data-label);
         font-weight: 700;
-        font-size: 11px;
+        font-size: 0.78rem;
         text-transform: uppercase;
         letter-spacing: 0.03em;
         color: var(--muted-foreground);
@@ -471,14 +457,13 @@
 </head>
 <body>
   <div class="container">
-    <!-- Top bar -->
     <div class="topbar">
       <div class="topbar-title" id="pageTitle">Amount Tracker</div>
       <div class="topbar-actions">
-        <div class="fs-switch" title="Font size">
-          <button class="fs-btn" id="fsSm" onclick="setFontSize('sm')">A−</button>
-          <button class="fs-btn active" id="fsMd" onclick="setFontSize('md')">A</button>
-          <button class="fs-btn" id="fsLg" onclick="setFontSize('lg')">A+</button>
+        <div class="fs-control" title="Font size (12–23px)">
+          <span class="fs-label" id="lblFs">Aa</span>
+          <input type="range" id="fsRange" min="12" max="23" step="1" value="14" oninput="setFontSize(this.value)">
+          <span class="fs-value" id="fsValue">14</span>
         </div>
         <div class="lang-switch">
           <button class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</button>
@@ -488,7 +473,6 @@
       </div>
     </div>
 
-    <!-- Add Form -->
     <div class="panel">
       <div class="panel-head" id="formTitle">Add Entry</div>
       <div class="panel-body">
@@ -521,7 +505,6 @@
       </div>
     </div>
 
-    <!-- Table + Filter -->
     <div class="panel" style="border-bottom: none;">
       <div class="filter-bar">
         <label id="lblFilter">Filter by Borrower</label>
@@ -543,7 +526,6 @@
   </div>
 
   <script>
-    // ========== TRANSLATIONS ==========
     const i18n = {
       en: {
         pageTitle: "Amount Tracker",
@@ -573,6 +555,7 @@
         btnDownload: "Download",
         btnDelete: "Delete",
         btnSave: "Save",
+        lblFs: "Aa",
         imgTitleSingle: "Amount Details",
         imgTitleBorrower: "Borrower Summary",
         imgBorrower: "Borrower",
@@ -617,6 +600,7 @@
         btnDownload: "డౌన్‌లోడ్",
         btnDelete: "తొలగించు",
         btnSave: "సేవ్",
+        lblFs: "అ",
         imgTitleSingle: "మొత్తం వివరాలు",
         imgTitleBorrower: "అప్పు తీసుకున్నవారి సారాంశం",
         imgBorrower: "అప్పు తీసుకున్నవారు",
@@ -638,7 +622,6 @@
     let lang = localStorage.getItem('amountTrackerLang') || 'en';
     let entries = JSON.parse(localStorage.getItem('amountTracker') || '[]');
 
-    // theme
     (function initTheme() {
       const saved = localStorage.getItem('amountTrackerTheme');
       if (saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -652,20 +635,20 @@
         document.documentElement.classList.contains('dark') ? 'dark' : 'light');
     }
 
-    // font size
     (function initFontSize() {
-      const saved = localStorage.getItem('amountTrackerFontSize') || 'md';
-      setFontSize(saved, true);
+      const saved = parseInt(localStorage.getItem('amountTrackerFs'), 10);
+      const val = (saved >= 12 && saved <= 23) ? saved : 14;
+      document.getElementById('fsRange').value = val;
+      document.getElementById('fsValue').textContent = val;
+      document.documentElement.style.setProperty('--fs', val + 'px');
     })();
 
-    function setFontSize(size, skipSave) {
-      const valid = ['sm', 'md', 'lg'];
-      if (!valid.includes(size)) size = 'md';
-      document.documentElement.setAttribute('data-fs', size);
-      document.getElementById('fsSm').classList.toggle('active', size === 'sm');
-      document.getElementById('fsMd').classList.toggle('active', size === 'md');
-      document.getElementById('fsLg').classList.toggle('active', size === 'lg');
-      if (!skipSave) localStorage.setItem('amountTrackerFontSize', size);
+    function setFontSize(val) {
+      val = Math.max(12, Math.min(23, parseInt(val, 10) || 14));
+      document.documentElement.style.setProperty('--fs', val + 'px');
+      document.getElementById('fsValue').textContent = val;
+      document.getElementById('fsRange').value = val;
+      localStorage.setItem('amountTrackerFs', String(val));
     }
 
     document.getElementById('takenOn').valueAsDate = new Date();
@@ -696,6 +679,7 @@
       document.getElementById('lblFilter').textContent = t('lblFilter');
       document.getElementById('downloadBorrowerBtn').textContent = t('downloadBorrower');
       document.getElementById('emptyMsg').textContent = t('empty');
+      document.getElementById('lblFs').textContent = t('lblFs');
     }
 
     function calculateInterest(principal, monthlyRate, takenOn) {
@@ -796,7 +780,6 @@
       return '₹' + Math.round(num).toLocaleString('en-IN');
     }
 
-    // ========== DOWNLOAD IMAGES (delphi-style square frames) ==========
     function drawWatermark(ctx, width, height) {
       ctx.save();
       ctx.font = 'bold 12px ui-monospace, monospace';
@@ -839,12 +822,10 @@
       ctx.fillStyle = c.bg;
       ctx.fillRect(0, 0, width, height);
 
-      // 2px frame
       ctx.strokeStyle = c.border;
       ctx.lineWidth = 2;
       ctx.strokeRect(1, 1, width - 2, height - 2);
 
-      // header bar
       ctx.fillStyle = c.headerBg;
       ctx.fillRect(2, 2, width - 4, 56);
 
@@ -922,7 +903,6 @@
       ctx.textAlign = 'center';
       ctx.fillText(t('imgTitleBorrower') + ' — ' + filterValue, width / 2, 34);
 
-      // header row
       ctx.fillStyle = c.card;
       ctx.fillRect(12, 64, width - 24, 28);
 
@@ -968,7 +948,6 @@
         y += rowHeight;
       });
 
-      // totals
       y += 8;
       ctx.fillStyle = c.headerBg;
       ctx.fillRect(12, y - 18, width - 24, 32);
@@ -1051,7 +1030,6 @@
       container.innerHTML = html;
     }
 
-    // Initial load
     setLang(lang);
   </script>
 </body>
