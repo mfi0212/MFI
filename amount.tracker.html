@@ -51,7 +51,15 @@
       --cleared: oklch(0.75 0.1 95);
       --balance: oklch(0.65 0.18 25);
     }
-
+* {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
     * { box-sizing: border-box; margin: 0; padding: 0; border-color: var(--border); }
 
     html { color-scheme: light; }
@@ -535,7 +543,7 @@
   </div>
 
   <script>
-    // ========== TRANSLATIONS ==========
+    document.addEventListener('contextmenu', e => e.preventDefault());
     const i18n = {
       en: {
         pageTitle: "Amount Tracker",
