@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VSL | Interest Calculator</title>
+
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-	 font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      border-radius: 0 !important;
     }
 
     body {
@@ -18,150 +19,171 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 10px;
+      padding: 20px;
+      background: #fff;
+      color: #222;
     }
 
     .container {
-      background: white;
       width: 100%;
-      max-width: 420px;
+      max-width: 360px;
     }
 
     h1 {
-      text-align: center;
+      font-size: 23px;
+      font-weight: 600;
       margin-bottom: 20px;
-      font-size: 26px;
+          text-align: center;
     }
 
     .form-group {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     label {
       display: block;
-      margin-bottom: 6px;
-      font-weight: 600;
-      color: #333;
       font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
     }
 
-    input, select {
+    input {
       width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
+      padding: 13px;
+      border: 1px solid #d5d5d5;
+      background: #fff;
+      color: #222;
       font-size: 16px;
-      transition: border-color 0.3s;
+      outline: none;
     }
 
-    .btn {
+    input:focus {
+      border-color: #2b2b2b;
+    }
+
+    button {
       width: 100%;
-      padding: 10px;
-      background: blue;
-      color: white;
-      border: none;
-      font-size: 16px;
-      font-weight: 600;
+      padding: 14px;
+      margin-top: 4px;
+      border: 1px solid #2b2b2b;
+      background: #2b2b2b;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 500;
       cursor: pointer;
-      margin-top: 10px;
-      transition: background 0.3s, transform 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
     }
 
-    .btn svg {
-      width: 20px;
-      height: 20px;
-      fill: white;
+    button:active {
+      opacity: 0.8;
     }
 
     .result {
-      margin-top: 25px;
-      padding: 18px;
-      background: #f0f7ff;
-      border-radius: 10px;
-      border-left: 5px solid blue;
       display: none;
-    }
-
-    .result h3 {
-      color: blue;
-      margin-bottom: 12px;
-      font-size: 18px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid #ddd;
     }
 
     .result p {
-      margin: 6px 0;
-      font-size: 15px;
-      color: #333;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 14px;
     }
-    footer {
-      font-size: 12px;
-      text-align: center;
-      color: var(--muted);
-      padding: 15px;
-      border-top: 1px solid var(--border);
+
+    .result strong {
+      font-size: 16px;
+      font-weight: 600;
+      overflow-wrap: anywhere;
     }
-    .result .highlight {
-      font-size: 20px;
-      font-weight: 700;
-      color: blue;
+
+    .error {
+      display: none;
+      margin-top: 12px;
+      color: #d93025;
+      font-size: 13px;
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
+  <main class="container">
     <h1>Interest Calculator</h1>
 
-    <div class="form-group">
-      <input type="number" id="principal" placeholder="Enter lending amount" min="0" step="any">
-    </div>
+    <form id="interestForm">
+      <div class="form-group">
+        <input
+          type="number"
+          id="amount"
+          placeholder="Enter amount"
+          min="0.01"
+          step="any"
+          required
+        >
+      </div>
 
-    <div class="form-group">
-      <input type="number" id="rate" placeholder="Enter interest rate" min="0" step="0.01">
-    </div>
+      <div class="form-group">
+        <input
+          type="number"
+          id="interestRate"
+          placeholder="Enter interest rate"
+          min="0"
+          step="any"
+          required
+        >
+      </div>
 
-    <button class="btn" onclick="calculateInterest()">
-      Calculate Interest
-    </button>
+      <button type="submit">Calculate interest now</button>
+      <p class="error" id="error"></p>
+    </form>
 
-    <div class="result" id="result">
-      <h3>Result</h3>
-      <p>Interest Amount: <span class="highlight" id="interest">0</span></p>
-      <p>Total Amount: <span class="highlight" id="total">0</span></p>
+    <div class="result" id="result" aria-live="polite">
+      <p>Interest Amount <strong id="interestAmount">₹0.00</strong></p>
+      <p>Total Amount <strong id="totalAmount">₹0.00</strong></p>
     </div>
-    <footer>VSL, All right reserved. <br> Version(v.02.22.9)</footer>
-  </div>
+  </main>
 
   <script>
-    function calculateInterest() {
-      const principal = parseFloat(document.getElementById('principal').value);
-      const rate = parseFloat(document.getElementById('rate').value);
-      const time = parseFloat(document.getElementById('time').value);
-      const type = document.getElementById('type').value;
+    document.getElementById('interestForm').addEventListener('submit', function (e) {
+      e.preventDefault();
 
-      if (isNaN(principal) || isNaN(rate) || isNaN(time) || principal <= 0 || rate < 0 || time <= 0) {
-        alert("Please enter valid positive numbers for all fields.");
+      const amountInput = document.getElementById('amount');
+      const rateInput = document.getElementById('interestRate');
+      const amount = Number(amountInput.value);
+      const rate = Number(rateInput.value);
+      const error = document.getElementById('error');
+      const result = document.getElementById('result');
+
+      error.style.display = 'none';
+      result.style.display = 'none';
+
+      if (
+        amountInput.value.trim() === '' ||
+        rateInput.value.trim() === '' ||
+        !Number.isFinite(amount) ||
+        !Number.isFinite(rate) ||
+        amount <= 0 ||
+        rate < 0
+      ) {
+        error.textContent = 'Enter a valid amount and interest rate.';
+        error.style.display = 'block';
         return;
       }
 
-      let interest, total;
+      const interest = amount * rate / 100;
+      const total = amount + interest;
 
-      if (type === "simple") {
-        // Simple Interest = (P × R × T) / 100
-        interest = (principal * rate * time) / 100;
-        total = principal + interest;
-      } else {
-        // Compound Interest = P × (1 + R/100)^T - P
-        total = principal * Math.pow((1 + rate / 100), time);
-        interest = total - principal;
-      }
+      const format = value => '₹' + value.toLocaleString('en-IN', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
 
-      document.getElementById('interest').textContent = interest.toFixed(2);
-      document.getElementById('total').textContent = total.toFixed(2);
-      document.getElementById('result').style.display = 'block';
-    }
+      document.getElementById('interestAmount').textContent = format(interest);
+      document.getElementById('totalAmount').textContent = format(total);
+
+      result.style.display = 'block';
+    });
   </script>
 </body>
 </html>
