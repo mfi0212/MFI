@@ -13,7 +13,15 @@
       font-family: Inter, system-ui, -apple-system, sans-serif;
       border-radius: 0 !important;-webkit-tap-highlight-color: transparent;
     }
-
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
     body {
       min-height: 100vh;
       display: flex;
@@ -98,10 +106,17 @@
       overflow-wrap: anywhere;
     }
 
+    footer {
+      font-size: 12px;
+      text-align: center;
+      color: var(--muted);
+      padding: 15px;
+      border-top: 1px solid var(--border);
+    }
     .error {
       display: none;
       margin-top: 12px;
-      color: #d93025;
+      color: red;
       font-size: 13px;
     }
   </style>
@@ -142,6 +157,7 @@
       <p>Interest Amount <strong id="interestAmount">₹0.00</strong></p>
       <p>Total Amount <strong id="totalAmount">₹0.00</strong></p>
     </div>
+    <footer>VSL, All right reserved. <br> Version(v.02.22.9)</footer>
   </main>
 
   <script>
