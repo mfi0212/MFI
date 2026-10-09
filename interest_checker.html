@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VSL | Interest Calculator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      padding: 35px 40px;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1e3c72;
+      margin-bottom: 25px;
+      font-size: 26px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #333;
+      font-size: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background: #2a5298;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 18px;
+      background: #f0f7ff;
+      border-radius: 10px;
+      border-left: 5px solid #2a5298;
+      display: none;
+    }
+
+    .result h3 {
+      color: #1e3c72;
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    .result p {
+      margin: 6px 0;
+      font-size: 15px;
+      color: #333;
+    }
+
+    .result .highlight {
+      font-size: 20px;
+      font-weight: 700;
+      color: #2a5298;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Interest Calculator</h1>
+
+    <div class="form-group">
+      <label for="principal">Principal Amount (₹ / $)</label>
+      <input type="number" id="principal" placeholder="Enter amount" min="0" step="any">
+    </div>
+
+    <div class="form-group">
+      <label for="rate">Interest Rate (% per year)</label>
+      <input type="number" id="rate" placeholder="e.g. 5" min="0" step="0.01">
+    </div>
+
+    <button class="btn" onclick="calculateInterest()">
+      Calculate Interest
+    </button>
+
+    <div class="result" id="result">
+      <h3>Result</h3>
+      <p>Interest Amount: <span class="highlight" id="interest">0</span></p>
+      <p>Total Amount: <span class="highlight" id="total">0</span></p>
+    </div>
+  </div>
+
+  <script>
+    function calculateInterest() {
+      const principal = parseFloat(document.getElementById('principal').value);
+      const rate = parseFloat(document.getElementById('rate').value);
+      const time = parseFloat(document.getElementById('time').value);
+      const type = document.getElementById('type').value;
+
+      if (isNaN(principal) || isNaN(rate) || isNaN(time) || principal <= 0 || rate < 0 || time <= 0) {
+        alert("Please enter valid positive numbers for all fields.");
+        return;
+      }
+
+      let interest, total;
+
+      if (type === "simple") {
+        // Simple Interest = (P × R × T) / 100
+        interest = (principal * rate * time) / 100;
+        total = principal + interest;
+      } else {
+        // Compound Interest = P × (1 + R/100)^T - P
+        total = principal * Math.pow((1 + rate / 100), time);
+        interest = total - principal;
+      }
+
+      document.getElementById('interest').textContent = interest.toFixed(2);
+      document.getElementById('total').textContent = total.toFixed(2);
+      document.getElementById('result').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
