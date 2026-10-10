@@ -28,6 +28,7 @@
     input,
     textarea {
       font: inherit;
+      text-align: center;
     }
 
     button {
@@ -71,6 +72,10 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+    }
+
+    .lock-label {
+      text-align: center;
     }
 
     .lock-input,
@@ -191,7 +196,6 @@
     }
 
     .entry-row,
-    .paid-row,
     .remaining,
     .entry-total {
       display: flex;
@@ -202,7 +206,6 @@
     }
 
     .entry-row .label,
-    .paid-row .label,
     .remaining .label,
     .entry-total .label {
       flex: 1;
@@ -218,11 +221,60 @@
       font-variant-numeric: tabular-nums;
     }
 
+    .paid-row {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 7px;
+      margin: 12px 0;
+      padding: 12px;
+      border: 1px solid #d6d6d6;
+      width: 100%;
+    }
+
+    .paid-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .paid-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .paid-currency {
+      flex-shrink: 0;
+      font-size: 16px;
+    }
+
     .paid-input {
-      width: 120px;
-      max-width: 45%;
-      padding: 6px;
+      display: block;
+      width: 100%;
+      min-width: 0;
+      height: 42px;
+      padding: 8px 10px;
+      border: 1px solid #bdbdbd;
+      border-radius: 0;
+      background: white;
+      color: black;
+      outline-offset: 2px;
+      font-size: 16px;
       text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .paid-input:focus {
+      outline: 1px solid black;
+      border-color: black;
+    }
+
+    .paid-hint {
+      margin: 0;
+      font-size: 12px;
+      font-weight: normal;
     }
 
     .notes-box {
@@ -267,7 +319,6 @@
       margin-top: 24px;
       padding: 16px 0;
       text-align: center;
-      border-top: 1px solid;
       font-size: 12px;
     }
 
@@ -340,12 +391,15 @@
       .total-btn {
         padding: 6px 3px;
       }
+
+      .paid-row {
+        padding: 10px;
+      }
     }
   </style>
 </head>
 
 <body>
-
   <div id="lockScreen">
     <div class="lock-box">
       <div class="lock-header">
@@ -384,7 +438,6 @@
 
   <div id="mainApp" hidden>
     <div class="container">
-
       <div class="top-banner">
         <a href="https://mfi0212.github.io/MFI/mini.lends">Mini lends</a>
         <a href="https://mfi0212.github.io/MFI/service.solutions/VSL/lender.lending.clients">Lend my money</a>
@@ -443,12 +496,11 @@
   </div>
 
   <script>
-    document.addEventListener("contextmenu", e => e.preventDefault());
-
     const CORRECT_PASSWORD = "vsl#clnt@55949";
     const PASSWORD_KEY = "interestTrackerPassword";
     const FONT_SIZE_KEY = "interestTrackerFontSize";
     const NOTES_KEY = "interestTrackerNotes";
+    const PAID_KEY = "interestTrackerPaidAmounts";
 
     const MIN_FONT = 12;
     const MAX_FONT = 28;
@@ -476,6 +528,35 @@
       }
     ];
 
+    function loadPaidAmounts() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(PAID_KEY));
+        if (!saved || typeof saved !== "object") return;
+
+        users.forEach((user, userIndex) => {
+          user.entries.forEach((entry, entryIndex) => {
+            const key = `${userIndex}-${entryIndex}`;
+            if (saved[key] !== undefined) {
+              entry.interestPaid = Math.max(0, Number(saved[key]) || 0);
+            }
+          });
+        });
+      } catch {
+      }
+    }
+
+    function savePaidAmounts() {
+      const saved = {};
+
+      users.forEach((user, userIndex) => {
+        user.entries.forEach((entry, entryIndex) => {
+          saved[`${userIndex}-${entryIndex}`] = entry.interestPaid;
+        });
+      });
+
+      localStorage.setItem(PAID_KEY, JSON.stringify(saved));
+    }
+
     const lang = {
       en: {
         title: "VSL",
@@ -487,6 +568,7 @@
         takenDate: "Taken Date",
         days: "Days Passed",
         interestPaid: "Interest Paid",
+        paidHint: "Enter the interest amount already paid",
         remaining: "Remaining Interest",
         entryTotal: "Total (Amt + Interest)",
         interestNav: "Interest",
@@ -512,6 +594,7 @@
         takenDate: "తీసుకున్న తేదీ",
         days: "గడిచిన రోజులు",
         interestPaid: "చెల్లించిన వడ్డీ",
+        paidHint: "ఇప్పటికే చెల్లించిన వడ్డీ మొత్తాన్ని నమోదు చేయండి",
         remaining: "మిగిలిన వడ్డీ",
         entryTotal: "మొత్తం",
         interestNav: "వడ్డీ",
@@ -569,6 +652,7 @@
       document.getElementById("mainApp").hidden = false;
       error.hidden = true;
 
+      loadPaidAmounts();
       loadFontSize();
       updateLanguage();
       showSection("interest");
@@ -679,6 +763,22 @@
       return { days, totalInterest, remaining, total };
     }
 
+    function createRow(label, value) {
+      const row = document.createElement("div");
+      row.className = "entry-row";
+
+      const labelElement = document.createElement("span");
+      labelElement.className = "label";
+      labelElement.textContent = label;
+
+      const valueElement = document.createElement("span");
+      valueElement.className = "value";
+      valueElement.textContent = value;
+
+      row.append(labelElement, valueElement);
+      return row;
+    }
+
     function render() {
       const app = document.getElementById("app");
       const t = lang[currentLang];
@@ -699,61 +799,82 @@
           const block = document.createElement("div");
           block.className = "entry";
 
-          const rows = [
-            [t.amount, `₹${entry.amount.toLocaleString("en-IN")}`],
-            [t.interest, `${entry.interest}%`],
-            [t.takenDate, formatDateWithMonth(entry.takenDate)],
-            [t.days, String(data.days)]
-          ];
-
-          rows.forEach(([label, value]) => {
-            const row = document.createElement("div");
-            row.className = "entry-row";
-
-            const labelElement = document.createElement("span");
-            labelElement.className = "label";
-            labelElement.textContent = label;
-
-            const valueElement = document.createElement("span");
-            valueElement.className = "value";
-            valueElement.textContent = value;
-
-            row.append(labelElement, valueElement);
-            block.appendChild(row);
-          });
+          block.append(
+            createRow(t.amount, `₹${entry.amount.toLocaleString("en-IN")}`),
+            createRow(t.interest, `${entry.interest}%`),
+            createRow(t.takenDate, formatDateWithMonth(entry.takenDate)),
+            createRow(t.days, String(data.days))
+          );
 
           const paidRow = document.createElement("div");
           paidRow.className = "paid-row";
 
           const paidLabel = document.createElement("label");
-          paidLabel.className = "label";
+          paidLabel.className = "paid-label";
           paidLabel.textContent = t.interestPaid;
+
+          const inputWrap = document.createElement("div");
+          inputWrap.className = "paid-input-wrap";
+
+          const currency = document.createElement("span");
+          currency.className = "paid-currency";
+          currency.textContent = "₹";
 
           const paidInput = document.createElement("input");
           paidInput.className = "paid-input";
           paidInput.type = "number";
           paidInput.min = "0";
+          paidInput.step = "1";
+          paidInput.inputMode = "decimal";
           paidInput.value = entry.interestPaid;
+          paidInput.setAttribute("aria-label", t.interestPaid);
+
+          const paidHint = document.createElement("p");
+          paidHint.className = "paid-hint";
+          paidHint.textContent = t.paidHint;
 
           paidInput.addEventListener("change", () => {
             entry.interestPaid = Math.max(0, Number(paidInput.value) || 0);
+            savePaidAmounts();
             render();
           });
 
-          paidLabel.appendChild(paidInput);
-          paidRow.appendChild(paidLabel);
+          paidInput.addEventListener("keydown", event => {
+            if (event.key === "Enter") {
+              paidInput.blur();
+            }
+          });
+
+          inputWrap.append(currency, paidInput);
+          paidRow.append(paidLabel, inputWrap, paidHint);
           block.appendChild(paidRow);
 
           const remaining = document.createElement("div");
           remaining.className = "remaining";
-          remaining.innerHTML =
-            `<span class="label">${t.remaining}</span><span class="value">₹${data.remaining.toLocaleString("en-IN")}</span>`;
+
+          const remainingLabel = document.createElement("span");
+          remainingLabel.className = "label";
+          remainingLabel.textContent = t.remaining;
+
+          const remainingValue = document.createElement("span");
+          remainingValue.className = "value";
+          remainingValue.textContent = `₹${data.remaining.toLocaleString("en-IN")}`;
+
+          remaining.append(remainingLabel, remainingValue);
           block.appendChild(remaining);
 
           const total = document.createElement("div");
           total.className = "entry-total";
-          total.innerHTML =
-            `<span class="label">${t.entryTotal}</span><span class="value">₹${data.total.toLocaleString("en-IN")}</span>`;
+
+          const totalLabel = document.createElement("span");
+          totalLabel.className = "label";
+          totalLabel.textContent = t.entryTotal;
+
+          const totalValue = document.createElement("span");
+          totalValue.className = "value";
+          totalValue.textContent = `₹${data.total.toLocaleString("en-IN")}`;
+
+          total.append(totalLabel, totalValue);
           block.appendChild(total);
 
           userBlock.appendChild(block);
@@ -871,6 +992,7 @@
         deleteButton.className = "delete-note";
         deleteButton.textContent = "×";
         deleteButton.title = t.delete;
+        deleteButton.setAttribute("aria-label", t.delete);
         deleteButton.onclick = () => deleteNote(note.id);
 
         const text = document.createElement("div");
@@ -888,6 +1010,5 @@
 
     initLockScreen();
   </script>
-
 </body>
 </html>
