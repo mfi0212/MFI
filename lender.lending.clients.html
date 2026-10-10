@@ -14,7 +14,6 @@
 
     body {
       background: #f5f5f5;
-      min-height: 100vh;
       padding: 30px 20px;
       color: #222;
     }
@@ -172,7 +171,7 @@
 <body>
   <div class="container">
     <h1>VSL | Lending Clients</h1>
-    <p class="subtitle">Click a client to view details</p>
+    <p class="subtitle">Powered by Lendlink</p>
 
     <div id="clientsList">
       <!-- Filled by JavaScript -->
@@ -182,9 +181,6 @@
   <div class="toast" id="toast">ID copied!</div>
 
   <script>
-    // ============================================
-    //  EASY TO EDIT - Just change this array
-    // ============================================
     const clients = [
       {
         id: "CLNT-21012",
@@ -197,13 +193,8 @@
         interest: "1%/month"
       },
     ];
-
-    // Google Drive link (change if needed)
     const googleDriveLink = "https://forms.gle/MPLqM9zQG8L18kF78";
 
-    // ============================================
-    //  Render the details cards
-    // ============================================
     const list = document.getElementById("clientsList");
 
     clients.forEach(client => {
@@ -236,6 +227,7 @@
 
       list.appendChild(card);
     });
+
     function copyId(id, button) {
       navigator.clipboard.writeText(id).then(() => {
         button.textContent = "Copied!";
