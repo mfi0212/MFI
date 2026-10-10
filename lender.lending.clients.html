@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VSL |  Lending Clients</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f5f5f5;
+      min-height: 100vh;
+      padding: 30px 20px;
+      color: #222;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 6px;
+      font-size: 1.8rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 25px;
+      font-size: 0.95rem;
+    }
+
+    .client-card {
+      background: white;
+      border: 1px solid #ccc;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    details {
+      width: 100%;
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "▾";
+      font-size: 1.1rem;
+      color: #666;
+      transition: transform 0.2s;
+    }
+
+    details[open] summary::after {
+      transform: rotate(180deg);
+    }
+
+    summary:hover {
+      background: #f9f9f9;
+    }
+
+    .id-cell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .client-id {
+      font-family: monospace;
+      background: #eee;
+      padding: 4px 8px;
+      border: 1px solid #ccc;
+      font-size: 0.95rem;
+    }
+
+    .copy-btn {
+      background: #e0e0e0;
+      border: 1px solid #aaa;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    .copy-btn:hover {
+      background: #d0d0d0;
+    }
+
+    .copy-btn.copied {
+      background: #4caf50;
+      color: white;
+      border-color: #388e3c;
+    }
+
+    .details-body {
+      padding: 0 16px 16px;
+      border-top: 1px solid #eee;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .info-row:last-of-type {
+      border-bottom: none;
+    }
+
+    .label {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .amount {
+      font-weight: 600;
+      color: #2e7d32;
+    }
+
+    .interest {
+      font-weight: 600;
+      color: #c62828;
+    }
+
+    .lend-btn {
+      background: #1565c0;
+      color: white;
+      border: 1px solid #0d47a1;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 12px;
+      border-radius: 4px;
+    }
+
+    .lend-btn:hover {
+      background: #0d47a1;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #333;
+      color: white;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: all 0.25s ease;
+      border: 1px solid #111;
+      z-index: 100;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>VSL | Lending Clients</h1>
+    <p class="subtitle">Click a client to view details</p>
+
+    <div id="clientsList">
+      <!-- Filled by JavaScript -->
+    </div>
+  </div>
+
+  <div class="toast" id="toast">ID copied!</div>
+
+  <script>
+    // ============================================
+    //  EASY TO EDIT - Just change this array
+    // ============================================
+    const clients = [
+      {
+        id: "CL-1001",
+        amount: "₹35,000",
+        interest: "2%/month"
+      },
+      {
+        id: "CL-1002",
+        amount: "₹50,000",
+        interest: "1%/month"
+      },
+    ];
+
+    // Google Drive link (change if needed)
+    const googleDriveLink = "https://forms.gle/MPLqM9zQG8L18kF78";
+
+    // ============================================
+    //  Render the details cards
+    // ============================================
+    const list = document.getElementById("clientsList");
+
+    clients.forEach(client => {
+      const card = document.createElement("div");
+      card.className = "client-card";
+
+      card.innerHTML = `
+        <details>
+          <summary>
+            <div class="id-cell">
+              <span class="client-id">${client.id}</span>
+              <button class="copy-btn" onclick="event.stopPropagation(); copyId('${client.id}', this)">Copy</button>
+            </div>
+          </summary>
+          <div class="details-body">
+            <div class="info-row">
+              <span class="label">Amount</span>
+              <span class="amount">${client.amount}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Interest</span>
+              <span class="interest">${client.interest}</span>
+            </div>
+            <a href="${googleDriveLink}" target="_self" class="lend-btn">
+              Lend to this client
+            </a>
+          </div>
+        </details>
+      `;
+
+      list.appendChild(card);
+    });
+
+    // ============================================
+    //  Copy ID function
+    // ============================================
+    function copyId(id, button) {
+      navigator.clipboard.writeText(id).then(() => {
+        button.textContent = "Copied!";
+        button.classList.add("copied");
+
+        const toast = document.getElementById("toast");
+        toast.classList.add("show");
+
+        setTimeout(() => {
+          button.textContent = "Copy";
+          button.classList.remove("copied");
+          toast.classList.remove("show");
+        }, 1500);
+      });
+    }
+  </script>
+</body>
+</html>
