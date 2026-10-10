@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>BS&MFI | VSL mini lends</title>
+<title>BS&MFI | VSL Mini lends</title>
 <link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <style>*{
       -webkit-user-select: none;
       user-select: none;
-      -webkit-tap-highlight-color: transparent;}</style>
+      -webkit-tap-highlight-color: transparent;}
+      button,input{
+        padding: 5px;
+      }</style>
 <body>
-<h1>BS&MFI | VSL Mini lends</h1>
+<h2>BS&MFI | VSL Mini lends</h2>
 
 <p>Enter Phone Number:</p>
-<input type="text" id="phone" placeholder="Enter phone number">
+<input type="text" id="phone" placeholder="Enter password">
 <button onclick="checkLoan()">Check</button>
 
 <div id="result"></div>
 
 <script>
-        document.addEventListener('contextmenu', e => e.preventDefault());
-
+document.addEventListener('contextmenu', e => e.preventDefault());
 var loans = {
-  "8688211789": [
+  "China11789": [
     { name: "Chinna", amount: 1000, takenDate: "09-10-2026", dueDate: "15-10-2026" },
   ],
 };
@@ -41,7 +43,7 @@ function checkLoan() {
     var today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    var html = "<h2>Phone: " + phone + "</h2>";
+    var html = "<h2>Borrowed by : " + phone + "</h2>";
     html += "<p>Total Borrows: " + loans[phone].length + "</p>";
     html += "<hr>";
 
@@ -81,5 +83,9 @@ function checkLoan() {
   }
 }
 </script>
+
+<a style="color:white;text-decoration:none;position: fixed;bottom: 0;right: 0;" href="https://blackswan19.github.io/BS/bs.dev.tol"><div class="madein" style="position:absolute;white-space:nowrap;bottom:0;right:0;background:#2b6cc2;padding:3px;text-transform:capitalize;font-size:13px;">
+    made in BsDevTol
+</div></a>
 </body>
 </html>
