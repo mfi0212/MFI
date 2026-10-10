@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VSL | Interest Calculator</title>
+
+  <link rel="icon" href="https://i.ibb.co/V0cvj0Ky/VSL-logo.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      border-radius: 0 !important;
+      -webkit-tap-highlight-color: transparent;
+    }
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+      background: #fff;
+      color: #222;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 360px;
+    }
+
+    h1 {
+      font-size: 23px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid rgba(0, 0, 0, 0.184);
+      background: #fff;
+      color: #222;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #2b2b2b;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 4px;
+      border: 1px solid black;
+      background: black;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    button:active {
+      opacity: 0.8;
+    }
+
+    .result {
+      display: none;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid #ddd;
+    }
+
+    .result p {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 14px;
+    }
+
+    .result strong {
+      font-size: 16px;
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+
+    .split-note {
+      font-size: 12px;
+      color: #555;
+      margin-top: -6px;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    .split-explanation {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid #eee;
+      font-size: 12px;
+      color: #555;
+      line-height: 1.55;
+    }
+
+    .split-explanation h3 {
+      font-size: 13px;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 8px;
+    }
+
+    .split-explanation ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .split-explanation li {
+      margin-bottom: 4px;
+    }
+
+    footer {
+      font-size: 12px;
+      text-align: center;
+      color: #888;
+      padding: 15px 0 0;
+      margin-top: 18px;
+      border-top: 1px solid #eee;
+    }
+
+    .error {
+      display: none;
+      margin-top: 12px;
+      color: red;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>Interest Calculator</h1>
+
+    <form id="interestForm">
+      <div class="form-group">
+        <input
+          type="number"
+          id="amount"
+          placeholder="Enter amount"
+          min="0.01"
+          step="any"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <input
+          type="number"
+          id="interestRate"
+          placeholder="Enter interest rate"
+          min="0"
+          step="any"
+          required
+        >
+      </div>
+
+      <button type="submit">Calculate interest now</button>
+      <p class="error" id="error"></p>
+    </form>
+
+    <div class="result" id="result" aria-live="polite">
+      <p>Total Interest <strong id="interestAmount">₹0.00</strong></p>
+      <p>VSL Split <strong id="vslSplit">₹0.00</strong></p>
+      <p>Your Split <strong id="yourSplit">₹0.00</strong></p>
+
+      <div class="split-explanation">
+        <h3>Our Split Rates</h3>
+        <p>Includes all the costs and account management, data maintenance, lender arrangements & security</p>
+      </div>
+    </div>
+
+    <footer>VSL, All right reserved. <br> Version(v.02.22.9)</footer>
+  </main>
+
+  <script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    document.getElementById('interestForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const amountInput = document.getElementById('amount');
+      const rateInput = document.getElementById('interestRate');
+      const amount = Number(amountInput.value);
+      const rate = Number(rateInput.value);
+      const error = document.getElementById('error');
+      const result = document.getElementById('result');
+
+      error.style.display = 'none';
+      result.style.display = 'none';
+
+      if (
+        amountInput.value.trim() === '' ||
+        rateInput.value.trim() === '' ||
+        !Number.isFinite(amount) ||
+        !Number.isFinite(rate) ||
+        amount <= 0 ||
+        rate < 0
+      ) {
+        error.textContent = 'Enter a valid amount and interest rate.';
+        error.style.display = 'block';
+        return;
+      }
+
+      // Calculate total interest
+      const interest = amount * rate / 100;
+
+      // Determine VSL split percentage based on amount
+      let vslPercent;
+      if (amount < 100000) {
+        vslPercent = 50;          // below 1 Lakh
+      } else if (amount < 500000) {
+        vslPercent = 48;          // below 5 Lakh
+      } else if (amount < 1000000) {
+        vslPercent = 45;          // below 10 Lakh
+      } else {
+        vslPercent = 40;          // 10 Lakh & above
+      }
+
+      const vslShare = interest * (vslPercent / 100);
+      const yourShare = interest - vslShare;
+
+      const format = value => '₹' + value.toLocaleString('en-IN', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+
+      document.getElementById('interestAmount').textContent = format(interest);
+      document.getElementById('vslSplit').textContent = format(vslShare);
+      document.getElementById('yourSplit').textContent = format(yourShare);
+
+      result.style.display = 'block';
+    });
+  </script>
+</body>
+</html>

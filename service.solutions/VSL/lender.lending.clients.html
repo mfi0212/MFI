@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VSL |  Lending Clients</title>
+   <link rel="icon" href="https://i.ibb.co/V0cvj0Ky/VSL-logo.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+    body {
+      background: #f5f5f5;
+      padding: 30px 20px;
+      color: #222;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 6px;
+      font-size: 1.8rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 25px;
+      font-size: 0.95rem;
+    }
+
+    .client-card {
+         background: transparent;
+    border: 1px solid #00000014;
+    margin-bottom: 12px;
+    overflow: hidden;
+    }
+
+    details {
+      width: 100%;
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "▾";
+      font-size: 1.1rem;
+      color: #666;
+      transition: transform 0.2s;
+    }
+
+    details[open] summary::after {
+      transform: rotate(180deg);
+    }
+    .id-cell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .client-id {
+      font-family: monospace;
+      background: #eee;
+      padding: 4px 8px;
+      border: 1px solid #ccc;
+      font-size: 0.95rem;
+    }
+
+    .copy-btn {
+      background: blue;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: white;
+    }
+    .copy-btn.copied {
+      background: #4caf50;
+      color: white;
+      border-color: #388e3c;
+    }
+
+    .details-body {
+     padding: 0 16px 16px;
+    background: white;
+      border-top: 1px solid #eee;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .info-row:last-of-type {
+      border-bottom: none;
+    }
+
+    .label {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .amount {
+      font-weight: 600;
+      color: #009a08;
+    }
+
+    .interest {
+      font-weight: 600;
+      color: blue;
+    }
+
+    .lend-btn {
+      background: blue;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0;
+    font-size: 15px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #333;
+      color: white;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: all 0.25s ease;
+      border: 1px solid #111;
+      z-index: 100;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>VSL | Lending Clients</h1>
+    <p class="subtitle">Powered by Lendlink</p>
+
+    <div id="clientsList">
+      <!-- Filled by JavaScript -->
+    </div>
+  </div>
+
+  <div class="toast" id="toast">ID copied!</div>
+
+  <script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    const clients = [
+      {
+        id: "CLNT-21012",
+        amount: "₹35,000",
+        interest: "2%/month"
+      },
+      {
+        id: "CLNT-12312",
+        amount: "₹50,000",
+        interest: "1%/month"
+      },
+    ];
+    const googleDriveLink = "https://forms.gle/MPLqM9zQG8L18kF78";
+
+    const list = document.getElementById("clientsList");
+
+    clients.forEach(client => {
+      const card = document.createElement("div");
+      card.className = "client-card";
+
+      card.innerHTML = `
+        <details>
+          <summary>
+            <div class="id-cell">
+              <span class="client-id">${client.id}</span>
+              <button class="copy-btn" onclick="event.stopPropagation(); copyId('${client.id}', this)">Copy</button>
+            </div>
+          </summary>
+          <div class="details-body">
+            <div class="info-row">
+              <span class="label">Amount</span>
+              <span class="amount">${client.amount}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Interest</span>
+              <span class="interest">${client.interest}</span>
+            </div>
+            <a href="${googleDriveLink}" target="_self" class="lend-btn">
+              Lend to this client
+            </a>
+          </div>
+        </details>
+      `;
+
+      list.appendChild(card);
+    });
+
+    function copyId(id, button) {
+      navigator.clipboard.writeText(id).then(() => {
+        button.textContent = "Copied!";
+        button.classList.add("copied");
+
+        const toast = document.getElementById("toast");
+        toast.classList.add("show");
+
+        setTimeout(() => {
+          button.textContent = "Copy";
+          button.classList.remove("copied");
+          toast.classList.remove("show");
+        }, 1500);
+      });
+    }
+  </script>
+</body>
+</html>
