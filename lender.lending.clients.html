@@ -38,11 +38,10 @@
     }
 
     .client-card {
-      background: white;
-      border: 1px solid #ccc;
-      margin-bottom: 12px;
-      border-radius: 6px;
-      overflow: hidden;
+         background: transparent;
+    border: 1px solid #00000014;
+    margin-bottom: 12px;
+    overflow: hidden;
     }
 
     details {
@@ -75,11 +74,6 @@
     details[open] summary::after {
       transform: rotate(180deg);
     }
-
-    summary:hover {
-      background: #f9f9f9;
-    }
-
     .id-cell {
       display: flex;
       align-items: center;
@@ -95,17 +89,13 @@
     }
 
     .copy-btn {
-      background: #e0e0e0;
-      border: 1px solid #aaa;
-      padding: 5px 10px;
-      cursor: pointer;
-      font-size: 0.85rem;
+      background: blue;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: white;
     }
-
-    .copy-btn:hover {
-      background: #d0d0d0;
-    }
-
     .copy-btn.copied {
       background: #4caf50;
       color: white;
@@ -113,7 +103,8 @@
     }
 
     .details-body {
-      padding: 0 16px 16px;
+     padding: 0 16px 16px;
+    background: white;
       border-top: 1px solid #eee;
     }
 
@@ -135,30 +126,25 @@
 
     .amount {
       font-weight: 600;
-      color: #2e7d32;
+      color: #009a08;
     }
 
     .interest {
       font-weight: 600;
-      color: #c62828;
+      color: blue;
     }
 
     .lend-btn {
-      background: #1565c0;
-      color: white;
-      border: 1px solid #0d47a1;
-      padding: 8px 16px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 12px;
-      border-radius: 4px;
-    }
-
-    .lend-btn:hover {
-      background: #0d47a1;
+      background: blue;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0;
+    font-size: 15px;
     }
 
     /* Toast */
@@ -201,12 +187,12 @@
     // ============================================
     const clients = [
       {
-        id: "CL-1001",
+        id: "CLNT-21012",
         amount: "₹35,000",
         interest: "2%/month"
       },
       {
-        id: "CL-1002",
+        id: "CLNT-12312",
         amount: "₹50,000",
         interest: "1%/month"
       },
@@ -250,10 +236,6 @@
 
       list.appendChild(card);
     });
-
-    // ============================================
-    //  Copy ID function
-    // ============================================
     function copyId(id, button) {
       navigator.clipboard.writeText(id).then(() => {
         button.textContent = "Copied!";
