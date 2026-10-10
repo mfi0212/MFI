@@ -11,7 +11,6 @@
       --fg: #1a1a1a;
       --muted: #6b6b6b;
       --border: #1a1a1a;
-      --card: #ffffff;
       --muted-bg: #f4f4f4;
       --primary: #0025ff;
       --primary-fg: #ffffff;
@@ -25,7 +24,7 @@
       box-sizing: border-box;
       border-radius: 0 !important;
       letter-spacing: 0;
-	 font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
     }
 
     body {
@@ -48,26 +47,25 @@
       min-height: 100vh;
     }
 
-    /* top banner */
     .top-banner {
       text-align: center;
-    padding: 13px;
-    background: var(--accent);
-    color: var(--primary-fg);
-    border-bottom: 2px solid var(--border);
-    font-size: 0.8125em;
-    font-weight: 600;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    }
-    .top-banner a {
+      padding: 13px;
+      background: var(--accent);
       color: var(--primary-fg);
-    text-decoration: underline;
-    text-underline-position: from-font;
+      border-bottom: 2px solid var(--border);
+      font-size: 0.8125em;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    /* header */
+    .top-banner a {
+      color: var(--primary-fg);
+      text-decoration: underline;
+      text-underline-position: from-font;
+    }
+
     .header {
       display: flex;
       justify-content: space-between;
@@ -77,21 +75,25 @@
       border-bottom: 2px solid var(--border);
       flex-wrap: wrap;
     }
+
     .header h2 {
       font-size: 1.25em;
       font-weight: 700;
       letter-spacing: -0.02em;
     }
+
     .today {
       font-size: 0.8125em;
       color: var(--muted);
       white-space: nowrap;
     }
+
     .font-controls {
       display: flex;
       align-items: stretch;
       border: 1px solid var(--border);
     }
+
     .font-btn {
       width: 36px;
       height: 36px;
@@ -106,13 +108,16 @@
       align-items: center;
       justify-content: center;
     }
+
     .font-btn:last-of-type {
       border-right: none;
     }
+
     .font-btn:hover {
       background: var(--fg);
       color: var(--bg);
     }
+
     .font-size-label {
       min-width: 36px;
       display: flex;
@@ -122,6 +127,7 @@
       border-right: 1px solid var(--border);
       background: var(--muted-bg);
     }
+
     .lang-btn {
       height: 36px;
       padding: 0 10px;
@@ -134,12 +140,12 @@
       cursor: pointer;
       font-family: inherit;
     }
+
     .lang-btn:hover {
       background: var(--fg);
       color: var(--bg);
     }
 
-    /* navigation – segmented */
     .navigation {
       display: grid;
       grid-template-columns: 1fr 1fr auto;
@@ -147,7 +153,9 @@
       background: var(--border);
       border-bottom: 2px solid var(--border);
     }
-    .nav-btn, .total-btn {
+
+    .nav-btn,
+    .total-btn {
       min-height: 42px;
       background: var(--bg);
       color: var(--fg);
@@ -158,23 +166,30 @@
       font-family: inherit;
       padding: 0 14px;
     }
+
     .nav-btn:hover,
     .nav-btn.active {
       background: var(--fg);
       color: var(--bg);
     }
+
     .total-btn {
       background: var(--fg);
       color: var(--bg);
     }
-    .total-btn:hover {   
+
+    .total-btn:hover {
       background: var(--primary);
       color: var(--primary-fg);
     }
 
-    /* sections */
-    .section { display: none; }
-    .section.active { display: block; }
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
 
     .section-title {
       padding: 12px 12px 8px;
@@ -185,10 +200,10 @@
       letter-spacing: 0.04em;
     }
 
-    /* user block */
     .user {
       border-bottom: 2px solid var(--border);
     }
+
     .user-name {
       padding: 10px 12px;
       font-size: 0.9375em;
@@ -198,25 +213,40 @@
       text-align: center;
     }
 
-    /* entry – dense rows */
     .entry {
       border-bottom: 15px solid #00000047;
       padding: 0;
     }
-    .entry:last-child { border-bottom: none; }
+
+    .entry:last-child {
+      border-bottom: none;
+    }
 
     .entry-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 12px;
       padding: 7px 12px;
       font-size: 0.875em;
       border-bottom: 1px solid var(--border);
       min-height: 36px;
     }
-    .entry-row:last-child { border-bottom: none; }
-    .entry-row .label { font-weight: 600; }
-    .entry-row .value { font-weight: 400; font-variant-numeric: tabular-nums; }
+
+    .entry-row:last-child {
+      border-bottom: none;
+    }
+
+    .entry-row .label {
+      font-weight: 600;
+    }
+
+    .entry-row .value {
+      font-weight: 400;
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+      overflow-wrap: anywhere;
+    }
 
     .paid-row {
       display: flex;
@@ -227,9 +257,11 @@
       gap: 10px;
       min-height: 40px;
     }
+
     .paid-input {
       width: 110px;
-      padding: 6px 0px;
+      min-width: 0;
+      padding: 6px 0;
       border: 2px solid transparent;
       background: var(--bg);
       text-align: right;
@@ -238,6 +270,7 @@
       font-variant-numeric: tabular-nums;
       outline: none;
     }
+
     .paid-input:focus {
       outline: 2px solid var(--primary);
       outline-offset: -2px;
@@ -249,24 +282,27 @@
       padding: 8px 12px;
       display: flex;
       justify-content: space-between;
+      gap: 12px;
       font-size: 0.875em;
       font-weight: 600;
     }
+
     .entry-total {
       background: var(--primary);
       color: var(--primary-fg);
       padding: 8px 12px;
       display: flex;
       justify-content: space-between;
+      gap: 12px;
       font-size: 0.875em;
       font-weight: 700;
       border-top: 1px solid var(--border);
     }
 
-    /* notes */
     .notes-box {
       padding: 0;
     }
+
     .note-input {
       display: block;
       width: 100%;
@@ -281,9 +317,11 @@
       outline: none;
       background: var(--bg);
     }
+
     .note-input:focus {
       background: var(--muted-bg);
     }
+
     .save-btn {
       width: 100%;
       padding: 12px;
@@ -296,27 +334,35 @@
       cursor: pointer;
       font-family: inherit;
     }
+
     .save-btn:hover {
       background: var(--fg);
       color: var(--bg);
     }
+
     .note {
       position: relative;
       padding: 12px 40px 12px 12px;
       border-bottom: 1px solid var(--border);
     }
-    .note:last-child { border-bottom: none; }
+
+    .note:last-child {
+      border-bottom: none;
+    }
+
     .note-text {
       font-size: 1em;
       white-space: pre-wrap;
       word-break: break-word;
       line-height: 1.45;
     }
+
     .note-date {
       margin-top: 6px;
       font-size: 0.6875em;
       color: var(--muted);
     }
+
     .delete-note {
       position: absolute;
       top: 8px;
@@ -334,6 +380,7 @@
       align-items: center;
       line-height: 1;
     }
+
     .empty-notes {
       padding: 24px 12px;
       text-align: center;
@@ -349,18 +396,21 @@
       border-top: 1px solid var(--border);
     }
 
-    /* modal */
     .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.65);
+      background: rgba(0, 0, 0, 0.65);
       z-index: 1000;
       align-items: center;
       justify-content: center;
       padding: 16px;
     }
-    .modal-overlay.show { display: flex; }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
     .modal {
       background: var(--bg);
       border: 2px solid var(--border);
@@ -369,6 +419,7 @@
       max-height: 85vh;
       overflow-y: auto;
     }
+
     .modal-header {
       display: flex;
       justify-content: space-between;
@@ -376,10 +427,12 @@
       padding: 10px 12px;
       border-bottom: 2px solid var(--border);
     }
+
     .modal-header h3 {
       font-size: 0.9375em;
       font-weight: 700;
     }
+
     .modal-close {
       width: 32px;
       height: 32px;
@@ -393,27 +446,60 @@
       justify-content: center;
       line-height: 1;
     }
+
     .modal-close:hover {
       background: var(--destructive);
     }
+
     .modal-summary {
       background: var(--primary);
       color: var(--primary-fg);
       padding: 14px 12px;
     }
+
     .modal-summary .row {
       display: flex;
       justify-content: space-between;
+      gap: 12px;
       margin-bottom: 8px;
       font-size: 0.875em;
     }
+
+    .modal-summary .row span:last-child {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
     .modal-summary .row:last-child {
       margin-bottom: 0;
       margin-top: 10px;
       padding-top: 10px;
-      border-top: 1px solid rgba(255,255,255,0.35);
+      border-top: 1px solid rgba(255, 255, 255, 0.35);
       font-weight: 700;
       font-size: 1em;
+    }
+
+    @media (max-width: 420px) {
+      .header {
+        gap: 8px;
+      }
+
+      .header h2 {
+        font-size: 1.1em;
+      }
+
+      .font-btn {
+        width: 32px;
+      }
+
+      .font-size-label {
+        min-width: 30px;
+      }
+
+      .nav-btn,
+      .total-btn {
+        padding: 0 8px;
+      }
     }
   </style>
 </head>
@@ -454,10 +540,9 @@
       </div>
     </section>
 
-    <footer>VSL, All right reserved. <br> Version(v.02.22.9)</footer>
+    <footer>VSL, All right reserved.<br>Version(v.02.22.9)</footer>
   </div>
 
-  <!-- TOTAL POPUP -->
   <div class="modal-overlay" id="totalModal" onclick="closeTotalPopup(event)">
     <div class="modal" onclick="event.stopPropagation()">
       <div class="modal-header">
@@ -471,41 +556,60 @@
   <script>
     const users = [
       {
-        name: "Pawan naidu/పవన్ నాయుడు",
+        name: "",
         entries: [
-          { amount: 40000, interest: 2, takenDate: "2026-05-30", interestPaid: 2800 },
-          { amount: 47800, interest: 2, takenDate: "2026-09-12", interestPaid: 0 },
-          { amount: 12200, interest: 2, takenDate: "2026-09-12", interestPaid: 0 },
+          {
+            amount: 40000,
+            interest: 2,
+            takenDate: "2026-05-30",
+            borrowedBy: "Pawan naidu",
+            interestPaid: 2800
+          },
+          {
+            amount: 47800,
+            interest: 2,
+            takenDate: "2026-09-12",
+            borrowedBy: "Pawan naidu",
+            interestPaid: 0
+          },
+          {
+            amount: 12200,
+            interest: 2,
+            takenDate: "2026-09-12",
+            borrowedBy: "Pawan naidu",
+            interestPaid: 0
+          }
         ]
-      },
+      }
     ];
+
     let currentLang = "te";
     let currentFontSize = 16;
 
     const FONT_SIZE_KEY = "interestTrackerFontSize";
     const MIN_FONT = 12;
     const MAX_FONT = 28;
+    const NOTES_KEY = "interestTrackerNotes";
+    const PAID_KEY = "interestTrackerPaidAmounts";
 
     const lang = {
       en: {
         title: "VSL | Interest",
         today: "Today",
-        interestTitle: "",
+        interestTitle: "Interest Details",
         notesTitle: "Notes",
         amount: "Taken Amount",
         interest: "Interest",
         takenDate: "Taken Date",
+        borrowedBy: "Borrowed By",
         days: "Days Passed",
         interestPaid: "Interest Paid",
         remaining: "Remaining Interest",
-        entryTotal: "Total (Amt + Interest)",
+        entryTotal: "Total (Amount + Interest)",
         interestNav: "Interest",
         notesNav: "Notes",
         totalBtn: "Total",
         modalTitle: "Total Summary",
-        principal: "Principal",
-        remainingInterest: "Remaining Interest",
-        entryTotalLabel: "Total",
         sumPrincipal: "Total Principal",
         sumInterest: "Total Remaining Interest",
         grandTotal: "Grand Total",
@@ -517,22 +621,20 @@
       te: {
         title: "VSL | వడ్డీ",
         today: "ఈరోజు",
-        interestTitle: "",
+        interestTitle: "వడ్డీ వివరాలు",
         notesTitle: "గమనికలు",
         amount: "తీసుకున్న డబ్బు",
         interest: "వడ్డీ",
         takenDate: "తీసుకున్న తేదీ",
-        days: "గడిచినా రోజులు",
+        borrowedBy: "ఎవరి దగ్గర తీసుకున్నారు",
+        days: "గడిచిన రోజులు",
         interestPaid: "చెల్లించిన వడ్డీ",
         remaining: "మిగిలిన వడ్డీ",
-        entryTotal: "మొత్తం",
+        entryTotal: "మొత్తం (అసలు + వడ్డీ)",
         interestNav: "వడ్డీ",
         notesNav: "గమనికలు",
         totalBtn: "మొత్తం",
         modalTitle: "మొత్తం వివరాలు",
-        principal: "అసలు",
-        remainingInterest: "మిగిలిన వడ్డీ",
-        entryTotalLabel: "మొత్తం",
         sumPrincipal: "మొత్తం అసలు",
         sumInterest: "మొత్తం మిగిలిన వడ్డీ",
         grandTotal: "మొత్తం",
@@ -544,18 +646,27 @@
     };
 
     const monthNames = {
-      en: ["January","February","March","April","May","June","July","August","September","October","November","December"],
-      te: ["జనవరి","ఫిబ్రవరి","మార్చి","ఏప్రిల్","మే","జూన్","జూలై","ఆగస్టు","సెప్టెంబర్","అక్టోబర్","నవంబర్","డిసెంబర్"]
+      en: [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ],
+      te: [
+        "జనవరి", "ఫిబ్రవరి", "మార్చి", "ఏప్రిల్", "మే", "జూన్",
+        "జూలై", "ఆగస్టు", "సెప్టెంబర్", "అక్టోబర్", "నవంబర్", "డిసెంబర్"
+      ]
     };
 
     function loadFontSize() {
       const saved = localStorage.getItem(FONT_SIZE_KEY);
+
       if (saved) {
         const size = parseInt(saved, 10);
+
         if (!isNaN(size) && size >= MIN_FONT && size <= MAX_FONT) {
           currentFontSize = size;
         }
       }
+
       applyFontSize();
     }
 
@@ -566,7 +677,9 @@
 
     function changeFontSize(delta) {
       const newSize = currentFontSize + delta;
+
       if (newSize < MIN_FONT || newSize > MAX_FONT) return;
+
       currentFontSize = newSize;
       applyFontSize();
       localStorage.setItem(FONT_SIZE_KEY, currentFontSize);
@@ -584,6 +697,7 @@
         interestNav.classList.add("active");
         notesNav.classList.remove("active");
       }
+
       if (section === "notes") {
         interestSection.classList.remove("active");
         notesSection.classList.add("active");
@@ -595,7 +709,11 @@
 
     function parseDate(dateStr) {
       const parts = dateStr.split("-");
-      return new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+      return new Date(
+        Number(parts[0]),
+        Number(parts[1]) - 1,
+        Number(parts[2])
+      );
     }
 
     function formatDateWithMonth(dateStr) {
@@ -606,13 +724,16 @@
     function getDays(takenDate) {
       const start = parseDate(takenDate);
       const today = new Date();
+
       start.setHours(0, 0, 0, 0);
       today.setHours(0, 0, 0, 0);
+
       return Math.max(0, Math.floor((today - start) / 86400000));
     }
 
     function showToday() {
       const today = new Date();
+
       document.getElementById("todayDate").innerText =
         `${lang[currentLang].today}: ${today.getDate()} ${monthNames[currentLang][today.getMonth()]} ${today.getFullYear()}`;
     }
@@ -626,6 +747,7 @@
 
     function updateLanguage() {
       const t = lang[currentLang];
+
       document.documentElement.lang = currentLang;
       document.title = t.title;
       document.getElementById("title").innerText = t.title;
@@ -637,73 +759,149 @@
       document.getElementById("modalTitle").innerText = t.modalTitle;
       document.getElementById("noteInput").placeholder = t.placeholder;
       document.getElementById("saveButton").innerText = t.save;
+
       showToday();
+    }
+
+    function loadPaidAmounts() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(PAID_KEY));
+
+        if (saved && typeof saved === "object") {
+          users.forEach((user, userIndex) => {
+            user.entries.forEach((entry, entryIndex) => {
+              const key = `${userIndex}-${entryIndex}`;
+
+              if (Object.prototype.hasOwnProperty.call(saved, key)) {
+                entry.interestPaid = Math.max(0, Number(saved[key]) || 0);
+              }
+            });
+          });
+        }
+      } catch (error) {
+        console.error("Unable to load saved interest payments.", error);
+      }
+    }
+
+    function savePaidAmounts() {
+      const paid = {};
+
+      users.forEach((user, userIndex) => {
+        user.entries.forEach((entry, entryIndex) => {
+          paid[`${userIndex}-${entryIndex}`] = entry.interestPaid;
+        });
+      });
+
+      localStorage.setItem(PAID_KEY, JSON.stringify(paid));
     }
 
     function getEntryData(entry) {
       const days = getDays(entry.takenDate);
-      const totalInterest = Math.round((entry.amount * entry.interest * days) / (100 * 30));
+      const totalInterest = Math.round(
+        (entry.amount * entry.interest * days) / (100 * 30)
+      );
       const remaining = Math.max(0, totalInterest - entry.interestPaid);
       const total = entry.amount + remaining;
+
       return { days, totalInterest, remaining, total };
+    }
+
+    function formatMoney(amount) {
+      return "₹" + Number(amount).toLocaleString("en-IN");
     }
 
     function render() {
       const app = document.getElementById("app");
       const t = lang[currentLang];
+
       app.innerHTML = "";
 
-      users.forEach((user, userIndex) => {
-        const entriesHTML = user.entries.map((entry, entryIndex) => {
-          const { days, remaining, total } = getEntryData(entry);
+      users.forEach(user => {
+        const userElement = document.createElement("div");
+        userElement.className = "user";
 
-          return `
-            <div class="entry">
-              <div class="entry-row">
-                <span class="label">${t.amount}</span>
-                <span class="value">₹${Number(entry.amount).toLocaleString("en-IN")}</span>
-              </div>
-              <div class="entry-row">
-                <span class="label">${t.interest}</span>
-                <span class="value">${entry.interest}%</span>
-              </div>
-              <div class="entry-row">
-                <span class="label">${t.takenDate}</span>
-                <span class="value">${formatDateWithMonth(entry.takenDate)}</span>
-              </div>
-              <div class="entry-row">
-                <span class="label">${t.days}</span>
-                <span class="value">${days}</span>
-              </div>
-              <div class="paid-row">
-                <span class="label">${t.interestPaid}</span>
-                <input class="paid-input" type="number" min="0" value="${entry.interestPaid}"
-                  oninput="updatePaid(${userIndex}, ${entryIndex}, this.value)">
-              </div>
-              <div class="remaining">
-                <span class="label">${t.remaining}</span>
-                <span class="value">₹${remaining.toLocaleString("en-IN")}</span>
-              </div>
-              <div class="entry-total">
-                <span class="label">${t.entryTotal}</span>
-                <span class="value">₹${total.toLocaleString("en-IN")}</span>
-              </div>
+        const userName = document.createElement("div");
+        userName.className = "user-name";
+        userName.textContent = user.name;
+        userElement.appendChild(userName);
+
+        user.entries.forEach((entry, entryIndex) => {
+          const { days, remaining, total } = getEntryData(entry);
+          const entryElement = document.createElement("div");
+          entryElement.className = "entry";
+
+          entryElement.innerHTML = `
+            <div class="entry-row">
+              <span class="label">${t.amount}</span>
+              <span class="value">${formatMoney(entry.amount)}</span>
+            </div>
+            <div class="entry-row">
+              <span class="label">${t.borrowedBy}</span>
+              <span class="value borrowed-value"></span>
+            </div>
+            <div class="entry-row">
+              <span class="label">${t.interest}</span>
+              <span class="value">${entry.interest}%</span>
+            </div>
+            <div class="entry-row">
+              <span class="label">${t.takenDate}</span>
+              <span class="value">${formatDateWithMonth(entry.takenDate)}</span>
+            </div>
+            <div class="entry-row">
+              <span class="label">${t.days}</span>
+              <span class="value">${days}</span>
+            </div>
+            <div class="paid-row">
+              <span class="label">${t.interestPaid}</span>
+              <input
+                class="paid-input"
+                type="number"
+                min="0"
+                step="1"
+                aria-label="${t.interestPaid}"
+                value="${entry.interestPaid}"
+                data-entry-index="${entryIndex}"
+              >
+            </div>
+            <div class="remaining">
+              <span class="label">${t.remaining}</span>
+              <span class="value">${formatMoney(remaining)}</span>
+            </div>
+            <div class="entry-total">
+              <span class="label">${t.entryTotal}</span>
+              <span class="value">${formatMoney(total)}</span>
             </div>
           `;
-        }).join("");
 
-        app.innerHTML += `
-          <div class="user">
-            <div class="user-name">${user.name}</div>
-            ${entriesHTML}
-          </div>
-        `;
+          entryElement.querySelector(".borrowed-value").textContent =
+            entry.borrowedBy || "-";
+
+          const paidInput = entryElement.querySelector(".paid-input");
+
+          paidInput.addEventListener("change", function () {
+            const value = Math.max(0, Number(this.value) || 0);
+            entry.interestPaid = value;
+            savePaidAmounts();
+            render();
+          });
+
+          paidInput.addEventListener("input", function () {
+            entry.interestPaid = Math.max(0, Number(this.value) || 0);
+            savePaidAmounts();
+
+            const { remaining, total } = getEntryData(entry);
+            const remainingElement = entryElement.querySelector(".remaining .value");
+            const totalElement = entryElement.querySelector(".entry-total .value");
+
+            remainingElement.textContent = formatMoney(remaining);
+            totalElement.textContent = formatMoney(total);
+          });
+
+          userElement.appendChild(entryElement);
+        });
+
+        app.appendChild(userElement);
       });
-    }
-
-    function updatePaid(userIndex, entryIndex, value) {
-      users[userIndex].entries[entryIndex].interestPaid = Number(value) || 0;
-      render();
     }
 
     function openTotalPopup() {
@@ -727,15 +925,15 @@
         <div class="modal-summary">
           <div class="row">
             <span>${t.sumPrincipal}</span>
-            <span>₹${grandPrincipal.toLocaleString("en-IN")}</span>
+            <span>${formatMoney(grandPrincipal)}</span>
           </div>
           <div class="row">
             <span>${t.sumInterest}</span>
-            <span>₹${grandRemaining.toLocaleString("en-IN")}</span>
+            <span>${formatMoney(grandRemaining)}</span>
           </div>
           <div class="row">
             <span>${t.grandTotal}</span>
-            <span>₹${grandTotal.toLocaleString("en-IN")}</span>
+            <span>${formatMoney(grandTotal)}</span>
           </div>
         </div>
       `;
@@ -743,13 +941,11 @@
       document.getElementById("totalModal").classList.add("show");
     }
 
-    function closeTotalPopup(e) {
-      if (!e || e.target.id === "totalModal") {
+    function closeTotalPopup(event) {
+      if (!event || event.target.id === "totalModal") {
         document.getElementById("totalModal").classList.remove("show");
       }
     }
-
-    const NOTES_KEY = "interestTrackerNotes";
 
     function getNotes() {
       try {
@@ -762,12 +958,19 @@
     function saveNote() {
       const input = document.getElementById("noteInput");
       const text = input.value.trim();
+
       if (!text) {
         input.focus();
         return;
       }
+
       const notes = getNotes();
-      notes.unshift({ id: Date.now(), text, date: new Date().toISOString() });
+      notes.unshift({
+        id: Date.now(),
+        text,
+        date: new Date().toISOString()
+      });
+
       localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
       input.value = "";
       renderNotes();
@@ -783,6 +986,7 @@
       const date = new Date(dateString);
       const hours = String(date.getHours()).padStart(2, "0");
       const minutes = String(date.getMinutes()).padStart(2, "0");
+
       return `${date.getDate()} ${monthNames[currentLang][date.getMonth()]} ${date.getFullYear()}, ${hours}:${minutes}`;
     }
 
@@ -804,15 +1008,15 @@
 
       list.innerHTML = notes.map(note => `
         <div class="note">
-          <button class="delete-note" onclick="deleteNote(${note.id})" title="${t.delete}">×</button>
+          <button class="delete-note" onclick="deleteNote(${Number(note.id)})" title="${t.delete}">×</button>
           <div class="note-text">${escapeHTML(note.text)}</div>
           <div class="note-date">${formatNoteDate(note.date)}</div>
         </div>
       `).join("");
     }
 
-    // Init
     loadFontSize();
+    loadPaidAmounts();
     updateLanguage();
     render();
     renderNotes();
