@@ -8,7 +8,7 @@
 
   <style>
     * {
-      box-sizing: border-box;
+      box-sizing: border-box;margin: 0;padding: 0;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -47,15 +47,15 @@
       min-height: 100vh;
       margin: auto;
       padding: 10px;
-      display: flex;
+      display: flex;overflow: hidden;
       flex-direction: column;
       justify-content: center;
     }
 
     .lock-box {
-          width: 100%;
-    border-bottom: solid 1.5px black;
-    padding-bottom: 10px;
+      width: 100%;
+      border-bottom: solid 1.5px black;
+      padding-bottom: 10px;
     }
 
     .lock-header {
@@ -97,6 +97,8 @@
 
     .lock-error {
       margin: 0;
+      color: red;
+      text-align: center;
     }
 
     .lock-btn, .save-btn {
@@ -142,7 +144,10 @@
       padding: 16px 0;
       border-bottom: 1px solid;
     }
-
+.advertisement h2 {
+    text-align: center;
+    margin: 20px;
+}
     .header h2 {
       margin: 0;
     }
@@ -162,7 +167,7 @@
       text-align: center;
     }
 
-    button#totalBtn {
+    #totalBtn {
       width: 100%;
       padding: 10px;
       background: blue;
@@ -170,14 +175,20 @@
       border: none;
     }
 
-    .font-btn, .lang-btn {
+    .font-btn{
       min-width: 34px;
       min-height: 34px;
       background: blue;
       color: white;
       border: none;
     }
-
+.lang-btn {
+      height: 34px;
+    background: blue;
+    color: white;
+    border: none;
+    padding: 0 10px;
+    }
     .navigation {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -264,19 +275,24 @@
 
     .paid-row {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
+      gap: 12px;
+      padding: 7px 0;
     }
 
-    .entry-row .label, label.paid-label {
-      white-space: nowrap;
+    .paid-label {
+      flex: 1;
+      min-width: 0;
+      overflow-wrap: anywhere;
     }
 
     .paid-input-wrap {
       display: flex;
       align-items: center;
       gap: 8px;
-      width: 100%;
+      width: 48%;
+      min-width: 100px;
     }
 
     .paid-currency {
@@ -291,7 +307,6 @@
       height: 35px;
       padding: 0;
       border: none;
-      border-radius: 0;
       background: white;
       color: black;
       outline-offset: 2px;
@@ -302,18 +317,7 @@
 
     .paid-input:focus {
       outline: 1px solid black;
-      border-color: black;
       padding: 0 10px;
-    }
-
-    .paid-hint {
-      margin: 0;
-      font-size: 12px;
-      font-weight: normal;
-    }
-
-    .notes-box {
-      padding: 0;
     }
 
     .note-input {
@@ -350,6 +354,28 @@
       text-align: center;
     }
 
+    .account-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid;
+    }
+
+    .account-name {
+      overflow-wrap: anywhere;
+      font-weight: bold;
+    }
+
+.logout-btn {
+    padding: 6px 10px;
+    border: none;
+    flex-shrink: 0;
+    background-color: red;
+    color: white;
+    }
+
     footer {
       margin-top: 0;
       padding: 0;
@@ -379,17 +405,24 @@
       background: white;
     }
 
-    button.modal-close {
-      background: red;
-      color: white;
+    .modal-close, .delete-note {
+          background: transparent;
+    color: red;
+    font-size: 16px;
+    border: none;
+    padding: 0 10px;
+    font-weight: 500;
     }
-
+button.delete-note {
+    font-size: 30px;
+    font-weight: 200;
+}
     .modal-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid;
-      padding: 0 0 10px 0;
+      padding: 0 0 10px;
     }
 
     .modal-header h3 {
@@ -435,7 +468,7 @@
     <div class="lock-box">
       <div class="lock-header">
         <h2>VSL</h2>
-        <h6>Power by Black Swan</h6>
+        <h6>Power by BS&MFI</h6>
       </div>
 
       <div class="lock-body">
@@ -446,7 +479,7 @@
           id="passwordInput"
           class="lock-input"
           placeholder="Password"
-          autocomplete="off"
+          autocomplete="current-password"
           onkeydown="if(event.key==='Enter') checkPassword()"
         >
 
@@ -458,26 +491,32 @@
 
         <div class="lock-hint" style="text-align:center">
           If you can’t log in, it means you don’t have any active lending.
-          If you do have an active amount and still facing issues, fill out the
+          If you do have an active amount and still face issues, fill out the
           <a style="color:red" href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form">
             Issue form
           </a>.
         </div>
       </div>
     </div>
-    <footer style="margin-top: 10px;">
-        VSL, All right reserved.
-        <br>
-        Version(v.02.22.9)
-      </footer>
+
+    <footer style="margin-top:10px">
+      VSL, All right reserved.
+      <br>
+      Version(v.02.22.9)
+    </footer>
   </div>
 
   <div id="mainApp" hidden>
     <div class="container">
       <div class="top-banner">
         <a href="https://mfi0212.github.io/MFI/mini.lends">Mini lends</a>
-        <a href="https://mfi0212.github.io/MFI/service.solutions/VSL/lender.lending.clients">Lend my money</a>
+        <!-- <a href="https://mfi0212.github.io/MFI/service.solutions/VSL/lender.lending.clients">Lend my money</a> -->
         <a href="https://mfi0212.github.io/MFI/service.solutions/VSL/interest.checker">Calculator</a>
+      </div>
+
+      <div class="account-bar">
+        <span id="loggedInAs" class="account-name"></span>
+        <button class="logout-btn" onclick="logout()" style="background-color: red;color: white;">Logout</button>
       </div>
 
       <div class="header">
@@ -498,21 +537,22 @@
         <button class="total-btn" id="totalBtn" onclick="openTotalPopup()">మొత్తం</button>
       </div>
 
-      <section id="interestSection" class="section">
+      <section id="interestSection">
         <h3 class="section-title" id="interestTitle">వడ్డీ వివరాలు</h3>
         <div id="app"></div>
       </section>
 
-      <section id="notesSection" class="section" hidden>
+      <section id="notesSection" hidden>
         <h3 class="section-title" id="notesTitle">గమనికలు</h3>
-
         <div class="notes-box">
           <textarea id="noteInput" class="note-input" placeholder="ఇక్కడ ఏదైనా రాయండి..."></textarea>
           <button class="save-btn" id="saveButton" onclick="saveNote()">సేవ్ చేయండి</button>
           <div id="notesList"></div>
         </div>
       </section>
-
+       <div class="advertisement">
+        <a href="https://mfi0212.github.io/MFI/service.solutions/VSL/lender.lending.clients"><h2>Let's make some money</h2></a>
+      </div>
       <footer>
         VSL, All right reserved.
         <br>
@@ -532,24 +572,16 @@
   </div>
 
   <script>
-    const CORRECT_PASSWORD = "vsl#clnt@55949";
-    const PASSWORD_KEY = "interestTrackerPassword";
-    const FONT_SIZE_KEY = "interestTrackerFontSize";
-    const NOTES_KEY = "interestTrackerNotes";
-    const PAID_KEY = "interestTrackerPaidAmounts";
+    // document.addEventListener("contextmenu", event => event.preventDefault());
 
-    const MIN_FONT = 12;
-    const MAX_FONT = 28;
-
-    let currentLang = "te";
-    let currentFontSize = 16;
-
-    const users = [
+    const USERS = [
       {
-        name: "",
+        id: "pawan",
+        name: "Pawan Naidu",
+        password: "Pawan@123",
         entries: [
           {
-            id: "pawan-entry-1",
+            id: "pawan-1",
             borrowedBy: "Pawan Naidu",
             amount: 47800,
             interest: 2,
@@ -557,49 +589,30 @@
             interestPaid: 0
           },
           {
-            id: "pawan-entry-2",
-            borrowedBy: "Enter borrower name",
+            id: "pawan-2",
+            borrowedBy: "Pawan Naidu",
             amount: 12200,
             interest: 2,
             takenDate: "2026-09-12",
             interestPaid: 0
           }
         ]
-      }
+      },
     ];
 
-    function loadPaidAmounts() {
-      try {
-        const saved = JSON.parse(localStorage.getItem(PAID_KEY));
-        if (!saved || typeof saved !== "object") return;
+    const FONT_SIZE_KEY = "interestTrackerFontSize";
+    const NOTES_KEY_PREFIX = "interestTrackerNotes_";
+    const PAID_KEY_PREFIX = "interestTrackerPaidAmounts_";
+    const LAST_USER_KEY = "vslLastUserId";
+    const LAST_PASSWORD_KEY = "vslLastPassword";
+    const REMEMBER_PASSWORD_KEY = "vslRememberPassword";
 
-        users.forEach((user, userIndex) => {
-          user.entries.forEach((entry, entryIndex) => {
-            const key = entry.id || `${userIndex}-${entryIndex}`;
-            const oldKey = `${userIndex}-${entryIndex}`;
+    const MIN_FONT = 12;
+    const MAX_FONT = 28;
 
-            if (saved[key] !== undefined) {
-              entry.interestPaid = Math.max(0, Number(saved[key]) || 0);
-            } else if (saved[oldKey] !== undefined) {
-              entry.interestPaid = Math.max(0, Number(saved[oldKey]) || 0);
-            }
-          });
-        });
-      } catch {}
-    }
-
-    function savePaidAmounts() {
-      const saved = {};
-
-      users.forEach((user, userIndex) => {
-        user.entries.forEach((entry, entryIndex) => {
-          const key = entry.id || `${userIndex}-${entryIndex}`;
-          saved[key] = entry.interestPaid;
-        });
-      });
-
-      localStorage.setItem(PAID_KEY, JSON.stringify(saved));
-    }
+    let currentLang = "te";
+    let currentFontSize = 16;
+    let currentUser = null;
 
     const lang = {
       en: {
@@ -613,7 +626,6 @@
         takenDate: "Taken Date",
         days: "Days Passed",
         interestPaid: "Interest Paid",
-        paidHint: "",
         remaining: "Remaining Interest",
         entryTotal: "Total (Amt + Interest)",
         interestNav: "Interest",
@@ -626,21 +638,21 @@
         placeholder: "Write something here...",
         save: "Save",
         emptyNotes: "No notes saved yet.",
-        delete: "Delete"
+        delete: "Delete",
+        loggedInAs: "Account",
+        logout: "Logout"
       },
-
       te: {
         title: "VSL",
         today: "ఈరోజు",
         interestTitle: "వడ్డీ వివరాలు",
         notesTitle: "గమనికలు",
         amount: "తీసుకున్న డబ్బు",
-        borrowedBy: "ఎవరి దగ్గర తీసుకున్నారు",
+        borrowedBy: "తీసుకున్న వ్యక్తి",
         interest: "వడ్డీ",
         takenDate: "తీసుకున్న తేదీ",
         days: "గడిచిన రోజులు",
         interestPaid: "చెల్లించిన వడ్డీ",
-        paidHint: "",
         remaining: "మిగిలిన వడ్డీ",
         entryTotal: "మొత్తం",
         interestNav: "వడ్డీ",
@@ -653,50 +665,90 @@
         placeholder: "ఇక్కడ ఏదైనా రాయండి...",
         save: "సేవ్ చేయండి",
         emptyNotes: "ఇంకా గమనికలు సేవ్ చేయలేదు.",
-        delete: "తొలగించు"
+        delete: "తొలగించు",
+        loggedInAs: "ఖాతా",
+        logout: "లాగ్అవుట్"
       }
     };
 
     const monthNames = {
       en: [
-        "January", "February", "March", "April",
-        "May", "June", "July", "August",
-        "September", "October", "November", "December"
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
       ],
       te: [
-        "జనవరి", "ఫిబ్రవరి", "మార్చి", "ఏప్రిల్",
-        "మే", "జూన్", "జూలై", "ఆగస్టు",
-        "సెప్టెంబర్", "అక్టోబర్", "నవంబర్", "డిసెంబర్"
+        "జనవరి", "ఫిబ్రవరి", "మార్చి", "ఏప్రిల్", "మే", "జూన్",
+        "జూలై", "ఆగస్టు", "సెప్టెంబర్", "అక్టోబర్", "నవంబర్", "డిసెంబర్"
       ]
     };
 
+    function userStorageKey(prefix) {
+      return currentUser ? prefix + currentUser.id : "";
+    }
+
     function initLockScreen() {
-      const saved = localStorage.getItem(PASSWORD_KEY);
       const input = document.getElementById("passwordInput");
+      const error = document.getElementById("lockError");
 
-      input.value = saved === CORRECT_PASSWORD ? saved : "";
-      input.type = "password";
+      let rememberedPassword = "";
 
-      setTimeout(() => input.focus(), 100);
+      try {
+        if (localStorage.getItem(REMEMBER_PASSWORD_KEY) === "yes") {
+          rememberedPassword = localStorage.getItem(LAST_PASSWORD_KEY) || "";
+        }
+      } catch {}
+
+      input.value = rememberedPassword;
+      error.hidden = true;
+
+      if (rememberedPassword) {
+        input.focus();
+        input.setSelectionRange(input.value.length, input.value.length);
+      } else {
+        setTimeout(() => input.focus(), 100);
+      }
+
+      const rememberedUserId = localStorage.getItem(LAST_USER_KEY);
+
+      if (rememberedUserId) {
+        const rememberedUser = USERS.find(user => user.id === rememberedUserId);
+
+        if (rememberedUser && rememberedPassword &&
+            rememberedUser.password === rememberedPassword) {
+          input.value = rememberedPassword;
+        }
+      }
     }
 
     function checkPassword() {
       const input = document.getElementById("passwordInput");
       const error = document.getElementById("lockError");
+      const enteredPassword = input.value.trim();
 
-      if (input.value.trim() !== CORRECT_PASSWORD) {
+      const matchedUser = USERS.find(user => user.password === enteredPassword);
+
+      if (!matchedUser) {
         error.hidden = false;
-        input.value = "";
-        input.focus();
-        localStorage.removeItem(PASSWORD_KEY);
+        input.select();
         return;
       }
 
-      localStorage.setItem(PASSWORD_KEY, CORRECT_PASSWORD);
+      error.hidden = true;
+
+      localStorage.setItem(LAST_USER_KEY, matchedUser.id);
+      localStorage.setItem(LAST_PASSWORD_KEY, enteredPassword);
+      localStorage.setItem(REMEMBER_PASSWORD_KEY, "yes");
+
+      loginUser(matchedUser);
+    }
+
+    function loginUser(user) {
+      currentUser = user;
 
       document.getElementById("lockScreen").hidden = true;
       document.getElementById("mainApp").hidden = false;
-      error.hidden = true;
+      document.getElementById("loggedInAs").textContent =
+        `${lang[currentLang].loggedInAs}: ${user.name}`;
 
       loadPaidAmounts();
       loadFontSize();
@@ -704,6 +756,50 @@
       showSection("interest");
       render();
       renderNotes();
+    }
+
+    function logout() {
+      currentUser = null;
+
+      document.getElementById("mainApp").hidden = true;
+      document.getElementById("lockScreen").hidden = false;
+      document.getElementById("totalModal").hidden = true;
+      document.getElementById("app").innerHTML = "";
+      document.getElementById("notesList").innerHTML = "";
+      document.getElementById("noteInput").value = "";
+
+      initLockScreen();
+    }
+
+    function loadPaidAmounts() {
+      if (!currentUser) return;
+
+      try {
+        const saved = JSON.parse(
+          localStorage.getItem(userStorageKey(PAID_KEY_PREFIX))
+        ) || {};
+
+        currentUser.entries.forEach(entry => {
+          if (Object.prototype.hasOwnProperty.call(saved, entry.id)) {
+            entry.interestPaid = Math.max(0, Number(saved[entry.id]) || 0);
+          }
+        });
+      } catch {}
+    }
+
+    function savePaidAmounts() {
+      if (!currentUser) return;
+
+      const saved = {};
+
+      currentUser.entries.forEach(entry => {
+        saved[entry.id] = entry.interestPaid;
+      });
+
+      localStorage.setItem(
+        userStorageKey(PAID_KEY_PREFIX),
+        JSON.stringify(saved)
+      );
     }
 
     function loadFontSize() {
@@ -736,7 +832,6 @@
 
       document.getElementById("interestSection").hidden = !interest;
       document.getElementById("notesSection").hidden = interest;
-
       document.getElementById("interestNav").disabled = interest;
       document.getElementById("notesNav").disabled = !interest;
 
@@ -772,7 +867,6 @@
 
     function toggleLanguage() {
       currentLang = currentLang === "te" ? "en" : "te";
-
       updateLanguage();
       render();
       renderNotes();
@@ -793,6 +887,12 @@
       document.getElementById("modalTitle").textContent = t.modalTitle;
       document.getElementById("noteInput").placeholder = t.placeholder;
       document.getElementById("saveButton").textContent = t.save;
+      document.querySelector(".logout-btn").textContent = t.logout;
+
+      if (currentUser) {
+        document.getElementById("loggedInAs").textContent =
+          `${t.loggedInAs}: ${currentUser.name}`;
+      }
 
       showToday();
     }
@@ -803,9 +903,13 @@
         entry.amount * entry.interest * days / 3000
       );
       const remaining = Math.max(0, totalInterest - entry.interestPaid);
-      const total = entry.amount + remaining;
 
-      return { days, totalInterest, remaining, total };
+      return {
+        days,
+        totalInterest,
+        remaining,
+        total: entry.amount + remaining
+      };
     }
 
     function createRow(label, value, className = "entry-row") {
@@ -830,133 +934,146 @@
 
       app.innerHTML = "";
 
-      users.forEach(user => {
-        const userBlock = document.createElement("div");
-        userBlock.className = "user";
+      if (!currentUser) return;
 
-        const heading = document.createElement("h3");
-        heading.className = "user-name";
-        heading.textContent = user.name;
-        userBlock.appendChild(heading);
+      const userBlock = document.createElement("div");
+      userBlock.className = "user";
 
-        user.entries.forEach(entry => {
-          const data = getEntryData(entry);
-          const block = document.createElement("div");
-          block.className = "entry";
+      const heading = document.createElement("h3");
+      heading.className = "user-name";
+      heading.textContent = currentUser.name;
+      userBlock.appendChild(heading);
 
-          block.append(
-            createRow(t.borrowedBy, entry.borrowedBy, "borrowed-by-row"),
-            createRow(t.amount, entry.amount.toLocaleString("en-IN")),
-            createRow(t.interest, `${entry.interest}%`),
-            createRow(t.takenDate, formatDateWithMonth(entry.takenDate)),
-            createRow(t.days, String(data.days))
-          );
+      currentUser.entries.forEach(entry => {
+        const data = getEntryData(entry);
+        const block = document.createElement("div");
+        block.className = "entry";
 
-          const paidRow = document.createElement("div");
-          paidRow.className = "paid-row";
+        block.append(
+          createRow(t.borrowedBy, entry.borrowedBy, "borrowed-by-row"),
+          createRow(t.amount, entry.amount.toLocaleString("en-IN")),
+          createRow(t.interest, `${entry.interest}%`),
+          createRow(t.takenDate, formatDateWithMonth(entry.takenDate)),
+          createRow(t.days, String(data.days))
+        );
 
-          const paidLabel = document.createElement("label");
-          paidLabel.className = "paid-label";
-          paidLabel.textContent = t.interestPaid;
+        const paidRow = document.createElement("div");
+        paidRow.className = "paid-row";
 
-          const inputWrap = document.createElement("div");
-          inputWrap.className = "paid-input-wrap";
+        const paidLabel = document.createElement("label");
+        paidLabel.className = "paid-label";
+        paidLabel.textContent = t.interestPaid;
 
-          const currency = document.createElement("span");
-          currency.className = "paid-currency";
-          currency.textContent = "₹";
+        const inputWrap = document.createElement("div");
+        inputWrap.className = "paid-input-wrap";
 
-          const paidInput = document.createElement("input");
-          paidInput.className = "paid-input";
-          paidInput.type = "number";
-          paidInput.min = "0";
-          paidInput.step = "1";
-          paidInput.inputMode = "decimal";
-          paidInput.value = entry.interestPaid;
-          paidInput.setAttribute("aria-label", t.interestPaid);
+        const currency = document.createElement("span");
+        currency.className = "paid-currency";
+        currency.textContent = "";
 
-          paidInput.addEventListener("change", () => {
-            entry.interestPaid = Math.max(0, Number(paidInput.value) || 0);
-            savePaidAmounts();
-            render();
-          });
+        const paidInput = document.createElement("input");
+        paidInput.className = "paid-input";
+        paidInput.type = "number";
+        paidInput.min = "0";
+        paidInput.step = "1";
+        paidInput.inputMode = "decimal";
+        paidInput.value = entry.interestPaid;
+        paidInput.setAttribute("aria-label", t.interestPaid);
 
-          paidInput.addEventListener("keydown", event => {
-            if (event.key === "Enter") paidInput.blur();
-          });
-
-          inputWrap.append(currency, paidInput);
-          paidRow.append(paidLabel, inputWrap);
-          block.appendChild(paidRow);
-
-          const remaining = document.createElement("div");
-          remaining.className = "remaining";
-
-          const remainingLabel = document.createElement("span");
-          remainingLabel.className = "label";
-          remainingLabel.textContent = t.remaining;
-
-          const remainingValue = document.createElement("span");
-          remainingValue.className = "value";
-          remainingValue.textContent = `₹${data.remaining.toLocaleString("en-IN")}`;
-
-          remaining.append(remainingLabel, remainingValue);
-          block.appendChild(remaining);
-
-          const total = document.createElement("div");
-          total.className = "entry-total";
-
-          const totalLabel = document.createElement("span");
-          totalLabel.className = "label";
-          totalLabel.textContent = t.entryTotal;
-
-          const totalValue = document.createElement("span");
-          totalValue.className = "value";
-          totalValue.textContent = `₹${data.total.toLocaleString("en-IN")}`;
-
-          total.append(totalLabel, totalValue);
-          block.appendChild(total);
-
-          userBlock.appendChild(block);
+        paidInput.addEventListener("change", () => {
+          entry.interestPaid = Math.max(0, Number(paidInput.value) || 0);
+          savePaidAmounts();
+          render();
         });
 
-        app.appendChild(userBlock);
+        paidInput.addEventListener("keydown", event => {
+          if (event.key === "Enter") paidInput.blur();
+        });
+
+        inputWrap.append(currency, paidInput);
+        paidRow.append(paidLabel, inputWrap);
+        block.appendChild(paidRow);
+
+        const remaining = document.createElement("div");
+        remaining.className = "remaining";
+
+        const remainingLabel = document.createElement("span");
+        remainingLabel.className = "label";
+        remainingLabel.textContent = t.remaining;
+
+        const remainingValue = document.createElement("span");
+        remainingValue.className = "value";
+        remainingValue.textContent = `₹${data.remaining.toLocaleString("en-IN")}`;
+
+        remaining.append(remainingLabel, remainingValue);
+        block.appendChild(remaining);
+
+        const total = document.createElement("div");
+        total.className = "entry-total";
+
+        const totalLabel = document.createElement("span");
+        totalLabel.className = "label";
+        totalLabel.textContent = t.entryTotal;
+
+        const totalValue = document.createElement("span");
+        totalValue.className = "value";
+        totalValue.textContent = `₹${data.total.toLocaleString("en-IN")}`;
+
+        total.append(totalLabel, totalValue);
+        block.appendChild(total);
+
+        userBlock.appendChild(block);
       });
+
+      if (currentUser.entries.length === 0) {
+        const empty = document.createElement("p");
+        empty.textContent = currentLang === "te"
+          ? "ప్రస్తుతం ఎటువంటి మొత్తాలు లేవు."
+          : "No lending amounts available.";
+        userBlock.appendChild(empty);
+      }
+
+      app.appendChild(userBlock);
     }
 
     function openTotalPopup() {
+      if (!currentUser) return;
+
       const t = lang[currentLang];
       const body = document.getElementById("modalBody");
 
       let principal = 0;
       let remainingInterest = 0;
 
-      users.forEach(user => {
-        user.entries.forEach(entry => {
-          principal += entry.amount;
-          remainingInterest += getEntryData(entry).remaining;
-        });
+      currentUser.entries.forEach(entry => {
+        principal += Number(entry.amount) || 0;
+        remainingInterest += getEntryData(entry).remaining;
       });
 
-      const grandTotal = principal + remainingInterest;
+      body.innerHTML = "";
 
-      body.innerHTML = `
-        <div class="modal-summary">
-          <div class="row">
-            <span>${t.sumPrincipal}</span>
-            <span>₹${principal.toLocaleString("en-IN")}</span>
-          </div>
-          <div class="row">
-            <span>${t.sumInterest}</span>
-            <span>₹${remainingInterest.toLocaleString("en-IN")}</span>
-          </div>
-          <div class="row">
-            <strong>${t.grandTotal}</strong>
-            <strong>₹${grandTotal.toLocaleString("en-IN")}</strong>
-          </div>
-        </div>
-      `;
+      const summary = document.createElement("div");
+      summary.className = "modal-summary";
 
+      [
+        [t.sumPrincipal, principal],
+        [t.sumInterest, remainingInterest],
+        [t.grandTotal, principal + remainingInterest]
+      ].forEach((item, index) => {
+        const row = document.createElement("div");
+        row.className = "row";
+
+        const label = document.createElement(index === 2 ? "strong" : "span");
+        const value = document.createElement(index === 2 ? "strong" : "span");
+
+        label.textContent = item[0];
+        value.textContent = `₹${item[1].toLocaleString("en-IN")}`;
+
+        row.append(label, value);
+        summary.appendChild(row);
+      });
+
+      body.appendChild(summary);
       document.getElementById("totalModal").hidden = false;
     }
 
@@ -965,14 +1082,22 @@
     }
 
     function getNotes() {
+      if (!currentUser) return [];
+
       try {
-        return JSON.parse(localStorage.getItem(NOTES_KEY)) || [];
+        const notes = JSON.parse(
+          localStorage.getItem(userStorageKey(NOTES_KEY_PREFIX))
+        );
+
+        return Array.isArray(notes) ? notes : [];
       } catch {
         return [];
       }
     }
 
     function saveNote() {
+      if (!currentUser) return;
+
       const input = document.getElementById("noteInput");
       const text = input.value.trim();
 
@@ -984,25 +1109,38 @@
       const notes = getNotes();
 
       notes.unshift({
-        id: Date.now(),
+        id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
         text,
         date: new Date().toISOString()
       });
 
-      localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+      localStorage.setItem(
+        userStorageKey(NOTES_KEY_PREFIX),
+        JSON.stringify(notes)
+      );
+
       input.value = "";
       renderNotes();
     }
 
     function deleteNote(id) {
+      if (!currentUser) return;
+
       const notes = getNotes().filter(note => note.id !== id);
 
-      localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+      localStorage.setItem(
+        userStorageKey(NOTES_KEY_PREFIX),
+        JSON.stringify(notes)
+      );
+
       renderNotes();
     }
 
     function formatNoteDate(dateString) {
       const date = new Date(dateString);
+
+      if (Number.isNaN(date.getTime())) return "";
+
       const hours = String(date.getHours()).padStart(2, "0");
       const minutes = String(date.getMinutes()).padStart(2, "0");
 
@@ -1016,7 +1154,7 @@
 
       list.innerHTML = "";
 
-      if (notes.length === 0) {
+      if (!currentUser || notes.length === 0) {
         const empty = document.createElement("p");
         empty.className = "empty-notes";
         empty.textContent = t.emptyNotes;
