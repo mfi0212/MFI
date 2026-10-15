@@ -2,311 +2,302 @@
 <html lang="te">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>VSL | వడ్డీ ట్రాకర్</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f8f9fc;
-      --surface: #ffffff;
-      --fg: #0f172a;
-      --muted: #64748b;
-      --border: #e2e8f0;
-      --border-strong: #cbd5e1;
-      --primary: #1e3a8a;
-      --primary-hover: #1e40af;
-      --primary-fg: #ffffff;
-      --accent: #0f172a;
-      --accent-soft: #f1f5f9;
-      --success: #059669;
-      --destructive: #dc2626;
-      --destructive-hover: #b91c1c;
-      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
-      --shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
-      --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.05);
-      --radius: 12px;
-      --radius-sm: 8px;
+      --bg: #e9eef6;
+      --glass: rgba(255, 255, 255, 0.42);
+      --glass-thick: rgba(255, 255, 255, 0.62);
+      --glass-edge: rgba(255, 255, 255, 0.85);
+      --glass-inner: rgba(255, 255, 255, 0.25);
+      --fg: #1d1d1f;
+      --fg-secondary: #424245;
+      --muted: #86868b;
+      --primary: #0071e3;
+      --primary-soft: rgba(0, 113, 227, 0.14);
+      --destructive: #ff3b30;
+      --radius: 26px;
+      --radius-sm: 18px;
+      --blur: 40px;
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      letter-spacing: -0.01em;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+    }
+
+    html, body {
+      height: 100%;
     }
 
     body {
-      background: var(--bg);
+      background: 
+        radial-gradient(ellipse 120% 80% at 10% -20%, #c7d6f5 0%, transparent 50%),
+        radial-gradient(ellipse 100% 60% at 90% 10%, #d4c8f5 0%, transparent 45%),
+        radial-gradient(ellipse 80% 50% at 50% 100%, #c8e0f5 0%, transparent 50%),
+        linear-gradient(180deg, #e4eaf4 0%, #eef2f8 40%, #f4f6fa 100%);
+      background-attachment: fixed;
       color: var(--fg);
       min-height: 100vh;
       font-size: 16px;
+      line-height: 1.4;
       -webkit-user-select: none;
       user-select: none;
-      -webkit-tap-highlight-color: transparent;
-      line-height: 1.5;
+      overflow-x: hidden;
     }
 
     .container {
-      max-width: 680px;
+      position: relative;
+      z-index: 1;
+      max-width: 430px;
       margin: 0 auto;
       min-height: 100vh;
-      background: var(--surface);
-      box-shadow: var(--shadow-lg);
+      padding-bottom: env(safe-area-inset-bottom, 24px);
     }
 
-    /* Top Banner */
+    /* ========== Liquid Glass Base ========== */
+    .glass {
+      background: var(--glass);
+      backdrop-filter: blur(var(--blur)) saturate(200%) brightness(1.05);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(200%) brightness(1.05);
+      border: 1px solid transparent;
+      box-shadow:
+        inset 0 1px 1px 0 var(--glass-edge),
+        inset 0 -1px 1px 0 rgba(255, 255, 255, 0.15),
+        0 8px 32px rgba(0, 0, 0, 0.06),
+        0 2px 8px rgba(0, 0, 0, 0.03);
+      position: relative;
+    }
+
+    .glass::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.2) 40%,
+        rgba(255, 255, 255, 0.05) 70%,
+        rgba(255, 255, 255, 0.35) 100%
+      );
+      -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* ========== Top Banner ========== */
     .top-banner {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin: 14px 16px 0;
       padding: 12px 20px;
-      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
-      color: #fff;
-      font-size: 0.8125em;
+      border-radius: 999px;
+      font-size: 0.78em;
       font-weight: 500;
     }
 
     .top-banner a {
-      color: rgba(255, 255, 255, 0.9);
+      color: var(--primary);
       text-decoration: none;
-      transition: color 0.2s ease;
-      position: relative;
+      transition: opacity 0.2s;
     }
 
-    .top-banner a:hover {
-      color: #fff;
+    .top-banner a:active {
+      opacity: 0.55;
     }
 
-    .top-banner a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: #fff;
-      transition: width 0.25s ease;
-    }
-
-    .top-banner a:hover::after {
-      width: 100%;
-    }
-
-    /* Header */
+    /* ========== Header ========== */
     .header {
+      padding: 22px 22px 6px;
+    }
+
+    .header-top {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       gap: 12px;
-      padding: 18px 20px;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-      flex-wrap: wrap;
+      margin-bottom: 16px;
     }
 
     .header h2 {
-      font-size: 1.375em;
+      font-size: 1.85em;
       font-weight: 700;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.045em;
       color: var(--fg);
+      line-height: 1.15;
     }
 
     .today {
-      font-size: 0.8125em;
-      color: var(--muted);
+      font-size: 0.8em;
       font-weight: 500;
-      white-space: nowrap;
-      background: var(--accent-soft);
-      padding: 6px 12px;
+      color: var(--muted);
+      padding: 7px 14px;
       border-radius: 999px;
+      white-space: nowrap;
+      margin-top: 4px;
     }
 
     .font-controls {
-      display: flex;
-      align-items: stretch;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
       overflow: hidden;
-      background: var(--surface);
-      box-shadow: var(--shadow-sm);
     }
 
     .font-btn {
-      width: 36px;
-      height: 36px;
+      width: 42px;
+      height: 38px;
       background: transparent;
       color: var(--fg);
       border: none;
-      border-right: 1px solid var(--border);
-      font-size: 18px;
-      font-weight: 600;
+      font-size: 19px;
+      font-weight: 500;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.15s ease;
+      transition: background 0.15s;
     }
 
-    .font-btn:last-of-type {
-      border-right: none;
-    }
-
-    .font-btn:hover {
-      background: var(--fg);
-      color: var(--bg);
+    .font-btn:active {
+      background: rgba(0, 0, 0, 0.05);
     }
 
     .font-size-label {
       min-width: 36px;
+      height: 38px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.8125em;
       font-weight: 600;
-      border-right: 1px solid var(--border);
-      background: var(--accent-soft);
       color: var(--muted);
       font-variant-numeric: tabular-nums;
+      border-left: 1px solid rgba(0, 0, 0, 0.06);
+      border-right: 1px solid rgba(0, 0, 0, 0.06);
     }
 
     .lang-btn {
-      height: 36px;
-      padding: 0 12px;
+      height: 38px;
+      padding: 0 16px;
       background: transparent;
-      color: var(--fg);
+      color: var(--primary);
       border: none;
-      border-left: 1px solid var(--border);
       font-size: 0.75em;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: background 0.15s;
     }
 
-    .lang-btn:hover {
-      background: var(--fg);
-      color: var(--bg);
+    .lang-btn:active {
+      background: var(--primary-soft);
     }
 
-    /* Navigation */
+    /* ========== Navigation (iOS Segmented) ========== */
     .navigation {
-      display: grid;
-      grid-template-columns: 1fr 1fr auto;
-      gap: 0;
-      padding: 12px 16px;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 3px;
+      margin: 10px 16px 6px;
+      padding: 4px;
+      border-radius: 16px;
     }
 
-    .nav-btn,
-    .total-btn {
-      min-height: 42px;
+    .nav-btn {
+      flex: 1;
+      min-height: 40px;
       background: transparent;
       color: var(--muted);
       border: none;
       font-size: 0.875em;
       font-weight: 600;
       cursor: pointer;
-      padding: 0 18px;
-      border-radius: var(--radius-sm);
-      transition: all 0.2s ease;
-      position: relative;
-    }
-
-    .nav-btn:hover {
-      color: var(--fg);
-      background: var(--accent-soft);
+      border-radius: 13px;
+      transition: all 0.28s cubic-bezier(0.25, 0.1, 0.25, 1);
     }
 
     .nav-btn.active {
-      color: var(--primary);
-      background: rgba(30, 58, 138, 0.08);
-    }
-
-    .nav-btn.active::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 18px;
-      right: 18px;
-      height: 2px;
-      background: var(--primary);
-      border-radius: 2px 2px 0 0;
+      background: var(--glass-thick);
+      color: var(--fg);
+      box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
     }
 
     .total-btn {
-      background: var(--fg);
-      color: var(--bg);
-      margin-left: 8px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .total-btn:hover {
+      min-height: 40px;
+      padding: 0 20px;
       background: var(--primary);
-      transform: translateY(-1px);
-      box-shadow: var(--shadow);
+      color: #fff;
+      border: none;
+      font-size: 0.875em;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 13px;
+      box-shadow: 0 4px 16px rgba(0, 113, 227, 0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    /* Sections */
+    .total-btn:active {
+      transform: scale(0.96);
+      box-shadow: 0 2px 8px rgba(0, 113, 227, 0.3);
+    }
+
+    /* ========== Sections ========== */
     .section {
       display: none;
-      padding-bottom: 24px;
+      padding: 2px 0 28px;
     }
 
     .section.active {
       display: block;
-      animation: fadeIn 0.25s ease;
+      animation: rise 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     .section-title {
-      padding: 20px 20px 12px;
-      font-size: 0.75em;
-      font-weight: 700;
+      padding: 14px 24px 10px;
+      font-size: 0.7em;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.07em;
       color: var(--muted);
     }
 
-    /* User / Entries */
+    /* ========== Entry Cards ========== */
     .user {
-      margin: 0;
+      margin: 0 16px 4px;
     }
 
     .user-name {
-      padding: 12px 16px;
-      font-size: 0.9375em;
-      font-weight: 700;
-      background: var(--accent-soft);
-      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-      text-align: center;
-      color: var(--fg);
-      border: 1px solid var(--border);
-      border-bottom: none;
+      display: none;
     }
 
     .entry {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 0 0 var(--radius) var(--radius);
-      margin-bottom: 16px;
+      border-radius: var(--radius);
+      margin-bottom: 18px;
       overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      transition: box-shadow 0.2s ease;
+      transition: transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
     }
 
-    .entry:hover {
-      box-shadow: var(--shadow);
-    }
-
-    .entry:last-child {
-      margin-bottom: 0;
+    .entry:active {
+      transform: scale(0.982);
     }
 
     .entry-row {
@@ -314,14 +305,10 @@
       justify-content: space-between;
       align-items: center;
       gap: 16px;
-      padding: 11px 16px;
-      font-size: 0.875em;
-      border-bottom: 1px solid var(--border);
-      min-height: 42px;
-    }
-
-    .entry-row:last-child {
-      border-bottom: none;
+      padding: 14px 20px;
+      font-size: 0.9em;
+      border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
+      min-height: 48px;
     }
 
     .entry-row .label {
@@ -334,91 +321,87 @@
       font-variant-numeric: tabular-nums;
       text-align: right;
       color: var(--fg);
-      overflow-wrap: anywhere;
     }
 
     .paid-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 16px;
-      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
       gap: 12px;
-      min-height: 48px;
-      background: #fafbfc;
+      min-height: 54px;
+      background: rgba(255, 255, 255, 0.18);
     }
 
     .paid-input {
       width: 120px;
-      min-width: 0;
-      padding: 8px 12px;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm);
-      background: var(--surface);
+      padding: 10px 14px;
+      border: none;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       text-align: right;
-      font-size: 0.9375em;
+      font-size: 0.95em;
       font-weight: 600;
       font-variant-numeric: tabular-nums;
       outline: none;
-      transition: all 0.15s ease;
       color: var(--fg);
+      box-shadow:
+        inset 0 1px 2px rgba(0, 0, 0, 0.04),
+        0 0 0 1px rgba(0, 0, 0, 0.04);
+      transition: all 0.2s;
     }
 
     .paid-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.12);
+      background: #fff;
+      box-shadow:
+        0 0 0 4px var(--primary-soft),
+        0 0 0 1.5px var(--primary);
     }
 
     .remaining {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      background: linear-gradient(160deg, #1d1d1f 0%, #2c2c2e 100%);
       color: #fff;
-      padding: 12px 16px;
+      padding: 15px 20px;
       display: flex;
       justify-content: space-between;
-      gap: 12px;
-      font-size: 0.875em;
+      font-size: 0.9em;
       font-weight: 600;
     }
 
     .entry-total {
-      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+      background: linear-gradient(160deg, #0071e3 0%, #0058b0 100%);
       color: #fff;
-      padding: 14px 16px;
+      padding: 16px 20px;
       display: flex;
       justify-content: space-between;
-      gap: 12px;
-      font-size: 0.9375em;
+      font-size: 0.95em;
       font-weight: 700;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
     }
 
-    /* Notes */
+    /* ========== Notes ========== */
     .notes-box {
       margin: 0 16px;
-      border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      background: var(--surface);
     }
 
     .note-input {
       display: block;
       width: 100%;
-      min-height: 130px;
-      padding: 16px;
+      min-height: 150px;
+      padding: 20px;
       resize: vertical;
       border: none;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.9375em;
-      line-height: 1.6;
+      border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
+      font-size: 0.95em;
+      line-height: 1.55;
       outline: none;
-      background: var(--surface);
+      background: transparent;
       color: var(--fg);
-      transition: background 0.15s ease;
-    }
-
-    .note-input:focus {
-      background: #fafbfc;
     }
 
     .note-input::placeholder {
@@ -427,29 +410,25 @@
 
     .save-btn {
       width: 100%;
-      padding: 14px;
+      padding: 17px;
       background: var(--primary);
-      color: var(--primary-fg);
+      color: #fff;
       border: none;
-      font-size: 0.9375em;
+      font-size: 0.95em;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s ease;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      transition: opacity 0.2s;
     }
 
-    .save-btn:hover {
-      background: var(--primary-hover);
+    .save-btn:active {
+      opacity: 0.82;
     }
 
     .note {
       position: relative;
-      padding: 16px 48px 16px 16px;
-      border-bottom: 1px solid var(--border);
-      transition: background 0.15s ease;
-    }
-
-    .note:hover {
-      background: #fafbfc;
+      padding: 18px 52px 18px 20px;
+      border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
     }
 
     .note:last-child {
@@ -457,15 +436,14 @@
     }
 
     .note-text {
-      font-size: 0.9375em;
+      font-size: 0.95em;
       white-space: pre-wrap;
       word-break: break-word;
-      line-height: 1.55;
-      color: var(--fg);
+      line-height: 1.5;
     }
 
     .note-date {
-      margin-top: 8px;
+      margin-top: 7px;
       font-size: 0.75em;
       color: var(--muted);
       font-weight: 500;
@@ -473,135 +451,134 @@
 
     .delete-note {
       position: absolute;
-      top: 14px;
-      right: 14px;
-      width: 30px;
-      height: 30px;
-      background: transparent;
-      color: var(--muted);
-      border: 1px solid transparent;
-      border-radius: 6px;
-      font-size: 20px;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 59, 48, 0.12);
+      color: var(--destructive);
+      border: none;
+      border-radius: 50%;
+      font-size: 18px;
       cursor: pointer;
-      font-weight: 400;
       display: flex;
-      justify-content: center;
       align-items: center;
-      line-height: 1;
-      transition: all 0.15s ease;
+      justify-content: center;
+      transition: all 0.2s;
     }
 
-    .delete-note:hover {
-      background: #fef2f2;
-      color: var(--destructive);
-      border-color: #fecaca;
+    .delete-note:active {
+      background: var(--destructive);
+      color: #fff;
+      transform: scale(0.9);
     }
 
     .empty-notes {
-      padding: 40px 20px;
+      padding: 52px 24px;
       text-align: center;
-      font-size: 0.875em;
+      font-size: 0.9em;
       color: var(--muted);
       font-weight: 500;
     }
 
-    /* Footer */
+    /* ========== Footer ========== */
     footer {
-      font-size: 0.75em;
+      font-size: 0.7em;
       text-align: center;
       color: var(--muted);
-      padding: 24px 20px 28px;
-      border-top: 1px solid var(--border);
+      padding: 32px 20px 40px;
       font-weight: 500;
+      opacity: 0.75;
     }
 
-    /* Modal */
+    /* ========== Modal (Liquid Glass Sheet) ========== */
     .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(15, 23, 42, 0.55);
-      backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.32);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
       z-index: 1000;
-      align-items: center;
+      align-items: flex-end;
       justify-content: center;
-      padding: 20px;
-      animation: fadeOverlay 0.2s ease;
     }
 
     .modal-overlay.show {
       display: flex;
+      animation: fadeIn 0.3s ease;
     }
 
-    @keyframes fadeOverlay {
+    @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
 
     .modal {
-      background: var(--surface);
-      border-radius: var(--radius);
       width: 100%;
-      max-width: 400px;
-      max-height: 85vh;
+      max-width: 430px;
+      max-height: 82vh;
+      border-radius: 32px 32px 0 0;
       overflow-y: auto;
-      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
-      animation: slideUp 0.25s ease;
+      padding-bottom: env(safe-area-inset-bottom, 20px);
+      animation: sheet 0.45s cubic-bezier(0.32, 0.72, 0, 1);
     }
 
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(16px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+    @keyframes sheet {
+      from { transform: translateY(105%); }
+      to { transform: translateY(0); }
     }
 
     .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--border);
+      padding: 20px 24px 10px;
     }
 
     .modal-header h3 {
-      font-size: 1.0625em;
+      font-size: 1.2em;
       font-weight: 700;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
     }
 
     .modal-close {
-      width: 34px;
-      height: 34px;
-      background: var(--accent-soft);
-      color: var(--fg);
+      width: 32px;
+      height: 32px;
+      background: rgba(0, 0, 0, 0.08);
+      color: var(--fg-secondary);
       border: none;
-      border-radius: 8px;
-      font-size: 20px;
+      border-radius: 50%;
+      font-size: 18px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      line-height: 1;
-      transition: all 0.15s ease;
+      transition: all 0.15s;
     }
 
-    .modal-close:hover {
-      background: var(--destructive);
-      color: #fff;
+    .modal-close:active {
+      background: rgba(0, 0, 0, 0.14);
+      transform: scale(0.9);
     }
 
     .modal-summary {
-      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      margin: 8px 18px 28px;
+      background: linear-gradient(165deg, #1d1d1f 0%, #2c2c2e 100%);
       color: #fff;
-      padding: 24px 20px;
-      border-radius: 0 0 var(--radius) var(--radius);
+      padding: 24px 22px;
+      border-radius: 22px;
+      box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
 
     .modal-summary .row {
       display: flex;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 14px;
-      font-size: 0.9375em;
+      margin-bottom: 15px;
+      font-size: 0.95em;
       font-weight: 500;
     }
 
@@ -615,80 +592,38 @@
       margin-bottom: 0;
       margin-top: 16px;
       padding-top: 16px;
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-top: 0.5px solid rgba(255, 255, 255, 0.16);
       font-weight: 700;
-      font-size: 1.125em;
+      font-size: 1.25em;
     }
 
-    /* Responsive */
-    @media (max-width: 480px) {
-      .header {
-        padding: 14px 16px;
-        gap: 10px;
-      }
-
-      .header h2 {
-        font-size: 1.2em;
-      }
-
-      .font-btn {
-        width: 32px;
-        height: 32px;
-      }
-
-      .font-size-label {
-        min-width: 30px;
-        height: 32px;
-      }
-
-      .lang-btn {
-        height: 32px;
-        padding: 0 10px;
-      }
-
-      .navigation {
-        padding: 10px 12px;
-      }
-
-      .nav-btn,
-      .total-btn {
-        padding: 0 12px;
-        font-size: 0.8125em;
-      }
-
-      .user {
-        margin: 0 12px 16px;
-      }
-
-      .section-title {
-        padding: 16px 16px 10px;
-      }
-
-      .notes-box {
-        margin: 0 12px;
-      }
+    @media (max-width: 380px) {
+      .header h2 { font-size: 1.6em; }
+      .top-banner { font-size: 0.72em; padding: 11px 16px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="top-banner">
-      <a href="https://mfi0212.github.io/personal/gold.market.divert.user">బంగారం/వెండి market</a>     
+    <div class="top-banner glass">
+      <a href="https://mfi0212.github.io/personal/gold.market.divert.user">బంగారం/వెండి market</a>
       <a href="https://mfi0212.github.io/personal/guardian/countday.html#dayscount">రోజుల కౌంటర్</a>
     </div>
 
     <div class="header">
-      <h2 id="title">వడ్డీ</h2>
-      <div class="today" id="todayDate"></div>
-      <div class="font-controls">
-        <button class="font-btn" onclick="changeFontSize(-1)" title="Decrease font">−</button>
+      <div class="header-top">
+        <h2 id="title">వడ్డీ</h2>
+        <div class="today glass" id="todayDate"></div>
+      </div>
+      <div class="font-controls glass">
+        <button class="font-btn" onclick="changeFontSize(-1)">−</button>
         <span class="font-size-label" id="fontSizeLabel">16</span>
-        <button class="font-btn" onclick="changeFontSize(1)" title="Increase font">+</button>
-        <button class="lang-btn" onclick="toggleLanguage()">తె/ENG</button>
+        <button class="font-btn" onclick="changeFontSize(1)">+</button>
+        <button class="lang-btn" onclick="toggleLanguage()">తె / ENG</button>
       </div>
     </div>
 
-    <div class="navigation">
+    <div class="navigation glass">
       <button class="nav-btn active" id="interestNav" onclick="showSection('interest')">వడ్డీ</button>
       <button class="nav-btn" id="notesNav" onclick="showSection('notes')">గమనికలు</button>
       <button class="total-btn" id="totalBtn" onclick="openTotalPopup()">మొత్తం</button>
@@ -701,18 +636,18 @@
 
     <section id="notesSection" class="section">
       <h3 class="section-title" id="notesTitle">గమనికలు</h3>
-      <div class="notes-box">
+      <div class="notes-box glass">
         <textarea id="noteInput" class="note-input" placeholder="ఇక్కడ ఏదైనా రాయండి..."></textarea>
         <button class="save-btn" id="saveButton" onclick="saveNote()">సేవ్ చేయండి</button>
         <div id="notesList" class="notes-list"></div>
       </div>
     </section>
 
-    <footer>VSL, All rights reserved.<br>Version (v.02.22.9)</footer>
+    <footer>VSL · All rights reserved<br>Version (v.02.22.9)</footer>
   </div>
 
   <div class="modal-overlay" id="totalModal" onclick="closeTotalPopup(event)">
-    <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal glass" onclick="event.stopPropagation()">
       <div class="modal-header">
         <h3 id="modalTitle">మొత్తం వివరాలు</h3>
         <button class="modal-close" onclick="closeTotalPopup()">×</button>
@@ -814,23 +749,15 @@
     };
 
     const monthNames = {
-      en: [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-      ],
-      te: [
-        "జనవరి", "ఫిబ్రవరి", "మార్చి", "ఏప్రిల్", "మే", "జూన్",
-        "జూలై", "ఆగస్టు", "సెప్టెంబర్", "అక్టోబర్", "నవంబర్", "డిసెంబర్"
-      ]
+      en: ["January","February","March","April","May","June","July","August","September","October","November","December"],
+      te: ["జనవరి","ఫిబ్రవరి","మార్చి","ఏప్రిల్","మే","జూన్","జూలై","ఆగస్టు","సెప్టెంబర్","అక్టోబర్","నవంబర్","డిసెంబర్"]
     };
 
     function loadFontSize() {
       const saved = localStorage.getItem(FONT_SIZE_KEY);
       if (saved) {
         const size = parseInt(saved, 10);
-        if (!isNaN(size) && size >= MIN_FONT && size <= MAX_FONT) {
-          currentFontSize = size;
-        }
+        if (!isNaN(size) && size >= MIN_FONT && size <= MAX_FONT) currentFontSize = size;
       }
       applyFontSize();
     }
@@ -860,7 +787,6 @@
         interestNav.classList.add("active");
         notesNav.classList.remove("active");
       }
-
       if (section === "notes") {
         interestSection.classList.remove("active");
         notesSection.classList.add("active");
@@ -872,11 +798,7 @@
 
     function parseDate(dateStr) {
       const parts = dateStr.split("-");
-      return new Date(
-        Number(parts[0]),
-        Number(parts[1]) - 1,
-        Number(parts[2])
-      );
+      return new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
     }
 
     function formatDateWithMonth(dateStr) {
@@ -934,9 +856,7 @@
             });
           });
         }
-      } catch (error) {
-        console.error("Unable to load saved interest payments.", error);
-      }
+      } catch (e) {}
     }
 
     function savePaidAmounts() {
@@ -951,9 +871,7 @@
 
     function getEntryData(entry) {
       const days = getDays(entry.takenDate);
-      const totalInterest = Math.round(
-        (entry.amount * entry.interest * days) / (100 * 30)
-      );
+      const totalInterest = Math.round((entry.amount * entry.interest * days) / (100 * 30));
       const remaining = Math.max(0, totalInterest - entry.interestPaid);
       const total = entry.amount + remaining;
       return { days, totalInterest, remaining, total };
@@ -980,7 +898,7 @@
         user.entries.forEach((entry, entryIndex) => {
           const { days, remaining, total } = getEntryData(entry);
           const entryElement = document.createElement("div");
-          entryElement.className = "entry";
+          entryElement.className = "entry glass";
 
           entryElement.innerHTML = `
             <div class="entry-row">
@@ -1005,15 +923,9 @@
             </div>
             <div class="paid-row">
               <span class="label">${t.interestPaid}</span>
-              <input
-                class="paid-input"
-                type="number"
-                min="0"
-                step="1"
-                aria-label="${t.interestPaid}"
-                value="${entry.interestPaid}"
-                data-entry-index="${entryIndex}"
-              >
+              <input class="paid-input" type="number" min="0" step="1"
+                aria-label="${t.interestPaid}" value="${entry.interestPaid}"
+                data-entry-index="${entryIndex}">
             </div>
             <div class="remaining">
               <span class="label">${t.remaining}</span>
@@ -1025,26 +937,20 @@
             </div>
           `;
 
-          entryElement.querySelector(".borrowed-value").textContent =
-            entry.borrowedBy || "-";
+          entryElement.querySelector(".borrowed-value").textContent = entry.borrowedBy || "-";
 
           const paidInput = entryElement.querySelector(".paid-input");
-
           paidInput.addEventListener("change", function () {
-            const value = Math.max(0, Number(this.value) || 0);
-            entry.interestPaid = value;
+            entry.interestPaid = Math.max(0, Number(this.value) || 0);
             savePaidAmounts();
             render();
           });
-
           paidInput.addEventListener("input", function () {
             entry.interestPaid = Math.max(0, Number(this.value) || 0);
             savePaidAmounts();
             const { remaining, total } = getEntryData(entry);
-            const remainingElement = entryElement.querySelector(".remaining .value");
-            const totalElement = entryElement.querySelector(".entry-total .value");
-            remainingElement.textContent = formatMoney(remaining);
-            totalElement.textContent = formatMoney(total);
+            entryElement.querySelector(".remaining .value").textContent = formatMoney(remaining);
+            entryElement.querySelector(".entry-total .value").textContent = formatMoney(total);
           });
 
           userElement.appendChild(entryElement);
@@ -1056,11 +962,7 @@
 
     function openTotalPopup() {
       const t = lang[currentLang];
-      const body = document.getElementById("modalBody");
-
-      let grandPrincipal = 0;
-      let grandRemaining = 0;
-
+      let grandPrincipal = 0, grandRemaining = 0;
       users.forEach(user => {
         user.entries.forEach(entry => {
           const { remaining } = getEntryData(entry);
@@ -1068,26 +970,15 @@
           grandRemaining += remaining;
         });
       });
-
       const grandTotal = grandPrincipal + grandRemaining;
 
-      body.innerHTML = `
+      document.getElementById("modalBody").innerHTML = `
         <div class="modal-summary">
-          <div class="row">
-            <span>${t.sumPrincipal}</span>
-            <span>${formatMoney(grandPrincipal)}</span>
-          </div>
-          <div class="row">
-            <span>${t.sumInterest}</span>
-            <span>${formatMoney(grandRemaining)}</span>
-          </div>
-          <div class="row">
-            <span>${t.grandTotal}</span>
-            <span>${formatMoney(grandTotal)}</span>
-          </div>
+          <div class="row"><span>${t.sumPrincipal}</span><span>${formatMoney(grandPrincipal)}</span></div>
+          <div class="row"><span>${t.sumInterest}</span><span>${formatMoney(grandRemaining)}</span></div>
+          <div class="row"><span>${t.grandTotal}</span><span>${formatMoney(grandTotal)}</span></div>
         </div>
       `;
-
       document.getElementById("totalModal").classList.add("show");
     }
 
@@ -1098,42 +989,31 @@
     }
 
     function getNotes() {
-      try {
-        return JSON.parse(localStorage.getItem(NOTES_KEY)) || [];
-      } catch {
-        return [];
-      }
+      try { return JSON.parse(localStorage.getItem(NOTES_KEY)) || []; }
+      catch { return []; }
     }
 
     function saveNote() {
       const input = document.getElementById("noteInput");
       const text = input.value.trim();
-      if (!text) {
-        input.focus();
-        return;
-      }
+      if (!text) { input.focus(); return; }
       const notes = getNotes();
-      notes.unshift({
-        id: Date.now(),
-        text,
-        date: new Date().toISOString()
-      });
+      notes.unshift({ id: Date.now(), text, date: new Date().toISOString() });
       localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
       input.value = "";
       renderNotes();
     }
 
     function deleteNote(id) {
-      const notes = getNotes().filter(note => note.id !== id);
-      localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+      localStorage.setItem(NOTES_KEY, JSON.stringify(getNotes().filter(n => n.id !== id)));
       renderNotes();
     }
 
     function formatNoteDate(dateString) {
       const date = new Date(dateString);
-      const hours = String(date.getHours()).padStart(2, "0");
-      const minutes = String(date.getMinutes()).padStart(2, "0");
-      return `${date.getDate()} ${monthNames[currentLang][date.getMonth()]} ${date.getFullYear()}, ${hours}:${minutes}`;
+      const h = String(date.getHours()).padStart(2, "0");
+      const m = String(date.getMinutes()).padStart(2, "0");
+      return `${date.getDate()} ${monthNames[currentLang][date.getMonth()]} ${date.getFullYear()}, ${h}:${m}`;
     }
 
     function escapeHTML(text) {
@@ -1146,12 +1026,10 @@
       const list = document.getElementById("notesList");
       const notes = getNotes();
       const t = lang[currentLang];
-
       if (notes.length === 0) {
         list.innerHTML = `<div class="empty-notes">${t.emptyNotes}</div>`;
         return;
       }
-
       list.innerHTML = notes.map(note => `
         <div class="note">
           <button class="delete-note" onclick="deleteNote(${Number(note.id)})" title="${t.delete}">×</button>
