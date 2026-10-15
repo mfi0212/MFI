@@ -20,7 +20,7 @@
       --destructive: #ff3b30;
       --fill: #e5e5ea;
       --radius: 16px;
-      --radius-lg: 20px;
+      --radius-lg: 10px;
     }
 
     * {
@@ -100,11 +100,12 @@
     }
 
     .controls {
-      display: flex;
-      align-items: center;
-      background: var(--fill);
-      border-radius: 12px;
-      overflow: hidden;
+         display: flex;
+    align-items: center;
+    background: var(--fill);
+    border-radius: 12px;
+    overflow: hidden;
+    justify-content: space-between;
     }
 
     .font-btn {
@@ -502,10 +503,14 @@
         <div class="today" id="todayDate"></div>
       </div>
       <div class="controls">
-        <button class="font-btn" onclick="changeFontSize(-1)">−</button>
-        <span class="font-label" id="fontSizeLabel">16</span>
-        <button class="font-btn" onclick="changeFontSize(1)">+</button>
-        <button class="lang-btn" onclick="toggleLanguage()">తె / ENG</button>
+        <div style="display: flex;">
+          <button class="font-btn" onclick="changeFontSize(-1)">−</button>
+          <span class="font-label" id="fontSizeLabel">16</span>
+          <button class="font-btn" onclick="changeFontSize(1)">+</button>
+        </div>
+        <div> 
+          <button class="lang-btn" onclick="toggleLanguage()">తె / ENG</button>
+        </div>
       </div>
     </div>
 
