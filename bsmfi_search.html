@@ -17,8 +17,9 @@ const siteGroups = [
       { name: "BsRora", desc: "Let the bot do", url: "https://mfi0212.github.io/MFI/BsRora/bsrora" },
       { name: "Buy Limit details", desc: "More info", url: "https://mfi0212.github.io/MFI/service.solutions/buy-limit" },
       { name: "Apply for Buy Limit", desc: "Apply form", url: "https://docs.google.com/forms/d/e/1FAIpQLSf69ANV9wjH301M_2LzEeLbU_YQP5ZdKNnqgsf9SEMrxgJgCA/viewform" },
+      { name: "BsGifter", desc: "Gifts exchanger", url: "https://mfi0212.github.io/MFI/bsgifter" },
       { name: "Delay It details", desc: "More info", url: "https://mfi0212.github.io/MFI/service.solutions/delay-it" },
-      { name: "Delay It", desc: "Gifts exchanger", url: "https://docs.google.com/forms/d/e/1FAIpQLScTfb1HGdUCPk3-Q4Jb3vwHk0CVrHe41FSyPZUk7fthSTnA7A/viewform" },
+      { name: "Delay It", desc: "Return date extander", url: "https://docs.google.com/forms/d/e/1FAIpQLScTfb1HGdUCPk3-Q4Jb3vwHk0CVrHe41FSyPZUk7fthSTnA7A/viewform" },
       { name: "Apply for Delay It", desc: "Apply form", url: "https://docs.google.com/forms/d/e/1FAIpQLScTfb1HGdUCPk3-Q4Jb3vwHk0CVrHe41FSyPZUk7fthSTnA7A/viewform" },
       { name: "Mining Bot details", desc: "More info", url: "https://mfi0212.github.io/MFI/service.solutions/mining-bot" },
       { name: "Apply for Mining Bot", desc: "Apply form", url: "https://docs.google.com/forms/d/e/1FAIpQLSdXHYOEhD9pdYno0fWa3Z8nxrK4_cEf6n7JXW6Ug_zgeE3FeA/viewform" },
@@ -158,21 +159,15 @@ function clearSearch() {
   renderFiltered("");
   input.focus();
 }
-
-/* ========== THEME SWITCHER ========== */
 function setTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem("bsmfi-theme", theme);
-
-  // Update active button
   document.querySelectorAll(".themeoptions button").forEach(btn => {
     btn.classList.remove("active");
   });
   const activeBtn = document.getElementById("btn-" + theme);
   if (activeBtn) activeBtn.classList.add("active");
 }
-
-// Load saved theme or default to dark
 (function initTheme() {
   const saved = localStorage.getItem("bsmfi-theme") || "dark";
   setTheme(saved);
@@ -184,6 +179,5 @@ document.getElementById("searchInput").addEventListener("input", e => {
   renderFiltered(e.target.value);
 });
 </script>
-
 </body>
 </html>
