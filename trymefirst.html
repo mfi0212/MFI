@@ -32,7 +32,6 @@
       --safe-top: env(safe-area-inset-top, 0px);
       --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
-
     * {
       margin: 0;
       padding: 0;
@@ -41,19 +40,20 @@
       -webkit-font-smoothing: antialiased;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
     }
-
+    html {
+      font-size: 16px; /* controlled by JS */
+    }
     body {
       background: var(--bg);
       color: var(--fg);
       min-height: 100vh;
       min-height: 100dvh;
-      font-size: 17px;
+      font-size: 1.0625rem; /* ~17px at base 16 */
       line-height: 1.35;
       -webkit-user-select: none;
       user-select: none;
       overscroll-behavior: none;
     }
-
     .container {
       max-width: 430px;
       margin: 0 auto;
@@ -63,7 +63,6 @@
       position: relative;
       padding-bottom: calc(20px + var(--safe-bottom));
     }
-
     /* Top Banner - iOS style subtle */
     .top-banner {
       display: flex;
@@ -74,7 +73,7 @@
       background: rgba(242, 242, 247, 0.85);
       backdrop-filter: saturate(180%) blur(20px);
       -webkit-backdrop-filter: saturate(180%) blur(20px);
-      font-size: 13px;
+      font-size: 0.8125rem;
       font-weight: 500;
       color: var(--primary);
       border-bottom: 0.5px solid var(--separator);
@@ -82,17 +81,14 @@
       top: 0;
       z-index: 100;
     }
-
     .top-banner a {
       color: var(--primary);
       text-decoration: none;
       padding: 4px 0;
     }
-
     .top-banner a:active {
       opacity: 0.6;
     }
-
     /* Header */
     .header {
       display: flex;
@@ -101,34 +97,29 @@
       padding: 8px 20px 16px;
       background: var(--bg);
     }
-
     .header-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 12px;
     }
-
     .header h2 {
-      font-size: 34px;
+      font-size: 2.125rem;
       font-weight: 700;
       letter-spacing: -0.5px;
       line-height: 1.1;
       color: var(--fg);
     }
-
     .today {
-      font-size: 15px;
+      font-size: 0.9375rem;
       color: var(--muted);
       font-weight: 400;
     }
-
     .controls-row {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-
     .font-controls {
       display: flex;
       align-items: center;
@@ -138,14 +129,13 @@
       box-shadow: var(--shadow);
       height: 36px;
     }
-
     .font-btn {
       width: 40px;
       height: 36px;
       background: transparent;
       color: var(--primary);
       border: none;
-      font-size: 20px;
+      font-size: 1.25rem;
       font-weight: 500;
       cursor: pointer;
       display: flex;
@@ -153,25 +143,22 @@
       justify-content: center;
       transition: background 0.15s ease;
     }
-
     .font-btn:active {
       background: var(--blue-tint);
     }
-
     .font-size-label {
       min-width: 36px;
       height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 15px;
+      font-size: 0.9375rem;
       font-weight: 600;
       color: var(--fg);
       border-left: 0.5px solid var(--separator);
       border-right: 0.5px solid var(--separator);
       font-variant-numeric: tabular-nums;
     }
-
     .lang-btn {
       height: 36px;
       padding: 0 14px;
@@ -179,17 +166,15 @@
       color: var(--primary);
       border: none;
       border-radius: 10px;
-      font-size: 14px;
+      font-size: 0.875rem;
       font-weight: 600;
       cursor: pointer;
       box-shadow: var(--shadow);
       transition: background 0.15s ease;
     }
-
     .lang-btn:active {
       background: var(--blue-tint);
     }
-
     /* Segmented Control - pure iOS style */
     .navigation {
       display: flex;
@@ -199,14 +184,13 @@
       padding: 2px;
       position: relative;
     }
-
     .nav-btn {
       flex: 1;
       height: 32px;
       background: transparent;
       color: var(--fg);
       border: none;
-      font-size: 13px;
+      font-size: 0.8125rem;
       font-weight: 600;
       cursor: pointer;
       border-radius: 7px;
@@ -214,13 +198,11 @@
       position: relative;
       z-index: 1;
     }
-
     .nav-btn.active {
       background: var(--surface);
       color: var(--fg);
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
     }
-
     .total-btn {
       margin-left: 10px;
       height: 36px;
@@ -229,49 +211,42 @@
       color: #ffffff;
       border: none;
       border-radius: 18px;
-      font-size: 15px;
+      font-size: 0.9375rem;
       font-weight: 600;
       cursor: pointer;
       box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
       transition: all 0.2s ease;
       white-space: nowrap;
     }
-
     .total-btn:active {
       background: var(--primary-pressed);
       transform: scale(0.97);
     }
-
     .nav-wrapper {
       display: flex;
       align-items: center;
       padding: 0 20px 16px;
       gap: 0;
     }
-
     .nav-wrapper .navigation {
       flex: 1;
       margin: 0;
     }
-
     /* Sections */
     .section {
       display: none;
       padding: 0 16px 24px;
     }
-
     .section.active {
       display: block;
       animation: fadeIn 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     .section-title {
-      font-size: 13px;
+      font-size: 0.8125rem;
       font-weight: 400;
       color: var(--muted);
       text-transform: uppercase;
@@ -279,14 +254,12 @@
       padding: 0 4px 8px;
       margin-bottom: 4px;
     }
-
     /* Cards / Entries - iOS grouped style */
     .user {
       margin-bottom: 20px;
     }
-
     .user-name {
-      font-size: 13px;
+      font-size: 0.8125rem;
       font-weight: 400;
       color: var(--muted);
       text-transform: uppercase;
@@ -294,7 +267,6 @@
       padding: 0 4px 8px;
       text-align: left;
     }
-
     .entry {
       background: var(--surface);
       border-radius: var(--radius);
@@ -302,7 +274,6 @@
       margin-bottom: 12px;
       box-shadow: var(--shadow);
     }
-
     .entry-row {
       display: flex;
       justify-content: space-between;
@@ -310,25 +281,21 @@
       padding: 12px 16px;
       min-height: 44px;
       border-bottom: 0.5px solid var(--separator);
-      font-size: 17px;
+      font-size: 1.0625rem;
     }
-
     .entry-row:last-of-type {
       border-bottom: none;
     }
-
     .entry-row .label {
       font-weight: 400;
       color: var(--fg);
     }
-
     .entry-row .value {
       font-weight: 400;
       color: var(--muted);
       text-align: right;
       font-variant-numeric: tabular-nums;
     }
-
     .paid-row {
       display: flex;
       align-items: center;
@@ -338,13 +305,11 @@
       min-height: 50px;
       background: var(--surface);
     }
-
     .paid-row .label {
-      font-size: 17px;
+      font-size: 1.0625rem;
       font-weight: 400;
       color: var(--fg);
     }
-
     .paid-input {
       width: 110px;
       height: 36px;
@@ -353,18 +318,16 @@
       border-radius: 10px;
       background: var(--surface-secondary);
       text-align: right;
-      font-size: 17px;
+      font-size: 1.0625rem;
       font-weight: 500;
       font-variant-numeric: tabular-nums;
       color: var(--fg);
       outline: none;
       transition: background 0.15s ease;
     }
-
     .paid-input:focus {
       background: #e5e5ea;
     }
-
     .remaining {
       background: var(--surface);
       padding: 13px 16px;
@@ -372,41 +335,35 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 0.5px solid var(--separator);
-      font-size: 17px;
+      font-size: 1.0625rem;
     }
-
     .remaining .label {
       font-weight: 400;
       color: var(--fg);
     }
-
     .remaining .value {
       font-weight: 600;
       color: var(--destructive);
       font-variant-numeric: tabular-nums;
     }
-
     .entry-total {
       background: var(--surface);
       padding: 14px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 17px;
+      font-size: 1.0625rem;
     }
-
     .entry-total .label {
       font-weight: 600;
       color: var(--fg);
     }
-
     .entry-total .value {
       font-weight: 700;
       color: var(--primary);
       font-variant-numeric: tabular-nums;
-      font-size: 18px;
+      font-size: 1.125rem;
     }
-
     /* Notes */
     .notes-box {
       background: var(--surface);
@@ -414,7 +371,6 @@
       overflow: hidden;
       box-shadow: var(--shadow);
     }
-
     .note-input {
       display: block;
       width: 100%;
@@ -423,57 +379,49 @@
       resize: none;
       border: none;
       border-bottom: 0.5px solid var(--separator);
-      font-size: 17px;
+      font-size: 1.0625rem;
       line-height: 1.4;
       outline: none;
       background: var(--surface);
       color: var(--fg);
     }
-
     .note-input::placeholder {
       color: var(--muted);
     }
-
     .save-btn {
       width: 100%;
       height: 50px;
       background: transparent;
       color: var(--primary);
       border: none;
-      font-size: 17px;
+      font-size: 1.0625rem;
       font-weight: 600;
       cursor: pointer;
       transition: background 0.15s ease;
     }
-
     .save-btn:active {
       background: var(--blue-tint);
     }
-
     .note {
       position: relative;
       padding: 14px 48px 14px 16px;
       border-bottom: 0.5px solid var(--separator);
     }
-
     .note:last-child {
       border-bottom: none;
     }
-
     .note-text {
-      font-size: 17px;
+      font-size: 1.0625rem;
       white-space: pre-wrap;
       word-break: break-word;
       line-height: 1.4;
       color: var(--fg);
     }
-
     .note-date {
       margin-top: 6px;
-      font-size: 13px;
+      font-size: 0.8125rem;
       color: var(--muted);
     }
-
     .delete-note {
       position: absolute;
       top: 12px;
@@ -484,7 +432,7 @@
       color: var(--destructive);
       border: none;
       border-radius: 50%;
-      font-size: 22px;
+      font-size: 1.375rem;
       cursor: pointer;
       display: flex;
       justify-content: center;
@@ -492,27 +440,23 @@
       line-height: 1;
       transition: background 0.15s ease;
     }
-
     .delete-note:active {
       background: rgba(255, 59, 48, 0.12);
     }
-
     .empty-notes {
       padding: 40px 20px;
       text-align: center;
-      font-size: 17px;
+      font-size: 1.0625rem;
       color: var(--muted);
     }
-
     /* Footer */
     footer {
-      font-size: 12px;
+      font-size: 0.75rem;
       text-align: center;
       color: var(--muted);
       padding: 24px 20px 8px;
       font-weight: 400;
     }
-
     /* Modal - iOS sheet style */
     .modal-overlay {
       display: none;
@@ -525,16 +469,13 @@
       padding: 0;
       animation: fadeOverlay 0.3s ease;
     }
-
     .modal-overlay.show {
       display: flex;
     }
-
     @keyframes fadeOverlay {
       from { opacity: 0; }
       to { opacity: 1; }
     }
-
     .modal {
       background: var(--bg);
       border-radius: 16px 16px 0 0;
@@ -546,12 +487,10 @@
       animation: slideUp 0.35s cubic-bezier(0.32, 0.72, 0, 1);
       padding-bottom: var(--safe-bottom);
     }
-
     @keyframes slideUp {
       from { transform: translateY(100%); }
       to { transform: translateY(0); }
     }
-
     .modal-header {
       display: flex;
       justify-content: space-between;
@@ -559,7 +498,6 @@
       padding: 16px 20px 12px;
       position: relative;
     }
-
     .modal-header::before {
       content: '';
       position: absolute;
@@ -571,15 +509,13 @@
       background: rgba(60, 60, 67, 0.3);
       border-radius: 3px;
     }
-
     .modal-header h3 {
-      font-size: 17px;
+      font-size: 1.0625rem;
       font-weight: 600;
       width: 100%;
       text-align: center;
       padding-top: 8px;
     }
-
     .modal-close {
       position: absolute;
       right: 16px;
@@ -590,7 +526,7 @@
       color: var(--fg-secondary);
       border: none;
       border-radius: 50%;
-      font-size: 18px;
+      font-size: 1.125rem;
       font-weight: 500;
       cursor: pointer;
       display: flex;
@@ -598,11 +534,9 @@
       justify-content: center;
       line-height: 1;
     }
-
     .modal-close:active {
       background: rgba(118, 118, 128, 0.24);
     }
-
     .modal-summary {
       margin: 8px 16px 24px;
       background: var(--surface);
@@ -610,48 +544,41 @@
       overflow: hidden;
       box-shadow: var(--shadow);
     }
-
     .modal-summary .row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 14px 16px;
-      font-size: 17px;
+      font-size: 1.0625rem;
       border-bottom: 0.5px solid var(--separator);
     }
-
     .modal-summary .row:last-child {
       border-bottom: none;
       background: var(--surface);
     }
-
     .modal-summary .row span:first-child {
       color: var(--fg);
       font-weight: 400;
     }
-
     .modal-summary .row span:last-child {
       text-align: right;
       font-variant-numeric: tabular-nums;
       font-weight: 400;
       color: var(--muted);
     }
-
     .modal-summary .row:last-child span:first-child {
       font-weight: 600;
       color: var(--fg);
     }
-
     .modal-summary .row:last-child span:last-child {
       font-weight: 700;
       color: var(--primary);
-      font-size: 20px;
+      font-size: 1.25rem;
     }
-
     /* Responsive tweaks */
     @media (max-width: 380px) {
       .header h2 {
-        font-size: 28px;
+        font-size: 1.75rem;
       }
       .container {
         max-width: 100%;
@@ -665,7 +592,6 @@
       <a href="https://mfi0212.github.io/personal/gold.market.divert.user">బంగారం/వెండి market</a>
       <a href="https://mfi0212.github.io/personal/guardian/countday.html#dayscount">రోజుల కౌంటర్</a>
     </div>
-
     <div class="header">
       <div class="header-top">
         <h2 id="title">వడ్డీ</h2>
@@ -680,7 +606,6 @@
       </div>
       <div class="today" id="todayDate"></div>
     </div>
-
     <div class="nav-wrapper">
       <div class="navigation">
         <button class="nav-btn active" id="interestNav" onclick="showSection('interest')">వడ్డీ</button>
@@ -688,12 +613,10 @@
       </div>
       <button class="total-btn" id="totalBtn" onclick="openTotalPopup()">మొత్తం</button>
     </div>
-
     <section id="interestSection" class="section active">
       <h3 class="section-title" id="interestTitle">వడ్డీ వివరాలు</h3>
       <div id="app"></div>
     </section>
-
     <section id="notesSection" class="section">
       <h3 class="section-title" id="notesTitle">గమనికలు</h3>
       <div class="notes-box">
@@ -702,10 +625,8 @@
         <div id="notesList" class="notes-list"></div>
       </div>
     </section>
-
     <footer>VSL · All rights reserved<br>Version v.02.22.9</footer>
   </div>
-
   <div class="modal-overlay" id="totalModal" onclick="closeTotalPopup(event)">
     <div class="modal" onclick="event.stopPropagation()">
       <div class="modal-header">
@@ -715,7 +636,6 @@
       <div id="modalBody"></div>
     </div>
   </div>
-
   <script>
     const users = [
       {
@@ -745,16 +665,13 @@
         ]
       }
     ];
-
     let currentLang = "te";
     let currentFontSize = 16;
-
     const FONT_SIZE_KEY = "interestTrackerFontSize";
     const MIN_FONT = 12;
     const MAX_FONT = 28;
     const NOTES_KEY = "interestTrackerNotes";
     const PAID_KEY = "interestTrackerPaidAmounts";
-
     const lang = {
       en: {
         title: "Interest",
@@ -807,7 +724,6 @@
         delete: "తొలగించు"
       }
     };
-
     const monthNames = {
       en: [
         "January", "February", "March", "April", "May", "June",
@@ -818,7 +734,6 @@
         "జూలై", "ఆగస్టు", "సెప్టెంబర్", "అక్టోబర్", "నవంబర్", "డిసెంబర్"
       ]
     };
-
     function loadFontSize() {
       const saved = localStorage.getItem(FONT_SIZE_KEY);
       if (saved) {
@@ -829,12 +744,10 @@
       }
       applyFontSize();
     }
-
     function applyFontSize() {
-      document.body.style.fontSize = currentFontSize + "px";
+      document.documentElement.style.fontSize = currentFontSize + "px";
       document.getElementById("fontSizeLabel").textContent = currentFontSize;
     }
-
     function changeFontSize(delta) {
       const newSize = currentFontSize + delta;
       if (newSize < MIN_FONT || newSize > MAX_FONT) return;
@@ -842,20 +755,17 @@
       applyFontSize();
       localStorage.setItem(FONT_SIZE_KEY, currentFontSize);
     }
-
     function showSection(section) {
       const interestSection = document.getElementById("interestSection");
       const notesSection = document.getElementById("notesSection");
       const interestNav = document.getElementById("interestNav");
       const notesNav = document.getElementById("notesNav");
-
       if (section === "interest") {
         interestSection.classList.add("active");
         notesSection.classList.remove("active");
         interestNav.classList.add("active");
         notesNav.classList.remove("active");
       }
-
       if (section === "notes") {
         interestSection.classList.remove("active");
         notesSection.classList.add("active");
@@ -864,17 +774,14 @@
         renderNotes();
       }
     }
-
     function parseDate(dateStr) {
       const parts = dateStr.split("-");
       return new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
     }
-
     function formatDateWithMonth(dateStr) {
       const d = parseDate(dateStr);
       return `${d.getDate()} ${monthNames[currentLang][d.getMonth()]} ${d.getFullYear()}`;
     }
-
     function getDays(takenDate) {
       const start = parseDate(takenDate);
       const today = new Date();
@@ -882,20 +789,17 @@
       today.setHours(0, 0, 0, 0);
       return Math.max(0, Math.floor((today - start) / 86400000));
     }
-
     function showToday() {
       const today = new Date();
       document.getElementById("todayDate").innerText =
         `${lang[currentLang].today}: ${today.getDate()} ${monthNames[currentLang][today.getMonth()]} ${today.getFullYear()}`;
     }
-
     function toggleLanguage() {
       currentLang = currentLang === "en" ? "te" : "en";
       updateLanguage();
       render();
       renderNotes();
     }
-
     function updateLanguage() {
       const t = lang[currentLang];
       document.documentElement.lang = currentLang;
@@ -911,7 +815,6 @@
       document.getElementById("saveButton").innerText = t.save;
       showToday();
     }
-
     function loadPaidAmounts() {
       try {
         const saved = JSON.parse(localStorage.getItem(PAID_KEY));
@@ -929,7 +832,6 @@
         console.error("Unable to load saved interest payments.", error);
       }
     }
-
     function savePaidAmounts() {
       const paid = {};
       users.forEach((user, userIndex) => {
@@ -939,7 +841,6 @@
       });
       localStorage.setItem(PAID_KEY, JSON.stringify(paid));
     }
-
     function getEntryData(entry) {
       const days = getDays(entry.takenDate);
       const totalInterest = Math.round(
@@ -949,32 +850,26 @@
       const total = entry.amount + remaining;
       return { days, totalInterest, remaining, total };
     }
-
     function formatMoney(amount) {
       return "₹" + Number(amount).toLocaleString("en-IN");
     }
-
     function render() {
       const app = document.getElementById("app");
       const t = lang[currentLang];
       app.innerHTML = "";
-
       users.forEach(user => {
         const userElement = document.createElement("div");
         userElement.className = "user";
-
         if (user.name) {
           const userName = document.createElement("div");
           userName.className = "user-name";
           userName.textContent = user.name;
           userElement.appendChild(userName);
         }
-
         user.entries.forEach((entry, entryIndex) => {
           const { days, remaining, total } = getEntryData(entry);
           const entryElement = document.createElement("div");
           entryElement.className = "entry";
-
           entryElement.innerHTML = `
             <div class="entry-row">
               <span class="label">${t.amount}</span>
@@ -1018,19 +913,15 @@
               <span class="value">${formatMoney(total)}</span>
             </div>
           `;
-
           entryElement.querySelector(".borrowed-value").textContent =
             entry.borrowedBy || "—";
-
           const paidInput = entryElement.querySelector(".paid-input");
-
           paidInput.addEventListener("change", function () {
             const value = Math.max(0, Number(this.value) || 0);
             entry.interestPaid = value;
             savePaidAmounts();
             render();
           });
-
           paidInput.addEventListener("input", function () {
             entry.interestPaid = Math.max(0, Number(this.value) || 0);
             savePaidAmounts();
@@ -1040,21 +931,16 @@
             remainingElement.textContent = formatMoney(remaining);
             totalElement.textContent = formatMoney(total);
           });
-
           userElement.appendChild(entryElement);
         });
-
         app.appendChild(userElement);
       });
     }
-
     function openTotalPopup() {
       const t = lang[currentLang];
       const body = document.getElementById("modalBody");
-
       let grandPrincipal = 0;
       let grandRemaining = 0;
-
       users.forEach(user => {
         user.entries.forEach(entry => {
           const { remaining } = getEntryData(entry);
@@ -1062,9 +948,7 @@
           grandRemaining += remaining;
         });
       });
-
       const grandTotal = grandPrincipal + grandRemaining;
-
       body.innerHTML = `
         <div class="modal-summary">
           <div class="row">
@@ -1081,16 +965,13 @@
           </div>
         </div>
       `;
-
       document.getElementById("totalModal").classList.add("show");
     }
-
     function closeTotalPopup(event) {
       if (!event || event.target.id === "totalModal") {
         document.getElementById("totalModal").classList.remove("show");
       }
     }
-
     function getNotes() {
       try {
         return JSON.parse(localStorage.getItem(NOTES_KEY)) || [];
@@ -1098,7 +979,6 @@
         return [];
       }
     }
-
     function saveNote() {
       const input = document.getElementById("noteInput");
       const text = input.value.trim();
@@ -1116,36 +996,30 @@
       input.value = "";
       renderNotes();
     }
-
     function deleteNote(id) {
       const notes = getNotes().filter(note => note.id !== id);
       localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
       renderNotes();
     }
-
     function formatNoteDate(dateString) {
       const date = new Date(dateString);
       const hours = String(date.getHours()).padStart(2, "0");
       const minutes = String(date.getMinutes()).padStart(2, "0");
       return `${date.getDate()} ${monthNames[currentLang][date.getMonth()]} ${date.getFullYear()}, ${hours}:${minutes}`;
     }
-
     function escapeHTML(text) {
       const div = document.createElement("div");
       div.textContent = text;
       return div.innerHTML;
     }
-
     function renderNotes() {
       const list = document.getElementById("notesList");
       const notes = getNotes();
       const t = lang[currentLang];
-
       if (notes.length === 0) {
         list.innerHTML = `<div class="empty-notes">${t.emptyNotes}</div>`;
         return;
       }
-
       list.innerHTML = notes.map(note => `
         <div class="note">
           <button class="delete-note" onclick="deleteNote(${Number(note.id)})" title="${t.delete}">×</button>
@@ -1154,7 +1028,6 @@
         </div>
       `).join("");
     }
-
     loadFontSize();
     loadPaidAmounts();
     updateLanguage();
