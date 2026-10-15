@@ -2,27 +2,35 @@
 <html lang="te">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>VSL | వడ్డీ ట్రాకర్</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #e9eef6;
-      --glass: rgba(255, 255, 255, 0.42);
-      --glass-thick: rgba(255, 255, 255, 0.62);
-      --glass-edge: rgba(255, 255, 255, 0.85);
-      --glass-inner: rgba(255, 255, 255, 0.25);
-      --fg: #1d1d1f;
-      --fg-secondary: #424245;
-      --muted: #86868b;
-      --primary: #0071e3;
-      --primary-soft: rgba(0, 113, 227, 0.14);
+      --bg: #f2f2f7;
+      --surface: #ffffff;
+      --surface-secondary: #f2f2f7;
+      --fg: #000000;
+      --fg-secondary: #3c3c43;
+      --muted: #8e8e93;
+      --separator: rgba(60, 60, 67, 0.12);
+      --separator-opaque: #c6c6c8;
+      --primary: #007aff;
+      --primary-pressed: #0062cc;
       --destructive: #ff3b30;
-      --radius: 26px;
-      --radius-sm: 18px;
-      --blur: 40px;
+      --green: #34c759;
+      --blue-tint: rgba(0, 122, 255, 0.12);
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+      --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.08);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --radius-xs: 10px;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
 
     * {
@@ -30,377 +38,395 @@
       padding: 0;
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
-    }
-
-    html, body {
-      height: 100%;
+      -webkit-font-smoothing: antialiased;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
     }
 
     body {
-      background: 
-        radial-gradient(ellipse 120% 80% at 10% -20%, #c7d6f5 0%, transparent 50%),
-        radial-gradient(ellipse 100% 60% at 90% 10%, #d4c8f5 0%, transparent 45%),
-        radial-gradient(ellipse 80% 50% at 50% 100%, #c8e0f5 0%, transparent 50%),
-        linear-gradient(180deg, #e4eaf4 0%, #eef2f8 40%, #f4f6fa 100%);
-      background-attachment: fixed;
+      background: var(--bg);
       color: var(--fg);
       min-height: 100vh;
-      font-size: 16px;
-      line-height: 1.4;
+      min-height: 100dvh;
+      font-size: 17px;
+      line-height: 1.35;
       -webkit-user-select: none;
       user-select: none;
-      overflow-x: hidden;
+      overscroll-behavior: none;
     }
 
     .container {
-      position: relative;
-      z-index: 1;
       max-width: 430px;
       margin: 0 auto;
       min-height: 100vh;
-      padding-bottom: env(safe-area-inset-bottom, 24px);
-    }
-
-    /* ========== Liquid Glass Base ========== */
-    .glass {
-      background: var(--glass);
-      backdrop-filter: blur(var(--blur)) saturate(200%) brightness(1.05);
-      -webkit-backdrop-filter: blur(var(--blur)) saturate(200%) brightness(1.05);
-      border: 1px solid transparent;
-      box-shadow:
-        inset 0 1px 1px 0 var(--glass-edge),
-        inset 0 -1px 1px 0 rgba(255, 255, 255, 0.15),
-        0 8px 32px rgba(0, 0, 0, 0.06),
-        0 2px 8px rgba(0, 0, 0, 0.03);
+      min-height: 100dvh;
+      background: var(--bg);
       position: relative;
+      padding-bottom: calc(20px + var(--safe-bottom));
     }
 
-    .glass::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 1px;
-      background: linear-gradient(
-        145deg,
-        rgba(255, 255, 255, 0.9) 0%,
-        rgba(255, 255, 255, 0.2) 40%,
-        rgba(255, 255, 255, 0.05) 70%,
-        rgba(255, 255, 255, 0.35) 100%
-      );
-      -webkit-mask: 
-        linear-gradient(#fff 0 0) content-box, 
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    /* ========== Top Banner ========== */
+    /* Top Banner - iOS style subtle */
     .top-banner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 14px 16px 0;
-      padding: 12px 20px;
-      border-radius: 999px;
-      font-size: 0.78em;
+      padding: 10px 20px;
+      padding-top: calc(10px + var(--safe-top));
+      background: rgba(242, 242, 247, 0.85);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      font-size: 13px;
       font-weight: 500;
+      color: var(--primary);
+      border-bottom: 0.5px solid var(--separator);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .top-banner a {
       color: var(--primary);
       text-decoration: none;
-      transition: opacity 0.2s;
+      padding: 4px 0;
     }
 
     .top-banner a:active {
-      opacity: 0.55;
+      opacity: 0.6;
     }
 
-    /* ========== Header ========== */
+    /* Header */
     .header {
-      padding: 22px 22px 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 8px 20px 16px;
+      background: var(--bg);
     }
 
     .header-top {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
       gap: 12px;
-      margin-bottom: 16px;
     }
 
     .header h2 {
-      font-size: 1.85em;
+      font-size: 34px;
       font-weight: 700;
-      letter-spacing: -0.045em;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
       color: var(--fg);
-      line-height: 1.15;
     }
 
     .today {
-      font-size: 0.8em;
-      font-weight: 500;
+      font-size: 15px;
       color: var(--muted);
-      padding: 7px 14px;
-      border-radius: 999px;
-      white-space: nowrap;
-      margin-top: 4px;
+      font-weight: 400;
+    }
+
+    .controls-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .font-controls {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      border-radius: 999px;
+      background: var(--surface);
+      border-radius: 10px;
       overflow: hidden;
+      box-shadow: var(--shadow);
+      height: 36px;
     }
 
     .font-btn {
-      width: 42px;
-      height: 38px;
+      width: 40px;
+      height: 36px;
       background: transparent;
-      color: var(--fg);
+      color: var(--primary);
       border: none;
-      font-size: 19px;
+      font-size: 20px;
       font-weight: 500;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.15s;
+      transition: background 0.15s ease;
     }
 
     .font-btn:active {
-      background: rgba(0, 0, 0, 0.05);
+      background: var(--blue-tint);
     }
 
     .font-size-label {
       min-width: 36px;
-      height: 38px;
+      height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.8125em;
+      font-size: 15px;
       font-weight: 600;
-      color: var(--muted);
+      color: var(--fg);
+      border-left: 0.5px solid var(--separator);
+      border-right: 0.5px solid var(--separator);
       font-variant-numeric: tabular-nums;
-      border-left: 1px solid rgba(0, 0, 0, 0.06);
-      border-right: 1px solid rgba(0, 0, 0, 0.06);
     }
 
     .lang-btn {
-      height: 38px;
-      padding: 0 16px;
-      background: transparent;
+      height: 36px;
+      padding: 0 14px;
+      background: var(--surface);
       color: var(--primary);
       border: none;
-      font-size: 0.75em;
+      border-radius: 10px;
+      font-size: 14px;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.15s;
+      box-shadow: var(--shadow);
+      transition: background 0.15s ease;
     }
 
     .lang-btn:active {
-      background: var(--primary-soft);
+      background: var(--blue-tint);
     }
 
-    /* ========== Navigation (iOS Segmented) ========== */
+    /* Segmented Control - pure iOS style */
     .navigation {
       display: flex;
-      gap: 3px;
-      margin: 10px 16px 6px;
-      padding: 4px;
-      border-radius: 16px;
+      margin: 0 20px 20px;
+      background: rgba(118, 118, 128, 0.12);
+      border-radius: 9px;
+      padding: 2px;
+      position: relative;
     }
 
     .nav-btn {
       flex: 1;
-      min-height: 40px;
+      height: 32px;
       background: transparent;
-      color: var(--muted);
+      color: var(--fg);
       border: none;
-      font-size: 0.875em;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      border-radius: 13px;
-      transition: all 0.28s cubic-bezier(0.25, 0.1, 0.25, 1);
+      border-radius: 7px;
+      transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+      position: relative;
+      z-index: 1;
     }
 
     .nav-btn.active {
-      background: var(--glass-thick);
+      background: var(--surface);
       color: var(--fg);
-      box-shadow:
-        0 2px 10px rgba(0, 0, 0, 0.06),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
     }
 
     .total-btn {
-      min-height: 40px;
-      padding: 0 20px;
+      margin-left: 10px;
+      height: 36px;
+      padding: 0 16px;
       background: var(--primary);
-      color: #fff;
+      color: #ffffff;
       border: none;
-      font-size: 0.875em;
+      border-radius: 18px;
+      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      border-radius: 13px;
-      box-shadow: 0 4px 16px rgba(0, 113, 227, 0.35);
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+      transition: all 0.2s ease;
+      white-space: nowrap;
     }
 
     .total-btn:active {
-      transform: scale(0.96);
-      box-shadow: 0 2px 8px rgba(0, 113, 227, 0.3);
+      background: var(--primary-pressed);
+      transform: scale(0.97);
     }
 
-    /* ========== Sections ========== */
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      padding: 0 20px 16px;
+      gap: 0;
+    }
+
+    .nav-wrapper .navigation {
+      flex: 1;
+      margin: 0;
+    }
+
+    /* Sections */
     .section {
       display: none;
-      padding: 2px 0 28px;
+      padding: 0 16px 24px;
     }
 
     .section.active {
       display: block;
-      animation: rise 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      animation: fadeIn 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
     }
 
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(12px); }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     .section-title {
-      padding: 14px 24px 10px;
-      font-size: 0.7em;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
+      font-size: 13px;
+      font-weight: 400;
       color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      padding: 0 4px 8px;
+      margin-bottom: 4px;
     }
 
-    /* ========== Entry Cards ========== */
+    /* Cards / Entries - iOS grouped style */
     .user {
-      margin: 0 16px 4px;
+      margin-bottom: 20px;
     }
 
     .user-name {
-      display: none;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      padding: 0 4px 8px;
+      text-align: left;
     }
 
     .entry {
+      background: var(--surface);
       border-radius: var(--radius);
-      margin-bottom: 18px;
       overflow: hidden;
-      transition: transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
-    }
-
-    .entry:active {
-      transform: scale(0.982);
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
     }
 
     .entry-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      padding: 14px 20px;
-      font-size: 0.9em;
-      border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
-      min-height: 48px;
+      padding: 12px 16px;
+      min-height: 44px;
+      border-bottom: 0.5px solid var(--separator);
+      font-size: 17px;
+    }
+
+    .entry-row:last-of-type {
+      border-bottom: none;
     }
 
     .entry-row .label {
-      font-weight: 500;
-      color: var(--muted);
+      font-weight: 400;
+      color: var(--fg);
     }
 
     .entry-row .value {
-      font-weight: 600;
-      font-variant-numeric: tabular-nums;
+      font-weight: 400;
+      color: var(--muted);
       text-align: right;
-      color: var(--fg);
+      font-variant-numeric: tabular-nums;
     }
 
     .paid-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 20px;
-      border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
-      gap: 12px;
-      min-height: 54px;
-      background: rgba(255, 255, 255, 0.18);
+      padding: 10px 16px;
+      border-bottom: 0.5px solid var(--separator);
+      min-height: 50px;
+      background: var(--surface);
+    }
+
+    .paid-row .label {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--fg);
     }
 
     .paid-input {
-      width: 120px;
-      padding: 10px 14px;
+      width: 110px;
+      height: 36px;
+      padding: 0 12px;
       border: none;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.65);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      border-radius: 10px;
+      background: var(--surface-secondary);
       text-align: right;
-      font-size: 0.95em;
-      font-weight: 600;
+      font-size: 17px;
+      font-weight: 500;
       font-variant-numeric: tabular-nums;
-      outline: none;
       color: var(--fg);
-      box-shadow:
-        inset 0 1px 2px rgba(0, 0, 0, 0.04),
-        0 0 0 1px rgba(0, 0, 0, 0.04);
-      transition: all 0.2s;
+      outline: none;
+      transition: background 0.15s ease;
     }
 
     .paid-input:focus {
-      background: #fff;
-      box-shadow:
-        0 0 0 4px var(--primary-soft),
-        0 0 0 1.5px var(--primary);
+      background: #e5e5ea;
     }
 
     .remaining {
-      background: linear-gradient(160deg, #1d1d1f 0%, #2c2c2e 100%);
-      color: #fff;
-      padding: 15px 20px;
+      background: var(--surface);
+      padding: 13px 16px;
       display: flex;
       justify-content: space-between;
-      font-size: 0.9em;
+      align-items: center;
+      border-bottom: 0.5px solid var(--separator);
+      font-size: 17px;
+    }
+
+    .remaining .label {
+      font-weight: 400;
+      color: var(--fg);
+    }
+
+    .remaining .value {
       font-weight: 600;
+      color: var(--destructive);
+      font-variant-numeric: tabular-nums;
     }
 
     .entry-total {
-      background: linear-gradient(160deg, #0071e3 0%, #0058b0 100%);
-      color: #fff;
-      padding: 16px 20px;
+      background: var(--surface);
+      padding: 14px 16px;
       display: flex;
       justify-content: space-between;
-      font-size: 0.95em;
-      font-weight: 700;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      align-items: center;
+      font-size: 17px;
     }
 
-    /* ========== Notes ========== */
+    .entry-total .label {
+      font-weight: 600;
+      color: var(--fg);
+    }
+
+    .entry-total .value {
+      font-weight: 700;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+      font-size: 18px;
+    }
+
+    /* Notes */
     .notes-box {
-      margin: 0 16px;
+      background: var(--surface);
       border-radius: var(--radius);
       overflow: hidden;
+      box-shadow: var(--shadow);
     }
 
     .note-input {
       display: block;
       width: 100%;
-      min-height: 150px;
-      padding: 20px;
-      resize: vertical;
+      min-height: 120px;
+      padding: 16px;
+      resize: none;
       border: none;
-      border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
-      font-size: 0.95em;
-      line-height: 1.55;
+      border-bottom: 0.5px solid var(--separator);
+      font-size: 17px;
+      line-height: 1.4;
       outline: none;
-      background: transparent;
+      background: var(--surface);
       color: var(--fg);
     }
 
@@ -410,25 +436,24 @@
 
     .save-btn {
       width: 100%;
-      padding: 17px;
-      background: var(--primary);
-      color: #fff;
+      height: 50px;
+      background: transparent;
+      color: var(--primary);
       border: none;
-      font-size: 0.95em;
+      font-size: 17px;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
-      transition: opacity 0.2s;
+      transition: background 0.15s ease;
     }
 
     .save-btn:active {
-      opacity: 0.82;
+      background: var(--blue-tint);
     }
 
     .note {
       position: relative;
-      padding: 18px 52px 18px 20px;
-      border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
+      padding: 14px 48px 14px 16px;
+      border-bottom: 0.5px solid var(--separator);
     }
 
     .note:last-child {
@@ -436,96 +461,94 @@
     }
 
     .note-text {
-      font-size: 0.95em;
+      font-size: 17px;
       white-space: pre-wrap;
       word-break: break-word;
-      line-height: 1.5;
+      line-height: 1.4;
+      color: var(--fg);
     }
 
     .note-date {
-      margin-top: 7px;
-      font-size: 0.75em;
+      margin-top: 6px;
+      font-size: 13px;
       color: var(--muted);
-      font-weight: 500;
     }
 
     .delete-note {
       position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 32px;
-      height: 32px;
-      background: rgba(255, 59, 48, 0.12);
+      top: 12px;
+      right: 12px;
+      width: 30px;
+      height: 30px;
+      background: transparent;
       color: var(--destructive);
       border: none;
       border-radius: 50%;
-      font-size: 18px;
+      font-size: 22px;
       cursor: pointer;
       display: flex;
-      align-items: center;
       justify-content: center;
-      transition: all 0.2s;
+      align-items: center;
+      line-height: 1;
+      transition: background 0.15s ease;
     }
 
     .delete-note:active {
-      background: var(--destructive);
-      color: #fff;
-      transform: scale(0.9);
+      background: rgba(255, 59, 48, 0.12);
     }
 
     .empty-notes {
-      padding: 52px 24px;
+      padding: 40px 20px;
       text-align: center;
-      font-size: 0.9em;
+      font-size: 17px;
       color: var(--muted);
-      font-weight: 500;
     }
 
-    /* ========== Footer ========== */
+    /* Footer */
     footer {
-      font-size: 0.7em;
+      font-size: 12px;
       text-align: center;
       color: var(--muted);
-      padding: 32px 20px 40px;
-      font-weight: 500;
-      opacity: 0.75;
+      padding: 24px 20px 8px;
+      font-weight: 400;
     }
 
-    /* ========== Modal (Liquid Glass Sheet) ========== */
+    /* Modal - iOS sheet style */
     .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.32);
-      backdrop-filter: blur(18px) saturate(160%);
-      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      background: rgba(0, 0, 0, 0.4);
       z-index: 1000;
       align-items: flex-end;
       justify-content: center;
+      padding: 0;
+      animation: fadeOverlay 0.3s ease;
     }
 
     .modal-overlay.show {
       display: flex;
-      animation: fadeIn 0.3s ease;
     }
 
-    @keyframes fadeIn {
+    @keyframes fadeOverlay {
       from { opacity: 0; }
       to { opacity: 1; }
     }
 
     .modal {
+      background: var(--bg);
+      border-radius: 16px 16px 0 0;
       width: 100%;
       max-width: 430px;
-      max-height: 82vh;
-      border-radius: 32px 32px 0 0;
-      overflow-y: auto;
-      padding-bottom: env(safe-area-inset-bottom, 20px);
-      animation: sheet 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+      max-height: 85vh;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      animation: slideUp 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+      padding-bottom: var(--safe-bottom);
     }
 
-    @keyframes sheet {
-      from { transform: translateY(105%); }
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
       to { transform: translateY(0); }
     }
 
@@ -533,79 +556,112 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 24px 10px;
+      padding: 16px 20px 12px;
+      position: relative;
+    }
+
+    .modal-header::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 36px;
+      height: 5px;
+      background: rgba(60, 60, 67, 0.3);
+      border-radius: 3px;
     }
 
     .modal-header h3 {
-      font-size: 1.2em;
-      font-weight: 700;
-      letter-spacing: -0.025em;
+      font-size: 17px;
+      font-weight: 600;
+      width: 100%;
+      text-align: center;
+      padding-top: 8px;
     }
 
     .modal-close {
-      width: 32px;
-      height: 32px;
-      background: rgba(0, 0, 0, 0.08);
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      width: 30px;
+      height: 30px;
+      background: rgba(118, 118, 128, 0.12);
       color: var(--fg-secondary);
       border: none;
       border-radius: 50%;
       font-size: 18px;
+      font-weight: 500;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.15s;
+      line-height: 1;
     }
 
     .modal-close:active {
-      background: rgba(0, 0, 0, 0.14);
-      transform: scale(0.9);
+      background: rgba(118, 118, 128, 0.24);
     }
 
     .modal-summary {
-      margin: 8px 18px 28px;
-      background: linear-gradient(165deg, #1d1d1f 0%, #2c2c2e 100%);
-      color: #fff;
-      padding: 24px 22px;
-      border-radius: 22px;
-      box-shadow:
-        0 12px 32px rgba(0, 0, 0, 0.22),
-        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      margin: 8px 16px 24px;
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
     }
 
     .modal-summary .row {
       display: flex;
       justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 15px;
-      font-size: 0.95em;
-      font-weight: 500;
+      align-items: center;
+      padding: 14px 16px;
+      font-size: 17px;
+      border-bottom: 0.5px solid var(--separator);
+    }
+
+    .modal-summary .row:last-child {
+      border-bottom: none;
+      background: var(--surface);
+    }
+
+    .modal-summary .row span:first-child {
+      color: var(--fg);
+      font-weight: 400;
     }
 
     .modal-summary .row span:last-child {
       text-align: right;
       font-variant-numeric: tabular-nums;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .modal-summary .row:last-child span:first-child {
       font-weight: 600;
+      color: var(--fg);
     }
 
-    .modal-summary .row:last-child {
-      margin-bottom: 0;
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 0.5px solid rgba(255, 255, 255, 0.16);
+    .modal-summary .row:last-child span:last-child {
       font-weight: 700;
-      font-size: 1.25em;
+      color: var(--primary);
+      font-size: 20px;
     }
 
+    /* Responsive tweaks */
     @media (max-width: 380px) {
-      .header h2 { font-size: 1.6em; }
-      .top-banner { font-size: 0.72em; padding: 11px 16px; }
+      .header h2 {
+        font-size: 28px;
+      }
+      .container {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="top-banner glass">
+    <div class="top-banner">
       <a href="https://mfi0212.github.io/personal/gold.market.divert.user">బంగారం/వెండి market</a>
       <a href="https://mfi0212.github.io/personal/guardian/countday.html#dayscount">రోజుల కౌంటర్</a>
     </div>
@@ -613,19 +669,23 @@
     <div class="header">
       <div class="header-top">
         <h2 id="title">వడ్డీ</h2>
-        <div class="today glass" id="todayDate"></div>
+        <div class="controls-row">
+          <div class="font-controls">
+            <button class="font-btn" onclick="changeFontSize(-1)" title="Decrease font">−</button>
+            <span class="font-size-label" id="fontSizeLabel">16</span>
+            <button class="font-btn" onclick="changeFontSize(1)" title="Increase font">+</button>
+          </div>
+          <button class="lang-btn" onclick="toggleLanguage()">తె/ENG</button>
+        </div>
       </div>
-      <div class="font-controls glass">
-        <button class="font-btn" onclick="changeFontSize(-1)">−</button>
-        <span class="font-size-label" id="fontSizeLabel">16</span>
-        <button class="font-btn" onclick="changeFontSize(1)">+</button>
-        <button class="lang-btn" onclick="toggleLanguage()">తె / ENG</button>
-      </div>
+      <div class="today" id="todayDate"></div>
     </div>
 
-    <div class="navigation glass">
-      <button class="nav-btn active" id="interestNav" onclick="showSection('interest')">వడ్డీ</button>
-      <button class="nav-btn" id="notesNav" onclick="showSection('notes')">గమనికలు</button>
+    <div class="nav-wrapper">
+      <div class="navigation">
+        <button class="nav-btn active" id="interestNav" onclick="showSection('interest')">వడ్డీ</button>
+        <button class="nav-btn" id="notesNav" onclick="showSection('notes')">గమనికలు</button>
+      </div>
       <button class="total-btn" id="totalBtn" onclick="openTotalPopup()">మొత్తం</button>
     </div>
 
@@ -636,18 +696,18 @@
 
     <section id="notesSection" class="section">
       <h3 class="section-title" id="notesTitle">గమనికలు</h3>
-      <div class="notes-box glass">
+      <div class="notes-box">
         <textarea id="noteInput" class="note-input" placeholder="ఇక్కడ ఏదైనా రాయండి..."></textarea>
         <button class="save-btn" id="saveButton" onclick="saveNote()">సేవ్ చేయండి</button>
         <div id="notesList" class="notes-list"></div>
       </div>
     </section>
 
-    <footer>VSL · All rights reserved<br>Version (v.02.22.9)</footer>
+    <footer>VSL · All rights reserved<br>Version v.02.22.9</footer>
   </div>
 
   <div class="modal-overlay" id="totalModal" onclick="closeTotalPopup(event)">
-    <div class="modal glass" onclick="event.stopPropagation()">
+    <div class="modal" onclick="event.stopPropagation()">
       <div class="modal-header">
         <h3 id="modalTitle">మొత్తం వివరాలు</h3>
         <button class="modal-close" onclick="closeTotalPopup()">×</button>
@@ -697,7 +757,7 @@
 
     const lang = {
       en: {
-        title: "VSL",
+        title: "Interest",
         today: "Today",
         interestTitle: "Interest Details",
         notesTitle: "Notes",
@@ -718,11 +778,11 @@
         grandTotal: "Grand Total",
         placeholder: "Write something here...",
         save: "Save",
-        emptyNotes: "No notes saved yet.",
+        emptyNotes: "No notes yet.",
         delete: "Delete"
       },
       te: {
-        title: "VSL",
+        title: "వడ్డీ",
         today: "ఈరోజు",
         interestTitle: "వడ్డీ వివరాలు",
         notesTitle: "గమనికలు",
@@ -743,21 +803,29 @@
         grandTotal: "మొత్తం",
         placeholder: "ఇక్కడ ఏదైనా రాయండి...",
         save: "సేవ్ చేయండి",
-        emptyNotes: "ఇంకా గమనికలు సేవ్ చేయలేదు.",
+        emptyNotes: "ఇంకా గమనికలు లేవు.",
         delete: "తొలగించు"
       }
     };
 
     const monthNames = {
-      en: ["January","February","March","April","May","June","July","August","September","October","November","December"],
-      te: ["జనవరి","ఫిబ్రవరి","మార్చి","ఏప్రిల్","మే","జూన్","జూలై","ఆగస్టు","సెప్టెంబర్","అక్టోబర్","నవంబర్","డిసెంబర్"]
+      en: [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ],
+      te: [
+        "జనవరి", "ఫిబ్రవరి", "మార్చి", "ఏప్రిల్", "మే", "జూన్",
+        "జూలై", "ఆగస్టు", "సెప్టెంబర్", "అక్టోబర్", "నవంబర్", "డిసెంబర్"
+      ]
     };
 
     function loadFontSize() {
       const saved = localStorage.getItem(FONT_SIZE_KEY);
       if (saved) {
         const size = parseInt(saved, 10);
-        if (!isNaN(size) && size >= MIN_FONT && size <= MAX_FONT) currentFontSize = size;
+        if (!isNaN(size) && size >= MIN_FONT && size <= MAX_FONT) {
+          currentFontSize = size;
+        }
       }
       applyFontSize();
     }
@@ -787,6 +855,7 @@
         interestNav.classList.add("active");
         notesNav.classList.remove("active");
       }
+
       if (section === "notes") {
         interestSection.classList.remove("active");
         notesSection.classList.add("active");
@@ -830,7 +899,7 @@
     function updateLanguage() {
       const t = lang[currentLang];
       document.documentElement.lang = currentLang;
-      document.title = t.title;
+      document.title = "VSL | " + t.title;
       document.getElementById("title").innerText = t.title;
       document.getElementById("interestTitle").innerText = t.interestTitle;
       document.getElementById("notesTitle").innerText = t.notesTitle;
@@ -856,7 +925,9 @@
             });
           });
         }
-      } catch (e) {}
+      } catch (error) {
+        console.error("Unable to load saved interest payments.", error);
+      }
     }
 
     function savePaidAmounts() {
@@ -871,7 +942,9 @@
 
     function getEntryData(entry) {
       const days = getDays(entry.takenDate);
-      const totalInterest = Math.round((entry.amount * entry.interest * days) / (100 * 30));
+      const totalInterest = Math.round(
+        (entry.amount * entry.interest * days) / (100 * 30)
+      );
       const remaining = Math.max(0, totalInterest - entry.interestPaid);
       const total = entry.amount + remaining;
       return { days, totalInterest, remaining, total };
@@ -890,15 +963,17 @@
         const userElement = document.createElement("div");
         userElement.className = "user";
 
-        const userName = document.createElement("div");
-        userName.className = "user-name";
-        userName.textContent = user.name;
-        userElement.appendChild(userName);
+        if (user.name) {
+          const userName = document.createElement("div");
+          userName.className = "user-name";
+          userName.textContent = user.name;
+          userElement.appendChild(userName);
+        }
 
         user.entries.forEach((entry, entryIndex) => {
           const { days, remaining, total } = getEntryData(entry);
           const entryElement = document.createElement("div");
-          entryElement.className = "entry glass";
+          entryElement.className = "entry";
 
           entryElement.innerHTML = `
             <div class="entry-row">
@@ -923,9 +998,16 @@
             </div>
             <div class="paid-row">
               <span class="label">${t.interestPaid}</span>
-              <input class="paid-input" type="number" min="0" step="1"
-                aria-label="${t.interestPaid}" value="${entry.interestPaid}"
-                data-entry-index="${entryIndex}">
+              <input
+                class="paid-input"
+                type="number"
+                min="0"
+                step="1"
+                inputmode="numeric"
+                aria-label="${t.interestPaid}"
+                value="${entry.interestPaid}"
+                data-entry-index="${entryIndex}"
+              >
             </div>
             <div class="remaining">
               <span class="label">${t.remaining}</span>
@@ -937,20 +1019,26 @@
             </div>
           `;
 
-          entryElement.querySelector(".borrowed-value").textContent = entry.borrowedBy || "-";
+          entryElement.querySelector(".borrowed-value").textContent =
+            entry.borrowedBy || "—";
 
           const paidInput = entryElement.querySelector(".paid-input");
+
           paidInput.addEventListener("change", function () {
-            entry.interestPaid = Math.max(0, Number(this.value) || 0);
+            const value = Math.max(0, Number(this.value) || 0);
+            entry.interestPaid = value;
             savePaidAmounts();
             render();
           });
+
           paidInput.addEventListener("input", function () {
             entry.interestPaid = Math.max(0, Number(this.value) || 0);
             savePaidAmounts();
             const { remaining, total } = getEntryData(entry);
-            entryElement.querySelector(".remaining .value").textContent = formatMoney(remaining);
-            entryElement.querySelector(".entry-total .value").textContent = formatMoney(total);
+            const remainingElement = entryElement.querySelector(".remaining .value");
+            const totalElement = entryElement.querySelector(".entry-total .value");
+            remainingElement.textContent = formatMoney(remaining);
+            totalElement.textContent = formatMoney(total);
           });
 
           userElement.appendChild(entryElement);
@@ -962,7 +1050,11 @@
 
     function openTotalPopup() {
       const t = lang[currentLang];
-      let grandPrincipal = 0, grandRemaining = 0;
+      const body = document.getElementById("modalBody");
+
+      let grandPrincipal = 0;
+      let grandRemaining = 0;
+
       users.forEach(user => {
         user.entries.forEach(entry => {
           const { remaining } = getEntryData(entry);
@@ -970,15 +1062,26 @@
           grandRemaining += remaining;
         });
       });
+
       const grandTotal = grandPrincipal + grandRemaining;
 
-      document.getElementById("modalBody").innerHTML = `
+      body.innerHTML = `
         <div class="modal-summary">
-          <div class="row"><span>${t.sumPrincipal}</span><span>${formatMoney(grandPrincipal)}</span></div>
-          <div class="row"><span>${t.sumInterest}</span><span>${formatMoney(grandRemaining)}</span></div>
-          <div class="row"><span>${t.grandTotal}</span><span>${formatMoney(grandTotal)}</span></div>
+          <div class="row">
+            <span>${t.sumPrincipal}</span>
+            <span>${formatMoney(grandPrincipal)}</span>
+          </div>
+          <div class="row">
+            <span>${t.sumInterest}</span>
+            <span>${formatMoney(grandRemaining)}</span>
+          </div>
+          <div class="row">
+            <span>${t.grandTotal}</span>
+            <span>${formatMoney(grandTotal)}</span>
+          </div>
         </div>
       `;
+
       document.getElementById("totalModal").classList.add("show");
     }
 
@@ -989,31 +1092,42 @@
     }
 
     function getNotes() {
-      try { return JSON.parse(localStorage.getItem(NOTES_KEY)) || []; }
-      catch { return []; }
+      try {
+        return JSON.parse(localStorage.getItem(NOTES_KEY)) || [];
+      } catch {
+        return [];
+      }
     }
 
     function saveNote() {
       const input = document.getElementById("noteInput");
       const text = input.value.trim();
-      if (!text) { input.focus(); return; }
+      if (!text) {
+        input.focus();
+        return;
+      }
       const notes = getNotes();
-      notes.unshift({ id: Date.now(), text, date: new Date().toISOString() });
+      notes.unshift({
+        id: Date.now(),
+        text,
+        date: new Date().toISOString()
+      });
       localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
       input.value = "";
       renderNotes();
     }
 
     function deleteNote(id) {
-      localStorage.setItem(NOTES_KEY, JSON.stringify(getNotes().filter(n => n.id !== id)));
+      const notes = getNotes().filter(note => note.id !== id);
+      localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
       renderNotes();
     }
 
     function formatNoteDate(dateString) {
       const date = new Date(dateString);
-      const h = String(date.getHours()).padStart(2, "0");
-      const m = String(date.getMinutes()).padStart(2, "0");
-      return `${date.getDate()} ${monthNames[currentLang][date.getMonth()]} ${date.getFullYear()}, ${h}:${m}`;
+      const hours = String(date.getHours()).padStart(2, "0");
+      const minutes = String(date.getMinutes()).padStart(2, "0");
+      return `${date.getDate()} ${monthNames[currentLang][date.getMonth()]} ${date.getFullYear()}, ${hours}:${minutes}`;
     }
 
     function escapeHTML(text) {
@@ -1026,10 +1140,12 @@
       const list = document.getElementById("notesList");
       const notes = getNotes();
       const t = lang[currentLang];
+
       if (notes.length === 0) {
         list.innerHTML = `<div class="empty-notes">${t.emptyNotes}</div>`;
         return;
       }
+
       list.innerHTML = notes.map(note => `
         <div class="note">
           <button class="delete-note" onclick="deleteNote(${Number(note.id)})" title="${t.delete}">×</button>
