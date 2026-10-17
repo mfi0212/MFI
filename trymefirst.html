@@ -19,7 +19,17 @@
       color: #1e293b;
       min-height: 100vh;
     }
-
+body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        * {
+            box-sizing: border-box;            
+            -webkit-tap-highlight-color: transparent;
+            scrollbar-width: none;
+        }
     .container {
       max-width: 680px;
       margin: 0 auto;
@@ -571,7 +581,7 @@
   <script>
     const GOOGLE_FORM_LINK = "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform";
     const ADMIN_PASSWORD = "admin123";
-
+document.addEventListener('contextmenu', e => e.preventDefault());
     const PRICES = {
       oneSlot: 1500,
       fullDay: 3000,
