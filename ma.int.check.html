@@ -23,7 +23,6 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      border-radius: 0 !important;
       letter-spacing: 0;
       font-family: Inter, system-ui, -apple-system, sans-serif;
     }
@@ -66,8 +65,12 @@
       color: var(--primary-fg);
       text-decoration: underline;
       text-underline-position: from-font;
+      border-radius: 2px;
     }
-
+.top-banner a:focus{
+   outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
     .header {
       display: flex;
       justify-content: space-between;
@@ -115,9 +118,10 @@
       border-right: none;
     }
 
-    .font-btn:hover {
-      background: var(--fg);
-      color: var(--bg);
+    .font-btn:focus {
+       outline: 2px solid #000000;
+    outline-offset: 2px;
+    border-radius: 2px;
     }
 
     .font-size-label {
@@ -143,11 +147,11 @@
       font-family: inherit;
     }
 
-    .lang-btn:hover {
-      background: var(--fg);
-      color: var(--bg);
-    }
-
+.lang-btn:focus{
+   outline: 2px solid #000000;
+    outline-offset: 2px;
+    border-radius: 2px;
+}
     .navigation {
       display: grid;
       grid-template-columns: 1fr 1fr auto;
@@ -176,13 +180,13 @@
     }
 
     .total-btn {
-      background: var(--fg);
-      color: var(--bg);
+      color:black;
     }
 
-    .total-btn:hover {
-      background: var(--primary);
-      color: var(--primary-fg);
+    .total-btn:focus {
+       outline: 2px solid #000000;
+    outline-offset: 2px;
+    border-radius: 2px;
     }
 
     .section {
@@ -438,19 +442,17 @@
     .modal-close {
       width: 32px;
       height: 32px;
-      background: var(--fg);
-      color: var(--bg);
-      border: none;
+      color: red;
       font-size: 20px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1;
+      line-height: 1;border: none;
+      background-color: transparent;
     }
 
-    .modal-close:hover {
-      background: var(--destructive);
+    .modal-close:focus{
+       outline: 2px solid #020202;
+    outline-offset: 2px;
+    border-radius: 2px;
     }
 
     .modal-summary {
@@ -499,6 +501,11 @@
         .footer-links a:hover {
             color: black;
             text-decoration: underline;
+        }
+        .footer-links a:focus{
+          outline: 2px solid #000;
+    outline-offset: 2px;
+    border-radius: 2px;
         }
     @media (max-width: 420px) {
       .header {
@@ -571,7 +578,7 @@
     <div class="modal" onclick="event.stopPropagation()">
       <div class="modal-header">
         <h3 id="modalTitle">మొత్తం వివరాలు</h3>
-        <button class="modal-close" onclick="closeTotalPopup()">×</button>
+        <button class="modal-close" onclick="closeTotalPopup()">X</button>
       </div>
       <div id="modalBody"></div>
     </div>
