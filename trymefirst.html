@@ -132,8 +132,9 @@ body {
     }
 
     .form-group input:focus {
-      outline: none;
-      border-color: blue;
+       outline: 2px solid black;
+    outline-offset: 2px;
+    border-radius: 2px;
     }
 
     /* Calendar */
@@ -237,9 +238,9 @@ body {
       border: 2px solid #e2e8f0;
       cursor: pointer;
     }
-
-    .option:hover:not(.disabled) { border-color: blue; }
-    .option.selected { border-color: blue; background: #eff6ff; }
+    .option.selected {  outline: 2px solid blue;
+    outline-offset: 2px;
+    border-radius: 2px;}
 
     .option.disabled {
       opacity: 0.45;
@@ -312,29 +313,35 @@ body {
       border-radius: 8px;
       font-size: 1rem;
       font-weight: bold;
-      cursor: pointer;
+      cursor: pointer;    border-radius: 5px;
+    }
+    a:active,
+    button:active{
+      outline: 2px solid rgb(0, 0, 0);
+    outline-offset: 2px;
+    border-radius: 2px;
     }
 
     .btn-prev {
       background: #e2e8f0;
       color: #334155;
     }
-    .btn-prev:active { background: #cbd5e1; }
+    
 
     .btn-next {
       background: blue;
       color: white;
     }
-    .btn-next:active { background: rgb(0, 0, 232); }
+
 
     .btn-copy {
-      background: #16a34a;
+      background: green;
       color: white;
       margin-top: 10px;
     }
 
     .btn-edit {
-      background: #64748b;
+      background: #ff4400;
       color: white;
       margin-top: 10px;
     }
@@ -343,7 +350,7 @@ body {
       display: block;
       width: 100%;
       padding: 15px;
-      background: #dc2626;
+      background: red;
       color: white;
       text-align: center;
       text-decoration: none;
@@ -352,7 +359,11 @@ body {
       font-size: 1.05rem;
       margin-top: 10px;
     }
-
+.btn-form:focus{
+  outline: 2px solid red;
+    outline-offset: 2px;
+    border-radius: 2px;
+}
     .lock-msg {
       font-size: 0.8rem;
       color: #64748b;
@@ -581,7 +592,8 @@ body {
   <script>
     const GOOGLE_FORM_LINK = "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform";
     const ADMIN_PASSWORD = "admin123";
-    document.addEventListener('contextmenu', e => e.preventDefault());
+
+// document.addEventListener('contextmenu', e => e.preventDefault());
     const PRICES = {
       oneSlot: 1500,
       fullDay: 3000,
