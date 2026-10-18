@@ -394,15 +394,15 @@ body {
         }
 
         .footer-links a {
-               color: rgba(0, 0, 0, 0.442);
-    font-size: 14px;
+               color: black;
+    font-size: 14px;padding: 3px 5px;
     text-decoration: none;
     transition: color 0.15s ease;
         }
 
         .footer-links a:hover {
-            color: black;
-            text-decoration: underline;
+    background: rgba(0, 0, 0, 0.212);
+    border-radius: 4px;
         }
   </style>
 </head>
@@ -581,8 +581,7 @@ body {
   <script>
     const GOOGLE_FORM_LINK = "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform";
     const ADMIN_PASSWORD = "admin123";
-
-document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('contextmenu', e => e.preventDefault());
     const PRICES = {
       oneSlot: 1500,
       fullDay: 3000,
