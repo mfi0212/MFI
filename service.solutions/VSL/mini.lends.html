@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BS&MFI | VSL Mini lends</title>
+<link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>*{
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;}
+      button,input{
+        padding: 5px;
+      }</style>
+<body>
+<h2>BS&MFI | VSL Mini lends</h2>
+
+<p>Enter Phone Number:</p>
+<input type="text" id="phone" placeholder="Enter password">
+<button onclick="checkLoan()">Check</button>
+
+<div id="result"></div>
+
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+var loans = {
+  "China11789": [
+    { name: "Chinna", amount: 1000, takenDate: "09-10-2026", dueDate: "15-10-2026" },
+  ],
+};
+
+function checkLoan() {
+  var phone = document.getElementById("phone").value.trim();
+  var result = document.getElementById("result");
+  result.innerHTML = "";
+
+  if (!phone) {
+    result.innerHTML = "<p style='color: red'>First enter something</p>";
+    return;
+  }
+
+  if (loans[phone]) {
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    var html = "<h2>Borrowed by : " + phone + "</h2>";
+    html += "<p>Total Borrows: " + loans[phone].length + "</p>";
+    html += "<hr>";
+
+    var grandTotal = 0;
+
+    loans[phone].forEach(function(loan, index) {
+      var due = new Date(loan.dueDate);
+      due.setHours(0, 0, 0, 0);
+
+      var interest = 0;
+      var status = "Not overdue";
+      var total = loan.amount;
+
+      if (today > due) {
+        interest = loan.amount * 0.05;
+        total = loan.amount + interest;
+        status = "Overdue";
+      }
+
+      grandTotal += total;
+
+      html += "<h3>Borrow #" + (index + 1) + " - " + loan.name + "</h3>";
+      html += "<p>Amount Borrowed: " + loan.amount + "</p>";
+      html += "<p>Taken Date: " + loan.takenDate + "</p>";
+      html += "<p>Taken For: " + loan.dueDate + "</p>";
+      html += "<p>Status: " + status + "</p>";
+      html += "<p>Interest (5%): " + interest.toFixed(2) + "</p>";
+      html += "<p>Total for this borrow: " + total.toFixed(2) + "</p>";
+      html += "<hr>";
+    });
+
+    html += "<h2>Grand Total to Pay: " + grandTotal.toFixed(2) + "</h2>";
+
+    result.innerHTML = html;
+  } else {
+    result.innerHTML = "<p style='color:red'>We does not found any amounts with this password</p>";
+  }
+}
+</script>
+
+<a style="color:white;text-decoration:none;position: fixed;bottom: 0;right: 0;" href="https://blackswan19.github.io/BS/bs.dev.tol"><div class="madein" style="position:absolute;white-space:nowrap;bottom:0;right:0;background:#2b6cc2;padding:3px;text-transform:capitalize;font-size:13px;">
+    made in BsDevTol
+</div></a>
+</body>
+</html>
