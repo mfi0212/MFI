@@ -1,3 +1,4 @@
+document.addEventListener("contextmenu", event => event.preventDefault());
 const USERS = [
       {
         id: "China",
