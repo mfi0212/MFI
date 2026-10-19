@@ -1,14 +1,14 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>VSL | Interest Calculator</title> <link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png"> <style> * { margin: 0; padding: 0; box-sizing: border-box; font-family: Inter, system-ui, -apple-system, sans-serif; -webkit-tap-highlight-color: transparent; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } body { display: flex; justify-content: center; align-items: center; padding: 20px; min-height: 100vh; background: #fff; color: #222; } .container { width: 100%; max-width: 360px; } h1 { font-size: 23px; font-weight: 600; margin-bottom: 0px; text-align: center; } .form-group { margin-bottom: 20px; } label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; } input { width: 100%; padding: 13px; border: 1px solid rgba(0, 0, 0, 0.184); background: #fff; color: #222; font-size: 16px; outline: none; } input:focus { outline: 2px solid black; outline-offset: 2px; border-radius: 2px; } button { width: 100%; padding: 14px; margin-top: 4px; background: blue; border: none; color: #fff; font-size: 15px; font-weight: 500; cursor: pointer; } button:active { opacity: 0.8; } button:focus{ outline: 2px solid blue; outline-offset: 2px; border-radius: 2px; } .result { display: none; margin-top: 24px; padding-top: 18px; border-top: 1px solid #ddd; } .result p { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 14px; font-size: 14px; } .result strong { font-size: 16px; font-weight: 600; overflow-wrap: anywhere; } .split-note { font-size: 12px; color: #555; margin-top: -6px; margin-bottom: 14px; line-height: 1.4; } .split-explanation { margin-top: 20px; padding-top: 16px; border-top: 1px solid #eee; font-size: 12px; color: #555; line-height: 1.55; } .split-explanation h3 { font-size: 13px; font-weight: 600; color: #222; margin-bottom: 8px; } .split-explanation ul { padding-left: 18px; margin: 0; } .split-explanation li { margin-bottom: 4px; } footer { font-size: 12px; text-align: center; color: #888; padding: 15px 0 0; margin-top: 18px; border-top: 1px solid #eee; } .error { display: none; margin-top: 12px; color: red; font-size: 13px; } .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 18px; margin-top: 12px; } .footer-links a { color: #00000075; font-size: 14px; text-decoration: none; transition: color 0.15s ease; } .footer-links a:hover { color: black; text-decoration: underline; } .footer-links a:focus{ outline: 2px solid black; outline-offset: 2px; border-radius: 2px; } </style> </head> <body> <main class="container"> <h1>Interest Calculator</h1> <h6 style="text-align: center;font-weight: 400;font-size: 13px; margin-bottom: 20px;">Powered by Take Money</h6> <form id="interestForm"> <div class="form-group"> <input type="number" id="amount" placeholder="Enter amount" min="0.01" step="any" required > </div> <div class="form-group"> <input type="number" id="interestRate" placeholder="Enter interest rate" min="0" step="any" required > </div> <button type="submit">Calculate interest now</button> <p class="error" id="error"></p> </form> <div class="result" id="result" aria-live="polite"> <p>Total Interest <strong id="interestAmount">₹0.00</strong></p> <p>VSL Split <strong id="vslSplit">₹0.00</strong></p> <p>Your Split <strong id="yourSplit">₹0.00</strong></p> <div class="split-explanation"> <h3>Our Split Rates</h3> <p>Includes all the costs and account management, data maintenance, & security</p> </div> </div> <footer>VSL, All right reserved. <br> Version(v.02.22.9)</footer><div class="footer-links"> <a href="https://blackswan19.github.io/bscrop/termsofuse">Privacy Policy & Terms Of Uses</a> </div> </main>
-<script>
-    document.addEventListener('contextmenu', e => e.preventDefault());
-
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>VSL | Interest Calculator</title> <link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png"> <style> * { margin: 0; padding: 0; box-sizing: border-box; font-family: Inter, system-ui, -apple-system, sans-serif; -webkit-tap-highlight-color: transparent; } body { display: flex; justify-content: center; align-items: center; padding: 20px; padding-bottom: 75px; min-height: 100vh; background: #fff; color: #222; user-select: none; } .container { width: 100%; max-width: 360px; } h1 { font-size: 23px; font-weight: 600; margin-bottom: 0; text-align: center; } .form-group { margin-bottom: 20px; } input { width: 100%; padding: 13px; border: 1px solid rgba(0, 0, 0, 0.184); background: #fff; color: #222; font-size: 16px; outline: none; border-radius: 0; } input:focus { outline: 2px solid black; outline-offset: 2px; border-radius: 2px; } button { width: 100%; padding: 14px; margin-top: 4px; background: blue; border: none; color: #fff; font-size: 15px; font-weight: 500; cursor: pointer; } button:active { opacity: 0.8; } button:focus-visible { outline: 2px solid blue; outline-offset: 3px; border-radius: 2px; } .result { display: none; margin-top: 24px; padding-top: 18px; border-top: 1px solid #ddd; } .result p { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 14px; font-size: 14px; } .result strong { font-size: 16px; font-weight: 600; overflow-wrap: anywhere; text-align: right; } .split-explanation { margin-top: 20px; padding-top: 16px; border-top: 1px solid #eee; font-size: 12px; color: #555; line-height: 1.55; } .split-explanation h3 { font-size: 13px; font-weight: 600; color: #222; margin-bottom: 8px; } footer { font-size: 12px; text-align: center; color: #888; padding: 15px 0 0; margin-top: 18px; border-top: 1px solid #eee; } .error { display: none; margin-top: 12px; color: red; font-size: 13px; } .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 18px; margin-top: 12px; } .footer-links a { color: #00000075; font-size: 14px; text-decoration: none; transition: color 0.15s ease; } .footer-links a:hover { color: black; text-decoration: underline; } .footer-links a:focus-visible { outline: 2px solid black; outline-offset: 2px; border-radius: 2px; } /* Fixed scrolling note */ .marquee-container { position: fixed; bottom: 0; left: 0; width: 100%; height: 35px; display: flex; align-items: center; overflow: hidden; background: #eeeeee; border-top: 1px solid #ddd; z-index: 1000; } .marquee-text { display: inline-block; white-space: nowrap; padding-left: 100%; animation: marquee-scroll 18s linear infinite; font-size: 13px; color: #222; line-height: 35px; } .marquee-container:hover .marquee-text { animation-play-state: paused; } @keyframes marquee-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } } @media (prefers-reduced-motion: reduce) { .marquee-text { animation: none; padding-left: 12px; white-space: normal; line-height: 1.3; } .marquee-container { height: auto; min-height: 35px; padding: 7px 0; } } </style> </head> <body> <main class="container"> <h1>VSL Interest Calculator</h1> <h6 style="text-align:center;font-weight:400;font-size:13px;margin-bottom:20px;"> Powered by Take Money </h6> <form id="interestForm"> <div class="form-group"> <input type="number" id="amount" placeholder="Enter amount" aria-label="Enter amount" min="0.01" step="any" required > </div> <div class="form-group"> <input type="number" id="interestRate" placeholder="Enter interest rate (%)" aria-label="Enter interest rate percentage" min="0" step="any" required > </div> <button type="submit">Calculate interest now</button> <p class="error" id="error" role="alert"></p> </form> <div class="result" id="result" aria-live="polite"> <p> <span>Total Interest</span> <strong id="interestAmount">₹0.00</strong> </p> <p> <span>VSL Split</span> <strong id="vslSplit">₹0.00</strong> </p> <p> <span>Your Split</span> <strong id="yourSplit">₹0.00</strong> </p> <div class="split-explanation"> <h3>Our Split Rates</h3> <p> Includes all the costs and account management, data maintenance, and security. </p> </div> </div> <footer> VSL, All rights reserved. <br> Version (v.02.22.9) </footer> <div class="footer-links"> <a href="https://blackswan19.github.io/bscrop/termsofuse"> Privacy Policy &amp; Terms of Use </a> </div> </main> <!-- Scrolling note fixed at the bottom --> <div class="marquee-container" aria-label="Important note"> <div class="marquee-text"> Note: VSL split is applied only for interest more than 1.1%. For interest 1.1% or below, no VSL splits will be applied. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </div> </div>
+  <script>
     document.getElementById('interestForm').addEventListener('submit', function (e) {
       e.preventDefault();
 
       const amountInput = document.getElementById('amount');
       const rateInput = document.getElementById('interestRate');
+
       const amount = Number(amountInput.value);
       const rate = Number(rateInput.value);
+
       const error = document.getElementById('error');
       const result = document.getElementById('result');
 
@@ -27,19 +27,13 @@
         error.style.display = 'block';
         return;
       }
-      const interest = amount * rate / 100;
-      let vslPercent;
-      if (amount < 100000) {
-        vslPercent = 50;
-      } else if (amount < 500000) {
-        vslPercent = 50;
-      } else if (amount < 1000000) {
-        vslPercent = 45;
-      } else {
-        vslPercent = 45;
-      }
 
-      const vslShare = interest * (vslPercent / 100);
+      const interest = amount * rate / 100;
+      const vslPercent = 50;
+      const vslShare = rate > 1.1
+        ? interest * (vslPercent / 100)
+        : 0;
+
       const yourShare = interest - vslShare;
 
       const format = value => '₹' + value.toLocaleString('en-IN', {
@@ -54,5 +48,6 @@
       result.style.display = 'block';
     });
   </script>
+
 </body>
 </html>
