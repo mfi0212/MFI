@@ -1,1 +1,677 @@
-no test...
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Efiles | Interest</title>
+<link rel="img" href="https://mfi0212.github.io/MFI/mansion.mfi.logo.png">
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: white;
+  color: #222;
+  font-family: Arial, sans-serif;
+  font-size: 17px;
+}
+
+header {
+  background: #fff;
+  padding: 22px 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 27px;
+}
+
+header p {
+  margin: 8px 0 0;
+  color: #555;
+}
+
+main {
+  width: 100%;
+  max-width: 700px;
+  margin: 22px auto;
+  padding: 0 14px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+h2 {
+  margin: 0 0 20px;
+  font-size: 23px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin: 16px 0 8px;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  font-size: 19px;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  background: white;
+  color: #222;
+}
+
+button {
+  border: 0;
+  border-radius: 8px;
+  padding: 13px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  background: #eee;
+  color: #222;
+}
+
+button:active { opacity: .7; }
+
+.add-button {
+  width: 100%;
+  margin-top: 20px;
+  background: #176b45;
+  color: white;
+  padding: 16px;
+  font-size: 19px;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.summary-item {
+  padding: 17px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  overflow-wrap: anywhere;
+}
+
+.summary-item span {
+  display: block;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 9px;
+}
+
+.summary-item strong { font-size: 22px; }
+
+.person {
+  padding: 18px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  margin-bottom: 14px;
+}
+
+.person.hidden-person { opacity: .65; }
+
+.person h3 {
+  margin: 0 0 9px;
+  font-size: 23px;
+  overflow-wrap: anywhere;
+}
+
+.date-text {
+  color: #555;
+  margin-bottom: 16px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.amount {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  overflow-wrap: anywhere;
+}
+
+.info {
+  padding: 12px 0;
+  border-top: 1px solid #eee;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.info strong {
+  display: block;
+  font-size: 20px;
+}
+
+.interest { color: #176b45; }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 17px;
+}
+
+.actions button { flex: 1 1 auto; }
+
+.download {
+  background: #176b45;
+  color: white;
+}
+
+.delete { color: #b42318; }
+
+.empty {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  color: #555;
+  line-height: 1.6;
+}
+
+#preview {
+  color: #176b45;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.filter-box {
+  margin-bottom: 16px;
+}
+
+.filter-box input {
+  margin-bottom: 10px;
+}
+
+.filter-actions {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+.filter-actions button {
+  flex: 1;
+}
+
+.clear-button { background: #e8e8e8; }
+
+.results-count {
+  color: #555;
+  font-size: 14px;
+  margin: 0 0 14px;
+}
+footer {
+    line-height: 25px;
+}
+.footer-links {
+    display: flex;
+    gap: 15px;
+}
+@media (max-width: 420px) {
+  .card { padding: 15px; }
+  .summary-item { padding: 12px; }
+  .summary-item strong { font-size: 18px; }
+  .actions button { width: 100%; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Efiles | Interest</h1>
+  <p>Powered by BS&MFI</p>
+</header>
+
+<main>
+
+  <div class="summary">
+    <div class="summary-item">
+      <span>Total Money Lent</span>
+      <strong id="totalAmount">₹0</strong>
+    </div>
+
+    <div class="summary-item">
+      <span>Total Interest</span>
+      <strong id="totalInterest">₹0</strong>
+    </div>
+  </div>
+
+  <section class="card" style="margin-top:18px">
+    <h2>Add New Person</h2>
+
+    <form id="borrowerForm">
+      <label for="name">Person's Name</label>
+      <input id="name" type="text" placeholder="Enter name"
+             maxlength="100" required>
+
+      <label for="amount">Money Given (₹)</label>
+      <input id="amount" type="number" placeholder="10000"
+             min="0.01" step="0.01" required>
+
+      <label for="rate">Monthly Interest (%)</label>
+      <input id="rate" type="number" placeholder="2"
+             min="0" max="100" step="0.01" required>
+
+      <label for="date">Date Money Given</label>
+      <input id="date" type="date" required>
+
+      <p id="preview"></p>
+
+      <button class="add-button" type="submit">Add Person</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>People List</h2>
+
+    <div class="filter-box">
+      <label for="search">Find a Person</label>
+      <input id="search" type="search"
+             placeholder="Type a name to find a borrower">
+
+      <div class="filter-actions">
+        <button id="hiddenButton" type="button">Show Hidden People</button>
+        <button id="clearSearch" class="clear-button" type="button">
+          Clear Search
+        </button>
+      </div>
+    </div>
+
+    <p class="results-count" id="resultsCount"></p>
+    <div id="peopleList"></div>
+  </section>
+<footer>Efiles, All right reserved.<br>Version(v.01.21.10)<br><div class="footer-links">
+           <a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a>
+             <a href="https://mfi0212.github.io/MFI/privacyandterms">Privacy Policy & Terms and Conditions</a>
+        </div></footer>
+</main>
+
+<script>
+const KEY = "bsbookpad_people_v1";
+
+let people = [];
+let showHidden = false;
+
+const form = document.getElementById("borrowerForm");
+const nameInput = document.getElementById("name");
+const amountInput = document.getElementById("amount");
+const rateInput = document.getElementById("rate");
+const dateInput = document.getElementById("date");
+const searchInput = document.getElementById("search");
+const peopleList = document.getElementById("peopleList");
+
+function today() {
+  const d = new Date();
+  return d.getFullYear() + "-" +
+    String(d.getMonth() + 1).padStart(2, "0") + "-" +
+    String(d.getDate()).padStart(2, "0");
+}
+
+function dateUTC(value) {
+  const [y, m, d] = value.split("-").map(Number);
+  return Date.UTC(y, m - 1, d);
+}
+
+function daysPassed(date) {
+  return Math.max(0, Math.floor(
+    (dateUTC(today()) - dateUTC(date)) / 86400000
+  ));
+}
+
+function money(value) {
+  return Number(value).toLocaleString("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 2
+  });
+}
+
+function displayDate(value) {
+  const [y, m, d] = value.split("-");
+  return `${d}/${m}/${y}`;
+}
+
+function interest(person) {
+  return person.amount * person.rate / 100 / 30 *
+    daysPassed(person.date);
+}
+
+function safe(value) {
+  return String(value).replace(/[&<>"']/g, c => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;",
+    '"': "&quot;", "'": "&#039;"
+  })[c]);
+}
+
+function save() {
+  try {
+    localStorage.setItem(KEY, JSON.stringify(people));
+    return true;
+  } catch {
+    alert("Unable to save. Browser storage may be full.");
+    return false;
+  }
+}
+
+function load() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY) || "[]");
+
+    if (!Array.isArray(saved)) return;
+
+    people = saved.filter(p =>
+      p && typeof p.name === "string" &&
+      Number.isFinite(Number(p.amount)) && Number(p.amount) > 0 &&
+      Number.isFinite(Number(p.rate)) &&
+      Number(p.rate) >= 0 && Number(p.rate) <= 100 &&
+      typeof p.date === "string" &&
+      /^\d{4}-\d{2}-\d{2}$/.test(p.date) &&
+      Number.isFinite(dateUTC(p.date)) &&
+      p.date <= today()
+    ).map(p => ({
+      id: String(p.id || crypto.randomUUID()),
+      name: p.name,
+      amount: Number(p.amount),
+      rate: Number(p.rate),
+      date: p.date,
+      hidden: p.hidden === true
+    }));
+  } catch {
+    people = [];
+  }
+}
+
+function updatePreview() {
+  const amount = Number(amountInput.value);
+  const rate = Number(rateInput.value);
+  const date = dateInput.value;
+
+  if (amount > 0 && rateInput.value !== "" &&
+      rate >= 0 && date && date <= today()) {
+    const daily = amount * rate / 100 / 30;
+    const days = daysPassed(date);
+
+    document.getElementById("preview").textContent =
+      "Daily interest: " + money(daily) +
+      " | Interest till today: " + money(daily * days);
+  } else {
+    document.getElementById("preview").textContent = "";
+  }
+}
+
+amountInput.addEventListener("input", updatePreview);
+rateInput.addEventListener("input", updatePreview);
+dateInput.addEventListener("input", updatePreview);
+
+form.addEventListener("submit", event => {
+  event.preventDefault();
+
+  const name = nameInput.value.trim();
+  const amount = Number(amountInput.value);
+  const rate = Number(rateInput.value);
+  const date = dateInput.value;
+
+  if (!name || amount <= 0 || !Number.isFinite(amount) ||
+      !Number.isFinite(rate) || rate < 0 || rate > 100 ||
+      !date || date > today()) {
+    alert("Enter valid details. The date cannot be in the future.");
+    return;
+  }
+
+  people.unshift({
+    id: crypto.randomUUID(),
+    name,
+    amount,
+    rate,
+    date,
+    hidden: false
+  });
+
+  if (!save()) {
+    people.shift();
+    return;
+  }
+
+  form.reset();
+  dateInput.value = today();
+  updatePreview();
+  render();
+});
+
+function render() {
+  const active = people.filter(p => !p.hidden);
+
+  document.getElementById("totalAmount").textContent =
+    money(active.reduce((sum, p) => sum + p.amount, 0));
+
+  document.getElementById("totalInterest").textContent =
+    money(active.reduce((sum, p) => sum + interest(p), 0));
+
+  const query = searchInput.value.trim().toLocaleLowerCase();
+
+  // Search by name. Hidden people appear only when Show Hidden is enabled.
+  const shown = people.filter(p =>
+    (showHidden || !p.hidden) &&
+    p.name.toLocaleLowerCase().includes(query)
+  );
+
+  document.getElementById("resultsCount").textContent =
+    `${shown.length} ${shown.length === 1 ? "person" : "people"} found`;
+
+  peopleList.innerHTML = "";
+
+  if (!shown.length) {
+    peopleList.innerHTML =
+      '<div class="empty">No matching person found.<br>Try another name or clear the search.</div>';
+    return;
+  }
+
+  shown.forEach(p => {
+    const days = daysPassed(p.date);
+    const accrued = interest(p);
+    const daily = p.amount * p.rate / 100 / 30;
+
+    const item = document.createElement("article");
+    item.className = "person" + (p.hidden ? " hidden-person" : "");
+
+    item.innerHTML = `
+      <h3>${safe(p.name)}</h3>
+      <div class="date-text">
+        Money given: ${displayDate(p.date)}
+        <br>${days} days passed
+        ${p.hidden ? "<br>Hidden person" : ""}
+      </div>
+
+      <div class="amount">${money(p.amount)}</div>
+
+      <div class="info">
+        Monthly Interest Rate
+        <strong>${p.rate}%</strong>
+      </div>
+
+      <div class="info">
+        Daily Interest
+        <strong>${money(daily)}</strong>
+      </div>
+
+      <div class="info">
+        Total Interest Till Today
+        <strong class="interest">${money(accrued)}</strong>
+      </div>
+
+      <div class="info">
+        Money + Interest
+        <strong>${money(p.amount + accrued)}</strong>
+      </div>
+
+      <div class="actions">
+        <button class="download" data-action="download">
+          Download Image
+        </button>
+        <button data-action="hide">
+          ${p.hidden ? "Unhide" : "Hide"}
+        </button>
+        <button class="delete" data-action="delete">
+          Delete
+        </button>
+      </div>
+    `;
+
+    item.querySelector('[data-action="download"]')
+      .addEventListener("click", () => downloadImage(p));
+
+    item.querySelector('[data-action="hide"]')
+      .addEventListener("click", () => {
+        p.hidden = !p.hidden;
+        if (save()) render();
+        else p.hidden = !p.hidden;
+      });
+
+    item.querySelector('[data-action="delete"]')
+      .addEventListener("click", () => {
+        if (!confirm("Delete " + p.name + "'s record?")) return;
+
+        const old = people;
+        people = people.filter(x => x.id !== p.id);
+
+        if (save()) render();
+        else people = old;
+      });
+
+    peopleList.appendChild(item);
+  });
+}
+
+searchInput.addEventListener("input", render);
+
+document.getElementById("clearSearch").addEventListener("click", () => {
+  searchInput.value = "";
+  render();
+  searchInput.focus();
+});
+
+document.getElementById("hiddenButton").addEventListener("click", () => {
+  showHidden = !showHidden;
+
+  document.getElementById("hiddenButton").textContent =
+    showHidden ? "Hide Hidden People" : "Show Hidden People";
+
+  render();
+});
+
+function downloadImage(person) {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = 1000;
+  canvas.height = 620;
+
+  ctx.fillStyle = "#f4f5f7";
+  ctx.fillRect(0, 0, 1000, 620);
+
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(45, 40, 910, 535);
+
+  ctx.strokeStyle = "#ddd";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(45, 40, 910, 535);
+
+  ctx.fillStyle = "#222";
+  ctx.font = "bold 38px Arial";
+  ctx.fillText("MONEY RECORD", 85, 110);
+
+  ctx.strokeStyle = "#ddd";
+  ctx.beginPath();
+  ctx.moveTo(85, 145);
+  ctx.lineTo(915, 145);
+  ctx.stroke();
+
+  ctx.fillStyle = "#555";
+  ctx.font = "25px Arial";
+  ctx.fillText("Name", 85, 205);
+  ctx.fillText("Amount Given", 85, 305);
+  ctx.fillText("Date Given", 85, 405);
+
+  function fittedText(text, x, y, maxWidth) {
+    let size = 34;
+
+    do {
+      ctx.font = `bold ${size}px Arial`;
+      if (ctx.measureText(text).width <= maxWidth) break;
+      size--;
+    } while (size > 18);
+
+    ctx.fillText(text, x, y);
+  }
+
+  ctx.fillStyle = "#222";
+  fittedText(person.name, 85, 250, 830);
+
+  ctx.fillStyle = "#176b45";
+  fittedText(money(person.amount), 85, 350, 830);
+
+  ctx.fillStyle = "#222";
+  ctx.font = "bold 34px Arial";
+  ctx.fillText(displayDate(person.date), 85, 450);
+
+  ctx.strokeStyle = "#ddd";
+  ctx.beginPath();
+  ctx.moveTo(85, 490);
+  ctx.lineTo(915, 490);
+  ctx.stroke();
+
+  ctx.fillStyle = "#176b45";
+  ctx.font = "bold 23px Arial";
+  ctx.textAlign = "right";
+  ctx.fillText("Powered by BsBookpad", 915, 535);
+  ctx.textAlign = "left";
+
+  canvas.toBlob(blob => {
+    if (!blob) {
+      alert("Could not create image.");
+      return;
+    }
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download =
+      "BsBookpad-" + person.name.replace(/[^a-z0-9]/gi, "_") + ".png";
+
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }, "image/png");
+}
+
+dateInput.max = today();
+dateInput.value = today();
+
+load();
+render();
+updatePreview();
+
+setInterval(() => {
+  render();
+  updatePreview();
+}, 60000);
+</script>
+
+</body>
+</html>
