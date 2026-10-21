@@ -91,11 +91,10 @@
     font-size: 13px;
     color: black;}
     .footer-links{ display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: space-between;
     margin-top: 20px;
-    flex-direction: column;
-    align-items: center;}.footer-links a{font-size:14px;text-decoration:none}
+    align-items: center;
+    line-height: 20px;}.footer-links a{font-size:14px;text-decoration:none}
     .footer-links a:hover{text-decoration:underline}.footer-links a:focus{border-radius:2px; outline:2px solid #000;outline-offset:2px}
 
 
@@ -117,12 +116,19 @@
         </div>
       </div>
     </div>
-    <footer style="margin-top:10px">VSL, All rights reserved.<br>Version (v.02.22.9)
+   <footer style="margin-top:10px">
       <div class="footer-links">
-        <a href="https://mfi0212.github.io/MFI/privacyandterms#terms">Terms and Conditions</a><br>
-        <a href="https://mfi0212.github.io/MFI/privacyandterms#privacy">Privacy</a><br>
-        <a href="https://mfi0212.github.io/MFI/privacyandterms#services">Lending Services</a><br>
-        <a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a><br>
+        <div style="display: flex;
+    flex-direction: column;
+    align-items: baseline;">
+          <a href="https://mfi0212.github.io/MFI/privacyandterms#terms">Terms and Conditions</a><br>
+          <a href="https://mfi0212.github.io/MFI/privacyandterms#privacy">Privacy</a><br>
+          <a href="https://mfi0212.github.io/MFI/privacyandterms#services">Lending Services</a><br>
+          <a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a><br>
+        </div>
+        <div>
+          VSL, All rights reserved.<br>Version (v.02.22.9)
+        </div>
       </div>
     </footer>
   </div>
@@ -150,14 +156,21 @@
         <h3 class="section-title" id="notesTitle">Notes</h3>
         <div class="notes-box"><textarea id="noteInput" class="note-input" placeholder="Write something here..."></textarea><button class="save-btn" id="saveButton" onclick="saveNote()">Save</button><div id="notesList"></div></div>
       </section>
-      <footer>VSL, All rights reserved.<br>Version (v.02.22.9)
-        <div class="footer-links">
-           <a href="https://mfi0212.github.io/MFI/privacyandterms#terms">Terms and Conditions</a><br>
-        <a href="https://mfi0212.github.io/MFI/privacyandterms#privacy">Privacy</a><br>
-        <a href="https://mfi0212.github.io/MFI/privacyandterms#services">Lending Services</a><br>
-        <a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a><br>
+      <footer style="margin-top:10px">
+      <div class="footer-links">
+        <div style="display: flex;
+    flex-direction: column;
+    align-items: baseline;">
+          <a href="https://mfi0212.github.io/MFI/privacyandterms#terms">Terms and Conditions</a><br>
+          <a href="https://mfi0212.github.io/MFI/privacyandterms#privacy">Privacy</a><br>
+          <a href="https://mfi0212.github.io/MFI/privacyandterms#services">Lending Services</a><br>
+          <a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a><br>
         </div>
-      </footer>
+        <div>
+          VSL, All rights reserved.<br>Version (v.02.22.9)
+        </div>
+      </div>
+    </footer>
     </div>
     <div class="modal-overlay" id="totalModal" hidden>
       <div class="modal"><div class="modal-header"><h3 id="modalTitle">Total Summary</h3><button class="modal-close" onclick="closeTotalPopup()">X</button></div><div id="modalBody"></div></div>
