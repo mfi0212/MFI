@@ -2,7 +2,6 @@
 <script>
   const FONT_SIZE_KEY="interestTrackerFontSize";
   const NOTES_KEY_PREFIX="interestTrackerNotes_";
-  const PAID_KEY_PREFIX="interestTrackerPaidAmounts_";
   const LAST_USER_KEY="vslLastUserId";
   const LAST_PASSWORD_KEY="vslLastPassword";
   const REMEMBER_PASSWORD_KEY="vslRememberPassword";
@@ -64,7 +63,13 @@
     document.getElementById("lockScreen").hidden=true;
     document.getElementById("mainApp").hidden=false;
     document.getElementById("loggedInAs").textContent=`${TEXT.loggedInAs}: ${user.name}`;
-    renderTopBanners();loadPaidAmounts();loadFontSize();updateLanguage();showSection("interest");render();renderNotes();
+    renderTopBanners();
+    // No loadPaidAmounts – always start with original values from account data
+    loadFontSize();
+    updateLanguage();
+    showSection("interest");
+    render();
+    renderNotes();
   }
 
   function logout(){
@@ -76,18 +81,6 @@
     initLockScreen();
   }
 
-  function loadPaidAmounts(){
-    if(!currentUser)return;
-    try{
-      const saved=JSON.parse(localStorage.getItem(userStorageKey(PAID_KEY_PREFIX)))||{};
-      currentUser.entries.forEach(entry=>{if(Object.prototype.hasOwnProperty.call(saved,entry.id))entry.interestPaid=Math.max(0,Number(saved[entry.id])||0);});
-    }catch{}
-  }
-  function savePaidAmounts(){
-    if(!currentUser)return;const saved={};
-    currentUser.entries.forEach(entry=>saved[entry.id]=entry.interestPaid);
-    localStorage.setItem(userStorageKey(PAID_KEY_PREFIX),JSON.stringify(saved));
-  }
   function loadFontSize(){
     const saved=parseInt(localStorage.getItem(FONT_SIZE_KEY),10);
     if(!isNaN(saved)&&saved>=MIN_FONT&&saved<=MAX_FONT)currentFontSize=saved;
@@ -145,14 +138,23 @@
     const userBlock=document.createElement("div");userBlock.className="user";
     const heading=document.createElement("h3");heading.className="user-name";heading.textContent=currentUser.name;userBlock.appendChild(heading);
     currentUser.entries.forEach(entry=>{
+      // Ensure interestPaid exists (use original value from data if not set)
+      if(typeof entry.interestPaid !== "number") entry.interestPaid = 0;
+
       const data=getEntryData(entry),block=document.createElement("div");block.className="entry";
       block.append(createRow(TEXT.borrowedBy,entry.borrowedBy,"borrowed-by-row"),createRow(TEXT.amount,entry.amount.toLocaleString("en-IN")),createRow(TEXT.interest,`${entry.interest}%`),createRow(TEXT.takenDate,formatDateWithMonth(entry.takenDate)),createRow(TEXT.days,String(data.days)));
       const paidRow=document.createElement("div");paidRow.className="paid-row";
       const paidLabel=document.createElement("label");paidLabel.className="paid-label";paidLabel.textContent=TEXT.interestPaid;
       const inputWrap=document.createElement("div");inputWrap.className="paid-input-wrap";
       const paidInput=document.createElement("input");paidInput.className="paid-input";paidInput.type="number";paidInput.min="0";paidInput.step="1";paidInput.inputMode="decimal";paidInput.value=entry.interestPaid;paidInput.setAttribute("aria-label",TEXT.interestPaid);
-      paidInput.addEventListener("change",()=>{entry.interestPaid=Math.max(0,Number(paidInput.value)||0);savePaidAmounts();render();});
+      
+      // Only update display – DO NOT save to localStorage
+      paidInput.addEventListener("change",()=>{
+        entry.interestPaid = Math.max(0, Number(paidInput.value) || 0);
+        render(); // just re-render with the temporary value
+      });
       paidInput.addEventListener("keydown",event=>{if(event.key==="Enter")paidInput.blur();});
+      
       inputWrap.appendChild(paidInput);paidRow.append(paidLabel,inputWrap);block.appendChild(paidRow);
       block.appendChild(createRow(TEXT.remaining,`₹${data.remaining.toLocaleString("en-IN")}`,"remaining"));
       block.appendChild(createRow(TEXT.entryTotal,`₹${data.total.toLocaleString("en-IN")}`,"entry-total"));
