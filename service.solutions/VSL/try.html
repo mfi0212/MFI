@@ -12,14 +12,20 @@
     body{font-family:Arial,sans-serif;font-size:16px;line-height:1.5;color:#000;background:#fff;user-select:none}
     button,input,textarea{font:inherit;text-align:center;border:.5px solid #0000003d;border-radius:0}
     button{cursor:pointer}a{color:inherit}
-    #lockScreen{width:100%;max-width:450px;min-height:100vh;margin:auto;padding:10px;display:flex;overflow:hidden;flex-direction:column;justify-content:center}
-    .lock-box{width:100%;border-bottom:1.5px solid #000;padding-bottom:10px}
-    .lock-header{text-align:center;margin-bottom:24px}.lock-header h2{font-size:50px}.lock-header h6{margin:-15px;font-weight:normal}
+    #lockScreen{width:100%;max-width:500px;min-height:100vh;margin:auto;padding:10px;display:flex;overflow:hidden;flex-direction:column;justify-content:center}
+    .lock-box{width:100%;}h2#title {
+    font-size: 45px;
+}
+    .lock-header{text-align:center;margin-bottom:24px}.lock-header h2{font-size:50px;display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;}
+    .lock-header h6{margin:-15px;font-weight:normal}
     .lock-body{display:flex;flex-direction:column;gap:10px}.lock-label{text-align:center;font-size:15px}
     .lock-input,.note-input{width:100%;padding:10px;border:1px solid;border-radius:2px; outline:none;margin-top:4px}
     .lock-input:focus{border-radius:2px; outline:2px solid #000;outline-offset:2px;border-radius:2px}
-    .lock-error{color:red;text-align:center}.lock-btn,.save-btn,#totalBtn{width:100%;padding:10px;background:blue;color:#fff;border:0}
-    .save-btn:focus{border-radius:2px; outline:2px solid blue;outline-offset:2px;border-radius:2px}
+    .lock-error{color:red;text-align:center}.lock-btn,.save-btn,#totalBtn{width:100%;padding:10px;background:#0800f0;color:#fff;border:0}
+    .save-btn:focus{border-radius:2px; outline:2px solid #0800f0;outline-offset:2px;border-radius:2px}
     .lock-hint{font-size:13px;margin-top:10px}.lock-hint a:focus{border-radius:2px; outline:2px solid red;outline-offset:2px}
     #mainApp{width:100%;max-width:720px;margin:0 auto}.container{width:100%;padding:16px 0 5px}
     .top-banner,.top-banner2{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:10px 0}
@@ -27,11 +33,12 @@
     .top-banner a:focus,.top-banner2 a:focus{border-radius:2px; outline:2px solid #000;outline-offset:2px}
     .header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px 0;border-bottom:1px solid}
     .today{font-size:14px}.font-controls{display:flex;align-items:center;gap:8px}.font-size-label{min-width:20px;text-align:center}
-    .font-btn,.lang-btn{min-width:34px;min-height:34px;background:blue;color:#fff;border:0}.font-btn:focus,.lock-btn:focus,#totalBtn:focus{border-radius:2px; outline:2px solid blue;outline-offset:2px}
+    .font-btn,.lang-btn{min-width:34px;min-height:34px;background:#0800f0;color:#fff;border:0}.font-btn:focus,.lock-btn:focus,#totalBtn:focus{border-radius:2px; outline:2px solid #0800f0;outline-offset:2px}
     .navigation{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:12px 0;border-bottom:1px solid}
     .nav-btn,.total-btn{min-height:40px;padding:8px}.section-title{margin:5px;font-size:11px;text-align:center}
-    .user{margin-bottom:15px}.user-name{padding:0;border-bottom:1px solid;text-align:center}
-    .entry{padding:12px 0;border-bottom:1px solid}.entry-row,.remaining,.borrowed-by-row,.paid-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:7px 0}
+    .user{margin-bottom:15px}.user-name{padding:0;text-align:center}
+    .entry{    padding: 12px 0 0;
+    border-top: 1px solid;}.entry-row,.remaining,.borrowed-by-row,.paid-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:7px 0}
     .entry-row .label,.remaining .label,.entry-total .label,.borrowed-by-row .label,.paid-label{flex:1;min-width:0;overflow-wrap:anywhere}
     .entry-row .value,.remaining .value,.entry-total .value,.borrowed-by-row .value{text-align:right;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
     .entry-total{background:#000;color:#fff;padding:10px;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -90,14 +97,15 @@
      footer{    text-align: center;
     font-size: 13px;
     color: black;}
-    .footer-links{    display: flex;
+    .footer-links{ display: flex;
     justify-content: space-between;
-    margin-top: 20px;
     align-items: flex-start;
-    line-height: 20px;}.footer-links a{    font-size: 14px;
+    line-height: 20px;
+    padding: 15px 0;
+    border-top: 1px solid;}.footer-links a{    font-size: 14px;
     text-decoration: none;
-    color: #000000ba;}
-    .footer-links a:hover{text-decoration:underline;color: #000; }.footer-links a:focus{border-radius:2px; outline:2px solid #000;outline-offset:2px}
+    color: rgba(0, 0, 0, 0.777);}
+    .footer-links a:hover{text-decoration:underline;color: black; }.footer-links a:focus{border-radius:2px; outline:2px solid black;outline-offset:2px}
 
 
     @media(max-width:480px){.container{padding:5px}.header{justify-content:flex-start}.font-controls{width:100%}.navigation{gap:4px}.nav-btn,.total-btn{padding:6px 3px}}
@@ -106,7 +114,8 @@
 <body>
   <div id="lockScreen">
     <div class="lock-box">
-      <div class="lock-header"><h2>VSL</h2><h6>Powered by BS&amp;MFI</h6></div>
+      <div class="lock-header"><h2><img style="width: 80px;
+    border-radius: 50%;" src="https://mfi0212.github.io/MFI/mfi.aura.logo.png" alt=""> VSL</h2><h6>Powered by BS&amp;MFI</h6></div>
       <div class="lock-body">
         <label class="lock-label" for="passwordInput">Enter Password</label>
         <input type="text" id="passwordInput" class="lock-input" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter') checkPassword()">
@@ -141,7 +150,15 @@
       <div class="top-banner2" id="topBanner2"></div>
       <div class="account-bar"><span id="loggedInAs" class="account-name"></span><button class="logout-btn" onclick="logout()">Logout</button></div>
       <div class="header">
-        <h2 id="title">VSL</h2><div class="today" id="todayDate"></div>
+        <div style="display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;"> 
+          <img style="width: 40px;
+    border-radius: 50%;" src="https://mfi0212.github.io/MFI/mfi.aura.logo.png" alt="">
+        <h2  id="title">VSL</h2>
+        </div>
+        <div class="today" id="todayDate"></div>
         <div class="font-controls">
           <button class="font-btn" onclick="changeFontSize(-1)" title="Decrease font">−</button>
           <span class="font-size-label" id="fontSizeLabel">16</span>
@@ -182,7 +199,6 @@
 <script>
   const FONT_SIZE_KEY="interestTrackerFontSize";
   const NOTES_KEY_PREFIX="interestTrackerNotes_";
-  const PAID_KEY_PREFIX="interestTrackerPaidAmounts_";
   const LAST_USER_KEY="vslLastUserId";
   const LAST_PASSWORD_KEY="vslLastPassword";
   const REMEMBER_PASSWORD_KEY="vslRememberPassword";
@@ -244,7 +260,13 @@
     document.getElementById("lockScreen").hidden=true;
     document.getElementById("mainApp").hidden=false;
     document.getElementById("loggedInAs").textContent=`${TEXT.loggedInAs}: ${user.name}`;
-    renderTopBanners();loadPaidAmounts();loadFontSize();updateLanguage();showSection("interest");render();renderNotes();
+    renderTopBanners();
+    // No loadPaidAmounts – always start with original values from account data
+    loadFontSize();
+    updateLanguage();
+    showSection("interest");
+    render();
+    renderNotes();
   }
 
   function logout(){
@@ -256,18 +278,6 @@
     initLockScreen();
   }
 
-  function loadPaidAmounts(){
-    if(!currentUser)return;
-    try{
-      const saved=JSON.parse(localStorage.getItem(userStorageKey(PAID_KEY_PREFIX)))||{};
-      currentUser.entries.forEach(entry=>{if(Object.prototype.hasOwnProperty.call(saved,entry.id))entry.interestPaid=Math.max(0,Number(saved[entry.id])||0);});
-    }catch{}
-  }
-  function savePaidAmounts(){
-    if(!currentUser)return;const saved={};
-    currentUser.entries.forEach(entry=>saved[entry.id]=entry.interestPaid);
-    localStorage.setItem(userStorageKey(PAID_KEY_PREFIX),JSON.stringify(saved));
-  }
   function loadFontSize(){
     const saved=parseInt(localStorage.getItem(FONT_SIZE_KEY),10);
     if(!isNaN(saved)&&saved>=MIN_FONT&&saved<=MAX_FONT)currentFontSize=saved;
@@ -325,14 +335,23 @@
     const userBlock=document.createElement("div");userBlock.className="user";
     const heading=document.createElement("h3");heading.className="user-name";heading.textContent=currentUser.name;userBlock.appendChild(heading);
     currentUser.entries.forEach(entry=>{
+      // Ensure interestPaid exists (use original value from data if not set)
+      if(typeof entry.interestPaid !== "number") entry.interestPaid = 0;
+
       const data=getEntryData(entry),block=document.createElement("div");block.className="entry";
       block.append(createRow(TEXT.borrowedBy,entry.borrowedBy,"borrowed-by-row"),createRow(TEXT.amount,entry.amount.toLocaleString("en-IN")),createRow(TEXT.interest,`${entry.interest}%`),createRow(TEXT.takenDate,formatDateWithMonth(entry.takenDate)),createRow(TEXT.days,String(data.days)));
       const paidRow=document.createElement("div");paidRow.className="paid-row";
       const paidLabel=document.createElement("label");paidLabel.className="paid-label";paidLabel.textContent=TEXT.interestPaid;
       const inputWrap=document.createElement("div");inputWrap.className="paid-input-wrap";
       const paidInput=document.createElement("input");paidInput.className="paid-input";paidInput.type="number";paidInput.min="0";paidInput.step="1";paidInput.inputMode="decimal";paidInput.value=entry.interestPaid;paidInput.setAttribute("aria-label",TEXT.interestPaid);
-      paidInput.addEventListener("change",()=>{entry.interestPaid=Math.max(0,Number(paidInput.value)||0);savePaidAmounts();render();});
+      
+      // Only update display – DO NOT save to localStorage
+      paidInput.addEventListener("change",()=>{
+        entry.interestPaid = Math.max(0, Number(paidInput.value) || 0);
+        render(); // just re-render with the temporary value
+      });
       paidInput.addEventListener("keydown",event=>{if(event.key==="Enter")paidInput.blur();});
+      
       inputWrap.appendChild(paidInput);paidRow.append(paidLabel,inputWrap);block.appendChild(paidRow);
       block.appendChild(createRow(TEXT.remaining,`₹${data.remaining.toLocaleString("en-IN")}`,"remaining"));
       block.appendChild(createRow(TEXT.entryTotal,`₹${data.total.toLocaleString("en-IN")}`,"entry-total"));
