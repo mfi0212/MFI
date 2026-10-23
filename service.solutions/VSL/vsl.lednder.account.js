@@ -1,12 +1,12 @@
-document.addEventListener("contextmenu", event => event.preventDefault());
+
+//  document.addEventListener("contextmenu", event => event.preventDefault());
 const USERS = [
       {
-        id: "China",
-        name: "China(by PSVKRY)",
-        password: "China11789",
+        name: "Psvkry(@BS Owner)",
+        password: "1789",
         topBanner: [
           { text: "STL", href: "https://mfi0212.github.io/MFI/1.5.days" },
-          { text: "Calculator", href: "https://mfi0212.github.io/MFI/service.solutions/VSL/interest.checker" }
+          // { text: "Bond Int", href: "https://mfi0212.github.io/MFI/service.solutions/VSL/bondint" }
         ],
         // topBanner2: [
         //   { text: "Client List", href: "#" },
@@ -15,21 +15,12 @@ const USERS = [
         // ],
         entries: [
           {
-            id: "pawan-1",
-            borrowedBy: "Pawan Naidu123",
-            amount: 47800,
-            interest: 2,
-            takenDate: "2026-09-12",
+            borrowedBy: "China Yerra",
+            amount: 50000,
+            interest: 2.5,
+            takenDate: "2026-10-23",
             interestPaid: 0
           },
-          {
-            id: "pawan-2",
-            borrowedBy: "Pawan Naidu123",
-            amount: 12200,
-            interest: 2,
-            takenDate: "2026-09-12",
-            interestPaid: 0
-          }
         ]
       }
     ];
