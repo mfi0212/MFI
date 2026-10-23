@@ -7,7 +7,6 @@
   const REMEMBER_PASSWORD_KEY="vslRememberPassword";
   const MIN_FONT=12, MAX_FONT=28;
   let currentFontSize=16, currentUser=null;
-
   const TEXT={
     today:"Today",interestTitle:"Amount Details",notesTitle:"Notes",
     amount:"Principal Amount",borrowedBy:"Borrowed By",interest:"Interest Rate",
@@ -101,10 +100,15 @@
   }
   function parseDate(dateString){const [year,month,day]=dateString.split("-").map(Number);return new Date(year,month-1,day);}
   function formatDateWithMonth(dateString){const date=parseDate(dateString);return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;}
-  function getDays(takenDate){
-    const start=parseDate(takenDate),today=new Date();start.setHours(0,0,0,0);today.setHours(0,0,0,0);
-    return Math.max(0,Math.floor((today-start)/86400000));
-  }
+function getDays(takenDate) {
+  const start = parseDate(takenDate);
+  const today = new Date();
+
+  start.setHours(0, 0, 0, 0);
+  today.setHours(0, 0, 0, 0);
+
+  return Math.max(0, Math.floor((today - start) / 86400000) + 1);
+}
   function showToday(){const date=new Date();document.getElementById("todayDate").textContent=`${TEXT.today}: ${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;}
   function updateLanguage(){
     document.documentElement.lang="en";document.title="VSL";
