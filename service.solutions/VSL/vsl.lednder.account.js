@@ -2,7 +2,7 @@ document.addEventListener("contextmenu", event => event.preventDefault());
 const USERS = [
       {
         name: "Psvkry(@BS Owner)",
-        password: "1789",
+        password: "17891",
         topBanner: [
           { text: "STL", href: "https://mfi0212.github.io/MFI/1.5.days" }
         ],
