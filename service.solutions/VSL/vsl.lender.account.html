@@ -9,7 +9,7 @@
   let currentFontSize=16, currentUser=null;
 
   const TEXT={
-    today:"Today",interestTitle:"Interest Details",notesTitle:"Notes",
+    today:"Today",interestTitle:"Amount Details",notesTitle:"Notes",
     amount:"Principal Amount",borrowedBy:"Borrowed By",interest:"Interest Rate",
     takenDate:"Date Borrowed",days:"Days Passed",interestPaid:"Interest Paid",
     remaining:"Remaining Interest",entryTotal:"Total (Principal + Interest)",
@@ -136,7 +136,7 @@
   function render(){
     const app=document.getElementById("app");app.innerHTML="";if(!currentUser)return;
     const userBlock=document.createElement("div");userBlock.className="user";
-    const heading=document.createElement("h3");heading.className="user-name";heading.textContent=currentUser.name;userBlock.appendChild(heading);
+    // const heading=document.createElement("h3");heading.className="user-name";heading.textContent=currentUser.name;userBlock.appendChild(heading);
     currentUser.entries.forEach(entry=>{
       // Ensure interestPaid exists (use original value from data if not set)
       if(typeof entry.interestPaid !== "number") entry.interestPaid = 0;
