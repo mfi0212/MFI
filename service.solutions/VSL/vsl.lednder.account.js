@@ -1,12 +1,10 @@
-
-//  document.addEventListener("contextmenu", event => event.preventDefault());
+document.addEventListener("contextmenu", event => event.preventDefault());
 const USERS = [
       {
         name: "Psvkry(@BS Owner)",
         password: "1789",
         topBanner: [
-          { text: "STL", href: "https://mfi0212.github.io/MFI/1.5.days" },
-          // { text: "Bond Int", href: "https://mfi0212.github.io/MFI/service.solutions/VSL/bondint" }
+          { text: "STL", href: "https://mfi0212.github.io/MFI/1.5.days" }
         ],
         // topBanner2: [
         //   { text: "Client List", href: "#" },
