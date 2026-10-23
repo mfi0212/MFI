@@ -1,0 +1,582 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BS&MFI | Halloween Offer</title>
+<link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png">
+
+<style>
+:root {
+  --background: #0b0b0d;
+  --surface: #151518;
+  --border: #29292e;
+  --red: #e50914;
+  --white: #f5f5f5;
+  --gray: #99999f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Header */
+
+header {
+  height: 76px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0008ff;
+  letter-spacing: -1.5px;
+}
+
+.brand span {
+  color: var(--red);
+}
+
+.header-label {
+  font-size: 11px;
+  color: var(--gray);
+  letter-spacing: 2px;
+}
+
+/* Main offer */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 65px 35px 75px;
+}
+
+.offer-layout {
+  display: grid;
+  grid-template-columns: 1fr 0.75fr;
+  gap: 65px;
+  align-items: center;
+}
+
+.label {
+  display: inline-block;
+  color: red;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  font-weight: bold;
+  margin-bottom: 27px;
+}
+
+h1 {
+  font-size: clamp(43px, 6vw, 76px);
+  line-height: 1.02;
+  letter-spacing: -3.5px;
+  font-weight: 800;
+}
+
+h1 span {
+  color: var(--red);
+}
+
+.description {
+  max-width: 440px;
+  color: #aaaab0;
+  font-size: 15px;
+  line-height: 1.9;
+  margin-top: 24px;
+}
+
+/* Rate panel */
+
+.rate-panel {
+  margin-top: 32px;
+  padding: 23px 25px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.rate-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.rate-caption {
+  color: var(--gray);
+  font-size: 12px;
+}
+
+.rate-badge {
+  font-size: 10px;
+  color: red;
+  background: #351518;
+  padding: 7px 10px;
+  border-radius: 3px;
+}
+
+.rate-number {
+  margin-top: 12px;
+  font-size: 65px;
+  font-weight: 800;
+  letter-spacing: -3px;
+}
+
+.rate-number small {
+ font-size: 35px;
+    color: var(--red);
+    padding-left: 10px;
+}
+
+.rate-description {
+  margin-top: 5px;
+  color: #aaaab0;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* Date */
+
+.offer-date {
+  margin-top: 23px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.date-icon {
+  width: 43px;
+  height: 43px;
+  background: #1b1b1f;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.date-text small {
+  display: block;
+  color: var(--gray);
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+
+.date-text strong {
+  font-size: 14px;
+}
+
+/* Button */
+
+.apply-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  margin-top: 27px;
+  padding: 17px 20px;
+  border-radius: 5px;
+  background: var(--red);
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.apply-button:hover {
+  background: #bd0710;
+  transform: translateY(-2px);
+}
+
+.arrow {
+  font-size: 19px;
+}
+
+/* Halloween artwork panel */
+
+.visual {
+  position: relative;
+  min-height: 440px;
+  overflow: hidden;
+  border-radius: 8px;
+  background:
+    radial-gradient(ellipse at 50% 35%, #48151a 0%, #241014 38%, #111114 78%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 25px;
+}
+
+.visual::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border: 1px solid #ffffff0d;
+  border-radius: 50%;
+}
+
+.visual::after {
+  content: "";
+  position: absolute;
+  width: 310px;
+  height: 310px;
+  border: 1px solid #ffffff09;
+  border-radius: 50%;
+}
+
+.visual-top {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #c5a0a2;
+}
+
+.moon {
+  position: absolute;
+  top: 55px;
+  right: 45px;
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  background: #ffb4a0;
+  box-shadow: 0 0 55px #e5091440;
+  opacity: 0.9;
+}
+
+.pumpkin {
+  position: relative;
+  z-index: 1;
+  font-size: 145px;
+  line-height: 1.4;
+  filter: drop-shadow(0 15px 30px #e5091430);
+}
+
+.visual-title {
+  position: relative;
+  z-index: 1;
+  font-size: 23px;
+  font-weight: bold;
+  letter-spacing: -0.5px;
+}
+
+.visual-subtitle {
+  position: relative;
+  z-index: 1;
+  color: #b6a8a9;
+  font-size: 12px;
+  line-height: 1.8;
+  margin-top: 10px;
+}
+
+.visual-bottom {
+  position: absolute;
+  bottom: 22px;
+  color: #8d7779;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+/* Details */
+
+.details {
+  margin-top: 75px;
+  border-top: 1px solid var(--border);
+  padding-top: 30px;
+}
+
+.details-heading {
+  font-size: 20px;
+  margin-bottom: 22px;
+  letter-spacing: -0.5px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.detail-card {
+  background: #121215;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 22px;
+}
+
+.detail-number {
+  font-size: 11px;
+  color: var(--red);
+  font-weight: bold;
+  margin-bottom: 18px;
+}
+
+.detail-card h3 {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.detail-card p {
+  color: var(--gray);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+/* Footer */
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 25px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.footer-brand {
+  font-size: 12px;
+  color: #b5b5bb;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: var(--gray);
+  font-size: 11px;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+/* Mobile */
+
+@media (max-width: 760px) {
+  header {
+    padding: 0 10px;
+    height: 68px;
+  }
+
+  main {
+    padding: 42px 10px 50px;
+  }
+
+  .offer-layout {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  h1 {
+    letter-spacing: -2px;
+  }
+
+  .visual {
+    min-height: 340px;
+  }
+
+  .pumpkin {
+    font-size: 115px;
+  }
+
+  .details {
+    margin-top: 50px;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-card {
+    padding: 19px;
+  }
+
+  .detail-number {
+    margin-bottom: 10px;
+  }
+
+  footer {
+    padding: 23px 20px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a class="brand" href="#" aria-label="BS&MFI home">
+    BS&MFI special offer
+  </a>
+</header>
+
+<main>
+  <section class="offer-layout">
+
+    <div class="offer-content">
+      <div class="label">HALLOWEEN SPECIAL · 2026</div>
+
+      <h1>
+        A little<br>
+        <span>Halloween</span><br>
+        offer.
+      </h1>
+
+      <p class="description">
+        Celebrate Halloween with a special offer from BS&MFI.
+        Check the details below and apply during the offer period.
+      </p>
+
+      <div class="rate-panel">
+        <div class="rate-top">
+          <div class="rate-caption">Special interest rate</div>
+          <div class="rate-badge">LIMITED OFFER</div>
+        </div>
+
+        <div class="rate-number">10<small>%</small></div>
+
+        <p class="rate-description">
+          The offer applies to eligible lending accounts until
+          the outstanding amount is cleared, subject to the
+          agreed lending terms.
+        </p>
+      </div>
+
+      <div class="offer-date">
+        <div class="date-icon">▦</div>
+        <div class="date-text">
+          <small>Offer period</small>
+          <strong>25 October – 31 October 2026</strong>
+        </div>
+      </div>
+
+      <!-- Replace YOUR_GOOGLE_FORM_URL with your actual Google Form URL -->
+      <a
+        class="apply-button"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSd-2VgrjvE_O-MZsTmGyAKLh28vvBOuLizQEd0GQeJGx5CGkA/viewform"
+        target="_self"
+        rel="noopener noreferrer"
+      >
+        Apply for Offer <span class="arrow">→</span>
+      </a>
+    </div>
+
+    <div class="visual">
+      <div class="visual-top">BS&MFI PRESENTS</div>
+      <div class="moon"></div>
+      <div class="pumpkin" aria-hidden="true">🎃</div>
+      <div class="visual-title">Halloween Special</div>
+      <p class="visual-subtitle">
+        A limited-time offer.<br>
+        Available for eligible applicants.
+      </p>
+      <div class="visual-bottom">25 OCT — 31 OCT</div>
+    </div>
+
+  </section>
+
+  <section class="details">
+    <h2 class="details-heading">Offer details</h2>
+
+    <div class="details-grid">
+
+      <div class="detail-card">
+        <div class="detail-number">01 / DATES</div>
+        <h3>When can I apply?</h3>
+        <p>
+          Apply between 25 and 31 October 2026.
+          Applications outside this period may not qualify.
+        </p>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-number">02 / INTEREST</div>
+        <h3>What is the rate?</h3>
+        <p>
+          The special rate is 10%. Check the applicable
+          interest period and calculation method with BS&MFI
+          before accepting the offer.
+        </p>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-number">03 / APPLICATION</div>
+        <h3>How do I apply?</h3>
+        <p>
+          Click Apply for Offer and complete the Google Form.
+          Submitting a form does not guarantee approval.
+        </p>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-brand">© 2026 BS&MFI. All rights reserved.</div>
+
+  <nav class="footer-links" aria-label="Legal links">
+    <a href="https://mfi0212.github.io/MFI/privacyandterms#privacy">
+      Privacy Policy
+    </a>
+
+    <a href="https://mfi0212.github.io/MFI/privacyandterms#services">
+      Lending Services
+    </a>
+
+    <a href="https://mfi0212.github.io/MFI/privacyandterms#terms">
+      Terms & Conditions
+    </a>
+  </nav>
+</footer>
+
+</body>
+</html>
