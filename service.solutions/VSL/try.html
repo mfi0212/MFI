@@ -789,10 +789,13 @@ h3#modalTitle {
 
     /* Restore the remembered premium user's colour on the lock screen too. */
     function updatePremiumColorControl() {
-      const control = document.getElementById("colorControl");
+      const colorControl = document.getElementById("colorControl");
+      const themeToggle = document.getElementById("themeToggle");
       const isPremium = !!currentUser && currentUser.premium === true;
 
-      if (control) control.hidden = !isPremium;
+      // Only premium users can see the colour and theme controls.
+      if (colorControl) colorControl.hidden = !isPremium;
+      if (themeToggle) themeToggle.hidden = !isPremium;
 
       let selectedColor = DEFAULT_MAIN_COLOR;
 
@@ -813,19 +816,30 @@ h3#modalTitle {
       }
 
       applyMainColor(selectedColor);
+
+      // Non-premium users always use the light theme.
+      if (!isPremium) {
+        applyTheme("light");
+      } else {
+        try {
+          applyTheme(localStorage.getItem(THEME_KEY) || "light");
+        } catch (error) {
+          applyTheme("light");
+        }
+      }
     }
 
     function applyTheme(theme) {
-      const selected = theme === "amoled" ? "amoled" : "light";
+      // Do not allow a non-premium account to use the dark theme.
+      const isPremium = !!currentUser && currentUser.premium === true;
+      const selected = isPremium && theme === "amoled" ? "amoled" : "light";
       document.body.dataset.theme = selected;
 
       const button = document.getElementById("themeToggle");
 
       if (button) {
-        button.textContent = selected === "amoled"
-          ? "Light"
-          : "Dark";
-
+        button.hidden = !isPremium;
+        button.textContent = selected === "amoled" ? "Light" : "Dark";
         button.setAttribute(
           "aria-label",
           selected === "amoled"
@@ -836,6 +850,12 @@ h3#modalTitle {
     }
 
     function toggleTheme() {
+      // Extra protection if the function is called when the button is hidden.
+      if (!currentUser || currentUser.premium !== true) {
+        applyTheme("light");
+        return;
+      }
+
       const next = document.body.dataset.theme === "amoled"
         ? "light"
         : "amoled";
@@ -1335,13 +1355,9 @@ h3#modalTitle {
       });
     }
 
-    /* Start-up */
-    try {
-      applyTheme(localStorage.getItem(THEME_KEY) || "light");
-    } catch {
-      applyTheme("light");
-    }
-
+    /* Start-up: keep the login screen in light theme.
+       The premium user's saved theme is applied after successful login. */
+    applyTheme("light");
     updatePremiumColorControl();
     initLockScreen();
   </script>
