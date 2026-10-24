@@ -787,51 +787,51 @@ h3#modalTitle {
       }
     }
 
-    /* Restore the remembered premium user's colour on the lock screen too. */
+    /* Restore the remembered premium user's colour and theme on the login screen. */
     function updatePremiumColorControl() {
       const colorControl = document.getElementById("colorControl");
       const themeToggle = document.getElementById("themeToggle");
-      const isPremium = !!currentUser && currentUser.premium === true;
+      const isCurrentUserPremium = !!currentUser && currentUser.premium === true;
 
-      // Only premium users can see the colour and theme controls.
-      if (colorControl) colorControl.hidden = !isPremium;
-      if (themeToggle) themeToggle.hidden = !isPremium;
+      if (colorControl) colorControl.hidden = !isCurrentUserPremium;
+      if (themeToggle) themeToggle.hidden = !isCurrentUserPremium;
 
       let selectedColor = DEFAULT_MAIN_COLOR;
+      let userForTheme = currentUser;
 
       try {
         const rememberedUserId = localStorage.getItem(LAST_USER_KEY);
-        const userForColor = currentUser ||
-          (Array.isArray(USERS)
-            ? USERS.find(user => user.id === rememberedUserId)
-            : null);
+        if (!userForTheme && rememberedUserId && Array.isArray(USERS)) {
+          userForTheme = USERS.find(user => user.id === rememberedUserId) || null;
+        }
 
-        if (userForColor && userForColor.premium === true) {
+        if (userForTheme && userForTheme.premium === true) {
           selectedColor =
-            localStorage.getItem(getColorStorageKey(userForColor)) ||
+            localStorage.getItem(getColorStorageKey(userForTheme)) ||
             DEFAULT_MAIN_COLOR;
         }
       } catch (error) {
-        console.warn("Could not restore main colour.", error);
+        console.warn("Could not restore premium settings.", error);
       }
 
       applyMainColor(selectedColor);
 
-      // Non-premium users always use the light theme.
-      if (!isPremium) {
-        applyTheme("light");
-      } else {
+      // Keep the login screen in the remembered premium user's saved theme.
+      // A logged-in non-premium user always gets the light theme.
+      if (userForTheme && userForTheme.premium === true) {
+        let savedTheme = "light";
         try {
-          applyTheme(localStorage.getItem(THEME_KEY) || "light");
-        } catch (error) {
-          applyTheme("light");
-        }
+          savedTheme = localStorage.getItem(THEME_KEY) || "light";
+        } catch {}
+        applyTheme(savedTheme, userForTheme);
+      } else {
+        applyTheme("light", currentUser);
       }
     }
 
-    function applyTheme(theme) {
+    function applyTheme(theme, account = currentUser) {
       // Do not allow a non-premium account to use the dark theme.
-      const isPremium = !!currentUser && currentUser.premium === true;
+      const isPremium = !!account && account.premium === true;
       const selected = isPremium && theme === "amoled" ? "amoled" : "light";
       document.body.dataset.theme = selected;
 
@@ -1355,9 +1355,8 @@ h3#modalTitle {
       });
     }
 
-    /* Start-up: keep the login screen in light theme.
-       The premium user's saved theme is applied after successful login. */
-    applyTheme("light");
+    /* Start-up: restore the saved theme for the remembered premium account
+       on the login screen. Non-premium accounts stay in the light theme. */
     updatePremiumColorControl();
     initLockScreen();
   </script>
