@@ -625,7 +625,7 @@
           <button class="font-btn" onclick="changeFontSize(1)" title="Increase font">+</button>
 
           <button class="theme-btn" id="themeToggle" onclick="toggleTheme" type="button">
-            Dark (AMOLED)
+            Dark
           </button>
 
           <label class="color-control" id="colorControl" hidden>
@@ -813,14 +813,14 @@
 
       if (button) {
         button.textContent = selected === "amoled"
-          ? "Light Theme"
-          : "Dark (AMOLED)";
+          ? "Light"
+          : "Dark";
 
         button.setAttribute(
           "aria-label",
           selected === "amoled"
             ? "Switch to light theme"
-            : "Switch to dark AMOLED theme"
+            : "Switch to dark theme"
         );
       }
     }
