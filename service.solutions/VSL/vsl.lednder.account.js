@@ -1,4 +1,4 @@
-document.addEventListener("contextmenu", event => event.preventDefault());
+//document.addEventListener("contextmenu", event => event.preventDefault());
 const USERS = [
   {
     id: "psvkry",
@@ -25,8 +25,38 @@ const USERS = [
   },
   {
     id: "Test account",
-    name: "Tony Montana",
+    name: "Psvkry",
     password: "0212",
+    premium: true,
+
+    topBanner: [
+      {
+        text: "STL",
+        href: "https://mfi0212.github.io/MFI/1.5.days"
+      }
+    ],
+
+    entries: [
+      {
+        borrowedBy: "Psvkry",
+        amount: 50000,
+        interest: 3,
+        takenDate: "2026-10-01",
+        interestPaid: 0
+      },
+      {
+        borrowedBy: "Psvkry",
+        amount: 50000,
+        interest: 2.5,
+        takenDate: "2026-10-23",
+        interestPaid: 0
+      }
+    ]
+  },
+  {
+    id: "Test account",
+    name: "Tony Montana",
+    password: "9919",
     premium: true,
 
     topBanner: [
