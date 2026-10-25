@@ -24,7 +24,7 @@ const USERS = [
     ]
   },
   {
-    id: "Test account",
+    id: "Psvkry",
     name: "Psvkry",
     password: "0212",
     premium: true,
@@ -33,6 +33,13 @@ const USERS = [
       {
         text: "STL",
         href: "https://mfi0212.github.io/MFI/1.5.days"
+      }, {
+        text: "calculator",
+        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/interest.checker"
+      },
+       {
+        text: "lend money",
+        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/lender.lending.clients"
       }
     ],
 
