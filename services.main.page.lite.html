@@ -9,6 +9,7 @@ const siteGroups = [
     { name: "My Solutions", desc: "Your active services", url: "https://mfi0212.github.io/MFI/new.service.account.lite.version#products" },
     { name: "I'm late", desc: "Important Note", url: "https://mfi0212.github.io/MFI/imlate" },
     { name: "BsPsgenerater", desc: "Password generator", url: "https://blackswan19.github.io/Educate/password" },
+    { name: "VSL", desc: "Business loans", url: "https://mfi0212.github.io/MFI/service.solutions/VSL/vsl.lender.account" },
     { name: "BsReminder", desc: "Date wise notes", url: "https://blackswan19.github.io/bscrop/reminder" },
     { name: "BsBookpad", desc: "Download the notes", url: "https://blackswan19.github.io/Educate/bookpad" },
     { name: "BsAdstoper", desc: "Ad blocker", url: "https://blackswan19.github.io/Educate/stoper" },
@@ -16,7 +17,7 @@ const siteGroups = [
     { name: "BsMediastorage", desc: "Store files with privacy", url: "https://blackswan19.github.io/Educate/hider" },
   ]}
 ];
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
 let pinnedSites = JSON.parse(localStorage.getItem('pinnedBSMFI')) || [];
 let currentView = 'all';
 
