@@ -15,8 +15,16 @@
   padding: 0;
   -webkit-tap-highlight-color: transparent;
 }
-* {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+/* Use the device's native system font everywhere */
+html,
+body,
+body *,
+button,
+input,
+textarea,
+select,
+option {
+  font-family: system-ui, sans-serif !important;
 }
 [hidden] { display: none !important; }
 
