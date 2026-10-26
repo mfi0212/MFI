@@ -181,7 +181,7 @@ body[data-theme="amoled"] .entry {
 .lock-input:focus,
 .note-input:focus { border-color: var(--accent); }
 
-.lock-error { color: #e53935; text-align: center; }
+.lock-error { color: red; text-align: center; }
 
 .lock-btn, .save-btn, #totalBtn {
   padding: 12px 16px;
@@ -252,12 +252,15 @@ footer { text-align: center; font-size: 13px; color: var(--muted); }
 .logout-btn {
   flex-shrink: 0;
   background: transparent;
-  color: var(--text);
-  border: 1px solid var(--border);
+  color: red;
+  border: 1px solid red;
   border-radius: 999px;
   padding: 7px 13px;
 }
-
+.logout-btn:hover{
+    background-color: red;
+    color: white;
+}
 .header {
   display: flex;
   flex-wrap: wrap;
@@ -455,7 +458,7 @@ footer { text-align: center; font-size: 13px; color: var(--muted); }
 .delete-note {
   float: right;
   background: transparent;
-  color: #e53935;
+  color: red;
   font-size: 15px;
   border: 0;
   padding: 0 10px;
@@ -521,7 +524,7 @@ h3#modalTitle { color: var(--text); font-size: 18px; }
 
 .modal-close {
   background: transparent;
-  color: #e53935;
+  color: red;
   font-size: 17px;
   border: 0;
   padding: 0 10px;
