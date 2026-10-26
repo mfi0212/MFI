@@ -17,41 +17,35 @@
   scrollbar-color: #777 #000;
 }
 
-[hidden] {
-  display: none !important;
-}
+[hidden] { display: none !important; }
 
 :root {
   color-scheme: light;
   --bg: #fffaf8;
   --text: #30272b;
-  --surface: #ffffff;
+  --surface: #fff;
   --border: #eadfe3;
   --muted: #8a7880;
   --field-bg: #fffdfc;
   --field-text: #30272b;
   --accent: #0800f0;
-  --strong-bg: var(--accent);
-  --strong-text: #ffffff;
+  --font-scale: 1;
 }
 
-/* PURE BLACK AMOLED THEME */
 body[data-theme="amoled"] {
   color-scheme: dark;
-  --bg: #000000;
-  --text: #ffffff;
-  --surface: #000000;
-  --border: #333333;
-  --muted: #aaaaaa;
-  --field-bg: #000000;
-  --field-text: #ffffff;
-  --strong-bg: var(--accent);
-  --strong-text: #ffffff;
+  --bg: #000;
+  --text: #fff;
+  --surface: #000;
+  --border: #333;
+  --muted: #aaa;
+  --field-bg: #000;
+  --field-text: #fff;
 }
 
 body {
   font-family: Inter, "Segoe UI", Arial, sans-serif;
-  font-size: 16px;
+  font-size: calc(16px * var(--font-scale));
   line-height: 1.6;
   letter-spacing: .01em;
   color: var(--text);
@@ -70,28 +64,19 @@ button, input, textarea {
   transition: background .18s ease, border-color .18s ease,
               color .18s ease, transform .18s ease;
 }
-textarea{
-    border-radius: 4px;
-}
-button {
-  cursor: pointer;
-  font-weight: 600;
-}
 
-button:hover:not(:disabled) {
-  filter: brightness(.94);
-}
+textarea { border-radius: 4px; }
 
-button:active:not(:disabled) {
-  transform: scale(.985);
-}
+button { cursor: pointer; font-weight: 600; }
+button:hover:not(:disabled) { filter: brightness(.94); }
+button:active:not(:disabled) { transform: scale(.985); }
 
 a {
   color: var(--accent);
   text-underline-offset: 3px;
 }
 
-/* FOCUS CSS — PRESERVED */
+/* ORIGINAL FOCUS STYLES PRESERVED */
 button:focus,
 a:focus,
 input:focus {
@@ -108,25 +93,15 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
-.lock-hint a:focus {
-  outline: 2px solid red;
-  outline-offset: 2px;
-  border-radius: 2px;
-}
-
-.logout-btn:focus {
-  outline: 2px solid red;
-  outline-offset: 2px;
-  border-radius: 2px;
-}
-
+.lock-hint a:focus,
+.logout-btn:focus,
 .modal-close:focus {
   outline: 2px solid red;
   outline-offset: 2px;
   border-radius: 2px;
 }
 
-/* LOGIN SCREEN */
+/* LOGIN */
 #lockScreen {
   width: 100%;
   max-width: 460px;
@@ -149,7 +124,8 @@ a:focus-visible {
   box-shadow: 0 18px 55px #7b526012;
 }
 
-body[data-theme="amoled"] .lock-box {
+body[data-theme="amoled"] .lock-box,
+body[data-theme="amoled"] .entry {
   box-shadow: none;
 }
 
@@ -159,7 +135,7 @@ body[data-theme="amoled"] .lock-box {
 }
 
 .lock-header h2 {
-  font-size: 38px;
+  font-size: 2.375em;
   letter-spacing: -.04em;
   display: flex;
   justify-content: center;
@@ -178,7 +154,7 @@ body[data-theme="amoled"] .lock-box {
 
 .lock-header h6 {
   color: var(--muted);
-  font-size: 12px;
+  font-size: .75em;
   font-weight: normal;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -192,7 +168,7 @@ body[data-theme="amoled"] .lock-box {
 
 .lock-label {
   text-align: center;
-  font-size: 13px;
+  font-size: .8125em;
   font-weight: 600;
   color: var(--muted);
 }
@@ -200,8 +176,6 @@ body[data-theme="amoled"] .lock-box {
 .lock-input {
   width: 100%;
   padding: 13px 15px;
-  border-color: var(--border);
-  margin-top: 0;
   text-align: left;
 }
 
@@ -225,13 +199,11 @@ body[data-theme="amoled"] .lock-box {
 }
 
 .lock-btn,
-.save-btn {
-  width: 100%;
-}
+.save-btn { width: 100%; }
 
 .lock-hint {
   color: var(--muted);
-  font-size: 12px;
+  font-size: .75em;
   line-height: 1.8;
   margin-top: 4px;
   text-align: center;
@@ -244,7 +216,7 @@ body[data-theme="amoled"] .lock-box {
 
 footer {
   text-align: center;
-  font-size: 13px;
+  font-size: .8125em;
   color: var(--muted);
 }
 
@@ -275,7 +247,7 @@ footer {
 .top-banner2 a {
   color: var(--accent);
   text-decoration: none;
-  font-size: 13px;
+  font-size: .8125em;
   font-weight: 600;
   text-transform: capitalize;
 }
@@ -297,7 +269,7 @@ footer {
 
 .account-name {
   overflow-wrap: anywhere;
-  font-size: 13px;
+  font-size: .8125em;
   color: var(--muted);
   font-weight: bold;
 }
@@ -331,7 +303,6 @@ footer {
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
-  height: auto;
 }
 
 .logo-row img {
@@ -342,13 +313,13 @@ footer {
 }
 
 .logo-row h2 {
-  font-size: 25px;
+  font-size: 1.5625em;
   letter-spacing: -.04em;
 }
 
 .today {
   color: var(--muted);
-  font-size: 12px;
+  font-size: .75em;
 }
 
 .font-controls {
@@ -375,12 +346,17 @@ footer {
   text-align: center;
 }
 
+.font-btn:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
 .color-control {
   display: flex;
   align-items: center;
   gap: 8px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: .8125em;
   white-space: nowrap;
 }
 
@@ -423,7 +399,7 @@ footer {
 .section-title {
   margin: 20px 0 14px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: .6875em;
   font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
@@ -442,10 +418,6 @@ footer {
   border-radius: 18px;
   background: var(--surface);
   box-shadow: 0 5px 18px #7b526008;
-}
-
-body[data-theme="amoled"] .entry {
-  box-shadow: none;
 }
 
 .entry-row,
@@ -468,7 +440,7 @@ body[data-theme="amoled"] .entry {
   min-width: 0;
   overflow-wrap: anywhere;
   color: var(--muted);
-  font-size: 13px;
+  font-size: .8125em;
 }
 
 .entry-row .value,
@@ -478,7 +450,7 @@ body[data-theme="amoled"] .entry {
   text-align: right;
   overflow-wrap: anywhere;
   font-weight: 700;
-  font-size: 14px;
+  font-size: .875em;
   font-variant-numeric: tabular-nums;
 }
 
@@ -497,12 +469,12 @@ body[data-theme="amoled"] .entry {
 
 .entry-total .label {
   color: var(--muted);
-  font-size: 12px;
+  font-size: .75em;
 }
 
 .entry-total .value {
   color: var(--accent);
-  font-size: 16px;
+  font-size: 1em;
 }
 
 .paid-input-wrap {
@@ -524,7 +496,7 @@ body[data-theme="amoled"] .entry {
   background: transparent;
   color: var(--field-text);
   text-align: right;
-  font-size: 16px;
+  font: inherit;
   border: none;
   border-radius: 8px;
   font-variant-numeric: tabular-nums;
@@ -541,9 +513,7 @@ body[data-theme="amoled"] .entry {
   text-align: left;
 }
 
-.save-btn {
-  margin-top: 10px;
-}
+.save-btn { margin-top: 10px; }
 
 .note {
   padding: 14px 0;
@@ -560,14 +530,14 @@ body[data-theme="amoled"] .entry {
 .note-date {
   color: var(--muted);
   margin-top: 5px;
-  font-size: 12px;
+  font-size: .75em;
 }
 
 .delete-note {
   float: right;
   background: transparent;
   color: #e53935;
-  font-size: 15px;
+  font-size: .9375em;
   border: 0;
   padding: 0 10px;
   width: 30px;
@@ -585,7 +555,7 @@ body[data-theme="amoled"] .entry {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  line-height: 20px;
+  line-height: 1.6;
   padding: 22px 0;
   border-top: 1px solid var(--border);
   gap: 20px;
@@ -593,7 +563,7 @@ body[data-theme="amoled"] .entry {
 
 .footer-links a {
   color: var(--muted);
-  font-size: 12px;
+  font-size: .75em;
   text-decoration: none;
 }
 
@@ -639,13 +609,13 @@ body[data-theme="amoled"] .entry {
 
 h3#modalTitle {
   color: var(--text);
-  font-size: 18px;
+  font-size: 1.125em;
 }
 
 .modal-close {
   background: transparent;
   color: #e53935;
-  font-size: 17px;
+  font-size: 1.0625em;
   border: 0;
   padding: 0 10px;
   width: 30px;
@@ -672,18 +642,14 @@ h3#modalTitle {
 
 /* MOBILE */
 @media (max-width: 480px) {
-  #lockScreen {
-    padding: 18px 14px;
-  }
+  #lockScreen { padding: 18px 14px; }
 
   .lock-box {
     padding: 26px 19px;
     border-radius: 22px;
   }
 
-  #mainApp {
-    padding: 8px;
-  }
+  #mainApp { padding: 8px; }
 
   .header {
     gap: 14px;
@@ -700,10 +666,7 @@ h3#modalTitle {
     gap: 4px;
   }
 
-  .nav-btn,
-  .total-btn {
-    padding: 6px 3px;
-  }
+  .nav-btn, .total-btn { padding: 6px 3px; }
 
   .entry {
     padding: 14px;
@@ -711,7 +674,8 @@ h3#modalTitle {
   }
 
   .footer-links {
-    gap: 12px;padding: 16px 0 0 0;
+    gap: 12px;
+    padding: 16px 0 0;
   }
 }
 </style>
@@ -732,38 +696,24 @@ h3#modalTitle {
 
     <div class="lock-body">
       <label class="lock-label" for="passwordInput">Enter Password</label>
+      <input type="password" id="passwordInput" class="lock-input"
+        placeholder="Password" autocomplete="current-password"
+        onkeydown="if(event.key==='Enter') checkPassword()">
 
-      <input
-        type="password"
-        id="passwordInput"
-        class="lock-input"
-        placeholder="Password"
-        autocomplete="current-password"
-        onkeydown="if(event.key==='Enter') checkPassword()"
-      >
-
-      <p id="lockError" class="lock-error" hidden>
-        Wrong password. Try again.
-      </p>
-
+      <p id="lockError" class="lock-error" hidden>Wrong password. Try again.</p>
       <button class="lock-btn" onclick="checkPassword()">Continue</button>
 
       <div class="lock-hint">
         If you can’t log in, you may not have any active records.
         If you have an active amount and still face issues, fill out the
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form">
-          Issue form
-        </a>.
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form">Issue form</a>.
       </div>
     </div>
   </div>
 
   <footer style="margin-top:10px">
     <div class="footer-links" style="justify-content:center">
-      <div>
-        VSL, All rights reserved.<br>
-        Version (v.02.22.9)
-      </div>
+      <div>VSL, All rights reserved.<br>Version (v.02.22.9)</div>
     </div>
   </footer>
 </div>
@@ -795,19 +745,13 @@ h3#modalTitle {
         <span class="font-size-label" id="fontSizeLabel">16</span>
         <button class="font-btn" onclick="changeFontSize(1)" title="Increase font">+</button>
 
-        <button class="theme-btn" id="themeToggle" type="button" onclick="toggleTheme()">
-          Dark
-        </button>
+        <button class="theme-btn" id="themeToggle" type="button" onclick="toggleTheme">Dark</button>
 
         <label class="color-control" id="colorControl" hidden>
           <span>Main colour</span>
-          <input
-            id="mainColorPicker"
-            type="color"
-            value="#0800f0"
+          <input id="mainColorPicker" type="color" value="#0800f0"
             aria-label="Choose main colour"
-            onchange="changeMainColor(this.value)"
-          >
+            onchange="changeMainColor(this.value)">
         </label>
       </div>
     </div>
@@ -840,10 +784,7 @@ h3#modalTitle {
           <a href="https://mfi0212.github.io/MFI/privacyandterms#services">Lending Services</a>
           <a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a>
         </div>
-        <div>
-          VSL, All rights reserved.<br>
-          Version (v.02.22.9)
-        </div>
+        <div>VSL, All rights reserved.<br>Version (v.02.22.9)</div>
       </div>
     </footer>
   </div>
@@ -920,10 +861,8 @@ function validHexColor(value) {
   return /^#[0-9a-fA-F]{6}$/.test(value);
 }
 
-/* Apply the selected colour to the whole page, including login. */
 function applyMainColor(color) {
   const selected = validHexColor(color) ? color : DEFAULT_MAIN_COLOR;
-
   document.documentElement.style.setProperty("--accent", selected);
 
   const picker = document.getElementById("mainColorPicker");
@@ -931,8 +870,7 @@ function applyMainColor(color) {
 }
 
 function changeMainColor(color) {
-  if (!currentUser || currentUser.premium !== true) return;
-  if (!validHexColor(color)) return;
+  if (!currentUser || currentUser.premium !== true || !validHexColor(color)) return;
 
   applyMainColor(color);
 
@@ -943,7 +881,6 @@ function changeMainColor(color) {
   }
 }
 
-/* Dark theme is pure black; non-premium users stay on light theme. */
 function applyTheme(theme, account = currentUser) {
   const isPremium = !!account && account.premium === true;
   const selected = isPremium && theme === "amoled" ? "amoled" : "light";
@@ -955,12 +892,9 @@ function applyTheme(theme, account = currentUser) {
   if (button) {
     button.hidden = !isPremium;
     button.textContent = selected === "amoled" ? "Light" : "Dark";
-
     button.setAttribute(
       "aria-label",
-      selected === "amoled"
-        ? "Switch to light theme"
-        : "Switch to dark theme"
+      selected === "amoled" ? "Switch to light theme" : "Switch to dark theme"
     );
   }
 }
@@ -971,10 +905,7 @@ function toggleTheme() {
     return;
   }
 
-  const next = document.body.dataset.theme === "amoled"
-    ? "light"
-    : "amoled";
-
+  const next = document.body.dataset.theme === "amoled" ? "light" : "amoled";
   applyTheme(next);
 
   try {
@@ -985,13 +916,10 @@ function toggleTheme() {
 }
 
 function updatePremiumColorControl() {
-  const colorControl = document.getElementById("colorControl");
-  const themeToggle = document.getElementById("themeToggle");
-
   const isPremium = !!currentUser && currentUser.premium === true;
 
-  if (colorControl) colorControl.hidden = !isPremium;
-  if (themeToggle) themeToggle.hidden = !isPremium;
+  document.getElementById("colorControl").hidden = !isPremium;
+  document.getElementById("themeToggle").hidden = !isPremium;
 
   let selectedColor = DEFAULT_MAIN_COLOR;
   let savedTheme = "light";
@@ -999,9 +927,7 @@ function updatePremiumColorControl() {
   if (isPremium) {
     try {
       selectedColor =
-        localStorage.getItem(getColorStorageKey(currentUser)) ||
-        DEFAULT_MAIN_COLOR;
-
+        localStorage.getItem(getColorStorageKey(currentUser)) || DEFAULT_MAIN_COLOR;
       savedTheme = localStorage.getItem(THEME_KEY) || "light";
     } catch (error) {
       console.warn("Could not restore premium settings.", error);
@@ -1012,11 +938,9 @@ function updatePremiumColorControl() {
   applyTheme(savedTheme, currentUser);
 }
 
-/* LOGIN */
 function initLockScreen() {
   const input = document.getElementById("passwordInput");
   const error = document.getElementById("lockError");
-
   let rememberedPassword = "";
 
   try {
@@ -1060,9 +984,7 @@ function loginUser(user) {
 
   document.getElementById("lockScreen").hidden = true;
   document.getElementById("mainApp").hidden = false;
-
-  document.getElementById("loggedInAs").textContent =
-    `${TEXT.loggedInAs}: ${user.name}`;
+  document.getElementById("loggedInAs").textContent = `${TEXT.loggedInAs}: ${user.name}`;
 
   renderTopBanners();
   updatePremiumColorControl();
@@ -1079,20 +1001,17 @@ function logout() {
   document.getElementById("mainApp").hidden = true;
   document.getElementById("lockScreen").hidden = false;
   document.getElementById("totalModal").hidden = true;
-
   document.getElementById("app").innerHTML = "";
   document.getElementById("notesList").innerHTML = "";
   document.getElementById("noteInput").value = "";
   document.getElementById("topBanner").innerHTML = "";
   document.getElementById("topBanner2").innerHTML = "";
 
-  /* Login screen returns to the default light theme. */
   applyMainColor(DEFAULT_MAIN_COLOR);
   applyTheme("light", null);
   initLockScreen();
 }
 
-/* BANNERS */
 function renderTopBanners() {
   const banner1 = document.getElementById("topBanner");
   const banner2 = document.getElementById("topBanner2");
@@ -1117,7 +1036,7 @@ function renderTopBanners() {
   });
 }
 
-/* FONT SIZE */
+/* FONT SIZE: 12px TO 28px */
 function loadFontSize() {
   let saved = null;
 
@@ -1125,44 +1044,59 @@ function loadFontSize() {
     saved = parseInt(localStorage.getItem(FONT_SIZE_KEY), 10);
   } catch {}
 
-  if (!isNaN(saved) && saved >= MIN_FONT && saved <= MAX_FONT) {
-    currentFontSize = saved;
-  }
+  currentFontSize =
+    Number.isFinite(saved) && saved >= MIN_FONT && saved <= MAX_FONT
+      ? saved
+      : 16;
 
   applyFontSize();
 }
 
 function applyFontSize() {
-  document.body.style.fontSize = currentFontSize + "px";
+  document.documentElement.style.setProperty(
+    "--font-scale",
+    String(currentFontSize / 16)
+  );
+
   document.getElementById("fontSizeLabel").textContent = currentFontSize;
+
+  document.querySelectorAll(".font-btn").forEach(button => {
+    const isMinus = button.textContent.trim() === "−";
+    const isPlus = button.textContent.trim() === "+";
+
+    button.disabled =
+      (isMinus && currentFontSize <= MIN_FONT) ||
+      (isPlus && currentFontSize >= MAX_FONT);
+  });
 }
 
 function changeFontSize(delta) {
-  const size = currentFontSize + delta;
+  const next = currentFontSize + delta;
 
-  if (size < MIN_FONT || size > MAX_FONT) return;
+  if (next < MIN_FONT || next > MAX_FONT) return;
 
-  currentFontSize = size;
-  applyFontSize();
+  currentFontSize = next;
 
   try {
-    localStorage.setItem(FONT_SIZE_KEY, currentFontSize);
-  } catch {}
+    localStorage.setItem(FONT_SIZE_KEY, String(currentFontSize));
+  } catch (error) {
+    console.warn("Could not save font size.", error);
+  }
+
+  applyFontSize();
 }
 
-/* NAVIGATION */
 function showSection(section) {
-  const interest = section === "interest";
+  const isInterest = section === "interest";
 
-  document.getElementById("interestSection").hidden = !interest;
-  document.getElementById("notesSection").hidden = interest;
-  document.getElementById("interestNav").disabled = interest;
-  document.getElementById("notesNav").disabled = !interest;
+  document.getElementById("interestSection").hidden = !isInterest;
+  document.getElementById("notesSection").hidden = isInterest;
+  document.getElementById("interestNav").disabled = isInterest;
+  document.getElementById("notesNav").disabled = !isInterest;
 
-  if (!interest) renderNotes();
+  if (!isInterest) renderNotes();
 }
 
-/* DATES AND INTEREST */
 function parseDate(dateString) {
   const [year, month, day] = dateString.split("-").map(Number);
   return new Date(year, month - 1, day);
@@ -1180,7 +1114,6 @@ function getDays(takenDate) {
   start.setHours(0, 0, 0, 0);
   today.setHours(0, 0, 0, 0);
 
-  /* Counts the taken date itself as day one. */
   return Math.max(0, Math.floor((today - start) / 86400000) + 1);
 }
 
@@ -1248,7 +1181,6 @@ function createRow(label, value, className = "entry-row") {
   return row;
 }
 
-/* AMOUNT RENDERING */
 function render() {
   const app = document.getElementById("app");
   app.innerHTML = "";
@@ -1335,7 +1267,6 @@ function render() {
   app.appendChild(userBlock);
 }
 
-/* TOTAL POPUP */
 function openTotalPopup() {
   if (!currentUser) return;
 
@@ -1497,7 +1428,6 @@ applyMainColor(DEFAULT_MAIN_COLOR);
 applyTheme("light", null);
 initLockScreen();
 
-/* Restore premium appearance for the remembered account on the login screen. */
 try {
   const rememberedUserId = localStorage.getItem(LAST_USER_KEY);
 
