@@ -10,7 +10,7 @@ function getTodayInterest() {
   for (let i = 0; i < today.length; i++) {
     hash = today.charCodeAt(i) + ((hash << 5) - hash);
   }
-  const rate = +(30 + (Math.abs(hash) % 500) / 100).toFixed(2);
+  const rate = +(25 + (Math.abs(hash) % 500) / 100).toFixed(0);
 
   history.push({ date: today, rate });
   if (history.length > 7) {
@@ -487,7 +487,7 @@ function doSearch() {
           <button class="btn" style="padding: 5px 12px;
     font-size: 13px;
     width: fit-content;
-    opacity: 100%;" onclick="handleProductClick('${p.name}')">Apply</button>
+    opacity: 100%;    height: 25px;" onclick="handleProductClick('${p.name}')">Apply</button>
           <a href="#products" style="margin-left:8px;font-size:13px;">View</a>
         </div>
       </div>
