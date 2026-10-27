@@ -1,1731 +1,665 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ffffff">
   <title>VSL</title>
-  <link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png">
   <script src="vsl.lednder.account.js"></script>
-
+  <link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-      scrollbar-color: #7e7e7e #2c2c2c;
-    }
-
-    [hidden] {
-      display: none !important;
-    }
-
-    :root {
-      color-scheme: light;
-      --bg: #ffffff;
-      --text: #000000;
-      --surface: #ffffff;
-      --border: #0000003d;
-      --muted: #555555;
-      --field-bg: #ffffff;
-      --field-text: #000000;
-      --strong-bg: #000000;
-      --strong-text: #ffffff;
-      --accent: #0800f0;
-      --accent-contrast: #ffffff;
-      --focus: #0800f0;
-    }
-
-    body[data-theme="amoled"] {
-      color-scheme: dark;
-      --bg: #000000;
-      --text: #ffffff;
-      --surface: #000000;
-      --border: #ffffff45;
-      --muted: #bdbdbd;
-      --field-bg: #000000;
-      --field-text: #ffffff;
-      --strong-bg: #ffffff;
-      --strong-text: #000000;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.5;
-      color: var(--text);
-      background: var(--bg);
-      user-select: none;
-      transition: background .15s, color .15s;
-      min-height: 100vh;
-    }
-
-    button, input, textarea {
-      font: inherit;
-      text-align: center;
-      border: 1px solid var(--border);
-      border-radius: 0;
-      background: var(--field-bg);
-      color: var(--field-text);
-    }
-    button:focus,
-    input:focus,
-    textarea:focus,
-    a:focus{
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-      border-radius: 2px;
-    }
-    button {
-      cursor: pointer;
-    }
-
-    a {
-      color: var(--accent);
-    }
-
-    button:focus-visible,
-    input:focus-visible,
-    textarea:focus-visible,
-    a:focus-visible,
-    .detail-row:focus-visible {
-      outline: 2px solid var(--focus);
-      outline-offset: 2px;
-      border-radius: 2px;
-    }
-
-    /* Lock screen: uses the same theme variables as the main app */
-
-    #lockScreen {
-      width: 100%;
-      max-width: 500px;
-      min-height: 100vh;
-      margin: auto;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: var(--bg);
-      color: var(--text);
-      transition: background .15s, color .15s;
-    }
-
-    .lock-box {
-      width: 100%;
-    }
-
-    .lock-header {
-      text-align: center;
-      margin-bottom: 5px;
-    }
-
-    .lock-header h2 {
-      font-size: 45px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-
-    .lock-header img {
-      width: 50%;
-      max-width: 180px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .lock-header h6 {
-      margin-top: -10px;
-      font-weight: normal;
-      opacity: .65;
-    }
-
-    .lock-body {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .lock-label {
-      text-align: center;
-      font-size: 15px;
-    }
-
-    .lock-input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid var(--accent);
-      border-radius: 2px;
-      margin-top: 4px;
-    }
-
-    .lock-error {
-      color: #ff3333;
-      text-align: center;
-    }
-
-    .lock-btn,
-    .save-btn,
-    #totalBtn {
-      width: 100%;
-      padding: 10px;
-      background: var(--accent);
-      color: var(--accent-contrast);
-      border: 0;
-    }
-
-    .lock-hint {
-      font-size: 13px;
-      margin-top: 10px;
-      text-align: center;
-    }
-
-    .lock-hint a {
-      color: #ff3333;
-      font-weight: 800;
-    }
-
-    .lock-hint a:focus-visible {
-      outline: 2px solid #ff3333;
-      outline-offset: 2px;
-      border-radius: 2px;
-    }
-
-    /* Main application */
-
-    #mainApp {
-      width: 100%;
-      max-width: 720px;
-      margin: 0 auto;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    .container {
-      width: 100%;
-      padding: 16px 0 5px;
-    }
-
-    .top-banner,
-    .top-banner2 {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      padding: 8px 0;
-    }
-
-    .top-banner a,
-    .top-banner2 a {
-      text-transform: capitalize;
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .top-banner a:hover,
-    .top-banner2 a:hover {
-      text-decoration: underline;
-    }
-
-    .account-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .account-name {
-      overflow-wrap: anywhere;
-      font-weight: bold;
-    }
-
-    .logout-btn {
-      padding: 6px 10px;
-      border: 0;
-      flex-shrink: 0;
-      background: #ff0000;
-      color: #ffffff;
-    }
-
-    .logout-btn:focus,
-    .delete-note:focus,
-    .modal-close:focus,
-    .lock-hint a:focus{
-      outline: 2px solid red;
-      outline-offset: 2px;
-      border-radius: 2px;
-    }
-
-    .header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .mainreflogo {
-      text-decoration: none;
-      color: var(--text);
-    }
-
-    .logo-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
-      height: 45px;
-    }
-
-    .logo-row img {
-      width: 40px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .today {
-      font-size: 14px;
-    }
-
-    .font-controls {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    h3#modalTitle,
-    h3#detailModalTitle {
-      color: var(--accent);
-    }
-
-    .font-size-label {
-      min-width: 20px;
-      text-align: center;
-    }
-
-    .font-btn,
-    .lang-btn,
-    .theme-btn {
-      min-height: 34px;
-      padding: 5px 9px;
-      background: var(--accent);
-      color: var(--accent-contrast);
-      border: 0;
-    }
-
-    .theme-btn {
-      white-space: nowrap;
-    }
-
-    .color-control {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      white-space: nowrap;
-    }
-
-    .color-control input {
-      width: 40px;
-      height: 42px;
-      padding: 0;
-      cursor: pointer;
-      border: none;
-      background: var(--field-bg);
-    }
-
-    .navigation {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 8px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-btn,
-    .total-btn {
-      min-height: 40px;
-      padding: 8px;
-      border: 1px solid var(--accent);
-      color: var(--text);
-      background: var(--surface);
-    }
-
-    .nav-btn:disabled {
-      background: var(--accent);
-      color: var(--accent-contrast);
-    }
-
-    .section-title {
-      margin: 5px;
-      font-size: 11px;
-      text-align: center;
-    }
-
-    .user {
-      margin-bottom: 15px;
-    }
-
-    .entry {
-      padding: 12px 0 0;
-      border-top: 1px solid var(--border);
-    }
-.entry div:hover{
-    text-decoration: underline;
+    *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+    [hidden]{display:none!important}
+    :root{
+      color-scheme:light;
+      --bg:#fff;--text:#000;--surface:#fff;--border:#0000003d;
+      --muted:#555;--field-bg:#fff;--field-text:#000;
+      --strong-bg:#000;--strong-text:#fff;--accent:#0800f0;
+    }div#detailModalBody p {
+    font-weight: 700;
+    margin-top: 10px;
+    background: var(--accent);
+    text-align: center;
+    font-size: 20px;
+    padding: 5px;    color: white;
 }
-    .entry-row,
-    .remaining,
-    .borrowed-by-row,
-    .paid-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      padding: 7px 0;
+    body[data-theme="amoled"]{
+      color-scheme:dark;
+      --bg:#000;--text:#fff;--surface:#000;--border:#ffffff45;
+      --muted:#bdbdbd;--field-bg:#000;--field-text:#fff;
+      --strong-bg:#fff;--strong-text:#000;
     }
-
-    .detail-row {
-      cursor: pointer;
-      border-radius: 2px;
-      transition: background .15s;
-    }
-
-    .entry-row .label,
-    .remaining .label,
-    .entry-total .label,
-    .borrowed-by-row .label,
-    .paid-label {
-      flex: 1;
-      min-width: 0;
-      opacity: .5;
-      overflow-wrap: anywhere;
-    }
-
-    .entry-total .label,
-    .entry-total .value {
-      opacity: 1;
-    }
-
-    .entry-row .value,
-    .remaining .value,
-    .entry-total .value,
-    .borrowed-by-row .value {
-      text-align: right;
-      overflow-wrap: anywhere;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .entry-total {
-      border: 1px solid var(--accent);
-      background: var(--accent);
-      color: var(--accent-contrast);
-      padding: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .paid-input-wrap {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      width: 48%;
-      min-width: 100px;
-    }
-
-    .paid-input {
-      width: 100%;
-      min-width: 0;
-      height: 35px;
-      padding: 0;
-      font-weight: 700;
-      background: var(--field-bg);
-      color: var(--field-text);
-      text-align: right;
-      font-size: 16px;
-      border: none;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .paid-input:focus {
-      padding: 0 5px;
-      font-weight: 400;
-      font-size: 20px;
-    }
-
-    .currency-prefix {
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .note-input {
-      text-align: left;
-      display: block;
-      width: 100%;
-      min-height: 120px;
-      resize: vertical;
-      padding: 10px;
-      border: 1px solid var(--accent);
-      margin-top: 4px;
-    }
-
-    .save-btn {
-      margin-top: 8px;
-    }
-
+    body{font-family:Arial,sans-serif;font-size:16px;line-height:1.5;color:var(--text);background:var(--bg);user-select:none;transition:background .15s,color .15s}
+    button,input,textarea{font:inherit;text-align:center;border:.5px solid var(--border);border-radius:0;background:var(--field-bg);color:var(--field-text)}
+    button{cursor:pointer}a{color:inherit}
+    #lockScreen{width:100%;max-width:500px;min-height:100vh;margin:auto;padding:10px;display:flex;overflow:hidden;flex-direction:column;justify-content:center}
+    .lock-box{width:100%;}h2#title {
+    font-size: 45px;
+}
+    .lock-header{text-align:center;margin-bottom:24px}.lock-header h2{font-size:50px;display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;}
+    .lock-header h6{margin:-15px;font-weight:normal}
+    .lock-body{display:flex;flex-direction:column;gap:10px}.lock-label{text-align:center;font-size:15px}
+    .lock-input,.note-input{width:100%;padding:10px;border:1px solid;border-radius:2px; outline:none;margin-top:4px}
+    .lock-input:focus{border-radius:2px; outline:2px solid var(--text);outline-offset:2px;border-radius:2px}
+    .lock-error{color:red;text-align:center}.lock-btn,.save-btn,#totalBtn{width:100%;padding:10px;background:var(--accent);color:#fff;border:0}
+    .save-btn:focus{border-radius:2px; outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+    .lock-hint{font-size:13px;margin-top:10px}.lock-hint a:focus{border-radius:2px; outline:2px solid red;outline-offset:2px}
+    #mainApp{width:100%;max-width:720px;margin:0 auto}.container{width:100%;padding:16px 0 5px}
+    .top-banner,.top-banner2{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:10px 0}
+    .top-banner a:focus,.top-banner2 a:focus{border-radius:2px; outline:2px solid #000;outline-offset:2px}
+    .header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px 0;border-bottom:1px solid var(--border)}
+    .today{font-size:14px}.font-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.font-size-label{min-width:20px;text-align:center}
+    .font-btn,.lang-btn,.theme-btn{min-height:34px;padding:5px 9px;background:var(--accent);color:#fff;border:0}
+    .theme-btn{white-space:nowrap}
+    .accent-control{display:flex;align-items:center;gap:5px;font-size:13px;white-space:nowrap}
+    .accent-control[hidden]{display:none!important}
+    .accent-control input{width:34px;height:34px;padding:2px;border:1px solid var(--border);background:var(--surface);cursor:pointer}.font-btn:focus,.lock-btn:focus,#totalBtn:focus{border-radius:2px; outline:2px solid var(--accent);outline-offset:2px}
+    .navigation{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:12px 0;border-bottom:1px solid var(--border)}
+    .nav-btn,.total-btn{min-height:40px;padding:8px}.section-title{margin:5px;font-size:11px;text-align:center}
+    .user{margin-bottom:15px}.user-name{padding:0;text-align:center}
+    .entry{    padding: 12px 0 0;
+    border-top: 1px solid var(--border);}.entry-row,.remaining,.borrowed-by-row,.paid-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:7px 0}
+    .entry-row .label,.remaining .label,.entry-total .label,.borrowed-by-row .label,.paid-label{flex:1;min-width:0;overflow-wrap:anywhere}
+    .entry-row .value,.remaining .value,.entry-total .value,.borrowed-by-row .value{text-align:right;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+    .entry-total{background: var(--accent);
+    padding: 10px;    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;}
+    .paid-input-wrap{display:flex;align-items:center;gap:8px;width:48%;min-width:100px}.paid-input{width:100%;min-width:0;height:35px;padding:0;border:0;background:var(--field-bg);color:var(--field-text);text-align:right;font-size:16px;font-variant-numeric:tabular-nums}
+    .paid-input:focus{padding:0 10px;border-radius:2px; outline:2px solid #000;outline-offset:2px;border-radius:2px}
+    .note-input{    text-align: left;display:block;min-height:120px;resize:vertical}.save-btn{margin-top:8px}
     .note {
-      padding: 10px 0;
-      border-top: 1px solid var(--border);
-      overflow-wrap: anywhere;
-      line-height: 25px;
+    padding: 5px 0 0 0;
+    border-top: 1px solid var(--border);
+    overflow-wrap: anywhere;
+}
+.mainreflogo{
+    text-decoration: none;
+}
+.mainreflogo:focus{
+outline:2px solid #000;outline-offset:2px;border-radius: 5px
+}
+    .note-input:focus{border-radius:2px; outline:2px solid #000;outline-offset:2px;border-radius:2px}
+    .note-text{white-space:pre-wrap;overflow-wrap:anywhere}.note-date{font-size:12px}.delete-note{float: right;
+    background: transparent;
+    color: red;
+    font-size: 30px;
+    border: 0;
+    padding: 0 10px;
+    font-weight: 100;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;}
+    .delete-note:focus{
+      border-radius:2px; outline:2px solid red;outline-offset:2px;border-radius:2px
     }
-
-    .note-text {
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
+    .empty-notes{padding:20px 0;text-align:center}.account-bar{display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-top: 1px solid;
+    border-bottom: 1px solid;}
+    .account-name{overflow-wrap:anywhere;font-weight:bold}.logout-btn{padding:6px 10px;border:0;flex-shrink:0;background:red;color:#fff}
+.logout-btn:focus{
+   border-radius:2px; outline:2px solid red;outline-offset:2px
+}
+   .modal-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;background:#0000007d;overflow-y:auto}
+    .modal{width:100%;max-width:400px;max-height:85vh;overflow-y:auto;padding:10px;border:1px solid var(--border);background:var(--surface);color:var(--text)}
+    .modal-header{border-bottom:1px solid var(--border)}
+    .modal-close{background: transparent;
+    color: red;
+    font-size: 16px;
+    border: 0;
+    padding: 0 10px;
+    font-weight: 500;
+    width: 30px;
+    height: 30px;}.modal-header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid;padding:0 0 10px}
+    .modal-close:focus{
+        border-radius:2px; outline:2px solid red;outline-offset:2px
     }
-
-    .note-date {
-      font-size: 12px;
-      opacity: .5;
-    }
-
-    .delete-note {
-      float: right;
-      background: transparent;
-      color: #ff3333;
+     button.delete-note {
       font-size: 15px;
-      border: 0;
-      padding: 0 10px;
-      width: 30px;
-      height: 30px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
     }
+    .modal-summary{line-height:35px}.modal-summary .row{display:flex;justify-content:space-between;gap:12px}
+    
+     footer{    text-align: center;
+    font-size: 13px;
+    color: black;}
+    .footer-links{ display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    line-height: 20px;
+    padding: 15px 0;
+    border-top: 1px solid var(--border);}.footer-links a{    font-size: 14px;
+    text-decoration: none;
+    color: var(--muted);}
+    .footer-links a:hover{text-decoration:underline;color: var(--text); }.footer-links a:focus{border-radius:2px; outline:2px solid var(--text);outline-offset:2px}
 
-    .empty-notes {
-      padding: 20px 0;
-      text-align: center;
-    }
 
-    /* Popups */
 
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      background: #000000ba;
-      overflow-y: auto;
-    }
-
-    .modal {
-      width: 100%;
-      max-width: 400px;
-      max-height: 85vh;
-      overflow-y: auto;
-      padding: 12px;
-      background: var(--surface);
-      color: var(--text);
-      border: 1px solid var(--accent);
-    }
-
-    .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-      padding: 0 0 10px;
-      gap: 10px;
-    }
-
-    .modal-close {
-      background: transparent;
-      color: #ff3333;
-      font-size: 17px;
-      border: 0;
-      padding: 0 10px;
-      width: 30px;
-      height: 30px;
-      flex-shrink: 0;
-    }
-
-    .modal-summary {
-      line-height: 35px;
-      padding-top: 8px;
-    }
-
-    .modal-summary .row {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .modal-summary .row > :last-child {
-      text-align: right;
-      overflow-wrap: anywhere;
-    }
-
-    .detail-description {
-      padding: 18px 2px 10px;
-      line-height: 1.7;
-      overflow-wrap: anywhere;
-    }
-
-    .detail-value {
-      padding: 8px;
-      background: var(--accent);
-      color: var(--accent-contrast);
-      overflow-wrap: anywhere;
-      font-size: 18px;
-      font-weight: bold;
-      text-align: center;
-      font-variant-numeric: tabular-nums;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 13px;
-      color: var(--text);
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      line-height: 20px;
-      padding: 15px 0;
-      border-top: 1px solid var(--border);
-      gap: 10px;
-    }
-
-    .footer-links a {
-      font-size: 14px;
-      text-decoration: none;
-      color: var(--muted);
-    }
-
-    .footer-links a:hover {
-      text-decoration: underline;
-      color: var(--accent);
-    }
-
-    @media (max-width: 480px) {
-      .container {
-        padding: 5px;
-      }
-
-      .header {
-        justify-content: flex-start;
-      }
-
-      .font-controls {
-        width: 100%;
-      }
-
-      .navigation {
-        gap: 4px;
-      }
-
-      .nav-btn,
-      .total-btn {
-        padding: 6px 3px;
-      }
-
-      .footer-links {
-        gap: 12px;
-      }
-    }
+    .premium-detail-control{display:flex;align-items:center}
+    .detail-setting-btn{min-height:34px;padding:5px 9px;background:var(--accent);color:#fff;border:0;white-space:nowrap}
+    .detail-row{cursor:pointer;transition:background .15s,opacity .15s}
+    .detail-row:hover{text-decoration: underline;}
+    body[data-detail-effects="off"] .detail-row{cursor:default;transition:none}
+    body[data-detail-effects="off"] .detail-row:hover{text-decoration:none;background:transparent}
+    body[data-detail-effects="off"] .detail-row.detail-clickable{cursor:pointer}
+    body[data-detail-effects="off"] .detail-row.detail-clickable:hover{background:color-mix(in srgb,var(--accent) 7%,transparent)}
+    .premium-locked .value{filter:blur(6px);user-select:none}
+    .premium-locked{cursor:pointer}
+    .premium-locked:focus{    filter: blur(8px);
+    user-select: none;
+    text-decoration: line-through 8px;}
+    .premium-features-list{padding:12px 0 12px 20px;line-height:1.8}
+    .premium-copy{padding:12px 0;line-height:1.6}
+    .premium-action{display:block;width:100%;padding:11px;background:var(--accent);color:#fff;border:0;text-decoration:none;text-align:center;margin-top:8px}
+    @media(max-width:480px){.container{padding:5px}.header{justify-content:flex-start}.font-controls{width:100%}.navigation{gap:4px}.nav-btn,.total-btn{padding:6px 3px}}
   </style>
 </head>
-
 <body>
-  <!-- Login screen -->
   <div id="lockScreen">
     <div class="lock-box">
-      <div class="lock-header">
-        <h2>
-          <img src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="VSL">
-          VSL
-        </h2>
-        <h6>Powered by BS&MFI</h6>
-      </div>
-
+      <div class="lock-header"><h2><img style="    width: 50%;
+    border-radius: 50%;
+    max-width: 180px;" src="https://mfi0212.github.io/MFI/mfi.aura.logo.png" alt=""> VSL</h2><h6>Powered by BS&amp;MFI</h6></div>
       <div class="lock-body">
         <label class="lock-label" for="passwordInput">Enter Password</label>
-
-        <input
-          type="password"
-          id="passwordInput"
-          class="lock-input"
-          placeholder="Password"
-          autocomplete="current-password"
-        >
-
-        <p id="lockError" class="lock-error" hidden>
-          Wrong password. Try again.
-        </p>
-
+        <input type="text" id="passwordInput" class="lock-input" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter') checkPassword()">
+        <p id="lockError" class="lock-error" hidden>Wrong password. Try again.</p>
         <button class="lock-btn" onclick="checkPassword()">Continue</button>
-
-        <div class="lock-hint">
-          If you can't log in, you may not have any active money records.
-          If you have an active amount and still face issues, fill out the
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form"
-            target="_blank"
-            rel="noopener"
-          >Issue form</a>.
+        <div class="lock-hint" style="text-align:center">
+          If you can’t log in, it means you don’t have any active lending. If you do have an active amount and still face issues, fill out the
+          <a style="color:red;font-weight: 800;" href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form">Issue form</a>.
         </div>
       </div>
     </div>
-
-    <footer style="margin-top:10px">
-      <div class="footer-links" style="justify-content:center">
+   <footer style="margin-top:10px;">
+      <div class="footer-links" style="    justify-content: center;">
         <div>
-          VSL, All rights reserved.<br>
-          Version (v.03.27.10)
+          VSL, All rights reserved.<br>Version (v.02.22.9)
         </div>
       </div>
     </footer>
   </div>
 
-  <!-- Main application -->
   <div id="mainApp" hidden>
     <div class="container">
       <div class="top-banner" id="topBanner"></div>
-      <div class="top-banner2" id="topBanner2" style="display:none"></div>
-
-      <div class="account-bar">
-        <span id="loggedInAs" class="account-name"></span>
-        <button class="logout-btn" onclick="logout()">Logout</button>
-      </div>
-
+      <div style="display: none;" class="top-banner2" id="topBanner2"></div>
+      <div class="account-bar"><span id="loggedInAs" class="account-name"></span><button class="logout-btn" onclick="logout()">Logout</button></div>
       <div class="header">
-        <a class="mainreflogo" href="">
-          <div class="logo-row">
-            <img src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="VSL">
-            <h2 id="title">VSL</h2>
-          </div>
-        </a>
-
+        <a class="mainreflogo" href=""><div style="    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 45px;"> 
+          <img style="width: 40px;
+    border-radius: 50%;" src="https://mfi0212.github.io/MFI/mfi.aura.logo.png" alt="">
+        <h2  id="title">VSL</h2>
+        </div></a>
         <div class="today" id="todayDate"></div>
-
         <div class="font-controls">
           <button class="font-btn" onclick="changeFontSize(-1)" title="Decrease font">−</button>
           <span class="font-size-label" id="fontSizeLabel">16</span>
           <button class="font-btn" onclick="changeFontSize(1)" title="Increase font">+</button>
-
-          <button class="theme-btn" id="themeToggle" type="button">Dark</button>
-
-          <label class="color-control" id="colorControl" hidden>
-            <span>Main colour</span>
-            <input
-              id="mainColorPicker"
-              type="color"
-              value="#0800f0"
-              aria-label="Choose main colour"
-            >
+          <button class="theme-btn" id="themeToggle" onclick="toggleTheme()" type="button">Dark (AMOLED)</button>
+          <label id="accentControl" class="accent-control" hidden>
+            Main color
+            <input id="accentPicker" type="color" value="#0800f0" aria-label="Choose main color" onchange="changeMainColor(this.value)">
           </label>
+          <div class="premium-detail-control" id="premiumDetailControl" hidden>
+            <button class="detail-setting-btn" id="detailEffectsToggle" type="button" onclick="toggleDetailEffects()">Details: On</button>
+          </div>
         </div>
       </div>
-
       <div class="navigation">
         <button class="nav-btn" id="interestNav" onclick="showSection('interest')">Interest</button>
         <button class="nav-btn" id="notesNav" onclick="showSection('notes')">Notes</button>
         <button class="total-btn" id="totalBtn" onclick="openTotalPopup()">Total</button>
       </div>
-
-      <section id="interestSection">
-        <h3 class="section-title" id="interestTitle">Amount Details</h3>
-        <div id="app"></div>
-      </section>
-
+      <section id="interestSection"><h3 class="section-title" id="interestTitle">Amount Details</h3><div id="app"></div></section>
       <section id="notesSection" hidden>
         <h3 class="section-title" id="notesTitle">Notes</h3>
-        <div class="notes-box">
-          <textarea id="noteInput" class="note-input" placeholder="Write something here..."></textarea>
-          <button class="save-btn" id="saveButton" onclick="saveNote()">Save</button>
-          <div id="notesList"></div>
-        </div>
+        <div class="notes-box"><textarea id="noteInput" class="note-input" placeholder="Write something here..."></textarea><button class="save-btn" id="saveButton" onclick="saveNote()">Save</button><div id="notesList"></div></div>
       </section>
-
       <footer>
-        <div class="footer-links">
-          <div style="display:flex;flex-direction:column;align-items:baseline;gap:20px">
-            <a href="https://mfi0212.github.io/MFI/privacyandterms#terms">Terms and Conditions</a>
-            <a href="https://mfi0212.github.io/MFI/privacyandterms#privacy">Privacy</a>
-            <a href="https://mfi0212.github.io/MFI/privacyandterms#services">Lending Services</a>
-            <a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a>
-          </div>
-
-          <div>
-            VSL, All rights reserved.<br>
-            Version (v.03.27.10)
-          </div>
+      <div class="footer-links">
+        <div style="display: flex;
+    flex-direction: column;
+    align-items: baseline;">
+          <a href="https://mfi0212.github.io/MFI/privacyandterms#terms">Terms and Conditions</a><br>
+          <a href="https://mfi0212.github.io/MFI/privacyandterms#privacy">Privacy</a><br>
+          <a href="https://mfi0212.github.io/MFI/privacyandterms#services">Lending Services</a><br>
+          <a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a><br>
         </div>
-      </footer>
-    </div>
-
-    <!-- Total summary popup -->
-    <div class="modal-overlay" id="totalModal" hidden>
-      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <div class="modal-header">
-          <h3 id="modalTitle">Total Summary</h3>
-          <button class="modal-close" onclick="closeTotalPopup()" aria-label="Close">X</button>
+        <div>
+          VSL, All rights reserved.<br>Version (v.02.22.9)
         </div>
-        <div id="modalBody"></div>
       </div>
+    </footer>
     </div>
-
-    <!-- Individual detail popup -->
-    <div class="modal-overlay" id="detailModal" hidden>
-      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="detailModalTitle">
-        <div class="modal-header">
-          <h3 id="detailModalTitle">Detail Information</h3>
-          <button class="modal-close" onclick="closeDetailPopup()" aria-label="Close">X</button>
-        </div>
-        <div class="detail-description" id="detailDescription"></div>
-        <div class="detail-value" id="detailValue"></div>
+    <div class="modal-overlay" id="totalModal" hidden>
+      <div class="modal"><div class="modal-header"><h3 id="modalTitle">Total Summary</h3><button class="modal-close" onclick="closeTotalPopup()">X</button></div><div id="modalBody"></div></div>
+    </div>
+    <div class="modal-overlay" id="detailModal" hidden role="dialog" aria-modal="true" aria-labelledby="detailModalTitle">
+      <div class="modal"><div class="modal-header"><h3 id="detailModalTitle">Detail</h3><button class="modal-close" onclick="closeDetailPopup()" aria-label="Close details">X</button></div><div id="detailModalBody" class="premium-copy"></div></div>
+    </div>
+    <div class="modal-overlay" id="premiumModal" hidden role="dialog" aria-modal="true" aria-labelledby="premiumModalTitle">
+      <div class="modal"><div class="modal-header"><h3 id="premiumModalTitle">VSL Premium+</h3><button class="modal-close" onclick="closePremiumPopup()" aria-label="Close premium popup">X</button></div>
+        <div class="premium-copy">Premium+ gives you more control over how VSL looks and how account details are displayed.</div>
+        <ul class="premium-features-list">
+          <li>View Borrowed By, Interest Rate, Date Borrowed and Days Passed without blur.</li>
+          <li>Turn detail popups and hover effects on or off.</li>
+          <li>Use dark AMOLED and light themes.</li>
+          <li>Choose your own main colour.</li>
+        </ul>
+        <div class="premium-copy">Contact your coordinator to ask about Premium+. Any applicable fee will be added to the amount or interest as agreed with your coordinator.</div>
       </div>
     </div>
   </div>
 
-  <script>
-    const FONT_SIZE_KEY = "interestTrackerFontSize";
-    const NOTES_KEY_PREFIX = "interestTrackerNotes_";
-    const LAST_USER_KEY = "vslLastUserId";
-    const LAST_PASSWORD_KEY = "vslLastPassword";
-    const REMEMBER_PASSWORD_KEY = "vslRememberPassword";
-    const THEME_KEY = "vslTheme";
-    const MAIN_COLOR_KEY_PREFIX = "vslMainColor_";
-    const DEFAULT_MAIN_COLOR = "#0800f0";
+<script>
+  const FONT_SIZE_KEY="interestTrackerFontSize";
+  const NOTES_KEY_PREFIX="interestTrackerNotes_";
+  const LAST_USER_KEY="vslLastUserId";
+  const LAST_PASSWORD_KEY="vslLastPassword";
+  const REMEMBER_PASSWORD_KEY="vslRememberPassword";
+  const MIN_FONT=12, MAX_FONT=28;
+  let currentFontSize=16, currentUser=null;
+  const TEXT={
+    today:"Today",interestTitle:"Amount Details",notesTitle:"Notes",
+    amount:"Principal Amount",borrowedBy:"Borrowed By",interest:"Interest Rate",
+    takenDate:"Date Borrowed",days:"Days Passed",interestPaid:"Interest Paid",
+    remaining:"Remaining Interest",entryTotal:"Total (Principal + Interest)",
+    interestNav:"Interest",notesNav:"Notes",totalBtn:"Total",modalTitle:"Total Summary",
+    sumPrincipal:"Total Principal",sumInterest:"Total Remaining Interest",
+    grandTotal:"Grand Total",placeholder:"Write something here...",save:"Save",
+    emptyNotes:"No notes saved yet.",delete:"Delete",loggedInAs:"Account",logout:"Logout"
+  };
+  const monthNames=["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-    const MIN_FONT = 12;
-    const MAX_FONT = 28;
+  function userStorageKey(prefix){return currentUser?prefix+currentUser.id:"";}
 
-    let currentFontSize = 16;
-    let currentUser = null;
-    let lastFocusedElement = null;
+  function renderTopBanners(){
+    const banner1=document.getElementById("topBanner"),banner2=document.getElementById("topBanner2");
+    banner1.innerHTML="";banner2.innerHTML="";
+    if(!currentUser)return;
+    [ [currentUser.topBanner,banner1], [currentUser.topBanner2,banner2] ].forEach(([links,container])=>{
+      if(!Array.isArray(links))return;
+      links.forEach(link=>{const a=document.createElement("a");a.href=link.href||"#";a.textContent=link.text||"";container.appendChild(a);});
+    });
+  }
 
-    const TEXT = {
-      today: "Today",
-      interestTitle: "Amount Details",
-      notesTitle: "Notes",
-      amount: "Principal Amount",
-      borrowedBy: "Borrowed By",
-      interest: "Interest Rate",
-      takenDate: "Date Borrowed",
-      days: "Days Passed",
-      interestPaid: "Interest Paid",
-      remaining: "Remaining Interest",
-      entryTotal: "Total (Principal + Interest)",
-      interestNav: "Interest",
-      notesNav: "Notes",
-      totalBtn: "Total",
-      modalTitle: "Total Summary",
-      sumPrincipal: "Total Principal",
-      sumInterest: "Total Remaining Interest",
-      grandTotal: "Grand Total",
-      placeholder: "Write something here...",
-      save: "Save",
-      emptyNotes: "No notes saved yet.",
-      delete: "Delete",
-      loggedInAs: "Account",
-      logout: "Logout"
+  const THEME_KEY_PREFIX="vslTheme_";
+  const MAIN_COLOR_KEY_PREFIX="vslMainColor_";
+  const DEFAULT_MAIN_COLOR="#0800f0";
+
+  function isPremiumUser(user){
+    return !!(user && (user.premium === true || String(user.premium).toLowerCase() === "yes"));
+  }
+
+  const DETAIL_EFFECTS_KEY_PREFIX="vslDetailEffects_";
+  function detailEffectsStorageKey(){return currentUser?DETAIL_EFFECTS_KEY_PREFIX+(currentUser.id||currentUser.name):"";}
+  function detailEffectsEnabled(){
+    if(!isPremiumUser(currentUser))return true;
+    try{return localStorage.getItem(detailEffectsStorageKey())!=="off";}catch{return true;}
+  }
+  function applyDetailEffects(){
+    const premium=isPremiumUser(currentUser);
+    document.body.dataset.premium=premium?"yes":"no";
+    document.body.dataset.detailEffects=detailEffectsEnabled()?"on":"off";
+    const control=document.getElementById("premiumDetailControl");
+    const button=document.getElementById("detailEffectsToggle");
+    if(control)control.hidden=!premium;
+    if(button)button.textContent=detailEffectsEnabled()?"Details: On":"Details: Off";
+  }
+  function toggleDetailEffects(){
+    if(!isPremiumUser(currentUser))return;
+    const next=detailEffectsEnabled()?"off":"on";
+    try{localStorage.setItem(detailEffectsStorageKey(),next);}catch{}
+    applyDetailEffects();
+    render();
+  }
+  function openPremiumPopup(){document.getElementById("premiumModal").hidden=false;}
+  function closePremiumPopup(){document.getElementById("premiumModal").hidden=true;}
+  function openDetailPopup(key,entry,data){
+    const descriptions={
+      borrowedBy:["Borrowed By","The name associated with this money record in VSL.",entry.borrowedBy||"Not specified"],
+      amount:["Principal Amount","The original amount recorded before adding interest.","₹"+(Number(entry.amount)||0).toLocaleString("en-IN")],
+      interest:["Interest Rate","The monthly interest rate used for this record.",String(entry.interest)+"% per month"],
+      takenDate:["Date Borrowed","The date from which this record's day count begins.",formatDateWithMonth(entry.takenDate)],
+      days:["Days Passed","The number of days counted from the borrowed date, including that date.",String(data.days)+" days"],
+      interestPaid:["Interest Paid","The amount entered as already paid interest.","₹"+(Number(entry.interestPaid)||0).toLocaleString("en-IN")],
+      remaining:["Remaining Interest","Calculated interest minus the interest entered as paid.","₹"+data.remaining.toLocaleString("en-IN")],
+      total:["Total Amount","Principal plus remaining interest.","₹"+data.total.toLocaleString("en-IN")]
     };
+    const detail=descriptions[key];if(!detail)return;
+    document.getElementById("detailModalTitle").textContent=detail[0];
+    const body=document.getElementById("detailModalBody");body.textContent="";
+    const description=document.createElement("span");description.textContent=detail[1];
+    const value=document.createElement("p");value.style.fontWeight="700";value.style.marginTop="10px";value.textContent=detail[2];
+    body.append(description,value);document.getElementById("detailModal").hidden=false;
+  }
+  function closeDetailPopup(){document.getElementById("detailModal").hidden=true;}
 
-    const monthNames = [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
-    ];
+  function updatePremiumControls(){
+    const control=document.getElementById("accentControl");
+    const picker=document.getElementById("accentPicker");
+    const themeButton=document.getElementById("themeToggle");
+    const allowed=isPremiumUser(currentUser);
 
-    function formatMoney(amount) {
-      return "₹" + Number(amount || 0).toLocaleString("en-IN", {
-        maximumFractionDigits: 2
-      });
+    // Theme and custom main colour are Premium-only options.
+    if(control)control.hidden=!allowed;
+    if(themeButton)themeButton.hidden=!allowed;
+
+    applyDetailEffects();
+    if(allowed){
+      let savedColor=DEFAULT_MAIN_COLOR;
+      let savedTheme="light";
+      const userKey=currentUser.id||currentUser.name;
+      try{
+        savedColor=localStorage.getItem(MAIN_COLOR_KEY_PREFIX+userKey)||DEFAULT_MAIN_COLOR;
+        savedTheme=localStorage.getItem(THEME_KEY_PREFIX+userKey)||"light";
+      }catch{}
+      if(picker)picker.value=savedColor;
+      applyMainColor(savedColor);
+      applyTheme(savedTheme);
+    }else{
+      // Non-Premium users always use the default light appearance.
+      applyMainColor(DEFAULT_MAIN_COLOR);
+      applyTheme("light");
     }
+  }
 
-    function isPremiumUser(user) {
-      if (!user) return false;
+  // Apply the remembered account's saved appearance to the login screen too.
+  // This lets Premium members keep their selected AMOLED/light theme before login.
+  function applyLockScreenAppearance(){
+    let rememberedUser=null;
+    try{
+      const rememberedId=localStorage.getItem(LAST_USER_KEY);
+      rememberedUser=USERS.find(user=>user.id===rememberedId)||null;
+    }catch{}
 
-      const value = user.premium;
-
-      return value === true ||
-        (typeof value === "string" && value.toLowerCase() === "yes");
+    if(isPremiumUser(rememberedUser)){
+      const userKey=rememberedUser.id||rememberedUser.name;
+      let savedColor=DEFAULT_MAIN_COLOR;
+      let savedTheme="light";
+      try{
+        savedColor=localStorage.getItem(MAIN_COLOR_KEY_PREFIX+userKey)||DEFAULT_MAIN_COLOR;
+        savedTheme=localStorage.getItem(THEME_KEY_PREFIX+userKey)||"light";
+      }catch{}
+      applyMainColor(savedColor);
+      applyTheme(savedTheme);
+      document.body.dataset.premium="yes";
+    }else{
+      applyMainColor(DEFAULT_MAIN_COLOR);
+      applyTheme("light");
+      document.body.dataset.premium="no";
     }
+  }
 
-    function userStorageKey(prefix) {
-      return currentUser ? prefix + currentUser.id : "";
+  function applyMainColor(color){
+    if(!/^#[0-9a-fA-F]{6}$/.test(color))color=DEFAULT_MAIN_COLOR;
+    // Set it on the root so both Light and AMOLED themes use the same selected colour.
+    document.documentElement.style.setProperty("--accent",color);
+  }
+
+  function changeMainColor(color){
+    if(!isPremiumUser(currentUser)){
+      applyMainColor(DEFAULT_MAIN_COLOR);
+      return;
     }
+    applyMainColor(color);
+    try{localStorage.setItem(MAIN_COLOR_KEY_PREFIX+(currentUser.id||currentUser.name),color);}catch{}
+  }
 
-    function getColorStorageKey(user) {
-      return MAIN_COLOR_KEY_PREFIX +
-        (user && (user.id || user.name) ? (user.id || user.name) : "default");
+  function applyTheme(theme){
+    const selected=theme==="amoled"?"amoled":"light";
+    document.body.dataset.theme=selected;
+    const button=document.getElementById("themeToggle");
+    if(button){
+      button.textContent=selected==="amoled"?"Light Theme":"Dark (AMOLED)";
+      button.setAttribute("aria-label",selected==="amoled"?"Switch to light theme":"Switch to dark AMOLED theme");
     }
+  }
 
-    function validHexColor(value) {
-      return /^#[0-9a-fA-F]{6}$/.test(value);
+  function toggleTheme(){
+    if(!isPremiumUser(currentUser)){
+      applyTheme("light");
+      return;
     }
+    const next=document.body.dataset.theme==="amoled"?"light":"amoled";
+    applyTheme(next);
+    try{localStorage.setItem(THEME_KEY_PREFIX+(currentUser.id||currentUser.name),next);}catch{}
+  }
 
-    function safeGet(key) {
-      try {
-        return localStorage.getItem(key);
-      } catch (error) {
-        return null;
-      }
+  function initLockScreen(){
+    const input=document.getElementById("passwordInput"),error=document.getElementById("lockError");
+    let rememberedPassword="";
+    try{if(localStorage.getItem(REMEMBER_PASSWORD_KEY)==="yes")rememberedPassword=localStorage.getItem(LAST_PASSWORD_KEY)||"";}catch{}
+    input.value=rememberedPassword;error.hidden=true;
+    if(rememberedPassword){input.focus();input.setSelectionRange(input.value.length,input.value.length);}
+    else setTimeout(()=>input.focus(),100);
+    const rememberedUserId=localStorage.getItem(LAST_USER_KEY);
+    if(rememberedUserId){
+      const rememberedUser=USERS.find(user=>user.id===rememberedUserId);
+      if(rememberedUser&&rememberedPassword&&rememberedUser.password===rememberedPassword)input.value=rememberedPassword;
     }
-
-    function safeSet(key, value) {
-      try {
-        localStorage.setItem(key, value);
-        return true;
-      } catch (error) {
-        console.warn("Could not save setting.", error);
-        return false;
-      }
-    }
-
-    /*
-      FIX 1:
-      Theme and colour can be applied even when nobody is logged in.
-      The login screen and main app use the same CSS variables.
-    */
-
-    function applyMainColor(color) {
-      const selected = validHexColor(color)
-        ? color
-        : DEFAULT_MAIN_COLOR;
-
-      document.documentElement.style.setProperty("--accent", selected);
-      document.documentElement.style.setProperty("--focus", selected);
-
-      const picker = document.getElementById("mainColorPicker");
-      if (picker) picker.value = selected;
-
-      // Keep buttons readable against the selected main colour.
-      const contrast = getContrastColor(selected);
-      document.documentElement.style.setProperty("--accent-contrast", contrast);
-
-      const metaTheme = document.querySelector('meta[name="theme-color"]');
-      if (metaTheme) {
-        metaTheme.setAttribute(
-          "content",
-          document.body.dataset.theme === "amoled" ? "#000000" : "#ffffff"
-        );
-      }
-    }
-
-    function getContrastColor(hex) {
-      if (!validHexColor(hex)) return "#ffffff";
-
-      const r = parseInt(hex.slice(1, 3), 16);
-      const g = parseInt(hex.slice(3, 5), 16);
-      const b = parseInt(hex.slice(5, 7), 16);
-
-      const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-
-      return brightness >= 150 ? "#000000" : "#ffffff";
-    }
-
-    function applyTheme(theme, account = currentUser) {
-      const premium = isPremiumUser(account);
-
-      /*
-        Premium users may use AMOLED.
-        Non-premium accounts always use the default light theme.
-        A saved premium appearance is restored separately before login.
-      */
-      const selected = premium && theme === "amoled"
-        ? "amoled"
-        : "light";
-
-      document.body.dataset.theme = selected;
-
-      const button = document.getElementById("themeToggle");
-      if (button) {
-        button.hidden = !premium;
-        button.textContent = selected === "amoled" ? "Light" : "Dark";
-        button.setAttribute(
-          "aria-label",
-          selected === "amoled"
-            ? "Switch to light theme"
-            : "Switch to dark theme"
-        );
-      }
-
-      const metaTheme = document.querySelector('meta[name="theme-color"]');
-      if (metaTheme) {
-        metaTheme.setAttribute(
-          "content",
-          selected === "amoled" ? "#000000" : "#ffffff"
-        );
-      }
-    }
-
-    /*
-      FIX 2:
-      Find the previous account before login.
-      Do not call applyTheme("light") merely because currentUser is null.
-    */
-
-    function restoreLoginAppearance() {
-      let previousUser = null;
-
-      const lastUserId = safeGet(LAST_USER_KEY);
-
-      if (lastUserId && Array.isArray(USERS)) {
-        previousUser = USERS.find(
-          user => String(user.id) === String(lastUserId)
-        ) || null;
-      }
-
-      if (isPremiumUser(previousUser)) {
-        const savedColor =
-          safeGet(getColorStorageKey(previousUser)) ||
-          DEFAULT_MAIN_COLOR;
-
-        const savedTheme = safeGet(THEME_KEY) || "light";
-
-        applyMainColor(savedColor);
-        applyTheme(savedTheme, previousUser);
-      } else {
-        applyMainColor(DEFAULT_MAIN_COLOR);
-        applyTheme("light", null);
-      }
-
-      const colorControl = document.getElementById("colorControl");
-      const themeToggle = document.getElementById("themeToggle");
-
-      if (colorControl) colorControl.hidden = true;
-      if (themeToggle) themeToggle.hidden = true;
-    }
-
-    function updatePremiumColorControl() {
-      const colorControl = document.getElementById("colorControl");
-      const themeToggle = document.getElementById("themeToggle");
-      const premium = isPremiumUser(currentUser);
-
-      if (colorControl) colorControl.hidden = !premium;
-      if (themeToggle) themeToggle.hidden = !premium;
-
-      if (premium) {
-        const selectedColor =
-          safeGet(getColorStorageKey(currentUser)) ||
-          DEFAULT_MAIN_COLOR;
-
-        const savedTheme = safeGet(THEME_KEY) || "light";
-
-        applyMainColor(selectedColor);
-        applyTheme(savedTheme, currentUser);
-      } else {
-        applyMainColor(DEFAULT_MAIN_COLOR);
-        applyTheme("light", currentUser);
-      }
-    }
-
-    function changeMainColor(color) {
-      if (!isPremiumUser(currentUser)) return;
-      if (!validHexColor(color)) return;
-
-      applyMainColor(color);
-
-      safeSet(getColorStorageKey(currentUser), color);
-    }
-
-    function toggleTheme() {
-      if (!isPremiumUser(currentUser)) return;
-
-      const next = document.body.dataset.theme === "amoled"
-        ? "light"
-        : "amoled";
-
-      applyTheme(next, currentUser);
-      safeSet(THEME_KEY, next);
-    }
-
-    document.getElementById("themeToggle").addEventListener(
-      "click",
-      toggleTheme
-    );
-
-    document.getElementById("mainColorPicker").addEventListener(
-      "input",
-      event => changeMainColor(event.target.value)
-    );
-
-    function initLockScreen() {
-      const input = document.getElementById("passwordInput");
-      const error = document.getElementById("lockError");
-
-      let rememberedPassword = "";
-
-      if (safeGet(REMEMBER_PASSWORD_KEY) === "yes") {
-        rememberedPassword = safeGet(LAST_PASSWORD_KEY) || "";
-      }
-
-      input.value = rememberedPassword;
-      error.hidden = true;
-
-      input.onkeydown = event => {
-        if (event.key === "Enter") checkPassword();
-      };
-    }
-
-    function checkPassword() {
-      const input = document.getElementById("passwordInput");
-      const error = document.getElementById("lockError");
-      const enteredPassword = input.value.trim();
-
-      const matchedUser = Array.isArray(USERS)
-        ? USERS.find(user => String(user.password) === enteredPassword)
-        : null;
-
-      if (!matchedUser) {
-        error.hidden = false;
-        input.select();
-        return;
-      }
-
-      error.hidden = true;
-
-      safeSet(LAST_USER_KEY, matchedUser.id);
-      safeSet(LAST_PASSWORD_KEY, enteredPassword);
-      safeSet(REMEMBER_PASSWORD_KEY, "yes");
-
-      loginUser(matchedUser);
-    }
-
-    function renderTopBanners() {
-      const banner1 = document.getElementById("topBanner");
-      const banner2 = document.getElementById("topBanner2");
-
-      banner1.innerHTML = "";
-      banner2.innerHTML = "";
-
-      if (!currentUser) return;
-
-      [
-        [currentUser.topBanner, banner1],
-        [currentUser.topBanner2, banner2]
-      ].forEach(([links, container]) => {
-        if (!Array.isArray(links)) return;
-
-        links.forEach(link => {
-          const a = document.createElement("a");
-          a.href = link.href || "#";
-          a.textContent = link.text || "";
-
-          if (/^https?:\/\//i.test(a.href)) {
-            a.target = "_blank";
-            a.rel = "noopener noreferrer";
-          }
-
-          container.appendChild(a);
-        });
-      });
-
-      banner2.style.display =
-        Array.isArray(currentUser.topBanner2) &&
-        currentUser.topBanner2.length
-          ? "flex"
-          : "none";
-    }
-
-    function loginUser(user) {
-      currentUser = user;
-
-      document.getElementById("lockScreen").hidden = true;
-      document.getElementById("mainApp").hidden = false;
-
-      document.getElementById("loggedInAs").textContent =
-        `${TEXT.loggedInAs}: ${user.name}`;
-
-      renderTopBanners();
-      updatePremiumColorControl();
-      loadFontSize();
-      updateLanguage();
-      showSection("interest");
-      render();
-      renderNotes();
-    }
-
-    function logout() {
-      /*
-        FIX 3:
-        Preserve the logged-out premium account's saved appearance
-        on the login screen instead of resetting it to light.
-      */
-      const previousUser = currentUser;
-
-      if (isPremiumUser(previousUser)) {
-        applyMainColor(
-          safeGet(getColorStorageKey(previousUser)) ||
-          DEFAULT_MAIN_COLOR
-        );
-
-        applyTheme(
-          safeGet(THEME_KEY) || "light",
-          previousUser
-        );
-      } else {
-        applyMainColor(DEFAULT_MAIN_COLOR);
-        applyTheme("light", null);
-      }
-
-      currentUser = null;
-
-      document.getElementById("mainApp").hidden = true;
-      document.getElementById("lockScreen").hidden = false;
-
-      document.getElementById("totalModal").hidden = true;
-      document.getElementById("detailModal").hidden = true;
-
-      document.getElementById("app").innerHTML = "";
-      document.getElementById("notesList").innerHTML = "";
-      document.getElementById("noteInput").value = "";
-      document.getElementById("topBanner").innerHTML = "";
-      document.getElementById("topBanner2").innerHTML = "";
-
-      document.getElementById("colorControl").hidden = true;
-      document.getElementById("themeToggle").hidden = true;
-
-      initLockScreen();
-    }
-
-    function loadFontSize() {
-      const saved = parseInt(safeGet(FONT_SIZE_KEY), 10);
-
-      if (!isNaN(saved) && saved >= MIN_FONT && saved <= MAX_FONT) {
-        currentFontSize = saved;
-      }
-
-      applyFontSize();
-    }
-
-    function applyFontSize() {
-      document.body.style.fontSize = currentFontSize + "px";
-      document.getElementById("fontSizeLabel").textContent = currentFontSize;
-    }
-
-    function changeFontSize(delta) {
-      const size = currentFontSize + delta;
-
-      if (size < MIN_FONT || size > MAX_FONT) return;
-
-      currentFontSize = size;
-      applyFontSize();
-      safeSet(FONT_SIZE_KEY, currentFontSize);
-    }
-
-    function showSection(section) {
-      const interest = section === "interest";
-
-      document.getElementById("interestSection").hidden = !interest;
-      document.getElementById("notesSection").hidden = interest;
-      document.getElementById("interestNav").disabled = interest;
-      document.getElementById("notesNav").disabled = !interest;
-
-      if (!interest) renderNotes();
-    }
-
-    function parseDate(dateString) {
-      const [year, month, day] = dateString.split("-").map(Number);
-      return new Date(year, month - 1, day);
-    }
-
-    function formatDateWithMonth(dateString) {
-      const date = parseDate(dateString);
-
-      return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
-    }
-
-    function getDays(takenDate) {
-      const start = parseDate(takenDate);
-      const today = new Date();
-
-      start.setHours(0, 0, 0, 0);
-      today.setHours(0, 0, 0, 0);
-
-      // Count the date the money was taken as day one.
-      return Math.max(
-        0,
-        Math.floor((today - start) / 86400000) + 1
-      );
-    }
-
-    function showToday() {
-      const date = new Date();
-
-      document.getElementById("todayDate").textContent =
-        `${TEXT.today}: ${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
-    }
-
-    function updateLanguage() {
-      document.documentElement.lang = "en";
-      document.title = "VSL";
-
-      document.getElementById("title").textContent = "VSL";
-      document.getElementById("interestTitle").textContent = TEXT.interestTitle;
-      document.getElementById("notesTitle").textContent = TEXT.notesTitle;
-      document.getElementById("interestNav").textContent = TEXT.interestNav;
-      document.getElementById("notesNav").textContent = TEXT.notesNav;
-      document.getElementById("totalBtn").textContent = TEXT.totalBtn;
-      document.getElementById("modalTitle").textContent = TEXT.modalTitle;
-      document.getElementById("noteInput").placeholder = TEXT.placeholder;
-      document.getElementById("saveButton").textContent = TEXT.save;
-      document.querySelector(".logout-btn").textContent = TEXT.logout;
-
-      if (currentUser) {
-        document.getElementById("loggedInAs").textContent =
-          `${TEXT.loggedInAs}: ${currentUser.name}`;
-      }
-
-      showToday();
-    }
-
-    function getEntryData(entry) {
-      const days = getDays(entry.takenDate);
-
-      const totalInterest = Math.round(
-        Number(entry.amount) * Number(entry.interest) * days / 3000
-      );
-
-      const remaining = Math.max(
-        0,
-        totalInterest - (Number(entry.interestPaid) || 0)
-      );
-
-      return {
-        days,
-        totalInterest,
-        remaining,
-        total: Number(entry.amount) + remaining
-      };
-    }
-
-    function getDetailExplanation(key, entry, data) {
-      const explanations = {
-        borrowedBy: {
-          title: "Borrowed By",
-          description: "This is the name of the person connected to this money record.",
-          value: entry.borrowedBy || "Not specified"
-        },
-        amount: {
-          title: "Principal Amount",
-          description: "This is the original amount of money lent or borrowed through VSL, before adding interest.",
-          value: formatMoney(entry.amount)
-        },
-        interest: {
-          title: "Interest Rate",
-          description: "This is the monthly interest rate for this amount. VSL uses this rate to calculate interest.",
-          value: `${entry.interest}% per month`
-        },
-        takenDate: {
-          title: "Date Borrowed",
-          description: "This is the date the money was taken. VSL starts counting interest from this date.",
-          value: formatDateWithMonth(entry.takenDate)
-        },
-        days: {
-          title: "Days Passed",
-          description: "This shows the number of days counted from the date the money was taken, including the first day.",
-          value: `${data.days} ${data.days === 1 ? "day" : "days"}`
-        },
-        interestPaid: {
-          title: "Interest Paid",
-          description: "This is the interest amount already paid. VSL subtracts it from the total interest.",
-          value: formatMoney(entry.interestPaid)
-        },
-        remaining: {
-          title: "Remaining Interest",
-          description: "This is the interest still left to pay after subtracting the interest already paid.",
-          value: formatMoney(data.remaining)
-        },
-        entryTotal: {
-          title: "Total Amount",
-          description: "This is the original amount plus the interest still left to pay.",
-          value: formatMoney(data.total)
-        }
-      };
-
-      return explanations[key];
-    }
-
-    function openDetailPopup(key, entry, data) {
-      const detail = getDetailExplanation(key, entry, data);
-      if (!detail) return;
-
-      lastFocusedElement = document.activeElement;
-
-      document.getElementById("detailModalTitle").textContent = detail.title;
-      document.getElementById("detailDescription").textContent = detail.description;
-      document.getElementById("detailValue").textContent = detail.value;
-      document.getElementById("detailModal").hidden = false;
-
-      document.querySelector("#detailModal .modal-close").focus();
-    }
-
-    function closeDetailPopup() {
-      document.getElementById("detailModal").hidden = true;
-
-      if (lastFocusedElement && document.contains(lastFocusedElement)) {
-        lastFocusedElement.focus();
-      }
-    }
-
-    function createRow(
-      label,
-      value,
-      className = "entry-row",
-      detailKey = null,
-      entry = null,
-      data = null
-    ) {
-      const row = document.createElement("div");
-      row.className = className;
-
-      const labelElement = document.createElement("span");
-      labelElement.className = "label";
-      labelElement.textContent = label;
-
-      const valueElement = document.createElement("span");
-      valueElement.className = "value";
-      valueElement.textContent = value;
-
-      row.append(labelElement, valueElement);
-
-      if (detailKey && entry && data) {
-        row.classList.add("detail-row");
-        row.tabIndex = 0;
-        row.setAttribute("role", "button");
-        row.setAttribute("aria-label", `View explanation for ${label}`);
-
-        row.addEventListener("click", () => {
-          openDetailPopup(detailKey, entry, data);
-        });
-
-        row.addEventListener("keydown", event => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            openDetailPopup(detailKey, entry, data);
-          }
-        });
-      }
-
-      return row;
-    }
-
-    function render() {
-      const app = document.getElementById("app");
-      app.innerHTML = "";
-
-      if (!currentUser) return;
-
-      const userBlock = document.createElement("div");
-      userBlock.className = "user";
-
-      (currentUser.entries || []).forEach(entry => {
-        if (typeof entry.interestPaid !== "number") {
-          entry.interestPaid = Number(entry.interestPaid) || 0;
-        }
-
-        const data = getEntryData(entry);
-        const block = document.createElement("div");
-        block.className = "entry";
-
-        block.append(
-          createRow(TEXT.borrowedBy, entry.borrowedBy, "borrowed-by-row",
-            "borrowedBy", entry, data),
-          createRow(TEXT.amount, formatMoney(entry.amount), "entry-row",
-            "amount", entry, data),
-          createRow(TEXT.interest, `${entry.interest}%`, "entry-row",
-            "interest", entry, data),
-          createRow(TEXT.takenDate, formatDateWithMonth(entry.takenDate), "entry-row",
-            "takenDate", entry, data),
-          createRow(TEXT.days, String(data.days), "entry-row",
-            "days", entry, data)
-        );
-
-        const paidRow = document.createElement("div");
-        paidRow.className = "paid-row";
-
-        const paidLabel = document.createElement("label");
-        paidLabel.className = "paid-label";
-        paidLabel.textContent = TEXT.interestPaid;
-
-        const inputWrap = document.createElement("div");
-        inputWrap.className = "paid-input-wrap";
-
-        const currency = document.createElement("span");
-        currency.className = "currency-prefix";
-        currency.textContent = "";
-
-        const paidInput = document.createElement("input");
-        paidInput.className = "paid-input";
-        paidInput.type = "number";
-        paidInput.min = "0";
-        paidInput.step = "1";
-        paidInput.inputMode = "decimal";
-        paidInput.value = entry.interestPaid;
-        paidInput.setAttribute("aria-label", TEXT.interestPaid);
-
-        paidInput.addEventListener("change", () => {
-          entry.interestPaid = Math.max(0, Number(paidInput.value) || 0);
-          render();
-        });
-
-        paidInput.addEventListener("keydown", event => {
-          if (event.key === "Enter") paidInput.blur();
-        });
-
-        inputWrap.append(currency, paidInput);
-        paidRow.append(paidLabel, inputWrap);
-        block.appendChild(paidRow);
-
-        block.appendChild(
-          createRow(
-            TEXT.remaining,
-            formatMoney(data.remaining),
-            "remaining",
-            "remaining",
-            entry,
-            data
-          )
-        );
-
-        block.appendChild(
-          createRow(
-            TEXT.entryTotal,
-            formatMoney(data.total),
-            "entry-total",
-            "entryTotal",
-            entry,
-            data
-          )
-        );
-
-        userBlock.appendChild(block);
-      });
-
-      if (!currentUser.entries || currentUser.entries.length === 0) {
-        const empty = document.createElement("p");
-        empty.textContent = "No money records available.";
-        userBlock.appendChild(empty);
-      }
-
-      app.appendChild(userBlock);
-    }
-
-    function openTotalPopup() {
-      if (!currentUser) return;
-
-      const body = document.getElementById("modalBody");
-
-      let principal = 0;
-      let remainingInterest = 0;
-
-      (currentUser.entries || []).forEach(entry => {
-        principal += Number(entry.amount) || 0;
-        remainingInterest += getEntryData(entry).remaining;
-      });
-
-      body.innerHTML = "";
-
-      const summary = document.createElement("div");
-      summary.className = "modal-summary";
-
-      [
-        [TEXT.sumPrincipal, principal],
-        [TEXT.sumInterest, remainingInterest],
-        [TEXT.grandTotal, principal + remainingInterest]
-      ].forEach((item, index) => {
-        const row = document.createElement("div");
-        row.className = "row";
-
-        const label = document.createElement(index === 2 ? "strong" : "span");
-        const value = document.createElement(index === 2 ? "strong" : "span");
-
-        label.textContent = item[0];
-        value.textContent = formatMoney(item[1]);
-
-        row.append(label, value);
-        summary.appendChild(row);
-      });
-
-      body.appendChild(summary);
-
-      lastFocusedElement = document.activeElement;
-      document.getElementById("totalModal").hidden = false;
-
-      document.querySelector("#totalModal .modal-close").focus();
-    }
-
-    function closeTotalPopup() {
-      document.getElementById("totalModal").hidden = true;
-
-      if (lastFocusedElement && document.contains(lastFocusedElement)) {
-        lastFocusedElement.focus();
-      }
-    }
-
-    function getNotes() {
-      if (!currentUser) return [];
-
-      try {
-        const notes = JSON.parse(
-          localStorage.getItem(userStorageKey(NOTES_KEY_PREFIX))
-        );
-
-        return Array.isArray(notes) ? notes : [];
-      } catch {
-        return [];
-      }
-    }
-
-    function saveNote() {
-      if (!currentUser) return;
-
-      const input = document.getElementById("noteInput");
-      const noteText = input.value.trim();
-
-      if (!noteText) {
-        input.focus();
-        return;
-      }
-
-      const notes = getNotes();
-
-      notes.unshift({
-        id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
-        text: noteText,
-        date: new Date().toISOString()
-      });
-
-      try {
-        localStorage.setItem(
-          userStorageKey(NOTES_KEY_PREFIX),
-          JSON.stringify(notes)
-        );
-      } catch {
-        alert("Could not save the note in this browser.");
-        return;
-      }
-
-      input.value = "";
-      renderNotes();
-    }
-
-    function deleteNote(id) {
-      if (!currentUser) return;
-
-      const notes = getNotes().filter(note => note.id !== id);
-
-      try {
-        localStorage.setItem(
-          userStorageKey(NOTES_KEY_PREFIX),
-          JSON.stringify(notes)
-        );
-      } catch {}
-
-      renderNotes();
-    }
-
-    function formatNoteDate(dateString) {
-      const date = new Date(dateString);
-
-      if (Number.isNaN(date.getTime())) return "";
-
-      const hours = String(date.getHours()).padStart(2, "0");
-      const minutes = String(date.getMinutes()).padStart(2, "0");
-
-      return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}, ${hours}:${minutes}`;
-    }
-
-    function renderNotes() {
-      const list = document.getElementById("notesList");
-      const notes = getNotes();
-
-      list.innerHTML = "";
-
-      if (!currentUser || notes.length === 0) {
-        const empty = document.createElement("p");
-        empty.className = "empty-notes";
-        empty.textContent = TEXT.emptyNotes;
-        list.appendChild(empty);
-        return;
-      }
-
-      notes.forEach(note => {
-        const item = document.createElement("div");
-        item.className = "note";
-
-        const deleteButton = document.createElement("button");
-        deleteButton.className = "delete-note";
-        deleteButton.textContent = "X";
-        deleteButton.title = TEXT.delete;
-        deleteButton.setAttribute("aria-label", TEXT.delete);
-        deleteButton.onclick = () => deleteNote(note.id);
-
-        const text = document.createElement("div");
-        text.className = "note-text";
-        text.textContent = note.text;
-
-        const date = document.createElement("div");
-        date.className = "note-date";
-        date.textContent = formatNoteDate(note.date);
-
-        item.append(deleteButton, text, date);
-        list.appendChild(item);
-      });
-    }
-
-    /* Close popups by clicking outside or pressing Escape */
-
-    ["totalModal", "detailModal"].forEach(id => {
-      const overlay = document.getElementById(id);
-
-      overlay.addEventListener("click", event => {
-        if (event.target !== overlay) return;
-
-        if (id === "totalModal") {
-          closeTotalPopup();
-        } else {
-          closeDetailPopup();
-        }
-      });
-    });
-
-    document.addEventListener("keydown", event => {
-      if (event.key !== "Escape") return;
-
-      if (!document.getElementById("detailModal").hidden) {
-        closeDetailPopup();
-      } else if (!document.getElementById("totalModal").hidden) {
-        closeTotalPopup();
-      }
-    });
-
-    /*
-      IMPORTANT:
-      Restore appearance first, before the user enters a password.
-      This is what fixes the login screen's dark theme.
-    */
-
-    restoreLoginAppearance();
+  }
+
+  function checkPassword(){
+    const input=document.getElementById("passwordInput"),error=document.getElementById("lockError");
+    const enteredPassword=input.value.trim();
+    const matchedUser=USERS.find(user=>user.password===enteredPassword);
+    if(!matchedUser){error.hidden=false;input.select();return;}
+    error.hidden=true;
+    localStorage.setItem(LAST_USER_KEY,matchedUser.id);
+    localStorage.setItem(LAST_PASSWORD_KEY,enteredPassword);
+    localStorage.setItem(REMEMBER_PASSWORD_KEY,"yes");
+    loginUser(matchedUser);
+  }
+
+  function loginUser(user){
+    currentUser=user;
+    updatePremiumControls();
+    document.getElementById("lockScreen").hidden=true;
+    document.getElementById("mainApp").hidden=false;
+    document.getElementById("loggedInAs").textContent=`${TEXT.loggedInAs}: ${user.name}`;
+    renderTopBanners();
+    // No loadPaidAmounts – always start with original values from account data
+    loadFontSize();
+    updateLanguage();
+    showSection("interest");
+    render();
+    renderNotes();
+  }
+
+  function logout(){
+    currentUser=null;
+    updatePremiumControls();
+    document.getElementById("mainApp").hidden=true;document.getElementById("lockScreen").hidden=false;
+    document.getElementById("totalModal").hidden=true;document.getElementById("app").innerHTML="";
+    document.getElementById("notesList").innerHTML="";document.getElementById("noteInput").value="";
+    document.getElementById("topBanner").innerHTML="";document.getElementById("topBanner2").innerHTML="";
     initLockScreen();
-  </script>
+    applyLockScreenAppearance();
+  }
+
+  function loadFontSize(){
+    const saved=parseInt(localStorage.getItem(FONT_SIZE_KEY),10);
+    if(!isNaN(saved)&&saved>=MIN_FONT&&saved<=MAX_FONT)currentFontSize=saved;
+    applyFontSize();
+  }
+  function applyFontSize(){document.body.style.fontSize=currentFontSize+"px";document.getElementById("fontSizeLabel").textContent=currentFontSize;}
+  function changeFontSize(delta){
+    const size=currentFontSize+delta;if(size<MIN_FONT||size>MAX_FONT)return;
+    currentFontSize=size;applyFontSize();localStorage.setItem(FONT_SIZE_KEY,currentFontSize);
+  }
+  function showSection(section){
+    const interest=section==="interest";
+    document.getElementById("interestSection").hidden=!interest;
+    document.getElementById("notesSection").hidden=interest;
+    document.getElementById("interestNav").disabled=interest;
+    document.getElementById("notesNav").disabled=!interest;
+    if(!interest)renderNotes();
+  }
+  function parseDate(dateString){const [year,month,day]=dateString.split("-").map(Number);return new Date(year,month-1,day);}
+  function formatDateWithMonth(dateString){const date=parseDate(dateString);return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;}
+function getDays(takenDate) {
+  const start = parseDate(takenDate);
+  const today = new Date();
+
+  start.setHours(0, 0, 0, 0);
+  today.setHours(0, 0, 0, 0);
+
+  return Math.max(0, Math.floor((today - start) / 86400000) + 1);
+}
+  function showToday(){const date=new Date();document.getElementById("todayDate").textContent=`${TEXT.today}: ${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;}
+  function updateLanguage(){
+    document.documentElement.lang="en";document.title="VSL";
+    document.getElementById("title").textContent="VSL";
+    document.getElementById("interestTitle").textContent=TEXT.interestTitle;
+    document.getElementById("notesTitle").textContent=TEXT.notesTitle;
+    document.getElementById("interestNav").textContent=TEXT.interestNav;
+    document.getElementById("notesNav").textContent=TEXT.notesNav;
+    document.getElementById("totalBtn").textContent=TEXT.totalBtn;
+    document.getElementById("modalTitle").textContent=TEXT.modalTitle;
+    document.getElementById("noteInput").placeholder=TEXT.placeholder;
+    document.getElementById("saveButton").textContent=TEXT.save;
+    document.querySelector(".logout-btn").textContent=TEXT.logout;
+    if(currentUser)document.getElementById("loggedInAs").textContent=`${TEXT.loggedInAs}: ${currentUser.name}`;
+    showToday();
+  }
+  function getEntryData(entry){
+    const days=getDays(entry.takenDate);
+    const totalInterest=Math.round(entry.amount*entry.interest*days/3000);
+    const remaining=Math.max(0,totalInterest-entry.interestPaid);
+    return {days,totalInterest,remaining,total:entry.amount+remaining};
+  }
+  function createRow(label,value,className="entry-row",detailKey=null,entry=null,data=null){
+    const row=document.createElement("div");row.className=className;
+    const labelElement=document.createElement("span");labelElement.className="label";labelElement.textContent=label;
+    const valueElement=document.createElement("span");valueElement.className="value";valueElement.textContent=value;
+    row.append(labelElement,valueElement);
+    if(detailKey){
+      const premium=isPremiumUser(currentUser);
+      const premiumOnlyFields=["borrowedBy","interest","takenDate","days"];
+      if(!premium&&premiumOnlyFields.includes(detailKey)){
+        row.classList.add("premium-locked","detail-row","detail-clickable");
+        row.tabIndex=0;row.setAttribute("role","button");row.setAttribute("aria-label","Premium+ required to view "+label);
+        row.addEventListener("click",openPremiumPopup);
+        row.addEventListener("keydown",event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();openPremiumPopup();}});
+      }else if(!premium||detailEffectsEnabled()){
+        row.classList.add("detail-row");row.tabIndex=0;row.setAttribute("role","button");
+        row.addEventListener("click",()=>openDetailPopup(detailKey,entry,data));
+        row.addEventListener("keydown",event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();openDetailPopup(detailKey,entry,data);}});
+      }
+    }
+    return row;
+  }
+  function render(){
+    const app=document.getElementById("app");app.innerHTML="";if(!currentUser)return;
+    const userBlock=document.createElement("div");userBlock.className="user";
+    // const heading=document.createElement("h3");heading.className="user-name";heading.textContent=currentUser.name;userBlock.appendChild(heading);
+    currentUser.entries.forEach(entry=>{
+      // Ensure interestPaid exists (use original value from data if not set)
+      if(typeof entry.interestPaid !== "number") entry.interestPaid = 0;
+
+      const data=getEntryData(entry),block=document.createElement("div");block.className="entry";
+      block.append(
+        createRow(TEXT.borrowedBy,entry.borrowedBy,"borrowed-by-row","borrowedBy",entry,data),
+        createRow(TEXT.amount,entry.amount.toLocaleString("en-IN"),"entry-row","amount",entry,data),
+        createRow(TEXT.interest,`${entry.interest}%`,"entry-row","interest",entry,data),
+        createRow(TEXT.takenDate,formatDateWithMonth(entry.takenDate),"entry-row","takenDate",entry,data),
+        createRow(TEXT.days,String(data.days),"entry-row","days",entry,data)
+      );
+      const paidRow=document.createElement("div");paidRow.className="paid-row";
+      const paidLabel=document.createElement("label");paidLabel.className="paid-label";paidLabel.textContent=TEXT.interestPaid;
+      const inputWrap=document.createElement("div");inputWrap.className="paid-input-wrap";
+      const paidInput=document.createElement("input");paidInput.className="paid-input";paidInput.type="number";paidInput.min="0";paidInput.step="1";paidInput.inputMode="decimal";paidInput.value=entry.interestPaid;paidInput.setAttribute("aria-label",TEXT.interestPaid);
+      
+      // Only update display – DO NOT save to localStorage
+      paidInput.addEventListener("change",()=>{
+        entry.interestPaid = Math.max(0, Number(paidInput.value) || 0);
+        render(); // just re-render with the temporary value
+      });
+      paidInput.addEventListener("keydown",event=>{if(event.key==="Enter")paidInput.blur();});
+      
+      inputWrap.appendChild(paidInput);paidRow.append(paidLabel,inputWrap);block.appendChild(paidRow);
+      block.appendChild(createRow(TEXT.remaining,`₹${data.remaining.toLocaleString("en-IN")}`,"remaining","remaining",entry,data));
+      block.appendChild(createRow(TEXT.entryTotal,`₹${data.total.toLocaleString("en-IN")}`,"entry-total","total",entry,data));
+      userBlock.appendChild(block);
+    });
+    if(currentUser.entries.length===0){const empty=document.createElement("p");empty.textContent="No lending amounts available.";userBlock.appendChild(empty);}
+    app.appendChild(userBlock);
+  }
+  function openTotalPopup(){
+    if(!currentUser)return;const body=document.getElementById("modalBody");let principal=0,remainingInterest=0;
+    currentUser.entries.forEach(entry=>{principal+=Number(entry.amount)||0;remainingInterest+=getEntryData(entry).remaining;});
+    body.innerHTML="";const summary=document.createElement("div");summary.className="modal-summary";
+    [[TEXT.sumPrincipal,principal],[TEXT.sumInterest,remainingInterest],[TEXT.grandTotal,principal+remainingInterest]].forEach((item,index)=>{
+      const row=document.createElement("div");row.className="row";
+      const label=document.createElement(index===2?"strong":"span"),value=document.createElement(index===2?"strong":"span");
+      label.textContent=item[0];value.textContent=`₹${item[1].toLocaleString("en-IN")}`;row.append(label,value);summary.appendChild(row);
+    });
+    body.appendChild(summary);document.getElementById("totalModal").hidden=false;
+  }
+  function closeTotalPopup(){document.getElementById("totalModal").hidden=true;}
+  function getNotes(){
+    if(!currentUser)return [];
+    try{const notes=JSON.parse(localStorage.getItem(userStorageKey(NOTES_KEY_PREFIX)));return Array.isArray(notes)?notes:[];}catch{return [];}
+  }
+  function saveNote(){
+    if(!currentUser)return;const input=document.getElementById("noteInput"),noteText=input.value.trim();
+    if(!noteText){input.focus();return;}
+    const notes=getNotes();notes.unshift({id:`${Date.now()}-${Math.random().toString(36).slice(2)}`,text:noteText,date:new Date().toISOString()});
+    localStorage.setItem(userStorageKey(NOTES_KEY_PREFIX),JSON.stringify(notes));input.value="";renderNotes();
+  }
+  function deleteNote(id){
+    if(!currentUser)return;const notes=getNotes().filter(note=>note.id!==id);
+    localStorage.setItem(userStorageKey(NOTES_KEY_PREFIX),JSON.stringify(notes));renderNotes();
+  }
+  function formatNoteDate(dateString){
+    const date=new Date(dateString);if(Number.isNaN(date.getTime()))return "";
+    const hours=String(date.getHours()).padStart(2,"0"),minutes=String(date.getMinutes()).padStart(2,"0");
+    return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}, ${hours}:${minutes}`;
+  }
+  function renderNotes(){
+    const list=document.getElementById("notesList"),notes=getNotes();list.innerHTML="";
+    if(!currentUser||notes.length===0){const empty=document.createElement("p");empty.className="empty-notes";empty.textContent=TEXT.emptyNotes;list.appendChild(empty);return;}
+    notes.forEach(note=>{
+      const item=document.createElement("div");item.className="note";
+      const deleteButton=document.createElement("button");deleteButton.className="delete-note";deleteButton.textContent="X";deleteButton.title=TEXT.delete;deleteButton.setAttribute("aria-label",TEXT.delete);deleteButton.onclick=()=>deleteNote(note.id);
+      const text=document.createElement("div");text.className="note-text";text.textContent=note.text;
+      const date=document.createElement("div");date.className="note-date";date.textContent=formatNoteDate(note.date);
+      item.append(deleteButton,text,date);list.appendChild(item);
+    });
+  }
+  document.getElementById("premiumModal").addEventListener("click",event=>{if(event.target.id==="premiumModal")closePremiumPopup();});
+  document.getElementById("detailModal").addEventListener("click",event=>{if(event.target.id==="detailModal")closeDetailPopup();});
+  document.getElementById("totalModal").addEventListener("click",event=>{if(event.target.id==="totalModal")closeTotalPopup();});
+  document.addEventListener("keydown",event=>{
+    if(event.key==="Escape"){
+      closeTotalPopup();closeDetailPopup();closePremiumPopup();
+    }
+  });
+  // Load the remembered Premium member's appearance on the login screen.
+  applyLockScreenAppearance();
+  applyDetailEffects();
+  initLockScreen();
+</script>
 </body>
 </html>
