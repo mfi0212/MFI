@@ -1,49 +1,65 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>BS x BS&MFI | Bond Int</title> <style> *{ margin: 0; padding: 0; box-sizing: border-box; } body { font-family: Arial, sans-serif; color: #000; width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 10px; line-height: 30px; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } h2 { font-size: 22px; } input[type="number"] { padding: 8px; width: 180px; max-width: 90%; font-size: 16px; } input[type="range"] { width: 30%; margin: 20px 0; cursor: pointer; } p { font-size: 16px; } hr { height: 0px; background: black; width: 100%; } </style> </head> <body> <h2>Black Swan x BS&MFI | Bond Int</h2> <p>Minimum: ₹5,000</p> <p>Maximum: ₹10,00,000</p> <p>Enter Amount ₹</p> <input type="number" id="amount" min="5000" max="1000000" step="5000" value="5000"> <br> <input type="range" id="slider" min="1000" max="1000000" step="1000" value="1000"> <p>Interest Rate: <strong id="rate">3.5%</strong> per month</p> <p>Monthly Interest: <strong id="interest">₹350</strong></p> <hr> <p style="padding: 10px 0 0;"> <b>#Copyright</b><br> © 2026 Bond Int. All rights reserved. <br>The content, design, and code of this website may not be copied, modified, or reused without permission from Black Swan. <br><br> <b># Privacy Policy</b> <br> This calculator works in your browser. The amount you enter and the interest calculated are processed in your browser. This page does not send this information to Black Swan or store it on Black Swan's servers. Avoid entering sensitive or personal information. <br><br> <b># Terms & Conditions</b> <br> This calculator is provided to help users calculate estimated interest based on the displayed rates. The results are for informational purposes only and may not represent the final interest amount in an actual lending agreement. Users are responsible for checking the amount, interest rate, and calculation before making any financial decision. Black Swan may update or change this website, its rates, features, or content at any time without prior notice. Updates may affect how the calculator works. By using this website, you agree to these terms.</p> <hr> <p style="padding-top: 10px;font-size: 15px;">Powered by VSL</p> <a style="color:white;text-decoration:none;position: fixed;bottom: 0;right: 0;" href="https://blackswan19.github.io/BS/bs.dev.tol"><div class="madein" style="position:absolute;white-space:nowrap;bottom:0;right:0;background:#2b6cc2;padding:3px;text-transform:capitalize;font-size:13px;"> made in BsDevTol </div></a>
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>BS x BS&MFI | Bond Int</title> <style> * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; } body { font-family: Arial, sans-serif; color: #000; width: 100%; min-height: 100vh; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 10px; line-height: 30px; user-select: none; text-align: center; } h2 { font-size: 22px; } input[type="number"] { padding: 8px; width: 180px; max-width: 90%; font-size: 16px; } input[type="range"] { width: 80%; max-width: 350px; margin: 20px 0; cursor: pointer; accent-color: #0800f0; } p { font-size: 16px; } hr { height: 0; background: black; width: 100%; border: none; border-top: 1px solid black; } .legal { padding: 10px 0 0; text-align: left; line-height: 1.6; } .footer { padding-top: 10px; font-size: 15px; } .madein { position: fixed; white-space: nowrap; bottom: 0; right: 0; background: #2b6cc2; color: white; padding: 3px; text-transform: capitalize; font-size: 13px; line-height: normal; } @media (max-width: 480px) { h2 { font-size: 20px; } input[type="range"] { width: 90%; } } </style> </head> <body> <a href="https://mfi0212.github.io/MFI/service.solutions/VSL/interest.split">VSL Interest Split</a> <h2>Black Swan x BS&MFI | Bond Int</h2> <p>Minimum: 5,000</p> <p>Maximum: 5,00,000</p> <p>Enter Amount</p> <input type="number" id="amount" min="5000" max="500000" step="1000" value="5000" inputmode="numeric" aria-label="Enter amount"> <br> <input type="range" id="slider" min="5000" max="500000" step="1000" value="5000" aria-label="Adjust amount"> <p>Interest Rate: <strong id="rate">5%</strong> per month</p> <p>Monthly Interest: <strong id="interest">250</strong></p> <hr> <p class="legal"> <b>#Copyright</b><br> © 2026 Bond Int. All rights reserved. <br> The content, design, and code of this website may not be copied, modified, or reused without permission from Black Swan. <br><br> <b># Privacy Policy</b><br> This calculator works in your browser. The amount you enter and the interest calculated are processed in your browser. This page does not send this information to Black Swan or store it on Black Swan's servers. <br> Avoid entering sensitive or personal information. <br><br> <b># Terms &amp; Conditions</b><br> This calculator is provided to help users calculate estimated interest based on the displayed rates. The results are for informational purposes only and may not represent the final interest amount in an actual lending agreement. <br> Users are responsible for checking the amount, interest rate, and calculation before making any financial decision. <br> Black Swan may update or change this website, its rates, features, or content at any time without prior notice. Updates may affect how the calculator works. <br> By using this website, you agree to these terms. </p> <hr> <p class="footer">Powered by VSL</p> <a style="color:white;text-decoration:none;" href="https://blackswan19.github.io/BS/bs.dev.tol"> <div class="madein">made in BsDevTol</div> </a>
 <script>
 const amount = document.getElementById("amount");
 const slider = document.getElementById("slider");
 const rate = document.getElementById("rate");
 const interest = document.getElementById("interest");
-document.addEventListener('contextmenu', e => e.preventDefault());
+
+document.addEventListener("contextmenu", event => {
+    event.preventDefault();
+});
+
 function formatMoney(value) {
-  return "₹" + Math.round(value).toLocaleString("en-IN");
+    return Math.round(value).toLocaleString("en-IN");
 }
 
 function update(value) {
-  value = Math.max(1000, Math.min(1000000, Number(value) || 1000));
+    value = Number(value);
 
-  amount.value = value;
-  slider.value = value;
+    if (!Number.isFinite(value)) {
+        value = 5000;
+    }
 
-  let percentage;
+    value = Math.round(value);
+    value = Math.max(5000, Math.min(500000, value));
 
-  if (value >= 1000000) {
-    percentage = 2.5;
-  } else if (value >= 500000) {
-    percentage = 3;
-  } else if (value >= 100000) {
-    percentage = 3.5;
-  } else {
-    percentage = 5;
-  }
+    amount.value = value;
+    slider.value = value;
 
-  rate.textContent = percentage + "%";
-  interest.textContent = formatMoney(value * percentage / 100);
+    let percentage;
+
+    if (value >= 500000) {
+        percentage = 3;
+    } else if (value >= 100000) {
+        percentage = 3.5;
+    } else {
+        percentage = 5;
+    }
+
+    rate.textContent = percentage + "%";
+    interest.textContent = formatMoney(value * percentage / 100);
 }
 
-slider.addEventListener("input", () => update(slider.value));
-
-amount.addEventListener("input", () => {
-  if (amount.value !== "" &&
-      Number(amount.value) >= 1000 &&
-      Number(amount.value) <= 1000000) {
-    update(amount.value);
-  }
+slider.addEventListener("input", () => {
+    update(slider.value);
 });
 
-amount.addEventListener("change", () => update(amount.value));
+amount.addEventListener("input", () => {
+    if (amount.value !== "") {
+        const value = Number(amount.value);
 
-update(10000);
+        if (Number.isFinite(value) && value >= 5000) {
+            update(Math.min(value, 500000));
+        }
+    }
+});
+
+amount.addEventListener("change", () => {
+    update(amount.value);
+});
+
+update(5000);
 </script>
+
 </body>
 </html>
