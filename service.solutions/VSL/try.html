@@ -14,14 +14,7 @@
       --bg:#fff;--text:#000;--surface:#fff;--border:#0000003d;
       --muted:#555;--field-bg:#fff;--field-text:#000;
       --strong-bg:#000;--strong-text:#fff;--accent:#0800f0;
-    }div#detailModalBody p {
-    font-weight: 700;
-    margin-top: 10px;
-    background: var(--accent);
-    text-align: center;
-    font-size: 20px;
-    padding: 5px;    color: white;
-}
+    }
     body[data-theme="amoled"]{
       color-scheme:dark;
       --bg:#000;--text:#fff;--surface:#000;--border:#ffffff45;
@@ -33,22 +26,41 @@
     button{cursor:pointer}a{color:inherit}
     #lockScreen{width:100%;max-width:500px;min-height:100vh;margin:auto;padding:10px;display:flex;overflow:hidden;flex-direction:column;justify-content:center}
     .lock-box{width:100%;}h2#title {
-    font-size: 45px;
+    font-size: 40px;
+}    button:focus,
+    a:focus,
+    input:focus{
+      outline:2px solid var(--accent);outline-offset:2px;border-radius: 2px
+    }
+    h3#detailModalTitle,h3#modalTitle {
+    color: var(--accent);
 }
+    #detailModalBody p{
+      text-align: center;
+    background: var(--accent);
+    font-size: 20px;
+    padding: 6px;
+    color: white;
+    }
     .lock-header{text-align:center;margin-bottom:24px}.lock-header h2{font-size:50px;display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;}
+    flex-direction: column;}.entry-total.detail-row {
+    color: white;
+    background: var(--accent);
+}
+.entry-total.detail-row span{ 
+opacity:  100%;
+}
     .lock-header h6{margin:-15px;font-weight:normal}
     .lock-body{display:flex;flex-direction:column;gap:10px}.lock-label{text-align:center;font-size:15px}
-    .lock-input,.note-input{width:100%;padding:10px;border:1px solid;border-radius:2px; outline:none;margin-top:4px}
-    .lock-input:focus{border-radius:2px; outline:2px solid var(--text);outline-offset:2px;border-radius:2px}
+    .lock-input,.note-input{width:100%;padding:10px;border:1px solid var(--accent);border-radius:2px; outline:none;margin-top:4px}
     .lock-error{color:red;text-align:center}.lock-btn,.save-btn,#totalBtn{width:100%;padding:10px;background:var(--accent);color:#fff;border:0}
     .save-btn:focus{border-radius:2px; outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
     .lock-hint{font-size:13px;margin-top:10px}.lock-hint a:focus{border-radius:2px; outline:2px solid red;outline-offset:2px}
     #mainApp{width:100%;max-width:720px;margin:0 auto}.container{width:100%;padding:16px 0 5px}
-    .top-banner,.top-banner2{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:10px 0}
-    .top-banner a:focus,.top-banner2 a:focus{border-radius:2px; outline:2px solid #000;outline-offset:2px}
+    .top-banner{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:10px 0}
+    .top-banner a:hover{color: var(--accent);}
     .header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px 0;border-bottom:1px solid var(--border)}
     .today{font-size:14px}.font-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.font-size-label{min-width:20px;text-align:center}
     .font-btn,.lang-btn,.theme-btn{min-height:34px;padding:5px 9px;background:var(--accent);color:#fff;border:0}
@@ -57,18 +69,13 @@
     .accent-control[hidden]{display:none!important}
     .accent-control input{width:34px;height:34px;padding:2px;border:1px solid var(--border);background:var(--surface);cursor:pointer}.font-btn:focus,.lock-btn:focus,#totalBtn:focus{border-radius:2px; outline:2px solid var(--accent);outline-offset:2px}
     .navigation{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:12px 0;border-bottom:1px solid var(--border)}
-    .nav-btn,.total-btn{min-height:40px;padding:8px}.section-title{margin:5px;font-size:11px;text-align:center}
+    .nav-btn,.total-btn{min-height:40px;padding:8px}.nav-btn{background:var(--surface);color:var(--text);border:1px solid var(--border);transition:background .18s,color .18s,border-color .18s,box-shadow .18s}.nav-btn.is-active,.nav-btn[aria-current="page"]{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700;box-shadow:inset 0 -3px 0 #00000025;opacity:1}.nav-btn:not(.is-active):not([aria-current="page"]){background:var(--surface);color:var(--text)}.nav-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.section-title{margin:5px;font-size:11px;text-align:center}
     .user{margin-bottom:15px}.user-name{padding:0;text-align:center}
     .entry{    padding: 12px 0 0;
     border-top: 1px solid var(--border);}.entry-row,.remaining,.borrowed-by-row,.paid-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:7px 0}
-    .entry-row .label,.remaining .label,.entry-total .label,.borrowed-by-row .label,.paid-label{flex:1;min-width:0;overflow-wrap:anywhere}
-    .entry-row .value,.remaining .value,.entry-total .value,.borrowed-by-row .value{text-align:right;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
-    .entry-total{background: var(--accent);
-    padding: 10px;    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;}
+    .entry-row .label,.remaining .label,.entry-total .label,.borrowed-by-row .label,.paid-label{flex:1;min-width:0;overflow-wrap:anywhere; opacity: 55%;}
+    .entry-row .value,.remaining .value,.entry-total .value,.borrowed-by-row .value{text-align:right;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;font-weight: 700;}
+    .entry-total{background:var(--strong-bg);color:var(--strong-text);padding:10px;display:flex;justify-content:space-between;align-items:center;gap:12px}
     .paid-input-wrap{display:flex;align-items:center;gap:8px;width:48%;min-width:100px}.paid-input{width:100%;min-width:0;height:35px;padding:0;border:0;background:var(--field-bg);color:var(--field-text);text-align:right;font-size:16px;font-variant-numeric:tabular-nums}
     .paid-input:focus{padding:0 10px;border-radius:2px; outline:2px solid #000;outline-offset:2px;border-radius:2px}
     .note-input{    text-align: left;display:block;min-height:120px;resize:vertical}.save-btn{margin-top:8px}
@@ -76,13 +83,13 @@
     padding: 5px 0 0 0;
     border-top: 1px solid var(--border);
     overflow-wrap: anywhere;
+}.entry-total .label {
+    opacity: 100%;
 }
 .mainreflogo{
     text-decoration: none;
 }
-.mainreflogo:focus{
-outline:2px solid #000;outline-offset:2px;border-radius: 5px
-}
+
     .note-input:focus{border-radius:2px; outline:2px solid #000;outline-offset:2px;border-radius:2px}
     .note-text{white-space:pre-wrap;overflow-wrap:anywhere}.note-date{font-size:12px}.delete-note{float: right;
     background: transparent;
@@ -137,7 +144,7 @@ outline:2px solid #000;outline-offset:2px;border-radius: 5px
     
      footer{    text-align: center;
     font-size: 13px;
-    color: black;}
+    color:var(--text);}
     .footer-links{ display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -146,7 +153,7 @@ outline:2px solid #000;outline-offset:2px;border-radius: 5px
     border-top: 1px solid var(--border);}.footer-links a{    font-size: 14px;
     text-decoration: none;
     color: var(--muted);}
-    .footer-links a:hover{text-decoration:underline;color: var(--text); }.footer-links a:focus{border-radius:2px; outline:2px solid var(--text);outline-offset:2px}
+    .footer-links a:hover{text-decoration:underline;color: var(--accent); }
 
 
 
@@ -158,11 +165,9 @@ outline:2px solid #000;outline-offset:2px;border-radius: 5px
     body[data-detail-effects="off"] .detail-row:hover{text-decoration:none;background:transparent}
     body[data-detail-effects="off"] .detail-row.detail-clickable{cursor:pointer}
     body[data-detail-effects="off"] .detail-row.detail-clickable:hover{background:color-mix(in srgb,var(--accent) 7%,transparent)}
-    .premium-locked .value{filter:blur(6px);user-select:none}
+    .premium-locked .value{filter:none;user-select:none;font-weight:600;color:var(--muted)}
     .premium-locked{cursor:pointer}
-    .premium-locked:focus{    filter: blur(8px);
-    user-select: none;
-    text-decoration: line-through 8px;}
+    .premium-locked:focus{outline:2px solid var(--accent);outline-offset:2px}
     .premium-features-list{padding:12px 0 12px 20px;line-height:1.8}
     .premium-copy{padding:12px 0;line-height:1.6}
     .premium-action{display:block;width:100%;padding:11px;background:var(--accent);color:#fff;border:0;text-decoration:none;text-align:center;margin-top:8px}
@@ -174,7 +179,7 @@ outline:2px solid #000;outline-offset:2px;border-radius: 5px
     <div class="lock-box">
       <div class="lock-header"><h2><img style="    width: 50%;
     border-radius: 50%;
-    max-width: 180px;" src="https://mfi0212.github.io/MFI/mfi.aura.logo.png" alt=""> VSL</h2><h6>Powered by BS&amp;MFI</h6></div>
+    max-width: 180px;background: var(--accent);" src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt=""> VSL</h2><h6>Powered by BS&amp;MFI</h6></div>
       <div class="lock-body">
         <label class="lock-label" for="passwordInput">Enter Password</label>
         <input type="text" id="passwordInput" class="lock-input" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter') checkPassword()">
@@ -207,7 +212,7 @@ outline:2px solid #000;outline-offset:2px;border-radius: 5px
     gap: 5px;
     height: 45px;"> 
           <img style="width: 40px;
-    border-radius: 50%;" src="https://mfi0212.github.io/MFI/mfi.aura.logo.png" alt="">
+    border-radius: 50%;background: var(--accent);" src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="">
         <h2  id="title">VSL</h2>
         </div></a>
         <div class="today" id="todayDate"></div>
@@ -226,7 +231,7 @@ outline:2px solid #000;outline-offset:2px;border-radius: 5px
         </div>
       </div>
       <div class="navigation">
-        <button class="nav-btn" id="interestNav" onclick="showSection('interest')">Interest</button>
+        <button class="nav-btn is-active" id="interestNav" aria-current="page" onclick="showSection('interest')">Interest</button>
         <button class="nav-btn" id="notesNav" onclick="showSection('notes')">Notes</button>
         <button class="total-btn" id="totalBtn" onclick="openTotalPopup()">Total</button>
       </div>
@@ -261,12 +266,13 @@ outline:2px solid #000;outline-offset:2px;border-radius: 5px
       <div class="modal"><div class="modal-header"><h3 id="premiumModalTitle">VSL Premium+</h3><button class="modal-close" onclick="closePremiumPopup()" aria-label="Close premium popup">X</button></div>
         <div class="premium-copy">Premium+ gives you more control over how VSL looks and how account details are displayed.</div>
         <ul class="premium-features-list">
-          <li>View Borrowed By, Interest Rate, Date Borrowed and Days Passed without blur.</li>
+          <li>Unlock Borrowed By, Interest Rate, Date Borrowed and Days Passed.</li>
           <li>Turn detail popups and hover effects on or off.</li>
           <li>Use dark AMOLED and light themes.</li>
           <li>Choose your own main colour.</li>
         </ul>
         <div class="premium-copy">Contact your coordinator to ask about Premium+. Any applicable fee will be added to the amount or interest as agreed with your coordinator.</div>
+        <a class="premium-action" href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form" target="_blank" rel="noopener">Contact coordinator</a>
       </div>
     </div>
   </div>
@@ -512,9 +518,19 @@ outline:2px solid #000;outline-offset:2px;border-radius: 5px
     const interest=section==="interest";
     document.getElementById("interestSection").hidden=!interest;
     document.getElementById("notesSection").hidden=interest;
-    document.getElementById("interestNav").disabled=interest;
-    document.getElementById("notesNav").disabled=!interest;
-    if(!interest)renderNotes();
+    const interestNav=document.getElementById("interestNav");
+    const notesNav=document.getElementById("notesNav");
+    interestNav.classList.toggle("is-active",interest);
+    notesNav.classList.toggle("is-active",!interest);
+    // Keep visual highlight and accessibility state synchronized on every switch.
+    if(interest){
+      interestNav.setAttribute("aria-current","page");
+      notesNav.removeAttribute("aria-current");
+    }else{
+      notesNav.setAttribute("aria-current","page");
+      interestNav.removeAttribute("aria-current");
+      renderNotes();
+    }
   }
   function parseDate(dateString){const [year,month,day]=dateString.split("-").map(Number);return new Date(year,month-1,day);}
   function formatDateWithMonth(dateString){const date=parseDate(dateString);return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;}
@@ -552,14 +568,20 @@ function getDays(takenDate) {
   function createRow(label,value,className="entry-row",detailKey=null,entry=null,data=null){
     const row=document.createElement("div");row.className=className;
     const labelElement=document.createElement("span");labelElement.className="label";labelElement.textContent=label;
-    const valueElement=document.createElement("span");valueElement.className="value";valueElement.textContent=value;
+    const valueElement=document.createElement("span");valueElement.className="value";
+    const premium=isPremiumUser(currentUser);
+    const premiumOnlyFields=["borrowedBy","interest","takenDate","days"];
+    const isProtected=!premium&&premiumOnlyFields.includes(detailKey);
+
+    // Do not put the protected value into the rendered DOM for non-premium users.
+    // This replaces the old CSS blur, which could be removed with Inspect Element.
+    valueElement.textContent=isProtected?"Premium+ required":value;
     row.append(labelElement,valueElement);
     if(detailKey){
-      const premium=isPremiumUser(currentUser);
-      const premiumOnlyFields=["borrowedBy","interest","takenDate","days"];
-      if(!premium&&premiumOnlyFields.includes(detailKey)){
+      if(isProtected){
         row.classList.add("premium-locked","detail-row","detail-clickable");
-        row.tabIndex=0;row.setAttribute("role","button");row.setAttribute("aria-label","Premium+ required to view "+label);
+        row.tabIndex=0;row.setAttribute("role","button");
+        row.setAttribute("aria-label","Premium+ required to view "+label);
         row.addEventListener("click",openPremiumPopup);
         row.addEventListener("keydown",event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();openPremiumPopup();}});
       }else if(!premium||detailEffectsEnabled()){
@@ -586,19 +608,23 @@ function getDays(takenDate) {
         createRow(TEXT.takenDate,formatDateWithMonth(entry.takenDate),"entry-row","takenDate",entry,data),
         createRow(TEXT.days,String(data.days),"entry-row","days",entry,data)
       );
-      const paidRow=document.createElement("div");paidRow.className="paid-row";
-      const paidLabel=document.createElement("label");paidLabel.className="paid-label";paidLabel.textContent=TEXT.interestPaid;
-      const inputWrap=document.createElement("div");inputWrap.className="paid-input-wrap";
-      const paidInput=document.createElement("input");paidInput.className="paid-input";paidInput.type="number";paidInput.min="0";paidInput.step="1";paidInput.inputMode="decimal";paidInput.value=entry.interestPaid;paidInput.setAttribute("aria-label",TEXT.interestPaid);
-      
-      // Only update display – DO NOT save to localStorage
-      paidInput.addEventListener("change",()=>{
-        entry.interestPaid = Math.max(0, Number(paidInput.value) || 0);
-        render(); // just re-render with the temporary value
-      });
-      paidInput.addEventListener("keydown",event=>{if(event.key==="Enter")paidInput.blur();});
-      
-      inputWrap.appendChild(paidInput);paidRow.append(paidLabel,inputWrap);block.appendChild(paidRow);
+      // Interest Paid is a Premium-only control. For non-Premium accounts,
+      // do not create the row or its input in the DOM at all.
+      if(isPremiumUser(currentUser)){
+        const paidRow=document.createElement("div");paidRow.className="paid-row";
+        const paidLabel=document.createElement("label");paidLabel.className="paid-label";paidLabel.textContent=TEXT.interestPaid;
+        const inputWrap=document.createElement("div");inputWrap.className="paid-input-wrap";
+        const paidInput=document.createElement("input");paidInput.className="paid-input";paidInput.type="number";paidInput.min="0";paidInput.step="1";paidInput.inputMode="decimal";paidInput.value=entry.interestPaid;paidInput.setAttribute("aria-label",TEXT.interestPaid);
+
+        // Only update display – DO NOT save to localStorage
+        paidInput.addEventListener("change",()=>{
+          entry.interestPaid = Math.max(0, Number(paidInput.value) || 0);
+          render(); // just re-render with the temporary value
+        });
+        paidInput.addEventListener("keydown",event=>{if(event.key==="Enter")paidInput.blur();});
+
+        inputWrap.appendChild(paidInput);paidRow.append(paidLabel,inputWrap);block.appendChild(paidRow);
+      }
       block.appendChild(createRow(TEXT.remaining,`₹${data.remaining.toLocaleString("en-IN")}`,"remaining","remaining",entry,data));
       block.appendChild(createRow(TEXT.entryTotal,`₹${data.total.toLocaleString("en-IN")}`,"entry-total","total",entry,data));
       userBlock.appendChild(block);
