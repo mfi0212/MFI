@@ -46,11 +46,12 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;}.entry-total.detail-row {
-    color: white;
-    background: var(--accent);
+       color: white;
+    background: transparent;
+    padding: 10px 0;
 }
 .entry-total.detail-row span{ 
-opacity:  100%;
+opacity: 55%;
 }
     .lock-header h6{margin:-15px;font-weight:normal}
     .lock-body{display:flex;flex-direction:column;gap:10px}.lock-label{text-align:center;font-size:15px}
@@ -75,7 +76,12 @@ opacity:  100%;
     border-top: 1px solid var(--border);}.entry-row,.remaining,.borrowed-by-row,.paid-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:7px 0}
     .entry-row .label,.remaining .label,.entry-total .label,.borrowed-by-row .label,.paid-label{flex:1;min-width:0;overflow-wrap:anywhere; opacity: 55%;}
     .entry-row .value,.remaining .value,.entry-total .value,.borrowed-by-row .value{text-align:right;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;font-weight: 700;}
-    .entry-total{background:var(--strong-bg);color:var(--strong-text);padding:10px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .entry-total{background: var(--accent);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;}
     .paid-input-wrap{display:flex;align-items:center;gap:8px;width:48%;min-width:100px}.paid-input{width:100%;min-width:0;height:35px;padding:0;border:0;background:var(--field-bg);color:var(--field-text);text-align:right;font-size:16px;font-variant-numeric:tabular-nums}
     .paid-input:focus{padding:0 10px;border-radius:2px; outline:2px solid #000;outline-offset:2px;border-radius:2px}
     .note-input{    text-align: left;display:block;min-height:120px;resize:vertical}.save-btn{margin-top:8px}
