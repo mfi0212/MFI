@@ -12,7 +12,7 @@ const USERS = [
         href: "https://mfi0212.github.io/MFI/1.5.days"
       },
       {
-        text: "calculator",
+        text: "Bond Int",
         href: "https://mfi0212.github.io/MFI/service.solutions/VSL/bondint"
       },
     ],
