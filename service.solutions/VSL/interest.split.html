@@ -1,0 +1,47 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <meta name="theme-color" content="#0800f0"> <title>VSL | Interest Split</title> <link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png"> <style> :root { --main: #0800f0; --bg: white; --surface: #ffffff; --text: #171923; --muted: #6b7280; --border: #00000038; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } * { box-sizing: border-box; } body { margin: 0; padding: 24px 14px; font-family: Arial, sans-serif; background: var(--bg); color: var(--text); } .app { max-width: 620px; margin: 0 auto; } header { margin: 8px 0 22px; } .brand { color: var(--main); font-size: 12px; font-weight: 800; letter-spacing: .12em; } h1 { margin: 8px 0 6px; font-size: clamp(25px, 6vw, 34px); letter-spacing: -.04em; text-align: center; } .sub { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; text-align: center; } .card { border: 1px solid var(--border); border-radius: 10px; padding: 15px; margin: 15px 0; } label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 9px; } .amount-wrap { display: flex; align-items: center; gap: 10px; transition: border-color .18s, box-shadow .18s; } input:focus { border: solid 2px black; } .currency-select { max-width: 120px; border: 1px solid var(--border); border-radius: 9px; padding: 9px 6px; background: var(--surface); color: var(--text); font: inherit; font-size: 13px; outline: none; } .currency-select:focus { border-color: var(--main); } input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; font: inherit; font-size: 20px; font-weight: 700; color: var(--text); padding: 5px 10px; border-radius: 5px; } .hint { margin: 9px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; } .total-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; } .total-label { color: var(--muted); font-size: 13px; } .total-value { font-size: 29px; font-weight: 700; letter-spacing: -.04em; overflow-wrap: anywhere; } .split-list { display: grid; gap: 10px; margin-top: 17px; } .split-item { padding: 10px; } .split-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; } .split-name { font-weight: 700; font-size: 14px; } .split-desc { color: var(--muted); font-size: 12px; margin-top: 4px; line-height: 1.4; } .split-amount { text-align: right; overflow-wrap: anywhere; font-size: 16px; font-weight: 700; } .percent { color: var(--main); font-size: 12px; font-weight: 750; margin-top: 3px; text-align: right; } .track { height: 5px; background: #edf0f5; border-radius: 99px; margin-top: 12px; overflow: hidden; } .bar { height: 100%; background: var(--main); border-radius: 99px; } .note { color: var(--muted); font-size: 12px; line-height: 1.5; margin: 14px 2px 0; } footer { font-size: 12px; text-align: center; color: var(--muted); padding: 15px; border-top: 1px solid var(--border); } .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px 10px; margin-top: 12px; } .footer-links a { color: black; text-decoration: underline; font-size: 14px; transition: color 0.15s ease; } .footer-links a:focus{ outline: 2px solid #000; outline-offset: 2px; border-radius: 2px; } @media (max-width: 380px) { body { padding: 16px 10px; } .card { padding: 14px; } .split-item { padding: 10px; } .split-top { gap: 8px; } .split-amount { font-size: 13px; } .currency-select { max-width: 105px; } } </style> </head> <body> <main class="app"> <header> <h1>VSL Interest Split</h1> <p class="sub"> Powered by BS&MFI </p> </header> <section class="card"> <label for="interest">Total interest amount</label> <div class="amount-wrap"> <select id="currencySelect" class="currency-select" aria-label="Choose currency" > <option value="USD">$ USD</option> </select> <input id="interest" type="number" min="0" step="0.01" value="1000" inputmode="decimal" placeholder="Enter interest" > </div> <p class="hint"> Change the currency using the selector. This changes the currency display, not the underlying amount or exchange rate. </p> </section> <section class="card" aria-live="polite"> <div class="total-row"> <div> <div class="total-label">Total interest entered</div> <div class="total-value" id="total">₹1,000.00</div> </div> <div style="text-align:right"> <div class="total-label">Allocated</div> <div style="font-size:19px;font-weight:700" id="allocated"> 100% </div> </div> </div> <div class="split-list"> <div class="split-item"> <div class="split-top"> <div> <div class="split-name">Amount Lender</div> <div class="split-desc"> Interest share paid to the lender </div> </div> <div> <div class="split-amount" id="lenderAmount">₹700.00</div> <div class="percent">50%</div> </div> </div> <div class="track"> <div class="bar" style="width:50%"></div> </div> </div> <div class="split-item"> <div class="split-top"> <div> <div class="split-name">Servers &amp; Data Management</div> <div class="split-desc"> Servers, hosting, and data management </div> </div> <div> <div class="split-amount" id="serverAmount">₹200.00</div> <div class="percent">25%</div> </div> </div> <div class="track"> <div class="bar" style="width:20%"></div> </div> </div> <div class="split-item"> <div class="split-top"> <div> <div class="split-name">Borrower Arrangement</div> <div class="split-desc"> Arranging borrowers and related work </div> </div> <div> <div class="split-amount" id="arrangeAmount">₹150.00</div> <div class="percent">15%</div> </div> </div> <div class="track"> <div class="bar" style="width:15%"></div> </div> </div> <div class="split-item"> <div class="split-top"> <div> <div class="split-name">Security &amp; Privacy</div> <div class="split-desc"> Protecting accounts, systems, and data </div> </div> <div> <div class="split-amount" id="securityAmount">₹50.00</div> <div class="percent">5%</div> </div> </div> <div class="track"> <div class="bar" style="width:5%"></div> </div> </div> <div class="split-item"> <div class="split-top"> <div> <div class="split-name">VSL Profit</div> <div class="split-desc">VSL's profit share</div> </div> <div> <div class="split-amount" id="profitAmount">₹50.00</div> <div class="percent">5%</div> </div> </div> <div class="track"> <div class="bar" style="width:5%"></div> </div> </div> </div> </section> <footer>VSL, All right reserved.<br>Version(v.02.22.9)<br><div class="footer-links"> <a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a> <a href="https://mfi0212.github.io/MFI/privacyandterms">Privacy Policy & Terms and Conditions</a> </div></footer> </main>
+  <script>
+    const input = document.getElementById("interest");
+    const currencySelect = document.getElementById("currencySelect");
+
+    const splits = [
+      ["lenderAmount", 0.50],
+      ["serverAmount", 0.25],
+      ["arrangeAmount", 0.15],
+      ["securityAmount", 0.05],
+      ["profitAmount", 0.05],
+    ];
+
+document.addEventListener('contextmenu', e => e.preventDefault());
+    function money(value) {
+      const currency = currencySelect.value;
+      const locale = currency === "INR" ? "en-IN" : "en-US";
+
+      return new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency: currency,
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(value);
+    }
+
+    function updateSplit() {
+      const total = Math.max(0, Number(input.value) || 0);
+
+      document.getElementById("total").textContent = money(total);
+
+      splits.forEach(function (split) {
+        const id = split[0];
+        const percentage = split[1];
+
+        document.getElementById(id).textContent =
+          money(total * percentage);
+      });
+    }
+
+    input.addEventListener("input", updateSplit);
+    currencySelect.addEventListener("change", updateSplit);
+
+    updateSplit();
+  </script>
+</body>
+</html>
