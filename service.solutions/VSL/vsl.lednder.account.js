@@ -10,7 +10,11 @@ const USERS = [
       {
         text: "STL",
         href: "https://mfi0212.github.io/MFI/1.5.days"
-      }
+      },
+      {
+        text: "calculator",
+        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/bondint"
+      },
     ],
 
     entries: [
