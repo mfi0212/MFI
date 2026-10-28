@@ -144,6 +144,16 @@
     .account-name{overflow-wrap:anywhere;font-weight:bold}.logout-btn{padding:6px 10px;border:0;flex-shrink:0;background:red;color:#fff}
 .logout-btn:focus{
    border-radius:2px; outline:2px solid red;outline-offset:2px
+}ul.premium-features-list h3 {
+    color: var(--accent);
+}
+ul.premium-features-list h3:hover{
+  text-decoration: underline;cursor: pointer;
+}
+ul.premium-features-list h3:focus{
+  outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
 }
    .modal-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;background:#000000ad;overflow-y:auto}
     .modal{width:100%;max-width:400px;max-height:85vh;overflow-y:auto;padding:10px;border:1px solid var(--border);background:var(--surface);color:var(--text)}
@@ -199,7 +209,7 @@
     body[data-detail-effects="off"] .detail-row.detail-clickable:hover{background:color-mix(in srgb,var(--accent) 7%,transparent)}
     .premium-locked .value{filter:none;user-select:none;font-weight:600;color:var(--muted)}
     .premium-locked{cursor:pointer}
-    .premium-locked:focus{outline:2px solid var(--accent);outline-offset:2px}
+    .premium-locked:focus{outline:2px solid var(--accent);outline-offset:2px;    border-radius: 4px;}
     .premium-features-list{padding:12px 0 12px 20px;line-height:1.8}
     .premium-copy{padding:0px 0;line-height:1.6}
     .premium-action{display:block;width:100%;padding:11px;background:var(--accent);color:#fff;border:0;text-decoration:none;text-align:center;margin-top:8px}
@@ -302,10 +312,15 @@
         <ul class="premium-features-list">
           <li>Unlock Borrowed By, Interest Rate, Date Borrowed and Days Passed.</li>
           <li>Turn detail popups and hover effects on or off.</li>
-          <li>Use dark AMOLED and light themes.</li>
+          <li>Use dark and light themes.</li>
           <li>Choose your own main colour.</li>
         </ul>
-        <div class="premium-copy">Contact your coordinator to ask about Premium+. Any applicable fee will be added to the amount or interest as agreed with your coordinator.</div>
+        <ul class="premium-features-list">
+          <li>Premium+ Cost</li>
+          <li onclick="alert('You have to pay 260₹/month to get premium+ features')"><h3>Monthly - ₹260</h3></li>
+          <li onclick="alert('You have to pay 2160₹/year which mean 180₹/month to get premium+ features')"><h3>Annual - ₹2160</h3></li>
+        </ul>
+        <div class="premium-copy">Contact your coordinator to active your Premium+.The fee will be added to your active amount or interest automatically.</div>
         </div>
     </div>
   </div>
