@@ -3,2779 +3,901 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a0a0f">
-<title>VSL</title>
-
-<script src="vsl.lednder.account.js"></script>
+<meta name="theme-color" content="#f7f8fc">
+<title>VSL | BS&amp;MFI</title>
 <link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<script src="vsl.lednder.account.js"></script>
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  -webkit-tap-highlight-color:transparent;
-  scrollbar-width:thin;
-  scrollbar-color:rgba(255,255,255,0.15) transparent;
-}
-
-[hidden]{display:none!important}
-
 :root{
   color-scheme:light;
-  --highlight-total:#ffffff;
-  --highlight-light-total:#0a0a0f;
-  --bg:#f4f5f7;
-  --bg-elevated:#ffffff;
-  --text:#0a0a0f;
-  --text-secondary:#5c5c6f;
+  --bg:#f5f6fb;
   --surface:#ffffff;
-  --surface-hover:#f8f9fb;
-  --border:rgba(10,10,15,0.08);
-  --border-strong:rgba(10,10,15,0.14);
-  --muted:#7a7a8c;
-  --field-bg:#ffffff;
-  --field-text:#0a0a0f;
-  --strong-bg:#0a0a0f;
-  --strong-text:#ffffff;
-  --accent:#4f46e5;
-  --accent-soft:rgba(79,70,229,0.08);
-  --accent-glow:rgba(79,70,229,0.25);
-  --danger:#ef4444;
-  --danger-soft:rgba(239,68,68,0.1);
-  --success:#10b981;
-  --radius-sm:8px;
-  --radius-md:12px;
-  --radius-lg:16px;
-  --radius-xl:20px;
-  --shadow-sm:0 1px 2px rgba(10,10,15,0.04);
-  --shadow-md:0 4px 12px rgba(10,10,15,0.06),0 1px 3px rgba(10,10,15,0.04);
-  --shadow-lg:0 12px 32px rgba(10,10,15,0.1),0 4px 8px rgba(10,10,15,0.04);
-  --shadow-glow:0 0 0 3px var(--accent-glow);
-  --transition:all 0.2s cubic-bezier(0.4,0,0.2,1);
+  --surface-2:#f0f2f8;
+  --text:#171923;
+  --muted:#74798b;
+  --border:#e5e7ef;
+  --accent:#5145e5;
+  --accent-rgb:81,69,229;
+  --accent-contrast:#fff;
+  --danger:#e5484d;
+  --shadow:0 18px 55px rgba(30,35,70,.08);
+  --radius:20px;
 }
-
 body[data-theme="amoled"]{
   color-scheme:dark;
-  --highlight-total:#ffffff;
-  --highlight-light-total:#ffffff;
-  --bg:#050507;
-  --bg-elevated:#0c0c10;
-  --text:#f0f0f5;
-  --text-secondary:#9a9aad;
-  --surface:#0c0c10;
-  --surface-hover:#14141a;
-  --border:rgba(255,255,255,0.06);
-  --border-strong:rgba(255,255,255,0.12);
-  --muted:#7a7a8c;
-  --field-bg:#0c0c10;
-  --field-text:#f0f0f5;
-  --strong-bg:#f0f0f5;
-  --strong-text:#050507;
-  --accent-soft:rgba(99,102,241,0.15);
-  --accent-glow:rgba(99,102,241,0.3);
-  --danger-soft:rgba(239,68,68,0.15);
-  --shadow-sm:0 1px 2px rgba(0,0,0,0.3);
-  --shadow-md:0 4px 16px rgba(0,0,0,0.4),0 1px 3px rgba(0,0,0,0.2);
-  --shadow-lg:0 16px 48px rgba(0,0,0,0.5),0 4px 12px rgba(0,0,0,0.3);
+  --bg:#050505;
+  --surface:#101010;
+  --surface-2:#191919;
+  --text:#f5f5f7;
+  --muted:#a3a3ad;
+  --border:#292929;
+  --shadow:0 18px 55px rgba(0,0,0,.4);
 }
-
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
 body{
-  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  font-size:15px;
-  line-height:1.55;
-  color:var(--text);
-  background:var(--bg);
-  user-select:none;
-  transition:background 0.25s ease,color 0.25s ease;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+  min-height:100vh;background:var(--bg);color:var(--text);
+  font:16px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  transition:background .2s,color .2s;
 }
-
-button,input,textarea{
-  font:inherit;
-  text-align:center;
-  border:1px solid var(--border);
-  border-radius:var(--radius-sm);
-  background:var(--field-bg);
-  color:var(--field-text);
-  transition:var(--transition);
-}
-
+button,input,textarea{font:inherit}
 button{cursor:pointer}
-a{color:inherit;transition:color 0.15s ease}
-
-/* ========== LOCK SCREEN ========== */
-
-#lockScreen{
-  width:100%;
-  max-width:520px;
-  min-height:100vh;
-  margin:0 auto;
-  padding:40px 20px 30px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+a{color:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
+  outline:3px solid rgba(var(--accent-rgb),.3);outline-offset:3px
 }
-
-.lock-box{width:100%}
-
-.lock-header{
-  text-align:center;
-  margin-bottom:36px;
+.page-shell{width:min(100% - 32px,760px);margin:0 auto}
+#lockScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:36px 0}
+.lock-layout{width:100%;max-width:570px}
+.brand{text-align:center;margin:0 auto 25px}
+.brand-logo{
+  width:92px;height:92px;object-fit:contain;border-radius:27px;
+  background:var(--accent);padding:10px;box-shadow:0 12px 35px rgba(var(--accent-rgb),.22)
 }
-
-.lock-header h2{
-  font-size:28px;
-  font-weight:700;
-  letter-spacing:-0.03em;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  gap:14px;
-  color:var(--text);
+.brand h1{font-size:35px;letter-spacing:-1.6px;line-height:1.15;margin-top:12px;font-weight:850}
+.brand-subtitle{color:var(--muted);font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-top:5px}
+.panel{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  box-shadow:var(--shadow)
 }
-
-.lock-header h2 img{
-  width:96px;
-  height:96px;
-  border-radius:50%;
-  background:linear-gradient(145deg,var(--accent),color-mix(in srgb,var(--accent) 70%,#000));
-  box-shadow:0 8px 24px var(--accent-glow);
-  object-fit:cover;
-  padding:4px;
+.login-card{padding:clamp(20px,5vw,34px)}
+.eyebrow{color:var(--accent);font-size:11px;font-weight:800;letter-spacing:1.7px;text-transform:uppercase}
+.login-card h2{font-size:clamp(21px,4vw,27px);letter-spacing:-.7px;line-height:1.25;margin:7px 0 8px}
+.subcopy{color:var(--muted);font-size:14px}
+.login-form{display:flex;gap:9px;margin-top:23px}
+.field{
+  width:100%;min-width:0;border:1px solid var(--border);border-radius:12px;
+  padding:13px 14px;background:var(--surface-2);color:var(--text);text-align:left
 }
-
-.lock-header h6{
-  margin-top:8px;
-  font-size:13px;
-  font-weight:500;
-  color:var(--muted);
-  letter-spacing:0.02em;
+.primary-btn{
+  border:0;border-radius:12px;padding:12px 20px;background:var(--accent);
+  color:var(--accent-contrast);font-weight:750;white-space:nowrap;
+  box-shadow:0 7px 18px rgba(var(--accent-rgb),.2);transition:transform .18s,filter .18s
 }
-
-.lock-body{
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius-xl);
-  padding:28px 24px;
-  box-shadow:var(--shadow-md);
-}
-
-.lock-label{
-  text-align:center;
-}
-
-.lock-label h2{
-  font-size:17px;
-  font-weight:600;
-  letter-spacing:-0.01em;
-  color:var(--text);
-  line-height:1.4;
-}
-
-.lock-input,.note-input{
-  width:100%;
-  padding:14px 16px;
-  border:1.5px solid var(--border-strong);
-  border-radius:var(--radius-md);
-  outline:none;
-  font-size:15px;
-  background:var(--bg);
-  transition:var(--transition);
-}
-
-.lock-input:focus,.note-input:focus{
-  border-color:var(--accent);
-  box-shadow:var(--shadow-glow);
-  background:var(--surface);
-}
-
-button.lock-btn{
-  width:auto;
-  min-width:100px;
-  padding:14px 22px;
-  background:var(--accent);
-  color:#fff;
-  border:none;
-  border-radius:var(--radius-md);
-  font-weight:600;
-  font-size:14px;
-  letter-spacing:0.01em;
-  box-shadow:0 2px 8px var(--accent-glow);
-  transition:var(--transition);
-}
-
-button.lock-btn:hover{
-  filter:brightness(1.08);
-  transform:translateY(-1px);
-  box-shadow:0 4px 14px var(--accent-glow);
-}
-
-button.lock-btn:active{
-  transform:translateY(0);
-}
-
-.lock-error{
-  color:var(--danger);
-  text-align:center;
-  font-size:13px;
-  font-weight:500;
-  padding:10px;
-  background:var(--danger-soft);
-  border-radius:var(--radius-sm);
-}
-
-.lock-hint{
-  font-size:13px;
-  color:var(--muted);
-  line-height:1.6;
-  text-align:center;
-  font-weight:400;
-}
-
-.lock-hint a{
-  color:var(--danger);
-  font-weight:600;
-  text-decoration:none;
-}
-
-.lock-hint a:hover{text-decoration:underline}
-
-/* FAQ */
-
-.login-faq{
-  margin-top:28px;
-  padding-top:8px;
-}
-
-.login-faq-title{
-  font-size:15px;
-  font-weight:600;
-  color:var(--accent);
-  margin-bottom:4px;
-  letter-spacing:-0.01em;
-}
-
-.faq-item{
-  margin-top:8px;
-}
-
+.primary-btn:hover{filter:brightness(1.07);transform:translateY(-1px)}
+.lock-error{color:var(--danger);font-size:13px;margin-top:10px;text-align:center}
+.login-help{margin-top:18px;padding:14px;border-radius:13px;background:var(--surface-2);color:var(--muted);font-size:13px}
+.login-help a,.faq-answer a{color:var(--accent);font-weight:700}
+.faq-panel{margin-top:18px;padding:22px}
+.section-kicker{color:var(--muted);font-size:12px;margin-top:4px}
+.faq-list{margin-top:12px}
+.faq-item{border-bottom:1px solid var(--border)}
 .faq-question{
-  width:100%;
-  padding:14px 16px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  background:var(--surface);
-  color:var(--text);
-  border:1px solid var(--border);
-  border-radius:var(--radius-md);
-  text-align:left;
-  cursor:pointer;
-  font-size:14px;
-  font-weight:500;
-  transition:var(--transition);
-  box-shadow:var(--shadow-sm);
+  width:100%;border:0;background:transparent;color:var(--text);text-align:left;
+  display:flex;align-items:center;justify-content:space-between;gap:15px;padding:15px 2px;font-weight:650
 }
-
-.faq-question:hover{
-  background:var(--surface-hover);
-  border-color:var(--border-strong);
+.faq-icon{color:var(--accent);font-size:21px;line-height:1}
+.faq-answer{padding:0 22px 15px 2px;color:var(--muted);font-size:14px;line-height:1.7}
+.more-faq{display:block;width:100%;margin-top:17px;text-align:center;text-decoration:none}
+.lock-footer{display:flex;justify-content:space-between;gap:15px;align-items:center;padding:20px 4px;color:var(--muted);font-size:12px}
+.lock-footer a{color:var(--muted);text-decoration:none}
+.lock-footer a:hover{color:var(--accent)}
+#mainApp{width:min(100% - 32px,760px);margin:0 auto;padding:22px 0 40px}
+.app-topline{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.account-pill{
+  min-width:0;display:flex;align-items:center;gap:9px;background:var(--surface);
+  border:1px solid var(--border);border-radius:999px;padding:7px 13px 7px 8px
 }
-
-.faq-question:focus{
-  outline:none;
-  box-shadow:var(--shadow-glow);
+.account-dot{width:9px;height:9px;border-radius:50%;background:#20b779;box-shadow:0 0 0 4px rgba(32,183,121,.12)}
+.account-name{font-size:13px;font-weight:750;overflow-wrap:anywhere}
+.logout-btn{border:1px solid rgba(229,72,77,.18);background:rgba(229,72,77,.08);color:var(--danger);border-radius:10px;padding:8px 12px;font-size:12px;font-weight:750}
+.banner-links{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.banner-links a{
+  text-decoration:none;color:var(--accent);background:rgba(var(--accent-rgb),.08);
+  border:1px solid rgba(var(--accent-rgb),.13);padding:8px 12px;border-radius:999px;font-size:12px;font-weight:700
 }
-
-.faq-icon{
-  color:var(--accent);
-  font-size:18px;
-  font-weight:500;
-  flex-shrink:0;
-  width:22px;
-  text-align:center;
+.hero{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:19px 20px;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);box-shadow:var(--shadow)
 }
-
-.faq-answer{
-  padding:12px 16px 16px;
-  color:var(--text-secondary);
-  font-size:13.5px;
-  line-height:1.7;
+.hero-brand{display:flex;align-items:center;gap:11px}
+.hero-logo{width:43px;height:43px;border-radius:14px;background:var(--accent);object-fit:contain;padding:5px}
+.hero h1{font-size:23px;letter-spacing:-.8px;line-height:1.1}
+.today{color:var(--muted);font-size:12px;margin-top:4px}
+.controls{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:7px}
+.control-btn{
+  min-height:36px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);
+  border-radius:10px;padding:7px 10px;font-size:12px;font-weight:700
 }
-
-.faq-answer a{
-  color:var(--accent);
-  font-weight:600;
-  text-decoration:none;
-}
-
-.faq-answer a:hover{text-decoration:underline}
-
-.faq-issue-opt{
-  color:var(--danger)!important;
-}
-
-.anotherlogin{
-  display:flex;
-  margin:28px 0 0;
-  flex-direction:column;
-  gap:16px;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius-xl);
-  padding:24px;
-  box-shadow:var(--shadow-md);
-}
-
-.anotherlogin .lock-label{
-  text-align:left;
-}
-
-.anotherlogin .lock-label h2{
-  font-size:16px;
-}
-
-.anotherlogin a.lock-input{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-decoration:none;
-  color:var(--muted);
-  background:var(--bg);
-}
-
-/* ========== MAIN APP ========== */
-
-#mainApp{
-  width:100%;
-  max-width:680px;
-  margin:0 auto;
-  min-height:100vh;
-}
-
-.container{
-  width:100%;
-  padding:12px 16px 40px;
-}
-
-.top-banner{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:flex-start;
-  align-items:center;
-  gap:10px;
-  padding:8px 0 4px;
-}
-
-.top-banner a{
-  text-decoration:none;
-  font-size:12.5px;
-  font-weight:500;
-  color:var(--accent);
-  padding:4px 10px;
-  background:var(--accent-soft);
-  border-radius:20px;
-  transition:var(--transition);
-}
-
-.top-banner a:hover{
-  background:var(--accent);
-  color:#fff;
-}
-
-.account-bar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  padding:12px 16px;
-  margin:8px 0 4px;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius-md);
-  box-shadow:var(--shadow-sm);
-}
-
-.account-name{
-  overflow-wrap:anywhere;
-  font-weight:600;
-  font-size:13.5px;
-  color:var(--text);
-}
-
-.logout-btn{
-  padding:7px 14px;
-  border:none;
-  flex-shrink:0;
-  background:var(--danger);
-  color:#fff;
-  border-radius:var(--radius-sm);
-  font-size:12.5px;
-  font-weight:600;
-  transition:var(--transition);
-}
-
-.logout-btn:hover{
-  filter:brightness(1.1);
-  transform:translateY(-1px);
-}
-
-.logout-btn:focus{
-  outline:none;
-  box-shadow:0 0 0 3px var(--danger-soft);
-}
-
-.header{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:16px 0 12px;
-}
-
-.mainreflogo{
-  text-decoration:none;
-}
-
-.mainreflogo > div{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-  height:42px;
-}
-
-.mainreflogo img{
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  background:var(--accent);
-  object-fit:cover;
-}
-
-.mainreflogo h2{
-  font-size:20px;
-  font-weight:700;
-  letter-spacing:-0.03em;
-  color:var(--text);
-}
-
-.today{
-  font-size:13px;
-  font-weight:500;
-  color:var(--muted);
-}
-
-.font-controls{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  flex-wrap:wrap;
-}
-
-.font-size-label{
-  min-width:24px;
-  text-align:center;
-  font-size:13px;
-  font-weight:600;
-  color:var(--text-secondary);
-}
-
-.font-btn,.lang-btn,.theme-btn,.detail-setting-btn{
-  min-height:34px;
-  padding:6px 12px;
-  background:var(--accent);
-  color:#fff;
-  border:none;
-  border-radius:var(--radius-sm);
-  font-size:13px;
-  font-weight:600;
-  transition:var(--transition);
-}
-
-.font-btn:hover,.theme-btn:hover,.detail-setting-btn:hover{
-  filter:brightness(1.08);
-}
-
-.theme-btn{white-space:nowrap}
-
-.accent-control{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  font-size:12.5px;
-  font-weight:500;
-  color:var(--text-secondary);
-  white-space:nowrap;
-}
-
-.accent-control input{
-  width:32px;
-  height:32px;
-  border:2px solid var(--border-strong);
-  border-radius:50%;
-  background:transparent;
-  cursor:pointer;
-  padding:2px;
-}
-
-.accent-control input::-webkit-color-swatch-wrapper{padding:0}
-.accent-control input::-webkit-color-swatch{
-  border:none;
-  border-radius:50%;
-}
-
-.premium-detail-control{
-  display:flex;
-  align-items:center;
-}
-
-/* Navigation */
-
-.navigation{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:8px;
-  padding:8px 0 16px;
-}
-
-.nav-btn,.total-btn{
-  min-height:42px;
-  padding:10px 8px;
-  border-radius:var(--radius-md);
-  font-size:13.5px;
-  font-weight:600;
-  transition:var(--transition);
-}
-
+.font-size-label{min-width:18px;text-align:center;color:var(--muted);font-size:12px}
+.accent-control{display:flex;align-items:center;gap:5px;color:var(--muted);font-size:11px}
+.accent-control input{width:30px;height:30px;border:0;background:none;padding:0}
+.app-nav{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:14px 0}
 .nav-btn{
-  background:var(--surface);
-  color:var(--accent);
-  border:1.5px solid var(--border-strong);
-  box-shadow:var(--shadow-sm);
+  border:1px solid var(--border);border-radius:12px;padding:11px 8px;
+  background:var(--surface);color:var(--muted);font-weight:750;font-size:13px;
+  transition:background .18s,color .18s,border-color .18s,transform .18s
 }
-
-.nav-btn:hover{
-  background:var(--accent-soft);
-  border-color:var(--accent);
+.nav-btn:hover{transform:translateY(-1px)}
+.nav-btn.is-active{background:var(--accent);color:white;border-color:var(--accent);box-shadow:0 7px 18px rgba(var(--accent-rgb),.18)}
+.content-panel{padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+.content-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:13px}
+.content-heading h2{font-size:16px;letter-spacing:-.3px}
+.content-heading span{font-size:11px;color:var(--muted)}
+.user{display:block}
+.entry{padding:15px 0;border-top:1px solid var(--border)}
+.entry:first-child{border-top:0;padding-top:0}
+.entry:last-child{padding-bottom:0}
+.entry-row,.remaining,.borrowed-by-row,.paid-row,.entry-total{
+  display:flex;justify-content:space-between;align-items:center;gap:14px;padding:8px 0
 }
-
-.nav-btn.is-active,.nav-btn[aria-current="page"]{
-  background:var(--accent);
-  color:#fff;
-  border-color:var(--accent);
-  box-shadow:0 2px 10px var(--accent-glow);
+.entry-row .label,.remaining .label,.entry-total .label,.borrowed-by-row .label,.paid-label{
+  flex:1;min-width:0;color:var(--muted);font-size:13px;overflow-wrap:anywhere
 }
-
-.total-btn{
-  background:var(--accent);
-  color:#fff;
-  border:none;
-  box-shadow:0 2px 10px var(--accent-glow);
+.entry-row .value,.remaining .value,.entry-total .value,.borrowed-by-row .value{
+  text-align:right;overflow-wrap:anywhere;font-weight:750;font-variant-numeric:tabular-nums
 }
-
-.total-btn:hover{
-  filter:brightness(1.08);
-  transform:translateY(-1px);
-}
-
-.section-title{
-  margin:4px 0 12px;
-  font-size:12px;
-  font-weight:600;
-  text-align:center;
-  text-transform:uppercase;
-  letter-spacing:0.06em;
-  color:var(--muted);
-}
-
-/* Entry cards */
-
-.user{margin-bottom:8px}
-
-.entry{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius-lg);
-  padding:4px 16px 0;
-  margin-bottom:14px;
-  box-shadow:var(--shadow-md);
-  overflow:hidden;
-  transition:var(--transition);
-}
-
-.entry:hover{
-  box-shadow:var(--shadow-lg);
-}
-
-.entry-row,.remaining,.borrowed-by-row,.paid-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  padding:12px 0;
-  border-bottom:1px solid var(--border);
-}
-
-.entry-row:last-of-type,
-.remaining,
-.borrowed-by-row{
-  border-bottom:1px solid var(--border);
-}
-
-.entry-row .label,.remaining .label,.entry-total .label,
-.borrowed-by-row .label,.paid-label{
-  flex:1;
-  min-width:0;
-  overflow-wrap:anywhere;
-  font-size:13.5px;
-  font-weight:500;
-  color:var(--text-secondary);
-}
-
-.entry-row .value,.remaining .value,.entry-total .value,
-.borrowed-by-row .value{
-  text-align:right;
-  overflow-wrap:anywhere;
-  font-variant-numeric:tabular-nums;
-  font-weight:650;
-  font-size:14.5px;
-  color:var(--text);
-}
-
 .entry-total{
-  background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 80%,#6366f1));
-  padding:14px 16px;
-  margin:0 -16px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  color:var(--highlight-total);
-  border:none;
+  margin-top:7px;padding:13px 14px;border-radius:12px;background:var(--accent);color:white
 }
-
-.entry-total .label{
-  opacity:0.9;
-  color:inherit;
-  font-weight:500;
-}
-
-.entry-total .value{
-  color:inherit;
-  font-size:16px;
-  font-weight:700;
-}
-
-.paid-input-wrap{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
+.entry-total .label{color:rgba(255,255,255,.82)}
+.entry-total .value{font-size:17px}
+.detail-row{cursor:pointer;border-radius:8px;transition:background .15s}
+.detail-row:hover{background:var(--surface-2)}
+.detail-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.paid-row{border-top:1px dashed var(--border);margin-top:5px}
+.paid-input-wrap{display:flex;align-items:center;gap:5px}
 .paid-input{
-  min-width:0;
-  padding:6px 10px;
-  border:1.5px solid var(--border-strong);
-  border-radius:var(--radius-sm);
-  background:var(--bg);
-  text-align:right;
-  font-size:14.5px;
-  font-variant-numeric:tabular-nums;
-  font-weight:650;
-  max-width:110px;
-  transition:var(--transition);
+  width:105px;max-width:45vw;border:1px solid var(--border);border-radius:8px;
+  padding:7px 9px;background:var(--surface-2);color:var(--text);text-align:right;font-weight:750
 }
-
-.paid-input:hover{
-  border-color:var(--accent);
-}
-
-.paid-input:focus{
-  outline:none;
-  border-color:var(--accent);
-  box-shadow:var(--shadow-glow);
-  background:var(--surface);
-}
-
-/* Notes */
-
-.notes-box{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius-lg);
-  padding:16px;
-  box-shadow:var(--shadow-md);
-}
-
-.note-input{
-  text-align:left;
-  display:block;
-  min-height:110px;
-  resize:vertical;
-  border-radius:var(--radius-md);
-  padding:14px;
-  font-size:14px;
-  line-height:1.6;
-}
-
-.save-btn{
-  width:100%;
-  margin-top:10px;
-  padding:12px;
-  background:var(--accent);
-  color:#fff;
-  border:none;
-  border-radius:var(--radius-md);
-  font-weight:600;
-  font-size:14px;
-  box-shadow:0 2px 8px var(--accent-glow);
-  transition:var(--transition);
-}
-
-.save-btn:hover{
-  filter:brightness(1.08);
-  transform:translateY(-1px);
-}
-
-.save-btn:focus{
-  outline:none;
-  box-shadow:var(--shadow-glow);
-}
-
-.note{
-  padding:14px 0;
-  border-bottom:1px solid var(--border);
-  overflow-wrap:anywhere;
-}
-
-.note:last-child{border-bottom:none}
-
-.note-text{
-  white-space:pre-wrap;
-  overflow-wrap:anywhere;
-  font-size:14px;
-  line-height:1.6;
-  color:var(--text);
-  padding-right:36px;
-}
-
-.note-date{
-  font-size:11.5px;
-  color:var(--muted);
-  margin-top:6px;
-  font-weight:500;
-}
-
-.delete-note{
-  float:right;
-  background:var(--danger-soft);
-  color:var(--danger);
-  font-size:14px;
-  font-weight:600;
-  border:none;
-  padding:0;
-  width:28px;
-  height:28px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  border-radius:50%;
-  transition:var(--transition);
-}
-
-.delete-note:hover{
-  background:var(--danger);
-  color:#fff;
-}
-
-.delete-note:focus{
-  outline:none;
-  box-shadow:0 0 0 3px var(--danger-soft);
-}
-
-.empty-notes{
-  padding:28px 0 12px;
-  text-align:center;
-  color:var(--muted);
-  font-size:13.5px;
-  font-weight:500;
-}
-
-/* Detail rows interactive */
-
-.detail-row{
-  cursor:pointer;
-  transition:background 0.15s ease;
-  border-radius:var(--radius-sm);
-  margin:0 -6px;
-  padding-left:6px!important;
-  padding-right:6px!important;
-}
-
-.detail-row:hover{
-  background:var(--accent-soft);
-}
-
-.detail-row:focus-visible{
-  outline:none;
-  box-shadow:var(--shadow-glow);
-}
-
-body[data-detail-effects="off"] .detail-row{
-  transition:none;
-}
-
-body[data-detail-effects="off"] .detail-row:hover{
-  background:transparent;
-}
-
-.premium-locked .value{
-  filter:none;
-  user-select:none;
-  font-weight:600;
-  color:var(--accent);
-  font-size:13px;
-}
-
+.remaining{padding-top:11px}
 .premium-locked{cursor:pointer}
-
-.premium-locked:focus{
-  outline:none;
-  box-shadow:var(--shadow-glow);
+.premium-locked .value{color:var(--accent);font-size:11px;font-weight:800}
+.empty-state{text-align:center;color:var(--muted);padding:28px 10px;font-size:14px}
+.note-input{
+  width:100%;min-height:135px;resize:vertical;text-align:left;padding:14px;
+  border:1px solid var(--border);border-radius:13px;background:var(--surface-2);color:var(--text)
 }
-
-/* Modals */
-
+.save-btn{width:100%;margin-top:9px}
+.note{padding:15px 0;border-bottom:1px solid var(--border);overflow-wrap:anywhere}
+.note:first-child{margin-top:8px}
+.note-text{white-space:pre-wrap;overflow-wrap:anywhere}
+.note-date{font-size:11px;color:var(--muted);margin-top:8px}
+.delete-note{float:right;border:0;background:transparent;color:var(--danger);font-size:19px;padding:0 5px}
+.empty-notes{text-align:center;color:var(--muted);padding:25px 5px;font-size:13px}
+.app-footer{margin-top:18px;padding:17px 3px;color:var(--muted);font-size:11px}
+.footer-inner{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}
+.footer-links{display:grid;gap:8px}
+.footer-links a{text-decoration:none;color:var(--muted)}
+.footer-links a:hover{color:var(--accent)}
+.footer-meta{text-align:right}
+.scroll-top{
+  position:fixed;right:18px;bottom:18px;z-index:20;text-decoration:none;
+  background:var(--accent);color:white;padding:10px 13px;border-radius:12px;
+  box-shadow:0 8px 25px rgba(var(--accent-rgb),.25);font-size:12px;font-weight:750
+}
 .modal-overlay{
-  position:fixed;
-  inset:0;
-  z-index:1000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:rgba(0,0,0,0.55);
-  backdrop-filter:blur(6px);
-  -webkit-backdrop-filter:blur(6px);
-  overflow-y:auto;
+  position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;
+  padding:18px;background:rgba(7,9,20,.62);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)
 }
-
 .modal{
-  width:100%;
-  max-width:400px;
-  max-height:85vh;
-  overflow-y:auto;
-  padding:20px;
-  background:var(--surface);
-  color:var(--text);
-  border:1px solid var(--border);
-  border-radius:var(--radius-xl);
-  box-shadow:var(--shadow-lg);
-  animation:modalIn 0.22s cubic-bezier(0.16,1,0.3,1);
+  width:min(100%,430px);max-height:85vh;overflow:auto;padding:21px;
+  background:var(--surface);color:var(--text);border:1px solid var(--border);
+  border-radius:20px;box-shadow:0 25px 90px rgba(0,0,0,.25);animation:modal-in .18s ease-out
 }
-
-@keyframes modalIn{
-  from{opacity:0;transform:scale(0.96) translateY(8px)}
-  to{opacity:1;transform:scale(1) translateY(0)}
+@keyframes modal-in{from{opacity:0;transform:translateY(9px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:13px;margin-bottom:13px;border-bottom:1px solid var(--border)}
+.modal-header h3{font-size:17px;color:var(--accent)}
+.modal-close{width:31px;height:31px;border:0;border-radius:9px;background:var(--surface-2);color:var(--muted);font-weight:800}
+.modal-summary{display:grid;gap:12px}
+.modal-summary .row{display:flex;justify-content:space-between;gap:12px;font-size:14px}
+.modal-summary .row:last-child{border-top:1px solid var(--border);padding-top:13px;font-size:16px}
+.premium-copy{font-size:14px;color:var(--muted);line-height:1.7}
+.premium-features-list{padding:13px 0 13px 20px;line-height:1.9;font-size:13px}
+.premium-prices{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:5px 0 14px}
+.price-option{border:1px solid var(--border);border-radius:13px;padding:12px;background:var(--surface-2)}
+.price-option strong{display:block;color:var(--accent);font-size:17px}
+.price-option span{color:var(--muted);font-size:11px}
+.detail-description{color:var(--muted);font-size:14px;line-height:1.7}
+.detail-value{margin-top:13px;padding:13px;border-radius:12px;background:var(--accent);color:white;text-align:center;font-size:19px;font-weight:800;overflow-wrap:anywhere}
+.premium-action{display:block;text-align:center;text-decoration:none;margin-top:12px}
+body[data-detail-effects="off"] .detail-row{cursor:default}
+@media(max-width:560px){
+  .page-shell,#mainApp{width:min(100% - 22px,760px)}
+  #lockScreen{padding:22px 0}
+  .brand-logo{width:78px;height:78px}
+  .brand h1{font-size:31px}
+  .login-form{flex-direction:column}
+  .login-form .primary-btn{width:100%}
+  .hero{align-items:flex-start;flex-direction:column}
+  .controls{justify-content:flex-start;width:100%}
+  .content-panel{padding:15px}
+  .footer-inner{flex-direction:column}
+  .footer-meta{text-align:left}
+  .lock-footer{align-items:flex-start;flex-direction:column}
 }
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 
-.modal-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-bottom:1px solid var(--border);
-  padding:0 0 14px;
-  margin-bottom:14px;
+/* Refined Apple-inspired visual system */
+:root{
+  --bg:#f5f5f7;
+  --surface:rgba(255,255,255,.84);
+  --surface-2:#f2f2f7;
+  --text:#1d1d1f;
+  --muted:#86868b;
+  --border:rgba(60,60,67,.12);
+  --shadow:0 20px 60px rgba(20,25,40,.055);
+  --radius:28px;
 }
-
-.modal-header h3{
-  font-size:17px;
-  font-weight:700;
-  letter-spacing:-0.02em;
-  color:var(--accent);
+body{
+  background:
+    radial-gradient(ellipse at 12% 0%,rgba(var(--accent-rgb),.075),transparent 38%),
+    radial-gradient(ellipse at 92% 22%,rgba(120,160,255,.075),transparent 34%),
+    var(--bg);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",sans-serif;
+  letter-spacing:-.018em;
+  transition:background .5s ease,color .4s ease;
 }
-
-.modal-close{
-  background:var(--danger-soft);
-  color:var(--danger);
-  font-size:13px;
-  font-weight:700;
-  border:none;
-  width:30px;
-  height:30px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:var(--transition);
+body[data-theme="amoled"]{
+  --bg:#000;
+  --surface:rgba(24,24,27,.88);
+  --surface-2:#1c1c1e;
+  --text:#f5f5f7;
+  --muted:#98989d;
+  --border:rgba(255,255,255,.12);
+  --shadow:0 22px 70px rgba(0,0,0,.5);
+  background:
+    radial-gradient(ellipse at 12% 0%,rgba(var(--accent-rgb),.12),transparent 42%),
+    radial-gradient(ellipse at 90% 20%,rgba(75,95,150,.10),transparent 35%),
+    #000;
 }
-
-.modal-close:hover{
-  background:var(--danger);
-  color:#fff;
+.panel,.hero,.content-panel,.account-pill,.login-card,.faq-panel,.modal{
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  backdrop-filter:blur(24px) saturate(180%);
+  border-color:var(--border);
+  transition:background .45s ease,border-color .4s ease,box-shadow .4s ease,color .35s ease,transform .3s cubic-bezier(.2,.75,.25,1);
 }
-
-.modal-close:focus{
-  outline:none;
-  box-shadow:0 0 0 3px var(--danger-soft);
+.panel,.hero,.content-panel{border-radius:28px}
+#lockScreen{min-height:100svh}
+.lock-theme-row{display:flex;justify-content:flex-end;margin:0 0 12px}
+.brand-logo{
+  width:88px;height:88px;border-radius:27px;
+  box-shadow:0 18px 45px rgba(var(--accent-rgb),.20);
 }
-
-.modal-summary{line-height:1.8}
-
-.modal-summary .row{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  padding:8px 0;
-  border-bottom:1px solid var(--border);
-  font-size:14.5px;
+.brand h1{font-size:clamp(40px,7vw,49px);font-weight:760;letter-spacing:-2.8px}
+.brand-subtitle{font-size:10px;letter-spacing:2.8px}
+.login-card{padding:clamp(25px,5vw,40px)}
+.login-card h2{font-size:clamp(25px,4vw,31px);font-weight:740;letter-spacing:-1.25px}
+.eyebrow{letter-spacing:1.5px}
+.field,.note-input,.paid-input{
+  background:var(--surface-2);border:1px solid transparent;border-radius:15px;
+  transition:background .35s ease,border-color .25s ease,box-shadow .25s ease;
 }
-
-.modal-summary .row:last-child{
-  border-bottom:none;
-  padding-top:12px;
-  margin-top:4px;
-  border-top:1.5px solid var(--border-strong);
+.field:focus,.note-input:focus,.paid-input:focus{
+  border-color:rgba(var(--accent-rgb),.65);
+  box-shadow:0 0 0 4px rgba(var(--accent-rgb),.12);
 }
-
-.modal-summary .row strong{
-  font-weight:700;
-  font-size:15.5px;
+.primary-btn{min-height:46px;border-radius:15px;font-weight:720;box-shadow:0 8px 22px rgba(var(--accent-rgb),.19)}
+.theme-switch{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:39px;
+  padding:8px 14px;border-radius:999px;background:var(--surface);
+  border:1px solid var(--border);color:var(--text);font-size:12px;font-weight:720;
+  box-shadow:0 4px 15px rgba(0,0,0,.045);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
 }
-
-#detailModalBody{
-  text-align:center;
+.theme-switch svg{width:16px;height:16px;display:block;flex:none}
+.nav-btn{min-height:46px;border-radius:16px;background:var(--surface);transition:all .28s cubic-bezier(.2,.75,.25,1)}
+.nav-btn.is-active{box-shadow:0 8px 22px rgba(var(--accent-rgb),.22)}
+.content-panel{padding:clamp(19px,4vw,27px)}
+.content-heading h2{font-size:17px;font-weight:720;letter-spacing:-.45px}
+.entry{padding:19px 0}
+.entry-total{border-radius:17px;padding:15px 16px}
+.control-btn,.logout-btn{border-radius:13px;min-height:38px}
+.banner-links a{border-radius:999px;padding:9px 14px}
+.faq-question{font-weight:650}
+.faq-icon{width:27px;height:27px;display:grid;place-items:center;border-radius:50%;background:var(--surface-2)}
+.modal-overlay{background:rgba(0,0,0,.42);backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%)}
+.modal{border-radius:28px;padding:25px}
+.modal-close{width:34px;height:34px;border-radius:50%}
+.price-option{background:var(--surface-2);border-color:var(--border)}
+.app-footer{padding:22px 4px}
+.scroll-top{border-radius:999px;padding:12px 16px}
+@media(hover:hover){
+  .panel:hover,.hero:hover,.content-panel:hover{box-shadow:0 24px 70px rgba(20,25,40,.075)}
+  body[data-theme="amoled"] .panel:hover,
+  body[data-theme="amoled"] .hero:hover,
+  body[data-theme="amoled"] .content-panel:hover{box-shadow:0 24px 70px rgba(0,0,0,.55)}
 }
-
-#detailModalBody span{
-  display:block;
-  font-size:13.5px;
-  color:var(--text-secondary);
-  line-height:1.6;
-  margin-bottom:12px;
+@media(max-width:560px){
+  .brand h1{font-size:42px}
+  .brand-logo{width:80px;height:80px}
+  .hero{padding:18px}
+  .controls{display:flex;gap:7px}
+  .theme-switch{padding:7px 11px}
 }
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 
-#detailModalBody p{
-  text-align:center;
-  background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 80%,#6366f1));
-  font-size:18px;
-  font-weight:700;
-  padding:14px 16px;
-  color:#fff;
-  border-radius:var(--radius-md);
-  letter-spacing:-0.01em;
-}
-
-/* Premium modal */
-
-.premium-copy{
-  font-size:14px;
-  line-height:1.65;
-  color:var(--text-secondary);
-  margin-bottom:8px;
-}
-
-.premium-features-list{
-  padding:8px 0 8px 4px;
-  line-height:1.85;
-  list-style:none;
-}
-
-.premium-features-list li{
-  position:relative;
-  padding-left:22px;
-  font-size:13.5px;
-  color:var(--text);
-  margin-bottom:4px;
-}
-
-.premium-features-list li::before{
-  content:"✓";
-  position:absolute;
-  left:0;
-  color:var(--accent);
-  font-weight:700;
-  font-size:13px;
-}
-
-.premium-features-list h3{
-  color:var(--accent);
-  width:fit-content;
-  font-size:15px;
-  font-weight:700;
-  margin:6px 0 2px 22px;
-  cursor:pointer;
-  transition:var(--transition);
-}
-
-.premium-features-list h3:hover{
-  text-decoration:underline;
-}
-
-.premium-features-list h3:focus{
-  outline:none;
-  box-shadow:var(--shadow-glow);
-  border-radius:4px;
-}
-
-.premium-action{
-  display:block;
-  width:100%;
-  padding:13px;
-  background:var(--accent);
-  color:#fff;
-  border:none;
-  border-radius:var(--radius-md);
-  text-decoration:none;
-  text-align:center;
-  margin-top:10px;
-  font-weight:600;
-  font-size:14px;
-  box-shadow:0 2px 10px var(--accent-glow);
-  transition:var(--transition);
-}
-
-.premium-action:hover{
-  filter:brightness(1.08);
-}
-
-/* Footer */
-
-footer{
-  text-align:center;
-  color:var(--text);
-  margin-top:24px;
-}
-
-.footer-links{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  padding:20px 4px;
-  gap:16px;
-}
-
-.footer-links a{
-  text-decoration:none;
-  color:var(--muted);
-  font-size:12.5px;
-  font-weight:500;
-  transition:color 0.15s ease;
-}
-
-.footer-links a:hover{
-  color:var(--accent);
-}
-
-.footer-links h5{
-  font-weight:500;
-  font-size:12.5px;
-  line-height:1.5;
-}
-
-/* Scroll up button */
-
-a[href="#scrollup"]{
-  background:var(--accent)!important;
-  padding:10px 14px!important;
-  border-radius:var(--radius-md)!important;
-  font-size:12.5px!important;
-  font-weight:600!important;
-  box-shadow:0 4px 16px var(--accent-glow)!important;
-  transition:var(--transition)!important;
-  text-decoration:none!important;
-  z-index:50;
-}
-
-a[href="#scrollup"]:hover{
-  filter:brightness(1.1);
-  transform:translateY(-2px);
-}
-
-/* Focus styles */
-
-button:focus,a:focus,input:focus,textarea:focus{
-  outline:none;
-}
-
-button:focus-visible,a:focus-visible{
-  box-shadow:var(--shadow-glow);
-}
-
-/* Responsive */
-
-@media(max-width:480px){
-  .container{padding:8px 12px 40px}
-  #lockScreen{padding:28px 14px 24px}
-  .lock-body{padding:22px 18px}
-  .header{justify-content:flex-start}
-  .font-controls{width:100%}
-  .navigation{gap:6px}
-  .nav-btn,.total-btn{padding:9px 4px;font-size:12.5px}
-  .entry{padding:2px 12px 0}
-  .entry-total{margin:0 -12px;padding:12px}
-  .lock-header h2 img{width:80px;height:80px}
-}
 </style>
 </head>
-
 <body>
-  <div id="scrollup"></div>
-<div id="lockScreen">
-  <div class="lock-box">
-   
-    <div title="VSL is a service from BS&MFI Services" class="lock-header">
-      <h2>
-        <img src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="VSL Logo">
-        VSL
-      </h2>
-      <h6>Powered by BS&amp;MFI</h6>
+<div id="scrollup"></div>
+
+<section id="lockScreen" class="page-shell">
+  <div class="lock-layout">
+    <div class="lock-theme-row">
+      <button class="theme-switch" id="loginThemeToggle" onclick="toggleTheme()" type="button" aria-label="Switch appearance">
+        <span>Dark</span>
+      </button>
     </div>
+    <header class="brand">
+      <img class="brand-logo" src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="VSL logo">
+      <h1>VSL</h1>
+      <div class="brand-subtitle">Powered by BS&amp;MFI</div>
+    </header>
 
-    <div class="lock-body">
-
-      <label class="lock-label">
-        <h2>Login with your officially verified account password</h2>
-      </label>
-
-      <div style="display:flex;justify-content:center;align-items:center;gap:8px">
-        <input type="text" id="passwordInput" class="lock-input"
-        placeholder="Enter password" autocomplete="current-password"
-        onkeydown="if(event.key==='Enter') checkPassword()">
-
-        <button class="lock-btn" onclick="checkPassword()"
-        title="Go to borrows or lends details section">
-          Login
-        </button>
-      </div>
-
-      <p id="lockError" class="lock-error" hidden>
-        Wrong password. Try again.
-      </p>
-
-      <div class="lock-hint">
-       <h5 style="font-weight:400;font-size:13px;line-height:1.6"> If you can't log in, it means you don't have any active borrows or lends.
-        If you do have an active borrows or lends and still face issues,
-        fill out the
-        <a title="Fill this whenever you think you are facing issues from our side"
-        href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form">Issue form</a>.</h5>
-      </div>
-
-    </div>
-
-    <!-- LOGIN FAQ -->
-
-    <div class="login-faq">
-
-      <h3 class="login-faq-title">Frequently Asked Questions</h3>
-      <div id="faqList">
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            Why can't I log in?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            Make sure you enter the correct account password.
-            You can log in only when you have an active borrowing or lending
-            record registered in VSL. If you believe your record is active,
-            contact your coordinator.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            What is VSL?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            VSL is a service from BS&MFI that helps verified account holders
-            view their borrowing and lending records, track interest and
-            maintain personal notes.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            How can I become a lender on VSL?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            To become a lender, your account must first be officially verified
-            by a representative from VSL. Contact your coordinator or a VSL
-            representative for verification and further steps.
-            You cannot become an official lender simply by creating an account.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            How can I become a borrower on VSL?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            To become a borrower, your account must be officially verified
-            by a representative from VSL. Contact your coordinator or a VSL
-            representative to discuss the process and verification.
-            Borrowing access is subject to approval.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            Why does my account need verification?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            Verification helps VSL confirm that the lender or borrower is
-            officially registered. Only accounts verified by an authorised
-            VSL representative can be recognised as official lender or
-            borrower accounts.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            What is VSL Premium+?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            VSL Premium+ provides additional display and customisation
-            features. It unlocks Borrowed By, Interest Rate, Date Borrowed
-            and Days Passed details, allows you to control detail popups,
-            switch between Light and Dark (AMOLED) themes and choose
-            your own main colour.
-          </div>
-        </div>
-
-        
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            How can I activate Premium+?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            Contact your coordinator and request Premium+ activation.
-            Once your Premium+ status is activated on your VSL account,
-            the additional features will become available.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            Why can't I see some account details?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            Some account details are exclusive to Premium+ members.
-            Upgrade to Premium+ to unlock Borrowed By, Interest Rate,
-            Date Borrowed and Days Passed information.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            Who should I contact if my account details are incorrect?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            Contact your coordinator or submit the
-            <a class="faq-issue-opt" href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form">VSL Issue Form</a> so the issue can be reviewed.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            Who can I contact for support?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            Contact your VSL coordinator or use the Issue Form
-            if you need help with login, account records or other
-            VSL-related problems.
-          </div>
-        </div>
-        <a style="text-decoration:none;display:block;margin-top:14px" href="all.faqs.html">
-          <button class="lock-btn" style="width:100%">View More FAQ's</button>
-        </a>
-      </div> 
-    </div>
-    
-  </div>
-<div class="anotherlogin">
-  <label class="lock-label" for="passwordInput">
-       <h2>Ready to login? Enter your verified account password.</h2>
-      </label>
-
-      <div style="display:flex;justify-content:center;align-items:center;gap:8px">
-      <a href="#lockScreen" class="lock-input">Enter password</a>
-      <button class="lock-btn" onclick="checkPassword()"
-        title="Go to borrows or lends details section">
-          Login
-        </button>
-      </div>
-
-      <p id="lockError" class="lock-error" hidden>
-        Wrong password. Try again.
-      </p>
-      <div class="lock-hint">
-        <h5 style="font-weight:400;font-size:13px;line-height:1.6">If you can't log in, it means you don't have any active borrows or lends.
-        If you do have an active borrows or lends and still face issues,
-        fill out the
-        <a title="Fill this whenever you think you are facing issues from our side"
-        href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form">Issue form</a>.</h5>
-      </div>
-</div>
-<footer>
-      <div class="footer-links">
-
-        <div style="display:flex;flex-direction:column;align-items:baseline;gap:12px;">
-          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#terms">Terms and Conditions</a></h5>
-          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#privacy">Privacy</a></h5>
-          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#services">Lending Services</a></h5>
-          <h5><a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a></h5>
-        </div>
-
-       <div style="display:flex;flex-direction:column;justify-content:space-between;align-items:end;gap:24px;">
-         <div>
-          <h5 style="color:var(--muted);text-align:right">VSL, All rights reserved.<br>
-          Version (v.03.05.11)</h5>
-        </div>
-<a style="background:var(--accent);padding:10px 14px;display:flex;position:fixed;bottom:18px;right:18px;color:white;border-radius:10px;font-size:12.5px;font-weight:600;text-decoration:none;box-shadow:0 4px 16px var(--accent-glow)" href="#scrollup">Scroll up</a>
-      </div>
-       </div>
-    </footer>
-
-</div>
-
-<!-- MAIN APP -->
-
-<div id="mainApp" hidden>
-
-  <div class="container">
-
-    <div class="top-banner" id="topBanner"></div>
-    <div style="display:none" class="top-banner2" id="topBanner2"></div>
-
-    <div class="account-bar">
-      <span id="loggedInAs" class="account-name"></span>
-      <button class="logout-btn" title="Go to password section" onclick="logout()">Logout</button>
-    </div>
-
-    <div class="header">
-
-      <a class="mainreflogo" href="">
-        <div>
-          <img src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="VSL">
-          <h2 id="title">VSL</h2>
-        </div>
-      </a>
-
-      <div class="today" id="todayDate"></div>
-
-      <div class="font-controls">
-
-        <button class="font-btn" onclick="changeFontSize(-1)" title="To decrease font size">−</button>
-        <span class="font-size-label" id="fontSizeLabel">16</span>
-        <button class="font-btn" onclick="changeFontSize(1)" title="To increase font size">+</button>
-
-        <button class="theme-btn" id="themeToggle" onclick="toggleTheme()" type="button" title="To change theme">
-          Dark (AMOLED)
-        </button>
-
-        <label id="accentControl" class="accent-control" hidden>
-          Main color
-          <input id="accentPicker" type="color" value="#4f46e5"
-          title="To change main color of VSL"
-          aria-label="Choose main color"
-          onchange="changeMainColor(this.value)">
-        </label>
-
-        <div class="premium-detail-control" id="premiumDetailControl" hidden>
-          <button class="detail-setting-btn" id="detailEffectsToggle"
-          type="button" title="To turn on or off the detail popups"
-          onclick="toggleDetailEffects()">
-            Details: On
-          </button>
-        </div>
-
+    <div class="panel login-card">
+      <div class="eyebrow">Member access</div>
+      <h2>Welcome back.</h2>
+      <p class="subcopy">Sign in with the password linked to your officially verified VSL account.</p>
+      <form class="login-form" onsubmit="event.preventDefault();checkPassword()">
+        <input type="password" id="passwordInput" class="field" placeholder="Enter account password" autocomplete="current-password" aria-label="Account password">
+        <button class="primary-btn" type="submit">Login <span aria-hidden="true">→</span></button>
+      </form>
+      <p id="lockError" class="lock-error" hidden>Wrong password. Please try again.</p>
+      <div class="login-help">
+        If you have an active borrowing or lending record but cannot log in, submit the
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form" target="_blank" rel="noopener">VSL Issue Form</a>.
       </div>
     </div>
 
-    <div class="navigation">
-      <button class="nav-btn is-active" id="interestNav"
-      aria-current="page" onclick="showSection('interest')"
-      title="Borrows or lends details">Details</button>
-
-      <button class="nav-btn" id="notesNav"
-      onclick="showSection('notes')" title="To enter any notes">Notes</button>
-
-      <button class="total-btn" id="totalBtn"
-      onclick="openTotalPopup()">Total</button>
-    </div>
-
-    <section id="interestSection">
-      <h3 class="section-title" id="interestTitle">Borrows or Lends details</h3>
-      <div id="app" title="Amount details of your account"></div>
+    <section class="panel faq-panel">
+      <div class="eyebrow">Help centre</div>
+      <h2 style="font-size:20px;margin-top:5px">Frequently asked questions</h2>
+      <p class="section-kicker">Quick answers about your VSL account.</p>
+      <div class="faq-list" id="faqList">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">Why can't I log in?<span class="faq-icon">+</span></button>
+          <div class="faq-answer" hidden>Check that you entered the correct account password. You can log in only when you have an active borrowing or lending record registered in VSL. If your record should be active, contact your coordinator.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">What is VSL?<span class="faq-icon">+</span></button>
+          <div class="faq-answer" hidden>VSL is a service from BS&amp;MFI that helps verified account holders view borrowing and lending records, track interest and maintain personal notes.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">How can I become a lender on VSL?<span class="faq-icon">+</span></button>
+          <div class="faq-answer" hidden>Your account must first be officially verified by a VSL representative. Contact your coordinator to discuss verification. Creating an account alone does not make you an official lender.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">How can I become a borrower on VSL?<span class="faq-icon">+</span></button>
+          <div class="faq-answer" hidden>Your account must be officially verified by a VSL representative. Contact your coordinator to discuss the process. Borrowing access is subject to approval.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">Why does my account need verification?<span class="faq-icon">+</span></button>
+          <div class="faq-answer" hidden>Verification helps VSL confirm that a lender or borrower is officially registered. Only accounts verified by an authorised VSL representative are recognised as official VSL accounts.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">What is VSL Premium+?<span class="faq-icon">+</span></button>
+          <div class="faq-answer" hidden>Premium+ unlocks additional account details, interest-paid editing, detail popup controls, Light and Dark (AMOLED) themes, and a custom main colour.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">How can I activate Premium+?<span class="faq-icon">+</span></button>
+          <div class="faq-answer" hidden>Contact your coordinator and request Premium+ activation. Once your Premium+ status is activated on your VSL account, the additional features become available.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">Why can't I see some account details?<span class="faq-icon">+</span></button>
+          <div class="faq-answer" hidden>Some details are available only to Premium+ members. Premium+ unlocks Borrowed By, Interest Rate and Days Passed details.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">Who should I contact if my details are incorrect?<span class="faq-icon">+</span></button>
+          <div class="faq-answer" hidden>Contact your coordinator or submit the <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form" target="_blank" rel="noopener">VSL Issue Form</a> so the issue can be reviewed.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">Who can I contact for support?<span class="faq-icon">+</span></button>
+          <div class="faq-answer" hidden>Contact your VSL coordinator or use the Issue Form for help with login, account records or other VSL-related problems.</div>
+        </div>
+      </div>
+      <a class="more-faq" href="all.faqs.html"><button class="primary-btn" type="button" style="width:100%">View more FAQs</button></a>
     </section>
 
-    <section id="notesSection" hidden>
-      <h3 class="section-title" id="notesTitle">Notes</h3>
-      <div class="notes-box">
-        <textarea id="noteInput" class="note-input"
-        placeholder="Write something here..."></textarea>
-        <button class="save-btn" id="saveButton" onclick="saveNote()">Save</button>
-        <div id="notesList"></div>
+    <footer class="lock-footer">
+      <div style="display:grid;gap:7px">
+        <a href="https://mfi0212.github.io/MFI/privacyandterms#terms">Terms and Conditions</a>
+        <a href="https://mfi0212.github.io/MFI/privacyandterms#privacy">Privacy</a>
+        <a href="https://mfi0212.github.io/MFI/privacyandterms#services">Lending Services</a>
+        <a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a>
       </div>
-    </section>
-
-    <!-- MAIN APP FOOTER -->
-
-    <footer>
-      <div class="footer-links">
-
-        <div style="display:flex;flex-direction:column;align-items:baseline;gap:12px;">
-          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#terms">Terms and Conditions</a></h5>
-          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#privacy">Privacy</a></h5>
-          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#services">Lending Services</a></h5>
-          <h5><a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a></h5>
-        </div>
-
-       <div style="display:flex;flex-direction:column;justify-content:space-between;align-items:end;gap:24px;">
-         <div>
-          <h5 style="color:var(--muted);text-align:right">VSL, All rights reserved.<br>
-          Version (v.03.05.11)</h5>
-        </div>
-<a style="background:var(--accent);padding:10px 14px;display:flex;position:fixed;bottom:18px;right:18px;color:white;border-radius:10px;font-size:12.5px;font-weight:600;text-decoration:none;box-shadow:0 4px 16px var(--accent-glow)" href="#scrollup">Scroll up</a>
-      </div>
-       </div>
+      <span>VSL · All rights reserved · v.03.05.11</span>
     </footer>
+  </div>
+</section>
 
+<main id="mainApp" hidden>
+  <div class="app-topline">
+    <div class="account-pill"><span class="account-dot"></span><span id="loggedInAs" class="account-name"></span></div>
+    <button class="logout-btn" onclick="logout()" type="button">Log out</button>
   </div>
 
-  <!-- TOTAL POPUP -->
+  <div class="banner-links" id="topBanner"></div>
+  <div class="banner-links" id="topBanner2" hidden></div>
 
-  <div class="modal-overlay" id="totalModal" hidden>
-    <div class="modal">
-      <div class="modal-header">
-        <h3 id="modalTitle">Total Summary</h3>
-        <button class="modal-close" title="To close pop up"
-        onclick="closeTotalPopup()">X</button>
+  <header class="hero">
+    <div>
+      <div class="hero-brand">
+        <img class="hero-logo" src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="">
+        <div><h1 id="title">VSL</h1><div class="today" id="todayDate"></div></div>
       </div>
-      <div id="modalBody"></div>
     </div>
-  </div>
-
-  <!-- DETAIL POPUP -->
-
-  <div class="modal-overlay" id="detailModal" hidden
-  role="dialog" aria-modal="true" aria-labelledby="detailModalTitle">
-
-    <div class="modal">
-      <div class="modal-header">
-        <h3 id="detailModalTitle">Detail</h3>
-        <button class="modal-close" title="To close pop up"
-        onclick="closeDetailPopup()" aria-label="Close details">X</button>
-      </div>
-      <div id="detailModalBody" class="premium-copy"></div>
+    <div class="controls">
+      <button class="control-btn" onclick="changeFontSize(-1)" title="Decrease font size" type="button">A−</button>
+      <span class="font-size-label" id="fontSizeLabel">16</span>
+      <button class="control-btn" onclick="changeFontSize(1)" title="Increase font size" type="button">A+</button>
+      <button class="theme-switch" id="themeToggle" onclick="toggleTheme()" type="button" aria-label="Switch appearance"><span>Dark</span></button>
+      <label id="accentControl" class="accent-control" hidden>Main colour <input id="accentPicker" type="color" value="#5145e5" aria-label="Choose main colour" onchange="changeMainColor(this.value)"></label>
+      <button class="control-btn" id="detailEffectsToggle" onclick="toggleDetailEffects()" type="button" hidden>Details: On</button>
     </div>
+  </header>
 
-  </div>
+  <nav class="app-nav" aria-label="Account sections">
+    <button class="nav-btn is-active" id="interestNav" aria-current="page" onclick="showSection('interest')">Details</button>
+    <button class="nav-btn" id="notesNav" onclick="showSection('notes')">Notes</button>
+    <button class="nav-btn" id="totalBtn" onclick="openTotalPopup()">Total</button>
+  </nav>
 
-  <!-- PREMIUM POPUP -->
+  <section id="interestSection" class="panel content-panel">
+    <div class="content-heading"><h2 id="interestTitle">Borrowing and lending details</h2><span>ACCOUNT OVERVIEW</span></div>
+    <div id="app"></div>
+  </section>
 
-  <div class="modal-overlay" id="premiumModal" hidden
-  role="dialog" aria-modal="true" aria-labelledby="premiumModalTitle">
+  <section id="notesSection" class="panel content-panel" hidden>
+    <div class="content-heading"><h2 id="notesTitle">Your notes</h2><span>PRIVATE TO THIS BROWSER</span></div>
+    <textarea id="noteInput" class="note-input" placeholder="Write something here..."></textarea>
+    <button class="primary-btn save-btn" id="saveButton" onclick="saveNote()">Save note</button>
+    <div id="notesList"></div>
+  </section>
 
-    <div class="modal">
-
-      <div class="modal-header">
-        <h3 id="premiumModalTitle">VSL Premium+</h3>
-        <button class="modal-close" title="To close premium popup"
-        onclick="closePremiumPopup()" aria-label="Close premium popup">X</button>
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="https://mfi0212.github.io/MFI/privacyandterms#terms">Terms and Conditions</a>
+        <a href="https://mfi0212.github.io/MFI/privacyandterms#privacy">Privacy</a>
+        <a href="https://mfi0212.github.io/MFI/privacyandterms#services">Lending Services</a>
+        <a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a>
       </div>
-
-      <div class="premium-copy">
-        Premium+ gives you more control over how VSL looks and how
-        account details are displayed.
-      </div>
-
-      <ul class="premium-features-list">
-        <li>Unlock Borrowed By, Interest Rate, Date Borrowed and Days Passed.</li>
-        <li>Turn detail popups and hover effects on or off.</li>
-        <li>Use dark and light themes.</li>
-        <li>Choose your own main colour.</li>
-      </ul>
-
-      <ul class="premium-features-list">
-        <li>Premium+ Cost</li>
-        <h3 onclick="alert('You have to pay ₹160/month to get Premium+ features')">
-          Monthly — ₹160
-        </h3>
-        <h3 onclick="alert('You have to pay ₹1500/year which means ₹125/month to get Premium+ features')">
-          Annual — ₹1500
-        </h3>
-      </ul>
-
-      <div class="premium-copy">
-        Contact your coordinator to activate your Premium+.
-        The fee will be added to your active amount or interest automatically.
-      </div>
-
+      <div class="footer-meta">VSL · All rights reserved<br>Version v.03.05.11</div>
     </div>
-  </div>
+  </footer>
+</main>
 
+<a class="scroll-top" href="#scrollup">↑ Top</a>
+
+<div class="modal-overlay" id="totalModal" hidden role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-header"><h3 id="modalTitle">Total summary</h3><button class="modal-close" onclick="closeTotalPopup()" aria-label="Close">×</button></div>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="detailModal" hidden role="dialog" aria-modal="true" aria-labelledby="detailModalTitle">
+  <div class="modal">
+    <div class="modal-header"><h3 id="detailModalTitle">Detail</h3><button class="modal-close" onclick="closeDetailPopup()" aria-label="Close">×</button></div>
+    <div id="detailModalBody"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="premiumModal" hidden role="dialog" aria-modal="true" aria-labelledby="premiumModalTitle">
+  <div class="modal">
+    <div class="modal-header"><h3 id="premiumModalTitle">VSL Premium+</h3><button class="modal-close" onclick="closePremiumPopup()" aria-label="Close">×</button></div>
+    <p class="premium-copy">Get more control over how VSL looks and how your account details are displayed.</p>
+    <ul class="premium-features-list">
+      <li>Unlock Borrowed By, Interest Rate and Days Passed details.</li>
+      <li>Edit the Interest Paid amount.</li>
+      <li>Turn detail popups on or off.</li>
+      <li>Switch between Light and Dark (AMOLED) themes.</li>
+      <li>Choose your own main colour.</li>
+    </ul>
+    <div class="premium-copy" style="font-weight:750;color:var(--text);margin-bottom:8px">Premium+ plans</div>
+    <div class="premium-prices">
+      <div class="price-option"><span>Monthly</span><strong>₹160</strong><span>per month</span></div>
+      <div class="price-option"><span>Annual</span><strong>₹1,500</strong><span>₹125 per month</span></div>
+    </div>
+    <p class="premium-copy">Contact your coordinator to activate Premium+. The fee will be added to your active amount or interest automatically.</p>
+  </div>
 </div>
 
 <script>
+"use strict";
+
 const FONT_SIZE_KEY="interestTrackerFontSize";
 const NOTES_KEY_PREFIX="interestTrackerNotes_";
 const LAST_USER_KEY="vslLastUserId";
 const LAST_PASSWORD_KEY="vslLastPassword";
 const REMEMBER_PASSWORD_KEY="vslRememberPassword";
-
-const MIN_FONT=12;
-const MAX_FONT=28;
+const THEME_KEY_PREFIX="vslTheme_";
+const MAIN_COLOR_KEY_PREFIX="vslMainColor_";
+const DETAIL_EFFECTS_KEY_PREFIX="vslDetailEffects_";
+const DEFAULT_MAIN_COLOR="#5145e5";
+const MIN_FONT=12,MAX_FONT=28;
+const monthNames=["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 let currentFontSize=16;
 let currentUser=null;
 
 const TEXT={
-  today:"Today",
-  interestTitle:"Borrows or Lends details",
-  notesTitle:"Notes",
-  amount:"Principal Amount",
-  borrowedBy:"Borrowed By",
-  interest:"Interest Rate",
-  takenDate:"Date Borrowed",
-  days:"Days Passed",
-  interestPaid:"Interest Paid",
-  remaining:"Remaining Interest",
-  entryTotal:"Total (Principal + Interest)",
-  interestNav:"Details",
-  notesNav:"Notes",
-  totalBtn:"Total",
-  modalTitle:"Total Summary",
-  sumPrincipal:"Total Principal",
-  sumInterest:"Total Remaining Interest",
-  grandTotal:"Grand Total",
-  placeholder:"Write something here...",
-  save:"Save",
-  emptyNotes:"No notes saved yet.",
-  delete:"Delete",
-  loggedInAs:"Account",
-  logout:"Logout"
+  today:"Today",interestTitle:"Borrowing and lending details",notesTitle:"Your notes",
+  amount:"Principal Amount",borrowedBy:"Borrowed By",interest:"Interest Rate",
+  takenDate:"Date Borrowed",days:"Days Passed",interestPaid:"Interest Paid",
+  remaining:"Remaining Interest",entryTotal:"Total (Principal + Interest)",
+  sumPrincipal:"Total Principal",sumInterest:"Total Remaining Interest",
+  grandTotal:"Grand Total",placeholder:"Write something here...",save:"Save note",
+  emptyNotes:"No notes saved yet.",delete:"Delete",loggedInAs:"Account",logout:"Log out"
 };
 
-const monthNames=[
-  "January","February","March","April","May","June",
-  "July","August","September","October","November","December"
-];
-
+function safeStorageGet(key){
+  try{return localStorage.getItem(key)}catch{return null}
+}
+function safeStorageSet(key,value){
+  try{localStorage.setItem(key,value);return true}catch{return false}
+}
+function isPremiumUser(user){
+  return !!(user&&(user.premium===true||String(user.premium).toLowerCase()==="yes"));
+}
+function userKey(prefix){
+  return currentUser?prefix+(currentUser.id||currentUser.name):"";
+}
 function toggleFAQ(button){
-
-  const answer=button.nextElementSibling;
-  const icon=button.querySelector(".faq-icon");
-
-  if(!answer || !icon)return;
-
+  const answer=button.nextElementSibling,icon=button.querySelector(".faq-icon");
+  if(!answer||!icon)return;
   const opening=answer.hidden;
-
   answer.hidden=!opening;
   button.setAttribute("aria-expanded",String(opening));
   icon.textContent=opening?"−":"+";
-
 }
-
-function userStorageKey(prefix){
-  return currentUser?prefix+currentUser.id:"";
+function applyMainColor(color){
+  if(!/^#[0-9a-f]{6}$/i.test(color))color=DEFAULT_MAIN_COLOR;
+  const r=parseInt(color.slice(1,3),16),g=parseInt(color.slice(3,5),16),b=parseInt(color.slice(5,7),16);
+  document.documentElement.style.setProperty("--accent",color);
+  document.documentElement.style.setProperty("--accent-rgb",`${r},${g},${b}`);
+  document.documentElement.style.setProperty("--accent-contrast",(0.299*r+0.587*g+0.114*b)>160?"#171923":"#ffffff");
 }
-
-const THEME_KEY_PREFIX="vslTheme_";
-const MAIN_COLOR_KEY_PREFIX="vslMainColor_";
-const DEFAULT_MAIN_COLOR="#4f46e5";
-
-function isPremiumUser(user){
-  return !!(
-    user &&
-    (
-      user.premium===true ||
-      String(user.premium).toLowerCase()==="yes"
-    )
-  );
+function applyTheme(theme){
+  const selected=theme==="amoled"?"amoled":"light";
+  document.body.dataset.theme=selected;
+  const label=selected==="amoled"?"Light":"Dark";
+  const icon=selected==="amoled"
+    ? '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>'
+    : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.7 8.7 0 1 0 20.2 15.1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  ["themeToggle","loginThemeToggle"].forEach(id=>{
+    const button=document.getElementById(id);
+    if(button){
+      button.innerHTML=`${icon}<span>${label}</span>`;
+      button.setAttribute("aria-label",`Switch to ${label.toLowerCase()} appearance`);
+      button.setAttribute("aria-pressed",String(selected==="amoled"));
+      button.title=`Switch to ${label.toLowerCase()} appearance`;
+    }
+  });
+  const meta=document.getElementById("themeColorMeta");
+  if(meta)meta.content=selected==="amoled"?"#000000":"#f5f5f7";
 }
-const DETAIL_EFFECTS_KEY_PREFIX="vslDetailEffects_";
-
-function detailEffectsStorageKey(){
-  return currentUser
-    ?DETAIL_EFFECTS_KEY_PREFIX+(currentUser.id||currentUser.name)
-    :"";
-}
-
-function detailEffectsEnabled(){
-
-  if(!isPremiumUser(currentUser))return false;
-
-  try{
-    return localStorage.getItem(detailEffectsStorageKey())!=="off";
-  }catch{
-    return true;
+function applyLockScreenAppearance(){
+  const rememberedId=safeStorageGet(LAST_USER_KEY);
+  const rememberedUser=Array.isArray(USERS)?USERS.find(user=>user.id===rememberedId):null;
+  if(isPremiumUser(rememberedUser)){
+    const key=rememberedUser.id||rememberedUser.name;
+    applyMainColor(safeStorageGet(MAIN_COLOR_KEY_PREFIX+key)||DEFAULT_MAIN_COLOR);
+  }else{
+    applyMainColor(DEFAULT_MAIN_COLOR);
   }
-
+  const savedTheme=rememberedUser
+    ? (safeStorageGet(THEME_KEY_PREFIX+(rememberedUser.id||rememberedUser.name))||safeStorageGet(GLOBAL_THEME_KEY)||"light")
+    : (safeStorageGet(GLOBAL_THEME_KEY)||"light");
+  applyTheme(savedTheme);
 }
-
-function applyDetailEffects(){
-
+function updatePremiumControls(){
   const premium=isPremiumUser(currentUser);
-  const enabled=detailEffectsEnabled();
-
-  document.body.dataset.premium=premium?"yes":"no";
-  document.body.dataset.detailEffects=enabled?"on":"off";
-
-  const control=document.getElementById("premiumDetailControl");
-  const button=document.getElementById("detailEffectsToggle");
-
-  if(control)control.hidden=!premium;
-
-  if(button){
-    button.textContent=enabled?"Details: On":"Details: Off";
-    button.setAttribute("aria-pressed",String(enabled));
+  document.getElementById("accentControl").hidden=!premium;
+  document.getElementById("themeToggle").hidden=false;
+  document.getElementById("detailEffectsToggle").hidden=!premium;
+  if(premium){
+    const key=currentUser.id||currentUser.name;
+    const color=safeStorageGet(MAIN_COLOR_KEY_PREFIX+key)||DEFAULT_MAIN_COLOR;
+    document.getElementById("accentPicker").value=color;
+    applyMainColor(color);
+  }else{
+    applyMainColor(DEFAULT_MAIN_COLOR);
   }
-
-}
-
-function toggleDetailEffects(){
-
-  if(!isPremiumUser(currentUser))return;
-
-  const next=detailEffectsEnabled()?"off":"on";
-
-  try{
-    localStorage.setItem(detailEffectsStorageKey(),next);
-  }catch{}
-
+  const savedTheme=safeStorageGet(userKey(THEME_KEY_PREFIX))||safeStorageGet(GLOBAL_THEME_KEY)||"light";
+  applyTheme(savedTheme);
   applyDetailEffects();
-
-  render();
-
 }
-
-function openPremiumPopup(){
-  document.getElementById("premiumModal").hidden=false;
+function changeMainColor(color){
+  if(!isPremiumUser(currentUser)){applyMainColor(DEFAULT_MAIN_COLOR);return}
+  applyMainColor(color);safeStorageSet(userKey(MAIN_COLOR_KEY_PREFIX),color);
 }
-
-function closePremiumPopup(){
-  document.getElementById("premiumModal").hidden=true;
+function toggleTheme(){
+  const next=document.body.dataset.theme==="amoled"?"light":"amoled";
+  applyTheme(next);
+  safeStorageSet(GLOBAL_THEME_KEY,next);
+  if(currentUser)safeStorageSet(userKey(THEME_KEY_PREFIX),next);
 }
-
+function detailEffectsEnabled(){
+  if(!isPremiumUser(currentUser))return true;
+  return safeStorageGet(userKey(DETAIL_EFFECTS_KEY_PREFIX))!=="off";
+}
+function applyDetailEffects(){
+  const enabled=detailEffectsEnabled();
+  document.body.dataset.detailEffects=enabled?"on":"off";
+  const button=document.getElementById("detailEffectsToggle");
+  if(button){button.textContent=enabled?"Details: On":"Details: Off";button.setAttribute("aria-pressed",String(enabled))}
+}
+function toggleDetailEffects(){
+  if(!isPremiumUser(currentUser))return;
+  safeStorageSet(userKey(DETAIL_EFFECTS_KEY_PREFIX),detailEffectsEnabled()?"off":"on");
+  applyDetailEffects();render();
+}
+function openPremiumPopup(){document.getElementById("premiumModal").hidden=false}
+function closePremiumPopup(){document.getElementById("premiumModal").hidden=true}
 function openDetailPopup(key,entry,data){
-
   if(!currentUser)return;
   if(isPremiumUser(currentUser)&&!detailEffectsEnabled())return;
-
   const descriptions={
-
-    borrowedBy:[
-      "Borrowed By",
-      "Name of the amount borrower.",
-      entry.borrowedBy||"Not specified"
-    ],
-
-    amount:[
-      "Principal Amount",
-      "The original amount before adding interest.",
-      "₹"+(Number(entry.amount)||0).toLocaleString("en-IN")
-    ],
-
-    interest:[
-      "Interest Rate",
-      "Monthly interest rate for the borrowed amount.",
-      String(entry.interest)+"% per month"
-    ],
-
-    takenDate:[
-      "Date Borrowed",
-      "Amount borrowed date. Interest starts counting from this date.",
-      formatDateWithMonth(entry.takenDate)
-    ],
-
-    days:[
-      "Days Passed",
-      "Number of days counted from the borrowing date until today.",
-      String(data.days)+" days"
-    ],
-
-    interestPaid:[
-      "Interest Paid",
-      "The amount entered as already paid interest.",
-      "₹"+(Number(entry.interestPaid)||0).toLocaleString("en-IN")
-    ],
-
-    remaining:[
-      "Remaining Interest",
-      "Calculated interest minus the interest already paid.",
-      "₹"+data.remaining.toLocaleString("en-IN")
-    ],
-
-    total:[
-      "Total Amount",
-      "Total principal amount plus remaining interest.",
-      "₹"+data.total.toLocaleString("en-IN")
-    ]
-
+    borrowedBy:["Borrowed By","Name of the person associated with this money record.",entry.borrowedBy||"Not specified"],
+    amount:["Principal Amount","The original amount before adding interest.","₹"+(Number(entry.amount)||0).toLocaleString("en-IN")],
+    interest:["Interest Rate","Monthly interest rate for this amount.",String(entry.interest)+"% per month"],
+    takenDate:["Date Borrowed","Interest starts counting from this date.",formatDateWithMonth(entry.takenDate)],
+    days:["Days Passed","Number of days counted from the borrowing date until today.",data.days+" days"],
+    interestPaid:["Interest Paid","Amount entered as already paid interest.","₹"+(Number(entry.interestPaid)||0).toLocaleString("en-IN")],
+    remaining:["Remaining Interest","Calculated interest minus interest already paid.","₹"+data.remaining.toLocaleString("en-IN")],
+    total:["Total Amount","Principal amount plus remaining interest.","₹"+data.total.toLocaleString("en-IN")]
   };
-
-  const detail=descriptions[key];
-  if(!detail)return;
-
+  const detail=descriptions[key];if(!detail)return;
   document.getElementById("detailModalTitle").textContent=detail[0];
-
-  const body=document.getElementById("detailModalBody");
-  body.textContent="";
-
-  const description=document.createElement("span");
-  description.textContent=detail[1];
-
-  const value=document.createElement("p");
-  value.style.fontWeight="700";
-  value.style.marginTop="10px";
-  value.textContent=detail[2];
-
-  body.append(description,value);
-
-  document.getElementById("detailModal").hidden=false;
-
+  const body=document.getElementById("detailModalBody");body.replaceChildren();
+  const description=document.createElement("p");description.className="detail-description";description.textContent=detail[1];
+  const value=document.createElement("div");value.className="detail-value";value.textContent=detail[2];
+  body.append(description,value);document.getElementById("detailModal").hidden=false;
 }
-
-function closeDetailPopup(){
-  document.getElementById("detailModal").hidden=true;
-}
-
-
-
-function updatePremiumControls(){
-
-  const control=document.getElementById("accentControl");
-  const picker=document.getElementById("accentPicker");
-  const themeButton=document.getElementById("themeToggle");
-
-  const allowed=isPremiumUser(currentUser);
-
-  if(control)control.hidden=!allowed;
-  if(themeButton)themeButton.hidden=!allowed;
-
-  applyDetailEffects();
-
-  if(allowed){
-
-    let savedColor=DEFAULT_MAIN_COLOR;
-    let savedTheme="light";
-
-    const userKey=currentUser.id||currentUser.name;
-
-    try{
-      savedColor=localStorage.getItem(MAIN_COLOR_KEY_PREFIX+userKey)||DEFAULT_MAIN_COLOR;
-      savedTheme=localStorage.getItem(THEME_KEY_PREFIX+userKey)||"light";
-    }catch{}
-
-    if(picker)picker.value=savedColor;
-
-    applyMainColor(savedColor);
-    applyTheme(savedTheme);
-
-  }else{
-
-    applyMainColor(DEFAULT_MAIN_COLOR);
-    applyTheme("light");
-
-  }
-
-}
-
-
-
-function applyLockScreenAppearance(){
-
-  let rememberedUser=null;
-
-  try{
-    const rememberedId=localStorage.getItem(LAST_USER_KEY);
-    rememberedUser=USERS.find(user=>user.id===rememberedId)||null;
-  }catch{}
-
-  if(isPremiumUser(rememberedUser)){
-
-    const userKey=rememberedUser.id||rememberedUser.name;
-
-    let savedColor=DEFAULT_MAIN_COLOR;
-    let savedTheme="light";
-
-    try{
-      savedColor=localStorage.getItem(MAIN_COLOR_KEY_PREFIX+userKey)||DEFAULT_MAIN_COLOR;
-      savedTheme=localStorage.getItem(THEME_KEY_PREFIX+userKey)||"light";
-    }catch{}
-
-    applyMainColor(savedColor);
-    applyTheme(savedTheme);
-
-    document.body.dataset.premium="yes";
-
-  }else{
-
-    applyMainColor(DEFAULT_MAIN_COLOR);
-    applyTheme("light");
-
-    document.body.dataset.premium="no";
-
-  }
-
-}
-
-
-function applyMainColor(color){
-
-  if(!/^#[0-9a-fA-F]{6}$/.test(color)){
-    color=DEFAULT_MAIN_COLOR;
-  }
-
-  document.documentElement.style.setProperty("--accent",color);
-
-}
-
-function changeMainColor(color){
-
-  if(!isPremiumUser(currentUser)){
-    applyMainColor(DEFAULT_MAIN_COLOR);
-    return;
-  }
-
-  applyMainColor(color);
-
-  try{
-    localStorage.setItem(
-      MAIN_COLOR_KEY_PREFIX+(currentUser.id||currentUser.name),
-      color
-    );
-  }catch{}
-
-}
-
-function applyTheme(theme){
-
-  const selected=theme==="amoled"?"amoled":"light";
-
-  document.body.dataset.theme=selected;
-
-  const button=document.getElementById("themeToggle");
-
-  if(button){
-
-    button.textContent=selected==="amoled"?"Light":"Dark";
-
-    button.setAttribute(
-      "aria-label",
-      selected==="amoled"
-        ?"Switch to light theme"
-        :"Switch to dark AMOLED theme"
-    );
-
-  }
-
-}
-
-function toggleTheme(){
-
-  if(!isPremiumUser(currentUser)){
-    applyTheme("light");
-    return;
-  }
-
-  const next=document.body.dataset.theme==="amoled"
-    ?"light"
-    :"amoled";
-
-  applyTheme(next);
-
-  try{
-    localStorage.setItem(
-      THEME_KEY_PREFIX+(currentUser.id||currentUser.name),
-      next
-    );
-  }catch{}
-
-}
-
-function initLockScreen(){
-
-  const input=document.getElementById("passwordInput");
-  const error=document.getElementById("lockError");
-
-  let rememberedPassword="";
-
-  try{
-    if(localStorage.getItem(REMEMBER_PASSWORD_KEY)==="yes"){
-      rememberedPassword=localStorage.getItem(LAST_PASSWORD_KEY)||"";
-    }
-  }catch{}
-
-  input.value=rememberedPassword;
-  error.hidden=true;
-
-  if(rememberedPassword){
-    input.focus();
-    input.setSelectionRange(input.value.length,input.value.length);
-  }else{
-    setTimeout(()=>input.focus(),100);
-  }
-
-  let rememberedUserId=null;
-
-  try{
-    rememberedUserId=localStorage.getItem(LAST_USER_KEY);
-  }catch{}
-
-  if(rememberedUserId){
-
-    const rememberedUser=USERS.find(user=>user.id===rememberedUserId);
-
-    if(
-      rememberedUser &&
-      rememberedPassword &&
-      rememberedUser.password===rememberedPassword
-    ){
-      input.value=rememberedPassword;
-    }
-
-  }
-
-}
-
-
-function checkPassword(){
-
-  const input=document.getElementById("passwordInput");
-  const error=document.getElementById("lockError");
-
-  const enteredPassword=input.value.trim();
-
-  const matchedUser=USERS.find(
-    user=>user.password===enteredPassword
-  );
-
-  if(!matchedUser){
-
-    error.hidden=false;
-    input.select();
-    return;
-
-  }
-
-  error.hidden=true;
-
-  try{
-    localStorage.setItem(LAST_USER_KEY,matchedUser.id);
-    localStorage.setItem(LAST_PASSWORD_KEY,enteredPassword);
-    localStorage.setItem(REMEMBER_PASSWORD_KEY,"yes");
-  }catch{}
-
-  loginUser(matchedUser);
-
-}
-
-
-function loginUser(user){
-
-  currentUser=user;
-
-  updatePremiumControls();
-
-  document.getElementById("lockScreen").hidden=true;
-  document.getElementById("mainApp").hidden=false;
-
-  document.getElementById("loggedInAs").textContent=
-    `${TEXT.loggedInAs}: ${user.name}`;
-
-  renderTopBanners();
-
-  loadFontSize();
-  updateLanguage();
-
-  showSection("interest");
-
-  render();
-  renderNotes();
-
-}
-
-
-function logout(){
-
-  currentUser=null;
-
-  updatePremiumControls();
-
-  document.getElementById("mainApp").hidden=true;
-  document.getElementById("lockScreen").hidden=false;
-
-  document.getElementById("totalModal").hidden=true;
-  document.getElementById("detailModal").hidden=true;
-  document.getElementById("premiumModal").hidden=true;
-
-  document.getElementById("app").innerHTML="";
-  document.getElementById("notesList").innerHTML="";
-  document.getElementById("noteInput").value="";
-
-  document.getElementById("topBanner").innerHTML="";
-  document.getElementById("topBanner2").innerHTML="";
-
-  initLockScreen();
-  applyLockScreenAppearance();
-
-}
-
-
-
-function renderTopBanners(){
-
-  const banner1=document.getElementById("topBanner");
-  const banner2=document.getElementById("topBanner2");
-
-  banner1.innerHTML="";
-  banner2.innerHTML="";
-
-  if(!currentUser)return;
-
-  [
-    [currentUser.topBanner,banner1],
-    [currentUser.topBanner2,banner2]
-  ].forEach(([links,container])=>{
-
-    if(!Array.isArray(links))return;
-
-    links.forEach(link=>{
-
-      const a=document.createElement("a");
-
-      a.href=link.href||"#";
-      a.textContent=link.text||"";
-
-      container.appendChild(a);
-
-    });
-
-  });
-
-}
-
-
-function loadFontSize(){
-
-  const saved=parseInt(localStorage.getItem(FONT_SIZE_KEY),10);
-
-  if(!isNaN(saved)&&saved>=MIN_FONT&&saved<=MAX_FONT){
-    currentFontSize=saved;
-  }
-
-  applyFontSize();
-
-}
-
-function applyFontSize(){
-
-  document.body.style.fontSize=currentFontSize+"px";
-
-  document.getElementById("fontSizeLabel").textContent=currentFontSize;
-
-}
-
-function changeFontSize(delta){
-
-  const size=currentFontSize+delta;
-
-  if(size<MIN_FONT||size>MAX_FONT)return;
-
-  currentFontSize=size;
-
-  applyFontSize();
-
-  try{
-    localStorage.setItem(FONT_SIZE_KEY,currentFontSize);
-  }catch{}
-
-}
-
-
-function showSection(section){
-
-  const interest=section==="interest";
-
-  document.getElementById("interestSection").hidden=!interest;
-  document.getElementById("notesSection").hidden=interest;
-
-  const interestNav=document.getElementById("interestNav");
-  const notesNav=document.getElementById("notesNav");
-
-  interestNav.classList.toggle("is-active",interest);
-  notesNav.classList.toggle("is-active",!interest);
-
-  if(interest){
-
-    interestNav.setAttribute("aria-current","page");
-    notesNav.removeAttribute("aria-current");
-
-  }else{
-
-    notesNav.setAttribute("aria-current","page");
-    interestNav.removeAttribute("aria-current");
-
-    renderNotes();
-
-  }
-
-}
-
-
-
-function parseDate(dateString){
-
-  const [year,month,day]=dateString.split("-").map(Number);
-
-  return new Date(year,month-1,day);
-
-}
-
-function formatDateWithMonth(dateString){
-
-  const date=parseDate(dateString);
-
-  return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
-
-}
-
-function getDays(takenDate){
-
-  const start=parseDate(takenDate);
-  const today=new Date();
-
-  start.setHours(0,0,0,0);
-  today.setHours(0,0,0,0);
-
-
-  return Math.max(
-    0,
-    Math.floor((today-start)/86400000)+1
-  );
-
-}
-
-function showToday(){
-
-  const date=new Date();
-
-  document.getElementById("todayDate").textContent=
-    `${TEXT.today}: ${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
-
-}
-
-
-function updateLanguage(){
-
-  document.documentElement.lang="en";
-  document.title="VSL";
-
-  document.getElementById("title").textContent="VSL";
-  document.getElementById("interestTitle").textContent=TEXT.interestTitle;
-  document.getElementById("notesTitle").textContent=TEXT.notesTitle;
-
-  document.getElementById("interestNav").textContent=TEXT.interestNav;
-  document.getElementById("notesNav").textContent=TEXT.notesNav;
-  document.getElementById("totalBtn").textContent=TEXT.totalBtn;
-
-  document.getElementById("modalTitle").textContent=TEXT.modalTitle;
-
-  document.getElementById("noteInput").placeholder=TEXT.placeholder;
-  document.getElementById("saveButton").textContent=TEXT.save;
-
-  document.querySelector(".logout-btn").textContent=TEXT.logout;
-
-  if(currentUser){
-    document.getElementById("loggedInAs").textContent=
-      `${TEXT.loggedInAs}: ${currentUser.name}`;
-  }
-
-  showToday();
-
-}
-
-
-function getEntryData(entry){
-
-  const days=getDays(entry.takenDate);
-
-  const totalInterest=Math.round(
-    entry.amount*entry.interest*days/3000
-  );
-
-  const remaining=Math.max(
-    0,
-    totalInterest-entry.interestPaid
-  );
-
-  return {
-    days,
-    totalInterest,
-    remaining,
-    total:entry.amount+remaining
-  };
-
-}
-
-
-function createRow(
-  label,
-  value,
-  className="entry-row",
-  detailKey=null,
-  entry=null,
-  data=null
-){
-
-  const row=document.createElement("div");
-  row.className=className;
-
-  const labelElement=document.createElement("span");
-  labelElement.className="label";
-  labelElement.textContent=label;
-
-  const valueElement=document.createElement("span");
-  valueElement.className="value";
-
-  const premium=isPremiumUser(currentUser);
-
-  const premiumOnlyFields=[
-    "borrowedBy",
-    "interest",
-    "days"
-  ];
-
-  const isProtected=
-    !premium&&premiumOnlyFields.includes(detailKey);
-
-
-  valueElement.textContent=
-    isProtected
-      ?"Premium+ required"
-      :value;
-
-  row.append(labelElement,valueElement);
-
-  if(detailKey){
-
-    if(isProtected){
-
-      row.classList.add(
-        "premium-locked",
-        "detail-row",
-        "detail-clickable"
-      );
-
-      row.tabIndex=0;
-      row.setAttribute("role","button");
-
-      row.setAttribute(
-        "aria-label",
-        "Premium+ required to view "+label
-      );
-
-      row.addEventListener("click",openPremiumPopup);
-
-      row.addEventListener("keydown",event=>{
-
-        if(event.key==="Enter"||event.key===" "){
-          event.preventDefault();
-          openPremiumPopup();
-        }
-
-      });
-
-    }else{
-
-      const popupAllowed=
-        !premium||detailEffectsEnabled();
-
-      if(popupAllowed){
-
-        row.classList.add("detail-row");
-
-        row.tabIndex=0;
-        row.setAttribute("role","button");
-
-        row.setAttribute(
-          "aria-label",
-          "View "+label+" details"
-        );
-
-        row.addEventListener("click",()=>{
-
-          openDetailPopup(detailKey,entry,data);
-
-        });
-
-        row.addEventListener("keydown",event=>{
-
-          if(event.key==="Enter"||event.key===" "){
-            event.preventDefault();
-            openDetailPopup(detailKey,entry,data);
-          }
-
-        });
-
-      }
-
-    }
-
-  }
-
-  return row;
-
-}
-
-
-function render(){
-
-  const app=document.getElementById("app");
-
-  app.innerHTML="";
-
-  if(!currentUser)return;
-
-  const userBlock=document.createElement("div");
-  userBlock.className="user";
-
-  currentUser.entries.forEach(entry=>{
-
-    if(typeof entry.interestPaid!=="number"){
-      entry.interestPaid=0;
-    }
-
-    const data=getEntryData(entry);
-
-    const block=document.createElement("div");
-    block.className="entry";
-
-    block.append(
-
-      createRow(
-        TEXT.borrowedBy,
-        entry.borrowedBy,
-        "borrowed-by-row",
-        "borrowedBy",
-        entry,
-        data
-      ),
-
-      createRow(
-        TEXT.amount,
-        Number(entry.amount).toLocaleString("en-IN"),
-        "entry-row",
-        "amount",
-        entry,
-        data
-      ),
-
-      createRow(
-        TEXT.interest,
-        `${entry.interest}%`,
-        "entry-row",
-        "interest",
-        entry,
-        data
-      ),
-
-      createRow(
-        TEXT.takenDate,
-        formatDateWithMonth(entry.takenDate),
-        "entry-row",
-        "takenDate",
-        entry,
-        data
-      ),
-
-      createRow(
-        TEXT.days,
-        String(data.days),
-        "entry-row",
-        "days",
-        entry,
-        data
-      )
-
-    );
-
-  
-
-    if(isPremiumUser(currentUser)){
-
-      const paidRow=document.createElement("div");
-      paidRow.className="paid-row";
-
-      const paidLabel=document.createElement("label");
-      paidLabel.className="paid-label";
-      paidLabel.textContent=TEXT.interestPaid;
-
-      const inputWrap=document.createElement("div");
-      inputWrap.className="paid-input-wrap";
-
-      const paidInput=document.createElement("input");
-
-      paidInput.className="paid-input";
-      paidInput.title="Enter an amount here to know how much remaining interest is left.";
-      paidInput.type="number";
-      paidInput.min="0";
-      paidInput.step="1";
-      paidInput.inputMode="decimal";
-      paidInput.value=entry.interestPaid;
-      paidInput.setAttribute("aria-label",TEXT.interestPaid);
-
-
-      paidInput.addEventListener("change",()=>{
-
-        entry.interestPaid=Math.max(
-          0,
-          Number(paidInput.value)||0
-        );
-
-        render();
-
-      });
-
-      paidInput.addEventListener("keydown",event=>{
-
-        if(event.key==="Enter"){
-          paidInput.blur();
-        }
-
-      });
-
-      inputWrap.appendChild(paidInput);
-
-      paidRow.append(paidLabel,inputWrap);
-
-      block.appendChild(paidRow);
-
-    }
-
-    block.appendChild(
-      createRow(
-        TEXT.remaining,
-        `₹${data.remaining.toLocaleString("en-IN")}`,
-        "remaining",
-        "remaining",
-        entry,
-        data
-      )
-    );
-
-    block.appendChild(
-      createRow(
-        TEXT.entryTotal,
-        `₹${data.total.toLocaleString("en-IN")}`,
-        "entry-total",
-        "total",
-        entry,
-        data
-      )
-    );
-
-    userBlock.appendChild(block);
-
-  });
-
-  if(currentUser.entries.length===0){
-
-    const empty=document.createElement("p");
-
-    empty.textContent="No lending amounts available.";
-    empty.style.cssText="text-align:center;color:var(--muted);padding:32px 0;font-weight:500";
-
-    userBlock.appendChild(empty);
-
-  }
-
-  app.appendChild(userBlock);
-
-}
-
-
-
+function closeDetailPopup(){document.getElementById("detailModal").hidden=true}
 function openTotalPopup(){
-
   if(!currentUser)return;
-
-  const body=document.getElementById("modalBody");
-
-  let principal=0;
-  let remainingInterest=0;
-
-  currentUser.entries.forEach(entry=>{
-
-    principal+=Number(entry.amount)||0;
-
-    remainingInterest+=getEntryData(entry).remaining;
-
-  });
-
-  body.innerHTML="";
-
-  const summary=document.createElement("div");
-  summary.className="modal-summary";
-
-  [
-    [TEXT.sumPrincipal,principal],
-    [TEXT.sumInterest,remainingInterest],
-    [TEXT.grandTotal,principal+remainingInterest]
-  ].forEach((item,index)=>{
-
-    const row=document.createElement("div");
-    row.className="row";
-
+  let principal=0,remainingInterest=0;
+  currentUser.entries.forEach(entry=>{principal+=Number(entry.amount)||0;remainingInterest+=getEntryData(entry).remaining});
+  const body=document.getElementById("modalBody");body.replaceChildren();
+  const summary=document.createElement("div");summary.className="modal-summary";
+  [[TEXT.sumPrincipal,principal],[TEXT.sumInterest,remainingInterest],[TEXT.grandTotal,principal+remainingInterest]].forEach((item,index)=>{
+    const row=document.createElement("div");row.className="row";
     const label=document.createElement(index===2?"strong":"span");
     const value=document.createElement(index===2?"strong":"span");
-
-    label.textContent=item[0];
-
-    value.textContent=
-      `₹${item[1].toLocaleString("en-IN")}`;
-
-    row.append(label,value);
-
-    summary.appendChild(row);
-
+    label.textContent=item[0];value.textContent="₹"+item[1].toLocaleString("en-IN");
+    row.append(label,value);summary.append(row);
   });
-
-  body.appendChild(summary);
-
-  document.getElementById("totalModal").hidden=false;
-
+  body.append(summary);document.getElementById("totalModal").hidden=false;
 }
-
-function closeTotalPopup(){
-
-  document.getElementById("totalModal").hidden=true;
-
+function closeTotalPopup(){document.getElementById("totalModal").hidden=true}
+function initLockScreen(){
+  const input=document.getElementById("passwordInput");
+  const rememberedPassword=safeStorageGet(REMEMBER_PASSWORD_KEY)==="yes"?(safeStorageGet(LAST_PASSWORD_KEY)||""):"";
+  input.value=rememberedPassword;document.getElementById("lockError").hidden=true;
 }
-
+function checkPassword(){
+  const input=document.getElementById("passwordInput"),error=document.getElementById("lockError");
+  const enteredPassword=input.value.trim();
+  const matchedUser=Array.isArray(USERS)?USERS.find(user=>user.password===enteredPassword):null;
+  if(!matchedUser){error.hidden=false;input.select();return}
+  error.hidden=true;
+  safeStorageSet(LAST_USER_KEY,matchedUser.id);
+  safeStorageSet(LAST_PASSWORD_KEY,enteredPassword);
+  safeStorageSet(REMEMBER_PASSWORD_KEY,"yes");
+  loginUser(matchedUser);
+}
+function loginUser(user){
+  if(!user||!Array.isArray(user.entries)){document.getElementById("lockError").hidden=false;return}
+  currentUser=user;updatePremiumControls();
+  document.getElementById("lockScreen").hidden=true;
+  document.getElementById("mainApp").hidden=false;
+  document.getElementById("loggedInAs").textContent=TEXT.loggedInAs+": "+user.name;
+  renderTopBanners();loadFontSize();showToday();showSection("interest");render();renderNotes();
+}
+function logout(){
+  currentUser=null;
+  document.getElementById("mainApp").hidden=true;
+  document.getElementById("lockScreen").hidden=false;
+  ["totalModal","detailModal","premiumModal"].forEach(id=>document.getElementById(id).hidden=true);
+  document.getElementById("app").replaceChildren();
+  document.getElementById("notesList").replaceChildren();
+  document.getElementById("noteInput").value="";
+  document.getElementById("topBanner").replaceChildren();
+  document.getElementById("topBanner2").replaceChildren();
+  updatePremiumControls();initLockScreen();applyLockScreenAppearance();
+}
+function renderTopBanners(){
+  const containers=[document.getElementById("topBanner"),document.getElementById("topBanner2")];
+  containers.forEach(container=>container.replaceChildren());
+  if(!currentUser)return;
+  [currentUser.topBanner,currentUser.topBanner2].forEach((links,index)=>{
+    if(!Array.isArray(links))return;
+    links.forEach(link=>{
+      const a=document.createElement("a");a.href=link.href||"#";a.textContent=link.text||"";
+      if(/^https?:/i.test(a.href)){a.target="_blank";a.rel="noopener"}
+      containers[index].append(a);
+    });
+  });
+  containers[1].hidden=containers[1].childElementCount===0;
+}
+function loadFontSize(){
+  const saved=parseInt(safeStorageGet(FONT_SIZE_KEY),10);
+  if(Number.isInteger(saved)&&saved>=MIN_FONT&&saved<=MAX_FONT)currentFontSize=saved;
+  applyFontSize();
+}
+function applyFontSize(){
+  document.getElementById("mainApp").style.fontSize=currentFontSize+"px";
+  document.getElementById("fontSizeLabel").textContent=currentFontSize;
+}
+function changeFontSize(delta){
+  const size=currentFontSize+delta;if(size<MIN_FONT||size>MAX_FONT)return;
+  currentFontSize=size;applyFontSize();safeStorageSet(FONT_SIZE_KEY,String(size));
+}
+function showSection(section){
+  const interest=section==="interest";
+  document.getElementById("interestSection").hidden=!interest;
+  document.getElementById("notesSection").hidden=interest;
+  const interestNav=document.getElementById("interestNav"),notesNav=document.getElementById("notesNav");
+  interestNav.classList.toggle("is-active",interest);notesNav.classList.toggle("is-active",!interest);
+  if(interest){interestNav.setAttribute("aria-current","page");notesNav.removeAttribute("aria-current")}
+  else{notesNav.setAttribute("aria-current","page");interestNav.removeAttribute("aria-current");renderNotes()}
+}
+function parseDate(dateString){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(String(dateString||"")))return new Date();
+  const [year,month,day]=dateString.split("-").map(Number);return new Date(year,month-1,day);
+}
+function formatDateWithMonth(dateString){
+  const date=parseDate(dateString);return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+}
+function getDays(takenDate){
+  const start=parseDate(takenDate),today=new Date();
+  start.setHours(0,0,0,0);today.setHours(0,0,0,0);
+  return Math.max(0,Math.floor((today-start)/86400000)+1);
+}
+function showToday(){
+  const date=new Date();
+  document.getElementById("todayDate").textContent=`${TEXT.today} · ${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+}
+function getEntryData(entry){
+  const days=getDays(entry.takenDate);
+  const totalInterest=Math.round((Number(entry.amount)||0)*(Number(entry.interest)||0)*days/3000);
+  const remaining=Math.max(0,totalInterest-(Number(entry.interestPaid)||0));
+  return {days,totalInterest,remaining,total:(Number(entry.amount)||0)+remaining};
+}
+function createRow(label,value,className="entry-row",detailKey=null,entry=null,data=null){
+  const row=document.createElement("div");row.className=className;
+  const labelElement=document.createElement("span");labelElement.className="label";labelElement.textContent=label;
+  const valueElement=document.createElement("span");valueElement.className="value";
+  const premium=isPremiumUser(currentUser);
+  const protectedFields=["borrowedBy","interest","days"];
+  const protectedValue=!premium&&protectedFields.includes(detailKey);
+  valueElement.textContent=protectedValue?"Premium+ required":value;
+  row.append(labelElement,valueElement);
+  if(detailKey){
+    if(protectedValue){
+      row.classList.add("premium-locked","detail-row");row.tabIndex=0;row.setAttribute("role","button");
+      row.setAttribute("aria-label","Premium+ required to view "+label);
+      row.addEventListener("click",openPremiumPopup);
+      row.addEventListener("keydown",event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();openPremiumPopup()}});
+    }else if(!premium||detailEffectsEnabled()){
+      row.classList.add("detail-row");row.tabIndex=0;row.setAttribute("role","button");
+      row.setAttribute("aria-label","View "+label+" details");
+      const open=()=>openDetailPopup(detailKey,entry,data);
+      row.addEventListener("click",open);
+      row.addEventListener("keydown",event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();open()}});
+    }
+  }
+  return row;
+}
+function render(){
+  const app=document.getElementById("app");app.replaceChildren();
+  if(!currentUser)return;
+  const userBlock=document.createElement("div");userBlock.className="user";
+  (currentUser.entries||[]).forEach(entry=>{
+    if(typeof entry.interestPaid!=="number")entry.interestPaid=Number(entry.interestPaid)||0;
+    const data=getEntryData(entry),block=document.createElement("div");block.className="entry";
+    block.append(
+      createRow(TEXT.borrowedBy,entry.borrowedBy||"Not specified","borrowed-by-row","borrowedBy",entry,data),
+      createRow(TEXT.amount,(Number(entry.amount)||0).toLocaleString("en-IN"),"entry-row","amount",entry,data),
+      createRow(TEXT.interest,`${entry.interest}%`,"entry-row","interest",entry,data),
+      createRow(TEXT.takenDate,formatDateWithMonth(entry.takenDate),"entry-row","takenDate",entry,data),
+      createRow(TEXT.days,String(data.days),"entry-row","days",entry,data)
+    );
+    if(isPremiumUser(currentUser)){
+      const paidRow=document.createElement("div");paidRow.className="paid-row";
+      const paidLabel=document.createElement("label");paidLabel.className="paid-label";paidLabel.textContent=TEXT.interestPaid;
+      const inputWrap=document.createElement("div");inputWrap.className="paid-input-wrap";
+      const paidInput=document.createElement("input");paidInput.className="paid-input";paidInput.type="number";
+      paidInput.min="0";paidInput.step="1";paidInput.inputMode="decimal";paidInput.value=entry.interestPaid;
+      paidInput.setAttribute("aria-label",TEXT.interestPaid);paidInput.title="Enter interest already paid.";
+      paidInput.addEventListener("change",()=>{
+        entry.interestPaid=Math.max(0,Number(paidInput.value)||0);
+        render();
+      });
+      paidInput.addEventListener("keydown",event=>{if(event.key==="Enter")paidInput.blur()});
+      inputWrap.append(paidInput);paidRow.append(paidLabel,inputWrap);block.append(paidRow);
+    }
+    block.append(
+      createRow(TEXT.remaining,"₹"+data.remaining.toLocaleString("en-IN"),"remaining","remaining",entry,data),
+      createRow(TEXT.entryTotal,"₹"+data.total.toLocaleString("en-IN"),"entry-total","total",entry,data)
+    );
+    userBlock.append(block);
+  });
+  if(!currentUser.entries||currentUser.entries.length===0){
+    const empty=document.createElement("p");empty.className="empty-state";empty.textContent="No lending amounts available.";userBlock.append(empty);
+  }
+  app.append(userBlock);
+}
 function getNotes(){
-
   if(!currentUser)return [];
-
-  try{
-
-    const notes=JSON.parse(
-      localStorage.getItem(userStorageKey(NOTES_KEY_PREFIX))
-    );
-
-    return Array.isArray(notes)?notes:[];
-
-  }catch{
-
-    return [];
-
-  }
-
+  try{const notes=JSON.parse(localStorage.getItem(userKey(NOTES_KEY_PREFIX))||"[]");return Array.isArray(notes)?notes:[]}catch{return []}
 }
-
 function saveNote(){
-
   if(!currentUser)return;
-
-  const input=document.getElementById("noteInput");
-  const noteText=input.value.trim();
-
-  if(!noteText){
-    input.focus();
-    return;
-  }
-
+  const input=document.getElementById("noteInput"),noteText=input.value.trim();
+  if(!noteText){input.focus();return}
   const notes=getNotes();
-
-  notes.unshift({
-
-    id:`${Date.now()}-${Math.random().toString(36).slice(2)}`,
-
-    text:noteText,
-
-    date:new Date().toISOString()
-
-  });
-
-  try{
-
-    localStorage.setItem(
-      userStorageKey(NOTES_KEY_PREFIX),
-      JSON.stringify(notes)
-    );
-
-  }catch{
-
-    alert("Unable to save your note. Your browser storage may be full or unavailable.");
-    return;
-
-  }
-
-  input.value="";
-
-  renderNotes();
-
+  notes.unshift({id:`${Date.now()}-${Math.random().toString(36).slice(2)}`,text:noteText,date:new Date().toISOString()});
+  try{localStorage.setItem(userKey(NOTES_KEY_PREFIX),JSON.stringify(notes))}
+  catch{alert("Unable to save your note. Your browser storage may be full or unavailable.");return}
+  input.value="";renderNotes();
 }
-
-
 function deleteNote(id){
-
   if(!currentUser)return;
-
-  const notes=getNotes().filter(note=>note.id!==id);
-
-  try{
-
-    localStorage.setItem(
-      userStorageKey(NOTES_KEY_PREFIX),
-      JSON.stringify(notes)
-    );
-
-  }catch{
-
-    alert("Unable to update your notes.");
-    return;
-
-  }
-
+  try{localStorage.setItem(userKey(NOTES_KEY_PREFIX),JSON.stringify(getNotes().filter(note=>note.id!==id)))}
+  catch{alert("Unable to update your notes.");return}
   renderNotes();
-
 }
-
-
 function formatNoteDate(dateString){
-
-  const date=new Date(dateString);
-
-  if(Number.isNaN(date.getTime()))return "";
-
-  const hours=String(date.getHours()).padStart(2,"0");
-  const minutes=String(date.getMinutes()).padStart(2,"0");
-
+  const date=new Date(dateString);if(Number.isNaN(date.getTime()))return "";
+  const hours=String(date.getHours()).padStart(2,"0"),minutes=String(date.getMinutes()).padStart(2,"0");
   return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}, ${hours}:${minutes}`;
-
 }
-
-
 function renderNotes(){
-
-  const list=document.getElementById("notesList");
-
-  const notes=getNotes();
-
-  list.innerHTML="";
-
+  const list=document.getElementById("notesList"),notes=getNotes();list.replaceChildren();
   if(!currentUser||notes.length===0){
-
-    const empty=document.createElement("p");
-
-    empty.className="empty-notes";
-    empty.textContent=TEXT.emptyNotes;
-
-    list.appendChild(empty);
-
-    return;
-
+    const empty=document.createElement("p");empty.className="empty-notes";empty.textContent=TEXT.emptyNotes;list.append(empty);return;
   }
-
   notes.forEach(note=>{
-
-    const item=document.createElement("div");
-    item.className="note";
-
-    const deleteButton=document.createElement("button");
-
-    deleteButton.className="delete-note";
-    deleteButton.textContent="✕";
-    deleteButton.title=TEXT.delete;
-    deleteButton.setAttribute("aria-label",TEXT.delete);
-
+    const item=document.createElement("div");item.className="note";
+    const deleteButton=document.createElement("button");deleteButton.className="delete-note";
+    deleteButton.textContent="×";deleteButton.title=TEXT.delete;deleteButton.setAttribute("aria-label",TEXT.delete);
     deleteButton.onclick=()=>deleteNote(note.id);
-
-    const text=document.createElement("div");
-    text.className="note-text";
-    text.textContent=note.text;
-
-    const date=document.createElement("div");
-    date.className="note-date";
-    date.textContent=formatNoteDate(note.date);
-
-    item.append(deleteButton,text,date);
-
-    list.appendChild(item);
-
+    const text=document.createElement("div");text.className="note-text";text.textContent=note.text;
+    const date=document.createElement("div");date.className="note-date";date.textContent=formatNoteDate(note.date);
+    item.append(deleteButton,text,date);list.append(item);
   });
-
 }
-
-
-document.getElementById("premiumModal").addEventListener("click",event=>{
-
-  if(event.target.id==="premiumModal"){
-    closePremiumPopup();
-  }
-
+["totalModal","detailModal","premiumModal"].forEach(id=>{
+  document.getElementById(id).addEventListener("click",event=>{
+    if(event.target.id!==id)return;
+    if(id==="totalModal")closeTotalPopup();
+    if(id==="detailModal")closeDetailPopup();
+    if(id==="premiumModal")closePremiumPopup();
+  });
 });
-
-document.getElementById("detailModal").addEventListener("click",event=>{
-
-  if(event.target.id==="detailModal"){
-    closeDetailPopup();
-  }
-
-});
-
-document.getElementById("totalModal").addEventListener("click",event=>{
-
-  if(event.target.id==="totalModal"){
-    closeTotalPopup();
-  }
-
-});
-
 document.addEventListener("keydown",event=>{
-
-  if(event.key==="Escape"){
-
-    closeTotalPopup();
-    closeDetailPopup();
-    closePremiumPopup();
-
-  }
-
+  if(event.key==="Escape"){closeTotalPopup();closeDetailPopup();closePremiumPopup()}
 });
-
-
-applyLockScreenAppearance();
-
-applyDetailEffects();
-
-initLockScreen();
-
+document.addEventListener("DOMContentLoaded",()=>{
+  applyLockScreenAppearance();applyDetailEffects();initLockScreen();
+});
 </script>
-
 </body>
 </html>
