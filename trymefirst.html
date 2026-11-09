@@ -1,1 +1,201 @@
-no test...
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Small Money Calculator</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f6fa;
+  color: #222;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  background: white;
+  width: 100%;
+  max-width: 400px;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 5px 25px #0000000d;
+}
+
+h2 {
+  font-size: 23px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 17px;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+input:focus {
+  border-color: #2563eb;
+}
+
+.result {
+  background: #f0fdf4;
+  border-radius: 13px;
+  padding: 20px;
+  margin-top: 5px;
+}
+
+.result p {
+  color: #666;
+  font-size: 13px;
+}
+
+.total {
+  font-size: 32px;
+  font-weight: bold;
+  color: #16a34a;
+  margin-top: 8px;
+  word-break: break-word;
+}
+
+.example {
+  margin-top: 22px;
+  border-top: 1px solid #eee;
+  padding-top: 18px;
+}
+
+.example h3 {
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.example div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 9px 0;
+  color: #555;
+}
+
+button {
+  width: 100%;
+  padding: 13px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  margin-top: 18px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h2>Small Money Calculator</h2>
+  <p class="subtitle">Small amounts, bigger collections.</p>
+
+  <label>Amount per person (₹)</label>
+  <input type="number" id="amount" value="250" min="0"
+         oninput="calculate()">
+
+  <label>Number of people</label>
+  <input type="number" id="people" value="100" min="0"
+         oninput="calculate()">
+
+  <div class="result">
+    <p>Total Collection</p>
+    <div class="total" id="total">₹25,000</div>
+    <p id="formula" style="margin-top:10px">
+      ₹250 × 100 people
+    </p>
+  </div>
+
+  <div class="example">
+    <h3>Quick Examples</h3>
+
+    <div>
+      <span>₹50 × 100</span>
+      <strong>₹5,000</strong>
+    </div>
+
+    <div>
+      <span>₹100 × 100</span>
+      <strong>₹10,000</strong>
+    </div>
+
+    <div>
+      <span>₹250 × 100</span>
+      <strong>₹25,000</strong>
+    </div>
+
+    <div>
+      <span>₹500 × 100</span>
+      <strong>₹50,000</strong>
+    </div>
+  </div>
+
+  <button onclick="resetCalculator()">Reset Calculator</button>
+
+</div>
+
+<script>
+function calculate() {
+  const amount = Math.max(0, Number(document.getElementById("amount").value) || 0);
+  const people = Math.max(0, Number(document.getElementById("people").value) || 0);
+
+  const total = amount * people;
+
+  document.getElementById("total").textContent =
+    "₹" + total.toLocaleString("en-IN");
+
+  document.getElementById("formula").textContent =
+    "₹" + amount.toLocaleString("en-IN") +
+    " × " + people.toLocaleString("en-IN") + " people";
+}
+
+function resetCalculator() {
+  document.getElementById("amount").value = 250;
+  document.getElementById("people").value = 100;
+  calculate();
+}
+
+calculate();
+</script>
+
+</body>
+</html>
