@@ -10,7 +10,7 @@ function getTodayInterest() {
   for (let i = 0; i < today.length; i++) {
     hash = today.charCodeAt(i) + ((hash << 5) - hash);
   }
-  const rate = +(25 + (Math.abs(hash) % 500) / 100).toFixed(0);
+  const rate = +(18 + (Math.abs(hash) % 500) / 100).toFixed(2);
 
   history.push({ date: today, rate });
   if (history.length > 7) {
