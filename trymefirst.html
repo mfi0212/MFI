@@ -43,7 +43,27 @@
             background: #ffffff;
             color: black;
         }
-
+.blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 63%;z-index: -10000;
+    animation: float 18s infinite 
+ease-in-out;
+}.blob1 {
+   width: 300px;
+    height: 300px;;
+    top: -10%;
+    right: 0%;
+    background: #0046ff;
+}
+.blob2 {
+    width: 300px;
+    height: 300px;
+    background: #00a6ff;
+    bottom: -10%;
+    left: 0%;
+}
 
         body.site-locked > *:not(#bsmfi-loader):not(#servicePasswordPopup) {
             visibility: hidden;
@@ -267,12 +287,13 @@
 
 
         .solution-card {
-            background: #00000024;
+           background: #ffffff38;
     border-radius: 35px;
     padding: 15px;
     display: flex;
     flex-direction: column;
     text-align: center;
+    border: solid 1.5px #ffffff9c;
         }
 
 
@@ -341,24 +362,16 @@
 
 
         .sponsor-chip {
-            background: #eeeeee;
-
-            border-radius: 99999px;
-
-            padding: 10px;
-
-            font-size: 25px;
-
-            font-weight: 500;
-
-            color: #334155;
-
-            text-decoration: none;
-
-            text-align: center;
-
-            transition:
-                border-color 0.2s ease;
+           background: #ffffff38;
+    border-radius: 99999px;
+    padding: 10px;
+    font-size: 25px;
+    font-weight: 500;
+    color: #334155;
+    text-decoration: none;
+    text-align: center;
+    transition: border-color 0.2s ease;
+    border: solid 1.5px #ffffff9c;
         }
 
 
@@ -680,7 +693,8 @@ text-align: center;
         }
     </style>
 </head>
-
+ <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
 
 <body class="site-locked">
 
