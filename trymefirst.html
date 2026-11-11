@@ -701,6 +701,12 @@ svg.serchareicon {
     padding: 30px 10px 0 10px;
     border-radius: 35px 35px 0px 0px;
 }
+hr {
+    background: linear-gradient(45deg, transparent, #ffffff4f, transparent);
+    height: 1.5px;
+    outline: none;
+    border: none;
+}
 .notepad {
     width: 100%;
     font-weight: 300;
@@ -1783,9 +1789,6 @@ img.closesymbol {
 }
 
 .toggle-switch {
-    position: absolute;
-left: 50%;
-    transform: translate(-50%, 0);
     text-align: center;
     z-index: 10000;
     width: fit-content;
@@ -2142,7 +2145,7 @@ div#sum-list {
     }
 }
 </style>
-<div class="viewnotice">
+<!-- <div class="viewnotice">
         <div class="contentmsg">
             This site is for mobile <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M299.62-48q-38.85 0-64.74-25.88Q209-99.77 209-138.62v-682.76q0-38.35 26.14-64.48Q261.27-912 299.62-912h361.84q38.85 0 64.73 25.88 25.89 25.89 25.89 64.74v118.61q16.92 3.62 28.42 17.39 11.5 13.76 11.5 30.92v68.77q0 17.15-11.5 30.92Q769-541 752.08-537.38v398.76q0 38.85-25.89 64.74Q700.31-48 661.46-48H299.62Zm-1-65h363.84q10.77 0 17.69-6.92 6.93-6.93 6.93-17.7v-684.76q0-10.77-6.93-17.7-6.92-6.92-17.69-6.92H298.62q-10.77 0-17.7 6.92-6.92 6.93-6.92 17.7v684.76q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92ZM274-113v-734 734Zm237.5-588.5q12.81-12.81 12.81-30.96 0-18.16-12.81-30.96-12.81-12.81-30.96-12.81-18.16 0-30.96 12.81-12.81 12.8-12.81 30.96 0 18.15 12.81 30.96 12.8 12.81 30.96 12.81 18.15 0 30.96-12.81Z"/></svg> use only.
         </div>
@@ -2155,7 +2158,7 @@ div#sum-list {
     border-radius: 9999pc;
     height: 45px;" onclick="window.open('https://mfi0212.github.io/MFI/new.service.account', '_parent')"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M75.77-137.54q-13.54 0-23.27-9.73t-9.73-23.27q0-13.54 9.73-23.27t23.27-9.73h808.46q13.54 0 23.27 9.73t9.73 23.27q0 13.54-9.73 23.27t-23.27 9.73H75.77Zm102.85-106q-38.35 0-64.48-26.14Q88-295.81 88-334.15v-398.77q0-38.34 26.14-64.48 26.13-26.14 64.48-26.14h602.76q38.35 0 64.48 26.14Q872-771.26 872-732.92v398.77q0 38.34-26.14 64.47-26.13 26.14-64.48 26.14H178.62Zm0-66h602.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.92v-398.77q0-9.23-7.69-16.93-7.69-7.69-16.93-7.69H178.62q-9.24 0-16.93 7.69-7.69 7.7-7.69 16.93v398.77q0 9.23 7.69 16.92 7.69 7.69 16.93 7.69Zm-24.62 0v-448 448Z"/></svg> System view</span>
         </div>
-    </div>
+    </div> -->
     <div class="locktopoptions">
         <button onclick="goBack()" class="back-btn">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m363-481 312 312q10 10 10.5 26t-9.5 26q-10 10-26 10t-26-10L321-421q-13-13-18.5-28.5T297-481q0-16 5.5-31.5T321-541l303-303q10-10 25.5-10.5T675-845q10 10 10 26t-10 26L363-481Z"/></svg>
@@ -2522,7 +2525,6 @@ background: #ffffff;
 					<div class="close-btn" onclick="closeModal()">
 						<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m363-481 312 312q10 10 10.5 26t-9.5 26q-10 10-26 10t-26-10L321-421q-13-13-18.5-28.5T297-481q0-16 5.5-31.5T321-541l303-303q10-10 25.5-10.5T675-845q10 10 10 26t-10 26L363-481Z"/></svg>
                         <?xml version="1.0" encoding="UTF-8"?>
-                            <!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                             <svg style="width: 25px;
                                 background: white;
                                 fill: black;
@@ -2944,7 +2946,57 @@ function isNoticeClosedFor24Hours() {
 
     return elapsed < twentyFourHours;          // true = still hidden
 }
+function getLoanFinancials(loan) {
+    const principal = Number(loan.takenAmount) || 0;
+    const monthlyRate = Number(loan.monthlyRate) || 0;
+   const interestCleared = Math.max(
+  0,
+  Number(loan.interestCleared ?? loan.interestPaid) || 0
+);
 
+    const borrowDate = parseDate(loan.planDate);
+    const today = new Date();
+
+    borrowDate.setHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0);
+
+    const daysElapsed = Math.max(
+        0,
+        Math.floor((today - borrowDate) / 86400000) + 1
+    );
+
+    // Monthly rate is a percentage of the original principal.
+    const dailyInterest = principal * (monthlyRate / 100) / 30;
+    const totalInterest = dailyInterest * daysElapsed;
+
+    const remainingInterest = Math.max(
+  0,
+  totalInterest - interestCleared
+);
+    const cleanEndDate = loan.endDate.split('(')[0].trim();
+    const endDate = parseDate(cleanEndDate);
+    endDate.setHours(0, 0, 0, 0);
+
+    const overdueDays = Math.max(
+        0,
+        Math.floor((today - endDate) / 86400000)
+    );
+
+    const overdueFine = overdueDays * (Number(loan.fineRate) || 0);
+
+    return {
+        principal,
+        monthlyRate,
+        daysElapsed,
+        dailyInterest,
+        totalInterest,
+        interestCleared,
+        remainingInterest,
+        overdueDays,
+        overdueFine,
+        totalPayable: principal + remainingInterest + overdueFine
+    };
+}
 function renderUserCustomContent() {
     const offerSec = document.getElementById("customOfferSection");
     const noticeSec = document.getElementById("specialNoticeSection");
@@ -3069,37 +3121,65 @@ function updateCoinsDisplay() {
         coinSection.style.display = 'none';
     }
 }
-
 function loadUserData() {
     const savedData = JSON.parse(localStorage.getItem('userData') || '{}');
-    for (let pin in usersDB) {
+
+    for (const pin in usersDB) {
         const saved = savedData[pin];
-        if (saved) {
-            usersDB[pin].links = saved.links || [];
-            usersDB[pin].emote = saved.emote || usersDB[pin].emote;
-            if (saved.purposes) {
-                saved.purposes.forEach((p, i) => {
-                    if (usersDB[pin].loans[i]) usersDB[pin].loans[i].purpose = p;
-                });
-            }
+        if (!saved) continue;
+
+        usersDB[pin].links = saved.links || [];
+        usersDB[pin].emote = saved.emote || usersDB[pin].emote;
+
+        if (Array.isArray(saved.loans)) {
+            saved.loans.forEach((savedLoan, i) => {
+                const loan = usersDB[pin].loans[i];
+                if (!loan) return;
+
+                if (savedLoan.borrowedBy !== undefined)
+                    loan.borrowedBy = savedLoan.borrowedBy;
+
+                if (savedLoan.monthlyRate !== undefined)
+                    loan.monthlyRate = Number(savedLoan.monthlyRate) || 0;
+
+                if (savedLoan.interestCleared !== undefined)
+                    loan.interestCleared = Number(savedLoan.interestCleared) || 0;
+
+                if (savedLoan.purpose !== undefined)
+                    loan.purpose = savedLoan.purpose;
+            });
+        }
+
+        // Compatibility with previously saved purpose data.
+        if (saved.purposes) {
+            saved.purposes.forEach((purpose, i) => {
+                if (usersDB[pin].loans[i] &&
+                    !usersDB[pin].loans[i].purpose) {
+                    usersDB[pin].loans[i].purpose = purpose;
+                }
+            });
         }
     }
 }
 
 function saveUserData() {
     const data = {};
-    for (let pin in usersDB) {
+
+    for (const pin in usersDB) {
         data[pin] = {
-            links: usersDB[pin].links,
-            emote: usersDB[pin].emote,
-            purposes: usersDB[pin].loans.map(l => l.purpose || "")
+            links: usersDB[pin].links || [],
+            emote: usersDB[pin].emote || '',
+            loans: usersDB[pin].loans.map(loan => ({
+                borrowedBy: loan.borrowedBy || '',
+                monthlyRate: Number(loan.monthlyRate) || 0,
+                interestCleared: Number(loan.interestCleared) || 0,
+                purpose: loan.purpose || ''
+            }))
         };
     }
+
     localStorage.setItem('userData', JSON.stringify(data));
 }
-
-// === Rest of functions ===
-
 function checkAndShowRepaymentReminders() {
     if (!currentUser || !currentUser.loans?.length) return;
 
@@ -3125,7 +3205,7 @@ function checkAndShowRepaymentReminders() {
                     count: 0
                 };
             }
-            remindersByDueDate[dueStr].totalAmount += loan.takenAmount + loan.interest;
+            remindersByDueDate[dueStr].totalAmount += getLoanFinancials(loan).totalPayable;
             remindersByDueDate[dueStr].count++;
         }
     });
@@ -3365,171 +3445,201 @@ function closeSheet() {
     sheet.classList.remove('active');
     overlay.classList.remove('active');
 }
-
 function displayLoanDetails(loan, index) {
     currentLoanIndex = index;
+
     const now = new Date();
     const cleanEndDate = loan.endDate.split('(')[0].trim();
-    const endDate = new Date(cleanEndDate.split('-').reverse().join('-'));
-    const daysLeft = Math.ceil((endDate - now) / 86400000);
-    let overdueFine = daysLeft < 0 ? Math.abs(daysLeft) * loan.fineRate : 0;
-    const totalPayable = loan.takenAmount + loan.interest + overdueFine;
+    const endDate = parseDate(cleanEndDate);
+    endDate.setHours(0, 0, 0, 0);
 
-    const [d, m, y] = loan.planDate.split('-').map(Number);
-    const takenDate = new Date(y, m - 1, d);
-    const daysElapsed = Math.floor((now - takenDate) / 86400000);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-    document.querySelectorAll(".amount-btn").forEach(b => b.classList.remove("active"));
+    const daysLeft = Math.ceil((endDate - today) / 86400000);
+    const f = getLoanFinancials(loan);
+
+    const takenDate = parseDate(loan.planDate);
+    const daysElapsed = f.daysElapsed;
+
+    document.querySelectorAll(".amount-btn").forEach(b =>
+        b.classList.remove("active")
+    );
+
     const btns = document.getElementById("amountButtons").children;
-    if (btns[filteredLoans.indexOf(loan)]) btns[filteredLoans.indexOf(loan)].classList.add("active");
+    const filteredIndex = filteredLoans.indexOf(loan);
+
+    if (btns[filteredIndex]) {
+        btns[filteredIndex].classList.add("active");
+    }
 
     document.getElementById("loanDetails").innerHTML = `
-
         <div class="loan-entry">
-        <!-- ===== USER CUSTOM OFFER + NOTICE (injected after Total amount) ===== -->
-            <div id="customOfferSection" style="display: block;
-    margin: 15px 5px -10px 5px;
-    text-align: center;">
-              <a id="customOfferLink" href="#" target="_blank" rel="noopener" style="display: inline-block;">
-                <img id="customOfferImg" src="" alt="Special Offer" 
-                     style="    width: 100%;
-    border-radius: 15px;
-    padding: 5px;
-    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-    background: #181818d9;">
-              </a>
+
+            <div id="customOfferSection" style="
+                display:block;
+                margin:15px 5px -10px 5px;
+                text-align:center;">
+                <a id="customOfferLink" href="#" target="_blank" rel="noopener">
+                    <img id="customOfferImg" src="" alt="Special Offer"
+                    style="width:100%;border-radius:15px;padding:5px;
+                    box-shadow:inset 0.9px 0.9px 0 #ffffff17;
+                    background:#181818d9;">
+                </a>
             </div>
 
-            
+            <div class="details" style="
+                transform:none;display:flex;justify-content:center;
+                align-items:center;position:sticky;top:185px;
+                z-index:10000000;padding:20px 0 0;
+                filter:drop-shadow(0 0 5px black);">
+
+                <input type="text" class="purpose-input"
+                    placeholder="Purpose"
+                    value="${loan.purpose || ''}"
+                    onchange="updatePurpose(${index}, this.value)">
             </div>
-            <!-- ===== END CUSTOM BLOCK ===== -->
-            <div class="details" style="transform: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: sticky;
-    top: 185px;
-    opacity: 100%;
-    z-index: 10000000;
-    padding: 20px 0 0 0;
-    filter: drop-shadow(0 0 5px black);">
 
-                <input type="text" class="purpose-input" placeholder="Purpose" value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
+            <div class="totaldetails">
+                <p style="    font-size: 50px;
+    font-weight: 500;
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 3px;
+                    color:${f.overdueFine > 0 ? '#ff0000' :
+                        daysLeft <= 2 ? '#ff0000' :
+                        daysLeft <= 6 ? '#ff8c00' : '#00d423'};">
+                    ${formatMoney(f.totalPayable)}
+                </p>
+                <hr>
+                <h3>Total amount</h3>
             </div>
-             
-    
-<div class="totaldetails">
 
-    <p style="font-size:60px;
-              font-weight: 600;
-              font-family: 'Anton', sans-serif;
-              letter-spacing: 4.5px;
-              color: ${overdueFine > 0
-                ? '#ff0000'
-                : daysLeft <= 2
-                    ? '#ff0000'
-                    : daysLeft <= 6
-                        ? '#ff8c00'
-                        : '#00d423'};">
-        ${formatMoney(totalPayable)}
-    </p><hr> <h3>
-       Total amount</h3>
-</div>
-
-           <div class="details">
-                <div class="leftflow">
-<svg xmlns="http://www.w3.org/2000/svg" id="Layer_2" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M200-320v-200q0-17 11.5-28.5T240-560q17 0 28.5 11.5T280-520v200q0 17-11.5 28.5T240-280q-17 0-28.5-11.5T200-320Zm240 0v-200q0-17 11.5-28.5T480-560q17 0 28.5 11.5T520-520v200q0 17-11.5 28.5T480-280q-17 0-28.5-11.5T440-320ZM120-120q-17 0-28.5-11.5T80-160q0-17 11.5-28.5T120-200h720q17 0 28.5 11.5T880-160q0 17-11.5 28.5T840-120H120Zm560-200v-200q0-17 11.5-28.5T720-560q17 0 28.5 11.5T760-520v200q0 17-11.5 28.5T720-280q-17 0-28.5-11.5T680-320Zm160-320H116q-15 0-25.5-10.5T80-676v-22q0-11 5.5-19t14.5-13l344-172q17-8 36-8t36 8l342 171q11 5 16.5 15t5.5 21v15q0 17-11.5 28.5T840-640Z"/></svg>
-
-<h3>Service</h3>
-                </div>
-                <p>${loan.takenFrom}</p>
-            </div>
             <div class="details">
-                <div class="leftflow">
-                <svg xmlns="http://www.w3.org/2000/svg" id="Layer_3" width="200" height="200" viewBox="0 0 24 24" ><g><path d="M7.75 2.5a.75.75 0 0 0-1.5 0v1.58c-1.44.115-2.384.397-3.078 1.092c-.695.694-.977 1.639-1.093 3.078h19.842c-.116-1.44-.398-2.384-1.093-3.078c-.694-.695-1.639-.977-3.078-1.093V2.5a.75.75 0 0 0-1.5 0v1.513C15.585 4 14.839 4 14 4h-4c-.839 0-1.585 0-2.25.013V2.5Z"/><path fill-rule="evenodd" d="M22 12v2c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14v-2c0-.839 0-1.585.013-2.25h19.974C22 10.415 22 11.161 22 12Zm-6 1.25a.75.75 0 0 1 .75.75v1.25H18a.75.75 0 0 1 0 1.5h-1.25V18a.75.75 0 0 1-1.5 0v-1.25H14a.75.75 0 0 1 0-1.5h1.25V14a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd"/></g></svg>
-                <h3>Borrowed on</h3>
-                </div>
+                <div class="leftflow"><h3>Borrowed By</h3></div>
+                <p>${loan.borrowedBy || 'Not specified'}</p>
+            </div>
+
+            <div class="details">
+                <div class="leftflow"><h3>Borrowed on</h3></div>
                 <p>${loan.planDate}</p>
             </div>
+
             <div class="details">
-                <div class="leftflow">
-<svg xmlns="http://www.w3.org/2000/svg" id="Layer_4" width="200" height="200" viewBox="0 0 24 24" ><g ><path d="M7.75 2.5a.75.75 0 0 0-1.5 0v1.58c-1.44.115-2.384.397-3.078 1.092c-.695.694-.977 1.639-1.093 3.078h19.842c-.116-1.44-.398-2.384-1.093-3.078c-.694-.695-1.639-.977-3.078-1.093V2.5a.75.75 0 0 0-1.5 0v1.513C15.585 4 14.839 4 14 4h-4c-.839 0-1.585 0-2.25.013V2.5Z"/><path fill-rule="evenodd" d="M22 12v2c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14v-2c0-.839 0-1.585.013-2.25h19.974C22 10.415 22 11.161 22 12Zm-5.5 6a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3Z" clip-rule="evenodd"/></g></svg>
-<h3>Return on</h3>
-                </div>
-                <p style="color:${daysLeft <= 2 ? '#ff1100' : daysLeft <= 6 ? '#ff8c00' : '#00d423'};"> ${cleanEndDate}</p>
+                <div class="leftflow"><h3>Return on</h3></div>
+                <p style="color:${daysLeft <= 2 ? '#ff1100' :
+                    daysLeft <= 6 ? '#ff8c00' : '#00d423'};">
+                    ${cleanEndDate}
+                </p>
             </div>
+
             <div class="details">
-                <div class="leftflow">
-<svg xmlns="http://www.w3.org/2000/svg" id="Layer_5" width="200" height="200" viewBox="0 0 24 24"><g><path fill-rule="evenodd" d="M12 2C7.867 2 5.8 2 5.198 3.3a2.521 2.521 0 0 0-.13.346c-.41 1.387 1.052 2.995 3.974 6.21L11 12h2l1.958-2.143c2.922-3.216 4.383-4.824 3.974-6.21a2.507 2.507 0 0 0-.13-.348C18.2 2 16.133 2 12 2Z" clip-rule="evenodd"/><path d="M5.198 20.7C5.8 22 7.867 22 12 22c4.133 0 6.2 0 6.802-1.3a2.51 2.51 0 0 0 .13-.346c.41-1.387-1.052-2.995-3.974-6.21L13 12h-2l-1.958 2.143c-2.922 3.216-4.383 4.824-3.974 6.21c.035.12.078.236.13.348Z" opacity=".5"/></g></svg>
-<h3>Days Passed</h3>
-                </div>
+                <div class="leftflow"><h3>Days Passed</h3></div>
                 <p>${daysElapsed} day${daysElapsed === 1 ? '' : 's'}</p>
             </div>
+
             <div class="details">
-                <div class="leftflow">
-                    <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" id="Layer_6" height="24px" viewBox="0 -960 960 960" width="24px" ><path d="M480-320q-33 0-56.5-23.5T400-400q0-33 23.5-56.5T480-480q33 0 56.5 23.5T560-400q0 33-23.5 56.5T480-320ZM295-680h370l51-102q10-20-1.5-39T680-840H280q-23 0-34.5 19t-1.5 39l51 102Zm41 560h288q90 0 153-62.5T840-336q0-38-13-74t-37-65L686-600H274L170-475q-24 29-37 65t-13 74q0 91 62.5 153.5T336-120Z"/></svg>
-<h3>Borrowed Amount </h3>
-                </div>
-                <p>${formatMoney(loan.takenAmount)}</p>
+                <div class="leftflow"><h3>Borrowed Amount</h3></div>
+                <p>${formatMoney(f.principal)}</p>
             </div>
+
             <div class="details">
-                <div class="leftflow"> 
-<svg xmlns="http://www.w3.org/2000/svg" id="Layer_7" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M480-80q-24 0-46-9t-39-26q-29-29-50-38t-63-9q-50 0-85-35t-35-85q0-42-9-63t-38-50q-17-17-26-39t-9-46q0-24 9-46t26-39q29-29 38-50t9-63q0-50 35-85t85-35q42 0 63-9t50-38q17-17 39-26t46-9q24 0 46 9t39 26q29 29 50 38t63 9q50 0 85 35t35 85q0 42 9 63t38 50q17 17 26 39t9 46q0 24-9 46t-26 39q-29 29-38 50t-9 63q0 50-35 85t-85 35q-42 0-63 9t-50 38q-17 17-39 26t-46 9Zm100-240q25 0 42.5-17.5T640-380q0-25-17.5-42.5T580-440q-25 0-42.5 17.5T520-380q0 25 17.5 42.5T580-320Zm-230-30q12 12 28 12t28-12l204-203q12-12 12-28.5T610-610q-12-12-28.5-12T553-610L350-406q-12 12-12 28t12 28Zm72.5-187.5Q440-555 440-580t-17.5-42.5Q405-640 380-640t-42.5 17.5Q320-605 320-580t17.5 42.5Q355-520 380-520t42.5-17.5Z"/></svg>
-<h3>Interest</h3>
-                </div>
-                <p>${formatMoney(loan.interest)}</p>
+                <div class="leftflow"><h3>Monthly Interest Rate</h3></div>
+                <p>${f.monthlyRate}%</p>
             </div>
-            <div class="details" style='margin-bottom: -10px;'>
-                    <div class="leftflow">
-                       <svg xmlns="http://www.w3.org/2000/svg" id="Layer_0" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M508.5-291.5Q520-303 520-320t-11.5-28.5Q497-360 480-360t-28.5 11.5Q440-337 440-320t11.5 28.5Q463-280 480-280t28.5-11.5Zm0-160Q520-463 520-480v-160q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640v160q0 17 11.5 28.5T480-440q17 0 28.5-11.5ZM346-160H240q-33 0-56.5-23.5T160-240v-106l-77-78q-11-12-17-26.5T60-480q0-15 6-29.5T83-536l77-78v-106q0-33 23.5-56.5T240-800h106l78-77q12-11 26.5-17t29.5-6q15 0 29.5 6t26.5 17l78 77h106q33 0 56.5 23.5T800-720v106l77 78q11 12 17 26.5t6 29.5q0 15-6 29.5T877-424l-77 78v106q0 33-23.5 56.5T720-160H614l-78 77q-12 11-26.5 17T480-60q-15 0-29.5-6T424-83l-78-77Z"/></svg><h3>Overdue Fine</h3>
-                    </div>
-                    <p style='color: #ff0000;'>${formatMoney(overdueFine)} 
-                        <small></small>
-                    </p>
+
+            <div class="details">
+                <div class="leftflow"><h3>Daily Interest</h3></div>
+                <p>${formatMoney(f.dailyInterest)}</p>
+            </div>
+
+            <div class="details">
+                <div class="leftflow"><h3>Total Interest</h3></div>
+                <p>${formatMoney(f.totalInterest)}</p>
+            </div>
+
+            <div class="details">
+                <div class="leftflow"><h3>Interest Cleared</h3></div>
+                <p style="color:#00d423;">
+                    ${formatMoney(f.interestCleared)}
+                </p>
+            </div>
+
+            <div class="details">
+                <div class="leftflow"><h3>Remaining Interest</h3></div>
+                <p>${formatMoney(f.remainingInterest)}</p>
+            </div>
+
+            <div class="details">
+                <div class="leftflow"><h3>Overdue Fine</h3></div>
+                <p style="color:#ff0000;">
+                    ${formatMoney(f.overdueFine)}
+                </p>
             </div>
 
         </div>
     `;
 
-    // Render the user-specific offer + message right after Total amount
     renderUserCustomContent();
 }
+function updateInterestCleared(index, value) {
+  if (!currentUser || !currentUser.loans[index]) return;
 
+  const amount = Math.max(0, Number(value) || 0);
+
+  currentUser.loans[index].interestCleared = amount;
+
+  saveUserData();
+
+  displayLoanDetails(currentUser.loans[index], index);
+
+  if (document.getElementById('totalPopup')) {
+    showTotalPopup();
+  }
+
+  if (typeof loanChart !== 'undefined' && loanChart) {
+    updateChart();
+  }
+}
 function updatePurpose(index, value) {
     currentUser.loans[index].purpose = value.trim();
     saveUserData();
     renderAmountButtons();
 }
-
 function showTotalPopup() {
-    const now = new Date();
-    let base = 0, interest = 0, overdue = 0;
+    if (!currentUser) return;
+
+    let base = 0;
+    let totalInterest = 0;
+    let interestCleared = 0;
+    let remainingInterest = 0;
+    let overdue = 0;
 
     currentUser.loans.forEach(loan => {
-        base += loan.takenAmount;
-        interest += loan.interest;
-        const cleanEnd = loan.endDate.split('(')[0].trim();
-        const end = new Date(cleanEnd.split('-').reverse().join('-'));
-        if (now > end) {
-            const days = Math.ceil((now - end) / 86400000);
-            overdue += days * loan.fineRate;
-        }
+        const f = getLoanFinancials(loan);
+
+        base += f.principal;
+        totalInterest += f.totalInterest;
+        interestCleared += f.interestCleared;
+        remainingInterest += f.remainingInterest;
+        overdue += f.overdueFine;
     });
 
-    const total = base + interest + overdue;
+    const total = base + remainingInterest + overdue;
 
     document.getElementById("totalContent").innerHTML = `
-        <p>Taken amount : <strong>${formatMoney(base)}</strong></p>
-        <p style='margin-bottom: 20px;'>Total Interest : <strong>${formatMoney(interest)}</strong></p>
-        ${overdue > 0 ? `<p style="
-    margin: -17px 0 0 0;
-    font-size: 16px;">Overdue Fine : <strong style='    color: #ff2424;
-    border-radius: 100px;
-    padding: 0 10px;'>${formatMoney(overdue)}</strong></p>` : ''}
+        <p>Borrowed Amount: <strong>${formatMoney(base)}</strong></p>
+        <p>Total Interest: <strong>${formatMoney(totalInterest)}</strong></p>
+        <p>Interest Cleared: <strong>${formatMoney(interestCleared)}</strong></p>
+        <p>Remaining Interest: <strong>${formatMoney(remainingInterest)}</strong></p>
+        <p>Overdue Fine: <strong style="color:#ff2424;">
+            ${formatMoney(overdue)}
+        </strong></p>
         <hr>
-        <p style="font-size: 20px; margin-top: 10px; margin-bottom: -5px;">Total to Return: <strong>${formatMoney(total)}</strong></p>
+        <p style="font-size:20px;">
+            Total to Return: <strong>${formatMoney(total)}</strong>
+        </p>
     `;
+
     document.getElementById("totalPopup").style.display = "block";
 }
 
@@ -3989,11 +4099,13 @@ function toggleSearch() {
 
 function filterLoans() {
     const q = document.getElementById("searchInput").value.toLowerCase();
+
     filteredLoans = currentUser.loans.filter(loan =>
-        loan.takenAmount.toString().includes(q) ||
-        (loan.purpose && loan.purpose.toLowerCase().includes(q)) ||
-        loan.takenFrom.toLowerCase().includes(q)
+        String(loan.takenAmount).includes(q) ||
+        (loan.purpose || '').toLowerCase().includes(q) ||
+        (loan.borrowedBy || '').toLowerCase().includes(q)
     );
+
     renderAmountButtons();
 }
 
@@ -4138,49 +4250,58 @@ document.addEventListener('DOMContentLoaded', function () {
         y += 38;
 
         user.loans.forEach((loan, i) => {
-            const total = loan.takenAmount + loan.interest;
+            const f = getLoanFinancials(loan);
+const total = f.totalPayable;
 
-            ctx.strokeStyle = '#eeeeee';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(75, y - 8);
-            ctx.lineTo(BASE_WIDTH - 75, y - 8);
-            ctx.stroke();
+ctx.strokeStyle = '#eeeeee';
+ctx.lineWidth = 1.5;
+ctx.beginPath();
+ctx.moveTo(75, y - 8);
+ctx.lineTo(BASE_WIDTH - 75, y - 8);
+ctx.stroke();
 
-            y += 30;
-            ctx.fillStyle = '#1a1a1a';
-            ctx.font = '600 19px Arial';
-            ctx.fillText(`Loan ${i + 1}`, 75, y);
-            y += 34;
+y += 30;
 
-            ctx.font = '400 16.8px Arial';
-            ctx.fillStyle = '#333333';
+ctx.fillStyle = '#1a1a1a';
+ctx.font = '600 19px Arial';
+ctx.fillText(`Loan ${i + 1}`, 75, y);
+y += 34;
 
-            ctx.fillText('Principal Amount', 75, y);
-            ctx.textAlign = 'right';
-            ctx.fillText(`₹${loan.takenAmount.toLocaleString('en-IN')}`, BASE_WIDTH - 75, y);
-            ctx.textAlign = 'left';
-            y += 30;
+ctx.font = '400 16px Arial';
+ctx.fillStyle = '#333333';
 
-            ctx.fillText('Interest', 75, y);
-            ctx.textAlign = 'right';
-            ctx.fillText(`₹${loan.interest.toLocaleString('en-IN')}`, BASE_WIDTH - 75, y);
-            ctx.textAlign = 'left';
-            y += 32;
+const receiptRow = (label, value) => {
+    ctx.textAlign = 'left';
+    ctx.fillText(label, 75, y);
+    ctx.textAlign = 'right';
+    ctx.fillText(value, BASE_WIDTH - 75, y);
+    ctx.textAlign = 'left';
+    y += 30;
+};
 
-            ctx.fillStyle = '#1a1a1a';
-            ctx.font = '600 19px Arial';
-            ctx.fillText('Total Payable', 75, y);
-            ctx.textAlign = 'right';
-            ctx.fillStyle = '#0000ff';
-            ctx.fillText(`₹${total.toLocaleString('en-IN')}`, BASE_WIDTH - 75, y);
-            ctx.textAlign = 'left';
-            y += 30;
+receiptRow('Borrowed By', loan.borrowedBy || 'Not specified');
+receiptRow('Principal Amount', `₹${f.principal.toLocaleString('en-IN')}`);
+receiptRow('Monthly Rate', `${f.monthlyRate}%`);
+receiptRow('Total Interest', `₹${f.totalInterest.toFixed(2)}`);
+receiptRow('Interest Cleared', `₹${f.interestCleared.toFixed(2)}`);
+receiptRow('Remaining Interest', `₹${f.remainingInterest.toFixed(2)}`);
+receiptRow('Overdue Fine', `₹${f.overdueFine.toFixed(2)}`);
 
-            ctx.fillStyle = '#555555';
-            ctx.font = '400 15.8px Arial';
-            ctx.fillText(`Due on ${loan.endDate}`, 75, y);
-            y += 55;
+ctx.fillStyle = '#1a1a1a';
+ctx.font = '600 19px Arial';
+ctx.fillText('Total Payable', 75, y);
+
+ctx.textAlign = 'right';
+ctx.fillStyle = '#0000ff';
+ctx.fillText(`₹${total.toFixed(2)}`, BASE_WIDTH - 75, y);
+ctx.textAlign = 'left';
+
+y += 30;
+
+ctx.fillStyle = '#555555';
+ctx.font = '400 15px Arial';
+ctx.fillText(`Due on ${loan.endDate}`, 75, y);
+y += 55;
         });
         y += 45;
         ctx.fillStyle = '#1a1a1a';
@@ -4241,27 +4362,24 @@ function renderSumContent() {
     container.innerHTML = '';
 
     currentUser.loans.forEach((loan, idx) => {
+        const f = getLoanFinancials(loan);
         const isSelected = selectedSumIds.has(idx);
-        const opacityClass = isSelected ? 'selected' : '';
 
         container.innerHTML += `
-      <div class="loan-option ${opacityClass}" onclick="toggleSumLoan(${idx})">
-        <strong>Amount ${idx + 1} - ₹${loan.takenAmount}</strong> (${loan.takenFrom})<br>
-        <small>Interest: ₹${loan.interest} | ${loan.planDate} → ${loan.endDate}</small>
-      </div>
-    `;
+            <div class="loan-option ${isSelected ? 'selected' : ''}"
+                 onclick="toggleSumLoan(${idx})">
+                <strong>Amount ${idx + 1} - ${formatMoney(f.principal)}</strong>
+                <br>
+                <small>
+                    Borrowed By: ${loan.borrowedBy || 'Not specified'} |
+                    Interest: ${formatMoney(f.remainingInterest)} |
+                    ${loan.planDate} → ${loan.endDate}
+                </small>
+            </div>
+        `;
     });
 
     updateSumSummary();
-}
-
-function toggleSumLoan(idx) {
-    if (selectedSumIds.has(idx)) {
-        selectedSumIds.delete(idx);
-    } else {
-        selectedSumIds.add(idx);
-    }
-    renderSumContent();
 }
 
 function updateSumSummary() {
@@ -4274,30 +4392,54 @@ function updateSumSummary() {
 
     let totalPrincipal = 0;
     let totalInterest = 0;
+    let totalOverdue = 0;
+
     let html = '';
 
     selectedSumIds.forEach(idx => {
         const loan = currentUser.loans[idx];
+        const f = getLoanFinancials(loan);
+
+        totalPrincipal += f.principal;
+        totalInterest += f.remainingInterest;
+        totalOverdue += f.overdueFine;
+
         html += `
-      <div>
-        <strong>Amount ${idx + 1}:</strong> ₹${loan.takenAmount}<br>
-        <strong>Interest:</strong> ₹${loan.interest}
-      </div>`;
-        totalPrincipal += loan.takenAmount;
-        totalInterest += loan.interest;
+            <div>
+                <strong>Amount ${idx + 1}:</strong>
+                ${formatMoney(f.principal)}<br>
+                <strong>Remaining Interest:</strong>
+                ${formatMoney(f.remainingInterest)}<br>
+                <strong>Interest Cleared:</strong>
+                ${formatMoney(f.interestCleared)}<br>
+                <strong>Overdue Fine:</strong>
+                ${formatMoney(f.overdueFine)}
+            </div>
+        `;
     });
 
-    html += `
-    <hr>
-    <div class="total">
-      Total Amount: ₹${totalPrincipal}<br>
-      Total Interest: ₹${totalInterest}<br>
-      <strong>Total: ₹${totalPrincipal + totalInterest}</strong>
-    </div>
-  `;
+    const total = totalPrincipal + totalInterest + totalOverdue;
 
-    summaryDiv.innerHTML = html;
+    summaryDiv.innerHTML = `
+        ${html}
+        <hr>
+        <div class="total">
+            Principal: ${formatMoney(totalPrincipal)}<br>
+            Remaining Interest: ${formatMoney(totalInterest)}<br>
+            Overdue Fine: ${formatMoney(totalOverdue)}<br>
+            <strong>Total: ${formatMoney(total)}</strong>
+        </div>
+    `;
 }
+function toggleSumLoan(idx) {
+    if (selectedSumIds.has(idx)) {
+        selectedSumIds.delete(idx);
+    } else {
+        selectedSumIds.add(idx);
+    }
+    renderSumContent();
+}
+
 
   function showPopup(id) {
     const el = document.getElementById(id);
@@ -4308,16 +4450,22 @@ function updateSumSummary() {
     });
   }
 const usersDB = {
-    "Mahesh888*": {
-        name: "Mahesh Muthinti",
+    "17891": {
+        name: "Psvkry",
         coins: 0,
         loans: [
-            { planDate: "28-07-2026", endDate: "28-08-2026", interest: 990, takenAmount: 2000, takenFrom: "MLendings", fineRate: 130 },
-            { planDate: "15-08-2026", endDate: "30-08-2026", interest: 90, takenAmount: 960, takenFrom: "BotPay Fee", fineRate: 130 },
-            { planDate: "11-05-2026", endDate: "10-09-2026", interest: 7355, takenAmount: 29418, takenFrom: "Tomar Juntos", fineRate: 130 },
-            { planDate: "15-08-2026", endDate: "15-09-2026", interest: 4500, takenAmount: 15000, takenFrom: "MLendings", fineRate: 130 },
-            { planDate: "21-07-2026", endDate: "20-09-2026", interest: 1407, takenAmount: 3475, takenFrom: "MLendings & BotPay Fee", fineRate: 130 },
-            { planDate: "24-07-2026", endDate: "23-09-2026", interest: 1170, takenAmount: 2990, takenFrom: "MLendings & BotPay Fee", fineRate: 130 },
+            {
+                planDate: "23-10-2026",
+                endDate: "23-10-2027",
+
+                borrowedBy: "Chinna yerra",
+                takenAmount: 100000,
+
+                monthlyRate: 2.2,
+                interestCleared: 1400,
+
+                fineRate: 130
+            }
         ],
         fragment: "",
         defaultEmote: "https://media.tenor.com/cxAQToMOeykAAAAj/twitch-rpx-syria.gif",
@@ -4329,7 +4477,7 @@ const usersDB = {
         },
         showSpecialNotice: "yes",
         specialNoticeText: "Mr.<strong>Mahesh Muthinti</strong>, your BotPay bot will handle everything for you, including applying and paying your fees. The fees will be added directly to your amount. Simply and easily."
-    },
+    }
 };
 
 
@@ -4370,6 +4518,11 @@ const allowedPasswords = ["9919", "0212","Mahesh888*"];
     document.getElementById('codeInput').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') openPlan();
     });
+    function formatAmount(amount) {
+  return Number(amount || 0).toLocaleString('en-IN', {
+    maximumFractionDigits: 2
+  });
+}
   function hidePopup(id) {
     const el = document.getElementById(id);
     if (!el) return;
