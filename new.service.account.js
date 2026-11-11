@@ -376,7 +376,7 @@ function handleProductClick(name) {
   if (product && product.needsFee) {
     pendingFeeService = name;
     document.getElementById('fee-modal-title').textContent = 'Apply: ' + name;
-    document.getElementById('fee-modal-desc').textContent = product.desc + ' — Enter amount to calculate the service fee.';
+    document.getElementById('fee-modal-desc').textContent = product.desc + '';
     document.getElementById('fee-amount').value = '';
     document.getElementById('fee-result').classList.add('hidden');
     document.getElementById('fee-apply-btn').disabled = true;
@@ -400,7 +400,7 @@ function calculateFee() {
   pendingFeeAmount = amount;
   pendingFeeValue = fee;
 
-  document.getElementById('fee-display').textContent = fee.toLocaleString() + ' (currency)';
+  document.getElementById('fee-display').textContent = fee.toLocaleString() + '$/₹';
   document.getElementById('fee-formula').textContent = product.feeLabel + ' → ' + amount.toLocaleString() + ' × ' + (product.feeRate * 100) + '%';
   document.getElementById('fee-result').classList.remove('hidden');
   document.getElementById('fee-apply-btn').disabled = false;
