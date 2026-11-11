@@ -828,37 +828,56 @@ window.addEventListener('load', function() {
 
 window.showIOSNotification = showIOSNotification;
 
-// ========== HTML/CSS Bar Graph (replaces canvas) ==========
+
 function drawBarGraph() {
   const container = document.getElementById('bars-container');
   const labelsEl = document.getElementById('graph-labels');
+
   if (!container || !labelsEl) return;
 
-  const rates = getInterestHistory(); // last 7 rates (oldest → newest)
-  const minR = 29;
-  const maxR = 36;
-  const range = maxR - minR;
+  const history = JSON.parse(
+    localStorage.getItem('jh_interest_history') || '[]'
+  );
 
-  // Day labels
+  let rates = history.map(h => Number(h.rate));
+
+  if (rates.length === 0) {
+    rates = [todayInterest];
+  }
+
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const history = JSON.parse(localStorage.getItem('jh_interest_history') || '[]');
+
   let labels = history.map(h => {
-    const d = new Date(h.date);
-    return dayNames[d.getDay()];
+    return new Date(h.date).getDay() >= 0
+      ? dayNames[new Date(h.date).getDay()]
+      : '';
   });
 
-  // Ensure we always show 7 slots
+  // Always display 7 bars
   while (rates.length < 7) {
     rates.unshift(rates[0] || todayInterest);
     labels.unshift('–');
   }
+
+  // Dynamic graph scaling
+  const minRate = Math.min(...rates);
+  const maxRate = Math.max(...rates);
+
+  const padding = Math.max((maxRate - minRate) * 0.5, 1);
+
+  const graphMin = minRate - padding;
+  const graphMax = maxRate + padding;
 
   container.innerHTML = '';
   labelsEl.innerHTML = '';
 
   rates.forEach((rate, i) => {
     const isToday = i === rates.length - 1;
-    const heightPct = Math.max(8, ((rate - minR) / range) * 100);
+
+    let heightPct =
+      ((rate - graphMin) / (graphMax - graphMin)) * 100;
+
+    heightPct = Math.max(25, heightPct);
 
     const wrapper = document.createElement('div');
     wrapper.className = 'bar-wrapper';
@@ -869,18 +888,19 @@ function drawBarGraph() {
 
     const value = document.createElement('div');
     value.className = 'bar-value';
-    value.textContent = rate.toFixed(1) + '%';
+    value.textContent = rate.toFixed(2) + '%';
 
     bar.appendChild(value);
     wrapper.appendChild(bar);
     container.appendChild(wrapper);
 
-    // label
     const lab = document.createElement('span');
     lab.textContent = isToday ? 'Today' : labels[i];
+
     labelsEl.appendChild(lab);
   });
 }
+
 
 window.onload = function() {
   let savedTheme = localStorage.getItem('jh_theme') || 'light';
