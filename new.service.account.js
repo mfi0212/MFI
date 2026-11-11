@@ -591,26 +591,46 @@ function showLoanDetails() {
     specialBox.classList.add('hidden');
   }
 
+  
   // Summary
   document.getElementById('sum-username').textContent = user.displayName;
   document.getElementById('sum-premium').textContent = user.premiumType;
 
-  // Total Amount (amount + interest only)
-  const totalAmount = user.loans.reduce((sum, l) => sum + l.amount, 0);
-  const totalInterest = user.loans.reduce((sum, l) => sum + l.interest, 0);
-  const grandTotal = totalAmount + totalInterest;
+ // ===== Summary: Amount + Interest + Overdue =====
 
-  const sumTotalEl = document.getElementById('sum-total');
-  sumTotalEl.innerHTML = `<span style='font-size: 12px;
-    color: var(--text-muted);
-    margin-bottom: 4px;' class="detail-label">Total amount</span><strong  style="font-size: 17px;
-    font-weight: bold;
-    color: var(--dark-blue);
-    line-height: 1.4;">${grandTotal.toLocaleString()}</strong>`;
-  sumTotalEl.style.cursor = 'pointer';
-  sumTotalEl.onclick = function () {
-    openTotalPopup(totalAmount, totalInterest, grandTotal);
-  };
+const totalAmount = user.loans.reduce(
+  (sum, loan) => sum + Number(loan.amount || 0), 0
+);
+
+const totalInterest = user.loans.reduce(
+  (sum, loan) => sum + Number(loan.interest || 0), 0
+);
+
+const totalOverdue = user.loans.reduce((sum, loan) => {
+  const status = computeLoanStatus(loan);
+  return sum + Number(status.overdueFee || 0);
+}, 0);
+
+const grandTotal = totalAmount + totalInterest + totalOverdue;
+
+const sumTotalEl = document.getElementById('sum-total');
+
+sumTotalEl.innerHTML = `
+  <span style="font-size:12px;color:var(--text-muted);margin-bottom:4px;"
+        class="detail-label">
+    Total amount
+  </span>
+
+  <strong style="font-size:17px;font-weight:bold;color:var(--dark-blue);line-height:1.4;">
+    ${grandTotal.toLocaleString()}
+  </strong>
+`;
+
+sumTotalEl.style.cursor = 'pointer';
+
+sumTotalEl.onclick = function() {
+  openTotalPopup();
+};
 
   // Interest rate display
   if (user.fixedInterest != null && user.fixedInterest > 0) {
@@ -642,7 +662,47 @@ function showLoanDetails() {
       reminders.push(`<strong>Amount ${idx + 1}</strong> (${loan.amount.toLocaleString()}) is <strong>overdue</strong> by ${daysDiff} day(s). Total (amount + interest + overdue): <strong>${thisTotal.toLocaleString()}</strong>. Use <strong>Delay It</strong>.`);
     }
   });
+function openTotalPopup() {
 
+  if (!currentUser || !users[currentUser]) return;
+
+  const modal = document.getElementById('total-popup-modal');
+  if (!modal) return;
+
+  const loans = users[currentUser].loans || [];
+
+  // Calculate latest totals every time popup opens
+  const amount = loans.reduce(
+    (sum, loan) => sum + Number(loan.amount || 0), 0
+  );
+
+  const interest = loans.reduce(
+    (sum, loan) => sum + Number(loan.interest || 0), 0
+  );
+
+  const overdue = loans.reduce((sum, loan) => {
+    const status = computeLoanStatus(loan);
+    return sum + Number(status.overdueFee || 0);
+  }, 0);
+
+  const total = amount + interest + overdue;
+
+  // Update popup values
+  document.getElementById('tp-amount').textContent =
+    amount.toLocaleString();
+
+  document.getElementById('tp-interest').textContent =
+    interest.toLocaleString();
+
+  document.getElementById('tp-overdue').textContent =
+    overdue.toLocaleString();
+
+  document.getElementById('tp-total').textContent =
+    total.toLocaleString();
+
+  // Show updated popup
+  modal.classList.add('show');
+}
   const reminderBox = document.getElementById('reminder-banner');
   const reminderMessages = document.getElementById('reminder-messages');
   if (reminders.length > 0) {
@@ -675,8 +735,7 @@ function renderAmountSwitcher(loans, activeIndex) {
 
   const loan = loans[activeIndex];
   const { overdueFee, status, daysInfo, daysDiff } = computeLoanStatus(loan);
-  const totalAI = loan.amount + loan.interest;
-
+const totalAI = loan.amount + loan.interest + overdueFee;
   detailEl.innerHTML = `
     <div class="amount-detail-card">
       <div class="detail-row"><span class="detail-label">Amount</span><span class="detail-value">${loan.amount.toLocaleString()}</span></div>
@@ -686,7 +745,14 @@ function renderAmountSwitcher(loans, activeIndex) {
       <div class="detail-row"><span class="detail-label">Days Left</span><span class="detail-value">${daysInfo}</span></div>
       <div class="detail-row"><span class="detail-label">Status</span><span class="detail-value">${status}</span></div>
       <div class="detail-row ${overdueFee > 0 ? 'overdue' : ''}"><span class="detail-label">Overdue Fee</span><span class="detail-value">${overdueFee > 0 ? overdueFee.toLocaleString() : '0'}</span></div>
-      <div class="detail-row total-row" style='    border-bottom: none;flex-direction: column;'><span class="detail-label">Total amount to return</span><span class="detail-value" style='font-size: 30px;font-weight: 700;'>${totalAI.toLocaleString()}</span></div>
+      <div class="detail-row total-row" style='    border-bottom: none;flex-direction: column;'><span class="detail-label">Total amount to return</span>
+<span class="detail-value" style="font-size: 60px;
+    font-weight: 500;
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 4.5px;
+    line-height: 65px;">
+  ${totalAI.toLocaleString()}
+</span></div>
     </div>
   `;
 }
@@ -696,14 +762,26 @@ function switchAmount(index) {
   renderAmountSwitcher(window._loanList, index);
 }
 
-function openTotalPopup(amount, interest, total) {
+
+function openTotalPopup(amount, interest, overdue, total) {
   const modal = document.getElementById('total-popup-modal');
   if (!modal) return;
-  document.getElementById('tp-amount').textContent = amount.toLocaleString();
-  document.getElementById('tp-interest').textContent = interest.toLocaleString();
-  document.getElementById('tp-total').textContent = total.toLocaleString();
+
+  document.getElementById('tp-amount').textContent =
+    amount.toLocaleString();
+
+  document.getElementById('tp-interest').textContent =
+    interest.toLocaleString();
+
+  document.getElementById('tp-overdue').textContent =
+    overdue.toLocaleString();
+
+  document.getElementById('tp-total').textContent =
+    total.toLocaleString();
+
   modal.classList.add('show');
 }
+
 
 function closeTotalPopup() {
   const modal = document.getElementById('total-popup-modal');
