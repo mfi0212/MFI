@@ -408,6 +408,11 @@ background: var(--dark-blue);
     height: fit-content;
     border-radius: 999px;
     transform: translate(0, -50%);
+    background: var(--bg-soft);
+    backdrop-filter: blur(3px);
+    box-shadow: 0 0 0.5px 0 black;
+    border-left: solid 1px #ffffff1f;
+    border-right: solid 1px #ffffff1f;
 }
 .bottomoptions span {
   font-weight: bold;
@@ -1481,7 +1486,7 @@ width: 40px;
         align-items: center;
 }
 .bottomoptions {
-border: none;
+        border: none;
         padding: 4px;
         align-items: self-end;
         gap: 5px;
@@ -1495,7 +1500,10 @@ border: none;
         position: sticky;
         width: 90%;
         border-radius: 0;
-        max-width: 400px
+        max-width: 400px;
+        background: transparent;
+        backdrop-filter: blur(0);
+        border: none;
 }
 a.rounded-options {
    width: 45px;
