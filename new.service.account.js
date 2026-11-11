@@ -58,36 +58,44 @@ function getTodayDate() {
   return new Date(now.getFullYear(), now.getMonth(), now.getDate());
 }
 
+
 // ========== Status calculation ==========
-// Overdue fee is ONLY applied AFTER the return date is crossed
+// Overdue fee increases by 25 for every day past the return date.
 function computeLoanStatus(loan) {
   const today = getTodayDate();
   const returnDate = parseDate(loan.return);
-  const diff = daysBetween(returnDate, today); // positive = days after return date
+
+  const diff = daysBetween(returnDate, today);
 
   let overdueFee = 0;
   let status = 'Active';
   let daysInfo = '';
 
   if (diff > 0) {
-    // Return date has been crossed → now apply the static overdue fee
-    overdueFee = (loan.overdueFee != null) ? loan.overdueFee : (diff * 25);
+    // Add 25 for every overdue day
+    overdueFee = diff * 25;
+
     status = 'Overdue';
     daysInfo = diff + ' day(s) overdue';
+
   } else if (diff === 0) {
-    // Due today
     status = 'Due Today';
     daysInfo = 'Due today';
+
   } else {
-    // Still time left
     status = 'Active';
-    daysInfo = Math.abs(diff);
+    daysInfo = Math.abs(diff) + ' day(s) left';
   }
 
-  return { overdueFee, status, daysInfo, daysDiff: diff };
+  return {
+    overdueFee,
+    status,
+    daysInfo,
+    daysDiff: diff
+  };
 }
 
-// ========== THEME SYSTEM (FIXED) ==========
+
 function openThemeModal() {
   const customSec = document.getElementById('custom-theme-section');
   if (currentUser && users[currentUser] && users[currentUser].customui === 'yes') {
