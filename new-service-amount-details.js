@@ -15,19 +15,19 @@ const users = {
     specialNoticeText: "",
 
     loans: [
-      { amount: 15000,interest: 2500, borrowed: "08-09-2025", return: "08-10-2028", overdueFee: 0 },
+      { amount: 15000,interest: 2500, borrowed: "08-09-2025", return: "08-10-2026", overdueFee: 50 },
     ],
     access: {
       "Delay It": true,
       "Split Pay": true,
       "Buy Limit": true,
       "Pre-Saver": true,
-      "Lendlink-Mid": false,
-      "Mining bot": false,
-      "BotPay":  false,
-      "Tomar Juntos": false,
-      "BsRora-Atdo":false,
-      "STL": false,
+      "Lendlink-Mid": true,
+      "Mining bot": true,
+      "BotPay":  true,
+      "Tomar Juntos": true,
+      "BsRora-Atdo": true,
+      "STL": true,
     }
   },
 };
