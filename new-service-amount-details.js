@@ -22,12 +22,12 @@ const users = {
       "Split Pay": true,
       "Buy Limit": true,
       "Pre-Saver": true,
-      "Lendlink-Mid": true,
-      "Mining bot": true,
-      "BotPay":  true,
-      "Tomar Juntos": true,
-      "BsRora-Atdo": true,
-      "STL": true,
+      "Lendlink-Mid": false,
+      "Mining bot": false,
+      "BotPay":  false,
+      "Tomar Juntos": false,
+      "BsRora-Atdo":false,
+      "STL": false,
     }
   },
 };
