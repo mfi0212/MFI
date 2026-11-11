@@ -59,33 +59,41 @@ function getTodayDate() {
 }
 
 // ========== Status calculation ==========
-// Overdue fee is ONLY applied AFTER the return date is crossed
+// Overdue fee increases by 25 for every day past the return date.
 function computeLoanStatus(loan) {
   const today = getTodayDate();
   const returnDate = parseDate(loan.return);
-  const diff = daysBetween(returnDate, today); // positive = days after return date
+
+  const diff = daysBetween(returnDate, today);
 
   let overdueFee = 0;
   let status = 'Active';
   let daysInfo = '';
 
   if (diff > 0) {
-    // Return date has been crossed → now apply the static overdue fee
-    overdueFee = (loan.overdueFee != null) ? loan.overdueFee : (diff * 25);
+    // Add 25 for every overdue day
+    overdueFee = diff * 25;
+
     status = 'Overdue';
     daysInfo = diff + ' day(s) overdue';
+
   } else if (diff === 0) {
-    // Due today
     status = 'Due Today';
     daysInfo = 'Due today';
+
   } else {
-    // Still time left
     status = 'Active';
-    daysInfo = Math.abs(diff);
+    daysInfo = Math.abs(diff) + ' day(s) left';
   }
 
-  return { overdueFee, status, daysInfo, daysDiff: diff };
+  return {
+    overdueFee,
+    status,
+    daysInfo,
+    daysDiff: diff
+  };
 }
+
 
 function openThemeModal() {
   const customSec = document.getElementById('custom-theme-section');
@@ -646,12 +654,45 @@ function switchAmount(index) {
   renderAmountSwitcher(window._loanList, index);
 }
 
-function openTotalPopup(amount, interest, total) {
+function openTotalPopup() {
+
+  if (!currentUser || !users[currentUser]) return;
+
   const modal = document.getElementById('total-popup-modal');
   if (!modal) return;
-  document.getElementById('tp-amount').textContent = amount.toLocaleString();
-  document.getElementById('tp-interest').textContent = interest.toLocaleString();
-  document.getElementById('tp-total').textContent = total.toLocaleString();
+
+  const loans = users[currentUser].loans || [];
+
+  // Calculate latest totals every time popup opens
+  const amount = loans.reduce(
+    (sum, loan) => sum + Number(loan.amount || 0), 0
+  );
+
+  const interest = loans.reduce(
+    (sum, loan) => sum + Number(loan.interest || 0), 0
+  );
+
+  const overdue = loans.reduce((sum, loan) => {
+    const status = computeLoanStatus(loan);
+    return sum + Number(status.overdueFee || 0);
+  }, 0);
+
+  const total = amount + interest + overdue;
+
+  // Update popup values
+  document.getElementById('tp-amount').textContent =
+    amount.toLocaleString();
+
+  document.getElementById('tp-interest').textContent =
+    interest.toLocaleString();
+
+  document.getElementById('tp-overdue').textContent =
+    overdue.toLocaleString();
+
+  document.getElementById('tp-total').textContent =
+    total.toLocaleString();
+
+  // Show updated popup
   modal.classList.add('show');
 }
 
