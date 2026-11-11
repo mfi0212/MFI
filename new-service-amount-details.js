@@ -15,7 +15,7 @@ const users = {
     specialNoticeText: "",
 
     loans: [
-      { amount: 15000,interest: 2500, borrowed: "08-09-2025", return: "08-10-2026", overdueFee: 50 },
+      { amount: 15000,interest: 2500, borrowed: "08-09-2025", return: "08-10-2028", overdueFee: 50 },
     ],
     access: {
       "Delay It": true,
