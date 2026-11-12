@@ -3062,6 +3062,21 @@ background: #ffffff;
     <!-- <script src="account.js"></script>
     <script src="amoutdetails.js"></script> -->
     <svg style="position:absolute;width:0;height:0"> </svg>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <script>
     // document.addEventListener('contextmenu', e => e.preventDefault());
 const USD_RATE = 87.85;
@@ -3143,10 +3158,6 @@ function isNoticeClosedFor24Hours() {
 function getLoanFinancials(loan) {
     const principal = Number(loan.takenAmount) || 0;
     const monthlyRate = Number(loan.monthlyRate) || 0;
-   const interestCleared = Math.max(
-  0,
-  Number(loan.interestCleared ?? loan.interestPaid) || 0
-);
 
     const borrowDate = parseDate(loan.planDate);
     const today = new Date();
@@ -3159,14 +3170,23 @@ function getLoanFinancials(loan) {
         Math.floor((today - borrowDate) / 86400000) + 1
     );
 
-    // Monthly rate is a percentage of the original principal.
     const dailyInterest = principal * (monthlyRate / 100) / 30;
+
+    // Full interest calculated
     const totalInterest = dailyInterest * daysElapsed;
 
+    // Interest already paid
+    const interestCleared = Math.max(
+        0,
+        Number(loan.interestCleared) || 0
+    );
+
+    // Interest remaining after payment
     const remainingInterest = Math.max(
-  0,
-  totalInterest - interestCleared
-);
+        0,
+        totalInterest - interestCleared
+    );
+
     const cleanEndDate = loan.endDate.split('(')[0].trim();
     const endDate = parseDate(cleanEndDate);
     endDate.setHours(0, 0, 0, 0);
@@ -3191,6 +3211,8 @@ function getLoanFinancials(loan) {
         totalPayable: principal + remainingInterest + overdueFine
     };
 }
+
+
 function renderUserCustomContent() {
     const offerSec = document.getElementById("customOfferSection");
     const noticeSec = document.getElementById("specialNoticeSection");
@@ -3336,9 +3358,6 @@ function loadUserData() {
                 if (savedLoan.monthlyRate !== undefined)
                     loan.monthlyRate = Number(savedLoan.monthlyRate) || 0;
 
-                if (savedLoan.interestCleared !== undefined)
-                    loan.interestCleared = Number(savedLoan.interestCleared) || 0;
-
                 if (savedLoan.purpose !== undefined)
                     loan.purpose = savedLoan.purpose;
             });
@@ -3366,7 +3385,6 @@ function saveUserData() {
             loans: usersDB[pin].loans.map(loan => ({
                 borrowedBy: loan.borrowedBy || '',
                 monthlyRate: Number(loan.monthlyRate) || 0,
-                interestCleared: Number(loan.interestCleared) || 0,
                 purpose: loan.purpose || ''
             }))
         };
@@ -4657,7 +4675,7 @@ const usersDB = {
                 takenAmount: 100000,
 
                 monthlyRate: 2.2,
-                interestCleared: 0,
+                interestCleared: 1500,
 
                 fineRate: 130
             }
@@ -4708,7 +4726,16 @@ const allowedPasswords = ["9919", "0212","Mahesh888*"];
             }, 1000);
         }
     }
+Object.values(savedData).forEach(user => {
+    if (Array.isArray(user.loans)) {
+        user.loans.forEach(loan => {
+            delete loan.interestCleared;
+            delete loan.interestPaid;
+        });
+    }
+});
 
+localStorage.setItem('userData', JSON.stringify(savedData));
     // Enter key support
     document.getElementById('codeInput').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') openPlan();
@@ -4742,6 +4769,12 @@ function toggleFAQ(button){
       el.style.display = 'none';
     }, 450);
 }</script>
+
+
+
+
+
+
 </svg>
 </body>
 </html>
