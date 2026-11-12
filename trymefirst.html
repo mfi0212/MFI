@@ -10,13 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Balthazar&family=Della+Respira&family=Gantari:ital,wght@0,100..900;1,100..900&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Six+Caps&family=Stack+Sans+Headline:wght@200..700&family=Stalemate&display=swap" rel="stylesheet">
 <style>
 
@@ -151,17 +145,17 @@ body {
 }
 
 #passwordContainer {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	min-height: 100vh;
-	text-align: center;
-	line-height: 15px;
-	position: fixed;
+display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: scroll;
+    text-align: center;
+    line-height: 15px;
     width: 100%;
-	background: transparent;
+    background: transparent;
     animation: fadeSlideleft 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    padding-top: 50px;
 }
 
 ::-webkit-scrollbar {
@@ -1764,6 +1758,79 @@ img.closesymbol {
     box-shadow: inset 0 0 10px #6a6a6a33;
 }
 
+.login-faq{
+    border-top: 1px solid var(--border);
+    margin-top: 0px;
+    padding: 15px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.login-faq-title{
+        text-align: left;
+    color: var(--accent);
+    padding: 0 5px 15px 5px;
+}
+
+.login-faq-subtitle{
+  text-align:center;
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:12px;
+}
+
+/* .faq-item{
+  border-bottom:1px solid var(--border);
+} */
+
+.faq-question{
+padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    background: #8080803d;
+    color: var(--text);
+    border: 0;
+    text-align: left;
+    cursor: pointer;
+    transition: color .15s;
+    margin: 15px 0;
+    border-radius: 999px;
+}
+
+.faq-question:focus{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
+
+.faq-icon{
+  color:var(--accent);
+  font-size:19px;
+  flex-shrink:0;
+}
+.anotherlogin {
+display: flex;
+    margin: 10px 0;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0 25px 0;
+    border-top: 1px solid var(--border);
+}
+.faq-answer{
+      padding: 0 5px 13px;
+    color: var(--muted);
+    line-height: 1.3;
+    text-align: start;
+}
+
+.faq-answer a{
+  color:var(--accent);
+  font-weight:bold;
+}
+
 .leftflow {
 	display: flex;
 	justify-content: center;
@@ -2188,10 +2255,10 @@ div#sum-list {
     <div id="passwordContainer">
         <div class="paswrdcontnt">
             <div class="paswrdtop">
-               <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><path fill="#ffffff" fill-rule="evenodd" d="M5.25 10.055V8a6.75 6.75 0 0 1 13.5 0v2.055c1.115.083 1.84.293 2.371.824C22 11.757 22 13.172 22 16c0 2.828 0 4.243-.879 5.121C20.243 22 18.828 22 16 22H8c-2.828 0-4.243 0-5.121-.879C2 20.243 2 18.828 2 16c0-2.828 0-4.243.879-5.121c.53-.531 1.256-.741 2.371-.824ZM6.75 8a5.25 5.25 0 0 1 10.5 0v2.004C16.867 10 16.451 10 16 10H8c-.452 0-.867 0-1.25.004V8ZM12 13.25a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd"/></svg>
-               <h2 style="    font-weight: 300;
+                <img style="width: 180px;border-radius: 50%;" src="https://mfi0212.github.io/MFI/mfi.aura.logo.png" alt="">
+                <h2 style="    font-weight: 300;
                 font-size: 25px;
-                color: white;">Verify My Account</h2>
+                color: white;">Very specific lend</h2>
                 <span style="position: relative;
     color: gray;
     white-space: nowrap;
@@ -2220,10 +2287,137 @@ div#sum-list {
             </div>
             
         </div>
-        <div class="notice">
-            <img class="closesymbol" src="service-icons/time_icons@2x.png" alt="">
-            <span>You should return the money before the return date, If not additional interest will be charged.</span>
+       <div class="login-faq">
+
+      <h3 class="login-faq-title">Frequently Asked Questions</h3>
+      <div id="faqList">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            Why can't I log in?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            Make sure you enter the correct account password.
+            You can log in only when you have an active borrowing or lending
+            record registered in VSL. If you believe your record is active,
+            contact your coordinator.
+          </div>
         </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            What is VSL?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            VSL is a service from BS&MFI that helps verified account holders
+            view their borrowing and lending records, track interest and
+            maintain personal notes.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            How can I become a lender on VSL?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            To become a lender, your account must first be officially verified
+            by a representative from VSL. Contact your coordinator or a VSL
+            representative for verification and further steps.
+            You cannot become an official lender simply by creating an account.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            How can I become a borrower on VSL?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            To become a borrower, your account must be officially verified
+            by a representative from VSL. Contact your coordinator or a VSL
+            representative to discuss the process and verification.
+            Borrowing access is subject to approval.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            Why does my account need verification?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            Verification helps VSL confirm that the lender or borrower is
+            officially registered. Only accounts verified by an authorised
+            VSL representative can be recognised as official lender or
+            borrower accounts.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            What is VSL Premium+?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            VSL Premium+ provides additional display and customisation
+            features. It unlocks Borrowed By, Interest Rate, Date Borrowed
+            and Days Passed details, allows you to control detail popups,
+            switch between Light and Dark (AMOLED) themes and choose
+            your own main colour.
+          </div>
+        </div>
+
+        
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            How can I activate Premium+?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            Contact your coordinator and request Premium+ activation.
+            Once your Premium+ status is activated on your VSL account,
+            the additional features will become available.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            Why can't I see some account details?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            Some account details are exclusive to Premium+ members.
+            Upgrade to Premium+ to unlock Borrowed By, Interest Rate,
+            Date Borrowed and Days Passed information.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            Who should I contact if my account details are incorrect?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            Contact your coordinator or submit the
+            <a class="faq-issue-opt" style="color: red;" href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form">VSL Issue Form</a> so the issue can be reviewed.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            Who can I contact for support?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            Contact your VSL coordinator or use the Issue Form
+            if you need help with login, account records or other
+            VSL-related problems.
+          </div>
+        </div>
+      </div> 
+    </div>
     </div>
     <div id="userInfoModal" class="modal">
         <style>
@@ -4524,6 +4718,22 @@ const allowedPasswords = ["9919", "0212","Mahesh888*"];
     maximumFractionDigits: 2
   });
 }
+
+function toggleFAQ(button){
+
+  const answer=button.nextElementSibling;
+  const icon=button.querySelector(".faq-icon");
+
+  if(!answer || !icon)return;
+
+  const opening=answer.hidden;
+
+  answer.hidden=!opening;
+  button.setAttribute("aria-expanded",String(opening));
+  icon.textContent=opening?"−":"+";
+
+}
+
   function hidePopup(id) {
     const el = document.getElementById(id);
     if (!el) return;
