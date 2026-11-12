@@ -3518,14 +3518,22 @@ function displayLoanDetails(loan, index) {
                 <div class="leftflow"><h3>Borrowed By</h3></div>
                 <p>${loan.borrowedBy || 'Not specified'}</p>
             </div>
+            <div class="details">
+                <div class="leftflow"><h3>Borrowed Amount</h3></div>
+                <p>${formatMoney(f.principal)}</p>
+            </div>
+            <div class="details">
+                <div class="leftflow" ><h3>Monthly Interest Rate</h3></div>
+                <p>${f.monthlyRate}%</p>
+            </div>
 
             <div class="details">
                 <div class="leftflow"><h3>Borrowed on</h3></div>
                 <p>${loan.planDate}</p>
             </div>
 
-            <div class="details">
-                <div class="leftflow"><h3>Return on</h3></div>
+            <div class="details" style='display: none;'>
+                <div class="leftflow" ><h3>Return on</h3></div>
                 <p style="color:${daysLeft <= 2 ? '#ff1100' :
                     daysLeft <= 6 ? '#ff8c00' : '#00d423'};">
                     ${cleanEndDate}
@@ -3537,17 +3545,10 @@ function displayLoanDetails(loan, index) {
                 <p>${daysElapsed} day${daysElapsed === 1 ? '' : 's'}</p>
             </div>
 
-            <div class="details">
-                <div class="leftflow"><h3>Borrowed Amount</h3></div>
-                <p>${formatMoney(f.principal)}</p>
-            </div>
+            
 
-            <div class="details">
-                <div class="leftflow"><h3>Monthly Interest Rate</h3></div>
-                <p>${f.monthlyRate}%</p>
-            </div>
-
-            <div class="details">
+        
+            <div class="details" style='display: none;'>
                 <div class="leftflow"><h3>Daily Interest</h3></div>
                 <p>${formatMoney(f.dailyInterest)}</p>
             </div>
@@ -3569,7 +3570,7 @@ function displayLoanDetails(loan, index) {
                 <p>${formatMoney(f.remainingInterest)}</p>
             </div>
 
-            <div class="details">
+            <div class="details" style='display: none;'>
                 <div class="leftflow"><h3>Overdue Fine</h3></div>
                 <p style="color:#ff0000;">
                     ${formatMoney(f.overdueFine)}
@@ -4456,11 +4457,14 @@ const usersDB = {
         loans: [
             {
                 planDate: "23-10-2026",
-                endDate: "23-10-2027",
+                endDate: "23-10-2028",
+
                 borrowedBy: "Chinna yerra",
                 takenAmount: 100000,
+
                 monthlyRate: 2.2,
-                interestCleared: 0,
+                interestCleared: 1400,
+
                 fineRate: 130
             }
         ],
