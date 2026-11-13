@@ -7,10 +7,10 @@ const users = {
                 name: "Tony montana",
                 amount: 100000,
                 date: "13/11/2026",
-                rate: 25,
+                rate: 2,
                 splits: [
-                    { member: "phaindra", share: 500000 },
-                    { member: "rama", share: 500000 },
+                    { member: "phaindra", share: 50000 },
+                    { member: "rama", share: 50000 },
                 ]
             },
         ]
