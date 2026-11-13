@@ -227,20 +227,20 @@ i.fa-solid.fa-arrow-right {
 }
 
 .topoptions {
-   display: flex;
+display: flex;
     justify-content: space-between;
     align-items: center;
     position: fixed;
     top: 0px;
-    padding: 20px 10px 50px 10px;
+    padding: 20px 10px 65px 10px;
     width: 100%;
     left: 50%;
     transform: translate(-50%, 0%);
     max-width: 600px;
     z-index: 1;
-    background: linear-gradient(180deg, #000000ba 50%, #00000000);
+    background: linear-gradient(180deg, #000000cc 60%, #00000000);
     gap: 10px;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(4px);
 }
 #submitBtn:active {
 	transform: scale(0.93);
@@ -2128,17 +2128,20 @@ label.loan-option strong {
     overflow-y: scroll;
 }
 div#sum-summary div {
-    margin: 0 0 8px 0;
+margin: 0 0 8px 0;
     padding: 10px;
     border-radius: 20px;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     background: #3f3f3f78;
     font-weight: 500;
     color: #ffffff;
     font-size: 14px;
     transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    width: 100%;
+    gap: 15px;
+    overflow: scroll;
 }
 div#sum-summary div:active {
 	transform: scale(0.94);
@@ -2168,6 +2171,7 @@ div#sum-summary strong {
     color: #919191;
     font-weight: 500;
     font-size: 16px;
+    white-space: nowrap;
 }
 small {
     display: none;
@@ -2243,6 +2247,25 @@ display: flex;
     .viewnotice{
         display: none;
     }
+
+    .top-login-message {
+    position: fixed;
+    color: white;
+    padding: 15px;
+    z-index: 100000;
+    transform: translate(-50%, 0);
+    left: 50%;
+    backdrop-filter: blur(2px);
+    border-radius: 25px;
+    top: 30px;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: rgba(255, 255, 255, 0.09) 0.9px 0.9px 0px 0px inset, rgba(255, 255, 255, 0.09) -0.9px -0.9px 0px 0px inset;
+    background: rgba(24, 24, 24, 0.85);
+    backdrop-filter: blur(2px);
+    width: 85%;
+    max-width: 300px;
+}
 }
 </style>
 <!-- <div class="viewnotice">
@@ -2615,20 +2638,19 @@ display: flex;
 
 .top-login-message {
 position: fixed;
-color: white;
+    color: white;
     padding: 15px;
     z-index: 100000;
-    transform: translate(-50%, 0);
-    left: 50%;
-    backdrop-filter: blur(2px);
     border-radius: 25px;
-    top: 30px;
+    top: 20px;
     justify-content: flex-start;
     align-items: center;
     box-shadow: rgba(255, 255, 255, 0.09) 0.9px 0.9px 0px 0px inset, rgba(255, 255, 255, 0.09) -0.9px -0.9px 0px 0px inset;
     background: rgba(24, 24, 24, 0.85);
     backdrop-filter: blur(2px);
     width: 85%;
+    max-width: 300px;
+    right: 20px;
 }
 
 .login-info {
@@ -2708,9 +2730,8 @@ background: none;
 }
 
 .loan-option.selected {
-background: #ffffff;
+    background: #0500a0f7;
     opacity: 1;
-    color: black;
 }
 
 .loan-option:not(.selected) {
@@ -4693,9 +4714,21 @@ function toggleSumLoan(idx) {
   }
 const usersDB = {
     "17891": {
-        name: "Phanindra yerra",
+        name: "Hemanth",
         coins: 0,
         loans: [
+            {
+                planDate: "23-10-2026",
+                endDate: "23-10-2028",
+
+                borrowedBy: "Chinna yerra",
+                takenAmount: 100000,
+
+                monthlyRate: 2.2,
+                interestCleared: 0,
+
+                fineRate: 130
+            },
             {
                 planDate: "23-10-2026",
                 endDate: "23-10-2028",
