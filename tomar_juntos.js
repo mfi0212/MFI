@@ -4,13 +4,13 @@ const users = {
         poolEntries: [
             {
                 id: 2,
-                name: "",
-                amount: 0,
-                date: "",
+                name: "Tony montana",
+                amount: 100000,
+                date: "13/11/2026",
                 rate: 25,
                 splits: [
-                    { member: "", share: 14 },
-                    { member: "", share: 9 },
+                    { member: "phaindra", share: 500000 },
+                    { member: "rama", share: 500000 },
                 ]
             },
         ]
