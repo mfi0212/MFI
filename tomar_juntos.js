@@ -5,7 +5,7 @@ const users = {
             {
                 id: 2,
                 name: "",
-                amount: ,
+                amount: 0,
                 date: "",
                 rate: 25,
                 splits: [
