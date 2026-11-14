@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BS&MFI Service | Mobile - Verify my account</title>
+    <title>BS&MFI Services | VSL</title>
+<link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Balthazar&family=Della+Respira&family=Gantari:ital,wght@0,100..900;1,100..900&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="https://i.pinimg.com/736x/68/3d/8f/683d8f58c98a715130b1251a9d59d1b9.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -172,18 +172,17 @@ svg {
     height: 25px;
 }
 #userPassword {
-	font-size: 18px;
+	font-size: 19px;
     border-radius: 40px;
     border: none;
-    background: #181818d9;
+    background: #212121d9;
     color: #fff;
-    padding: 10px;
+    padding: 12px;
     text-align: center;
     width: 100%;
     font-weight: 300;
     outline: none;
-    height: 47px;
-    margin: 0 0 20px 0px;
+    margin: 0px 0 20px 0px;
     backdrop-filter: blur(2px);
     transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -201,13 +200,13 @@ svg {
 }
 #submitBtn {
     background-color: blue;
-    font-size: 18px;
+    font-size: 19px;
     border-radius: 40px;
     color: #fff;
-    padding: 10px;
+    padding: 12px;
     width: 100%;
     text-align: center;
-    font-weight: 300;
+    font-weight: 400;
     outline: none;
     filter: drop-shadow(0px 0px 2px black);
     transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -1764,9 +1763,9 @@ img.closesymbol {
 }
 
 .login-faq{
-    border-top: 1px solid var(--border);
+        border-top: 1px solid #8080806b;
     margin-top: 0px;
-    padding: 15px;
+    padding: 15px 10px 0 10px;
     max-width: 600px;
     width: 100%;
 }
@@ -1795,13 +1794,15 @@ padding: 10px 15px;
     align-items: center;
     gap: 15px;
     background: #8080803d;
-    color: var(--text);
+    color: #ffffffcc;
     border: 0;
     text-align: left;
     cursor: pointer;
     transition: color .15s;
     margin: 15px 0;
     border-radius: 999px;
+    font-size: 15px;
+    font-weight: 300;
 }
 
 .faq-question:focus{
@@ -2217,10 +2218,10 @@ div#sum-list {
 }
 
 footer{
-     text-align: center;
+    text-align: center;
     color: var(--text);
     width: 100%;
-    max-width: 550px;
+    max-width: 600px;
 }
 
 .footer-links{
@@ -2283,8 +2284,9 @@ display: flex;
         </div>
     </div> -->
     <div class="locktopoptions">
-        <button onclick="goBack()" class="back-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m363-481 312 312q10 10 10.5 26t-9.5 26q-10 10-26 10t-26-10L321-421q-13-13-18.5-28.5T297-481q0-16 5.5-31.5T321-541l303-303q10-10 25.5-10.5T675-845q10 10 10 26t-10 26L363-481Z"/></svg>
+        <button class="back-btn">
+            <img style="    width: 40px;
+    border-radius: 50%;" src="https://mfi0212.github.io/MFI/mfi.gif" alt="">
         </button>
     </div>
     <div class="topmfilogo">
@@ -2322,7 +2324,7 @@ display: flex;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;">I've an<a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform"><p class="exclamation" style="color: red;
+    gap: 5px;">I've an<a onclick="alert('If you can`t log in, it means you don`t have any active borrows or lends.If you do have an active borrows or lends and still face issues, fill out this form.')" href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform"><p class="exclamation" style="color: red;
     background: #ff000054;
     text-transform: uppercase;
     padding: 5px;
@@ -2410,18 +2412,6 @@ display: flex;
             borrower accounts.
           </div>
         </div>
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            Why can't I see some account details?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            Some account details are exclusive to Premium+ members.
-            Upgrade to Premium+ to unlock Borrowed By, Interest Rate,
-            Date Borrowed and Days Passed information.
-          </div>
-        </div>
-
         <div class="faq-item">
           <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
             Who should I contact if my account details are incorrect?
