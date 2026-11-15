@@ -514,7 +514,7 @@ font-size: 13px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 4px;
+  padding: 12px 4px;    font-size: 15px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -1320,7 +1320,7 @@ svg.backoption {
                                 <button onclick="verifyTakeMoneyPassword()">Check interest now</button>
                             </div>
                             <div id="tm-amount-step" class="hidden">
-                                <p style="margin-bottom:10px;text-align:center;color:var(--text-muted);"> Applicable Interest Rate: <strong id="tm-today-rate" style="color:var(--text-title);"></strong> </p>
+                                <p style="margin-bottom:10px;text-align:center;color:var(--text-muted);"> Applicable Interest Rate: <strong id="tm-today-rate" style="color:var(--dark-blue);"></strong> </p>
                                 <input type="number" id="tm-amount" placeholder="Enter amount you want to take" min="100">
                                 <button onclick="calculateTakeMoneyInterest()">Check Interest</button>
                                 <div id="tm-result" class="interest-result hidden">
