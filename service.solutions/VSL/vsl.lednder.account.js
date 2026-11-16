@@ -1,4 +1,4 @@
-document.addEventListener("contextmenu", event => event.preventDefault());
+// document.addEventListener("contextmenu", event => event.preventDefault());
 const USERS = [
   {
     id: "psvkry",
@@ -28,8 +28,8 @@ const USERS = [
     ]
   },
   {
-    id: "Psvkry",
-    name: "Psvkry",
+    id: "BS Owner",
+    name: "Phanindra",
     password: "0212",
     premium: true,
 
@@ -44,7 +44,23 @@ const USERS = [
        {
         text: "lend money",
         href: "https://mfi0212.github.io/MFI/service.solutions/VSL/lender.lending.clients"
-      }
+      },
+       {
+        text: "Bont Int",
+        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/bondint"
+      },
+       {
+        text: "Interest Split",
+        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/interest.split"
+      },
+       {
+        text: "VSL INAP",
+        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/vsl.lender.account.in.ap"
+      },
+       {
+        text: "Mini Lends",
+        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/mini.lends"
+      },
     ],
 
     entries: [
