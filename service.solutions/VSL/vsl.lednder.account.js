@@ -66,8 +66,8 @@ const USERS = [
     entries: [
       {
         borrowedBy: "Psvkry",
-        amount: 50000,
-        interest: 3,
+        amount: 35000,
+        interest: 1.5,
         takenDate: "2026-10-01",
         interestPaid: 0
       },
@@ -76,6 +76,20 @@ const USERS = [
         amount: 50000,
         interest: 2.5,
         takenDate: "2026-10-23",
+        interestPaid: 0
+      },
+      {
+        borrowedBy: "Psvkry",
+        amount: 45000,
+        interest: 2.5,
+        takenDate: "2026-03-23",
+        interestPaid: 0
+      },
+      {
+        borrowedBy: "Psvkry",
+        amount: 20000,
+        interest: 2,
+        takenDate: "2026-06-23",
         interestPaid: 0
       }
     ]
