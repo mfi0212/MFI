@@ -29,8 +29,8 @@ const USERS = [
   },
   {
     id: "BS Owner",
-    name: "Phanindra",
-    password: "0212",
+    name: "Phanindra Yerra",
+    password: "040212",
     premium: true,
 
     topBanner: [
