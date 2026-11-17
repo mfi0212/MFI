@@ -1,1432 +1,1162 @@
-// document.addEventListener('contextmenu', e => e.preventDefault());
-const USD_RATE = 87.85;
-let currentCurrency = localStorage.getItem('currency') || '₹';
-let currentUser = null;
-let currentLoanIndex = null;
-let calendarMonth = new Date();
-const PINNED_KEY = 'pinnedView';
-let pendingLink = null;
-let filteredLoans = [];
-let hiddenLoans = new Set();
-let loanChart = null;
+document.addEventListener('contextmenu', e => e.preventDefault());
+function getTodayInterest() {
+  const today = new Date().toDateString();
+  let history = JSON.parse(localStorage.getItem('jh_interest_history') || '[]');
+  const existing = history.find(h => h.date === today);
+  if (existing) {
+    return existing.rate;
+  }
+  let hash = 0;
+  for (let i = 0; i < today.length; i++) {
+    hash = today.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const rate = +(18 + (Math.abs(hash) % 500) / 100).toFixed(2);
 
+  history.push({ date: today, rate });
+  if (history.length > 7) {
+    history = history.slice(-7);
+  }
+  localStorage.setItem('jh_interest_history', JSON.stringify(history));
+  return rate;
+}
+const todayInterest = getTodayInterest();
+
+function getInterestHistory() {
+  const history = JSON.parse(localStorage.getItem('jh_interest_history') || '[]');
+  if (history.length === 0) {
+    return [todayInterest];
+  }
+  return history.map(h => h.rate);
+}
+
+function getEffectiveInterest() {
+  if (currentUser && users[currentUser]) {
+    const fixed = users[currentUser].fixedInterest;
+    // Only use fixed rate if it exists AND is greater than 0
+    if (fixed != null && fixed > 0) {
+      return fixed;
+    }
+  }
+  return todayInterest;
+}
+
+// ========== Date helpers (DD-MM-YYYY) ==========
 function parseDate(str) {
-    const [dd, mm, yyyy] = str.split("-").map(Number);
-    return new Date(yyyy, mm - 1, dd);
+  const parts = str.split('-');
+  return new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
 }
 
-function formatDateDDMMYYYY(date) {
-    const d = String(date.getDate()).padStart(2, '0');
-    const m = String(date.getMonth() + 1).padStart(2, '0');
-    const y = date.getFullYear();
-    return `${d}-${m}-${y}`;
+function daysBetween(d1, d2) {
+  const oneDay = 24 * 60 * 60 * 1000;
+  const utc1 = Date.UTC(d1.getFullYear(), d1.getMonth(), d1.getDate());
+  const utc2 = Date.UTC(d2.getFullYear(), d2.getMonth(), d2.getDate());
+  return Math.floor((utc2 - utc1) / oneDay);
 }
 
-function formatMoney(amount) {
-    const val = currentCurrency === '$' ? (amount / USD_RATE).toFixed(2) : amount;
-    const symbol = currentCurrency === '₹' ? '₹' : '$';
-    return `${symbol}${parseFloat(val).toLocaleString()}`;
+function getTodayDate() {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate());
 }
 
-// ====================== EXTRA-INFO HELPERS ======================
 
-function calculateDaysLeft(endDateStr) {
-    const clean = endDateStr.split('(')[0].trim();
-    const end = new Date(clean.split('-').reverse().join('-'));
-    const now = new Date();
-    now.setHours(0, 0, 0, 0);
-    return Math.ceil((end - now) / 86400000);
+// ========== Status calculation ==========
+// Overdue fee increases by 25 for every day past the return date.
+function computeLoanStatus(loan) {
+  const today = getTodayDate();
+  const returnDate = parseDate(loan.return);
+
+  const diff = daysBetween(returnDate, today);
+
+  let overdueFee = 0;
+  let status = 'Active';
+  let daysInfo = '';
+
+  if (diff > 0) {
+    // Add 25 for every overdue day
+    overdueFee = diff * 25;
+
+    status = 'Overdue';
+    daysInfo = diff + ' day(s) overdue';
+
+  } else if (diff === 0) {
+    status = 'Due Today';
+    daysInfo = 'Due today';
+
+  } else {
+    status = 'Active';
+    daysInfo = Math.abs(diff) + ' day(s) left';
+  }
+
+  return {
+    overdueFee,
+    status,
+    daysInfo,
+    daysDiff: diff
+  };
 }
 
-function getDaysColor(daysLeft) {
-    if (daysLeft <= 2) return '#ff1100';
-    if (daysLeft <= 6) return '#ff8c00';
-    return '#00d423';
+
+function openThemeModal() {
+  const customSec = document.getElementById('custom-theme-section');
+  if (currentUser && users[currentUser] && users[currentUser].customui === 'yes') {
+    customSec.classList.remove('hidden');
+  } else {
+    customSec.classList.add('hidden');
+  }
+
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  document.querySelectorAll('.theme-option').forEach(el => {
+    el.classList.toggle('active', el.getAttribute('data-theme') === current);
+  });
+
+  const savedColor = localStorage.getItem('jh_custom_color');
+  document.querySelectorAll('.custom-color-btn').forEach(el => {
+    el.classList.toggle('active', el.getAttribute('data-color') === savedColor);
+  });
+  if (savedColor) {
+    document.getElementById('custom-color-picker').value = savedColor;
+  }
+
+  document.getElementById('theme-modal').classList.add('show');
 }
 
-function getDaysLeftText(daysLeft) {
-    if (daysLeft < 0) return `Overdue ${Math.abs(daysLeft)}d`;
-    if (daysLeft === 0) return "Due Today";
-    if (daysLeft === 1) return "Due Tomorrow";
-    return `${daysLeft} days`;
+function closeThemeModal() {
+  document.getElementById('theme-modal').classList.remove('show');
 }
 
-function getPulseDuration(daysLeft) {
-    if (daysLeft <= 1) return 0.3;
-    if (daysLeft <= 2) return 0.5;
-    if (daysLeft <= 4) return 1;
-    if (daysLeft <= 7) return 1.5;
-    return 2.5;
-}
-// ====================== CUSTOM CONTENT + NOTICE (24h close) ======================
-// ====================== CUSTOM CONTENT + NOTICE (24h close) ======================
-
-function getClosedNoticeKey() {
-    const pin = localStorage.getItem('lastPassword') || 'unknown';
-    return `closedSpecialNotice_${pin}`;
+function selectTheme(themeName) {
+  // Keep any existing custom accent color when switching base themes
+  applyTheme(themeName);
+  closeThemeModal();
 }
 
-function isNoticeClosedFor24Hours() {
-    const closedAt = localStorage.getItem(getClosedNoticeKey());
-    if (!closedAt) return false;               // never closed → show
+function selectCustomColor(hex) {
+  if (!currentUser || !users[currentUser] || users[currentUser].customui !== 'yes') {
+    alert('Custom themes are only available for users with custom UI access.');
+    return;
+  }
 
-    const elapsed = Date.now() - parseInt(closedAt, 10);
-    const twentyFourHours = 24 * 60 * 60 * 1000; // 86400000 ms
+  localStorage.setItem('jh_custom_color', hex);
 
-    return elapsed < twentyFourHours;          // true = still hidden
+  // Apply the color on the CURRENT base theme (Light / Dark / Telegram)
+  let base = document.documentElement.getAttribute('data-theme') || 'light';
+  if (base === 'custom') base = 'dark'; // migrate old "custom" → dark
+
+  applyTheme(base, hex);
+
+  document.querySelectorAll('.custom-color-btn').forEach(el => {
+    el.classList.toggle('active', el.getAttribute('data-color') === hex);
+  });
+  document.getElementById('custom-color-picker').value = hex;
+  closeThemeModal();
 }
 
-function renderUserCustomContent() {
-    const offerSec = document.getElementById("customOfferSection");
-    const noticeSec = document.getElementById("specialNoticeSection");
-    if (!offerSec || !noticeSec || !currentUser) return;
+function applyTheme(themeName, customColor) {
+  const html = document.documentElement;
 
-    // ---- Offer image ----
-    if (currentUser.showCustomContent === "yes" && currentUser.customContent) {
-        const c = currentUser.customContent;
-        const img = document.getElementById("customOfferImg");
-        const link = document.getElementById("customOfferLink");
+  // Never keep the old "custom" data-theme
+  let base = (themeName === 'custom') ? 'dark' : themeName;
+  html.setAttribute('data-theme', base);
 
-        if (c.type === "image" && img && link) {
-            img.src = c.value;
-            link.href = c.url || "#";
-            offerSec.style.display = "block";
-        } else {
-            offerSec.style.display = "none";
-        }
-    } else {
-        offerSec.style.display = "none";
-    }
+  const color = customColor || localStorage.getItem('jh_custom_color');
 
-    // ---- Special notice (HTML allowed) – respect 24h hide ----
-    if (currentUser.showSpecialNotice === "yes" &&
-        currentUser.specialNoticeText &&
-        !isNoticeClosedFor24Hours()) {
+  if (color) {
+    // Custom accent works on Light, Dark and Telegram
+    html.style.setProperty('--dark-blue', color);
+    html.style.setProperty('--text-title', color);
+    html.style.setProperty('--border-strong', color);
+    html.style.setProperty('--black-swan', color);
+  } else {
+    html.style.removeProperty('--dark-blue');
+    html.style.removeProperty('--text-title');
+    html.style.removeProperty('--border-strong');
+    html.style.removeProperty('--black-swan');
+  }
 
-        const txt = document.getElementById("specialNoticeText");
-        if (txt) {
-            // Put the text inside the <marquee>
-            txt.innerHTML = currentUser.specialNoticeText;
-            noticeSec.style.display = "block";
-        }
-    } else {
-        noticeSec.style.display = "none";
-    }
+  // Always save the base theme
+  localStorage.setItem('jh_theme', base);
+
+  if (color) {
+    localStorage.setItem('jh_custom_color', color);
+  }
+
+  const labels = {
+    light: 'Light',
+    dark: 'Dark Black',
+    telegram: 'Telegram'
+  };
+  const accentNote = color ? ' + Custom' : '';
+  document.getElementById('theme-btn').textContent =
+    'Themes (' + (labels[base] || base) + accentNote + ')';
+
+  drawBarGraph();
 }
 
-// Close button – hide for 24 hours (only one handler needed)
-document.addEventListener("click", function (e) {
-    if (e.target && (e.target.id === "closeSpecialNotice" || e.target.closest("#closeSpecialNotice"))) {
-        const noticeSec = document.getElementById("specialNoticeSection");
-        if (noticeSec) {
-            noticeSec.style.display = "none";
-            localStorage.setItem(getClosedNoticeKey(), Date.now().toString());
-        }
-    }
-});
-// Close button – hide for 24 hours
-document.addEventListener("click", function (e) {
-    if (e.target && e.target.id === "closeSpecialNotice") {
-        const noticeSec = document.getElementById("specialNoticeSection");
-        if (noticeSec) {
-            noticeSec.style.display = "none";
-            // store current timestamp
-            localStorage.setItem(getClosedNoticeKey(), Date.now().toString());
-        }
-    }
-});
+function enforceCustomUIAccess() {
+  const hasCustom = currentUser && users[currentUser] && users[currentUser].customui === 'yes';
+  const storedColor = localStorage.getItem('jh_custom_color');
 
-// Close button handler (attach once)
-document.addEventListener("click", function (e) {
-    if (e.target && e.target.id === "closeSpecialNotice") {
-        const noticeSec = document.getElementById("specialNoticeSection");
-        if (noticeSec) {
-            noticeSec.style.display = "none";
-            // remember that this user closed it
-            localStorage.setItem(getClosedNoticeKey(), "yes");
-        }
-    }
-});
-function renderAmountButtons() {
-    const container = document.getElementById("amountButtons");
-    container.innerHTML = "";
+  // Only remove custom color if user does NOT have permission
+  // Base theme (light/dark/telegram) is NEVER deleted
+  if (!hasCustom && storedColor) {
+    localStorage.removeItem('jh_custom_color');
 
-    filteredLoans.forEach((loan, i) => {
-        const originalIndex = currentUser.loans.indexOf(loan);
-        const daysLeft = calculateDaysLeft(loan.endDate);
-
-        const dotColor = daysLeft <= 2 ? '#ff1100' :
-            daysLeft <= 6 ? '#ff8c00' : '#00d423';
-
-        const animationDuration = getPulseDuration(daysLeft);
-
-        const btn = document.createElement("button");
-        btn.className = "amount-btn";
-
-        btn.innerHTML = `
-            <div class="extra-info" 
-                 style="background-color: ${dotColor}; 
-                        animation-duration: ${animationDuration}s;">
-            </div>
-            <div class="amounts-section">
-                ${formatMoney(loan.takenAmount)}
-                <div class="purpose-tag">${loan.purpose || 'Purpose'}</div>
-            </div>
-        `;
-
-        btn.onclick = () => {
-            displayLoanDetails(loan, originalIndex);
-            switchView('list', false);
-        };
-
-        container.appendChild(btn);
-    });
+    // Re-apply current base theme without the custom color
+    let base = localStorage.getItem('jh_theme') || 'light';
+    if (base === 'custom') base = 'dark';
+    applyTheme(base);
+  }
 }
 
-function updateCoinsDisplay() {
-    if (!currentUser) return;
+// ========== Take Money ==========
+function verifyTakeMoneyPassword() {
+  const pass = document.getElementById('tm-password').value;
+  if (pass !== '') {
+    alert('');
+    return;
+  }
+  document.getElementById('tm-password-step').classList.add('hidden');
+  document.getElementById('tm-amount-step').classList.remove('hidden');
 
-    const coinSection = document.getElementById('coinSection');
-    const coinsDisplay = document.getElementById('userCoinsDisplay');
-    const coinsDisplay2 = document.getElementById('userCoinsDisplays');
-
-    if (!coinSection) return;
-
-    if (currentUser.coins > 0) {
-        coinSection.style.display = '';
-        if (coinsDisplay) coinsDisplay.textContent = currentUser.coins.toLocaleString();
-        if (coinsDisplay2) coinsDisplay2.textContent = currentUser.coins.toLocaleString();
-    } else {
-        coinSection.style.display = 'none';
-    }
+  const rate = getEffectiveInterest();
+  const isFixed = currentUser && users[currentUser] && users[currentUser].fixedInterest != null;
+  document.getElementById('tm-today-rate').textContent = rate + '%' + (isFixed ? ' (Your Fixed Rate)' : ' (Today\'s Rate)');
 }
 
-function loadUserData() {
-    const savedData = JSON.parse(localStorage.getItem('userData') || '{}');
-    for (let pin in usersDB) {
-        const saved = savedData[pin];
-        if (saved) {
-            usersDB[pin].links = saved.links || [];
-            usersDB[pin].emote = saved.emote || usersDB[pin].emote;
-            if (saved.purposes) {
-                saved.purposes.forEach((p, i) => {
-                    if (usersDB[pin].loans[i]) usersDB[pin].loans[i].purpose = p;
-                });
-            }
-        }
-    }
+function calculateTakeMoneyInterest() {
+  const amount = parseFloat(document.getElementById('tm-amount').value);
+  if (!amount || amount < 100) {
+    alert('Enter amount (minimum 100)');
+    return;
+  }
+  const rate = getEffectiveInterest();
+  const interestAmount = amount * (rate / 100);
+  const total = amount + interestAmount;
+
+  document.getElementById('tm-res-amount').textContent = amount.toLocaleString();
+  document.getElementById('tm-res-interest').textContent = rate + '%  →  ' + interestAmount.toFixed(2);
+  document.getElementById('tm-res-total').textContent = total.toFixed(2);
+  document.getElementById('tm-result').classList.remove('hidden');
 }
 
-function saveUserData() {
-    const data = {};
-    for (let pin in usersDB) {
-        data[pin] = {
-            links: usersDB[pin].links,
-            emote: usersDB[pin].emote,
-            purposes: usersDB[pin].loans.map(l => l.purpose || "")
-        };
-    }
-    localStorage.setItem('userData', JSON.stringify(data));
+function applyTakeMoney() {
+  const amount = document.getElementById('tm-amount').value;
+  const rate = getEffectiveInterest();
+
+  openServiceForm("Take Money");
+
+  document.getElementById('apply-msg').innerHTML = 
+    `You have applied for <strong>Take Money</strong><br>
+     Amount: ${Number(amount).toLocaleString()}<br>
+     Interest Rate: ${rate}%<br>
+     The application form has been opened in a new tab.`;
+  document.getElementById('apply-modal').classList.add('show');
 }
 
-// === Rest of functions ===
+const formLinks = {
+  "Delay It":       "https://forms.gle/cAz9REnqvGtcEhcT7",
+  "Split Pay":      "https://forms.gle/7rj2DSnZTQg5TX468",
+  "Buy Limit":      "https://forms.gle/UjVvfCS6D6UoxyQW8",
+  "Pre-Saver":      "https://forms.gle/3Z6eqPk6SmEDYZCu8",
+  "STL":            "https://mfi0212.github.io/MFI/1.5.days",
+  "BotPay":         "https://mfi0212.github.io/MFI/BsRora/payment.bot",
+  "BsRora-Atdo":    "https://mfi0212.github.io/MFI/BsRora/bsrora.atdo",
+  "Mining bot":     "https://mfi0212.github.io/MFI/BsRora/miningbot",
+  "Tomar Juntos":   "https://mfi0212.github.io/MFI/multi.mem.acc",
+  "Take Money":     "https://forms.gle/nLBmBgt2QEeYuaNa9",
+};
 
-function checkAndShowRepaymentReminders() {
-    if (!currentUser || !currentUser.loans?.length) return;
-
-    const now = new Date();
-    now.setHours(0, 0, 0, 0);
-
-    const remindersByDueDate = {};
-
-    currentUser.loans.forEach((loan, idx) => {
-        const end = parseDate(loan.endDate);
-        end.setHours(0, 0, 0, 0);
-
-        const reminderStartDate = new Date(end);
-        reminderStartDate.setDate(end.getDate() - 3);
-
-        if (now >= reminderStartDate) {
-            const dueStr = loan.endDate.split('(')[0].trim();
-
-            if (!remindersByDueDate[dueStr]) {
-                remindersByDueDate[dueStr] = {
-                    dueDate: dueStr,
-                    totalAmount: 0,
-                    count: 0
-                };
-            }
-            remindersByDueDate[dueStr].totalAmount += loan.takenAmount + loan.interest;
-            remindersByDueDate[dueStr].count++;
-        }
-    });
-
-    Object.values(remindersByDueDate).forEach(rem => {
-        showRepaymentReminderPopup(rem);
-    });
+function openServiceForm(serviceName) {
+  const url = formLinks[serviceName];
+  if (url) {
+    window.open(url, "_self");
+  }
 }
 
-function showRepaymentReminderPopup(reminder) {
-    const { dueDate, totalAmount, count } = reminder;
-    const name = currentUser.name.split(" ")[0] || currentUser.name;
-    const loansText = count > 2 ? `(${count} loans)` : '';
+function applyProduct(name) {
+  openServiceForm(name);
 
-    const modal = document.createElement("div");
-    modal.className = "reminder-modal";
-    modal.innerHTML = `
-        <div class="reminder-content">
-            <div class="reminder-header">
-                <button class="reminder-close-btn" title="Close reminder"><img class="closesymbol" src="service-icons/close_icon.png" alt=""></button>
-            </div>
-            <img style="width: 150px;" src="service-icons/remineder_logo_pop_up.gif" alt="">
-            <div class="iconsinfo" style='width: 85%; margin: 20px 0;'>
-                <div class="icon">
-                    <svg style="height: 23px; width: 23px; margin: 0px 0 -2px 0;" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path d="M14.648,5.493c.873-.701,1.772-1.643,2.228-2.789,.238-.598,.161-1.277-.205-1.816-.377-.556-1.002-.888-1.671-.888h-6c-.669,0-1.294,.332-1.671,.888-.366,.539-.442,1.218-.205,1.816,.456,1.145,1.355,2.088,2.228,2.789C4.696,7.221,1,13.159,1,18c0,3.309,2.691,6,6,6h10c3.309,0,6-2.691,6-6,0-4.841-3.696-10.779-8.352-12.507Zm.369-3.528c-.516,1.297-2.094,2.393-3.019,2.91-.923-.513-2.495-1.6-2.999-2.875l6.018-.035Zm1.982,20.035H7c-2.206,0-4-1.794-4-4,0-5.243,4.71-11,9-11s9,5.757,9,11c0,2.206-1.794,4-4,4Zm-5,0c-.552,0-1-.448-1-1v-1h-.268c-1.068,0-2.063-.574-2.598-1.499-.276-.478-.113-1.089,.365-1.366,.476-.277,1.089-.114,1.366,.365,.178,.308,.511,.5,.867,.5h2.268c.551,0,1-.449,1-1,0-.378-.271-.698-.644-.76l-3.042-.507c-1.341-.223-2.315-1.373-2.315-2.733,0-1.654,1.346-3,3-3v-1c0-.552,.448-1,1-1s1,.448,1,1v1h.268c1.067,0,2.063,.575,2.598,1.5,.276,.478,.113,1.089-.365,1.366-.477,.277-1.089,.114-1.366-.365-.179-.309-.511-.5-.867-.5h-2.268c-.551,0-1,.449-1,1,0,.378,.271,.698,.644,.76l3.042,.507c1.341,.223,2.315,1.373,2.315,2.733,0,1.654-1.346,3-3,3v1c0,.552-.448,1-1,1Z"/></svg>
-                    <div class="iconname">Borrowed Amount</div>
-                </div>
-                <div class="icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path d="M19,2h-1V1c0-.552-.448-1-1-1s-1,.448-1,1v1H8V1c0-.552-.448-1-1-1s-1,.448-1,1v1h-1C2.243,2,0,4.243,0,7v12c0,2.757,2.243,5,5,5h14c2.757,0,5-2.243,5-5V7c0-2.757-2.243-5-5-5ZM5,4h14c1.654,0,3,1.346,3,3v1H2v-1c0-1.654,1.346-3,3-3Zm14,18H5c-1.654,0-3-1.346-3-3V10H22v9c0,1.654-1.346,3-3,3Zm-3-6c0,.552-.448,1-1,1h-6c-.552,0-1-.448-1-1s.448-1,1-1h6c.552,0,1,.448,1,1Z"/></svg>
-                    <div class="iconname">Return date</div>
-                </div>
-            </div>
-            <div class="reminder-body">
-                <p>Mr. ${name} you have <strong>${formatMoney(totalAmount)}</strong> to return on <strong>${dueDate}</strong>${loansText}. Return before the end date or extra charges will be added.</p>
-                <p>If you have to extend do so on today only you can't extend on return date.</p>
-            </div>
-            <div class="reminder-actions">
-                <button class="reminder-btn delay" data-action="delay"><a href="https://mfi0212.github.io/swan/offer/solution"><img class="closesymbol" src="service-icons/visit_icon.png" alt=""> Visit Solutions</a></button>
-            </div>
+  // No popup for direct bot/service pages
+  const noPopup = ["BotPay", "BsRora-Atdo", "Mining bot"];
+  if (noPopup.includes(name)) {
+    return;
+  }
+
+  document.getElementById('apply-msg').innerHTML = 
+    `You have successfully applied for <strong>${name}</strong>.<br>
+     ${formLinks[name] ? "The application form has been opened in a new tab." : "Our team will contact you shortly."}`;
+  document.getElementById('apply-modal').classList.add('show');
+}
+
+let currentUser = null;
+let pendingFeeService = null;
+let pendingFeeAmount = 0;
+let pendingFeeValue = 0;
+
+const allProducts = [
+  { name: "Delay It",      icon: "⏳", desc: "Extend repayment date", needsFee: true,  feeRate: 0.065, feeLabel: "Pay dee to continue" },
+  { name: "Split Pay",     icon: "📅", desc: "Split payment into smaller amounts", needsFee: true,  feeRate: 0.075, feeLabel: "Pay fee to continue" },
+  { name: "Buy Limit",     icon: "📈", desc: "Increase your borrowing limit", needsFee: true,  feeRate: 0.08, feeLabel: "Pay fee to continue" },
+  { name: "Pre-Saver",     icon: "💰", desc: "Save first, enjoy better rates", needsFee: false },
+  { name: "Mining bot",    icon: "⛏️", desc: "Automated mining bot", needsFee: false },
+  { name: "BotPay",        icon: "💳", desc: "Fast payment solution", needsFee: false },
+  { name: "BsRora-Atdo",   icon: "⚡", desc: "Advanced automated system", needsFee: false },
+  { name: "Tomar Juntos",  icon: "🧑‍🤝‍🧑", desc: "Borrow combine", needsFee: false },
+  { name: "STL",           icon: "💹", desc: "Short Term Loans", needsFee: false },
+];
+
+function renderProducts() {
+  const container = document.getElementById('products-container');
+
+  if (!currentUser) {
+    container.innerHTML = `
+      <div class="login-required">
+        <h3>🔒 Login Required</h3>
+        <p>Login to your account to view the services you have access to.</p>
+        <button class="btn" style="margin-top:16px;" onclick="showLogin()">Go to Login</button>
+      </div>
+    `;
+    return;
+  }
+
+  const user = users[currentUser];
+  const accessible = allProducts.filter(p => user.access[p.name] === true);
+
+  if (accessible.length === 0) {
+    container.innerHTML = `<div class="login-required"><p>You currently have no services available.</p></div>`;
+    return;
+  }
+
+  let html = `<p style="margin-bottom:14px;color:var(--text-muted);">
+    Showing <strong>${accessible.length}</strong> service(s) available for <strong>${user.displayName}</strong>
+  </p>
+  <div class="product-grid">`;
+
+  accessible.forEach(p => {
+    html += `
+      <div class="product-card">
+        <div class="icon">${p.icon}</div>
+        <div class="access-badge access-yes">✓ Access Granted</div>
+        <h3>${p.name}</h3>
+        <p>${p.desc}</p>
+        <button class="btn" onclick="handleProductClick('${p.name}')">Apply</button>
+      </div>
+    `;
+  });
+
+  html += `</div>`;
+
+  const locked = allProducts.filter(p => !user.access[p.name]);
+  if (locked.length > 0) {
+    html += `<p style="margin:20px 0 10px;color:var(--text-muted);font-size:13px;">Services you do not have access to:</p>
+    <div class="product-grid" style="opacity:0.6;">`;
+    locked.forEach(p => {
+      html += `
+        <div class="product-card">
+          <div class="icon">${p.icon}</div>
+          <div class="access-badge access-no">✗ No Access</div>
+          <h3>${p.name}</h3>
+          <p>${p.desc}</p>
+          <button class="btn btn-disabled" disabled>Locked</button>
         </div>
-    `;
-
-    modal.querySelector('.reminder-close-btn').onclick = () => modal.remove();
-    document.body.appendChild(modal);
-}
-
-document.getElementById("submitBtn").onclick = () => {
-    const input = document.getElementById("userPassword").value.trim();
-    const user = usersDB[input];
-    const err = document.getElementById("error-message");
-
-    if (user) {
-        localStorage.setItem('lastPassword', input);
-        currentUser = user;
-        filteredLoans = [...user.loans];
-
-        document.getElementById("userName").textContent = user.name;
-
-        const emoteImg = document.getElementById("userEmote");
-        const afterNameContainer = document.querySelector(".afternamecontent") ||
-            document.getElementById("afternamecontent");
-
-        if (emoteImg && afterNameContainer) {
-            const defaultEmoteSrc = "service-icons/unpremium_logo.gif";
-            const emoteSrc = user?.emote || defaultEmoteSrc;
-
-            if (emoteSrc) {
-                emoteImg.src = emoteSrc;
-                emoteImg.style.display = "block";
-                afterNameContainer.style.display = "block";
-
-                emoteImg.onerror = () => {
-                    console.warn("Failed to load emote:", emoteSrc);
-                    if (emoteSrc !== defaultEmoteSrc) {
-                        emoteImg.src = defaultEmoteSrc;
-                    } else {
-                        afterNameContainer.style.display = "none";
-                    }
-                };
-            } else {
-                afterNameContainer.style.display = "none";
-            }
-        }
-
-        // Fragment logic
-        const fragmentImg = document.getElementById("fragmentBadge");
-        if (fragmentImg) {
-            if (user.fragment) {
-                fragmentImg.src = user.fragment;
-                fragmentImg.style.display = "inline-block";
-            } else {
-                fragmentImg.style.display = "none";
-            }
-        }
-
-        updateCoinsDisplay();
-        renderLinks();
-        renderAmountButtons();
-        if (user.loans.length) displayLoanDetails(user.loans[0], 0);
-
-        document.getElementById("userInfoModal").style.display = "block";
-        document.getElementById("passwordContainer").style.display = "none";
-        err.textContent = "";
-
-        const pinned = localStorage.getItem(PINNED_KEY) || 'list';
-        switchView(pinned, false);
-        updateNavActive(pinned);
-
-        showTopLoginMessage();
-        setTimeout(checkAndShowRepaymentReminders, 1400);
-    } else {
-        err.textContent = "Invalid password!";
-    }
-};
-
-function showTopLoginMessage() {
-    const msg = document.getElementById('topLoginMessage');
-    const nameEl = document.getElementById('topUserName');
-    const emoteEl = document.getElementById('topUserEmote');
-
-    nameEl.textContent = currentUser.name;
-    emoteEl.src = currentUser.emote || currentUser.defaultEmote || 'https://via.placeholder.com/45';
-
-    msg.style.display = 'flex';
-
-    setTimeout(() => {
-        hideTopLoginMessage();
-    }, 5000);
-}
-
-function hideTopLoginMessage() {
-    const msg = document.getElementById('topLoginMessage');
-    if (msg) {
-        msg.style.transition = 'opacity 0.5s ease';
-        msg.style.opacity = '0';
-
-        setTimeout(() => {
-            msg.style.display = 'none';
-            msg.style.opacity = '1';
-            msg.style.transition = '';
-        }, 500);
-    }
-}
-
-function updateCurrencyUI() {
-    document.getElementById('currencyLabel').textContent = currentCurrency;
-    document.querySelector('#currencySwitch i').className =
-        currentCurrency === '$' ? '' : '';
-}
-
-function toggleCurrency() {
-    currentCurrency = currentCurrency === '₹' ? '$' : '₹';
-    localStorage.setItem('currency', currentCurrency);
-    updateCurrencyUI();
-    if (currentUser) {
-        renderAmountButtons();
-        if (currentLoanIndex !== null) displayLoanDetails(currentUser.loans[currentLoanIndex], currentLoanIndex);
-        showTotalPopup();
-        if (document.getElementById('graphContainer').style.display === 'block') renderChart();
-        updateCoinsDisplay();
-    }
-}
-
-document.getElementById('currencySwitch').onclick = toggleCurrency;
-
-const fab = document.getElementById('fab');
-const sheet = document.getElementById('sheet');
-const overlay = document.getElementById('overlay');
-
-fab.onclick = () => {
-    sheet.classList.toggle('active');
-    overlay.classList.toggle('active');
-};
-
-overlay.onclick = () => {
-    sheet.classList.remove('active');
-    overlay.classList.remove('active');
-    document.getElementById('presetSection').style.display = 'none';
-    document.getElementById('uploadSection').style.display = 'none';
-};
-
-document.getElementById('presetBtn').onclick = () => {
-    const section = document.getElementById('presetSection');
-    section.style.display = section.style.display === 'block' ? 'none' : 'block';
-    document.getElementById('uploadSection').style.display = 'none';
-};
-
-document.querySelectorAll('.wallpaper-thumb').forEach(img => {
-    img.onclick = () => {
-        applyImage(img.src, false);
-        closeSheet();
-    };
-});
-
-document.getElementById('uploadBtn').onclick = () => {
-    const section = document.getElementById('uploadSection');
-    section.style.display = section.style.display === 'block' ? 'none' : 'block';
-    document.getElementById('presetSection').style.display = 'none';
-};
-
-document.getElementById('dropArea').onclick = () => {
-    document.getElementById('fileInput').click();
-};
-
-document.getElementById('fileInput').onchange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-            applyImage(ev.target.result, false);
-            closeSheet();
-        };
-        reader.readAsDataURL(file);
-    }
-};
-
-document.getElementById('originalBtn').onclick = () => {
-    applyBlack();
-    closeSheet();
-};
-
-function applyImage(url, repeat = false) {
-    document.body.style.backgroundImage = `url(${url})`;
-    document.body.style.backgroundRepeat = repeat ? 'repeat' : 'no-repeat';
-    document.body.style.backgroundSize = '115%';
-    document.body.style.backgroundPosition = 'center';
-    localStorage.setItem('userBG', url);
-}
-
-function applyBlack() {
-    document.body.style.background = '#000';
-    document.body.style.backgroundImage = 'none';
-    localStorage.setItem('userBG', 'black');
-}
-
-function closeSheet() {
-    sheet.classList.remove('active');
-    overlay.classList.remove('active');
-}
-
-function displayLoanDetails(loan, index) {
-    currentLoanIndex = index;
-    const now = new Date();
-    const cleanEndDate = loan.endDate.split('(')[0].trim();
-    const endDate = new Date(cleanEndDate.split('-').reverse().join('-'));
-    const daysLeft = Math.ceil((endDate - now) / 86400000);
-    let overdueFine = daysLeft < 0 ? Math.abs(daysLeft) * loan.fineRate : 0;
-    const totalPayable = loan.takenAmount + loan.interest + overdueFine;
-
-    const [d, m, y] = loan.planDate.split('-').map(Number);
-    const takenDate = new Date(y, m - 1, d);
-    const daysElapsed = Math.floor((now - takenDate) / 86400000);
-
-    document.querySelectorAll(".amount-btn").forEach(b => b.classList.remove("active"));
-    const btns = document.getElementById("amountButtons").children;
-    if (btns[filteredLoans.indexOf(loan)]) btns[filteredLoans.indexOf(loan)].classList.add("active");
-
-    document.getElementById("loanDetails").innerHTML = `
-
-        <div class="loan-entry">
-        <!-- ===== USER CUSTOM OFFER + NOTICE (injected after Total amount) ===== -->
-            <div id="customOfferSection" style="display: block;
-    margin: 15px 5px -10px 5px;
-    text-align: center;">
-              <a id="customOfferLink" href="#" target="_blank" rel="noopener" style="display: inline-block;">
-                <img id="customOfferImg" src="" alt="Special Offer" 
-                     style="    width: 100%;
-    border-radius: 15px;
-    padding: 5px;
-    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-    background: #181818d9;">
-              </a>
-            </div>
-
-            
-            </div>
-            <!-- ===== END CUSTOM BLOCK ===== -->
-            <div class="details" style="transform: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: sticky;
-    top: 190px;
-    opacity: 100%;
-    z-index: 10000000;
-    padding: 20px 0 0 0;
-    filter: drop-shadow(0 0 5px black);">
-
-                <input type="text" class="purpose-input" placeholder="Purpose" value="${loan.purpose || ''}" onchange="updatePurpose(${index}, this.value)">
-            </div>
-             
-    
-<div class="totaldetails">
-
-    <p style="font-size:60px;
-              font-weight: 600;
-              font-family: 'Anton', sans-serif;
-              letter-spacing: 4.5px;
-              color: ${overdueFine > 0
-                ? '#ff0000'
-                : daysLeft <= 2
-                    ? '#ff0000'
-                    : daysLeft <= 6
-                        ? '#ff8c00'
-                        : '#00d423'};">
-        ${formatMoney(totalPayable)}
-    </p><hr> <h3>
-       Total amount</h3>
-</div>
-
-           <div class="details">
-                <div class="leftflow">
-<svg xmlns="http://www.w3.org/2000/svg" id="Layer_2" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M200-320v-200q0-17 11.5-28.5T240-560q17 0 28.5 11.5T280-520v200q0 17-11.5 28.5T240-280q-17 0-28.5-11.5T200-320Zm240 0v-200q0-17 11.5-28.5T480-560q17 0 28.5 11.5T520-520v200q0 17-11.5 28.5T480-280q-17 0-28.5-11.5T440-320ZM120-120q-17 0-28.5-11.5T80-160q0-17 11.5-28.5T120-200h720q17 0 28.5 11.5T880-160q0 17-11.5 28.5T840-120H120Zm560-200v-200q0-17 11.5-28.5T720-560q17 0 28.5 11.5T760-520v200q0 17-11.5 28.5T720-280q-17 0-28.5-11.5T680-320Zm160-320H116q-15 0-25.5-10.5T80-676v-22q0-11 5.5-19t14.5-13l344-172q17-8 36-8t36 8l342 171q11 5 16.5 15t5.5 21v15q0 17-11.5 28.5T840-640Z"/></svg>
-
-<h3>Service</h3>
-                </div>
-                <p>${loan.takenFrom}</p>
-            </div>
-            <div class="details">
-                <div class="leftflow">
-                <svg xmlns="http://www.w3.org/2000/svg" id="Layer_3" width="200" height="200" viewBox="0 0 24 24" ><g><path d="M7.75 2.5a.75.75 0 0 0-1.5 0v1.58c-1.44.115-2.384.397-3.078 1.092c-.695.694-.977 1.639-1.093 3.078h19.842c-.116-1.44-.398-2.384-1.093-3.078c-.694-.695-1.639-.977-3.078-1.093V2.5a.75.75 0 0 0-1.5 0v1.513C15.585 4 14.839 4 14 4h-4c-.839 0-1.585 0-2.25.013V2.5Z"/><path fill-rule="evenodd" d="M22 12v2c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14v-2c0-.839 0-1.585.013-2.25h19.974C22 10.415 22 11.161 22 12Zm-6 1.25a.75.75 0 0 1 .75.75v1.25H18a.75.75 0 0 1 0 1.5h-1.25V18a.75.75 0 0 1-1.5 0v-1.25H14a.75.75 0 0 1 0-1.5h1.25V14a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd"/></g></svg>
-                <h3>Borrowed on</h3>
-                </div>
-                <p>${loan.planDate}</p>
-            </div>
-            <div class="details">
-                <div class="leftflow">
-<svg xmlns="http://www.w3.org/2000/svg" id="Layer_4" width="200" height="200" viewBox="0 0 24 24" ><g ><path d="M7.75 2.5a.75.75 0 0 0-1.5 0v1.58c-1.44.115-2.384.397-3.078 1.092c-.695.694-.977 1.639-1.093 3.078h19.842c-.116-1.44-.398-2.384-1.093-3.078c-.694-.695-1.639-.977-3.078-1.093V2.5a.75.75 0 0 0-1.5 0v1.513C15.585 4 14.839 4 14 4h-4c-.839 0-1.585 0-2.25.013V2.5Z"/><path fill-rule="evenodd" d="M22 12v2c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14v-2c0-.839 0-1.585.013-2.25h19.974C22 10.415 22 11.161 22 12Zm-5.5 6a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3Z" clip-rule="evenodd"/></g></svg>
-<h3>Return on</h3>
-                </div>
-                <p style="color:${daysLeft <= 2 ? '#ff1100' : daysLeft <= 6 ? '#ff8c00' : '#00d423'};"> ${cleanEndDate}</p>
-            </div>
-            <div class="details">
-                <div class="leftflow">
-<svg xmlns="http://www.w3.org/2000/svg" id="Layer_5" width="200" height="200" viewBox="0 0 24 24"><g><path fill-rule="evenodd" d="M12 2C7.867 2 5.8 2 5.198 3.3a2.521 2.521 0 0 0-.13.346c-.41 1.387 1.052 2.995 3.974 6.21L11 12h2l1.958-2.143c2.922-3.216 4.383-4.824 3.974-6.21a2.507 2.507 0 0 0-.13-.348C18.2 2 16.133 2 12 2Z" clip-rule="evenodd"/><path d="M5.198 20.7C5.8 22 7.867 22 12 22c4.133 0 6.2 0 6.802-1.3a2.51 2.51 0 0 0 .13-.346c.41-1.387-1.052-2.995-3.974-6.21L13 12h-2l-1.958 2.143c-2.922 3.216-4.383 4.824-3.974 6.21c.035.12.078.236.13.348Z" opacity=".5"/></g></svg>
-<h3>Days Passed</h3>
-                </div>
-                <p>${daysElapsed} day${daysElapsed === 1 ? '' : 's'}</p>
-            </div>
-            <div class="details">
-                <div class="leftflow">
-                    <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" id="Layer_6" height="24px" viewBox="0 -960 960 960" width="24px" ><path d="M480-320q-33 0-56.5-23.5T400-400q0-33 23.5-56.5T480-480q33 0 56.5 23.5T560-400q0 33-23.5 56.5T480-320ZM295-680h370l51-102q10-20-1.5-39T680-840H280q-23 0-34.5 19t-1.5 39l51 102Zm41 560h288q90 0 153-62.5T840-336q0-38-13-74t-37-65L686-600H274L170-475q-24 29-37 65t-13 74q0 91 62.5 153.5T336-120Z"/></svg>
-<h3>Borrowed Amount </h3>
-                </div>
-                <p>${formatMoney(loan.takenAmount)}</p>
-            </div>
-            <div class="details">
-                <div class="leftflow"> 
-<svg xmlns="http://www.w3.org/2000/svg" id="Layer_7" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M480-80q-24 0-46-9t-39-26q-29-29-50-38t-63-9q-50 0-85-35t-35-85q0-42-9-63t-38-50q-17-17-26-39t-9-46q0-24 9-46t26-39q29-29 38-50t9-63q0-50 35-85t85-35q42 0 63-9t50-38q17-17 39-26t46-9q24 0 46 9t39 26q29 29 50 38t63 9q50 0 85 35t35 85q0 42 9 63t38 50q17 17 26 39t9 46q0 24-9 46t-26 39q-29 29-38 50t-9 63q0 50-35 85t-85 35q-42 0-63 9t-50 38q-17 17-39 26t-46 9Zm100-240q25 0 42.5-17.5T640-380q0-25-17.5-42.5T580-440q-25 0-42.5 17.5T520-380q0 25 17.5 42.5T580-320Zm-230-30q12 12 28 12t28-12l204-203q12-12 12-28.5T610-610q-12-12-28.5-12T553-610L350-406q-12 12-12 28t12 28Zm72.5-187.5Q440-555 440-580t-17.5-42.5Q405-640 380-640t-42.5 17.5Q320-605 320-580t17.5 42.5Q355-520 380-520t42.5-17.5Z"/></svg>
-<h3>Interest</h3>
-                </div>
-                <p>${formatMoney(loan.interest)}</p>
-            </div>
-            <div class="details" style='margin-bottom: -10px;'>
-                    <div class="leftflow">
-                       <svg xmlns="http://www.w3.org/2000/svg" id="Layer_0" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M508.5-291.5Q520-303 520-320t-11.5-28.5Q497-360 480-360t-28.5 11.5Q440-337 440-320t11.5 28.5Q463-280 480-280t28.5-11.5Zm0-160Q520-463 520-480v-160q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640v160q0 17 11.5 28.5T480-440q17 0 28.5-11.5ZM346-160H240q-33 0-56.5-23.5T160-240v-106l-77-78q-11-12-17-26.5T60-480q0-15 6-29.5T83-536l77-78v-106q0-33 23.5-56.5T240-800h106l78-77q12-11 26.5-17t29.5-6q15 0 29.5 6t26.5 17l78 77h106q33 0 56.5 23.5T800-720v106l77 78q11 12 17 26.5t6 29.5q0 15-6 29.5T877-424l-77 78v106q0 33-23.5 56.5T720-160H614l-78 77q-12 11-26.5 17T480-60q-15 0-29.5-6T424-83l-78-77Z"/></svg><h3>Overdue Fine</h3>
-                    </div>
-                    <p style='color: #ff0000;'>${formatMoney(overdueFine)} 
-                        <small></small>
-                    </p>
-            </div>
-
-        </div>
-    `;
-
-    // Render the user-specific offer + message right after Total amount
-    renderUserCustomContent();
-}
-
-function updatePurpose(index, value) {
-    currentUser.loans[index].purpose = value.trim();
-    saveUserData();
-    renderAmountButtons();
-}
-
-function showTotalPopup() {
-    const now = new Date();
-    let base = 0, interest = 0, overdue = 0;
-
-    currentUser.loans.forEach(loan => {
-        base += loan.takenAmount;
-        interest += loan.interest;
-        const cleanEnd = loan.endDate.split('(')[0].trim();
-        const end = new Date(cleanEnd.split('-').reverse().join('-'));
-        if (now > end) {
-            const days = Math.ceil((now - end) / 86400000);
-            overdue += days * loan.fineRate;
-        }
+      `;
     });
-
-    const total = base + interest + overdue;
-
-    document.getElementById("totalContent").innerHTML = `
-        <p>Taken amount : <strong>${formatMoney(base)}</strong></p>
-        <p style='margin-bottom: 20px;'>Total Interest : <strong>${formatMoney(interest)}</strong></p>
-        ${overdue > 0 ? `<p style="
-    margin: -17px 0 0 0;
-    font-size: 16px;">Overdue Fine : <strong style='    color: #ff2424;
-    border-radius: 100px;
-    padding: 0 10px;'>${formatMoney(overdue)}</strong></p>` : ''}
-        <hr>
-        <p style="font-size: 20px; margin-top: 10px; margin-bottom: -5px;">Total to Return: <strong>${formatMoney(total)}</strong></p>
-    `;
-    document.getElementById("totalPopup").style.display = "block";
-}
-
-function closeTotalPopup() {
-    const popup = document.getElementById("totalPopup");
-    
-    // Start the fade-out
-    popup.style.transition = "opacity 0.3s ease";
-    popup.style.opacity = "0";
-    
-    // Hide the element after the animation finishes
-    setTimeout(() => {
-        popup.style.display = "none";
-        // Optional: reset opacity so it can fade in again later
-        popup.style.opacity = "1";
-    }, 300); // matches the 0.3s transition
-}
-
-function renderChart() {
-    const ctx = document.getElementById('loanChart').getContext('2d');
-    const now = new Date();
-
-    const visibleLabels = [];
-    const visibleData = [];
-    const colors = [];
-    const loanIndices = [];
-    currentUser.loans.forEach((loan, originalIdx) => {
-        if (hiddenLoans.has(originalIdx)) return;
-
-        const clean = loan.endDate.split('(')[0].trim();
-        const end = new Date(clean.split('-').reverse().join('-'));
-        const daysLeft = Math.ceil((end - now) / 86400000);
-
-        let color = '#0011ff';
-        if (daysLeft <= 2) color = '#ff1100';
-        else if (daysLeft <= 6) color = '#ff8c00';
-
-        const amount = currentCurrency === '$'
-            ? Number((loan.takenAmount / USD_RATE).toFixed(2))
-            : Number(loan.takenAmount);
-
-        visibleLabels.push(`Loan ${originalIdx + 1} • ${daysLeft} days left`);
-        visibleData.push(amount);
-        colors.push(color);
-        loanIndices.push(originalIdx);
-    });
-
-    const chartElement = document.getElementById('loanChart');
-    if (visibleData.length === 0) {
-        if (chartElement) {
-            chartElement.style.opacity = '0.25';
-            chartElement.style.transition = 'opacity 0.6s ease';
-        }
-        if (loanChart) loanChart.update();
-        renderLoanList();
-        return;
-    }
-
-    if (chartElement) {
-        chartElement.style.opacity = '1';
-        chartElement.style.transition = 'opacity 0.6s ease';
-    }
-
-    if (!loanChart) {
-        loanChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: visibleLabels,
-                datasets: [{
-                    data: visibleData,
-                    backgroundColor: colors,
-                    borderWidth: 4,
-                    borderColor: '#000000',
-                    hoverOffset: 30
-                }]
-            },
-            options: {
-                responsive: true,
-                cutout: '42%',
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        backgroundColor: 'rgba(30,30,40,0.95)',
-                        titleColor: '#fff',
-                        bodyColor: '#ddd',
-                        padding: 12
-                    }
-                },
-                animation: {
-                    duration: 1200,
-                    easing: 'easeOutQuart',
-                    animateRotate: true,
-                    animateScale: true
-                }
-            }
-        });
-    } else {
-        loanChart.data.labels = visibleLabels;
-        loanChart.data.datasets[0].data = visibleData;
-        loanChart.data.datasets[0].backgroundColor = colors;
-        loanChart.update();
-    }
-
-    renderLoanList();
-}
-
-function renderLoanList() {
-    const container = document.getElementById('loans-list-container');
-    if (!container) return;
-
-    container.style.transition = 'opacity 0.4s ease, all 0.3s ease-in-out';
-    container.style.opacity = '0';
-
-    setTimeout(() => {
-        container.innerHTML = '';
-
-        currentUser.loans.forEach((loan, idx) => {
-            const isHidden = hiddenLoans.has(idx);
-
-            const row = document.createElement('div');
-            row.className = 'loan-row' + (isHidden ? ' hidden-loan' : '');
-
-            if (!isHidden) {
-                row.style.opacity = '0';
-                row.style.transform = 'translateY(10px)';
-                row.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
-            }
-
-            const daysLeft = calculateDaysLeft(loan.endDate);
-            const amount = currentCurrency === '$'
-                ? (loan.takenAmount / USD_RATE).toFixed(2)
-                : loan.takenAmount;
-
-            row.innerHTML = `
-                <div class="loan-info">
-                    <span class="loan-title">Amount ${idx + 1}</span>
-                    <span class="loan-amount">${amount} ${currentCurrency}</span>
-                    <span class="loan-days ${daysLeft <= 2 ? 'urgent' : daysLeft <= 6 ? 'warning' : 'safe'}">
-                        ${daysLeft} days left
-                    </span>
-                </div>
-                <div class="loan-actions">
-                <button class="btn-hide" data-idx="${idx}">
-                    ${isHidden ? '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M600.65-379.35q49.5-49.5 49.5-120.65t-49.5-120.65q-49.5-49.5-120.65-49.5t-120.65 49.5q-49.5 49.5-49.5 120.65t49.5 120.65q49.5 49.5 120.65 49.5t120.65-49.5ZM402-422.12q-32-32.12-32-78T402.12-578q32.12-32 78-32T558-577.88q32 32.12 32 78T557.88-422q-32.12 32-78 32T402-422.12ZM242.42-277.27Q133.46-344.54 70.54-456.38q-6-10.24-8.62-21.12-2.61-10.88-2.61-22.42 0-11.54 2.61-22.5 2.62-10.96 8.62-21.2 62.92-111.84 171.88-179.11Q351.38-790 480-790t237.58 67.27q108.96 67.27 171.88 179.11 6 10.24 8.62 21.12 2.61 10.88 2.61 22.42 0 11.54-2.61 22.5-2.62 10.96-8.62 21.2-62.92 111.84-171.88 179.11Q608.62-210 480-210t-237.58-67.27ZM480-500Zm211.87 163.42Q788.74-397.16 840-500q-51.26-102.84-148.13-163.42Q595-724 480-724t-211.87 60.58Q171.26-602.84 120-500q51.26 102.84 148.13 163.42Q365-276 480-276t211.87-60.58Z"/></svg>' : '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M600.15-620.15q22.77 22.77 37.39 60.03 14.61 37.27 13.15 73.58 0 13.08-8.11 21.58-8.12 8.5-21.2 8.5-13.07 0-21.57-8.5t-8.5-21.58q1.69-27.77-7.69-51.5-9.39-23.73-26.39-40.73-17-17-41.5-25.61-24.5-8.62-50.73-6.16-13.08.77-22.85-6.96-9.77-7.73-10.53-20.81-.77-13.07 7.84-22.84 8.62-9.77 21.69-10.54 37.85-3 75.89 11.73t63.11 39.81ZM480-724q-20.62 0-40.62 2.65-20 2.66-40.61 6.2-13.54 2.23-26.5-5.31-12.96-7.54-16.65-20.08-3.7-13.31 2.57-24.23t19.58-14.15q25.31-5.54 51.11-8.31Q454.69-790 480-790q130.85 0 242.69 67 111.85 67 171 184.62 5 10.23 7.12 19.19 2.11 8.96 2.11 19.19t-2 19.69q-2 9.46-7 19.69-17.77 38.93-43.88 70.47-26.12 31.53-57.35 60.23-10.61 9.61-24.04 7.77-13.42-1.85-22.8-11.93-9.39-10.07-7.27-23.73 2.11-13.65 12.73-24.27 28.15-26.07 50.27-54.8Q823.69-465.62 840-500q-51-103-148-163.5T480-724Zm0 514q-129.62 0-238.58-67.5Q132.46-345 70.31-458.62q-5-10.23-8.12-20.57-3.11-10.35-3.11-20.81 0-10.46 2.5-21.69t7.5-20.69q22.61-39.54 50.57-75.81 27.97-36.27 64.35-63.73l-90.62-91.85q-9.61-9.85-9.88-22.88-.27-13.04 10.12-23.43 10.38-10.38 23.15-10.38 12.77 0 23.15 10.38l680.16 680.16q9.61 9.61 9.61 23.15t-9.61 23.15q-10.39 10.39-23.16 10.39t-23.15-10.39L629.23-237.69q-34.77 16.38-72.96 22.04Q518.08-210 480-210ZM232.31-634.62q-36.31 27.31-64.89 60.85Q138.85-540.23 120-500q51 103 148 163.5T480-276q23.54 0 47.96-2.42 24.42-2.43 45.66-12.89L528.38-339q-10.3 6.62-23.03 7.88-12.73 1.27-25.35 1.27-71.15 0-120.65-49.5T309.85-500q0-12.62 1.65-25.35 1.65-12.73 7.5-23.03l-86.69-86.24ZM543-532Zm-139.54 68.54Z"/></svg>'}
-                </button>
-                <button class="btn-details" data-idx="${idx}"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M160-88q-13.64 0-22.82-9.73T128-121.07q0-13.61 9.73-22.77T161-153h398.62q13.63 0 22.81 9.16 9.19 9.16 9.19 22.77t-9.19 23.34Q573.25-88 559.62-88H160Zm0-160.38q-13.64 0-22.82-9.74-9.18-9.73-9.18-23.33 0-13.61 9.73-22.77t23.27-9.16h639q13.64 0 22.82 9.16t9.18 22.77q0 13.6-9.18 23.33-9.18 9.74-22.82 9.74H160Zm58.62-160.39q-38.35 0-64.48-26.14Q128-461.04 128-499.38v-282q0-38.35 26.14-64.48Q180.27-872 218.62-872h522.76q38.35 0 64.48 26.14Q832-819.73 832-781.38v282q0 38.34-26.14 64.47-26.13 26.14-64.48 26.14H218.62Zm-1-65h524.76q10.77 0 17.7-6.92 6.92-6.93 6.92-17.69v-284q0-10.77-6.92-17.7-6.93-6.92-17.7-6.92H217.62q-10.77 0-17.7 6.92-6.92 6.93-6.92 17.7v284q0 10.76 6.92 17.69 6.93 6.92 17.7 6.92Zm-24.62 0V-807v333.23Z"/></svg>
-                                 </button>
-             </div>
-            `;
-
-            container.appendChild(row);
-
-            if (!isHidden) {
-                setTimeout(() => {
-                    row.style.opacity = '1';
-                    row.style.transform = 'translateY(0)';
-                }, 30);
-            }
-        });
-        container.querySelectorAll('.btn-hide').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const idx = parseInt(btn.dataset.idx);
-                if (hiddenLoans.has(idx)) {
-                    hiddenLoans.delete(idx);
-                } else {
-                    hiddenLoans.add(idx);
-                }
-                renderChart();
-            });
-        });
-
-        container.querySelectorAll('.btn-details').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const idx = parseInt(btn.dataset.idx);
-                showDatePopup(idx);
-            });
-        });
-
-        container.style.opacity = '1';
-    }, 420);
-}
-
-function renderCalendar() {
-    const c = document.getElementById('calendarContainer');
-    const y = calendarMonth.getFullYear(), m = calendarMonth.getMonth();
-    const first = new Date(y, m, 1).getDay();
-    const days = new Date(y, m + 1, 0).getDate();
-    const today = new Date();
-
-    const dueMap = {};
-    currentUser.loans.forEach((loan, i) => {
-        const clean = loan.endDate.split('(')[0].trim();
-        const [d, mm, yy] = clean.split('-');
-        dueMap[`${d.padStart(2, '0')}-${mm.padStart(2, '0')}-${yy}`] = i;
-    });
-
-    let html = `<div style="text-align: center;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 98%;
-    margin-bottom: 20px;
-    margin-top: 0px;
-    border-radius: 30px;
-    padding: 10px;
-    transition: all 0.3s ease;
-    transform: translate(-50%, 0);
-    left: 50%;
-    filter: saturate(2);
-    position: relative;
-    background: #303030;
-">
-
-<a class="calndarCntnrbtn" href='https://blackswan19.github.io/bscrop/reminder.html'><button>Date Note</button></a>
-<span style="font-weight: 100;
-    color: #eee;
-    font-size: 14px;
-    letter-spacing: 0px;">${calendarMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
-        <button class="move-asaid" onclick="prevMonth()"><?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M10.6,12.71a1,1,0,0,1,0-1.42l4.59-4.58a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0L9.19,9.88a3,3,0,0,0,0,4.24l4.59,4.59a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.42Z"/></svg></button>
-        <button class="move-asaid" onclick="nextMonth()"><?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M15.4,9.88,10.81,5.29a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42L14,11.29a1,1,0,0,1,0,1.42L9.4,17.29a1,1,0,0,0,1.41,1.42l4.59-4.59A3,3,0,0,0,15.4,9.88Z"/></svg></button>
-    </div>
-    <div style="display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap:5px;
-    text-align: center;
-    padding: 15px 10px;
-    margin-top: -10px;
-    border-radius: 35px;
-    background: linear-gradient(0deg, #191919, transparent);">
-        <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>`;
-
-    for (let i = 0; i < first; i++) html += `<div></div>`;
-    for (let d = 1; d <= days; d++) {
-        const ds = `${String(d).padStart(2, '0')}-${String(m + 1).padStart(2, '0')}-${y}`;
-        const idx = dueMap[ds];
-        let style = `border-radius:9999px;cursor:${idx !== undefined ? 'pointer' : 'default'};transition:all .2s;`;
-        if (idx !== undefined) {
-            const end = new Date(currentUser.loans[idx].endDate.split('(')[0].trim().split('-').reverse().join('-'));
-            const daysLeft = Math.ceil((end - today) / 86400000);
-            let bg = '#00bb06';
-            if (daysLeft <= 2) bg = '#ff1100';
-            else if (daysLeft <= 6) bg = '#ff8c00';
-            style += `background:${bg};color: black;font-weight:bold;`;
-        }
-        if (ds === today.toLocaleDateString('en-GB').split('/').reverse().join('-')) {
-            style += `border:2px solid #00aaff;box-sizing:border-box;`;
-        }
-        html += `<div style="${style}" ${idx !== undefined ? `onclick="showDatePopup(${idx})"` : ''}>${d}</div>`;
-    }
     html += `</div>`;
-    c.innerHTML = html;
+  }
+
+  container.innerHTML = html;
 }
 
-function prevMonth() { calendarMonth.setMonth(calendarMonth.getMonth() - 1); renderCalendar(); }
-function nextMonth() { calendarMonth.setMonth(calendarMonth.getMonth() + 1); renderCalendar(); }
+function handleProductClick(name) {
+  if (!currentUser) {
+    alert('Login first');
+    showLogin();
+    return;
+  }
 
-function showDatePopup(idx) {
-    const loan = currentUser.loans[idx];
-    const cleanEnd = loan.endDate.split('(')[0].trim();
-    const daysLeft = Math.ceil((new Date(cleanEnd.split('-').reverse().join('-')) - new Date()) / 86400000);
-    document.getElementById('popupContent').innerHTML = `
-    
-        <p style='color: #ffc000;font-weight: 600;'><strong>Taken Amount:</strong> ${formatMoney(loan.takenAmount)}</p>
-        <p style='color: #ffc000;font-weight: 600;'><strong>Purpose:</strong> ${loan.purpose || 'Not set'}</p>
-        <p style='color: #ffc000;font-weight: 600;'><strong>Return date :</strong> ${cleanEnd}</p>
-        <hr style='margin: 5px;'>
-        <p style='color: #ffc000;font-weight: 600;    font-size: 20px;'><strong>Status:</strong> <span style="color:${daysLeft <= 2 ? '#ff1100' : daysLeft <= 6 ? '#ff8c00' : '#00d609'}">
-            ${daysLeft > 0 ? daysLeft + ' days left' : 'Overdue'}
-        </span></p>
-        <div class="detailbuttons" style="display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-top: 0px;
-    margin-bottom: 0px;">
-    <button style="width: 100%;
-    background: #0026ff;
-    border-radius: 200px;" onclick="goToList(${idx})"><svg style='width: 25px;
-    height: 20px;' xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M160-88q-13.64 0-22.82-9.73T128-121.07q0-13.61 9.73-22.77T161-153h398.62q13.63 0 22.81 9.16 9.19 9.16 9.19 22.77t-9.19 23.34Q573.25-88 559.62-88H160Zm0-160.38q-13.64 0-22.82-9.74-9.18-9.73-9.18-23.33 0-13.61 9.73-22.77t23.27-9.16h639q13.64 0 22.82 9.16t9.18 22.77q0 13.6-9.18 23.33-9.18 9.74-22.82 9.74H160Zm58.62-160.39q-38.35 0-64.48-26.14Q128-461.04 128-499.38v-282q0-38.35 26.14-64.48Q180.27-872 218.62-872h522.76q38.35 0 64.48 26.14Q832-819.73 832-781.38v282q0 38.34-26.14 64.47-26.13 26.14-64.48 26.14H218.62Zm-1-65h524.76q10.77 0 17.7-6.92 6.92-6.93 6.92-17.69v-284q0-10.77-6.92-17.7-6.93-6.92-17.7-6.92H217.62q-10.77 0-17.7 6.92-6.92 6.93-6.92 17.7v284q0 10.76 6.92 17.69 6.93 6.92 17.7 6.92Zm-24.62 0V-807v333.23Z"/></svg>
-                                  Details</button>
-    <button onclick="closeDatePopup()" style="width: 100%;
-    background: #ff0000;
-    border-radius: 200px;background-color: red;" onclick="goToList(${idx})"><img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close</button>
-</div>
+  const user = users[currentUser];
+  if (!user.access[name]) {
+    alert('You do not have access to this service.');
+    return;
+  }
+
+  const product = allProducts.find(p => p.name === name);
+  if (product && product.needsFee) {
+    pendingFeeService = name;
+    document.getElementById('fee-modal-title').textContent = 'Apply: ' + name;
+    document.getElementById('fee-modal-desc').textContent = product.desc + '';
+    document.getElementById('fee-amount').value = '';
+    document.getElementById('fee-result').classList.add('hidden');
+    document.getElementById('fee-apply-btn').disabled = true;
+    document.getElementById('fee-modal').classList.add('show');
+  } else {
+    applyProduct(name);
+  }
+}
+
+function calculateFee() {
+  const amount = parseFloat(document.getElementById('fee-amount').value);
+  if (!amount || amount < 100) {
+    alert('Enter a valid amount (minimum 100)');
+    return;
+  }
+
+  const product = allProducts.find(p => p.name === pendingFeeService);
+  if (!product) return;
+
+  const fee = +(amount * product.feeRate).toFixed(2);
+  pendingFeeAmount = amount;
+  pendingFeeValue = fee;
+
+  document.getElementById('fee-display').textContent = fee.toLocaleString() + '$/₹';
+  document.getElementById('fee-formula').textContent = product.feeLabel + ' → ' + amount.toLocaleString() + ' × ' + (product.feeRate * 100) + '%';
+  document.getElementById('fee-result').classList.remove('hidden');
+  document.getElementById('fee-apply-btn').disabled = false;
+}
+
+function confirmFeeApply() {
+  if (!pendingFeeService || !pendingFeeAmount) return;
+
+  const key = 'jh_applied_' + currentUser;
+  let list = JSON.parse(localStorage.getItem(key) || '[]');
+  list.push({
+    service: pendingFeeService,
+    amount: pendingFeeAmount,
+    fee: pendingFeeValue,
+    date: new Date().toISOString().slice(0, 10),
+    status: 'Pending'
+  });
+  localStorage.setItem(key, JSON.stringify(list));
+
+  openServiceForm(pendingFeeService);
+
+  closeFeeModal();
+  document.getElementById('apply-msg').innerHTML = 
+    `You have successfully applied for <strong>${pendingFeeService}</strong>.<br>
+     Amount: ${pendingFeeAmount.toLocaleString()}<br>
+     Service Fee: <strong>${pendingFeeValue.toLocaleString()}</strong><br>
+     The application form has been opened in a new tab.`;
+  document.getElementById('apply-modal').classList.add('show');
+
+  renderAppliedServices();
+}
+
+function closeFeeModal() {
+  document.getElementById('fee-modal').classList.remove('show');
+  pendingFeeService = null;
+  pendingFeeAmount = 0;
+  pendingFeeValue = 0;
+}
+
+function renderAppliedServices() {
+  if (!currentUser) return;
+
+  const key = 'jh_applied_' + currentUser;
+  const list = JSON.parse(localStorage.getItem(key) || '[]');
+  const tbody = document.getElementById('applied-body');
+  const noMsg = document.getElementById('no-applied');
+
+  tbody.innerHTML = '';
+  if (list.length === 0) {
+    noMsg.classList.remove('hidden');
+    return;
+  }
+  noMsg.classList.add('hidden');
+
+  list.forEach(item => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${item.service}</td>
+      <td>${item.amount.toLocaleString()}</td>
+      <td style="font-weight:bold;color:var(--text-title);">${item.fee.toLocaleString()}</td>
+      <td>${item.date}</td>
+      <td>${item.status}</td>
     `;
-    document.getElementById('datePopup').style.display = 'block';
+    tbody.appendChild(tr);
+  });
 }
 
-function closeDatePopup() { 
-    const popup = document.getElementById("datePopup");
-    
-    // Start the fade-out
-    popup.style.transition = "opacity 0.3s ease";
-    popup.style.opacity = "0";
-    
-    // Hide the element after the animation finishes
-    setTimeout(() => {
-        popup.style.display = "none";
-        // Optional: reset opacity so it can fade in again later
-        popup.style.opacity = "1";
-    }, 300); // matches the 0.3s transition
- }
-function goToList(idx) { closeDatePopup(); switchView('list', true); displayLoanDetails(currentUser.loans[idx], idx); }
-function closeSumPopup() {
-    const popup = document.getElementById("sumPopup", "sumOverlay");
-    
-    // Start the fade-out
-    popup.style.transition = "opacity 0.3s ease";
-    popup.style.opacity = "0";
-    
-    // Hide the element after the animation finishes
-    setTimeout(() => {
-        popup.style.display = "none";
-        // Optional: reset opacity so it can fade in again later
-        popup.style.opacity = "1";
-    }, 300); // matches the 0.3s transition
-    
-    selectedSumIds.clear();
-}
-function renderLinks() {
-    const c = document.getElementById("userLinks");
-    c.innerHTML = "";
+function doSearch() {
+  const keyword = document.getElementById('search-input').value.trim().toLowerCase();
+  const resultsBox = document.getElementById('search-results');
+  const list = document.getElementById('search-list');
+  if (!keyword) { alert('Enter a keyword'); return; }
 
-    if (!currentUser.links || currentUser.links.length === 0) {
-        const emptyMsg = document.createElement("div");
-        emptyMsg.className = "user-link empty-message";
-        emptyMsg.innerHTML = `
-            <i class="fa-solid fa-info-circle"></i>
-            No links saved yet.
-        `;
-        c.appendChild(emptyMsg);
-        return;
-    }
-    currentUser.links.forEach((link, i) => {
-        const div = document.createElement("div");
-        div.className = "user-link";
-        div.innerHTML = `<i class="fa-solid fa-link"></i> ${link.title}`;
-        div.onclick = () => {
-            pendingLink = { link, i };
-            document.getElementById("linkConfirmPopup").style.display = "block";
-        };
-        c.appendChild(div);
-    });
+  const matched = allProducts.filter(p => 
+    p.name.toLowerCase().includes(keyword) || p.desc.toLowerCase().includes(keyword)
+  );
+
+  list.innerHTML = matched.length === 0 
+    ? `<div class="search-item">No results for "<strong>${keyword}</strong>"</div>`
+    : matched.map(p => `
+        <div class="search-item"> 
+                <div>
+                    <div style="text-align: left;" class="box-title">
+                        <a href="#" onclick="clearSearch()" style="color: red;
+                        padding: 0;
+                        border: none;
+                        background: transparent;
+                        font-weight: 600;">✕</a>
+                    </div>
+                    <div>
+                        <strong>${p.name}</strong> <span style="    font-size: 12px;
+    color: var(--text-muted);
+    width: 115px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;">${p.desc}</span>
+                    </div>
+                </div>
+            <button class="btn" style="width: fit-content;
+    opacity: 100%;
+    height: 25px;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;" onclick="handleProductClick('${p.name}')"><svg style='width: 28px;
+    height: 28px;' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M14.13,21.67L7,19.58V12.85H9.08q0.16,0 0.29,0.03t0.27,0.08l6.02,2.21q0.41,0.14 0.72,0.57t0.31,0.81q0,0.29-0.17,0.46t-0.45,0.16h-1.2q-0.57,0-1.05-0.07t-0.89-0.22l-1.43-0.5q-0.16-0.06-0.31,0.02t-0.2,0.21Q10.92,16.75 11,16.91t0.24,0.21l1.57,0.52q0.45,0.16 0.98,0.22t1.02,0.06h5.16q0.7,0 1.18,0.44t0.48,1.14l-6.53,2.16q-0.19,0.06-0.48,0.06t-0.48-0.05ZM3,19.92v-6q0-0.46 0.31-0.77t0.77-0.31H4.92q0.46,0 0.77,0.31T6,13.92v6q0,0.46-0.31,0.77T4.92,21H4.08q-0.46,0-0.77-0.31T3,19.92ZM13.54,9.65l5.34-5.32q0.14-0.14 0.33-0.13t0.34,0.15q0.14,0.14 0.14,0.34T19.55,5.04l-5.44,5.44q-0.24,0.24-0.57,0.24t-0.57-0.24L10.36,7.87Q10.21,7.72 10.2,7.51t0.16-0.35q0.15-0.14 0.35-0.13t0.35,0.15l2.47,2.47Z"/></svg>
+            </button>
+        </div>
+     `).join('');
+
+  resultsBox.style.display = 'block';
+  resultsBox.scrollIntoView({ behavior: 'smooth' });
 }
 
-function addLink() {
-    const title = prompt("Link title:");
-    if (!title) return;
-    const url = prompt("URL:");
-    if (url && url.startsWith('http')) {
-        currentUser.links.push({ title, url });
-        renderLinks();
-        saveUserData();
-    }
-}
-
-document.getElementById("linkYesBtn").onclick = () => {
-    window.open(pendingLink.link.url, '_parent');
-    document.getElementById("linkConfirmPopup").style.display = "none";
-};
-
-document.getElementById("linkDeleteBtn").onclick = () => {
-    currentUser.links.splice(pendingLink.i, 1);
-    renderLinks();
-    saveUserData();
-    document.getElementById("linkConfirmPopup").style.display = "none";
-};
-
-function openEmoteChooser() { document.getElementById("emoteChooser").style.display = "block"; }
-function closeEmoteChooser() {
-    const popup = document.getElementById("emoteChooser");
-    
-    // Start the fade-out
-    popup.style.transition = "opacity 0.3s ease";
-    popup.style.opacity = "0";
-    
-    // Hide the element after the animation finishes
-    setTimeout(() => {
-        popup.style.display = "none";
-        // Optional: reset opacity so it can fade in again later
-        popup.style.opacity = "1";
-    }, 300); // matches the 0.3s transition
-} 
-function setUserEmote(src) {
-    currentUser.emote = src;
-
-    const emoteImg = document.getElementById("userEmote");
-    emoteImg.src = src;
-    emoteImg.style.display = "block";
-
-    saveUserData();
-    closeEmoteChooser();
-}
-function resetUserEmote() {
-    currentUser.emote = currentUser.defaultEmote || "";
-
-    const emoteImg = document.getElementById("userEmote");
-
-    if (currentUser.emote) {
-        emoteImg.src = currentUser.emote;
-        emoteImg.style.display = "block";
-    } else {
-        emoteImg.style.display = "none";
-    }
-
-    saveUserData();
-}
-function updateNavActive(view) {
-    document.querySelectorAll('.nav-item').forEach(n => {
-        n.classList.toggle('active', n.dataset.view === view);
-        const pin = n.querySelector('.toggle-pin');
-        const isOn = localStorage.getItem(PINNED_KEY) === n.dataset.view;
-        pin.className = `fa-solid fa-toggle-${isOn ? 'on' : 'off'} toggle-pin ${isOn ? 'on' : ''}`;
-    });
-}
-
-document.querySelectorAll('.nav-item').forEach(item => {
-    item.onclick = () => switchView(item.dataset.view, true);
-});
-
-document.querySelectorAll('.toggle-pin').forEach(pin => {
-    pin.onclick = (e) => {
-        e.stopPropagation();
-        const view = pin.closest('.nav-item').dataset.view;
-        if (localStorage.getItem(PINNED_KEY) === view) localStorage.removeItem(PINNED_KEY);
-        else localStorage.setItem(PINNED_KEY, view);
-        updateNavActive(document.querySelector('.nav-item.active')?.dataset.view || 'list');
-    };
-});
-
-function switchView(view, nav = true) {
-    document.getElementById('loanDetails').style.display = view === 'list' ? 'block' : 'none';
-    document.getElementById('graphContainer').style.display = view === 'graph' ? 'block' : 'none';
-    document.getElementById('calendarContainer').style.display = view === 'calendar' ? 'block' : 'none';
-    if (view === 'graph') renderChart();
-    if (view === 'calendar') renderCalendar();
-    if (nav) updateNavActive(view);
+function clearSearch() {
+  document.getElementById('search-results').style.display = 'none';
+  document.getElementById('search-input').value = '';
 }
 
 function closeModal() {
-    document.getElementById("userInfoModal").style.display = "none";
-    document.getElementById("passwordContainer").style.display = "flex";
-    saveUserData();
-    currentUser = null;
+  document.getElementById('apply-modal').classList.remove('show');
 }
 
-let searchOpen = false;
-function toggleSearch() {
-    const input = document.getElementById("searchInput");
-    const icon = document.getElementById("searchIcon");
-    searchOpen = !searchOpen;
-    input.classList.toggle("active", searchOpen);
-    icon.style.transform = searchOpen ? "rotate(90deg)" : "rotate(0deg)";
-    if (searchOpen) setTimeout(() => input.focus(), 300);
-    else { input.value = ""; filterLoans(); }
+function showLogin() {
+  document.getElementById('account').scrollIntoView({ behavior: 'smooth' });
 }
 
-function filterLoans() {
-    const q = document.getElementById("searchInput").value.toLowerCase();
-    filteredLoans = currentUser.loans.filter(loan =>
-        loan.takenAmount.toString().includes(q) ||
-        (loan.purpose && loan.purpose.toLowerCase().includes(q)) ||
-        loan.takenFrom.toLowerCase().includes(q)
-    );
-    renderAmountButtons();
-}
-
-const coinSection = document.getElementById('coinSection');
-const popupOverlay = document.getElementById('swanShopPopup');
-const closeBtn = document.querySelector('.close-btn');
-
-coinSection.addEventListener('click', () => {
-    popupOverlay.classList.add('active');
-});
-
-closeBtn.addEventListener('click', () => {
-    popupOverlay.classList.remove('active');
-});
-
-popupOverlay.addEventListener('click', (e) => {
-    if (e.target === popupOverlay) {
-        popupOverlay.classList.remove('active');
+function doLogin() {
+  const password = document.getElementById('login-pass').value;
+  let matchedUser = null;
+  for (const key in users) {
+    if (users[key].password === password) {
+      matchedUser = key;
+      break;
     }
-});
+  }
+  if (!matchedUser) {
+    return;
+  }
+  currentUser = matchedUser;
+  localStorage.setItem('jh_user', matchedUser);
+  showLoanDetails();
+  renderProducts();
+  updateInterestDisplay();
+  enforceCustomUIAccess();
+}
 
-
-const container = document.getElementById('glowContainer');
-const toggle = document.getElementById('glowToggle');
-const STORAGE_KEY = 'siriEdgeGlowState';
-const savedState = localStorage.getItem(STORAGE_KEY);
-let isOn = savedState === 'on';
-
-function updateGlow() {
-    if (isOn) {
-        container.classList.add('on');
+function updateInterestDisplay() {
+  const rate = getEffectiveInterest();
+  const note = document.getElementById('fixed-rate-note');
+  
+  if (currentUser && users[currentUser]) {
+    const fixed = users[currentUser].fixedInterest;
+    if (fixed != null && fixed > 0) {
+      note.style.display = 'inline';
+      note.textContent = `  |  Your Fixed Rate: ${fixed}%`;
+      note.style.color = '#38a169';
     } else {
-        container.classList.remove('on');
+      note.style.display = 'none';
     }
-    toggle.checked = isOn;
+  } else {
+    note.style.display = 'none';
+  }
 }
 
-toggle.addEventListener('change', function () {
-    isOn = toggle.checked;
-    localStorage.setItem(STORAGE_KEY, isOn ? 'on' : 'off');
-    updateGlow();
-});
-updateGlow();
+function showLoanDetails() {
+  if (!currentUser || !users[currentUser]) return;
+  const user = users[currentUser];
 
-window.onload = () => {
-    const saved = localStorage.getItem('userBG');
-    if (saved === 'black') {
-        applyBlack();
-    } else if (saved) {
-        applyImage(saved, false);
+  document.getElementById('login-section').classList.add('hidden');
+  document.getElementById('loan-section').classList.remove('hidden');
+  document.getElementById('logout-btn').classList.remove('hidden');
+  document.getElementById('top-user').textContent = '' + user.displayName;
+  document.getElementById('current-user').textContent = user.displayName;
+  document.getElementById('account-status').textContent = 'Logged in';
+
+  // ===== Custom Content (image) =====
+  const customBox = document.getElementById('custom-content-box');
+  if (user.showCustomContent === "yes" && user.customContent) {
+    if (user.customContent.type === "image") {
+      customBox.innerHTML = `
+        <a href="${user.customContent.url}" target="_blank">
+          <img src="${user.customContent.value}" alt="Offer" style="max-width:100%;border-radius:6px;">
+        </a>
+      `;
+      customBox.classList.remove('hidden');
     }
+  } else {
+    customBox.classList.add('hidden');
+  }
 
-    loadUserData();
-    updateCurrencyUI();
+  // ===== Special Notice =====
+  const specialBox = document.getElementById('special-banner');
+  if (user.showSpecialNotice === "yes" && user.specialNoticeText) {
+    document.getElementById('special-message').innerHTML = user.specialNoticeText;
+    specialBox.classList.remove('hidden');
+  } else {
+    specialBox.classList.add('hidden');
+  }
 
-    const savedPass = localStorage.getItem('lastPassword');
-    if (savedPass) {
-        setTimeout(() => {
-            document.getElementById("userPassword").value = savedPass;
-        }, 300);
-    }
+  
+  // Summary
+  document.getElementById('sum-username').textContent = user.displayName;
+  document.getElementById('sum-premium').textContent = user.premiumType;
+
+ // ===== Summary: Amount + Interest + Overdue =====
+
+const totalAmount = user.loans.reduce(
+  (sum, loan) => sum + Number(loan.amount || 0), 0
+);
+
+const totalInterest = user.loans.reduce(
+  (sum, loan) => sum + Number(loan.interest || 0), 0
+);
+
+const totalOverdue = user.loans.reduce((sum, loan) => {
+  const status = computeLoanStatus(loan);
+  return sum + Number(status.overdueFee || 0);
+}, 0);
+
+const grandTotal = totalAmount + totalInterest + totalOverdue;
+
+const sumTotalEl = document.getElementById('sum-total');
+
+sumTotalEl.innerHTML = `
+  <span style="font-size:12px;color:var(--text-muted);margin-bottom:4px;"
+        class="detail-label">
+    Total amount
+  </span>
+
+  <strong style="font-size:17px;font-weight:bold;color:var(--dark-blue);line-height:1.4;">
+    ${grandTotal.toLocaleString()}
+  </strong>
+`;
+
+sumTotalEl.style.cursor = 'pointer';
+
+sumTotalEl.onclick = function() {
+  openTotalPopup();
 };
 
-document.addEventListener("DOMContentLoaded", function () {
-    let helperButton = document.querySelector(".helper-button");
-    if (helperButton) {
-        helperButton.classList.add("animated-border");
-        setTimeout(() => {
-            helperButton.classList.remove("animated-border");
-        }, 10000000);
+  // Interest rate display
+  if (user.fixedInterest != null && user.fixedInterest > 0) {
+    document.getElementById('sum-interest').textContent = user.fixedInterest + '% (Fixed)';
+  } else {
+    document.getElementById('sum-interest').textContent = todayInterest + '%';
+  }
+
+  // ===== Amount tabs + detail view (Amount 1, Amount 2, ...) =====
+  window._loanList = user.loans;
+  window._activeLoanIndex = 0;
+  renderAmountSwitcher(user.loans, 0);
+
+  const reminders = [];
+  user.loans.forEach((loan, idx) => {
+    const { overdueFee, status, daysInfo, daysDiff } = computeLoanStatus(loan);
+    const thisTotal = loan.amount + loan.interest + (overdueFee > 0 ? overdueFee : 0);
+
+    if (daysDiff >= -3 && daysDiff <= 0) {
+      const daysLeft = Math.abs(daysDiff);
+      let msg = '';
+      if (daysDiff === 0) {
+        msg = `<strong>Amount ${idx + 1}</strong> (${loan.amount.toLocaleString()}) is <strong>due today</strong>. Total (amount + interest${overdueFee > 0 ? ' + overdue' : ''}): <strong>${thisTotal.toLocaleString()}</strong>. Clear it or use <strong>Delay It</strong>.`;
+      } else {
+        msg = `<strong>Amount ${idx + 1}</strong> (${loan.amount.toLocaleString()}) has to be returned in <strong>${daysLeft} day(s)</strong>. Total (amount + interest): <strong>${(loan.amount + loan.interest).toLocaleString()}</strong>. Clear it or use <strong>Delay It</strong> before ${loan.return}.`;
+      }
+      reminders.push(msg);
+    } else if (daysDiff > 0) {
+      reminders.push(`<strong>Amount ${idx + 1}</strong> (${loan.amount.toLocaleString()}) is <strong>overdue</strong> by ${daysDiff} day(s). Total (amount + interest + overdue): <strong>${thisTotal.toLocaleString()}</strong>. Use <strong>Delay It</strong>.`);
     }
-});
-document.addEventListener('DOMContentLoaded', function () {
-    const downloadBtn = document.getElementById('download-receipt');
-    if (!downloadBtn) {
-        console.error("Button with id='download-receipt' NOT FOUND!");
-        return;
-    }
-    console.log("✅ Receipt button initialized");
+  });
+function openTotalPopup() {
 
-    downloadBtn.addEventListener('click', function () {
-        if (!currentUser) {
-            alert("Login first!");
-            return;
-        }
-        const user = currentUser;
-        if (!user.loans || user.loans.length === 0) {
-            alert("No active loans found.");
-            return;
-        }
+  if (!currentUser || !users[currentUser]) return;
 
-        // High Quality Settings
-        const SCALE = 2;
-        const BASE_WIDTH = 850;
-        const width = BASE_WIDTH * SCALE;
+  const modal = document.getElementById('total-popup-modal');
+  if (!modal) return;
 
-        const baseHeight = 320;
-        const perLoanHeight = 148;
-        const footerHeight = 220;
-        const canvasHeight = (baseHeight + (user.loans.length * perLoanHeight) + footerHeight) * SCALE;
+  const loans = users[currentUser].loans || [];
 
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d', { alpha: true });
+  // Calculate latest totals every time popup opens
+  const amount = loans.reduce(
+    (sum, loan) => sum + Number(loan.amount || 0), 0
+  );
 
-        canvas.width = width;
-        canvas.height = canvasHeight;
+  const interest = loans.reduce(
+    (sum, loan) => sum + Number(loan.interest || 0), 0
+  );
 
-        ctx.scale(SCALE, SCALE);
-        ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = 'high';
+  const overdue = loans.reduce((sum, loan) => {
+    const status = computeLoanStatus(loan);
+    return sum + Number(status.overdueFee || 0);
+  }, 0);
 
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, BASE_WIDTH, canvasHeight / SCALE);
+  const total = amount + interest + overdue;
 
-        let y = 80;
+  // Update popup values
+  document.getElementById('tp-amount').textContent =
+    amount.toLocaleString();
 
-        ctx.fillStyle = '#1a1a1a';
-        ctx.font = '700 44px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText('BsLends', BASE_WIDTH / 2, y);
-        y += 30;
+  document.getElementById('tp-interest').textContent =
+    interest.toLocaleString();
 
-        ctx.fillStyle = '#555555';
-        ctx.font = '400 18px Arial';
-        ctx.fillText('Borrow Statement', BASE_WIDTH / 2, y);
-        y += 52;
+  document.getElementById('tp-overdue').textContent =
+    overdue.toLocaleString();
 
-        ctx.textAlign = 'left';
-        ctx.fillStyle = '#1a1a1a';
-        ctx.font = '600 24px Arial';
-        ctx.fillText(user.name, 75, y);
-        y += 34;
+  document.getElementById('tp-total').textContent =
+    total.toLocaleString();
 
-        ctx.font = '400 15.5px Arial';
-        ctx.fillStyle = '#555555';
-        ctx.fillText('Password • ' + (user === usersDB["0212"] ? "0212" : "BsPasgenerater"), 75, y);
-        y += 58;
+  // Show updated popup
+  modal.classList.add('show');
+}
+  const reminderBox = document.getElementById('reminder-banner');
+  const reminderMessages = document.getElementById('reminder-messages');
+  if (reminders.length > 0) {
+    reminderMessages.innerHTML = reminders.map(m => `<p style="margin-bottom:6px;">${m}</p>`).join('');
+    reminderBox.classList.remove('hidden');
+  } else {
+    reminderBox.classList.add('hidden');
+  }
 
-        ctx.fillStyle = '#1a1a1a';
-        ctx.font = '600 20px Arial';
-        ctx.fillText('Active Loans', 75, y);
-        y += 38;
-
-        user.loans.forEach((loan, i) => {
-            const total = loan.takenAmount + loan.interest;
-
-            ctx.strokeStyle = '#eeeeee';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(75, y - 8);
-            ctx.lineTo(BASE_WIDTH - 75, y - 8);
-            ctx.stroke();
-
-            y += 30;
-            ctx.fillStyle = '#1a1a1a';
-            ctx.font = '600 19px Arial';
-            ctx.fillText(`Loan ${i + 1}`, 75, y);
-            y += 34;
-
-            ctx.font = '400 16.8px Arial';
-            ctx.fillStyle = '#333333';
-
-            ctx.fillText('Principal Amount', 75, y);
-            ctx.textAlign = 'right';
-            ctx.fillText(`₹${loan.takenAmount.toLocaleString('en-IN')}`, BASE_WIDTH - 75, y);
-            ctx.textAlign = 'left';
-            y += 30;
-
-            ctx.fillText('Interest', 75, y);
-            ctx.textAlign = 'right';
-            ctx.fillText(`₹${loan.interest.toLocaleString('en-IN')}`, BASE_WIDTH - 75, y);
-            ctx.textAlign = 'left';
-            y += 32;
-
-            ctx.fillStyle = '#1a1a1a';
-            ctx.font = '600 19px Arial';
-            ctx.fillText('Total Payable', 75, y);
-            ctx.textAlign = 'right';
-            ctx.fillStyle = '#0000ff';
-            ctx.fillText(`₹${total.toLocaleString('en-IN')}`, BASE_WIDTH - 75, y);
-            ctx.textAlign = 'left';
-            y += 30;
-
-            ctx.fillStyle = '#555555';
-            ctx.font = '400 15.8px Arial';
-            ctx.fillText(`Due on ${loan.endDate}`, 75, y);
-            y += 55;
-        });
-        y += 45;
-        ctx.fillStyle = '#1a1a1a';
-        ctx.font = '500 17.5px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText('Try to clear on time, Thank you', BASE_WIDTH / 2, y);
-        y += 62;
-        ctx.fillStyle = '#444444';
-        ctx.font = 'italic 400 15px Arial';
-        ctx.textAlign = 'right';
-        ctx.fillText('Powered by BsBookpad', BASE_WIDTH - 75, y);
-
-        y += 38;
-        ctx.fillStyle = '#aaaaaa';
-        ctx.font = '400 13.5px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText('BsLends Services • Confidential', BASE_WIDTH / 2, y);
-
-        y += 70;
-        try {
-            const link = document.createElement('a');
-            link.download = user.name.replace(/[^a-zA-Z0-9]/g, '_') + '_BsLends_Statement.png';
-            link.href = canvas.toDataURL('image/png', 1.0);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            console.log(`✅ High-Quality Receipt downloaded for ${user.name}`);
-        } catch (err) {
-            console.error("Download error:", err);
-            alert("Could not download. Try using Live Server.");
-        }
-    });
-});
-
-function goBack() {
-    if (window.history.length > 1) {
-        window.history.back();
-    } else {
-        alert(" Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
-    }
+  renderAppliedServices();
+  updateInterestDisplay();
 }
 
-let selectedSumIds = new Set();
+/* ===== Amount switcher UI ===== */
+function renderAmountSwitcher(loans, activeIndex) {
+  const tabsEl = document.getElementById('amount-tabs');
+  const detailEl = document.getElementById('amount-detail-container');
+  if (!tabsEl || !detailEl) return;
 
-function showSumPopup() {
-    if (!currentUser) {
-        alert("Please login first!");
-        return;
-    }
-    document.getElementById('sumPopup').style.display = 'block';
-    document.getElementById('sumOverlay').style.display = 'block';
-    selectedSumIds.clear();
-    renderSumContent();
+  if (!loans || loans.length === 0) {
+    tabsEl.innerHTML = '';
+    detailEl.innerHTML = '<div class="no-loans">No loan amounts found.</div>';
+    return;
+  }
+
+  window._activeLoanIndex = activeIndex;
+  tabsEl.innerHTML = loans.map((loan, i) =>
+    `<button type="button" class="amount-tab ${i === activeIndex ? 'active' : ''}" onclick="switchAmount(${i})">Amount ${i + 1}</button>`
+  ).join('');
+
+  const loan = loans[activeIndex];
+  const { overdueFee, status, daysInfo, daysDiff } = computeLoanStatus(loan);
+const totalAI = loan.amount + loan.interest + overdueFee;
+  detailEl.innerHTML = `
+    <div class="amount-detail-card" style='    width: 100%;'>
+      <div class="detail-row"><span class="detail-label">Amount</span><span class="detail-value">${loan.amount.toLocaleString()}</span></div>
+      <div class="detail-row"><span class="detail-label">Interest</span><span class="detail-value">${loan.interest.toLocaleString()}</span></div>
+      <div class="detail-row"><span class="detail-label">Taken on</span><span class="detail-value">${loan.borrowed}</span></div>
+      <div class="detail-row"><span class="detail-label">Return on</span><span class="detail-value">${loan.return}</span></div>
+      <div class="detail-row"><span class="detail-label">Days Left</span><span class="detail-value">${daysInfo}</span></div>
+      <div class="detail-row"><span class="detail-label">Status</span><span class="detail-value">${status}</span></div>
+      <div class="detail-row ${overdueFee > 0 ? 'overdue' : ''}"><span class="detail-label">Overdue Fee</span><span class="detail-value">${overdueFee > 0 ? overdueFee.toLocaleString() : '0'}</span></div>
+      <div class="detail-row total-row" style='    border-bottom: none;flex-direction: column;'><span class="detail-label">Total amount to return</span>
+<span class="detail-value" style="font-size: 60px;
+    font-weight: 500;
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 4.5px;
+    line-height: 65px;">
+  ${totalAI.toLocaleString()}
+</span></div>
+    </div>
+  `;
 }
 
-function renderSumContent() {
-    const container = document.getElementById('sum-list');
-    container.innerHTML = '';
-
-    currentUser.loans.forEach((loan, idx) => {
-        const isSelected = selectedSumIds.has(idx);
-        const opacityClass = isSelected ? 'selected' : '';
-
-        container.innerHTML += `
-      <div class="loan-option ${opacityClass}" onclick="toggleSumLoan(${idx})">
-        <strong>Amount ${idx + 1} - ₹${loan.takenAmount}</strong> (${loan.takenFrom})<br>
-        <small>Interest: ₹${loan.interest} | ${loan.planDate} → ${loan.endDate}</small>
-      </div>
-    `;
-    });
-
-    updateSumSummary();
+function switchAmount(index) {
+  if (!window._loanList) return;
+  renderAmountSwitcher(window._loanList, index);
 }
 
-function toggleSumLoan(idx) {
-    if (selectedSumIds.has(idx)) {
-        selectedSumIds.delete(idx);
-    } else {
-        selectedSumIds.add(idx);
-    }
-    renderSumContent();
+
+function openTotalPopup(amount, interest, overdue, total) {
+  const modal = document.getElementById('total-popup-modal');
+  if (!modal) return;
+
+  document.getElementById('tp-amount').textContent =
+    amount.toLocaleString();
+
+  document.getElementById('tp-interest').textContent =
+    interest.toLocaleString();
+
+  document.getElementById('tp-overdue').textContent =
+    overdue.toLocaleString();
+
+  document.getElementById('tp-total').textContent =
+    total.toLocaleString();
+
+  modal.classList.add('show');
 }
 
-function updateSumSummary() {
-    const summaryDiv = document.getElementById('sum-summary');
 
-    if (selectedSumIds.size === 0) {
-        summaryDiv.innerHTML = `<p style="color:#666;">No loans selected</p>`;
-        return;
-    }
+function closeTotalPopup() {
+  const modal = document.getElementById('total-popup-modal');
+  if (modal) modal.classList.remove('show');
+}
 
-    let totalPrincipal = 0;
-    let totalInterest = 0;
-    let html = '';
+function logout() {
+  currentUser = null;
+  localStorage.removeItem('jh_user');
+  document.getElementById('login-section').classList.remove('hidden');
+  document.getElementById('loan-section').classList.add('hidden');
+  document.getElementById('logout-btn').classList.add('hidden');
+  document.getElementById('top-user').textContent = '';
+  document.getElementById('account-status').textContent = '';
+  document.getElementById('special-banner').classList.add('hidden');
+  document.getElementById('custom-content-box').classList.add('hidden');
+  document.getElementById('reminder-banner').classList.add('hidden');
+  renderProducts();
+  updateInterestDisplay();
+  enforceCustomUIAccess();
+}
 
-    selectedSumIds.forEach(idx => {
-        const loan = currentUser.loans[idx];
-        html += `
-      <div>
-        <strong>Amount ${idx + 1}:</strong> ₹${loan.takenAmount}<br>
-        <strong>Interest:</strong> ₹${loan.interest}
-      </div>`;
-        totalPrincipal += loan.takenAmount;
-        totalInterest += loan.interest;
-    });
+// ==================== iOS-style Notification System ====================
+function showIOSNotification(title, message, type = 'info', duration = 2100) {
+  const container = document.getElementById('ios-toast-container');
+  if (!container) return;
 
-    html += `
-    <hr>
-    <div class="total">
-      Total Amount: ₹${totalPrincipal}<br>
-      Total Interest: ₹${totalInterest}<br>
-      <strong>Total: ₹${totalPrincipal + totalInterest}</strong>
+  const toast = document.createElement('div');
+  toast.className = `ios-toast ${type}`;
+
+  let icon = 'i';
+  if (type === 'success') icon = '<img src="service-icons/done_icon.png" alt="">';
+  else if (type === 'warning') icon = '!';
+  else if (type === 'error') icon = '<img src="service-icons/close_icon.png" alt="">';
+  else if (type === 'info') icon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M509.61-140q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-535.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H509.61q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H509.61Zm-28.38-310H170q-12.77 0-21.38-8.62Q140-467.23 140-480t8.62-21.38Q157.23-510 170-510h311.23l-76.92-76.92q-8.31-8.31-8.5-20.27-.19-11.96 8.5-21.27 8.69-9.31 21.08-9.62 12.38-.3 21.69 9l123.77 123.77q10.84 10.85 10.84 25.31 0 14.46-10.84 25.31L447.08-330.92q-8.92 8.92-21.19 8.8-12.27-.11-21.58-9.42-8.69-9.31-8.38-21.38.3-12.08 9-20.77l76.3-76.31Z"/></svg>';
+
+  toast.innerHTML = `
+    <div class="ios-toast-icon">${icon}</div>
+    <div class="ios-toast-content">
+      <div class="ios-toast-title">${title}</div>
+      <div class="ios-toast-message">${message}</div>
     </div>
   `;
 
-    summaryDiv.innerHTML = html;
+  container.appendChild(toast);
+
+  // Trigger show animation
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      toast.classList.add('show');
+    });
+  });
+
+  // Auto hide
+  setTimeout(() => {
+    toast.classList.remove('show');
+    toast.classList.add('hide');
+    setTimeout(() => {
+      if (toast.parentNode) toast.parentNode.removeChild(toast);
+    }, 550);
+  }, duration);
 }
 
+// ==================== Patch existing functions for notifications ====================
+window.addEventListener('load', function() {
+  // --- LOGIN ---
+  if (typeof window.doLogin === 'function') {
+    const originalDoLogin = window.doLogin;
+    window.doLogin = function() {
+      const result = originalDoLogin.apply(this, arguments);
+      // Show notification after a short delay so UI updates first
+      setTimeout(() => {
+        const userEl = document.getElementById('current-user');
+        const loanSection = document.getElementById('loan-section');
+        if (loanSection && !loanSection.classList.contains('hidden')) {
+          const name = userEl ? userEl.textContent.trim() : 'User';
+          showIOSNotification('Logged in', `Welcome back, ${name}!`, 'success');
+        } else {
+          // If still on login screen, might be wrong password
+          showIOSNotification('Login failed', 'Incorrect password. Try again.', 'error');
+        }
+      }, 180);
+      return result;
+    };
+  }
+
+  // --- LOGOUT ---
+  if (typeof window.logout === 'function') {
+    const originalLogout = window.logout;
+    window.logout = function() {
+      const result = originalLogout.apply(this, arguments);
+      setTimeout(() => {
+        showIOSNotification('Logged out', 'You have been successfully logged out.', 'info');
+      }, 150);
+      return result;
+    };
+  }
+
+  // --- THEME SELECT ---
+  if (typeof window.selectTheme === 'function') {
+    const originalSelectTheme = window.selectTheme;
+    window.selectTheme = function(theme) {
+      const result = originalSelectTheme.apply(this, arguments);
+      const themeNames = {
+        light: 'Light',
+        dark: 'Dark Black',
+        telegram: 'Telegram',
+        custom: 'Custom'
+      };
+      const name = themeNames[theme] || theme;
+      setTimeout(() => {
+        showIOSNotification('Theme changed', `${name} theme applied successfully.`, 'success');
+      }, 200);
+      return result;
+    };
+  }
+
+  // --- CUSTOM COLOR ---
+  if (typeof window.selectCustomColor === 'function') {
+    const originalSelectCustomColor = window.selectCustomColor;
+    window.selectCustomColor = function(color) {
+      const result = originalSelectCustomColor.apply(this, arguments);
+      setTimeout(() => {
+        showIOSNotification('Accent updated', `Custom color ${color} applied.`, 'success');
+      }, 200);
+      return result;
+    };
+  }
+});
+
+window.showIOSNotification = showIOSNotification;
+
+
+function drawBarGraph() {
+  const container = document.getElementById('bars-container');
+  const labelsEl = document.getElementById('graph-labels');
+
+  if (!container || !labelsEl) return;
+
+  const history = JSON.parse(
+    localStorage.getItem('jh_interest_history') || '[]'
+  );
+
+  let rates = history.map(h => Number(h.rate));
+
+  if (rates.length === 0) {
+    rates = [todayInterest];
+  }
+
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  let labels = history.map(h => {
+    return new Date(h.date).getDay() >= 0
+      ? dayNames[new Date(h.date).getDay()]
+      : '';
+  });
+
+  // Always display 7 bars
+  while (rates.length < 7) {
+    rates.unshift(rates[0] || todayInterest);
+    labels.unshift('–');
+  }
+
+  // Dynamic graph scaling
+  const minRate = Math.min(...rates);
+  const maxRate = Math.max(...rates);
+
+  const padding = Math.max((maxRate - minRate) * 0.5, 1);
+
+  const graphMin = minRate - padding;
+  const graphMax = maxRate + padding;
+
+  container.innerHTML = '';
+  labelsEl.innerHTML = '';
+
+  rates.forEach((rate, i) => {
+    const isToday = i === rates.length - 1;
+
+    let heightPct =
+      ((rate - graphMin) / (graphMax - graphMin)) * 100;
+
+    heightPct = Math.max(25, heightPct);
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'bar-wrapper';
+
+    const bar = document.createElement('div');
+    bar.className = 'bar' + (isToday ? ' today' : '');
+    bar.style.height = heightPct + '%';
+
+    const value = document.createElement('div');
+    value.className = 'bar-value';
+    value.textContent = rate.toFixed(2) + '%';
+
+    bar.appendChild(value);
+    wrapper.appendChild(bar);
+    container.appendChild(wrapper);
+
+    const lab = document.createElement('span');
+    lab.textContent = isToday ? 'Today' : labels[i];
+
+    labelsEl.appendChild(lab);
+  });
+}
+
+
+window.onload = function() {
+  let savedTheme = localStorage.getItem('jh_theme') || 'light';
+  const savedColor = localStorage.getItem('jh_custom_color');
+
+  const savedUser = localStorage.getItem('jh_user');
+  if (savedUser && users[savedUser]) {
+    currentUser = savedUser;
+  }
+
+  // Clean old "custom" value
+  if (savedTheme === 'custom') {
+    savedTheme = 'dark';
+    localStorage.setItem('jh_theme', 'dark');
+  }
+
+  enforceCustomUIAccess();
+
+  // Re-read after enforce (in case custom color was removed)
+  savedTheme = localStorage.getItem('jh_theme') || 'light';
+  const finalColor = localStorage.getItem('jh_custom_color');
+
+  applyTheme(savedTheme, finalColor || undefined);
+
+  document.getElementById('today-rate-display').textContent = todayInterest + '%';
+  drawBarGraph();
+
+  if (currentUser) {
+    showLoanDetails();
+  }
+
+  renderProducts();
+  updateInterestDisplay();
+};
+
+/* ===== ACTIVE NAVBAR HIGHLIGHT (Scroll Spy) ===== */
+(function() {
+  // Map section ID → data-section value
+  const sectionMap = {
+    graph: 'interest',   // #graph → data-section="interest"
+    turbo: 'turbo',
+    takemoney: 'takemoney',
+    products: 'products',
+    account: 'account'
+  };
+
+  const sections = Object.keys(sectionMap);
+  const navLinks = document.querySelectorAll('.quick a[data-section]');
+
+  function setActive(sectionId) {
+    const activeKey = sectionMap[sectionId] || sectionId;
+    navLinks.forEach(link => {
+      if (link.getAttribute('data-section') === activeKey) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setActive(entry.target.id);
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '-15% 0px -15% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  // Instant highlight on click
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const key = link.getAttribute('data-section');
+      // Find the real section id from the map
+      const realId = Object.keys(sectionMap).find(k => sectionMap[k] === key) || key;
+      setActive(realId);
+    });
+  });
+
+  // Initial check on page load
+  window.addEventListener('load', () => {
+    let current = null;
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.5 && rect.bottom >= window.innerHeight * 0.3) {
+          current = id;
+        }
+      }
+    });
+    if (current) setActive(current);
+  });
+})();
+
+const btn = document.getElementById('menuBtn');
+const dropdown = document.getElementById('dropdown');
+
+btn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  dropdown.classList.toggle('show');
+});
+
+// Close when clicking outside
+document.addEventListener('click', () => {
+  dropdown.classList.remove('show');
+});
+
+function goBack() {
+  if (window.history.length > 1) {
+    window.history.back();
+  } else {
+    alert("✅ Back button clicked!\n\n(In a real app this would take you to previous screen or home.)");
+  }
+}
+
+const progressBar = document.getElementById('progressBar');
+const progressPercent = document.getElementById('progress-percent');
+const loadingScreen = document.getElementById('loading-screen');
+const mainContent = document.getElementById('main-content');
+const duration = Math.floor(Math.random() * 1500) + 750;
+const startTime = performance.now();
+
+function updateProgress(now) {
+  const elapsed = now - startTime;
+  const progress = Math.min((elapsed / duration) * 100, 100);
+
+  progressBar.style.width = progress + '%';
+  progressPercent.textContent = Math.floor(progress) + '%';
+
+  if (progress < 100) {
+    requestAnimationFrame(updateProgress);
+  } else {
+    setTimeout(() => {
+      loadingScreen.classList.add('hidden');
+      mainContent.style.display = 'block';
+    }, 100);
+  }
+}
+requestAnimationFrame(updateProgress);
+
+function closeLoadingCard() {
+  const card = document.querySelector('.loading-card');
+  card.classList.add('closing');
+  card.addEventListener('animationend', () => {
+    card.remove();
+  }, { once: true });
+}
