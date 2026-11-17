@@ -348,18 +348,39 @@ div#sectionsContainer strong {
   position: relative;
 }
 .header {
-  position: fixed;
+position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1500;
+    padding: 15px 5px 0px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(180deg, var(--bg-soft), transparent);
+    gap: 10px;
+ /* background:linear-gradient(180deg, #000000a6 80%, transparent); */
+        }
+.header::before {
+  content: "";
+  position: absolute;
+
   top: 0;
-  width: 100%;
-  z-index: 1500;
-  padding: 15px 5px 0px 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: linear-gradient(180deg, var(--bg-body), transparent);
-  gap: 10px;
-  backdrop-filter: blur(2px);
+  left: 0;
+  right: 0;
+  bottom: -15px;
+
+  z-index: -1;
+  pointer-events: none;
+
+  backdrop-filter: blur(15px);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 40%,
+    rgba(0,0,0,.8) 65%,
+    transparent 100%
+  );
 }
 
 strong {
