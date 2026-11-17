@@ -636,7 +636,7 @@ sumTotalEl.onclick = function() {
   if (user.fixedInterest != null && user.fixedInterest > 0) {
     document.getElementById('sum-interest').textContent = user.fixedInterest + '% (Fixed)';
   } else {
-    document.getElementById('sum-interest').textContent = todayInterest + '% (Today)';
+    document.getElementById('sum-interest').textContent = todayInterest + '%';
   }
 
   // ===== Amount tabs + detail view (Amount 1, Amount 2, ...) =====
@@ -737,7 +737,7 @@ function renderAmountSwitcher(loans, activeIndex) {
   const { overdueFee, status, daysInfo, daysDiff } = computeLoanStatus(loan);
 const totalAI = loan.amount + loan.interest + overdueFee;
   detailEl.innerHTML = `
-    <div class="amount-detail-card">
+    <div class="amount-detail-card" style='    width: 100%;'>
       <div class="detail-row"><span class="detail-label">Amount</span><span class="detail-value">${loan.amount.toLocaleString()}</span></div>
       <div class="detail-row"><span class="detail-label">Interest</span><span class="detail-value">${loan.interest.toLocaleString()}</span></div>
       <div class="detail-row"><span class="detail-label">Taken on</span><span class="detail-value">${loan.borrowed}</span></div>
