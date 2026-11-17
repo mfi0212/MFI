@@ -489,17 +489,34 @@ function doSearch() {
   list.innerHTML = matched.length === 0 
     ? `<div class="search-item">No results for "<strong>${keyword}</strong>"</div>`
     : matched.map(p => `
-      <div class="search-item">
-        <div><strong>${p.name}</strong> <span style="font-size:12px;color:var(--text-muted);">${p.desc}</span></div>
-        <div>
-          <button class="btn" style="padding: 5px 12px;
-    font-size: 13px;
-    width: fit-content;
-    opacity: 100%;    height: 25px;" onclick="handleProductClick('${p.name}')">Apply</button>
-          <a href="#products" style="margin-left:8px;font-size:13px;">View</a>
+        <div class="search-item"> 
+                <div>
+                    <div style="text-align: left;" class="box-title">
+                        <a href="#" onclick="clearSearch()" style="color: red;
+                        padding: 0;
+                        border: none;
+                        background: transparent;
+                        font-weight: 600;">✕</a>
+                    </div>
+                    <div>
+                        <strong>${p.name}</strong> <span style="    font-size: 12px;
+    color: var(--text-muted);
+    width: 115px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;">${p.desc}</span>
+                    </div>
+                </div>
+            <button class="btn" style="width: fit-content;
+    opacity: 100%;
+    height: 25px;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;" onclick="handleProductClick('${p.name}')"><svg style='width: 28px;
+    height: 28px;' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M14.13,21.67L7,19.58V12.85H9.08q0.16,0 0.29,0.03t0.27,0.08l6.02,2.21q0.41,0.14 0.72,0.57t0.31,0.81q0,0.29-0.17,0.46t-0.45,0.16h-1.2q-0.57,0-1.05-0.07t-0.89-0.22l-1.43-0.5q-0.16-0.06-0.31,0.02t-0.2,0.21Q10.92,16.75 11,16.91t0.24,0.21l1.57,0.52q0.45,0.16 0.98,0.22t1.02,0.06h5.16q0.7,0 1.18,0.44t0.48,1.14l-6.53,2.16q-0.19,0.06-0.48,0.06t-0.48-0.05ZM3,19.92v-6q0-0.46 0.31-0.77t0.77-0.31H4.92q0.46,0 0.77,0.31T6,13.92v6q0,0.46-0.31,0.77T4.92,21H4.08q-0.46,0-0.77-0.31T3,19.92ZM13.54,9.65l5.34-5.32q0.14-0.14 0.33-0.13t0.34,0.15q0.14,0.14 0.14,0.34T19.55,5.04l-5.44,5.44q-0.24,0.24-0.57,0.24t-0.57-0.24L10.36,7.87Q10.21,7.72 10.2,7.51t0.16-0.35q0.15-0.14 0.35-0.13t0.35,0.15l2.47,2.47Z"/></svg>
+            </button>
         </div>
-      </div>
-    `).join('');
+     `).join('');
 
   resultsBox.style.display = 'block';
   resultsBox.scrollIntoView({ behavior: 'smooth' });
