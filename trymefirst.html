@@ -493,7 +493,7 @@ img.closesymbol {
 .site-item {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 10px 5px;
   color: white;
   text-decoration: none;
   position: relative;
@@ -1700,7 +1700,7 @@ function checkServicePassword() {
 
   if (matchedUser) {
     window.currentUser = matchedUser.displayName || matchedUser.name || "User";
-
+ 
     document.getElementById("servicePasswordPopup").style.display = "none";
     document.body.classList.remove("site-locked");
 
