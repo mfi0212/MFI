@@ -148,12 +148,12 @@ body {
 @keyframes fadeSlideleft {
   from {
     opacity: 0;
-    transform: translateX(60px);
-    backdrop-filter: blur(50px);
+    transform: translateY(50px);
+    backdrop-filter: blur(150px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
     backdrop-filter: blur(0px);
   }
 }
@@ -504,20 +504,21 @@ img.closesymbol {
   justify-content: space-between;
 }
 a.site-item:active {
-  margin: 3px;
+  /* margin: 3px; */
   background: var(--bg-soft);
   border-radius: 25px;
 }
 .site-item:last-child {
-  border-radius: 0 0 35px 35px;
-  padding: 10px;
+     border-radius: 8px 8px 35px 35px;
+    padding: 10px;
 }
 .site-item:first-child {
-  border-radius: 35px 35px 0 0;
-  padding: 10px;
+     border-radius: 35px 35px 10px 10px;
+    padding: 10px;
+    margin-bottom: 3px;
 }
 .site-item:active {
-  transform: scale(0.96);
+  transform: scale(0.99);
   border-radius: 20px;
 }
 .site-item.pinned {
