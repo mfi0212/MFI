@@ -360,6 +360,7 @@ div#sectionsContainer strong {
   background: linear-gradient(180deg, var(--bg-body), transparent);
   gap: 10px;
 }
+
 strong {
 font-size: 18px;
     font-weight: 600;
@@ -372,7 +373,6 @@ font-size: 18px;
     transform: translate(-50%, 0);
     top: 20px;
     gap: 10px;
-    flex-direction: row-reverse;
 }
 .logo {
   display: flex;
@@ -394,7 +394,6 @@ padding: 7px;
     border-radius: 9999px;
     outline: none;
     text-align: center;
-    width: 100%;
     border: none;
     color: var(--text-main);
     background: var(--bg-soft);
@@ -403,14 +402,17 @@ padding: 7px;
     box-shadow: 0 0 1px var(--bg-body);
     box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
     filter: drop-shadow(0px 0px 6px #0000002b);
+    max-width: 335px;
+    width: 100%;
 }
 .nav-item span {
   font-size: 11px;
   font-weight: 500;
 }
 div#searchWrapper {
-  border: none;
-  position: relative;
+ border: none;
+    position: relative;
+    text-align: center;
 }
 #searchInput:focus {
   outline: none;
@@ -1181,8 +1183,10 @@ body:has(#bsmfi-loader:not(.hidden)) {
     </div>
     <div id="mainContent">
         <div class="header">
-            <div class="logo"> <strong class="fullnamewidth"> <img style="    width: 20px;border-radius: 50%;" src="mfi.gif" alt=""> BS&MFI </strong>
-                <div class="helper-button" style="padding: 15px;"  onclick="showAll()">
+            <div class="logo"> <strong class="fullnamewidth"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M4.19,17.5q-1.12,0-1.91-0.79T1.5,14.81V9.19q0-1.12 0.79-1.91T4.19,6.5H17.5q1.12,0 1.91,0.79t0.79,1.91v5.62q0,1.12-0.79,1.91T17.5,17.5H4.19Zm17-3.19V9.7h0.4q0.38,0 0.64,0.26t0.26,0.64v2.8q0,0.38-0.26,0.64T21.6,14.31h-0.4Z"/></svg> BS&MFI <img style="    width: 20px;border-radius: 50%;" src="mfi.gif" alt=""> </strong>
+                
+                
+            <div class="helper-button" style="padding: 15px;"  onclick="showAll()">
                     All
                 </div>
                 <div class="helper-button" style="display: none;">
