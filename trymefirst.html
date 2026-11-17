@@ -368,19 +368,13 @@ position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  bottom: -15px;
+  bottom: 0px;
 
   z-index: -1;
   pointer-events: none;
 
-  backdrop-filter: blur(15px);
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    black 0%,
-    black 40%,
-    rgba(0,0,0,.8) 65%,
-    transparent 100%
-  );
+  backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient( to bottom, black 0%, black 40%, rgb(0 0 0 / 94%) 65%, transparent 100% );
 }
 
 strong {
