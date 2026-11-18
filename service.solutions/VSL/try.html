@@ -120,10 +120,14 @@ h3#detailModalTitle,h3#modalTitle,h3#premiumModalTitle{
 }
 
 .entry-total.detail-row{
-     background: transparent;
+   background: transparent;
     padding: 10px 0;
     color: var(--highlight-light-total);
     position: unset;
+    width: 100%;
+    text-align: left;
+    left: 0;
+    transform: translate(0%);
 }
 
 .entry-total.detail-row .label{opacity:55%}
@@ -325,9 +329,9 @@ display: flex;
     align-items: center;
     padding: 0px 10px;
     gap: 10px;
-    background: linear-gradient( 170deg, #00000000, #ffffff36);
-    box-shadow: inset -1px 0px 0px #0000004f, inset 0px 1px 0px #ffffff4a, inset 1px 0px 0px #0000004f, inset 0px -1px 0px #ffffff4a;
-    border: solid 0.2px #00000012;    backdrop-filter: blur(10px);;
+    background: linear-gradient( 175deg, #00000000, #ffffff2b);
+    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px  0.8px 0px #ffffff36, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff36;
+    border: solid 0.2px #0000000d;    backdrop-filter: blur(10px);;
 }
 .font-btn,.lang-btn,.theme-btn{
 min-height: 34px;
@@ -355,9 +359,9 @@ min-height: 34px;
 }
 .font-controls button {
     border-radius: 999px;
-    background: linear-gradient( 170deg, #00000000, #ffffff36);
-    box-shadow: inset -1px 0px 0px #0000004f, inset 0px 1px 0px #ffffff4a, inset 1px 0px 0px #0000004f, inset 0px -1px 0px #ffffff4a;
-    border: solid 0.2px #00000012;    backdrop-filter: blur(10px);;
+    background: linear-gradient( 175deg, #00000000, #ffffff2b);
+    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px  0.8px 0px #ffffff36, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff36;
+    border: solid 0.2px #0000000d;    backdrop-filter: blur(10px);;
        width: 55px;
     height: 55px;
     transition: all 0.1s ease-in-out;
@@ -379,9 +383,9 @@ display: flex;
     position: relative;
     left: 50%;
     transform: translate(-50%, 0);
-    background: linear-gradient( 170deg, #00000000, #ffffff36);
-    box-shadow: inset -1px 0px 0px #0000004f, inset 0px 1px 0px #ffffff4a, inset 1px 0px 0px #0000004f, inset 0px -1px 0px #ffffff4a;
-    border: solid 0.2px #00000012;    backdrop-filter: blur(10px);;
+    background: linear-gradient( 175deg, #00000000, #ffffff2b);
+    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px  0.8px 0px #ffffff36, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff36;
+    border: solid 0.2px #0000000d;    backdrop-filter: blur(10px);;
     border-radius: 999px;
     margin: 15px 0;
 }
@@ -408,7 +412,7 @@ display: flex;
   margin: 5px;
     font-size: 14px;
     padding: 0 10px;
-    font-weight: 300;
+    font-weight: 400;
     opacity: 60%;
 }
 
@@ -419,7 +423,7 @@ display: flex;
      margin-bottom: 10px;
     border-radius: 25px;
     background: #6c6c6c29;
-    padding: 5px 15px 15px 15px;
+    padding: 5px 15px 5px 15px;
 }
 
 .entry-row,.remaining,.borrowed-by-row,.paid-row{
@@ -447,7 +451,7 @@ display: flex;
 }
 
 .entry-total{
-background: var(--accent);
+    background: var(--accent);
     padding: 10px 15px;
     display: flex;
     justify-content: space-between;
@@ -457,6 +461,10 @@ background: var(--accent);
     border-radius: 999px;
     position: sticky;
     bottom: 15px;
+    width: 50%;
+    text-align: left;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 
 .paid-input-wrap{
@@ -624,11 +632,11 @@ ul.premium-features-list h3:active{
     align-items: center;
     justify-content: center;
     padding: 16px;
-    background: #0000004f;
+    background: #0000001c;
     overflow-y: auto;
 }
 .row span {
-    font-weight: 200;
+    font-weight: 400;
     opacity: 70%;
 }
 .modal{
@@ -1129,14 +1137,15 @@ body[data-detail-effects="off"] .detail-row:hover{
           <h5>VSL, All rights reserved.<br>
           Version (v.03.05.11)</h5>
         </div>
-<a style="    background: var(--accent);
+<a style="background: var(--accent);
     padding: 10px;
     display: flex;
     position: relative;
     color: white;
     position: fixed;
-    bottom: 70px;
-    right: 15px;    border-radius: 50%;" href="#scrollup"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M11,20V7.82l-5.6,5.6L4,12l8-8l8,8l-1.4,1.42L13,7.82V20H11Z"/></svg></a>
+    bottom: 15px;
+    right: 15px;
+    border-radius: 50%;" href="#scrollup"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M11,20V7.82l-5.6,5.6L4,12l8-8l8,8l-1.4,1.42L13,7.82V20H11Z"/></svg></a>
       </div>
        </div>
     </footer>
@@ -1243,7 +1252,7 @@ const TEXT={
   days:"Days Passed",
   interestPaid:"Interest Paid",
   remaining:"Remaining Interest",
-  entryTotal:"Total (Principal + Interest)",
+  entryTotal:"Total",
   interestNav:"Details",
   notesNav:"Notes",
   totalBtn:"Total",
