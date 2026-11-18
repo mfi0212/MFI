@@ -920,7 +920,88 @@ canvas#loanChart {
 	margin-bottom: -40px;
 }
 
-/* ===== POPUPS - FIXED (works with your original JS) ===== */
+#privacyUnlockPopup {
+    position: fixed;
+    inset: 0;
+    z-index: 999999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #00000085;
+}
+
+.privacy-unlock-content {
+   position: relative;
+    width: 100%;
+    max-width: 340px;
+    padding: 25px;
+    border-radius: 40px;
+    background: #fff;
+    color: #111;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+    animation: privacyPopupIn 0.25s ease;
+}
+
+.privacy-unlock-icon {
+    margin-bottom: 10px;
+}
+
+.privacy-unlock-content h2 {
+    margin: 0 0 12px;
+    font-size: 22px;
+}
+
+.privacy-unlock-content p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 22px;
+}
+
+.privacy-unlock-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    border: none;
+    background: transparent;
+    color: #777;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.privacy-buy-stars {
+       width: 100%;
+    padding: 11px;
+    border: none;
+    border-radius: 9999px;
+    background: #0800f0;
+    color: #fff;
+    font-size: 17px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.privacy-buy-stars:active {
+	transform: scale(0.90);
+}
+
+.privacy-locked {
+    cursor: pointer;
+    user-select: none;
+}
+
+@keyframes privacyPopupIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
 #totalPopup,
 #datePopup,
 #linkConfirmPopup,
@@ -3014,7 +3095,7 @@ background: none;
                 	</div>
             <img style="width: 100px;" src="service-icons/total_pop_up_folder_logo.gif" alt="">
             <h3>Amounts Folder</h3>
-            <div class="stars" onclick="alert('Visit stars sites to know more about stars and how they are usefull.')">
+            <div class="stars" onclick="alert('Use Stars to unlock private details and boost your lending suggestion.')">
                 <img style="width: 20px;" src="service-icons/stars_service_logo.webp" alt="Star"><span style="    font-weight: 600;" id="userCoinsDisplays">0</span>
             </div>
             <div class="iconsinfo">
@@ -3205,50 +3286,34 @@ function getLoanFinancials(loan) {
     borrowDate.setHours(0, 0, 0, 0);
     today.setHours(0, 0, 0, 0);
 
+    // Count interest starting from the borrowed date
     const daysElapsed = Math.max(
         0,
         Math.floor((today - borrowDate) / 86400000) + 1
     );
 
-    const dailyInterest = principal * (monthlyRate / 100) / 30;
+    // Accumulate interest from borrowed date until today
+    const totalInterest =
+        principal * (monthlyRate / 100) * (daysElapsed / 30);
 
-    // Full interest calculated
-    const totalInterest = dailyInterest * daysElapsed;
-
-    // Interest already paid
     const interestCleared = Math.max(
         0,
         Number(loan.interestCleared) || 0
     );
 
-    // Interest remaining after payment
     const remainingInterest = Math.max(
         0,
         totalInterest - interestCleared
     );
 
-    const cleanEndDate = loan.endDate.split('(')[0].trim();
-    const endDate = parseDate(cleanEndDate);
-    endDate.setHours(0, 0, 0, 0);
-
-    const overdueDays = Math.max(
-        0,
-        Math.floor((today - endDate) / 86400000)
-    );
-
-    const overdueFine = overdueDays * (Number(loan.fineRate) || 0);
-
     return {
         principal,
         monthlyRate,
         daysElapsed,
-        dailyInterest,
         totalInterest,
         interestCleared,
         remainingInterest,
-        overdueDays,
-        overdueFine,
-        totalPayable: principal + remainingInterest + overdueFine
+        totalPayable: principal + remainingInterest
     };
 }
 
@@ -3700,19 +3765,18 @@ function closeSheet() {
 function displayLoanDetails(loan, index) {
     currentLoanIndex = index;
 
-    const now = new Date();
     const cleanEndDate = loan.endDate.split('(')[0].trim();
     const endDate = parseDate(cleanEndDate);
-    endDate.setHours(0, 0, 0, 0);
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
+    endDate.setHours(0, 0, 0, 0);
 
     const daysLeft = Math.ceil((endDate - today) / 86400000);
+
     const f = getLoanFinancials(loan);
 
-    const takenDate = parseDate(loan.planDate);
-    const daysElapsed = f.daysElapsed;
+    const detailsAllowed = canRevealLoanDetails();
 
     document.querySelectorAll(".amount-btn").forEach(b =>
         b.classList.remove("active")
@@ -3725,115 +3789,120 @@ function displayLoanDetails(loan, index) {
         btns[filteredIndex].classList.add("active");
     }
 
+    const privateField = (label, value, color = '') => `
+    <div class="details privacy-detail">
+        <div class="leftflow">
+            <h3>${label}</h3>
+        </div>
+
+        <p class="privacy-spoiler ${detailsAllowed ? '' : 'privacy-locked'}"
+           ${detailsAllowed ? '' : 'role="button" tabindex="0"'}
+           onclick="${detailsAllowed ? '' : 'showPrivacyUnlockPopup()'}"
+           onkeydown="${detailsAllowed ? '' : "if(event.key==='Enter'||event.key===' '){event.preventDefault();showPrivacyUnlockPopup();}"}">
+
+            <span class="spoiler-content"
+                  style="color:${color || 'inherit'}">
+                ${detailsAllowed ? value : '••••••••'}
+            </span>
+        </p>
+    </div>
+`;
+
     document.getElementById("loanDetails").innerHTML = `
         <div class="loan-entry">
 
-            <div id="customOfferSection" style="
-                display:block;
-                margin:15px 5px -10px 5px;
-                text-align:center;">
-                <a id="customOfferLink" href="#" target="_blank" rel="noopener">
-                    <img id="customOfferImg" src="" alt="Special Offer"
-                    style="width:100%;border-radius:15px;padding:5px;
-                    box-shadow:inset 0.9px 0.9px 0 #ffffff17;
-                    background:#181818d9;">
+            <div id="customOfferSection"
+                 style="display:block;margin:15px 5px -10px;text-align:center;">
+
+                <a id="customOfferLink"
+                   href="#"
+                   target="_blank"
+                   rel="noopener">
+
+                    <img id="customOfferImg"
+                         src=""
+                         alt="Special Offer"
+                         style="width:100%;border-radius:15px;padding:5px;">
                 </a>
             </div>
 
-            <div class="details" style="
-                transform:none;display:flex;justify-content:center;
-                align-items:center;position:sticky;top:185px;
-                z-index:10000000;padding:20px 0 0;
-                filter:drop-shadow(0 0 5px black);">
+            <div class="details"
+                 style="transform:none;display:flex;justify-content:center;
+                 align-items:center;position:sticky;top:185px;
+                 z-index:10000000;padding:20px 0 0;">
 
-                <input type="text" class="purpose-input"
-                    placeholder="Purpose"
-                    value="${loan.purpose || ''}"
-                    onchange="updatePurpose(${index}, this.value)">
+                <input type="text"
+                       class="purpose-input"
+                       placeholder="Purpose"
+                       value="${loan.purpose || ''}"
+                       onchange="updatePurpose(${index}, this.value)">
             </div>
 
             <div class="totaldetails">
-                <p style="    font-size: 50px;
-    font-weight: 500;
-    font-family: 'Anton', sans-serif;
-    letter-spacing: 3px;
+                <p style="
+                    font-size:50px;
+                    font-weight:500;
+                    font-family:Anton,sans-serif;
                     color:${f.overdueFine > 0 ? '#ff0000' :
-                        daysLeft <= 2 ? '#ff0000' :
-                        daysLeft <= 6 ? '#ff8c00' : '#00d423'};">
+                            daysLeft <= 2 ? '#ff0000' :
+                            daysLeft <= 6 ? '#ff8c00' : '#00d423'};
+                ">
                     ${formatMoney(f.totalPayable)}
                 </p>
                 <hr>
                 <h3>Total amount</h3>
             </div>
 
-            <div class="details">
-                <div class="leftflow"><h3>Borrowed By</h3></div>
-                <p>${loan.borrowedBy || 'Not specified'}</p>
-            </div>
-            <div class="details">
-                <div class="leftflow"><h3>Borrowed Amount</h3></div>
-                <p>${formatMoney(f.principal)}</p>
-            </div>
-            <div class="details">
-                <div class="leftflow" ><h3>Monthly Interest Rate</h3></div>
-                <p>${f.monthlyRate}%</p>
-            </div>
+            ${privateField(
+                'Borrowed By',
+                loan.borrowedBy || 'Not specified'
+            )}
 
             <div class="details">
-                <div class="leftflow"><h3>Borrowed on</h3></div>
+                <div class="leftflow">
+                    <h3>Borrowed Amount</h3>
+                </div>
+                <p>${formatMoney(f.principal)}</p>
+            </div>
+ ${privateField(
+                'Monthly Interest Rate',
+                f.monthlyRate + '%'
+            )}
+            <div class="details">
+                <div class="leftflow">
+                    <h3>Borrowed On</h3>
+                </div>
                 <p>${loan.planDate}</p>
             </div>
 
-            <div class="details" style='display: none;'>
-                <div class="leftflow" ><h3>Return on</h3></div>
-                <p style="color:${daysLeft <= 2 ? '#ff1100' :
-                    daysLeft <= 6 ? '#ff8c00' : '#00d423'};">
-                    ${cleanEndDate}
-                </p>
-            </div>
+            ${privateField(
+                'Days Passed',
+                f.daysElapsed + ' days'
+            )}
 
-            <div class="details">
-                <div class="leftflow"><h3>Days Passed</h3></div>
-                <p>${daysElapsed} day${daysElapsed === 1 ? '' : 's'}</p>
-            </div>
+            ${privateField(
+                'Total Interest',
+                formatMoney(f.totalInterest)
+            )}
 
-            
-
-        
-            <div class="details" style='display: none;'>
-                <div class="leftflow"><h3>Daily Interest</h3></div>
-                <p>${formatMoney(f.dailyInterest)}</p>
-            </div>
-
-            <div class="details">
-                <div class="leftflow"><h3>Total Interest</h3></div>
-                <p>${formatMoney(f.totalInterest)}</p>
-            </div>
-
-            <div class="details">
-                <div class="leftflow"><h3>Interest Cleared</h3></div>
-                <p style="color:#00d423;">
-                    ${formatMoney(f.interestCleared)}
-                </p>
-            </div>
-
-            <div class="details">
-                <div class="leftflow"><h3>Remaining Interest</h3></div>
+            ${privateField(
+                'Interest Cleared',
+                formatMoney(f.interestCleared),
+                '#00d423'
+            )}
+             <div class="details">
+                <div class="leftflow">
+                    <h3>Remaining Interest</h3>
+                </div>
                 <p>${formatMoney(f.remainingInterest)}</p>
             </div>
-
-            <div class="details" style='display: none;'>
-                <div class="leftflow"><h3>Overdue Fine</h3></div>
-                <p style="color:#ff0000;">
-                    ${formatMoney(f.overdueFine)}
-                </p>
-            </div>
-
         </div>
     `;
 
     renderUserCustomContent();
 }
+
+
 function updateInterestCleared(index, value) {
   if (!currentUser || !currentUser.loans[index]) return;
 
@@ -3865,7 +3934,6 @@ function showTotalPopup() {
     let totalInterest = 0;
     let interestCleared = 0;
     let remainingInterest = 0;
-    let overdue = 0;
 
     currentUser.loans.forEach(loan => {
         const f = getLoanFinancials(loan);
@@ -3874,28 +3942,37 @@ function showTotalPopup() {
         totalInterest += f.totalInterest;
         interestCleared += f.interestCleared;
         remainingInterest += f.remainingInterest;
-        overdue += f.overdueFine;
     });
 
-    const total = base + remainingInterest + overdue;
+    const total = base + remainingInterest;
 
     document.getElementById("totalContent").innerHTML = `
-        <p>Borrowed Amount: <strong>${formatMoney(base)}</strong></p>
-        <p>Total Interest: <strong>${formatMoney(totalInterest)}</strong></p>
-        <p>Interest Cleared: <strong>${formatMoney(interestCleared)}</strong></p>
-        <p>Remaining Interest: <strong>${formatMoney(remainingInterest)}</strong></p>
-        <p>Overdue Fine: <strong style="color:#ff2424;">
-            ${formatMoney(overdue)}
-        </strong></p>
+        <p>Borrowed Amount:
+            <strong>${formatMoney(base)}</strong>
+        </p>
+
+        <p>Total Interest:
+            <strong>${formatMoney(totalInterest)}</strong>
+        </p>
+
+        <p>Interest Cleared:
+            <strong>${formatMoney(interestCleared)}</strong>
+        </p>
+
+        <p>Remaining Interest:
+            <strong>${formatMoney(remainingInterest)}</strong>
+        </p>
+
         <hr>
+
         <p style="font-size:20px;">
-            Total to Return: <strong>${formatMoney(total)}</strong>
+            Total to Return:
+            <strong>${formatMoney(total)}</strong>
         </p>
     `;
 
     document.getElementById("totalPopup").style.display = "block";
 }
-
 function closeTotalPopup() {
     const popup = document.getElementById("totalPopup");
     
@@ -4179,6 +4256,74 @@ function showDatePopup(idx) {
 </div>
     `;
     document.getElementById('datePopup').style.display = 'block';
+}
+function canRevealLoanDetails() {
+    return !!currentUser && currentUser.privacy === false;
+}
+
+function showPrivacyUnlockPopup() {
+    if (document.getElementById('privacyUnlockPopup')) return;
+
+    const popup = document.createElement('div');
+    popup.id = 'privacyUnlockPopup';
+
+    popup.innerHTML = `
+        <div class="privacy-unlock-content">
+            <button class="privacy-unlock-close"
+                    onclick="closePrivacyUnlockPopup()"><img style='filter: invert(1);
+    position: relative;
+    top: 10px;
+    right: 10px;' class="closesymbol" src="service-icons/close_icon.png" alt=""></button>
+
+            <div class="privacy-unlock-icon"><svg style='    fill: black;
+    height: 70px;
+    width: 70px;' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#000000"><path d="M11.25,16.62h1.5V10.79h-1.5v5.83Zm1.32-7.85q0.23-0.23 0.23-0.57T12.57,7.62T12,7.38T11.43,7.62T11.19,8.19t0.23,0.57T12,9t0.57-0.23ZM12,21.48Q8.76,20.6 6.63,17.66T4.5,11.1V5.35L12,2.54l7.5,2.81V11.1q0,3.63-2.13,6.56T12,21.48Z"/></svg></div>
+
+            <h2>Private Details</h2>
+
+            <p>
+                We can't display these details without unlock permission.
+                You can unlock them with Stars.
+            </p>
+
+            <button class="privacy-buy-stars"
+                    onclick="openStarsShopFromPrivacy()">
+                ⭐ Buy Stars
+            </button>
+        </div>
+    `;
+
+    document.body.appendChild(popup);
+}
+
+function closePrivacyUnlockPopup() {
+    document.getElementById('privacyUnlockPopup')?.remove();
+}
+
+function openStarsShopFromPrivacy() {
+    closePrivacyUnlockPopup();
+
+    const shop = document.getElementById('swanShopPopup');
+
+    if (shop) {
+        shop.classList.add('active');
+        return;
+    }
+
+    const coinSection = document.getElementById('coinSection');
+
+    if (coinSection) {
+        coinSection.click();
+        return;
+    }
+
+    alert('Stars shop is currently unavailable.');
+}
+
+function revealPrivacyDetail() {
+    if (!canRevealLoanDetails()) {
+        showPrivacyUnlockPopup();
+    }
 }
 
 function closeDatePopup() { 
@@ -4706,6 +4851,7 @@ const usersDB = {
     "17891": {
         name: "Phanindra Yerra",
         coins: 18340,
+         privacy: true,
         loans: [
             {
                 planDate: "23-10-2026",
@@ -4715,7 +4861,7 @@ const usersDB = {
                 takenAmount: 100000,
 
                 monthlyRate: 2.2,
-                interestCleared: 0,
+                interestCleared: 1000,
 
                 fineRate: 130
             },
@@ -4781,8 +4927,6 @@ const allowedPasswords = ["9919", "0212","Mahesh888*"];
 Object.values(savedData).forEach(user => {
     if (Array.isArray(user.loans)) {
         user.loans.forEach(loan => {
-            delete loan.interestCleared;
-            delete loan.interestPaid;
         });
     }
 });
