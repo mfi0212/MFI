@@ -96,11 +96,11 @@ h3#detailModalTitle,h3#modalTitle,h3#premiumModalTitle{
 }
 
 #detailModalBody p{
-  text-align:center;
-  background:var(--accent);
-  font-size:20px;
-  padding:6px;    border-radius: 999px;
-  color:white;
+ text-align: center;
+    font-size: 20px;
+    padding: 0px 0 5px;
+    border-radius: 999px;
+    color: var(--accent);
 }
 
 #detailModalBody{text-decoration:none}
@@ -150,9 +150,7 @@ button.lock-btn{
 h5 {
     font-weight: 500;
 }
-.lock-hint h5:active{
-  text-decoration: underline 0.5px gray;
-}
+
 .lock-body{
   display:flex;
   flex-direction:column;
@@ -377,17 +375,21 @@ min-height: 34px;
 
 
 .navigation{
-display: flex;
+    display: flex;
     padding: 7px;
     width: fit-content;
     position: relative;
     left: 50%;
     transform: translate(-50%, 0);
     background: linear-gradient( 175deg, #00000000, #ffffff2b);
-    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px  0.8px 0px #ffffff36, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff36;
-    border: solid 0.2px #0000000d;    backdrop-filter: blur(10px);;
+    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff36, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff36;
+    border: solid 0.2px #0000000d;
     border-radius: 999px;
     margin: 15px 0;
+    position: sticky;
+    top: 55px;
+    backdrop-filter: blur(10px);
+    z-index: 10000;
 }
 
 
@@ -646,7 +648,7 @@ width: 100%;
     overflow-y: auto;
     background: #6c6c6c29;
     color: var(--text);
-    padding: 15px;
+    padding: 15px 15px 5px 15px;
     border-radius: 25px;
     backdrop-filter: blur(30px);
     border: solid 1px var(--bg);
@@ -1093,7 +1095,8 @@ body[data-detail-effects="off"] .detail-row:hover{
         <div class="top-banner" id="topBanner"></div>
         <div style="display:none" class="top-banner2" id="topBanner2"></div>
     </div>
-     <div class="navigation">
+<div>
+      <div class="navigation">
       <button class="nav-btn is-active" id="interestNav"
       aria-current="page" onclick="showSection('interest')"
       title="Borrows or lends details">Details</button>
@@ -1101,8 +1104,6 @@ body[data-detail-effects="off"] .detail-row:hover{
       <button class="nav-btn" id="notesNav"
       onclick="showSection('notes')" title="To enter any notes">Notes</button>
     </div>
-<div>
-      
     <section id="interestSection">
       <h3 class="section-title" id="interestTitle">Borrows or Lends details</h3>
       <div id="app" title="Amount details of your account"></div>
