@@ -259,11 +259,22 @@
 
     nav.bottom-nav button.active {
       color: var(--primary);
+      border-radius: 14px;
+      font-weight: 700;
+    }
+
+    nav.bottom-nav button.active svg {
+      transform: translateY(-1px);
     }
 
     nav.bottom-nav button svg {
+      transition: transform 0.18s ease;
       width: 24px;
       height: 24px;
+    }
+
+    @supports not (background: color-mix(in srgb, #000 10%, transparent)) {
+      nav.bottom-nav button.active { background: rgba(36, 129, 204, 0.18); }
     }
 
     /* ========== VIEWS ========== */
@@ -1352,6 +1363,29 @@
   });
 }
 
+    // ===================== BOTTOM NAV VISIBILITY =====================
+    function configureBottomNav() {
+      const nav = document.getElementById("bottom-nav");
+      if (!nav || !currentUser) return;
+
+      const shouldShow = currentUser.showBottomNav !== "no";
+      nav.style.display = shouldShow ? "flex" : "none";
+
+      const allowedItems = Array.isArray(currentUser.bottomNavItems)
+        ? currentUser.bottomNavItems
+        : ["amounts", "borrow", "settings"];
+
+      nav.querySelectorAll("button[data-view]").forEach(button => {
+        const allowed = allowedItems.includes(button.dataset.view);
+        button.style.display = allowed ? "flex" : "none";
+        button.classList.toggle("active", button.dataset.view === currentView);
+        button.setAttribute("aria-current", button.dataset.view === currentView ? "page" : "false");
+      });
+
+      // If the current section is hidden from the bottom bar, keep the section
+      // open but do not leave a different item highlighted.
+    }
+
     // ===================== NAVIGATION =====================
     function switchView(view, updateNav = true) {
       currentView = view;
@@ -1366,9 +1400,7 @@
         const titles = { amounts: "Amounts", borrow: "Borrow", settings: "Settings" };
         document.getElementById("header-title").textContent = titles[view] || view;
 
-        document.querySelectorAll("#bottom-nav button").forEach(b => {
-          b.classList.toggle("active", b.dataset.view === view);
-        });
+        configureBottomNav();
       }
     }
 
