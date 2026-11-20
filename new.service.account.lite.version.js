@@ -97,10 +97,14 @@ function computeLoanStatus(loan) {
 
 function openThemeModal() {
   const customSec = document.getElementById('custom-theme-section');
-  if (customSec) {
-    customSec.classList.add('hidden');   // always hide
-  }
 
+if (customSec) {
+  if (currentUser && users[currentUser]?.customui === 'yes') {
+    customSec.classList.remove('hidden');
+  } else {
+    customSec.classList.add('hidden');
+  }
+}
   const current = document.documentElement.getAttribute('data-theme') || 'light';
   document.querySelectorAll('.theme-option').forEach(el => {
     el.classList.toggle('active', el.getAttribute('data-theme') === current);
@@ -122,37 +126,46 @@ function selectTheme(themeName) {
   closeThemeModal();
 }
 
+const allowedMainColors = [
+  "#0800f0", // Blue
+  "#e53935", // Red
+  "#16a34a", // Green
+  "#9333ea"  // Purple
+];
+
 function selectCustomColor(hex) {
   if (!currentUser || !users[currentUser] || users[currentUser].customui !== 'yes') {
-    alert('Custom themes are only available for users with custom UI access.');
-    return;
-  }
+  alert('Custom themes are only available for users with custom UI access.');
+  return;
+}
+  if (!allowedMainColors.includes(hex)) return;
 
   localStorage.setItem('jh_custom_color', hex);
 
-  // Apply the color on the CURRENT base theme (Light / Dark / Telegram)
-  let base = document.documentElement.getAttribute('data-theme') || 'light';
-  if (base === 'custom') base = 'dark'; // migrate old "custom" → dark
+  const base = document.documentElement.getAttribute('data-theme') || 'light';
 
   applyTheme(base, hex);
 
   document.querySelectorAll('.custom-color-btn').forEach(el => {
     el.classList.toggle('active', el.getAttribute('data-color') === hex);
   });
-  document.getElementById('custom-color-picker').value = hex;
+
   closeThemeModal();
 }
-function applyTheme(themeName) {
+function applyTheme(themeName, customColor = null) {
   const html = document.documentElement;
 
-  let base = (themeName === 'custom') ? 'dark' : themeName;
+  let base = themeName === 'custom' ? 'dark' : themeName;
   html.setAttribute('data-theme', base);
 
-  // Never touch custom colors
-  html.style.removeProperty('--dark-blue');
-  html.style.removeProperty('--text-title');
-  html.style.removeProperty('--border-strong');
-  html.style.removeProperty('--black-swan');
+  const savedColor = localStorage.getItem('jh_custom_color') || '#0800f0';
+  const color = customColor || savedColor;
+
+  // Apply main color globally
+  html.style.setProperty('--main-color', color);
+  html.style.setProperty('--dark-blue', color);
+  html.style.setProperty('--accent-color', color);
+  html.style.setProperty('--primary-color', color);
 
   localStorage.setItem('jh_theme', base);
 
@@ -161,6 +174,7 @@ function applyTheme(themeName) {
     dark: 'Dark Black',
     telegram: 'Telegram'
   };
+
   document.getElementById('theme-btn').textContent =
     'Themes (' + (labels[base] || base) + ')';
 
