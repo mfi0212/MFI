@@ -756,14 +756,16 @@
     }
     .settings-list { padding-bottom: 24px; }
     nav.bottom-nav {
-      position: relative;
-      inset: auto;
-      flex: 0 0 auto;
-      min-height: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px));
-      height: auto;
-      padding: 4px 4px env(safe-area-inset-bottom, 0px);
-      width: 100%;
-      z-index: 20;
+         position: relative;
+    inset: auto;
+    flex: 0 0 auto;
+    min-height: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px));
+    height: auto;
+    padding: 4px 4px env(safe-area-inset-bottom, 0px);
+    width: 100%;
+    z-index: 20;
+    position: fixed;
+    bottom: 0;
     }
     nav.bottom-nav button {
       min-width: 0;
