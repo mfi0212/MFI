@@ -1,2461 +1,2344 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#ffffff">
-<title>VSL</title>
-
-<script src="vsl.lednder.account.js"></script>
-<link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png">
-
-<style>
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    -webkit-tap-highlight-color: transparent;
-    scrollbar-width: thin;
-    scrollbar-color: gray transparent;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BS&MFI Services | My account</title>
+    <link rel="icon" href="mfi.logo.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Balthazar&family=Della+Respira&family=Gantari:ital,wght@0,100..900;1,100..900&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* {
+	font-family: 'Inter', system-ui, -apple-system, sans-serif;
+	margin:0; padding:0; box-sizing:border-box;
+	scroll-behavior: smooth;
+  scrollbar-width:thin;
+      scrollbar-color: var(--scrollbar) transparent;
+	letter-spacing: 0.2px;
 }
-[hidden]{display:none!important}
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+:root,
+[data-theme="light"] {
+  --black-swan: #0023d1;
+  --dark-blue: #002aff;
+  --accent: white;
+  --bg-body: #ffffff;
+  --bg-card: #f0f0f3;
+  --bg-topbar: #0b0f17;
+  --bg-nav: #002aff;
+  --bg-banner: linear-gradient(120deg, #0b0f17, #002aff, #0040ff);
+  --bg-footer: #0b0f17;
+  --bg-soft: #ffffffdb;
+  --bg-calc: #f0f5fa;
+  --bg-table-head: #e8eef5;
+  --bg-table-even: #0000001c;
+  --text-main: #1a1a1a;
+  --text-muted: #555555;
+  --text-light: #e0e6ed;
+  --text-footer: #a0aec0;
+  --text-title: #002aff;
+  --border: #d0d8e4;
+  --border-strong: #002aff;
+  --input-border: #c5d0de;
+  --scrollbar: #a1a1a9;
+}
+[data-theme="dark"] {
+  --black-swan: #0023d1;
+  --dark-blue: #002aff;
+  --accent: white;
+  --bg-body: #000000;
+  --bg-card: #161616;
+  --bg-topbar: #000000;
+  --bg-nav: #001a99;
+  --bg-banner: linear-gradient(120deg, #000000, #001a99, #002aff);
+  --bg-footer: #000000;
+  --bg-soft: #1f1f1fba;
+  --bg-calc: #1f1f1fba;
+  --bg-table-head: #201c1c0a;
+  --bg-table-even: #0000005c;
+  --text-main: #e8e8e8;
+  --text-muted: #999999;
+  --text-light: #e8e8e8;
+  --text-footer: #777777;
+  --text-title: #4d7aff;
+  --border: black;
+  --border-strong: #002aff;
+  --input-border: #333333;
+  --scrollbar: #636366;
+}
+[data-theme="telegram"] {
+  --black-swan: #028fdb;
+  --dark-blue: #2aabee;
+  --accent: #64b5ef;
+  --bg-body: #0e1621;
+  --bg-card: #1a2634;
+  --bg-topbar: #0e1621;
+  --bg-nav: #2aabee;
+  --bg-banner: linear-gradient(120deg, #0e1621, #1e3a5f, #2aabee);
+  --bg-footer: #0e1621;
+  --bg-soft: #223243ba;
+  --bg-calc: #1c2733;
+  --bg-table-head: #1c2733;
+  --bg-table-even: #0000005c;
+  --text-main: #f5f5f5;
+  --text-muted: #8b9aab;
+  --text-light: #f5f5f5;
+  --text-footer: #6d7f8f;
+  --text-title: #64b5ef;
+  --border: #2b3a4a;
+  --border-strong: #2aabee;
+  --input-border: #2b3a4a;
+   --scrollbar: #52677a;
+}
+[data-theme="custom"] {
+  --black-swan: #000000;
+  --dark-blue: #002aff;
+  --accent: white;
+  --bg-body: #000000;
+  --bg-card: #161616;
+  --bg-topbar: #000000;
+  --bg-nav: var(--dark-blue);
+  --bg-banner: linear-gradient(
+    120deg,
+    #000000,
+    var(--dark-blue),
+    color-mix(in srgb, var(--dark-blue) 70%, white)
+  );
+  --bg-footer: #000000;
+  --bg-soft: #1f1f1fba;
+  --bg-calc: #111111;
+  --bg-table-head: #111111;
+   --bg-table-even: #0000005c;
+  --text-main: #e8e8e8;
+  --text-muted: #999999;
+  --text-light: #e8e8e8;
+  --text-footer: #777777;
+  --text-title: var(--dark-blue);
+  --border: #2f2f2f;
+  --border-strong: var(--dark-blue);
+  --input-border: #333333;
+  --scrollbar: #333333;
+}
+@keyframes springPopup {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 50px) scale(0.88);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -6px) scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+a,
+button,
+input{
+ transition: all 0.2s ease-in-out;
+}
+a:active,
+button:active,
+input:active{
+  transform: scale(0.95);
+}
+body {
+  font-family: "Microsoft YaHei", "SimHei", Arial, sans-serif;
+  font-size: 14px;
+  background: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.5;
+  transition: background 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), color 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+a {
+  text-decoration: none;
+  color: var(--text-main);
+  transition: color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+a:active {
+  color: var(--dark-blue);
+}
+.container {
+width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 5px;
+    text-align: center;
+}
+svg {
+    fill: var(--text-main);
+}
+.topbar {
+font-size: 12px;
+    padding: 5px;
+    position: sticky;
+    top: 0; 
+    background: linear-gradient(180deg, var(--bg-body), transparent);
+    z-index: 1000000;
+}
+.topbar::before {
+  content: "";
+  position: absolute;
 
-:root{
-  color-scheme:light;
-  --highlight-total:white;
-  --highlight-light-total:black;
-  --bg:#fff;
-  --text:#000;
-  --surface:#fff;
-  --border:#0000003d;
-  --muted:#555;
-  --field-bg:#fff;
-  --field-text:#000;
-  --strong-bg:#000;
-  --strong-text:#fff;
-  --accent:#0800f0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0px;
+
+  z-index: -1;
+  pointer-events: none;
+
+  backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient( to bottom, black 0%, black 40%, rgb(0 0 0 / 94%) 65%, transparent 100% );
+}
+.topbar .inner {
+display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0px;
+    width: 100%;
+}
+.topbar a {
+  margin-left: 5px;
+}
+.topbar a:active {    font-weight: 900;
+  color: var(--dark-blue);
+}
+strong#current-user {
+    color: var(--dark-blue);
+}
+.user-info {
+     /* color: var(--dark-blue); */
+    font-weight: 600;
+    font-size: 17px;
+}
+.theme-btn {
+        background: transparent;
+    font-size: 12px;
+    cursor: pointer;
+    color: var(--dark-blue);
+    border-radius: 3px;
+    border: none;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.theme-btn:active {
+  transform: scale(1.05);
+  opacity: 0.85;
+}
+.theme-btn:active {
+  transform: scale(0.96);
 }
 
-body[data-theme="amoled"]{
-  color-scheme:dark;
-  --highlight-total:white;
-  --highlight-light-total:white;
-  --bg:#0e0e10;
-  --text:#fff;
-  --surface:#000;
-  --border:#ffffff45;
-  --muted:#bdbdbd;
-  --field-bg:#000;
-  --field-text:#fff;
-  --strong-bg:#fff;
-  --strong-text:#000;
+.header {
+  padding: 0 0 3px 0;
+}
+.header .inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;justify-content: center;
+  padding: 0;
+  flex-wrap: wrap;
+}
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--black-swan);
+  white-space: nowrap;
+}
+[data-theme="dark"] .logo,
+[data-theme="telegram"] .logo,
+[data-theme="custom"] .logo {
+  color: var(--text-main);
+}
+.logo span {
+  color: var(--dark-blue);
+}
+[data-theme="dark"] .logo span,
+[data-theme="telegram"] .logo span,
+[data-theme="custom"] .logo span {
+  color: var(--text-title);
 }
 
-body{
-  font-family:Arial,sans-serif;
-  font-size:16px;
-  line-height:1.5;
-  color:var(--text);
-  background:var(--bg);
-  user-select:none;    letter-spacing: 0.3px;
-  transition:background .15s,color .15s;
-}
-
-button,input,textarea{
-  font:inherit;
-  text-align:center;
-  border: transparent;
-  border-radius:0;
-  background:transparent;
-  color:var(--field-text);
-}
-button{cursor:pointer}
-a{color:inherit}
-
-#lockScreen{
- width: 100%;
-    max-width: 600px;
-    min-height: 100vh;
-    margin: auto;
-    padding: 30px 10px 0px 10px;
+.search-box{
+        flex: 1;
     display: flex;
-    overflow: hidden;
-    flex-direction: column;
-    justify-content: center;
+    max-width: 600px;
+    width: 100%;
+   border-radius: 999px;
+        padding: 5px;
+           background: var(--bg-soft);
+        backdrop-filter: blur(2px);
+                z-index: 2;
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+filter: drop-shadow(0px 0px 6px #0000002b);
+        transition: all 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.search-box:active {
+  transform: scale(0.98);
+}
+.search-box input {
+               background: transparent;
+        color: var(--text-main);
+        outline: none;
+        border: none;
+        font-size: 18px;
 }
 
-.lock-box{width:100%}
-h2#title{font-size:25px}
-.faq-issue-opt{
-  color: red;
+.search-box input:focus{
+        border: none;
+}
+.search-box button {
+    background: transparent;
+        opacity: 50%;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.search-box button:active {
+  opacity: 100%;
+  transform: scale(1.1);
+}
+.search-box button:active {
+  transform: scale(0.92);
+}
+.search-box button svg{
+    fill:var(--text-main)
+}
+.search-box input {
+   flex: 1;
+    height: 36px;
+    padding: 0 15px;
+    background: transparent;
+    color: var(--text-main);
+    border-radius: 9990px;
+    outline: none;
 }
 
-h3#detailModalTitle,h3#modalTitle,h3#premiumModalTitle{
-  color:var(--accent);
-}
-
-#detailModalBody p{
-  text-align:center;
-  background:var(--accent);
-  font-size:20px;
-  padding:6px;    border-radius: 999px;
-  color:white;
-}
-
-#detailModalBody{text-decoration:none}
-
-.lock-header{
-  text-align:center;
-  margin-bottom:24px;
-}
-
-.lock-header h2{
-  font-size: 50px;
+.search-box button {
+height: 36px;
+    width: 36px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 0 4px 4px 0;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.hotline {
+  text-align: right;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+::placeholder{
+    color: var(--text-muted);
+}
+.hotline strong {
+  display: block;
+  font-size: 16px;
+  color: var(--dark-blue);
+}
+[data-theme="dark"] .hotline strong,
+[data-theme="telegram"] .hotline strong,
+[data-theme="custom"] .hotline strong {
+  color: var(--text-title);
+}
+.main {
+  padding: 5px 0;
+}
+div#amount-tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 10px;
+    display: flex;
+    padding: 0 5px 10px 5px;
+}
+button.amount-tab {
+  padding: 7px 14px;
+    font-size: 14px;
+    color: var(--text-main);
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+button.amount-tab:active {
+  transform: scale(1.01);
+}
+button.amount-tab:first-child{
+  border-left: none;
+}
+button.amount-tab:active {
+  transform: scale(0.94);
+}
+.detail-row {
+        display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 30px;
+    padding: 5px 10px;
+    border-radius: 15px;font-size: 15px;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.detail-row:active {
+    background: var(--bg-body);
+}
+button.amount-tab.active {
+background: var(--dark-blue);
+    color: #fff;
+    border-radius: 999px;
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+}
+
+.bottomoptions {
+    background: transparent;
+    padding: 5px;
+    display: flex;
+    margin-bottom: 0px;
+    align-items: center;
+    width: auto;
+    overflow: scroll;
+    scrollbar-width: none;
     flex-direction: column;
     gap: 10px;
+    justify-content: center;
+    transition: all 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    height: fit-content;
+    border-radius: 999px;
+    transform: translate(0, -50%);
+    background: var(--bg-soft);
+    backdrop-filter: blur(2px);
+    
+    border-left: solid 1px #ffffff1f;
+    border-right: solid 1px #ffffff1f;
 }
-
-.entry-total.detail-row{
-     background: transparent;
-    padding: 10px 0;
-    color: var(--highlight-light-total);
-    position: unset;
+.bottomoptions span {
+  font-weight: bold;
+  color: var(--dark-blue);
 }
-
-.entry-total.detail-row .label{opacity:55%}
-
-button.lock-btn{
- margin-top: 8px;
+.actionbar-headers {
+    display: none;
+}
+[data-theme="dark"] .quick span,
+[data-theme="telegram"] .quick span,
+[data-theme="custom"] .quick span {
+  color: var(--text-title);
+}
+.bottomoptions a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
     width: 100%;
-    background: var(--accent);
-    padding: 10px;
-    font-size: 18px;
-    color: white;
+    color: var(--text-main);
     border-radius: 999px;
+    font-weight: 400;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    height: 55px;
+}
+.bottomoptions a:active {
+  /* transform: scale(1.05); */
+  /* background: var(--bg-soft); */
+  color: white;
+}
+.bottomoptions a:active {
+  transform: scale(0.94);
+}
+.quick svg{
+ fill: var(--text-main);
+    width: 28px;
+    height: 28px;
 }
 
-.lock-header h6{
- margin: -12px;
-    opacity: 65%;
-    font-weight: 500;
+.quick a:active svg,
+.search-icon a:active svg{    
+   fill: var(--dark-blue);
+    color: var(--dark-blue);
 }
-h5 {
-    font-weight: 500;
+.quick a:active ,
+.search-icon a:active{
+  fill: white;
+    background-color: var(--bg-table-even);
+    fill: var(--dark-blue);
+    color: var(--dark-blue);
 }
-.lock-hint h5:active{
-  text-decoration: underline 0.5px gray;
-}
-.lock-body{
-  display:flex;
-  flex-direction:column;
-  gap: 20px;
-}
-
-.lock-label{
-       text-align: center;
-    margin: 10px 0;
-    font-weight: 600;
-}
-
-.lock-input,.note-input{
-      width: 100%;
-    outline: none;
-    border-radius: 25px;
-    background: #6c6c6c29;
-    padding: 12px;
-}
-
-.lock-error{
-  color:red;
-  text-align:center;
-  cursor:not-allowed;
-}
-
-.lock-btn,.save-btn,#totalBtn{
-  border:0;
-}
-
-
-
-.lock-hint{
- opacity: 85%;
-    margin-top: 0;
-    line-height: 20px;
-    font-weight: 300;
-}
-
-
-
-/* FAQ SECTION */
-
-.login-faq{
- border-top: 1px solid var(--border);
-    margin-top: 20px;
-    padding-top: 15px;
-}
-
-.login-faq-title{
-      text-align: left;
-    color: var(--accent);
-    padding: 0 5px;
-}
-
-.login-faq-subtitle{
-  text-align:center;
-  font-size:12px;
-  color:var(--muted);
-  margin-bottom:12px;
-}
-
-/* .faq-item{
-  border-bottom:1px solid var(--border);
-} */
-
-.faq-question{
-padding: 8px 15px;
-    display: flex;
-    justify-content: space-between;
+.username {
+   display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 15px;
-    background: #6c6c6c29;
-    color: var(--text);
-    border: 0;
-    text-align: left;
-    cursor: pointer;
-    transition: color .15s;
-    margin: 15px 0;
-    border-radius: 999px;
-}
-
-
-
-.faq-icon{
-  color:var(--accent);
-  font-size:19px;
-  flex-shrink:0;
-}
-.anotherlogin {
-display: flex;
-    margin: 10px 0;
     flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
-    padding: 10px 0 25px 0;
-    border-top: 1px solid var(--border);
+       background: var(--bg-soft);
+    backdrop-filter: blur(2px);
+        
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+filter: drop-shadow(0px 0px 6px #0000002b);
+    width: fit-content;transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-radius: 999px;
+    padding: 4px 13px;
+    position: relative;
+    height: 45px;
 }
-.faq-answer{
-  padding:0 5px 13px;
-  color:var(--muted);
-  line-height:1.7;
+ .username:active{
+      transform: scale(1.03);
+    }
+    .username:active {
+      transform: scale(0.92);
+    }
+.row {
+  margin-bottom: 12px;
 }
-
-.faq-answer a{
-  color:var(--accent);
-  font-weight:bold;
+.col {
+  background: var(--bg-card);
+  border-radius: 30px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
-
-/* MAIN APP */
-
-#mainApp{
-  width:100%;
-  max-width:920px;
-  margin:0 auto;
+.box-title {
+background: var(--dark-blue);
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: start;
 }
-
-.container{
-  width:100%;
-  padding:16px 0 5px;
+.box-body {
+ padding: 12px 10px;
 }
-.faq-item {
-    margin-top: 15px;
-}
-.top-banner{
+.special-banner {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 10px;
+    margin-bottom: 14px;
+    border-radius: 999px;
+    background: var(--bg-soft);
+}
+.special-banner .special-icon {
+  font-size: 15px;
+    flex-shrink: 0;
+}
+.special-banner .special-content {
+  display: contents;
+}
+.special-banner .special-content p {
+  font-size: 14px;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+.special-banner .special-content strong {
+  color: var(--text-title);
+}
+.custom-content-box {
+  margin-bottom: 14px;
+  text-align: center;
+}
+.custom-content-box img {
+  max-width: 100%;
+  border-radius: 6px;
+  border: 1.5px solid var(--border);
+}
+.reminder-banner {
+display: flex;
+    align-items: flex-start;
     gap: 10px;
     padding: 15px;
-    border-radius: 25px;
-    background: #6c6c6c29;
+    margin-bottom: 10px;
+    border-radius: 35px;
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
-
-.top-banner a{
-  text-decoration: none;
-    text-transform: capitalize;
+/* [data-theme="dark"] .reminder-banner,
+[data-theme="telegram"] .reminder-banner,
+[data-theme="custom"] .reminder-banner {
+background: var(--bg-soft);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff25, inset -0.9px -0.9px 0px 0px #ffffff25;
+} */
+ .reminder-banner{
+  box-shadow: inset 0.9px 0.9px 0px 0px #ffffff25, inset -0.9px -0.9px 0px 0px #ffffff25;
+    background: var(--bg-card);
+ }
+.reminder-banner .reminder-icon {
+  font-size: 28px;
+  flex-shrink: 0;
 }
-
-.top-banner a:hover{
-  color:var(--accent);
+.reminder-banner .reminder-content h3 {
+  font-size: 15px;
+  color: #c53030;
+  margin-bottom: 4px;
 }
+/* [data-theme="dark"] .reminder-banner .reminder-content h3,
+[data-theme="telegram"] .reminder-banner .reminder-content h3,
+[data-theme="custom"] .reminder-banner .reminder-content h3 {
+    text-align: justify;
+    text-underline-position: from-font;
+    background: #ff4e00;
+    color: #fff;
+    padding: 3px 10px;
+    width: fit-content;
+    border-radius: 99px;
+    font-weight: 400;
+    font-size: 12px;
+} */
 
-.header{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    padding: 0 0 20px 0;
-    flex-direction: column;
-    margin-top: -15px;
+.reminder-banner .reminder-content h3, .reminder-banner .reminder-content h3, .reminder-banner .reminder-content h3 {
+    text-align: justify;
+    text-underline-position: from-font;
+    background: #ff4e00;
+    color: #fff;
+    padding: 3px 10px;
+    width: fit-content;
+    border-radius: 99px;
+    font-weight: 400;
+    font-size: 12px;
 }
-
-.today{font-size:14px}
-
-.font-controls{
-      display: flex;
-    align-items: center;
+.reminder-banner .reminder-content p {
+    font-size: 14px;
+    background: transparent;
+    padding: 5px 0px;
+    text-align: left;
+    color: var(--text-muted);
+}
+.reminder-banner .reminder-actions {
+display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 15px;
 }
-
-.font-size-label{
-  min-width:20px;
-  text-align:center;
+.graph-container {
+  padding: 10px;
+  text-align: center;
 }
-.font-btn-options {
-    border-radius: 99px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 10px;
-    gap: 10px;
-    background: linear-gradient( 170deg, #00000000, #ffffff36);
-    box-shadow: inset -1px 0px 0px #0000004f, inset 0px 1px 0px #ffffff4a, inset 1px 0px 0px #0000004f, inset 0px -1px 0px #ffffff4a;
-    border: solid 0.2px #00000012;    backdrop-filter: blur(10px);;
+.today-rate {
+ font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--text-muted);
 }
-.font-btn,.lang-btn,.theme-btn{
-min-height: 34px;
-    background: transparent;
-    border: 0;
+.today-rate span {
+  color: #38a169;
 }
-
-.theme-btn{white-space:nowrap}
-
-.accent-control{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.accent-control[hidden]{display:none!important}
-
-.accent-control input{
-  width:40px;
-  height:40px;
-  border:none;
-  background:transparent;
-  cursor:pointer;
-  border-radius: 50%;
-}
-.font-controls button {
-    border-radius: 999px;
-    background: linear-gradient( 170deg, #00000000, #ffffff36);
-    box-shadow: inset -1px 0px 0px #0000004f, inset 0px 1px 0px #ffffff4a, inset 1px 0px 0px #0000004f, inset 0px -1px 0px #ffffff4a;
-    border: solid 0.2px #00000012;    backdrop-filter: blur(10px);;
-       width: 55px;
-    height: 55px;
-    transition: all 0.1s ease-in-out;
-}
-.font-controls button:active{
-      transform: scaleY(1.2);
-          filter: contrast(0.5);
-}
-.nav-btn:disabled{
-  background:var(--accent);
-  color:#fff;
-}
-
-
-.navigation{
-display: flex;
-    padding: 7px;
-    width: fit-content;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, 0);
-    background: linear-gradient( 170deg, #00000000, #ffffff36);
-    box-shadow: inset -1px 0px 0px #0000004f, inset 0px 1px 0px #ffffff4a, inset 1px 0px 0px #0000004f, inset 0px -1px 0px #ffffff4a;
-    border: solid 0.2px #00000012;    backdrop-filter: blur(10px);;
-    border-radius: 999px;
-    margin: 15px 0;
-}
-
-
-.nav-btn{
- background: transparent;
-    transition: background .18s, color .18s, border-color .18s, box-shadow .18s;
-    border-radius: 999px;
+hr {
+    background: linear-gradient(45deg, transparent, #ffffff4f, transparent);
+    height: 1.5px;
+    outline: none;
     border: none;
-    width: fit-content;
-    padding: 2px 20px;
-    box-shadow: none;
 }
-
-.nav-btn.is-active,.nav-btn[aria-current="page"]{
-  background:var(--accent);
-  color:#fff;
-  border-color:var(--accent);
-  opacity:1;
-}
-
-.section-title{
-  margin: 5px;
-    font-size: 14px;
-    padding: 0 10px;
+.notepad {
+width: 90%;
     font-weight: 300;
-    opacity: 60%;
-}
-
-.user{margin-bottom:15px}
-.user-name{padding:0;text-align:center}
-
-.entry{
-     margin-bottom: 10px;
-    border-radius: 25px;
-    background: #6c6c6c29;
-    padding: 5px 15px 15px 15px;
-}
-
-.entry-row,.remaining,.borrowed-by-row,.paid-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  padding:10px 0;
-}
-
-.entry-row .label,.remaining .label,.entry-total .label,
-.borrowed-by-row .label,.paid-label{
-  flex:1;
-  min-width:0;
-  overflow-wrap:anywhere;
-  opacity:55%;
-}
-
-.entry-row .value,.remaining .value,.entry-total .value,
-.borrowed-by-row .value{
-  text-align:right;
-  overflow-wrap:anywhere;
-  font-variant-numeric:tabular-nums;
-  font-weight:700;
-}
-
-.entry-total{
-background: var(--accent);
-    padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    color: var(--highlight-total);
-    border-radius: 999px;
-    position: sticky;
-    bottom: 15px;
-}
-
-.paid-input-wrap{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.paid-input{
-  min-width:0;
-  padding:0;
-  border:0;
-  background:transparent;
-  text-align:right;
-  font-size:16px;
-  font-variant-numeric:tabular-nums;
-  font-weight:700;
-  max-width:100px;
-  outline: none;
-}
-
-.paid-input:focus{
-  background:rgba(133,133,133,.65);
-  border-radius:9999px;
-  padding:0 10px;
-}
-.note-input {
-    text-align: left;
-    display: block;
-    min-height: 170px;
-    resize: vertical;
-    border-radius: 25px;
-    background: #6c6c6c29;
-    padding: 20px;
-  }
-
-.save-btn{
-  margin-top: 8px;
-    width: 100%;
-    background: var(--accent);
+    font-size: 12px;
+    margin: 0 0 13px 0;
     padding: 10px;
+    border-radius: 20px;
+    background: var(--bg-body);
+}
+.chart-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+#interestChart {
+  width: 100%;
+  max-width: 750px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.take-money-box {
+  margin: 0 auto;
+}
+.take-money-box input {
+width: 100%;
+    border: none;
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 19px;
+    background: var(--bg-soft);
+    color: var(--text-main);
+    border-radius: 99px;
+    padding: 10px;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    height: 46px;
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    filter: drop-shadow(0px 0px 6px #0000002b);
+}
+
+.take-money-box input:focus {
+  border-color: var(--dark-blue);
+  transform: scale(1.01);
+}
+.take-money-box button {
+width: 100%;
+    background: var(--dark-blue);
+    color: white;
+    border: none;
+    font-weight: 400;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all 0.3s;
+    padding: 12px;
     font-size: 18px;
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    height: 45px;
+}
+.take-money-box button:active {
+  opacity: 90%;
+  transform: scale(1.03);
+}
+.take-money-box button:active {
+  transform: scale(0.96);
+}
+.interest-result {
+  background: var(--bg-soft);
+  border: 1.5px solid var(--bg-soft);
+  padding: 14px;
+  margin-top: 12px;
+  text-align: center;
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.interest-result .rate {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--dark-blue);
+  margin: 6px 0;
+}
+.turbo-grid {
+ display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 12px 10px;
+}
+.turbo-card {
+  border: 1.5px solid var(--border);
+  text-align: center;
+  padding: 16px 12px;
+  position: relative;
+  border-radius: 6px;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.turbo-card:active {
+  transform: scale(1.04);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+.turbo-card.hot {
+  border-color: var(--border-strong);
+  background: var(--bg-soft);
+}
+.turbo-card .badge {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  background: var(--black-swan);
+  color: #fff;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 0 6px 0 6px;
+}
+.turbo-card h3 {
+  font-size: 16px;
+  color: var(--text-title);
+  margin-bottom: 6px;
+}
+.turbo-card .limit {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 8px 0;
+}
+.turbo-card .limit small {
+  font-size: 12px;
+  font-weight: normal;
+  color: var(--text-muted);
+}
+.turbo-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+.amount-detail-card {
+   border-radius: 20px;
+    background: var(--bg-soft);
+    padding: 5px;
+    width: 90%;
+}
+.advertisment {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;display: none;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+img.advertisments {
+  width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    height: 200px;
+    object-position: bottom;
+}
+div#loan-amount-ui {
+    display: flex;
+    flex-direction: column;
+    gap:7px;
+}
+div#amount-tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 10px;
+    scrollbar-width: none;
+    display: flex;
+    padding: 5px;
+}
+div#amount-detail-container {
+    width: 100%;
+}
+span.detail-value {
+      color: var(--dark-blue);
+}
+.search-item div {
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.btn {
+display: inline-block;
+    background: var(--dark-blue);
+    color: #fff;
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    height: 45px;
+    border: none;
+    cursor: pointer;
+    border-radius: 9999px;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-weight: 300;
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    display: flex;gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+.btn:active {
+  opacity: 90%;
+  transform: scale(1.03);
+}
+.btn:active {
+  transform: scale(0.96);
+}
+.scrollthemes {
+overflow: auto;
+    height: 200px;
+    padding: 10px 35px;
+    width: 100%;
+}
+.btn-outline {
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 45px;
+    height: 45px;
+    background: var(--bg-soft);
+    backdrop-filter: blur(2px);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    filter: drop-shadow(0px 0px 6px #0000002b);
+}
+
+.btn-disabled {
+  cursor: not-allowed !important;
+}
+.btn-disabled:active{
+      background: var(--dark-blue);
+}
+.btn-danger {
+background: #ff4e00;
+    border-radius: 999px;
+    font-size: 16px;
+}
+.btn-danger:active {
+  transform: scale(0.98);
+}
+.user-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 7px;
+}
+.summary-card {
+ background: var(--bg-soft);
+    padding: 14px;
+    text-align: center;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.summary-card:nth-child(3):active{
+    background: var(--bg-body);
+}
+.summary-card .label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.summary-card .value {
+  font-size: 17px;
+  font-weight: bold;
+  color: var(--dark-blue);
+  line-height: 1.4;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+.backoption{
     color: white;
     border-radius: 999px;
-}
-
-.note{
-  padding:10px 0;
-  border-bottom:1px solid var(--border);
-  overflow-wrap:anywhere;
-}
-
-.entry-total .label{opacity:100%}
-.mainreflogo{text-decoration:none}
-
-
-.note-text{
-  white-space:pre-wrap;
-  overflow-wrap:anywhere;
-}
-
-.note-date{
-  font-size:12px;
-  opacity:50%;
-}
-#accentPicker {
-appearance: none;
-    -webkit-appearance: none;
     border: none;
-    outline: none;
-    padding: 0;
-    border-radius: 8px;
-    background: transparent;
-    width: 30px;
-    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
     cursor: pointer;
+    background: var(--bg-soft);
+    backdrop-filter: blur(2px);
+        
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+filter: drop-shadow(0px 0px 6px #0000002b);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    padding: 10px;
 }
-
-
-#accentPicker::-webkit-color-swatch-wrapper {
-    padding: 0;
-}
-
-#accentPicker::-webkit-color-swatch {
+ .backoption:active{
+      transform: scale(1.03);
+    }
+    .backoption:active {
+      transform: scale(0.92);
+    }
+#logout-btn {
+  background: red;
+    color: white;
+    border-radius: 999px;
     border: none;
-    /* border-radius: 50%; */
-}
-
-#accentPicker::-moz-color-swatch {
-    border: none;
-    border-radius: 50%;
-}
-.delete-note{
-  float: right;
-    background: transparent;
-    color: red;
-    font-size: 16px;
-    border: 0;
-    padding: 0 10px;
-    font-weight: 500;
-    width: 30px;
-    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 40px;
+    height: 40px;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-
-.empty-notes{
-  padding:20px 0;
-  text-align:center;
-  cursor:not-allowed;
-  border-bottom:1px solid var(--border);
+#logout-btn:active {
+  transform: scale(1.03);
+  background: #ff0000aa;
 }
-
-.account-bar{
-display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    padding: 20px 0 0 0;
-    position: sticky;
-    top: 0;
-    z-index: 100000000000;
-    background: linear-gradient(180deg, var(--bg), transparent);
+#logout-btn:active {
+  transform: scale(0.92);
 }
-
-.account-name{
-     font-weight: bold;
-    font-size: 25px;
+.loan-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 500px;
 }
-
-.logout-btn{
-padding: 5px 10px;
-    border: 0;
-    flex-shrink: 0;
-    background: red;
-    color: #fff;
-    border-radius: 99px;
+.loan-table th {
+  background: var(--bg-table-head);
+  border: 1.5px solid var(--border);
+  padding: 10px 6px;white-space: nowrap;
+  color: var(--text-title);
+  text-align: center;
 }
-
-
-ul.premium-features-list h3{
-  color:var(--accent);
-  width:fit-content;
+.loan-table td {
+  border: 1.5px solid var(--border);
+  padding: 10px;
+  text-align: center;
+  white-space: nowrap;
 }
-
-ul.premium-features-list h3:hover{
-  text-decoration:underline;
-  cursor:pointer;
+.hidden {
+  display: none !important;
 }
-
-ul.premium-features-list h3:active{
-  outline:2px solid var(--accent);
-  outline-offset:2px;
-  border-radius:3px;
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 0px;
 }
-
-/* MODALS */
-
-.modal-overlay{
-    position: fixed;
-    inset: 0;
-    z-index: 1000000000000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    background: #0000004f;
-    overflow-y: auto;
+.product-card {
+ border: 1.5px solid transparent;
+    padding: 16px 12px;
+    text-align: center;
+    border-radius: 20px;
+    background: var(--bg-soft);
+    transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.row span {
-    font-weight: 200;
-    opacity: 70%;
+.product-card:active {
+  transform: scale(1.1);
+  background-color: transparent;
 }
-.modal{
-width: 100%;
-    max-width: 400px;
-    max-height: 85vh;
-    overflow-y: auto;
-    background: #6c6c6c29;
-    color: var(--text);
-    padding: 15px;
+.product-card .icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+.product-card h3 {
+  font-size: 15px;
+ color: var(--dark-blue);
+  margin-bottom: 6px;
+}
+.product-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  min-height: 40px;
+  margin-bottom: 10px;
+}
+.access-badge {
+  display: inline-block;
+  font-size: 11px;
+  padding: 1px 8px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+}
+.access-yes {
+  background: #c6f6d5;
+  color: #276749;
+}
+.access-no {
+  background: #fed7d7;
+  color: #c53030;
+}
+.login-required {
+  text-align: center;
+  color: var(--text-muted);
+}
+.login-required h3 {
+  color: var(--text-title);
+  margin-bottom: 10px;
+}
+.search-results {
+    display: none;
     border-radius: 25px;
-    backdrop-filter: blur(30px);
-    border: solid 1px var(--bg);
+    overflow: hidden;
+    max-width: 500px;
+    margin: 10px auto 0;
+    width: 99%;
+    position: sticky;
+    top: 70px;
+    z-index: 1;
+    backdrop-filter: blur(3px);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    filter: drop-shadow(0px 0px 6px #0000002b);
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    background: var(--bg-soft);
 }
-/* .modal div:hover,
-.modal li:hover{
-  text-decoration: underline gray;
-} */
-.modal-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  color:var(--accent);
-  border-bottom:1px solid var(--border);
-  padding:0 0 10px;
-  margin-bottom:5px;
+.search-results:active {
+  transform: scale(0.95);
 }
-
-.modal-close{
-  background:transparent;
-  color:red;
-  font-size:16px;
-  border:0;
-  padding:0 10px;
-  font-weight:500;
-  width:30px;
-  height:30px;
+.search-results .box-title {
+  background: transparent;    padding: 0;
 }
-
-
-.modal-summary{line-height:35px}
-
-.modal-summary .row{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-}
-
-footer{
-  text-align:center;
-  color:var(--text);
-}
-
-.footer-links {
+.search-item {
+    padding: 15px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    padding: 15px 0;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    border: none;
+}
+.search-item:active {
+  transform: scale(1.01);
+}
+.search-item strong {
+      color: var(--dark-blue);
+    font-size: 16px;
+}
+.footer {
+color: var(--text-footer);
+    padding: 20px 0 10px 0px;
+    font-size: 13px;
+    width: 100%;
+}
+.footer .inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;padding: 0 10px;
+}
+.footer h4 {
+ font-size: 15px;
+    margin-bottom: 6px;
+    text-align: left;
+}
+.footermfilogo h4 {
+    font-size: 50px;
+    font-weight: 700;
+}
+.inner div {
+       font-size: 14px;
+}
+.rightsideoptino{
+font-size: 14px;
+    background: var(--bg-soft);
+    backdrop-filter: blur(2px);
+        
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+filter: drop-shadow(0px 0px 6px #0000002b);
+    border-radius: 999px;
+    display: flex;height: 45px;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+}
+.footer a {
+        display: block;
+    color: var(--dark-blue);
+    width: fit-content;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.footer a:active {
+  text-decoration: underline;
+}
+.footer-bottom {
+        margin-top: 10px;
+    padding-top: 13px;
+    border-top: 1.5px solid #ffffff14;
+    text-align: center;
+    width: 100%;
+    font-size: 14px;
+}
+/* ===== Strong iOS Spring Popup Animation ===== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 9999999999;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: background 0.35s ease, opacity 0.35s ease;
+}
+
+.modal.show {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.55);
+}
+#ios-toast-container {
+position: fixed;
+    top: 0;
+    right: 15px;
+    z-index: 99999999999;
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    padding-top: env(safe-area-inset-top, 12px);
+    padding-top: 20px;
     gap: 10px;
-    border-top: 1px solid var(--border);
+}
+.modal-content {
+background: var(--bg-card);
+    width: 98%;
+    max-width: 450px;
+    color: var(--text-main);
+    border-radius: 40px;
+    max-height: 90vh;
+    padding: 0 0 20px 0;
+    text-align: center;
+    backdrop-filter: blur(15px);
+    animation: springPopup 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0;
+    position: fixed;
+    left: 50%;
+    scrollbar-width: none;
+    transform: translate(-50%, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-.footer-links a{
-  text-decoration:none;
-  color:var(--muted);
+.modal.show .modal-content {
+  opacity: 1;
 }
 
-.footer-links a:hover{
-  text-decoration:underline;
-  color:var(--accent);
+/* Closing animation (optional but smoother) */
+.modal.closing {
+  opacity: 0;
+  background: rgba(0, 0, 0, 0);
 }
 
-/* DETAILS POPUP SETTINGS */
-
-.premium-detail-control{
-  display:flex;
-  align-items:center;
+.modal.closing .modal-content {
+  transform: scale(0.85) translateY(40px);
+  opacity: 0;
+  transition: 
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease;
+}
+.modal-content h3 {
+color: var(--dark-blue);
+    margin-bottom: 15px;
+    font-size: 20px;
+  }
+.modal-content input {
+width: 100%;
+    padding: 15px;
+    font-size: 23px;
+    background: transparent;
+    color: var(--text-main);
+    text-align: start;
+    outline: none;
+    border: none;
+  }
+.fee-preview {
+    background: var(--bg-body);
+    padding:6px 15px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff29, inset -0.9px -0.9px 0px 0px #ffffff29;
+    filter: drop-shadow(0px 0px 6px #0000002b);
+    display: flex;    width: 45%;
+    justify-content: space-between;
+    align-items: center;
+}
+.fee-preview .fee-amount {
+font-size: 16px;
+    font-weight: 600;
+    color: var(--text-title);
+}
+.applied-section {
+  margin-top: 20px;
+}
+.applied-section h4 {
+  font-size: 15px;
+  color: var(--text-title);
+  margin-bottom: 10px;
+}
+.theme-options {
+ border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.theme-option {
+      border-radius: 20px;
+    padding: 13px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    margin: 10px 0 0 0;
+    opacity: 35%;
+}
+.theme-option.active {
+    opacity: 100%;
+}.theme-option strong {
+    font-weight: 400;
+}
+.theme-option:active {
+  transform: scale(1.05);
+  border-color: var(--border-strong);
+  background: var(--bg-soft);
+}
+.theme-option:active {
+  transform: scale(0.96);
+}
+.theme-option.active {
+  border: solid 3px var(--border-strong);
+}
+.theme-option .swatch {
+  width: 100%;
+    height: 35px;
+    border-radius: 9999px;
+    margin-bottom: 5px;
+}
+.custom-section {
+  border-top: 1.5px solid var(--border);
+  padding-top: 14px;
+  margin-top: 8px;
+}
+.custom-section h4 {
+  font-size: 14px;
+  
+    color: var(--dark-blue);
+  margin-bottom: 10px;
+}
+.custom-colors {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.custom-color-btn {
+      height: 40px;
+    border: 1.5px solid var(--border);
+    border-radius: 60px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.custom-color-btn:active {
+  transform: scale(1.12);
+}
+.custom-color-btn:active {
+  transform: scale(0.92);
+}
+.custom-color-btn.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+  transform: scale(1.03);
+}
+.color-picker-row {
+      display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    white-space: nowrap;
+}
+.color-picker-row input[type="color"] {
+  width: 45px;
+  height: 36px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  margin-bottom: 0;
+}
+.menu-btn {
+border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    background: transparent;
+    border-radius: 50%;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    width: 40px;color: var(--text-main);
+    height: 40px;
+      }
+      .menu-btn:active{
+          background-color: var(--bg-table-even);
+    color: var(--dark-blue);
+    }
+    .menu-btn:active {
+      transform: scale(0.92);
+    }
+    .dropdown {
+       position: fixed;
+    top: 70px;
+   right: 24%;
+    border-radius: 20px;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px) scale(0.95);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 100000000000;
+    border: none;
+    background: var(--bg-soft);
+    backdrop-filter: blur(15px);
+        
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+filter: drop-shadow(0px 0px 6px #0000002b);
+    padding: 5px;
+    }
+.search-icon {
+    background: var(--bg-soft);
+    backdrop-filter: blur(2px);
+    
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+filter: drop-shadow(0px 0px 6px #0000002b);
+    height: 50px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 10px;
+    width: 50px;
+    border-radius: 50%;
+    left: 20px;
 }
 
-.detail-setting-btn{
-      background: var(--accent);
-    border: 0;
+    .dropdown.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+img.closesymbol {
+  width: 35px;
+  border-radius: 50%;
+  margin: -6px 0;
+  height: 35px;
+}
+    .dropdown a {
+           display: block;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 15px;font-weight: 300;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    color: var(--text-muted);
+    text-align: center;
+    border-radius: 99999px;
+    }
+    .dropdown a:active{
+        font-weight: 600;
+      color: var(--dark-blue);
+      background-color: var(--bg-table-even);
+    }
+    .dropdown a:last-child {
+      border-bottom: none;
+    }
+
+.ios-toast {
+    pointer-events: auto;
+    max-width: 600px;
+    width: 100%;
+    backdrop-filter: blur(2px);
+    border-radius: 22px;
+    padding: 14px 18px;
+    display: flex
+;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-soft);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+filter: drop-shadow(0px 0px 6px #0000002b);
+    transform: translateY(-140%) scale(0.88);
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+[data-theme="dark"] .ios-toast,
+[data-theme="telegram"] .ios-toast,
+[data-theme="custom"] .ios-toast {
+ background: var(--bg-soft);
+}
+.ios-toast-icon img {
     width: 35px;
     height: 35px;
 }
 
-.detail-row{
-  cursor:pointer;
-  transition:background .15s,opacity .15s;
+
+.ios-toast.show {
+  transform: translateY(0) scale(1);
+  opacity: 1;
 }
 
-.detail-row:hover{text-decoration:underline}
-
-
-
-body[data-detail-effects="off"] .detail-row{
-  transition:none;
+.ios-toast.hide {
+  transform: translateY(-140%) scale(0.9);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body[data-detail-effects="off"] .detail-row:hover{
-  background:transparent;
-}
-
-.premium-locked .value{
-  filter:none;
-  user-select:none;
-  font-weight:600;
-}
-
-.premium-locked{cursor:not-allowed}
-
-
-.premium-features-list{
-  padding:12px 0 12px 20px;
-  line-height:1.8;
-}
-
-.premium-copy{
-  padding:0;
-  line-height:1.6;
-}
-
-.premium-action{
-  display:block;
-  width:100%;
-  padding:11px;
-  background:var(--accent);
-  color:#fff;
-  border:0;
-  text-decoration:none;
-  text-align:center;
-  margin-top:8px;
-}
-
-@media(max-width:480px){
-  .container{padding:5px 10px;}
-  .font-controls{width:100%}
-}
-</style>
-</head>
-
-<body>
-  <div id="scrollup"></div>
-<div id="lockScreen">
-  <div class="lock-box">
-   
-    <div title="VSL is a service from BS&MFI Services" class="lock-header">
-      <h2>
-        <img style="width:50%;border-radius:50%;max-width:180px;background:var(--accent)"
-        src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="">
-        VSL
-      </h2>
-      <h6>Powered by BS&amp;MFI</h6>
-    </div>
-
-    <div class="lock-body">
-
-      <label class="lock-label">
-        <h2>Login with your officially verified account password</h2>
-      </label>
-
-      <div style="    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    flex-direction: column;">
-        <input type="text" id="passwordInput" class="lock-input"
-        placeholder="Enter password" autocomplete="current-password"
-        onkeydown="if(event.key==='Enter') checkPassword()">
-
-        <button class="lock-btn" onclick="checkPassword()"
-        title="Go to borrows or lends details section">
-          Login
-        </button>
-      </div>
-
-      <p id="lockError" class="lock-error" hidden>
-        Wrong password. Try again.
-      </p>
-
-      <div class="lock-hint" style="text-align:center">
-       <h5> If you can't log in, it means you don't have any active borrows or lends.
-        If you do have an active borrows or lends and still face issues,
-        fill out the
-        <a title="Fill this whenever you think you are facing issues from our side"
-        style="color:red;font-weight:800"
-        href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form">Issue form</a>.</h5>
-      </div>
-
-    </div>
-
-    <!-- LOGIN FAQ -->
-
-    <div class="login-faq">
-
-      <h3 class="login-faq-title">Frequently Asked Questions</h3>
-      <div id="faqList">
-
-         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            What is VSL?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            VSL is a service from BS&MFI that helps verified account holders
-            view their borrowing and lending records, track interest and
-            maintain personal notes.
-          </div>
-        </div>
-
-        
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            Why can't I log in?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            Make sure you enter the correct account password.
-            You can log in only when you have an active borrowing or lending
-            record registered in VSL. If you believe your record is active,
-            contact your coordinator.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            How can I become a lender on VSL?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            To become a lender, your account must first be officially verified
-            by a representative from VSL. Contact your coordinator or a VSL
-            representative for verification and further steps.
-            You cannot become an official lender simply by creating an account.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            How can I become a borrower on VSL?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            To become a borrower, your account must be officially verified
-            by a representative from VSL. Contact your coordinator or a VSL
-            representative to discuss the process and verification.
-            Borrowing access is subject to approval.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            Why does my account need verification?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            Verification helps VSL confirm that the lender or borrower is
-            officially registered. Only accounts verified by an authorised
-            VSL representative can be recognised as official lender or
-            borrower accounts.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            What is VSL Premium+?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            VSL Premium+ provides additional display and customisation
-            features. It unlocks Borrowed By, Interest Rate, Date Borrowed
-            and Days Passed details, allows you to control detail popups,
-            switch between Light and Dark (AMOLED) themes and choose
-            your own main colour.
-          </div>
-        </div>
-
-        
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            How can I activate Premium+?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            Contact your coordinator and request Premium+ activation.
-            Once your Premium+ status is activated on your VSL account,
-            the additional features will become available.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            Why can't I see some account details?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            Some account details are exclusive to Premium+ members.
-            Upgrade to Premium+ to unlock Borrowed By, Interest Rate,
-            Date Borrowed and Days Passed information.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            Who should I contact if my account details are incorrect?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            Contact your coordinator or submit the
-            <a class="faq-issue-opt" style="color: red;" href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form">VSL Issue Form</a> so the issue can be reviewed.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
-            Who can I contact for support?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer" hidden>
-            Contact your VSL coordinator or use the Issue Form
-            if you need help with login, account records or other
-            VSL-related problems.
-          </div>
-        </div>
-        <a style="text-decoration: none;" href="all.faqs.html"><button class="lock-btn" style="    width: 100%;position: sticky;bottom: 10px;
-    margin: 0 0 10px 0;">View More FAQ's</button></a>
-      </div> 
-    </div>
-    
-  </div>
-<div class="anotherlogin">
-  <label class="lock-label" for="passwordInput" style="    text-align: start;">
-       <h2> Ready to login? Enter your verified account password.</h2>
-      </label>
-
-      <div style="    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    width: 100%;">
-      <a href="#lockScreen" class="lock-input" style="    text-align: center;
-    text-decoration: none;
-    color: var(--muted);" >Enter password</a>
-      <button style="    margin: 0;
-    width: auto;
-    padding: 10px 20px;" class="lock-btn" onclick="checkPassword()"
-        title="Go to borrows or lends details section">
-          Login
-        </button>
-      </div>
-
-      <p id="lockError" class="lock-error" hidden>
-        Wrong password. Try again.
-      </p>
-      <div class="lock-hint">
-        <h5>If you can't log in, it means you don't have any active borrows or lends.
-        If you do have an active borrows or lends and still face issues,
-        fill out the
-        <a title="Fill this whenever you think you are facing issues from our side"
-        style="color:red;font-weight:800"
-        href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form">Issue form</a>.</h5>
-      </div>
-</div>
-<footer>
-      <div class="footer-links">
-
-        <div style="display:flex;flex-direction:column;align-items:baseline;gap: 15px;">
-          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#terms">Terms and Conditions</a></h5>
-          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#privacy">Privacy</a></h5>
-          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#services">Lending Services</a></h5>
-          <h5><a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a></h5>
-        </div>
-
-       <div style="display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: end;
-    gap: 30px;">
-         <div>
-          <h5>VSL, All rights reserved.<br>
-          Version (v.03.05.11)</h5>
-        </div>
-<a style="    background: var(--accent);
-    padding: 10px;
+.ios-toast-icon {
+width: 40px;
+    height: 40px;
+    border-radius: 50%;
     display: flex;
-    position: relative;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    background: var(--dark-blue);
     color: white;
-    position: fixed;
-    bottom: 10px;
-    right: 15px;
-    border-radius: 50%;" href="#scrollup"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M11,20V7.82l-5.6,5.6L4,12l8-8l8,8l-1.4,1.42L13,7.82V20H11Z"/></svg></a>
-      </div>
-       </div>
-    </footer>
+}
 
-</div>
+.ios-toast.success .ios-toast-icon {
+ background: var(--dark-blue);
+}
 
-<!-- MAIN APP -->
+.ios-toast.info .ios-toast-icon {
+ background: red;
+}
 
-<div id="mainApp" hidden>
+.ios-toast.warning .ios-toast-icon {
+  background: #ff6600;
+}
 
-  <div class="container">
-    
-    <div class="account-bar">
-        <button class="logout-btn" title="Go to password section" onclick="logout()">Logout</button>
-        <div class="font-btn-options"> 
-            <button class="font-btn" onclick="changeFontSize(-1)" title="To decrease font size">−</button>
-            <span class="font-size-label" id="fontSizeLabel">16</span>
-            <button class="font-btn" onclick="changeFontSize(1)" title="To increase font size">+</button>
-        </div>
-    </div>
+.ios-toast.error .ios-toast-icon {
+  background: red;
+}
 
-    <div class="header">
+.ios-toast-content {
+  flex: 1;
+  text-align: left;
+}
 
-      <a class="mainreflogo" href="">
-        <div style="display: flex;
+.ios-toast-title {
+  font-size: 14px;
+  font-weight: 600;
+  color:var(--dark-blue);
+  margin-bottom: 1px;
+  letter-spacing: -0.2px;
+}
+
+.ios-toast-message {
+      font-size: 13px;
+    color: var(--text-main);
+    line-height: 1.3;
+}
+.logo-in-mainbar{
+        display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px;
-    flex-direction: column;">
-          <img style="    width: 100px;;border-radius:50%;background:var(--accent)"
-          src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="">
-          <h2 id="title" style="display: none;" >VSL</h2>
-          <span id="loggedInAs" class="account-name"></span>
-        </div>
-      </a>
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+@media (max-width: 900px) {
+  .logo-in-mainbar{
+  display: none;
+}
 
-      <div class="today" id="todayDate"></div>
 
-      <div class="font-controls">
-        <button class="theme-btn" id="themeToggle" onclick="toggleTheme()" type="button" title="To change theme">
-          Dark (AMOLED)
-        </button>
+.search-icon {
+    background: var(--bg-soft);
+        backdrop-filter: blur(2px);
+        filter: drop-shadow(0px 0px 6px #0000002b);
+box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+        height: 65px;
+        position: sticky;
+        width: 65px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+  .turbo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .user-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer {
+    padding: 0px 0 85px 0px;
+}
+  .footer .inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .quick {
+   width: 100%;
+        background: linear-gradient(0deg, var(--bg-body), transparent);
+        padding: 20px 5px;
+        position: fixed;
+        bottom: 0;
+        transform: translate(-50%, 0);
+        left: 50%;        gap: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+.bottomoptions {
+       border: none;
+        padding: 4px;
+        align-items: self-end;
+        gap: 10px;
+        height: unset;
+        flex-direction: row;
+        justify-content: center;
+        left: unset;
+        bottom: 0;
+        transform: unset;
+        top: 0;
+        position: sticky;
+        border-radius: 0;
+        max-width: 400px;
+        background: transparent;
+        backdrop-filter: unset;
+        border: none;
+        box-shadow: none;
+}
+a.rounded-options {
+   width: 45px;
+    height: 45px;
+    padding: 0;
+}
+.bottomoptions a {
+font-size: 13px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4px 10px;
+        width: fit-content;
+        gap: 4px;
+        height: 45px;
+        background: var(--bg-soft);
+        backdrop-filter: blur(2px);
+        filter: drop-shadow(0px 0px 6px #0000002b);
+box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+}
+.hightlight-option{
+  background: var(--bg-soft);
+    backdrop-filter: blur(2px);
+    filter: drop-shadow(0px 0px 6px #0000002b);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    border-radius: 999px;
+    padding: 3px;
+}
+.hightlight-option a{
+        background: var(--dark-blue);
+        height: 40px;filter: none;
+        color: white;
+}
+.hightlight-option a svg{
+  fill: white;
+}
+  .modal {
+        align-items: end;
+        padding: 7px 0px;
+}
+.modal.show {
+  display: flex;
+}
 
-        <button id="accentControl" class="accent-control" hidden>
-          <input id="accentPicker" type="color" value="#0800f0"
-          title="To change main color of VSL"
-          aria-label="Choose main color"
-          onchange="changeMainColor(this.value)">
-        </button>
-
-        <div class="premium-detail-control" id="premiumDetailControl" hidden>
-          <button class="detail-setting-btn" id="detailEffectsToggle"
-          type="button" title="To turn on or off the detail popups"
-          onclick="toggleDetailEffects()">
-            On
-          </button>
-        </div>
-<button class="total-btn" id="totalBtn"
-      onclick="openTotalPopup()">=</button>
-      </div>
-    </div>
-      <div>
-        <div class="top-banner" id="topBanner"></div>
-        <div style="display:none" class="top-banner2" id="topBanner2"></div>
-    </div>
-     <div class="navigation">
-      <button class="nav-btn is-active" id="interestNav"
-      aria-current="page" onclick="showSection('interest')"
-      title="Borrows or lends details">Details</button>
-
-      <button class="nav-btn" id="notesNav"
-      onclick="showSection('notes')" title="To enter any notes">Notes</button>
-    </div>
-<div>
-      
-    <section id="interestSection">
-      <h3 class="section-title" id="interestTitle">Borrows or Lends details</h3>
-      <div id="app" title="Amount details of your account"></div>
-    </section>
-
-    <section id="notesSection" hidden>
-      <h3 class="section-title" id="notesTitle">Notes</h3>
-      <div class="notes-box">
-        <textarea id="noteInput" class="note-input"
-        placeholder="Write something here..."></textarea>
-        <button class="save-btn" id="saveButton" onclick="saveNote()">Save note</button>
-        <div id="notesList"></div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="footer-links">
-
-        <div style="display:flex;flex-direction:column;align-items:baseline;gap: 15px;">
-          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#terms">Terms and Conditions</a></h5>
-          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#privacy">Privacy</a></h5>
-          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#services">Lending Services</a></h5>
-          <h5><a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a></h5>
-        </div>
-
-       <div style="display: flex;
+  .footermfilogo h4 {
+    font-size: 50px;
+    font-weight: 700;
+}
+img.advertisments {
+   width: 100%;
+        object-fit: cover;
+        height: 100px;
+        object-position: 0 -100px;
+}
+  .hotline {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .header .inner {
     flex-direction: column;
-    justify-content: space-between;
-    align-items: end;
-    gap: 30px;">
-         <div>
-          <h5>VSL, All rights reserved.<br>
-          Version (v.03.05.11)</h5>
-        </div>
-<a style="    background: var(--accent);
-    padding: 10px;
+    align-items: stretch;
+  }
+  .dropdown {
+  position: fixed;
+        right: 5px;
+        padding: 10px;
+  }
+  .dropdown-services {
+   height: 300px;
+        overflow-y: scroll;
+        
+}
+.modal-content h3 {
+    color: var(--dark-blue);
+    margin:0 ;
+    font-size: 20px;
+}
+  .search-box {
+    width: 100%;
+  }
+  .logo {
+    text-align: center;
+  }.footermfilogo h4 {
+    font-size: 40px;
+    font-weight: 700;
+}
+.ios-toast{
+  width: 90%;
+}
+#ios-toast-container{
+  position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999999999;
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    padding-top: env(safe-area-inset-top, 12px);
+    padding-top: 28px;
+    gap: 10px;
+}.actionbar-headers {
+    display: block;
+}
+  .theme-options {
+    grid-template-columns: 1fr;
+  }
+  .custom-colors {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+    #loading-screen {
+         position: fixed;
+    inset: 0;
     display: flex;
-    position: relative;
-    color: white;
-    position: fixed;
-    bottom: 70px;
-    right: 15px;    border-radius: 50%;" href="#scrollup"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M11,20V7.82l-5.6,5.6L4,12l8-8l8,8l-1.4,1.42L13,7.82V20H11Z"/></svg></a>
-      </div>
-       </div>
-    </footer>
-
-  </div>
-
-  <!-- TOTAL POPUP -->
-
-  <div class="modal-overlay" id="totalModal" hidden>
-    <div class="modal">
-      <div class="modal-header">
-        <h3 id="modalTitle">Total Summary</h3>
-        <button class="modal-close" title="To close pop up"
-        onclick="closeTotalPopup()">X</button>
-      </div>
-      <div id="modalBody"></div>
-    </div>
-  </div>
-
-  <!-- DETAIL POPUP -->
-
-  <div class="modal-overlay" id="detailModal" hidden
-  role="dialog" aria-modal="true" aria-labelledby="detailModalTitle">
-
-    <div class="modal">
-      <div class="modal-header">
-        <h3 id="detailModalTitle">Detail</h3>
-        <button class="modal-close" title="To close pop up"
-        onclick="closeDetailPopup()" aria-label="Close details">X</button>
-      </div>
-      <div id="detailModalBody" class="premium-copy"></div>
-    </div>
-
-  </div>
-
-  <!-- PREMIUM POPUP -->
-
-  <div class="modal-overlay" id="premiumModal" hidden
-  role="dialog" aria-modal="true" aria-labelledby="premiumModalTitle">
-
-    <div class="modal">
-
-      <div class="modal-header">
-        <div>
-          <h3 id="premiumModalTitle">VSL Premium+</h3>
-          <h5 style="    color: black;">Powered by BS&MFI Turbo</h5>
-        </div>
-        <button class="modal-close" title="To close premium popup"
-        onclick="closePremiumPopup()" aria-label="Close premium popup">X</button>
-      </div>
-
-      <div class="premium-copy">
-        Premium+ gives you more control over how VSL looks and how
-        account details are displayed.
-      </div>
-
-      <ul class="premium-features-list">
-        <li>Unlock Borrowed By, Interest Rate, Date Borrowed and Days Passed.</li>
-        <li>Turn detail popups and hover effects on or off.</li>
-        <li>Use dark and light themes.</li>
-        <li>Choose your own main colour.</li>
-      </ul>
-
-      <ul class="premium-features-list">
-        <li>Premium+ Cost</li>
-        <h3 onclick="alert('You have to pay 160/month to get Premium+ features')">
-          Monthly - 160
-        </h3>
-        <h3 onclick="alert('You have to pay 1500/year which means 125/month to get Premium+ features')">
-          Annual - 1500
-        </h3>
-      </ul>
-
-      <div class="premium-copy">
-        Contact your coordinator to activate your Premium+.
-        The fee will be added to your active amount or interest automatically.
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<script>
-const FONT_SIZE_KEY="interestTrackerFontSize";
-const NOTES_KEY_PREFIX="interestTrackerNotes_";
-const LAST_USER_KEY="vslLastUserId";
-const LAST_PASSWORD_KEY="vslLastPassword";
-const REMEMBER_PASSWORD_KEY="vslRememberPassword";
-
-const MIN_FONT=12;
-const MAX_FONT=28;
-
-let currentFontSize=16;
-let currentUser=null;
-
-const TEXT={
-  today:"Today",
-  interestTitle:"Borrows or Lends details",
-  notesTitle:"Notes",
-  amount:"Principal Amount",
-  borrowedBy:"Borrowed By",
-  interest:"Interest Rate",
-  takenDate:"Date Borrowed",
-  days:"Days Passed",
-  interestPaid:"Interest Paid",
-  remaining:"Remaining Interest",
-  entryTotal:"Total (Principal + Interest)",
-  interestNav:"Details",
-  notesNav:"Notes",
-  totalBtn:"Total",
-  modalTitle:"Total Summary",
-  sumPrincipal:"Total Principal",
-  sumInterest:"Total Remaining Interest",
-  grandTotal:"Grand Total",
-  placeholder:"Write something here...",
-  save:"Save",
-  emptyNotes:"No notes saved yet.",
-  delete:"Delete",
-  loggedInAs:"",
-  logout:"Logout"
-};
-
-const monthNames=[
-  "January","February","March","April","May","June",
-  "July","August","September","October","November","December"
-];
-
-function toggleFAQ(button){
-
-  const answer=button.nextElementSibling;
-  const icon=button.querySelector(".faq-icon");
-
-  if(!answer || !icon)return;
-
-  const opening=answer.hidden;
-
-  answer.hidden=!opening;
-  button.setAttribute("aria-expanded",String(opening));
-  icon.textContent=opening?"−":"+";
-
-}
-
-function userStorageKey(prefix){
-  return currentUser?prefix+currentUser.id:"";
-}
-
-const THEME_KEY_PREFIX="vslTheme_";
-const MAIN_COLOR_KEY_PREFIX="vslMainColor_";
-const DEFAULT_MAIN_COLOR="#0800f0";
-
-function isPremiumUser(user){
-  return !!(
-    user &&
-    (
-      user.premium===true ||
-      String(user.premium).toLowerCase()==="yes"
-    )
-  );
-}
-const DETAIL_EFFECTS_KEY_PREFIX="vslDetailEffects_";
-
-function detailEffectsStorageKey(){
-  return currentUser
-    ?DETAIL_EFFECTS_KEY_PREFIX+(currentUser.id||currentUser.name)
-    :"";
-}
-
-function detailEffectsEnabled(){
-
-  if(!isPremiumUser(currentUser))return false;
-
-  try{
-    return localStorage.getItem(detailEffectsStorageKey())!=="off";
-  }catch{
-    return true;
-  }
-
-}
-
-function applyDetailEffects(){
-
-  const premium=isPremiumUser(currentUser);
-  const enabled=detailEffectsEnabled();
-
-  document.body.dataset.premium=premium?"yes":"no";
-  document.body.dataset.detailEffects=enabled?"on":"off";
-
-  const control=document.getElementById("premiumDetailControl");
-  const button=document.getElementById("detailEffectsToggle");
-
-  if(control)control.hidden=!premium;
-
-  if(button){
-    button.textContent=enabled?"ON":"OFF";
-    button.setAttribute("aria-pressed",String(enabled));
-  }
-
-}
-
-function toggleDetailEffects(){
-
-  if(!isPremiumUser(currentUser))return;
-
-  const next=detailEffectsEnabled()?"off":"on";
-
-  try{
-    localStorage.setItem(detailEffectsStorageKey(),next);
-  }catch{}
-
-  applyDetailEffects();
-
-  render();
-
-}
-
-function openPremiumPopup(){
-  document.getElementById("premiumModal").hidden=false;
-}
-
-function closePremiumPopup(){
-  document.getElementById("premiumModal").hidden=true;
-}
-
-function openDetailPopup(key,entry,data){
-
-  if(!currentUser)return;
-  if(isPremiumUser(currentUser)&&!detailEffectsEnabled())return;
-
-  const descriptions={
-
-    borrowedBy:[
-      "Borrowed By",
-      "Name of the amount borrower.",
-      entry.borrowedBy||"Not specified"
-    ],
-
-    amount:[
-      "Principal Amount",
-      "The original amount before adding interest.",
-      ""+(Number(entry.amount)||0).toLocaleString("en-IN")
-    ],
-
-    interest:[
-      "Interest Rate",
-      "Monthly interest rate for the borrowed amount.",
-      String(entry.interest)+"% per month"
-    ],
-
-    takenDate:[
-      "Date Borrowed",
-      "Amount borrowed date. Interest starts counting from this date.",
-      formatDateWithMonth(entry.takenDate)
-    ],
-
-    days:[
-      "Days Passed",
-      "Number of days counted from the borrowing date until today.",
-      String(data.days)+" days"
-    ],
-
-    interestPaid:[
-      "Interest Paid",
-      "The amount entered as already paid interest.",
-      ""+(Number(entry.interestPaid)||0).toLocaleString("en-IN")
-    ],
-
-    remaining:[
-      "Remaining Interest",
-      "Calculated interest minus the interest already paid.",
-      ""+data.remaining.toLocaleString("en-IN")
-    ],
-
-    total:[
-      "Total Amount",
-      "Total principal amount plus remaining interest.",
-      ""+data.total.toLocaleString("en-IN")
-    ]
-
-  };
-
-  const detail=descriptions[key];
-  if(!detail)return;
-
-  document.getElementById("detailModalTitle").textContent=detail[0];
-
-  const body=document.getElementById("detailModalBody");
-  body.textContent="";
-
-  const description=document.createElement("span");
-  description.textContent=detail[1];
-
-  const value=document.createElement("p");
-  value.style.fontWeight="700";
-  value.style.marginTop="10px";
-  value.textContent=detail[2];
-
-  body.append(description,value);
-
-  document.getElementById("detailModal").hidden=false;
-
-}
-
-function closeDetailPopup(){
-  document.getElementById("detailModal").hidden=true;
-}
-
-
-
-function updatePremiumControls(){
-
-  const control=document.getElementById("accentControl");
-  const picker=document.getElementById("accentPicker");
-  const themeButton=document.getElementById("themeToggle");
-
-  const allowed=isPremiumUser(currentUser);
-
-  if(control)control.hidden=!allowed;
-  if(themeButton)themeButton.hidden=!allowed;
-
-  applyDetailEffects();
-
-  if(allowed){
-
-    let savedColor=DEFAULT_MAIN_COLOR;
-    let savedTheme="light";
-
-    const userKey=currentUser.id||currentUser.name;
-
-    try{
-      savedColor=localStorage.getItem(MAIN_COLOR_KEY_PREFIX+userKey)||DEFAULT_MAIN_COLOR;
-      savedTheme=localStorage.getItem(THEME_KEY_PREFIX+userKey)||"light";
-    }catch{}
-
-    if(picker)picker.value=savedColor;
-
-    applyMainColor(savedColor);
-    applyTheme(savedTheme);
-
-  }else{
-
-    applyMainColor(DEFAULT_MAIN_COLOR);
-    applyTheme("light");
-
-  }
-
-}
-
-
-
-function applyLockScreenAppearance(){
-
-  let rememberedUser=null;
-
-  try{
-    const rememberedId=localStorage.getItem(LAST_USER_KEY);
-    rememberedUser=USERS.find(user=>user.id===rememberedId)||null;
-  }catch{}
-
-  if(isPremiumUser(rememberedUser)){
-
-    const userKey=rememberedUser.id||rememberedUser.name;
-
-    let savedColor=DEFAULT_MAIN_COLOR;
-    let savedTheme="light";
-
-    try{
-      savedColor=localStorage.getItem(MAIN_COLOR_KEY_PREFIX+userKey)||DEFAULT_MAIN_COLOR;
-      savedTheme=localStorage.getItem(THEME_KEY_PREFIX+userKey)||"light";
-    }catch{}
-
-    applyMainColor(savedColor);
-    applyTheme(savedTheme);
-
-    document.body.dataset.premium="yes";
-
-  }else{
-
-    applyMainColor(DEFAULT_MAIN_COLOR);
-    applyTheme("light");
-
-    document.body.dataset.premium="no";
-
-  }
-
-}
-
-
-function applyMainColor(color){
-
-  if(!/^#[0-9a-fA-F]{6}$/.test(color)){
-    color=DEFAULT_MAIN_COLOR;
-  }
-
-  document.documentElement.style.setProperty("--accent",color);
-
-}
-
-function changeMainColor(color){
-
-  if(!isPremiumUser(currentUser)){
-    applyMainColor(DEFAULT_MAIN_COLOR);
-    return;
-  }
-
-  applyMainColor(color);
-
-  try{
-    localStorage.setItem(
-      MAIN_COLOR_KEY_PREFIX+(currentUser.id||currentUser.name),
-      color
-    );
-  }catch{}
-
-}
-
-function applyTheme(theme){
-
-  const selected=theme==="amoled"?"amoled":"light";
-
-  document.body.dataset.theme=selected;
-
-  const button=document.getElementById("themeToggle");
-
-  if(button){
-
-    button.textContent=selected==="amoled"?"Light":"Dark";
-
-    button.setAttribute(
-      "aria-label",
-      selected==="amoled"
-        ?"Switch to light theme"
-        :"Switch to dark AMOLED theme"
-    );
-
-  }
-
-}
-
-function toggleTheme(){
-
-  if(!isPremiumUser(currentUser)){
-    applyTheme("light");
-    return;
-  }
-
-  const next=document.body.dataset.theme==="amoled"
-    ?"light"
-    :"amoled";
-
-  applyTheme(next);
-
-  try{
-    localStorage.setItem(
-      THEME_KEY_PREFIX+(currentUser.id||currentUser.name),
-      next
-    );
-  }catch{}
-
-}
-
-function initLockScreen(){
-
-  const input=document.getElementById("passwordInput","password2Input");
-  const error=document.getElementById("lockError");
-
-  let rememberedPassword="";
-
-  try{
-    if(localStorage.getItem(REMEMBER_PASSWORD_KEY)==="yes"){
-      rememberedPassword=localStorage.getItem(LAST_PASSWORD_KEY)||"";
-    }
-  }catch{}
-
-  input.value=rememberedPassword;
-  error.hidden=true;
-
-  if(rememberedPassword){
-    input.focus();
-    input.setSelectionRange(input.value.length,input.value.length);
-  }else{
-    setTimeout(()=>input.focus(),100);
-  }
-
-  let rememberedUserId=null;
-
-  try{
-    rememberedUserId=localStorage.getItem(LAST_USER_KEY);
-  }catch{}
-
-  if(rememberedUserId){
-
-    const rememberedUser=USERS.find(user=>user.id===rememberedUserId);
-
-    if(
-      rememberedUser &&
-      rememberedPassword &&
-      rememberedUser.password===rememberedPassword
-    ){
-      input.value=rememberedPassword;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999999999;
+    backdrop-filter: blur(5px);
+    transition: opacity 0.5s cubic-bezier(0.32, 0.72, 0, 1), visibility 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+    background: linear-gradient(var(--bg-body) 3%, transparent);
     }
 
-  }
-
-}
-
-
-function checkPassword(){
-
-  const input=document.getElementById("passwordInput");
-  const error=document.getElementById("lockError");
-
-  const enteredPassword=input.value.trim();
-
-  const matchedUser=USERS.find(
-    user=>user.password===enteredPassword
-  );
-
-  if(!matchedUser){
-
-    error.hidden=false;
-    input.select();
-    return;
-
-  }
-
-  error.hidden=true;
-
-  try{
-    localStorage.setItem(LAST_USER_KEY,matchedUser.id);
-    localStorage.setItem(LAST_PASSWORD_KEY,enteredPassword);
-    localStorage.setItem(REMEMBER_PASSWORD_KEY,"yes");
-  }catch{}
-
-  loginUser(matchedUser);
-
-}
-
-
-function loginUser(user){
-
-  currentUser=user;
-
-  updatePremiumControls();
-
-  document.getElementById("lockScreen").hidden=true;
-  document.getElementById("mainApp").hidden=false;
-
-  document.getElementById("loggedInAs").textContent=
-    `${TEXT.loggedInAs}: ${user.name}`;
-
-  renderTopBanners();
-
-  loadFontSize();
-  updateLanguage();
-
-  showSection("interest");
-
-  render();
-  renderNotes();
-
-}
-
-
-function logout(){
-
-  currentUser=null;
-
-  updatePremiumControls();
-
-  document.getElementById("mainApp").hidden=true;
-  document.getElementById("lockScreen").hidden=false;
-
-  document.getElementById("totalModal").hidden=true;
-  document.getElementById("detailModal").hidden=true;
-  document.getElementById("premiumModal").hidden=true;
-
-  document.getElementById("app").innerHTML="";
-  document.getElementById("notesList").innerHTML="";
-  document.getElementById("noteInput").value="";
-
-  document.getElementById("topBanner").innerHTML="";
-  document.getElementById("topBanner2").innerHTML="";
-
-  initLockScreen();
-  applyLockScreenAppearance();
-
-}
-
-
-
-function renderTopBanners(){
-
-  const banner1=document.getElementById("topBanner");
-  const banner2=document.getElementById("topBanner2");
-
-  banner1.innerHTML="";
-  banner2.innerHTML="";
-
-  if(!currentUser)return;
-
-  [
-    [currentUser.topBanner,banner1],
-    [currentUser.topBanner2,banner2]
-  ].forEach(([links,container])=>{
-
-    if(!Array.isArray(links))return;
-
-    links.forEach(link=>{
-
-      const a=document.createElement("a");
-
-      a.href=link.href||"#";
-      a.textContent=link.text||"";
-
-      container.appendChild(a);
-
-    });
-
-  });
-
-}
-
-
-function loadFontSize(){
-
-  const saved=parseInt(localStorage.getItem(FONT_SIZE_KEY),10);
-
-  if(!isNaN(saved)&&saved>=MIN_FONT&&saved<=MAX_FONT){
-    currentFontSize=saved;
-  }
-
-  applyFontSize();
-
-}
-
-function applyFontSize(){
-
-  document.body.style.fontSize=currentFontSize+"px";
-
-  document.getElementById("fontSizeLabel").textContent=currentFontSize;
-
-}
-
-function changeFontSize(delta){
-
-  const size=currentFontSize+delta;
-
-  if(size<MIN_FONT||size>MAX_FONT)return;
-
-  currentFontSize=size;
-
-  applyFontSize();
-
-  try{
-    localStorage.setItem(FONT_SIZE_KEY,currentFontSize);
-  }catch{}
-
-}
-
-
-function showSection(section){
-
-  const interest=section==="interest";
-
-  document.getElementById("interestSection").hidden=!interest;
-  document.getElementById("notesSection").hidden=interest;
-
-  const interestNav=document.getElementById("interestNav");
-  const notesNav=document.getElementById("notesNav");
-
-  interestNav.classList.toggle("is-active",interest);
-  notesNav.classList.toggle("is-active",!interest);
-
-  if(interest){
-
-    interestNav.setAttribute("aria-current","page");
-    notesNav.removeAttribute("aria-current");
-
-  }else{
-
-    notesNav.setAttribute("aria-current","page");
-    interestNav.removeAttribute("aria-current");
-
-    renderNotes();
-
-  }
-
-}
-
-
-
-function parseDate(dateString){
-
-  const [year,month,day]=dateString.split("-").map(Number);
-
-  return new Date(year,month-1,day);
-
-}
-
-function formatDateWithMonth(dateString){
-
-  const date=parseDate(dateString);
-
-  return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
-
-}
-
-function getDays(takenDate){
-
-  const start=parseDate(takenDate);
-  const today=new Date();
-
-  start.setHours(0,0,0,0);
-  today.setHours(0,0,0,0);
-
-
-  return Math.max(
-    0,
-    Math.floor((today-start)/86400000)+1
-  );
-
-}
-
-function showToday(){
-
-  const date=new Date();
-
-  document.getElementById("todayDate").textContent=
-    `${TEXT.today}: ${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
-
-}
-
-
-function updateLanguage(){
-
-  document.documentElement.lang="en";
-  document.title="VSL";
-
-  document.getElementById("title").textContent="VSL";
-  document.getElementById("interestTitle").textContent=TEXT.interestTitle;
-  document.getElementById("notesTitle").textContent=TEXT.notesTitle;
-
-  document.getElementById("interestNav").textContent=TEXT.interestNav;
-  document.getElementById("notesNav").textContent=TEXT.notesNav;
-  document.getElementById("totalBtn").textContent=TEXT.totalBtn;
-
-  document.getElementById("modalTitle").textContent=TEXT.modalTitle;
-
-  document.getElementById("noteInput").placeholder=TEXT.placeholder;
-  document.getElementById("saveButton").textContent=TEXT.save;
-
-  document.querySelector(".logout-btn").textContent=TEXT.logout;
-
-  if(currentUser){
-    document.getElementById("loggedInAs").textContent=
-      `${TEXT.loggedInAs} ${currentUser.name}`;
-  }
-
-  showToday();
-
-}
-
-
-function getEntryData(entry){
-
-  const days=getDays(entry.takenDate);
-
-  const totalInterest=Math.round(
-    entry.amount*entry.interest*days/3000
-  );
-
-  const remaining=Math.max(
-    0,
-    totalInterest-entry.interestPaid
-  );
-
-  return {
-    days,
-    totalInterest,
-    remaining,
-    total:entry.amount+remaining
-  };
-
-}
-
-
-function createRow(
-  label,
-  value,
-  className="entry-row",
-  detailKey=null,
-  entry=null,
-  data=null
-){
-
-  const row=document.createElement("div");
-  row.className=className;
-
-  const labelElement=document.createElement("span");
-  labelElement.className="label";
-  labelElement.textContent=label;
-
-  const valueElement=document.createElement("span");
-  valueElement.className="value";
-
-  const premium=isPremiumUser(currentUser);
-
-  const premiumOnlyFields=[
-    "borrowedBy",
-    "interest",
-    "days"
-  ];
-
-  const isProtected=
-    !premium&&premiumOnlyFields.includes(detailKey);
-
-
-  valueElement.textContent=
-    isProtected
-      ?"Premium+ required"
-      :value;
-
-  row.append(labelElement,valueElement);
-
-  if(detailKey){
-
-    if(isProtected){
-
-      row.classList.add(
-        "premium-locked",
-        "detail-row",
-        "detail-clickable"
-      );
-
-      row.tabIndex=0;
-      row.setAttribute("role","button");
-
-      row.setAttribute(
-        "aria-label",
-        "Premium+ required to view "+label
-      );
-
-      row.addEventListener("click",openPremiumPopup);
-
-      row.addEventListener("keydown",event=>{
-
-        if(event.key==="Enter"||event.key===" "){
-          event.preventDefault();
-          openPremiumPopup();
-        }
-
-      });
-
-    }else{
-
-      const popupAllowed=
-        !premium||detailEffectsEnabled();
-
-      if(popupAllowed){
-
-        row.classList.add("detail-row");
-
-        row.tabIndex=0;
-        row.setAttribute("role","button");
-
-        row.setAttribute(
-          "aria-label",
-          "View "+label+" details"
-        );
-
-        row.addEventListener("click",()=>{
-
-          openDetailPopup(detailKey,entry,data);
-
-        });
-
-        row.addEventListener("keydown",event=>{
-
-          if(event.key==="Enter"||event.key===" "){
-            event.preventDefault();
-            openDetailPopup(detailKey,entry,data);
-          }
-
-        });
-
+    #loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loading-card {
+     width: 260px;
+    padding: 40px 32px 36px;
+    border-radius: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: scale(0.94) translateY(12px);
+    opacity: 0;    
+    animation: cardEnter 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
+    background: var(--bg-soft);
+    backdrop-filter: blur(5px);
+    
+      box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+filter: drop-shadow(0px 0px 6px #0000002b);
+    }
+
+    @keyframes cardEnter {
+      to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
       }
-
     }
 
-  }
-
-  return row;
-
-}
-
-
-function render(){
-
-  const app=document.getElementById("app");
-
-  app.innerHTML="";
-
-  if(!currentUser)return;
-
-  const userBlock=document.createElement("div");
-  userBlock.className="user";
-
-  currentUser.entries.forEach(entry=>{
-
-    if(typeof entry.interestPaid!=="number"){
-      entry.interestPaid=0;
+    .spinner {
+      width: 34px;
+      height: 34px;
+      margin-bottom: 24px;
+      position: relative;
     }
 
-    const data=getEntryData(entry);
-
-    const block=document.createElement("div");
-    block.className="entry";
-
-    block.append(
-
-      createRow(
-        TEXT.borrowedBy,
-        entry.borrowedBy,
-        "borrowed-by-row",
-        "borrowedBy",
-        entry,
-        data
-      ),
-
-      createRow(
-        TEXT.amount,
-        Number(entry.amount).toLocaleString("en-IN"),
-        "entry-row",
-        "amount",
-        entry,
-        data
-      ),
-
-      createRow(
-        TEXT.interest,
-        `${entry.interest}%`,
-        "entry-row",
-        "interest",
-        entry,
-        data
-      ),
-
-      createRow(
-        TEXT.takenDate,
-        formatDateWithMonth(entry.takenDate),
-        "entry-row",
-        "takenDate",
-        entry,
-        data
-      ),
-
-      createRow(
-        TEXT.days,
-        String(data.days),
-        "entry-row",
-        "days",
-        entry,
-        data
-      )
-
-    );
-
-  
-
-    if(isPremiumUser(currentUser)){
-
-      const paidRow=document.createElement("div");
-      paidRow.className="paid-row";
-
-      const paidLabel=document.createElement("label");
-      paidLabel.className="paid-label";
-      paidLabel.textContent=TEXT.interestPaid;
-
-      const inputWrap=document.createElement("div");
-      inputWrap.className="paid-input-wrap";
-
-      const paidInput=document.createElement("input");
-
-      paidInput.className="paid-input";
-      paidInput.title="Enter an amount here to know how much remaining interest is left.";
-      paidInput.type="number";
-      paidInput.min="0";
-      paidInput.step="1";
-      paidInput.inputMode="decimal";
-      paidInput.value=entry.interestPaid;
-      paidInput.setAttribute("aria-label",TEXT.interestPaid);
-
-
-      paidInput.addEventListener("change",()=>{
-
-        entry.interestPaid=Math.max(
-          0,
-          Number(paidInput.value)||0
-        );
-
-        render();
-
-      });
-
-      paidInput.addEventListener("keydown",event=>{
-
-        if(event.key==="Enter"){
-          paidInput.blur();
-        }
-
-      });
-
-      inputWrap.appendChild(paidInput);
-
-      paidRow.append(paidLabel,inputWrap);
-
-      block.appendChild(paidRow);
-
+    .spinner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2.5px solid transparent;
+      border-top-color: var(--dark-blue);
+      border-right-color: var(--dark-blue);
+      animation: spin 0.9s cubic-bezier(0.5, 0.15, 0.5, 0.85) infinite;
     }
 
-    block.appendChild(
-      createRow(
-        TEXT.remaining,
-        `${data.remaining.toLocaleString("en-IN")}`,
-        "remaining",
-        "remaining",
-        entry,
-        data
-      )
-    );
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
 
-    block.appendChild(
-      createRow(
-        TEXT.entryTotal,
-        `${data.total.toLocaleString("en-IN")}`,
-        "entry-total",
-        "total",
-        entry,
-        data
-      )
-    );
+    .loading-title {
+          font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+    margin-bottom: 5px;
+    color: var(--text-main);
+    }
 
-    userBlock.appendChild(block);
+    .loading-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
 
-  });
+    .progress-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
 
-  if(currentUser.entries.length===0){
+    .progress-track {
+      height: 4px;
+      background: rgba(0, 0, 0, 0.07);
+      border-radius: 100px;
+      overflow: hidden;
+    }
 
-    const empty=document.createElement("p");
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--dark-blue);
+      border-radius: 0px;
+      transition: width 0.25s linear;
+      position: relative;
+    }
 
-    empty.textContent="No lending amounts available.";
+    .progress-fill::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: shine 2.6s ease-in-out infinite;
+    }
 
-    userBlock.appendChild(empty);
+    @keyframes shine {
+      0% { transform: translateX(-120%); }
+      100% { transform: translateX(200%); }
+    }
 
-  }
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
 
-  app.appendChild(userBlock);
-
+    #progress-percent {
+      font-variant-numeric: tabular-nums;
+      color: var(--dark-blue);
+      font-weight: 600;
+    }
+html:has(#loading-screen:not(.hidden)),
+body:has(#loading-screen:not(.hidden)) {
+  overflow: hidden !important;
+  height: 100% !important;
+  touch-action: none;
 }
 
-
-
-function openTotalPopup(){
-
-  if(!currentUser)return;
-
-  const body=document.getElementById("modalBody");
-
-  let principal=0;
-  let remainingInterest=0;
-
-  currentUser.entries.forEach(entry=>{
-
-    principal+=Number(entry.amount)||0;
-
-    remainingInterest+=getEntryData(entry).remaining;
-
-  });
-
-  body.innerHTML="";
-
-  const summary=document.createElement("div");
-  summary.className="modal-summary";
-
-  [
-    [TEXT.sumPrincipal,principal],
-    [TEXT.sumInterest,remainingInterest],
-    [TEXT.grandTotal,principal+remainingInterest]
-  ].forEach((item,index)=>{
-
-    const row=document.createElement("div");
-    row.className="row";
-
-    const label=document.createElement(index===2?"strong":"span");
-    const value=document.createElement(index===2?"strong":"span");
-
-    label.textContent=item[0];
-
-    value.textContent=
-      `${item[1].toLocaleString("en-IN")}`;
-
-    row.append(label,value);
-
-    summary.appendChild(row);
-
-  });
-
-  body.appendChild(summary);
-
-  document.getElementById("totalModal").hidden=false;
-
+.graph-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
 }
 
-function closeTotalPopup(){
-
-  document.getElementById("totalModal").hidden=true;
-
+.bars-container {
+     display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 190px;
+    gap: 8px;
+    padding: 0 4px;
+    margin-top: -80px;
 }
 
-function getNotes(){
-
-  if(!currentUser)return [];
-
-  try{
-
-    const notes=JSON.parse(
-      localStorage.getItem(userStorageKey(NOTES_KEY_PREFIX))
-    );
-
-    return Array.isArray(notes)?notes:[];
-
-  }catch{
-
-    return [];
-
-  }
-
+.bar-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 55%;
+  justify-content: flex-end;
 }
 
-function saveNote(){
-
-  if(!currentUser)return;
-
-  const input=document.getElementById("noteInput");
-  const noteText=input.value.trim();
-
-  if(!noteText){
-    input.focus();
-    return;
-  }
-
-  const notes=getNotes();
-
-  notes.unshift({
-
-    id:`${Date.now()}-${Math.random().toString(36).slice(2)}`,
-
-    text:noteText,
-
-    date:new Date().toISOString()
-
-  });
-
-  try{
-
-    localStorage.setItem(
-      userStorageKey(NOTES_KEY_PREFIX),
-      JSON.stringify(notes)
-    );
-
-  }catch{
-
-    alert("Unable to save your note. Your browser storage may be full or unavailable.");
-    return;
-
-  }
-
-  input.value="";
-
-  renderNotes();
-
+.bar {
+  width: 100%;
+    max-width: 40px;
+    border-radius: 15px;
+    background: var(--bg-soft);
+    transition: height 0.4s ease;
+    position: relative;
+        box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
 }
 
-
-function deleteNote(id){
-
-  if(!currentUser)return;
-
-  const notes=getNotes().filter(note=>note.id!==id);
-
-  try{
-
-    localStorage.setItem(
-      userStorageKey(NOTES_KEY_PREFIX),
-      JSON.stringify(notes)
-    );
-
-  }catch{
-
-    alert("Unable to update your notes.");
-    return;
-
-  }
-
-  renderNotes();
-
+.bar.today {
+  background: var(--dark-blue);
 }
 
-
-function formatNoteDate(dateString){
-
-  const date=new Date(dateString);
-
-  if(Number.isNaN(date.getTime()))return "";
-
-  const hours=String(date.getHours()).padStart(2,"0");
-  const minutes=String(date.getMinutes()).padStart(2,"0");
-
-  return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}, ${hours}:${minutes}`;
-
+.bar-value {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-main);
+  white-space: nowrap;
 }
 
-
-function renderNotes(){
-
-  const list=document.getElementById("notesList");
-
-  const notes=getNotes();
-
-  list.innerHTML="";
-
-  if(!currentUser||notes.length===0){
-
-    const empty=document.createElement("p");
-
-    empty.className="empty-notes";
-    empty.textContent=TEXT.emptyNotes;
-
-    list.appendChild(empty);
-
-    return;
-
-  }
-
-  notes.forEach(note=>{
-
-    const item=document.createElement("div");
-    item.className="note";
-
-    const deleteButton=document.createElement("button");
-
-    deleteButton.className="delete-note";
-    deleteButton.textContent="X";
-    deleteButton.title=TEXT.delete;
-    deleteButton.setAttribute("aria-label",TEXT.delete);
-
-    deleteButton.onclick=()=>deleteNote(note.id);
-
-    const text=document.createElement("div");
-    text.className="note-text";
-    text.textContent=note.text;
-
-    const date=document.createElement("div");
-    date.className="note-date";
-    date.textContent=formatNoteDate(note.date);
-
-    item.append(deleteButton,text,date);
-
-    list.appendChild(item);
-
-  });
-
+.graph-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 0 4px;
 }
 
+.graph-labels span {
+  flex: 1;
+  text-align: center;
+}
+html:has(.modal.show),
+body:has(.modal.show) {
+  overflow: hidden !important;
+  height: 100% !important;
+  touch-action: none;
+}
+   
+  </style>
+</head>
+<body>
 
-document.getElementById("premiumModal").addEventListener("click",event=>{
+  <div id="loading-screen">
+    <div class="loading-card">
+      <div class="spinner"></div>
+      <div class="loading-title">Loading Data</div>
+      <div class="loading-subtitle">Wait a moment</div>
 
-  if(event.target.id==="premiumModal"){
-    closePremiumPopup();
-  }
+      <div class="progress-section">
+        <div class="progress-track">
+          <div class="progress-fill" id="progressBar"></div>
+        </div>
+        <div class="progress-info">
+          <span>Progress</span>
+          <span id="progress-percent">0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-});
+    <!-- iOS Toast Container -->
+    <div id="ios-toast-container"></div>
 
-document.getElementById("detailModal").addEventListener("click",event=>{
+    <div class="topbar">
+        <div class="container" style="    display: flex;
+    justify-content: space-between;
+    align-items: center;    flex-direction: column;
+    width: 100%;padding: 10px 0 0 0">
+            <div class="inner">
+              <div>
+                <svg class="backoption" onclick="window.open('https://mfi0212.github.io/MFI/services.main.page','_self')" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m367.38-480 301.31 301.31q11.92 11.92 11.62 28.07-.31 16.16-12.23 28.08-11.93 11.92-28.08 11.92t-28.08-11.92L305.08-428.77q-10.85-10.85-16.08-24.31-5.23-13.46-5.23-26.92t5.23-26.92q5.23-13.46 16.08-24.31l306.84-306.85q11.93-11.92 28.39-11.61 16.46.31 28.38 12.23 11.92 11.92 11.92 28.08 0 16.15-11.92 28.07L367.38-480Z"/></svg>
+              </div>
+              <div>
+                <div onclick="openThemeModal()" class="username">
+                  <span id="top-user" class="user-info"></span>
+                  <button class="theme-btn" id="theme-btn">Themes</button> 
+                </div>
+              </div>
+              <div class="rightsideoptino">
+                <button class="menu-btn" id="menuBtn" title="More options"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M12,19.27q-0.62,0-1.06-0.44T10.5,17.77t0.44-1.06T12,16.27t1.06,0.44t0.44,1.06t-0.44,1.06T12,19.27Zm0-5.77q-0.62,0-1.06-0.44T10.5,12t0.44-1.06T12,10.5t1.06,0.44T13.5,12t-0.44,1.06T12,13.5Zm0-5.77q-0.62,0-1.06-0.44T10.5,6.23t0.44-1.06T12,4.73t1.06,0.44T13.5,6.23T13.06,7.29T12,7.73Z"/></svg></button>
+                <a href="#" id="logout-btn" class="hidden" onclick="logout()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M509.61-140q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-535.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H509.61q-12.76 0-21.38-8.62-8.61-8.61-8.61-21.38t8.61-21.38q8.62-8.62 21.38-8.62h238.08Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H509.61Zm-28.38-310H170q-12.77 0-21.38-8.62Q140-467.23 140-480t8.62-21.38Q157.23-510 170-510h311.23l-76.92-76.92q-8.31-8.31-8.5-20.27-.19-11.96 8.5-21.27 8.69-9.31 21.03-9.62 12.38-.3 21.69 9l123.77 123.77q10.84 10.85 10.84 25.31 0 14.46-10.84 25.31L447.08-330.92q-8.92 8.92-21.19 8.8-12.27-.11-21.58-9.42-8.69-9.31-8.38-21.38.3-12.08 9-20.77l76.3-76.31Z"/></svg></a>
+              </div>
+              </div>
+                      <div class="search-results" id="search-results">
+              
+              <div id="search-list"></div>
+            </div>
+          </div>
+            </div>
+             <div class="dropdown" id="dropdown">
+        <div class="dropdown-services">
+            <a href="https://mfi0212.github.io/MFI/new.service">BS&MFI home page</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/all.solution">All Solutions</a>
+            <a href="https://mfi0212.github.io/MFI/services.main.page.lite">Version S</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/botpay">BotPay</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/bsrora-atdo">BsRora-Atdo</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/bsrora">BsRora</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/buy-limit">Buy Limit</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/delay-it">Delay It</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/mining-bot">Mining Bot</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/pre-saver">Pre-Saver</a>
+            <a href="https://mfi0212.github.io/MFI/service.solutions/split-pay">Split Pay</a>
+        </div>
+    </div>
+      </div>
+      
+      <div class="header" id="productsearch">
+        <div class="container" style="padding:5px 5px 0 5px;">
+              <div class="inner">
+                  <div class="search-box" id="productsearch">
+                      <input type="text" id="search-input" placeholder="Search services...." onkeypress="if(event.key==='Enter') doSearch()">
+                      <button onclick="doSearch()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M380.77-335.39q-102.46 0-173.54-71.07-71.07-71.03-71.07-173.54t71.07-173.54q71.03-71.07 173.54-71.07t173.54 71.07q71.07 71.03 71.07 173.54 0 42.85-14.38 81.85-14.39 39-38.39 67.84l230.16 230.16q8.31 8.3 8.5 20.88.19 12.58-8.5 21.27t-21.03 8.69q-12.38 0-21.07-8.69L530.46-388.16q-30 24.77-69 38.77-39 14-80.69 14Zm0-59.99q77.31 0 130.96-53.66 53.66-53.65 53.66-130.96t-53.66-130.96q-53.65-53.66-130.96-53.66t-130.96 53.66Q196.15-657.31 196.15-580t53.66 130.96q53.65 53.66 130.96 53.66Z"/></svg></button>
+                  </div>
+              </div>
+          </div>
+        </div>
 
-  if(event.target.id==="detailModal"){
-    closeDetailPopup();
-  }
+    <div class="main">
+        <div class="container">
+            <div class="advertisment" >
+              <img src="https://i.pinimg.com/originals/d0/90/fd/d090fd8442f252a252bddb861afe8adf.gif" class="advertisments" alt="">
+            </div>
+            <div id="reminder-banner" class="reminder-banner hidden">
+                <div class="reminder-icon"><img style="width: 50px;" src="service-icons/remineder_logo_pop_up.gif" alt=""></div>
+                <div class="reminder-content">
+                    <h3>Payment Reminder</h3>
+                    <div id="reminder-messages"></div>
+                    <div class="reminder-actions">
+                        <button class="btn btn-danger" onclick="document.getElementById('products').scrollIntoView({behavior:'auto'})">Visit services now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="graph">
+              <div class="col">
+                    <div class="box-title">Today's Interest Rate</div>
+                    <div class="graph-container">
+                        <div class="today-rate"> Today’s Interest: <span id="today-rate-display">--%</span> <span id="fixed-rate-note" style="font-size:13px;display:none;"></span> </div>
+                        <div class="chart-wrapper">
+                        <div class="interest-graph">
+                        <div class="bars-container" id="bars-container"></div>
+                        <div class="graph-labels" id="graph-labels"></div>
+                    </div>
+                        </div>
+                        <p style="font-size: 13px;
+                            color: var(--text-muted);
+                            margin-top: 8px;
+                            text-align: left;
+                            padding: 10px;
+                            background: var(--bg-soft);
+                            border-radius: 20px;
+                            text-align: center;"> Interest rate and all bars are fixed for the whole day. Logged-in users with a claimed fixed rate will see their personal rate used in calculations. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="takemoney">
+                <div class="col">
+                    <div class="box-title">Take Money - Apply</div>
+                    <div class="box-body">
+                        <div class="take-money-box">
+                            <div id="tm-password-step">
+                                <input type="text" id="tm-password" disabled  placeholder="Click below option to continue">
+                                <button onclick="verifyTakeMoneyPassword()">Check interest now</button>
+                            </div>
+                            <div id="tm-amount-step" class="hidden">
+                                <p style="margin-bottom:10px;text-align:center;color:var(--text-muted);"> Applicable Interest Rate: <strong id="tm-today-rate" style="color:var(--dark-blue);"></strong> </p>
+                                <input type="number" id="tm-amount" placeholder="Enter amount....." min="100">
+                                <button onclick="calculateTakeMoneyInterest()">Check Interest</button>
+                                <div id="tm-result" class="interest-result hidden">
+                                    <div>Amount: <strong id="tm-res-amount">—</strong></div>
+                                    <div class="rate">Interest: <span id="tm-res-interest">—</span></div>
+                                    <div>Total to Return: <strong id="tm-res-total">—</strong></div>
+                                    <button class="btn" style="margin-top:12px;width:100%;" onclick="applyTakeMoney()">Apply Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="products">
+                <div class="col">
+                    <div class="box-title">Services you have acess to</div>
+                    <div class="box-body" id="products-container"></div>
+                </div>
+            </div>
+            <div class="row" id="account">
+                <div class="col">
+                    <div class="box-title"> My Account - Loan Details <span id="account-status" style="font-size:12px;font-weight:normal;"></span> </div>
+                    <div class="box-body">
+                        <div id="login-section">
+                            <div style="max-width:360px;margin:0 auto;">
+                                <p style="margin-bottom:12px;color:var(--text-muted);text-align:center;"> Enter password to login </p>
+                                <input type="text" id="login-pass" placeholder="Password" style="margin-bottom: 10px;
+    width: 100%;
+    border: 1.5px solid var(--bg-soft);
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 18px;
+    background: var(--bg-card);
+    color: var(--text-main);
+    border-radius: 15px;
+    padding: 10px;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);">
+                                <button class="btn" onclick="doLogin()">Login to Account</button>
+                            </div>
+                        </div>
+                        <div id="loan-section" class="hidden">
+                            <p style="margin-bottom:12px;"> Welcome, <strong id="current-user"></strong>!
+                            </p>
+                            <div id="custom-content-box" class="custom-content-box hidden"></div>
+                             <div id="special-banner" class="special-banner hidden">
+              <div class="special-icon">🤖</div>
+              <div class="special-content">
+                <marquee id="special-message" behavior="" direction="left"></marquee>
+              </div>
+            </div>
+                            <div class="user-summary">
+                                <div class="summary-card">
+                                    <div class="label">User Name</div>
+                                    <div class="value" id="sum-username">—</div>
+                                </div>
+                                <div class="summary-card">
+                                    <div class="label">Premium Type</div>
+                                    <div class="value" id="sum-premium">—</div>
+                                </div>
+                                <div class="summary-card" id="sum-total">
+                                    <div class="label">Total Amount</div>
+                                    <div class="value">—</div>
+                                </div>
+                                <div class="summary-card">
+                                    <div class="label">Your Interest Rate</div>
+                                    <div class="value" id="sum-interest">—</div>
+                                </div>
+                            </div>
+                            
+            <div class="modal" id="total-popup-modal">
+  <div class="modal-content">
+    <div style="width: 95%;
+    border-radius: 35px 35px 0 0;
+    margin: 10px 0 0 0;
+    padding: 15px 10px 0 10px;
+    background: linear-gradient(180deg, var(--bg-body), #16161600);">
+      <img style="width: 100px;" src="service-icons/total_pop_up_folder_logo.gif" alt="">
+    <h3 style="
+    text-align: center;
+    font-size: 20px;
+    text-decoration: underline 1px;
+    font-weight: 600;
+    text-underline-position: from-font;margin-bottom: 15px;">Amounts Folder</h3>
+    </div>
+    <div class="amount-detail-card" style="margin-bottom:14px;">
+      <div class="detail-row">
+        <span class="detail-label">Amount</span>
+        <span class="detail-value" id="tp-amount">—</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Interest</span>
+        <span class="detail-value" id="tp-interest">—</span>
+      </div>
+      <div class="detail-row">
+  <span class="detail-label">Overdue Fee</span>
+  <span class="detail-value" id="tp-overdue">0</span>
+</div>
+      <div class="detail-row total-row">
+        <span class="detail-label">Total (amount + interest)</span>
+        <span class="detail-value" id="tp-total">—</span>
+      </div>
+    </div>
+    <hr>
+    <div class="notepad">
+            If you exceed your plan’s <a href="https://mfi0212.github.io/MFI/starpre" style="font-weight: 500;
+    font-size: 12px;">borrow limit</a> from Next Borrow or extend beyond it, an extra charge will be applied.
+        </div>
+    <button class="btn" style="width:90%;" onclick="closeTotalPopup()">OK</button>
+  </div>
+</div>
 
-});
+            <div id="loan-amount-ui">
+              <div class="amount-tabs-wrapper">
+                <div class="amount-tabs" id="amount-tabs"></div>
+              </div>
+              <div id="amount-detail-container"></div>
+            </div>
 
-document.getElementById("totalModal").addEventListener("click",event=>{
+            <div class="applied-section" id="applied-section" style="display: none;">
+              <h4>Applied Services & Fees</h4>
+              <div class="table-wrapper">
+                <table class="loan-table">
+                  <thead>
+                    <tr>
+                      <th>Service</th>
+                      <th>Amount</th>
+                      <th>Fee</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="applied-body"></tbody>
+                </table>
+              </div>
+              <p id="no-applied" style="text-align:center;color:var(--text-muted);margin-top:10px;" class="hidden">No services applied yet.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  if(event.target.id==="totalModal"){
-    closeTotalPopup();
-  }
+  </div>
+</div>
 
-});
-
-document.addEventListener("keydown",event=>{
-
-  if(event.key==="Escape"){
-
-    closeTotalPopup();
-    closeDetailPopup();
-    closePremiumPopup();
-
-  }
-
-});
-
-
-applyLockScreenAppearance();
-
-applyDetailEffects();
-
-initLockScreen();
-
-</script>
-
+<div class="footer">
+    <div class="container" style="padding-top: 15px;    border-top: 1.5px solid #ffffff14;">
+      <div class="inner">
+        <div>
+          <h4>New ins</h4>
+          <a href="https://mfi0212.github.io/MFI/entrysheet">New Enter Form</a>
+        </div>
+        <div>
+          <h4>Transfer</h4>
+          <a href="https://mfi0212.github.io/MFI/bsgifter">BsGifter</a>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <a href="https://mfi0212.github.io/MFI/imlate">Im late</a>
+          <a href="https://mfi0212.github.io/MFI/abt.hlp">BsHelper</a>
+        </div>
+        <div class="footermfilogo" >
+          <marquee onclick="window.open('https://mfi0212.github.io/MFI/new.service','_self')" style="height: 50px;cursor: pointer;" behavior="" direction="up"><h4>BS&MFI</h4></marquee>
+        </div>
+    </div>
+    <div class="footer-bottom">
+     © BS&MFI Services, All Rights Reserved.
+    </div>
+  </div>
+</div>
+    <div class="quick"> 
+      <div class="bottomoptions">
+        <div class="logo-in-mainbar">
+          <img style="border-radius: 50%;
+    width: 35px;" src="mfi.gif" alt="">
+        </div>
+        <div class="hightlight-option">
+          <a href="#takemoney">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M548.92-518 393.15-673.77l42.77-41.77 113 113 227-226 41.77 41.77L548.92-518ZM300-216.92l290.31 82.15 238.77-74q-3.08-13.61-12.77-20.88-9.7-7.27-21.7-7.27H598.77q-26.23 0-44.54-2t-37.62-8.77l-90.3-29.85 17.77-58.77 81 28.16q18.15 6.15 41.92 8.38 23.77 2.23 67.61 2.85 0-14.85-6.69-25.62-6.69-10.77-17.61-14.54l-232.08-85.23q-1.15-.38-2.12-.57-.96-.2-2.11-.2h-74v206.16ZM100-100v-383.07h273.61q6.24 0 12.66 1.3 6.42 1.31 12.04 3.31l233.07 85.85q27.23 10.07 45.23 35.65 18 25.58 18 60.04h100q43.08 0 70.2 27.81 27.11 27.8 27.11 72.19v32.3L592.31-71.54 300-154.92V-100H100Zm60-60h80v-263.08h-80V-160Z"/></svg>
+            <div class="actionbar-headers">Apply</div>        
+          </a>
+        </div>
+        <a href="#graph" class="rounded-options">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M306.54-527.31q-52.42 0-89.48-37.06Q180-601.42 180-653.85q0-52.42 37.06-89.48 37.06-37.05 89.48-37.05t89.48 37.05q37.06 37.06 37.06 89.48 0 52.43-37.06 89.48-37.06 37.06-89.48 37.06Zm-.02-60q27.71 0 47.13-19.4 19.43-19.4 19.43-47.11 0-27.72-19.4-47.14t-47.12-19.42q-27.71 0-47.14 19.4Q240-681.58 240-653.87q0 27.72 19.4 47.14t47.12 19.42ZM653.85-180q-52.43 0-89.48-37.06-37.06-37.06-37.06-89.48t37.06-89.48q37.05-37.06 89.48-37.06 52.42 0 89.48 37.06 37.05 37.06 37.05 89.48t-37.05 89.48Q706.27-180 653.85-180Zm47.11-79.4q19.42-19.4 19.42-47.12 0-27.71-19.4-47.13-19.4-19.43-47.11-19.43-27.72 0-47.14 19.4t-19.42 47.12q0 27.71 19.4 47.14Q626.11-240 653.82-240q27.72 0 47.14-19.4Zm-475.34 75.55-41.77-41.77 550.92-550.92 41.77 41.77-550.92 550.92Z"/></svg>
+        </a> 
+            <a href="#products">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M278.39-152.31q-26.18 0-46.49-17.15-20.31-17.14-24.82-43.31l-56.24-337.04q-2.76-16.57 7.69-29.54 10.44-12.96 27.7-12.96h587.54q17.26 0 27.7 12.96 10.45 12.97 7.69 29.54l-56.24 337.04q-4.51 26.17-24.82 43.31-20.31 17.15-46.49 17.15H278.39Zm-62.39-380 49.46 309.62q.77 4.61 4.04 7.5 3.27 2.88 7.89 2.88h405.22q4.62 0 7.89-2.88 3.27-2.89 4.04-7.5L744-532.31H216Zm184 150h160q12.75 0 21.37-8.63 8.63-8.63 8.63-21.38 0-12.76-8.63-21.37-8.62-8.62-21.37-8.62H400q-12.75 0-21.37 8.63-8.63 8.63-8.63 21.38 0 12.76 8.63 21.38 8.62 8.61 21.37 8.61ZM240-640q-12.75 0-21.37-8.63-8.63-8.63-8.63-21.38 0-12.76 8.63-21.37Q227.25-700 240-700h480q12.75 0 21.37 8.63 8.63 8.63 8.63 21.38 0 12.76-8.63 21.37Q732.75-640 720-640H240Zm80-107.69q-12.75 0-21.37-8.63-8.63-8.63-8.63-21.38 0-12.76 8.63-21.37 8.62-8.62 21.37-8.62h320q12.75 0 21.37 8.63 8.63 8.63 8.63 21.38 0 12.76-8.63 21.37-8.62 8.62-21.37 8.62H320Zm-54.54 535.38h429.08H265.46Z"/></svg>
+            <div class="actionbar-headers">Services</div> 
+        </a> 
+       <div style="display: flex;flex-direction: column;gap: 10px;">
+        <a href="#productsearch" class="rounded-options">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M381.66-326q-106.13 0-179.65-73.45-73.51-73.46-73.51-179.5 0-106.05 73.45-179.55 73.46-73.5 179.5-73.5Q487.5-832 561-758.49q73.5 73.52 73.5 179.65 0 42.84-13.5 81.59T584-429l221.62 221.14Q816.5-197 816.5-181.5t-11 26.5q-11 11-26.5 11t-26.38-10.87L531.16-376.5q-29.66 24-68.16 37.25T381.66-326Zm-.16-75q74.5 0 126.25-51.75T559.5-579q0-74.5-51.75-126.25T381.5-757q-74.5 0-126.25 51.75T203.5-579q0 74.5 51.75 126.25T381.5-401Z"/></svg>
+          </a>
+         <a href="#account" class="rounded-options">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240.92-268.31q51-37.84 111.12-59.77Q412.15-350 480-350t127.96 21.92q60.12 21.93 111.12 59.77 37.3-41 59.11-94.92Q800-417.15 800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 62.85 21.81 116.77 21.81 53.92 59.11 94.92Zm146.7-219.31Q350-525.23 350-580q0-54.77 37.62-92.38Q425.23-710 480-710q54.77 0 92.38 37.62Q610-634.77 610-580q0 54.77-37.62 92.38Q534.77-450 480-450q-54.77 0-92.38-37.62ZM480-100q-79.15 0-148.5-29.77t-120.65-81.03q-51.31-51.3-81.03-120.65Q100-400.85 100-480t29.77-148.5q29.77-69.35 81.03-120.65 51.3-51.31 120.65-81.03Q400.85-860 480-860t148.5 29.77q69.35 29.77 120.65 81.03 51.31 51.3 81.03 120.65Q860-559.15 860-480t-29.77 148.5q-29.77 69.35-81.03 120.65-51.3 51.31-120.65 81.03Q559.15-100 480-100Zm104.42-77.42q50.27-17.43 89.27-48.73-39-30.16-88.11-47Q536.46-290 480-290t-105.77 16.65q-49.31 16.66-87.92 47.2 39 31.3 89.27 48.73Q425.85-160 480-160t104.42-17.42Zm-54.5-352.66Q550-550.15 550-580t-20.08-49.92Q509.85-650 480-650t-49.92 20.08Q410-609.85 410-580t20.08 49.92Q450.15-510 480-510t49.92-20.08ZM480-580Zm0 355Z"/></svg>
+        </a> 
+       </div>
+      </div>
+      <!-- <div class="search-icon">
+         <a href="#productsearch" style="display: contents;">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M381.66-326q-106.13 0-179.65-73.45-73.51-73.46-73.51-179.5 0-106.05 73.45-179.55 73.46-73.5 179.5-73.5Q487.5-832 561-758.49q73.5 73.52 73.5 179.65 0 42.84-13.5 81.59T584-429l221.62 221.14Q816.5-197 816.5-181.5t-11 26.5q-11 11-26.5 11t-26.38-10.87L531.16-376.5q-29.66 24-68.16 37.25T381.66-326Zm-.16-75q74.5 0 126.25-51.75T559.5-579q0-74.5-51.75-126.25T381.5-757q-74.5 0-126.25 51.75T203.5-579q0 74.5 51.75 126.25T381.5-401Z"/></svg>
+         </a>
+      </div> -->
+  </div>
+    <!-- <div class="modal" id="apply-modal">
+        <div class="modal-content" style="width: 90%;">
+             <h3>Redirecting</h3>
+            We are redirecting to the application form
+            <button class="btn" style="width:100%;" onclick="closeModal()">OK</button>
+        </div>
+    </div> -->
+    <div class="modal" id="fee-modal">
+        <div class="modal-content">
+           <div style="display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid 4px #8080802e;
+    margin: 0 0 10px 0;
+    width: 90%;
+    padding: 15px 0px;">
+             <h3 id="fee-modal-title" style="margin-bottom: 0;">Apply Service</h3>
+            <button class="btn btn-outline" onclick="closeFeeModal()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M12,13.05L6.93,18.13Q6.72,18.33 6.4,18.34T5.87,18.13T5.66,17.6t0.22-0.53L10.95,12L5.87,6.93Q5.67,6.72 5.66,6.4T5.87,5.87T6.4,5.66T6.93,5.87L12,10.95l5.07-5.07q0.21-0.21 0.52-0.21t0.53,0.21T18.34,6.4T18.13,6.93L13.05,12l5.07,5.07q0.21,0.21 0.21,0.52t-0.21,0.53T17.6,18.34t-0.53-0.22L12,13.05Z"/></svg></button>
+           </div>  
+            <p style="margin-bottom:12px;color:var(--text-muted);font-size:13px;" id="fee-modal-desc"></p>
+              <div style="padding: 0px 20px;
+    margin-bottom: 12px;
+    font-size: 20px;
+    background: var(--bg-body);
+    color: var(--text-main);
+    border-radius: 99px;
+    text-align: center;
+    outline: none;
+    border: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff29, inset -0.9px -0.9px 0px 0px #ffffff29;
+    filter: drop-shadow(0px 0px 6px #0000002b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;">
+                <span style="white-space: nowrap;">$/₹</span>
+                <input type="number" id="fee-amount" placeholder="Enter amount" min="100">
+              </div>
+             <div id="fee-result" class="fee-preview hidden">
+                <div>Amount Fee</div>
+                <div class="fee-amount" id="fee-display">—</div>
+                <div style="font-size:13px;color:var(--text-muted);margin-top:4px;display: none;" id="fee-formula"></div>
+            </div>
+            <span style="    text-transform: uppercase;
+    font-size: 11px;
+    opacity: 70%;
+    letter-spacing: 1.5px;
+    font-weight: 400;">You must pay the fee first.</span>
+           <div style="display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;    width: 90%;">
+             <button class="btn" onclick="calculateFee()" style="    background: var(--bg-soft);
+    backdrop-filter: blur(2px);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    filter: drop-shadow(0px 0px 6px #0000002b);
+    color: var(--text-main);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M8.15,15.85v1.4q0,0.26 0.17,0.43t0.43,0.17t0.43-0.17t0.17-0.43v-1.4h1.4q0.26,0 0.43-0.17t0.17-0.43t-0.17-0.43t-0.43-0.17H9.35v-1.4q0-0.26-0.17-0.43T8.75,12.65T8.32,12.82T8.15,13.25v1.4H6.75q-0.26,0-0.43,0.17T6.15,15.25t0.17,0.43t0.43,0.17h1.4Zm5.6,1.25h3.5q0.26,0 0.43-0.17t0.17-0.43t-0.17-0.43T17.25,15.9h-3.5q-0.26,0-0.43,0.17T13.15,16.5t0.17,0.43t0.43,0.17Zm0-2.5h3.5q0.26,0 0.43-0.17T17.85,14t-0.17-0.43T17.25,13.4h-3.5q-0.26,0-0.43,0.17T13.15,14t0.17,0.43t0.43,0.17ZM7,9.05h3.5q0.26,0 0.43-0.17T11.1,8.45T10.93,8.02T10.5,7.85H7q-0.26,0-0.43,0.17T6.4,8.45T6.57,8.88T7,9.05ZM5.31,20.5q-0.76,0-1.28-0.52T3.5,18.69V5.31q0-0.76 0.52-1.28T5.31,3.5H18.69q0.76,0 1.28,0.52T20.5,5.31V18.69q0,0.76-0.52,1.28T18.69,20.5H5.31Zm0-1.5H18.69q0.12,0 0.21-0.1T19,18.69V5.31q0-0.12-0.1-0.21T18.69,5H5.31Q5.19,5 5.1,5.1T5,5.31V18.69q0,0.12 0.1,0.21T5.31,19ZM5,5Q5,5 5,5.09T5,5.31V18.69q0,0.13 0,0.22T5,19q0,0 0-0.09t0-0.22V5.31Q5,5.17 5,5.09T5,5ZM15.5,9.32l0.98,0.98q0.18,0.18 0.41,0.18t0.42-0.18q0.17-0.17 0.18-0.41T17.33,9.46l-1-1.01l0.98-0.98Q17.5,7.29 17.5,7.05T17.32,6.63T16.9,6.44T16.48,6.63L15.5,7.61L14.52,6.63Q14.34,6.45 14.1,6.45T13.68,6.63T13.49,7.05t0.19,0.42l0.98,0.98l-1,1.01Q13.5,9.64 13.5,9.88t0.18,0.42t0.42,0.19t0.42-0.19L15.5,9.32Z"/></svg> Calculate</button>
+              <button class="btn" id="fee-apply-btn" onclick="confirmFeeApply()" disabled><svg style="fill: white;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M13.72,8.94L18.88,3.8q0.21-0.21 0.51-0.21t0.52,0.22q0.21,0.21 0.21,0.52T19.92,4.86l-5.56,5.56q-0.27,0.27-0.63,0.27t-0.63-0.27L10.36,7.68q-0.22-0.22-0.22-0.53t0.24-0.53q0.22-0.21 0.53-0.21t0.53,0.22l2.3,2.3ZM14.67,20.6q0.05,0.02 0.09,0.02t0.09-0.02l5.88-1.82q-0.08-0.34-0.32-0.52t-0.54-0.18h-4.9q-0.66,0-1.11-0.05t-0.94-0.22l-1.57-0.51q-0.3-0.1-0.44-0.38t-0.04-0.59q0.1-0.29 0.37-0.43t0.58-0.04l1.3,0.46q0.45,0.14 1.02,0.2t1.46,0.08h0.09q0.05,0 0.09,0t0.09,0q0-0.37-0.17-0.64t-0.44-0.36l-5.8-2.13Q9.43,13.43 9.4,13.43t-0.05-0H7.5v5.15l7.17,2.03Zm-0.39,1.47L7.5,20.13q-0.17,0.62-0.7,1T5.69,21.5H4.31q-0.75,0-1.28-0.53T2.5,19.69V13.73q0-0.75 0.53-1.28t1.28-0.53H9.34q0.16,0 0.32,0.03t0.3,0.08l5.83,2.15q0.68,0.25 1.13,0.89t0.45,1.5h2.5q1.08,0 1.75,0.7t0.68,1.8q0,0.42-0.22,0.68t-0.68,0.41l-6.07,1.88q-0.25,0.08-0.52,0.09t-0.53-0.07ZM4,19.69q0,0.13 0.09,0.22T4.31,20H5.69q0.13,0 0.22-0.07T6,19.69V13.42H4.31q-0.13,0-0.22,0.09T4,13.73v5.96Z"/></svg> Apply</button>
+           </div>
+           <footer style="font-size: 10px;
+    font-weight: 300;
+    opacity: 80%;">© BS&MFI Solutions. All Rights Reserved.</footer>
+          </div>
+    </div>
+    <div class="modal" id="theme-modal">
+        <div class="modal-content" style="max-width:450px;">
+          <div style="width: 95%;
+    border-radius: 33px 33px 0 0;
+    margin: 10px 0 0 0;
+    padding: 10px 10px 0 10px;
+    background: linear-gradient(180deg, var(--bg-body), #16161600);">
+            <img style="width: 100px;" src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/refs/heads/main/Activity/Artist%20Palette.webp" alt="">
+            <h3>Choose Theme</h3>
+          </div>
+            <p style="font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    padding: 0 20px;">Select a default theme or (if available) a custom accent color that works on Light, Dark or Telegram.</p>
+            <div class="scrollthemes">
+              <div class="theme-options" id="default-themes">
+                <div class="theme-option" data-theme="light" onclick="selectTheme('light')">
+                    <div class="swatch" style="background:linear-gradient(90deg,#eef1f6,#002aff);"></div> <strong>Light</strong> </div>
+                <div class="theme-option" data-theme="dark" onclick="selectTheme('dark')">
+                    <div class="swatch" style="background:linear-gradient(90deg,#000000,#002aff);"></div> <strong>Dark Black</strong> </div>
+                <div class="theme-option" data-theme="telegram" onclick="selectTheme('telegram')">
+                    <div class="swatch" style="background:linear-gradient(90deg,#17212b,#2aabee);"></div> <strong>Telegram</strong> </div>
+              </div>
+              <div id="custom-theme-section" class="custom-section hidden">
+                  <h4>Custom Accent Color</h4>
+                  <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">
+                    Pick a color — it applies on top of the currently selected theme (Light, Dark, or Telegram).
+                    Perfect for a <strong>Light theme with your own accent color</strong>.
+                  </p>
+                  <div class="custom-colors">
+                      <div class="custom-color-btn" style="background:#e53e3e;" data-color="#e53e3e" onclick="selectCustomColor('#e53e3e')" title="Red"></div>
+                      <div class="custom-color-btn" style="background:#38a169;" data-color="#38a169" onclick="selectCustomColor('#38a169')" title="Green"></div>
+                      <div class="custom-color-btn" style="background:#805ad5;" data-color="#805ad5" onclick="selectCustomColor('#805ad5')" title="Purple"></div>
+                      <div class="custom-color-btn" style="background:#dd6b20;" data-color="#dd6b20" onclick="selectCustomColor('#dd6b20')" title="Orange"></div>
+                  </div>
+                  <div class="color-picker-row">
+                      <label style="font-size:13px;">Or pick any color:</label>
+                      <input type="color" id="custom-color-picker" value="#002aff" onchange="selectCustomColor(this.value)">
+                      <button class="btn" style="font-size: 16px;
+    width: fit-content;
+    height: 35px;
+    padding: 0px 20px;" onclick="selectCustomColor(document.getElementById('custom-color-picker').value)">Apply</button>
+                  </div>
+              </div>
+            </div>
+            <button class="btn btn-outline" style="width:90%;background: red;" onclick="closeThemeModal()"><img class="closesymbol" src="service-icons/close_icon.png" alt=""> Close</button>
+        </div>
+    </div>
+    <script src="try.js"></script>
+    <script src="new-service-amount-details.js"></script>
 </body>
 </html>
