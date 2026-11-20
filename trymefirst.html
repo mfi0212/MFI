@@ -223,12 +223,15 @@
 
     /* Bottom Nav */
     nav.bottom-nav {
-      height: var(--nav-height);
-      background: var(--bg-secondary);
-      display: flex;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      flex-shrink: 0;
-      z-index: 10;
+    height: var(--nav-height);
+    background: var(--bg-secondary);
+    display: flex;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    flex-shrink: 0;
+    z-index: 10;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
     }
 
     nav.bottom-nav button {
@@ -413,10 +416,12 @@
 
     /* ========== BORROW / SERVICES ========== */
     .services-grid {
-      padding: 16px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    overflow: scroll;
+    height: 83vh;
     }
 
     .service-card {
@@ -456,7 +461,9 @@
 
     /* ========== SETTINGS ========== */
     .settings-list {
-      padding: 12px;
+          padding: 12px;
+    overflow: scroll;
+    height: 83vh;
     }
 
     .settings-section {
