@@ -635,14 +635,14 @@ ul.premium-features-list h3:active{
     justify-content: center;
     padding: 16px;
     background: #0000001c;
-    overflow-y: auto;
+    overflow-y: auto;backdrop-filter: blur(15px);
 }
 .row span {
     font-weight: 400;
     opacity: 70%;
 }
 .modal{
-width: 100%;
+    width: 100%;
     max-width: 400px;
     max-height: 85vh;
     overflow-y: auto;
@@ -652,6 +652,8 @@ width: 100%;
     border-radius: 25px;
     backdrop-filter: blur(30px);
     border: solid 1px var(--bg);
+    scrollbar-width: none;
+
 }
 /* .modal div:hover,
 .modal li:hover{
@@ -1019,7 +1021,7 @@ body[data-detail-effects="off"] .detail-row:hover{
     gap: 30px;">
          <div>
           <h5>VSL, All rights reserved.<br>
-          Version (v.03.05.11)</h5>
+          Version (v.04.12.20)</h5>
         </div>
 <a style="    background: var(--accent);
     padding: 10px;
@@ -1136,7 +1138,7 @@ body[data-detail-effects="off"] .detail-row:hover{
     gap: 30px;">
          <div>
           <h5>VSL, All rights reserved.<br>
-          Version (v.03.05.11)</h5>
+          Version (v.04.12.20)</h5>
         </div>
 <a style="background: var(--accent);
     padding: 10px;
@@ -1230,6 +1232,7 @@ body[data-detail-effects="off"] .detail-row:hover{
 </div>
 
 <script>
+  // document.addEventListener('contextmenu', e => e.preventDefault());
 const FONT_SIZE_KEY="interestTrackerFontSize";
 const NOTES_KEY_PREFIX="interestTrackerNotes_";
 const LAST_USER_KEY="vslLastUserId";
