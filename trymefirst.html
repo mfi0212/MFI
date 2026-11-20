@@ -260,6 +260,7 @@
 
     nav.bottom-nav button.active {
       color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 16%, transparent);
       border-radius: 14px;
       font-weight: 700;
     }
@@ -701,18 +702,9 @@
     header { position: relative; }
     .header-heading { flex: 1; min-width: 0; }
     .header-more {
-          width: 40px;
-    height: 40px;
-    flex: 0 0 40px;
-    border: 0;
-    border-radius: 50%;
-    background: transparent;
-    color: var(--text);
-    font-size: 25px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+      width: 40px; height: 40px; flex: 0 0 40px;
+      border: 0; border-radius: 50%; background: transparent;
+      color: var(--text); font-size: 25px; cursor: pointer;
     }
     .header-more:active { background: var(--bg-tertiary); }
     .header-menu {
@@ -742,6 +734,24 @@
     .borrow-apply-icon { width: 48px; height: 48px; flex:0 0 48px; display:grid; place-items:center; border-radius:14px; background: color-mix(in srgb, var(--primary) 18%, transparent); color:var(--primary); font-size:28px; }
     .borrow-apply-arrow { color:var(--text-secondary); font-size:25px; }
     #borrow-search { margin-bottom: 4px; }
+    .fee-calculator-launch {
+      width:100%; display:flex; align-items:center; gap:12px; text-align:left;
+      padding:13px 15px; margin:8px 0 4px; border:1px solid var(--border);
+      border-radius:14px; background:var(--bg-secondary); color:var(--text); cursor:pointer;
+    }
+    .fee-calculator-launch > span:first-child {
+      width:40px; height:40px; flex:0 0 40px; display:grid; place-items:center;
+      border-radius:12px; background:color-mix(in srgb,var(--primary) 16%,transparent);
+      color:var(--primary); font-size:22px; font-weight:700;
+    }
+    .fee-calculator-launch > span:nth-child(2) { display:flex; flex-direction:column; gap:4px; flex:1; min-width:0; }
+    .fee-calculator-launch strong { font-size:14px; }
+    .fee-calculator-launch small { color:var(--text-secondary); font-size:12px; line-height:1.4; }
+    .fee-calculator-launch b { color:var(--text-secondary); font-size:22px; font-weight:400; }
+    .fee-result { margin-top:16px; padding:16px; border:1px solid var(--border); border-radius:14px; background:var(--bg-secondary); }
+    .fee-result-row { display:flex; justify-content:space-between; gap:12px; padding:7px 0; font-size:14px; }
+    .fee-result-row.total { border-top:1px solid var(--border); margin-top:6px; padding-top:13px; font-weight:700; font-size:16px; }
+    .fee-rate-note { color:var(--text-secondary); font-size:12px; margin-top:8px; line-height:1.5; }
     .chat-share-row { padding: 8px 12px max(12px, env(safe-area-inset-bottom, 0px)); background:var(--bg); }
     .chat-share-btn { width:100%; padding:12px 16px; border:1px solid var(--primary); border-radius:12px; background:transparent; color:var(--primary); font-size:14px; font-weight:600; cursor:pointer; }
     .chat-share-btn:active { background:color-mix(in srgb, var(--primary) 15%, transparent); }
@@ -936,6 +946,9 @@
             <span class="borrow-apply-arrow">›</span>
           </button>
           <input type="search" id="borrow-search" placeholder="Search borrowing solutions..." aria-label="Search borrowing solutions" />
+          <button class="fee-calculator-launch" id="fee-calculator-open" type="button">
+            <span>％</span><span><strong>Calculate service fee</strong><small>Estimate the fee for Delay It, Split Pay or Buy Limit</small></span><b>›</b>
+          </button>
         </div>
         <div class="services-grid" id="services-grid"></div>
       </div>
@@ -1034,7 +1047,7 @@
         fixedInterest: 0,
         customui: "yes",
         showBottomNav: "yes",
-        bottomNavItems: ["amounts", "borrow", "settings"],
+        bottomNavItems: ["amounts","settings"],
         showCustomContent: "no",
         customContent: {
           type: "image",
@@ -1060,7 +1073,7 @@
         }
       },
       "Tony Montana 3": {
-        password: "92129",
+        password: "9291",
         displayName: "Tony Montana 2",
         premiumType: "Premium+",
         fixedInterest: 20,
@@ -1122,8 +1135,18 @@
       today.setHours(0, 0, 0, 0);
       const ret = parseDate(returnStr);
       ret.setHours(0, 0, 0, 0);
-      const diff = Math.round((ret - today) / (1000 * 60 * 60 * 24));
-      return diff;
+      return Math.round((ret - today) / (1000 * 60 * 60 * 24));
+    }
+
+    // Overdue fine accrues once per day after the return date, through today.
+    // Example: return date was yesterday = 1 overdue day.
+    function getOverdueDays(loan) {
+      return Math.max(0, Math.abs(Math.min(0, daysLeft(loan.return))));
+    }
+
+    function getOverdueFine(loan) {
+      const dailyFine = Math.max(0, Number(loan.overdueFee) || 0);
+      return getOverdueDays(loan) * dailyFine;
     }
 
     function formatMoney(n) {
@@ -1306,7 +1329,8 @@
 
       list.innerHTML = loans.map(({ loan, index }) => {
         const left = daysLeft(loan.return);
-        const status = left < 0 ? `<span style="color:var(--danger)">Overdue ${Math.abs(left)}d</span>` :
+        const overdueDays = getOverdueDays(loan);
+        const status = left < 0 ? `<span style="color:var(--danger)">Overdue ${overdueDays}d · Fine ${formatMoney(getOverdueFine(loan))}</span>` :
                        left === 0 ? `<span style="color:var(--warning)">Due today</span>` : `${left} days left`;
         return `<div class="loan-item" data-index="${index}">
           <div class="loan-avatar">${index + 1}</div>
@@ -1353,7 +1377,7 @@
     }
 
     function buildLoanShareText(loan, index) {
-      return `BS & MFI · Loan ${index + 1}\nAmount: ${formatMoney(loan.amount)}\nInterest: ${formatMoney(loan.interest)}\nBorrowed on: ${formatDate(loan.borrowed)}\nReturn on: ${formatDate(loan.return)}\nOverdue fee: ${formatMoney(loan.overdueFee || 0)} per day`;
+      return `BS & MFI · Loan ${index + 1}\nAmount: ${formatMoney(loan.amount)}\nInterest: ${formatMoney(loan.interest)}\nBorrowed on: ${formatDate(loan.borrowed)}\nReturn on: ${formatDate(loan.return)}\nOverdue days: ${getOverdueDays(loan)}\nOverdue fine: ${formatMoney(getOverdueFine(loan))} (${formatMoney(loan.overdueFee || 0)} per day)`;
     }
 
     async function shareLoanDetails(loan, index) {
@@ -1429,9 +1453,15 @@
             else reply = `Days remaining: <b>${d} day(s)</b>`;
             break;
           }
-          case "overdue":
-            reply = `Overdue fee: <b>${formatMoney(loan.overdueFee)}</b> per day (if applicable)`;
+          case "overdue": {
+            const overdueDays = getOverdueDays(loan);
+            const dailyFine = Math.max(0, Number(loan.overdueFee) || 0);
+            const totalFine = getOverdueFine(loan);
+            reply = overdueDays > 0
+              ? `Overdue by <b>${overdueDays} day(s)</b>.<br>Daily overdue fine: <b>${formatMoney(dailyFine)}</b><br>Total overdue fine until today: <b>${formatMoney(totalFine)}</b>`
+              : `No overdue fine yet. The daily fine is <b>${formatMoney(dailyFine)}</b> and starts after the return date.`;
             break;
+          }
         }
         addBotMsg(reply);
       }, 300);
@@ -1442,9 +1472,9 @@
   const grid = document.getElementById("services-grid");
 
   const services = [
-    { key: "Delay It", icon: "⏳", desc: "Extend your due date", url: "https://your-site.com/delay-it" },
-    { key: "Split Pay", icon: "✂️", desc: "Pay in installments", url: "https://your-site.com/split-pay" },
-    { key: "Buy Limit", icon: "📈", desc: "Increase limit", url: "https://your-site.com/buy-limit" },
+    { key: "Delay It", icon: "⏳", desc: "Extend your due date · 6% fee", fee: 6, url: "https://your-site.com/delay-it" },
+    { key: "Split Pay", icon: "✂️", desc: "Pay in installments · 6.5% fee", fee: 6.5, url: "https://your-site.com/split-pay" },
+    { key: "Buy Limit", icon: "📈", desc: "Increase limit · 7% fee", fee: 7, url: "https://your-site.com/buy-limit" },
     { key: "Pre-Saver", icon: "💰", desc: "Save before due", url: "https://your-site.com/pre-saver" },
     { key: "Lendlink-Mid", icon: "🔗", desc: "Mid-term lending", url: "https://your-site.com/lendlink-mid" },
     { key: "Mining bot", icon: "🤖", desc: "Automated mining", url: "https://your-site.com/mining-bot" },
@@ -1475,30 +1505,42 @@
 }
 
     // ===================== BOTTOM NAV VISIBILITY =====================
+    function getAllowedBottomNavItems() {
+      if (!currentUser || !Array.isArray(currentUser.bottomNavItems)) return [];
+      const validItems = ["amounts", "borrow", "settings"];
+      return [...new Set(currentUser.bottomNavItems.map(item => String(item).toLowerCase()))]
+        .filter(item => validItems.includes(item));
+    }
+
     function configureBottomNav() {
       const nav = document.getElementById("bottom-nav");
       if (!nav || !currentUser) return;
 
-      const shouldShow = currentUser.showBottomNav !== "no";
+      // A user can see ONLY the tabs explicitly listed in their own
+      // bottomNavItems array. Missing permission means hidden, not allowed.
+      const allowedItems = getAllowedBottomNavItems();
+      const shouldShow = currentUser.showBottomNav !== "no" && allowedItems.length > 0;
       nav.style.display = shouldShow ? "flex" : "none";
 
-      const allowedItems = Array.isArray(currentUser.bottomNavItems)
-        ? currentUser.bottomNavItems
-        : ["amounts", "borrow", "settings"];
-
       nav.querySelectorAll("button[data-view]").forEach(button => {
-        const allowed = allowedItems.includes(button.dataset.view);
+        const allowed = shouldShow && allowedItems.includes(button.dataset.view);
+        button.hidden = !allowed;
         button.style.display = allowed ? "flex" : "none";
-        button.classList.toggle("active", button.dataset.view === currentView);
-        button.setAttribute("aria-current", button.dataset.view === currentView ? "page" : "false");
+        const active = allowed && button.dataset.view === currentView;
+        button.classList.toggle("active", active);
+        if (active) button.setAttribute("aria-current", "page");
+        else button.removeAttribute("aria-current");
       });
-
-      // If the current section is hidden from the bottom bar, keep the section
-      // open but do not leave a different item highlighted.
     }
 
     // ===================== NAVIGATION =====================
     function switchView(view, updateNav = true) {
+      if (updateNav && currentUser) {
+        const allowedItems = getAllowedBottomNavItems();
+        if (allowedItems.length && !allowedItems.includes(view)) {
+          view = allowedItems[0];
+        }
+      }
       currentView = view;
       configureHeaderMenu();
       closeHeaderMenu();
@@ -1526,6 +1568,9 @@
     });
 
     document.getElementById("borrow-apply").addEventListener("click", openApplyAmount);
+
+    const SERVICE_FEES = { "Delay It": 6, "Split Pay": 6.5, "Buy Limit": 7 };
+    document.getElementById("fee-calculator-open").addEventListener("click", () => openPage("fee-calculator"));
 
     const headerMenu = document.getElementById("header-menu");
     const headerMore = document.getElementById("header-more");
@@ -1627,12 +1672,55 @@
         "new-entry": "New Entry Form",
         "im-late": "I'm Late",
         helper: "Helper",
-        issue: "Report an issue"
+        issue: "Report an issue",
+        "fee-calculator": "Fee Calculator"
       };
       document.getElementById("page-title").textContent = titles[page] || page;
       const content = document.getElementById("page-content");
 
-      if (page === "terms") {
+      if (page === "fee-calculator") {
+        content.innerHTML = `
+          <h2>Calculate service fee</h2>
+          <p>Enter an amount to estimate the service fee.</p>
+          <div class="form-group" style="margin-top:20px;">
+            <label for="fee-service">Select service</label>
+            <select id="fee-service">
+              <option value="Delay It">Delay It — 6%</option>
+              <option value="Split Pay">Split Pay — 6.5%</option>
+              <option value="Buy Limit">Buy Limit — 7%</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fee-amount">Amount (₹)</label>
+            <input type="number" id="fee-amount" min="0" step="0.01" inputmode="decimal" placeholder="Enter amount" />
+          </div>
+          <button class="btn" id="fee-calculate" type="button">Calculate fee</button>
+          <div id="fee-calculation-result" aria-live="polite"></div>
+          <p class="fee-rate-note">This is an estimate based on the listed percentage. The final fee, if applicable, will be confirmed before the service is approved.</p>`;
+        setTimeout(() => {
+          const serviceInput = document.getElementById("fee-service");
+          const amountInput = document.getElementById("fee-amount");
+          const result = document.getElementById("fee-calculation-result");
+          document.getElementById("fee-calculate")?.addEventListener("click", () => {
+            const amount = Number(amountInput.value);
+            if (!Number.isFinite(amount) || amount <= 0) {
+              result.innerHTML = "";
+              showToast("Enter a valid amount");
+              amountInput.focus();
+              return;
+            }
+            const rate = SERVICE_FEES[serviceInput.value];
+            const fee = amount * rate / 100;
+            const total = amount + fee;
+            result.innerHTML = `
+              <div class="fee-result">
+                <div class="fee-result-row"><span>Amount</span><strong>${formatMoney(amount)}</strong></div>
+                <div class="fee-result-row"><span>Service fee (${rate}%)</span><strong>${formatMoney(fee)}</strong></div>
+                <div class="fee-result-row total"><span>Amount + fee</span><strong>${formatMoney(total)}</strong></div>
+              </div>`;
+          });
+        }, 0);
+      } else if (page === "terms") {
         content.innerHTML = `
           <h2>Terms & Conditions</h2>
           <p>Welcome to BS & MFI services. By using this platform you agree to the following terms.</p>
@@ -1755,3 +1843,11 @@
     document.addEventListener("gesturestart", e => e.preventDefault());
   </script>
 </body>
+</html>
+
+
+
+fix style bottom bars are not working properly make this site work for every screen and section scroll if overflow and dark theme have to black not as telegram theme
+
+
+add borrow option and also we can hide user bottom bar like to visit solution, borrow 
