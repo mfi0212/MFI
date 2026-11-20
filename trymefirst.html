@@ -104,6 +104,7 @@
     input[type="text"],
     input[type="number"],
     input[type="date"],
+    input[type="color"],
     select,
     textarea {
       width: 100%;
@@ -119,6 +120,12 @@
 
     input:focus, select:focus, textarea:focus {
       border-color: var(--primary);
+    }
+
+    input[type="color"] {
+      padding: 4px;
+      height: 44px;
+      cursor: pointer;
     }
 
     .btn {
@@ -223,7 +230,7 @@
 
     /* Bottom Nav */
     nav.bottom-nav {
-    height: var(--nav-height);
+          height: var(--nav-height);
     background: var(--bg-secondary);
     display: flex;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -414,8 +421,7 @@
       color: white;
     }
 
-    /* ========== BORROW / SERVICES ========== */
-    .services-grid {
+     .services-grid {
     padding: 16px;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -458,14 +464,11 @@
       font-size: 12px;
       color: var(--text-secondary);
     }
-
-    /* ========== SETTINGS ========== */
-    .settings-list {
+.settings-list {
           padding: 12px;
     overflow: scroll;
     height: 83vh;
     }
-
     .settings-section {
       margin-bottom: 20px;
     }
@@ -518,6 +521,7 @@
       padding: 12px 16px;
       background: var(--bg-secondary);
       flex-wrap: wrap;
+      align-items: center;
     }
 
     .color-swatch {
@@ -531,6 +535,18 @@
 
     .color-swatch.active {
       border-color: white;
+    }
+
+    .color-custom-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 4px;
+    }
+
+    .color-custom-wrap label {
+      font-size: 13px;
+      color: var(--text-secondary);
     }
 
     /* ========== MODAL / FULL PAGES ========== */
@@ -961,27 +977,55 @@
       if (savedTheme === "light") document.body.classList.add("light");
       document.getElementById("theme-label").textContent = savedTheme === "light" ? "Light" : "Dark";
 
-      const savedColor = localStorage.getItem("bsmfi_primary") || "#2481cc";
-      setPrimaryColor(savedColor);
-
+      // Color picker is ONLY available if user has customui === "yes"
       const colorSection = document.getElementById("color-section");
       if (currentUser.customui === "yes") {
         colorSection.style.display = "block";
+
+        // Restore previously saved color (or default)
+        const savedColor = localStorage.getItem("bsmfi_primary") || "#2481cc";
+        setPrimaryColor(savedColor);
+
         const picker = document.getElementById("color-picker");
         picker.innerHTML = "";
+
+        // Preset swatches
         COLORS.forEach(c => {
           const sw = document.createElement("div");
-          sw.className = "color-swatch" + (c === savedColor ? " active" : "");
+          sw.className = "color-swatch" + (c.toLowerCase() === savedColor.toLowerCase() ? " active" : "");
           sw.style.background = c;
+          sw.title = c;
           sw.addEventListener("click", () => {
             document.querySelectorAll(".color-swatch").forEach(s => s.classList.remove("active"));
             sw.classList.add("active");
             setPrimaryColor(c);
+            // sync custom picker
+            const customInput = document.getElementById("custom-color-input");
+            if (customInput) customInput.value = c;
           });
           picker.appendChild(sw);
         });
+
+        // Free color picker so user can choose ANY color
+        const customWrap = document.createElement("div");
+        customWrap.className = "color-custom-wrap";
+        customWrap.innerHTML = `
+          <label>Custom</label>
+          <input type="color" id="custom-color-input" value="${savedColor}" title="Pick any color" />
+        `;
+        picker.appendChild(customWrap);
+
+        document.getElementById("custom-color-input").addEventListener("input", (e) => {
+          const color = e.target.value;
+          document.querySelectorAll(".color-swatch").forEach(s => s.classList.remove("active"));
+          setPrimaryColor(color);
+        });
       } else {
+        // User does NOT have main color permission → hide the section completely
         colorSection.style.display = "none";
+        // Reset to default blue so they cannot keep a previous custom color
+        setPrimaryColor("#2481cc");
+        localStorage.removeItem("bsmfi_primary");
       }
 
       const notice = document.getElementById("special-notice");
@@ -1026,14 +1070,15 @@
         const status = left < 0 ? `<span style="color:var(--danger)">Overdue ${Math.abs(left)}d</span>` :
                        left === 0 ? `<span style="color:var(--warning)">Due today</span>` :
                        `${left} days left`;
+        // Show the actual amount as the main title instead of "Amount 1"
         return `
           <div class="loan-item" data-index="${i}">
             <div class="loan-avatar">${i + 1}</div>
             <div class="loan-info">
-              <h3>Amount ${i + 1}</h3>
+              <h3>${formatMoney(loan.amount)}</h3>
               <p>${status} · Return ${formatDate(loan.return)}</p>
             </div>
-            <div class="loan-amount">${formatMoney(loan.amount)}</div>
+            <div class="loan-amount"></div>
           </div>`;
       }).join("");
 
@@ -1046,15 +1091,15 @@
     function openChat(index) {
       currentLoanIndex = index;
       const loan = currentUser.loans[index];
-      document.getElementById("header-title").textContent = `Amount ${index + 1}`;
-      document.getElementById("header-sub").textContent = formatMoney(loan.amount);
+      document.getElementById("header-title").textContent = formatMoney(loan.amount);
+      document.getElementById("header-sub").textContent = `Loan ${index + 1}`;
       document.getElementById("back-btn").style.display = "block";
       document.getElementById("bottom-nav").style.display = "none";
 
       const msgs = document.getElementById("chat-messages");
       msgs.innerHTML = "";
 
-      addBotMsg(`Hello ${currentUser.displayName}! 👋\nThis is the details for <b>Amount ${index + 1}</b> (${formatMoney(loan.amount)}).\n\nSelect an option below to get information.`);
+      addBotMsg(`Hello ${currentUser.displayName}! 👋\nThis is the details for <b>${formatMoney(loan.amount)}</b>.\n\nSelect an option below to get information.`);
 
       const options = [
         { id: "interest", label: "Interest" },
@@ -1303,7 +1348,7 @@
           <div class="form-group" style="margin-top:20px;">
             <label>Select Loan</label>
             <select id="late-loan">
-              ${(currentUser.loans || []).map((l, i) => `<option value="${i}">Amount ${i + 1} — ${formatMoney(l.amount)}</option>`).join("")}
+              ${(currentUser.loans || []).map((l, i) => `<option value="${i}">${formatMoney(l.amount)}</option>`).join("")}
             </select>
           </div>
           <div class="form-group">
