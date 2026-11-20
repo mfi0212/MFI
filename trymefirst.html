@@ -185,6 +185,7 @@
     }
 
     header {
+      position: relative;
       height: var(--header-height);
       background: var(--bg-secondary);
       display: flex;
@@ -407,14 +408,12 @@
     }
 
     .options-row {
-          display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 8px 12px 16px;
-    background: var(--bg);
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
-    position: sticky;
-    bottom: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 8px 12px 16px;
+      background: var(--bg);
+      border-top: 1px solid rgba(255,255,255,0.04);
     }
 
     .option-btn {
@@ -697,6 +696,61 @@
     }
 
 
+
+    /* Header menu and loan sharing */
+    header { position: relative; }
+    .header-heading { flex: 1; min-width: 0; }
+    .header-more {
+          width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text);
+    font-size: 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    .header-more:active { background: var(--bg-tertiary); }
+    .header-menu {
+      display: none; position: absolute; z-index: 50; right: 12px; top: calc(100% - 2px);
+      width: min(240px, calc(100vw - 24px)); padding: 6px;
+      background: var(--bg-tertiary); border: 1px solid var(--border);
+      border-radius: 14px; box-shadow: 0 12px 32px rgba(0,0,0,.35);
+    }
+    .header-menu.open { display: block; }
+    .header-menu button {
+      display: block; width: 100%; padding: 12px; text-align: left;
+      border: 0; border-radius: 9px; background: transparent;
+      color: var(--text); font-size: 14px; cursor: pointer;
+    }
+    .header-menu button:active, .header-menu button:hover { background: var(--bg-secondary); }
+    .borrow-tools { width: 100%; max-width: 900px; margin: 0 auto; padding: 16px 16px 0; }
+    .borrow-apply-card {
+      grid-column: 1 / -1;
+      width: 100%; min-height: 124px; display: flex; align-items: center; gap: 14px;
+      padding: 18px; margin-bottom: 12px; text-align: left; cursor: pointer;
+      color: var(--text); background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+    .borrow-apply-card > span:nth-child(2) { display:flex; flex-direction:column; gap:5px; flex:1; min-width:0; }
+    .borrow-apply-card strong { font-size: 16px; }
+    .borrow-apply-card small { color: var(--text-secondary); font-size: 13px; }
+    .borrow-apply-icon { width: 48px; height: 48px; flex:0 0 48px; display:grid; place-items:center; border-radius:14px; background: color-mix(in srgb, var(--primary) 18%, transparent); color:var(--primary); font-size:28px; }
+    .borrow-apply-arrow { color:var(--text-secondary); font-size:25px; }
+    #borrow-search { margin-bottom: 4px; }
+    .chat-share-row { padding: 8px 12px max(12px, env(safe-area-inset-bottom, 0px)); background:var(--bg); }
+    .chat-share-btn { width:100%; padding:12px 16px; border:1px solid var(--primary); border-radius:12px; background:transparent; color:var(--primary); font-size:14px; font-weight:600; cursor:pointer; }
+    .chat-share-btn:active { background:color-mix(in srgb, var(--primary) 15%, transparent); }
+    body.light .header-menu { box-shadow:0 12px 32px rgba(0,0,0,.14); }
+    @media (max-width: 420px) {
+      .borrow-tools { padding:12px 12px 0; }
+      .borrow-apply-card { min-height:116px; padding:15px; }
+    }
+
     /* Responsive layout and reliable scrolling */
     html, body {
       width: 100%;
@@ -758,16 +812,14 @@
     }
     .settings-list { padding-bottom: 24px; }
     nav.bottom-nav {
-         position: relative;
-    inset: auto;
-    flex: 0 0 auto;
-    min-height: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px));
-    height: auto;
-    padding: 4px 4px env(safe-area-inset-bottom, 0px);
-    width: 100%;
-    z-index: 20;
-    position: fixed;
-    bottom: 0;
+      position: relative;
+      inset: auto;
+      flex: 0 0 auto;
+      min-height: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px));
+      height: auto;
+      padding: 4px 4px env(safe-area-inset-bottom, 0px);
+      width: 100%;
+      z-index: 20;
     }
     nav.bottom-nav button {
       min-width: 0;
@@ -850,10 +902,12 @@
   <div id="app">
     <header id="app-header">
       <button class="back-btn" id="back-btn" style="display:none;">←</button>
-      <div>
+      <div class="header-heading">
         <div class="title" id="header-title">Amounts</div>
         <div class="subtitle" id="header-sub"></div>
       </div>
+      <button class="header-more" id="header-more" aria-label="More options" type="button">⋮</button>
+      <div class="header-menu" id="header-menu" role="menu" aria-label="Section options"></div>
     </header>
 
     <main id="main">
@@ -869,11 +923,20 @@
         <div class="chat-container">
           <div class="chat-messages" id="chat-messages"></div>
           <div class="options-row" id="options-row"></div>
+          <div class="chat-share-row"><button class="chat-share-btn" id="share-loan-details" type="button">↗ Share / Copy loan details</button></div>
         </div>
       </div>
 
       <!-- BORROW VIEW -->
       <div class="view" id="view-borrow">
+        <div class="borrow-tools">
+          <button class="borrow-apply-card" id="borrow-apply" type="button">
+            <span class="borrow-apply-icon">＋</span>
+            <span><strong>Apply for an amount</strong><small>Request the amount you need</small></span>
+            <span class="borrow-apply-arrow">›</span>
+          </button>
+          <input type="search" id="borrow-search" placeholder="Search borrowing solutions..." aria-label="Search borrowing solutions" />
+        </div>
         <div class="services-grid" id="services-grid"></div>
       </div>
 
@@ -1035,6 +1098,7 @@
     let currentUser = null;
     let currentLoanIndex = null;
     let currentView = "amounts";
+    let loanSortOrder = "default";
 
     const COLORS = [
       "#2481cc", "#4caf50", "#e53935", "#ff9800",
@@ -1116,10 +1180,27 @@
         return;
       }
 
+      const sharedParams = new URLSearchParams(window.location.search);
+      const sharedOwner = sharedParams.get("owner");
+      const sharedLoanParam = sharedParams.get("loan");
+      if (sharedOwner && sharedOwner !== found.key) {
+        err.textContent = "Use the password for the account that shared this loan";
+        return;
+      }
+
       currentUser = found;
+      loanSortOrder = "default";
       document.getElementById("login-view").style.display = "none";
       document.getElementById("app").style.display = "flex";
       initApp();
+      const sharedLoan = sharedLoanParam;
+      if (sharedLoan !== null && /^\d+$/.test(sharedLoan)) {
+        const sharedIndex = Number(sharedLoan);
+        if (currentUser.loans && currentUser.loans[sharedIndex]) {
+          openChat(sharedIndex);
+          showToast("Shared loan opened");
+        }
+      }
     }
 
     // ===================== INIT APP =====================
@@ -1199,6 +1280,14 @@
 
       renderLoanList();
       renderServices();
+      const borrowSearch = document.getElementById("borrow-search");
+      borrowSearch.value = "";
+      borrowSearch.oninput = () => {
+        const query = borrowSearch.value.trim().toLowerCase();
+        document.querySelectorAll("#services-grid .service-card").forEach(card => {
+          card.hidden = !card.textContent.toLowerCase().includes(query);
+        });
+      };
       configureBottomNav();
       switchView("amounts");
     }
@@ -1206,37 +1295,26 @@
     // ===================== LOAN LIST =====================
     function renderLoanList() {
       const list = document.getElementById("loan-list");
-      const loans = currentUser.loans || [];
+      let loans = (currentUser.loans || []).map((loan, index) => ({ loan, index }));
+      if (loanSortOrder === "high") loans.sort((a, b) => Number(b.loan.amount) - Number(a.loan.amount));
+      if (loanSortOrder === "low") loans.sort((a, b) => Number(a.loan.amount) - Number(b.loan.amount));
 
-      if (loans.length === 0) {
-        list.innerHTML = `
-          <div class="empty-state">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
-            <p>No active loans</p>
-          </div>`;
+      if (!loans.length) {
+        list.innerHTML = `<div class="empty-state"><p>No active loans</p></div>`;
         return;
       }
 
-      list.innerHTML = loans.map((loan, i) => {
+      list.innerHTML = loans.map(({ loan, index }) => {
         const left = daysLeft(loan.return);
         const status = left < 0 ? `<span style="color:var(--danger)">Overdue ${Math.abs(left)}d</span>` :
-                       left === 0 ? `<span style="color:var(--warning)">Due today</span>` :
-                       `${left} days left`;
-        // Show the actual amount as the main title instead of "Amount 1"
-        return `
-          <div class="loan-item" data-index="${i}">
-            <div class="loan-avatar">${i + 1}</div>
-            <div class="loan-info">
-              <h3>${formatMoney(loan.amount)}</h3>
-              <p>${status} · Return ${formatDate(loan.return)}</p>
-            </div>
-            <div class="loan-amount"></div>
-          </div>`;
+                       left === 0 ? `<span style="color:var(--warning)">Due today</span>` : `${left} days left`;
+        return `<div class="loan-item" data-index="${index}">
+          <div class="loan-avatar">${index + 1}</div>
+          <div class="loan-info"><h3>${formatMoney(loan.amount)}</h3><p>${status} · Return ${formatDate(loan.return)}</p></div>
+          <div class="loan-amount"></div>
+        </div>`;
       }).join("");
-
-      list.querySelectorAll(".loan-item").forEach(el => {
-        el.addEventListener("click", () => openChat(+el.dataset.index));
-      });
+      list.querySelectorAll(".loan-item").forEach(el => el.addEventListener("click", () => openChat(+el.dataset.index)));
     }
 
     // ===================== CHAT =====================
@@ -1247,6 +1325,7 @@
       document.getElementById("header-sub").textContent = `Loan ${index + 1}`;
       document.getElementById("back-btn").style.display = "block";
       document.getElementById("bottom-nav").style.display = "none";
+      document.getElementById("header-menu").classList.remove("open");
 
       const msgs = document.getElementById("chat-messages");
       msgs.innerHTML = "";
@@ -1267,10 +1346,38 @@
       row.querySelectorAll(".option-btn").forEach(btn => {
         btn.addEventListener("click", () => handleOption(btn.dataset.opt, loan, index));
       });
+      document.getElementById("share-loan-details").onclick = () => shareLoanDetails(loan, index);
 
       switchView("chat", false);
       msgs.scrollTop = msgs.scrollHeight;
     }
+
+    function buildLoanShareText(loan, index) {
+      return `BS & MFI · Loan ${index + 1}\nAmount: ${formatMoney(loan.amount)}\nInterest: ${formatMoney(loan.interest)}\nBorrowed on: ${formatDate(loan.borrowed)}\nReturn on: ${formatDate(loan.return)}\nOverdue fee: ${formatMoney(loan.overdueFee || 0)} per day`;
+    }
+
+    async function shareLoanDetails(loan, index) {
+      const text = buildLoanShareText(loan, index);
+      const url = new URL(window.location.href);
+      url.searchParams.set("loan", String(index));
+      url.searchParams.set("owner", currentUser.key);
+      const link = url.toString();
+      const payload = `${text}\n\nView this specific loan: ${link}\nEnter the account password to open the loan details.`;
+      try {
+        if (navigator.share) {
+          await navigator.share({ title: `BS & MFI · ${formatMoney(loan.amount)}`, text: payload, url: link });
+        } else if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(payload);
+          showToast("Loan details and link copied");
+        } else {
+          window.prompt("Copy the complete loan details and link:", payload);
+        }
+      } catch (e) {
+        if (e.name !== "AbortError") showToast("Unable to share. Try again.");
+      }
+    }
+
+    function openApplyAmount() { openPage("new-entry"); }
 
     function addBotMsg(html) {
       const msgs = document.getElementById("chat-messages");
@@ -1393,6 +1500,8 @@
     // ===================== NAVIGATION =====================
     function switchView(view, updateNav = true) {
       currentView = view;
+      configureHeaderMenu();
+      closeHeaderMenu();
       document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
       document.getElementById("view-" + view).classList.add("active");
 
@@ -1416,6 +1525,66 @@
       btn.addEventListener("click", () => switchView(btn.dataset.view));
     });
 
+    document.getElementById("borrow-apply").addEventListener("click", openApplyAmount);
+
+    const headerMenu = document.getElementById("header-menu");
+    const headerMore = document.getElementById("header-more");
+
+    function configureHeaderMenu() {
+      const actions = {
+        amounts: [
+          ["issue", "Report an issue"],
+          ["high", "Amount: High to low"],
+          ["low", "Amount: Low to high"],
+          ["add", "+ Amount"]
+        ],
+        chat: [
+          ["issue", "Report an issue"],
+          ["add", "+ Amount"]
+        ],
+        settings: [["logout", "Logout"]]
+      };
+      const items = actions[currentView] || [];
+      headerMenu.innerHTML = items.map(([action, label]) =>
+        `<button type="button" role="menuitem" data-header-action="${action}">${label}</button>`
+      ).join("");
+      headerMore.style.display = items.length ? "inline-flex" : "none";
+    }
+
+    function closeHeaderMenu() {
+      headerMenu.classList.remove("open");
+      headerMore.setAttribute("aria-expanded", "false");
+    }
+
+    headerMore.addEventListener("click", (event) => {
+      event.stopPropagation();
+      configureHeaderMenu();
+      headerMenu.classList.toggle("open");
+      headerMore.setAttribute("aria-expanded", headerMenu.classList.contains("open") ? "true" : "false");
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!headerMenu.contains(event.target) && event.target !== headerMore) closeHeaderMenu();
+    });
+
+    headerMenu.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-header-action]");
+      if (!button) return;
+      const action = button.dataset.headerAction;
+      closeHeaderMenu();
+      if (action === "issue") {
+        openPage("issue");
+      } else if (action === "high" || action === "low") {
+        loanSortOrder = action;
+        renderLoanList();
+        showToast(action === "high" ? "Amounts: high to low" : "Amounts: low to high");
+      } else if (action === "add") {
+        openApplyAmount();
+      } else if (action === "logout") {
+        logout();
+      }
+    });
+
     // Theme toggle
     document.getElementById("theme-toggle").addEventListener("click", () => {
       document.body.classList.toggle("light");
@@ -1425,13 +1594,22 @@
     });
 
     // Logout
-    document.getElementById("logout-btn").addEventListener("click", () => {
+    function logout() {
+      closeHeaderMenu();
       currentUser = null;
+      currentLoanIndex = null;
+      currentView = "amounts";
       document.getElementById("app").style.display = "none";
       document.getElementById("login-view").style.display = "flex";
       document.getElementById("password-input").value = "";
       document.getElementById("login-error").textContent = "";
-    });
+      // Do not keep a shared-loan URL active after logout.
+      const cleanUrl = new URL(window.location.href);
+      cleanUrl.searchParams.delete("loan");
+      cleanUrl.searchParams.delete("owner");
+      window.history.replaceState({}, "", cleanUrl.toString());
+    }
+    document.getElementById("logout-btn").addEventListener("click", logout);
 
     // Settings pages
     document.querySelectorAll(".settings-item[data-page]").forEach(item => {
@@ -1448,7 +1626,8 @@
         privacy: "Privacy Policy",
         "new-entry": "New Entry Form",
         "im-late": "I'm Late",
-        helper: "Helper"
+        helper: "Helper",
+        issue: "Report an issue"
       };
       document.getElementById("page-title").textContent = titles[page] || page;
       const content = document.getElementById("page-content");
@@ -1539,6 +1718,21 @@
             document.getElementById("page-overlay").classList.remove("active");
           });
         }, 50);
+      } else if (page === "issue") {
+        content.innerHTML = `
+          <h2>Report an issue</h2>
+          <p>Tell us what is not working. Include the page or loan amount if relevant.</p>
+          ${currentLoanIndex !== null && currentUser?.loans?.[currentLoanIndex] ? `<p style="color:var(--text-secondary);font-size:13px;margin-top:8px;">Related loan: ${formatMoney(currentUser.loans[currentLoanIndex].amount)}</p>` : ""}
+          <div class="form-group" style="margin-top:18px;"><label>Issue</label><textarea id="issue-description" placeholder="Describe the issue..."></textarea></div>
+          <button class="btn" id="issue-submit">Continue</button>
+          <p style="font-size:12px;color:var(--text-secondary);margin-top:10px;">This form prepares your report; it does not send it to a server.</p>`;
+        setTimeout(() => document.getElementById("issue-submit")?.addEventListener("click", () => {
+          const issue = document.getElementById("issue-description").value.trim();
+          if (!issue) { showToast("Describe the issue first"); return; }
+          const subject = encodeURIComponent("BS & MFI issue report");
+          const body = encodeURIComponent(`Account: ${currentUser.displayName}\nIssue: ${issue}`);
+          window.location.href = `mailto:?subject=${subject}&body=${body}`;
+        }), 30);
       } else if (page === "helper") {
         content.innerHTML = `
           <h2>Helper</h2>
@@ -1561,4 +1755,3 @@
     document.addEventListener("gesturestart", e => e.preventDefault());
   </script>
 </body>
-</html>
