@@ -645,12 +645,11 @@ width: 100%;
     max-width: 400px;
     max-height: 85vh;
     overflow-y: auto;
-    background: #6c6c6c29;
+    background: var(--bg);
     color: var(--text);
     padding: 15px 15px 5px 15px;
     border-radius: 25px;
-    backdrop-filter: blur(30px);
-    border: solid 1px var(--bg);
+    border: 1px solid var(--border);
     scrollbar-width: none;
 }
 
@@ -729,15 +728,6 @@ footer{
 
 .detail-row:hover{text-decoration:underline}
 
-
-
-body[data-detail-effects="off"] .detail-row{
-  transition:none;
-}
-
-body[data-detail-effects="off"] .detail-row:hover{
-  background:transparent;
-}
 
 .premium-locked .value{
   filter:none;
