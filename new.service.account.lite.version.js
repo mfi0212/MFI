@@ -132,14 +132,24 @@ const MAIN_COLORS = [
   "#9333ea"  // Purple
 ];
 
-const DEFAULT_MAIN_COLOR = "#0800f0";
+// Change this value in each version
+const COLOR_STORAGE_KEY = 'jh_main_version_color';
+// Lite version: 'jh_lite_version_color'
 
 function getSavedMainColor() {
-  const saved = localStorage.getItem('jh_custom_color');
+  const saved = localStorage.getItem(COLOR_STORAGE_KEY);
 
   return MAIN_COLORS.includes(saved)
     ? saved
-    : DEFAULT_MAIN_COLOR;
+    : "#0800f0";
+}
+
+function applyMainColor(color) {
+  if (!MAIN_COLORS.includes(color)) return;
+
+  document.documentElement.style.setProperty('--main-color', color);
+  document.documentElement.style.setProperty('--dark-blue', color);
+  document.documentElement.style.setProperty('--accent-color', color);
 }
 
 function applyMainColor(color) {
@@ -157,7 +167,7 @@ function selectCustomColor(hex) {
 
   if (!MAIN_COLORS.includes(hex)) return;
 
-  localStorage.setItem('jh_custom_color', hex);
+  localStorage.setItem(COLOR_STORAGE_KEY, hex);
 
   applyMainColor(hex);
 
@@ -168,7 +178,7 @@ function selectCustomColor(hex) {
   closeThemeModal();
 }
 document.addEventListener('DOMContentLoaded', () => {
-  applyMainColor(getSavedMainColor());
+ applyMainColor(getSavedMainColor());
 });
 function applyTheme(themeName) {
   const html = document.documentElement;
