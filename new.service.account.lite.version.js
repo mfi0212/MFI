@@ -125,47 +125,59 @@ function selectTheme(themeName) {
   applyTheme(themeName);
   closeThemeModal();
 }
-
-const allowedMainColors = [
+const MAIN_COLORS = [
   "#0800f0", // Blue
   "#e53935", // Red
   "#16a34a", // Green
   "#9333ea"  // Purple
 ];
 
-function selectCustomColor(hex) {
-  if (!currentUser || !users[currentUser] || users[currentUser].customui !== 'yes') {
-  alert('Custom themes are only available for users with custom UI access.');
-  return;
+const DEFAULT_MAIN_COLOR = "#0800f0";
+
+function getSavedMainColor() {
+  const saved = localStorage.getItem('jh_custom_color');
+
+  return MAIN_COLORS.includes(saved)
+    ? saved
+    : DEFAULT_MAIN_COLOR;
 }
-  if (!allowedMainColors.includes(hex)) return;
+
+function applyMainColor(color) {
+  if (!MAIN_COLORS.includes(color)) return;
+
+  document.documentElement.style.setProperty('--main-color', color);
+  document.documentElement.style.setProperty('--dark-blue', color);
+  document.documentElement.style.setProperty('--accent-color', color);
+}
+function selectCustomColor(hex) {
+  if (!currentUser || !users[currentUser] ||
+      users[currentUser].customui !== 'yes') {
+    return;
+  }
+
+  if (!MAIN_COLORS.includes(hex)) return;
 
   localStorage.setItem('jh_custom_color', hex);
 
-  const base = document.documentElement.getAttribute('data-theme') || 'light';
-
-  applyTheme(base, hex);
+  applyMainColor(hex);
 
   document.querySelectorAll('.custom-color-btn').forEach(el => {
-    el.classList.toggle('active', el.getAttribute('data-color') === hex);
+    el.classList.toggle('active', el.dataset.color === hex);
   });
 
   closeThemeModal();
 }
-function applyTheme(themeName, customColor = null) {
+document.addEventListener('DOMContentLoaded', () => {
+  applyMainColor(getSavedMainColor());
+});
+function applyTheme(themeName) {
   const html = document.documentElement;
 
-  let base = themeName === 'custom' ? 'dark' : themeName;
+  const base = themeName === 'custom' ? 'dark' : themeName;
+
   html.setAttribute('data-theme', base);
 
-  const savedColor = localStorage.getItem('jh_custom_color') || '#0800f0';
-  const color = customColor || savedColor;
-
-  // Apply main color globally
-  html.style.setProperty('--main-color', color);
-  html.style.setProperty('--dark-blue', color);
-  html.style.setProperty('--accent-color', color);
-  html.style.setProperty('--primary-color', color);
+  applyMainColor(getSavedMainColor());
 
   localStorage.setItem('jh_theme', base);
 
