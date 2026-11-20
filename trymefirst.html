@@ -3,13 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>BS & MFI</title>
-  <style>
+   <title>BS&MFI Services | My account</title>
+    <link rel="icon" href="mfi.logo.png" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Balthazar&family=Della+Respira&family=Gantari:ital,wght@0,100..900;1,100..900&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* {
+	font-family: 'Inter', system-ui, -apple-system, sans-serif;
+	margin:0; padding:0;
+	letter-spacing: 0.4px;
+}
     :root {
       --primary: #2481cc;
       --primary-dark: #1a6bb0;
       --bg: #000000;
-      --bg-secondary: #111111;
+      --bg-secondary: #1f1f1fba;
       --bg-tertiary: #1c1c1e;
       --text: #f5f5f7;
       --text-secondary: #a1a1a6;
@@ -198,12 +208,20 @@
 
     header .back-btn {
       background: none;
-      border: none;
-      color: var(--primary);
-      font-size: 22px;
-      cursor: pointer;
-      padding: 4px 8px 4px 0;
-      margin-right: 8px;
+    border: none;
+    color: var(--primary);
+    cursor: pointer;
+    backdrop-filter: blur(2px);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    filter: drop-shadow(0px 0px 6px #0000002b);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    padding: 5px 0 0 0;
     }
 
     header .title {
@@ -234,7 +252,6 @@
           height: var(--nav-height);
     background: var(--bg-secondary);
     display: flex;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
     flex-shrink: 0;
     z-index: 10;
     position: relative;
@@ -292,37 +309,36 @@
 
     /* Amounts List */
     .loan-list {
-      padding: 12px;
+      padding: 5px;
     }
 
     .loan-item {
-      background: var(--bg-secondary);
-      border-radius: var(--radius);
-      padding: 16px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      cursor: pointer;
-      transition: background 0.15s;
+    border-radius: 25px;
+    padding: 15px 10px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+        transition: all 0.35s ease-in-out;
     }
 
     .loan-item:active {
-      background: var(--bg-tertiary);
-    }
+    transform: scale(0.96);
+    background: var(--bg-secondary);
+}
 
     .loan-avatar {
       width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      font-size: 16px;
-      color: white;
-      flex-shrink: 0;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--text);
     }
 
     .loan-info {
@@ -381,12 +397,12 @@
 
     .msg {
       max-width: 85%;
-      padding: 10px 14px;
-      border-radius: 14px;
-      font-size: 15px;
-      line-height: 1.4;
-      position: relative;
-      word-wrap: break-word;
+    padding: 10px 12px;
+    border-radius: 15px;
+    font-size: 15px;
+    line-height: 1.4;
+    position: relative;
+    word-wrap: break-word;
     }
 
     .msg.bot {
@@ -396,36 +412,31 @@
     }
 
     .msg.user {
-      background: var(--bubble-user);
-      align-self: flex-end;
-      border-bottom-right-radius: 4px;
+         background: var(--primary);
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
     }
 
     .msg .time {
       font-size: 11px;
-      color: var(--text-secondary);
-      margin-top: 4px;
-      text-align: right;
-    }
-
-    .options-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 8px 12px 16px;
-      background: var(--bg);
-      border-top: 1px solid rgba(255,255,255,0.04);
+    margin-top: 4px;
+    text-align: right;
+    opacity: 60%;
     }
 
     .option-btn {
-      background: var(--bg-secondary);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: var(--text);
-      padding: 10px 16px;
-      border-radius: 20px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.15s, border-color 0.15s;
+     background: var(--bg-secondary);
+    border: none;
+    color: var(--text);
+    padding: 10px 15px;
+    border-radius: 99px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    white-space: nowrap;
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    filter: drop-shadow(0px 0px 6px #0000002b);
+    backdrop-filter: blur(2px);
     }
 
     .option-btn:active,
@@ -445,13 +456,13 @@
     }
 
     .service-card {
-      background: var(--bg-secondary);
-      border-radius: var(--radius);
-      padding: 18px 14px;
-      text-align: center;
-      cursor: pointer;
-      transition: background 0.15s;
-      border: 1px solid transparent;
+     background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 20px 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.15s;
+    border: 1px solid transparent;
     }
 
     .service-card:active {
@@ -485,6 +496,8 @@
     }
     .settings-section {
       margin-bottom: 20px;
+    background: var(--bg-secondary);
+    border-radius: 25px;
     }
 
     .settings-section h3 {
@@ -496,7 +509,6 @@
     }
 
     .settings-item {
-      background: var(--bg-secondary);
       padding: 14px 16px;
       display: flex;
       align-items: center;
@@ -505,18 +517,6 @@
       border-bottom: 1px solid rgba(255,255,255,0.03);
     }
 
-    .settings-item:first-of-type {
-      border-radius: var(--radius) var(--radius) 0 0;
-    }
-
-    .settings-item:last-of-type {
-      border-radius: 0 0 var(--radius) var(--radius);
-      border-bottom: none;
-    }
-
-    .settings-item:only-child {
-      border-radius: var(--radius);
-    }
 
     .settings-item .left {
       display: flex;
@@ -528,12 +528,17 @@
       color: var(--text-secondary);
       font-size: 18px;
     }
-
+.settings-list h3 {
+    text-transform: uppercase;
+    opacity: 55%;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 5px 15px;
+}
     .color-picker-row {
       display: flex;
       gap: 10px;
       padding: 12px 16px;
-      background: var(--bg-secondary);
       flex-wrap: wrap;
       align-items: center;
     }
@@ -702,43 +707,73 @@
     header { position: relative; }
     .header-heading { flex: 1; min-width: 0; }
     .header-more {
-      width: 40px; height: 40px; flex: 0 0 40px;
-      border: 0; border-radius: 50%; background: transparent;
-      color: var(--text); font-size: 25px; cursor: pointer;
+      width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    transition: transform .18s ease, background .18s ease;
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    filter: drop-shadow(0px 0px 6px #0000002b);
+    background: var(--bg-secondary);
     }
     .header-more:active { background: var(--bg-tertiary); }
-    .header-menu {
-      display: none; position: absolute; z-index: 50; right: 12px; top: calc(100% - 2px);
-      width: min(240px, calc(100vw - 24px)); padding: 6px;
-      background: var(--bg-tertiary); border: 1px solid var(--border);
-      border-radius: 14px; box-shadow: 0 12px 32px rgba(0,0,0,.35);
-    }
-    .header-menu.open { display: block; }
-    .header-menu button {
-      display: block; width: 100%; padding: 12px; text-align: left;
-      border: 0; border-radius: 9px; background: transparent;
-      color: var(--text); font-size: 14px; cursor: pointer;
-    }
-    .header-menu button:active, .header-menu button:hover { background: var(--bg-secondary); }
-    .borrow-tools { width: 100%; max-width: 900px; margin: 0 auto; padding: 16px 16px 0; }
-    .borrow-apply-card {
-      grid-column: 1 / -1;
-      width: 100%; min-height: 124px; display: flex; align-items: center; gap: 14px;
-      padding: 18px; margin-bottom: 12px; text-align: left; cursor: pointer;
-      color: var(--text); background: var(--bg-secondary); border: 1px solid var(--border);
-      border-radius: 16px;
+
+    .borrow-tools {width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 10px 10px 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;}
+    .borrow-apply-card,
+    .fee-calculator-launch  {
+        grid-column: 1 / -1;
+    width: 100%;
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    text-align: left;
+    cursor: pointer;
+    color: var(--text);
+    background: var(--bg-secondary);
+    border: none;
+    border-radius: 20px;
+    padding: 0 15px;
+    gap: 15px;
     }
     .borrow-apply-card > span:nth-child(2) { display:flex; flex-direction:column; gap:5px; flex:1; min-width:0; }
     .borrow-apply-card strong { font-size: 16px; }
     .borrow-apply-card small { color: var(--text-secondary); font-size: 13px; }
-    .borrow-apply-icon { width: 48px; height: 48px; flex:0 0 48px; display:grid; place-items:center; border-radius:14px; background: color-mix(in srgb, var(--primary) 18%, transparent); color:var(--primary); font-size:28px; }
+    .borrow-apply-icon { width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: 
+color-mix(in srgb, var(--primary) 18%, transparent);
+    color: var(--primary);
+    font-size: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    line-height: 0;}
     .borrow-apply-arrow { color:var(--text-secondary); font-size:25px; }
-    #borrow-search { margin-bottom: 4px; }
-    .fee-calculator-launch {
-      width:100%; display:flex; align-items:center; gap:12px; text-align:left;
-      padding:13px 15px; margin:8px 0 4px; border:1px solid var(--border);
-      border-radius:14px; background:var(--bg-secondary); color:var(--text); cursor:pointer;
-    }
+    #borrow-search { margin-bottom: 4px;
+    background: var(--bg-secondary);
+    border: none;
+    padding: 12px 20px;
+    width: 100%;
+    font-size: 17px;
+    backdrop-filter: blur(2px);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    filter: drop-shadow(0px 0px 6px #0000002b);
+    border-radius: 999px;}
+   
     .fee-calculator-launch > span:first-child {
       width:40px; height:40px; flex:0 0 40px; display:grid; place-items:center;
       border-radius:12px; background:color-mix(in srgb,var(--primary) 16%,transparent);
@@ -752,16 +787,32 @@
     .fee-result-row { display:flex; justify-content:space-between; gap:12px; padding:7px 0; font-size:14px; }
     .fee-result-row.total { border-top:1px solid var(--border); margin-top:6px; padding-top:13px; font-weight:700; font-size:16px; }
     .fee-rate-note { color:var(--text-secondary); font-size:12px; margin-top:8px; line-height:1.5; }
-    .chat-share-row { padding: 8px 12px max(12px, env(safe-area-inset-bottom, 0px)); background:var(--bg); }
-    .chat-share-btn { width:100%; padding:12px 16px; border:1px solid var(--primary); border-radius:12px; background:transparent; color:var(--primary); font-size:14px; font-weight:600; cursor:pointer; }
-    .chat-share-btn:active { background:color-mix(in srgb, var(--primary) 15%, transparent); }
-    body.light .header-menu { box-shadow:0 12px 32px rgba(0,0,0,.14); }
-    @media (max-width: 420px) {
-      .borrow-tools { padding:12px 12px 0; }
-      .borrow-apply-card { min-height:116px; padding:15px; }
+    .chat-solution-ad-wrap { padding: 10px 12px 0; background: var(--bg); }
+    .chat-solution-ad {
+      width: 100%; display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+      border: 1px solid var(--border); border-radius: 15px; text-align: left;
+      color: var(--text); background: var(--bg-secondary); cursor: pointer;
+      box-shadow: 0 3px 12px rgba(0,0,0,.08); transition: transform .15s ease, border-color .15s ease;
     }
-
-    /* Responsive layout and reliable scrolling */
+    .chat-solution-ad:active { transform: scale(.985); border-color: var(--primary); }
+    .chat-solution-ad-icon { width: 42px; height: 42px; flex: 0 0 42px; display:grid; place-items:center; border-radius:12px; background:color-mix(in srgb,var(--primary) 15%,transparent); font-size:23px; }
+    .chat-solution-ad-copy { display:flex; flex-direction:column; gap:3px; flex:1; min-width:0; }
+    .chat-solution-ad-copy small { color:var(--text-secondary); font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
+    .chat-solution-ad-copy strong { font-size:14px; }
+    .chat-solution-ad-copy span { color:var(--text-secondary); font-size:12px; line-height:1.35; }
+    .chat-solution-ad-arrow { color:var(--primary); font-size:22px; }
+    .chat-share-row { padding: 0 12px max(12px, env(safe-area-inset-bottom, 0px));
+    background: var(--bg);}
+    .chat-share-btn { width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 22px;
+    background: var(--primary);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--text);}
+    body.light .header-menu { box-shadow:0 12px 32px rgba(0,0,0,.14); }
     html, body {
       width: 100%;
       min-height: 100%;
@@ -799,28 +850,30 @@
       overflow-y: auto;
       overscroll-behavior: contain;
       -webkit-overflow-scrolling: touch;
-      padding-bottom: 0;
+      padding-bottom: 0;scrollbar-width: none;
     }
     .view {
       height: auto;
       min-height: 100%;
       min-width: 0;
       flex: 1 0 auto;
+          padding-top: 65px;
     }
     .view.active { display: flex; }
     #view-amounts, #view-borrow, #view-settings { overflow: visible; }
     .loan-list, .services-grid, .settings-list {
-      height: auto;
-      min-height: 0;
-      overflow: visible;
-      width: 100%;
+     height: auto;
+    min-height: 0;
+    overflow: visible;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 75px;
     }
     .services-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      align-content: start;
-      padding-bottom: 24px;
+    align-content: start;
+    padding: 10px 10px 100px 10px;
     }
-    .settings-list { padding-bottom: 24px; }
     nav.bottom-nav {
       position: relative;
       inset: auto;
@@ -844,12 +897,20 @@
       flex: 1;
     }
     .chat-messages {
-      min-height: 160px;
-      max-height: none;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
+     min-height: 160px;
+    max-height: none;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 100px;
     }
-    .options-row { flex: 0 0 auto; padding-bottom: max(16px, env(safe-area-inset-bottom, 0px)); }
+    .options-row { display: flex;
+    gap: 8px;
+    padding: 15px 10px;
+    position: sticky;
+    bottom: 0px;
+    overflow: scroll;
+    scrollbar-width: none;
+    background: linear-gradient( 0deg, var(--bg), transparent);}
     .page-overlay { height: 100vh; height: 100dvh; }
     .page-content {
       min-height: 0;
@@ -871,25 +932,152 @@
       background: var(--bg-secondary);
       border-color: var(--border);
     }
-    @media (max-width: 380px) {
-      :root { --header-height: 52px; --nav-height: 54px; }
-      header { padding-left: 12px; padding-right: 12px; }
-      .services-grid { gap: 9px; padding: 12px; }
-      .service-card { padding: 15px 9px; }
-      .service-card h4 { font-size: 13px; overflow-wrap: anywhere; }
-      .service-card p { font-size: 11px; }
-      nav.bottom-nav button { font-size: 10px; }
+   
+    :root {
+      --float-shadow: 0 10px 34px rgba(0,0,0,.22);
+      --float-blur: saturate(180%) blur(22px);
     }
-    @media (min-width: 760px) {
-      .loan-list, .services-grid, .settings-list, .page-content {
-        width: 100%;
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .login-card { max-width: 400px; }
+    #app {
+      position: relative;
+      isolation: isolate;
     }
+    #app-header {
+     flex: 0 0 auto;
+    min-height: 58px;
+    height: auto;
+    z-index: 30;
+    position: fixed;
+    width: 100%;
+    background: linear-gradient( 180deg, var(--bg), transparent);
+    left: 0;
+    top: 0;
+    text-align: center;
+    padding: 15px 10px;
+    border: none;
+    }
+     #app-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    z-index: -1;
+    pointer-events: none;
+    backdrop-filter: blur(10px);
+    -webkit-mask-image: linear-gradient( to bottom, black 0%, black 40%, rgb(0 0 0 / 94%) 65%, transparent 100% );
+}
+    #app-header .title { font-size: 16px; letter-spacing: -.2px; }
+    #app-header .subtitle { margin-top: 2px; }
+    .header-more {
+     width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    transition: transform .18s ease, background .18s ease;
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    filter: drop-shadow(0px 0px 6px #0000002b);
+    border: none;
+    color: var(--text);
+    backdrop-filter: blur(2px);
+    }
+    .header-more:active { transform: scale(.92); }
+    .header-menu {
+        position: absolute;
+    z-index: 50;
+    width: min(240px, calc(100vw - 24px));
+    display: none;
+    right: 5px;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    filter: drop-shadow(0px 0px 6px #0000002b);
+    backdrop-filter: blur(7px);
+    background: var(--bg-secondary);
+    top: 15px;
+    }
+   
+    .header-menu.open { display: block; }
+    .header-menu button {
+      display: block;
+    width: 100%;
+    text-align: left;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    font-size: 16px;
+    cursor: pointer;
+    min-height: 44px;
+    border-radius: 999px;
+    padding: 10px 20px;
+    }
+    .header-menu button:active, .header-menu button:hover {     background: var(--bg);}
+    main {
+      background: transparent;
+      flex: 1 1 0;
+    }
+    nav.bottom-nav {
+      align-self: center;
+    flex: 0 0 auto;
+    min-height: 60px;
+    height: auto;
+    padding: 5px;
+    gap: 0;
+    overflow: hidden;
+    position: fixed;
+    bottom: 15px;
+    backdrop-filter: blur(2px);
+    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
+    filter: drop-shadow(0px 0px 6px #0000002b);
+    border-radius: 999px;
+    width: 85%;
+    max-width: 400px;
+    }
+    nav.bottom-nav button {
+      flex: 1 1 92px;
+      min-width: 78px;
+      min-height: 50px;
+      padding: 6px 13px;
+      border-radius: 17px;
+      gap: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+    nav.bottom-nav button.active {
+          border-radius: 999px;
+    background: 
+color-mix(in srgb, var(--primary) 19%, transparent);
+    color: var(--primary);
+    }
+    nav.bottom-nav button:active { transform: scale(.94); }
+    nav.bottom-nav button svg { width: 21px; height: 21px; }
+    .page-overlay > header {
+      margin: calc(10px + env(safe-area-inset-top, 0px)) 14px 10px;
+      min-height: 56px;
+      height: auto;
+      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      border-radius: 20px;
+      background: color-mix(in srgb, var(--bg-secondary) 84%, transparent);
+      -webkit-backdrop-filter: var(--float-blur);
+      backdrop-filter: var(--float-blur);
+      box-shadow: var(--float-shadow);
+    }
+    .page-overlay .page-content { padding-top: 4px; }
+    body.light #app-header,
+    body.light nav.bottom-nav,
+    body.light .page-overlay > header {
+      background: rgba(255,255,255,.78);
+      border-color: rgba(60,60,67,.12);
+      box-shadow: 0 8px 28px rgba(0,0,0,.10);
+    }
+    body.light .header-menu {
+      background: rgba(255,255,255,.92);
+      border-color: rgba(60,60,67,.12);
+    }
+
   </style>
 </head>
 <body>
@@ -911,12 +1099,12 @@
   <!-- APP -->
   <div id="app">
     <header id="app-header">
-      <button class="back-btn" id="back-btn" style="display:none;">←</button>
+      <button class="back-btn" id="back-btn" style="display:none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M9.18,12l7.53,7.53q0.3,0.3 0.29,0.7t-0.31,0.7T16,21.23t-0.7-0.3L7.63,13.28q-0.27-0.27-0.4-0.61T7.09,12t0.13-0.67t0.4-0.61L15.3,3.05q0.3-0.3 0.71-0.29t0.71,0.31t0.3,0.7t-0.3,0.7L9.18,12Z"/></svg></button>
       <div class="header-heading">
         <div class="title" id="header-title">Amounts</div>
         <div class="subtitle" id="header-sub"></div>
       </div>
-      <button class="header-more" id="header-more" aria-label="More options" type="button">⋮</button>
+      <button class="header-more" id="header-more" aria-label="More options" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12,19.27q-0.62,0-1.06-0.44T10.5,17.77t0.44-1.06T12,16.27t1.06,0.44t0.44,1.06t-0.44,1.06T12,19.27Zm0-5.77q-0.62,0-1.06-0.44T10.5,12t0.44-1.06T12,10.5t1.06,0.44T13.5,12t-0.44,1.06T12,13.5Zm0-5.77q-0.62,0-1.06-0.44T10.5,6.23t0.44-1.06T12,4.73t1.06,0.44T13.5,6.23T13.06,7.29T12,7.73Z"/></svg></button>
       <div class="header-menu" id="header-menu" role="menu" aria-label="Section options"></div>
     </header>
 
@@ -930,22 +1118,26 @@
 
       <!-- CHAT VIEW -->
       <div class="view" id="view-chat">
+        <div class="chat-solution-ad-wrap" id="chat-solution-ad-wrap" style="display:none;"></div>
         <div class="chat-container">
           <div class="chat-messages" id="chat-messages"></div>
           <div class="options-row" id="options-row"></div>
-          <div class="chat-share-row"><button class="chat-share-btn" id="share-loan-details" type="button">↗ Share / Copy loan details</button></div>
+          <div class="chat-share-row"><a href="https://mfi0212.github.io/MFI/abt.hlp"><button class="chat-share-btn" id="share-loan-details" type="button">I have an issue</button></a></div>
         </div>
       </div>
 
       <!-- BORROW VIEW -->
       <div class="view" id="view-borrow">
+        <div class="borrow-tools" style="position: sticky;
+    top: 55px;">
+          <input type="search" id="borrow-search" placeholder="Search borrowing solutions..." aria-label="Search borrowing solutions" />
+        </div>
         <div class="borrow-tools">
           <button class="borrow-apply-card" id="borrow-apply" type="button">
             <span class="borrow-apply-icon">＋</span>
             <span><strong>Apply for an amount</strong><small>Request the amount you need</small></span>
             <span class="borrow-apply-arrow">›</span>
           </button>
-          <input type="search" id="borrow-search" placeholder="Search borrowing solutions..." aria-label="Search borrowing solutions" />
           <button class="fee-calculator-launch" id="fee-calculator-open" type="button">
             <span>％</span><span><strong>Calculate service fee</strong><small>Estimate the fee for Delay It, Split Pay or Buy Limit</small></span><b>›</b>
           </button>
@@ -956,11 +1148,11 @@
       <!-- SETTINGS VIEW -->
       <div class="view" id="view-settings">
         <div class="settings-list">
+          <h3>Appearance</h3>
           <div class="settings-section">
-            <h3>Appearance</h3>
             <div class="settings-item" id="theme-toggle">
               <div class="left">
-                <span>🌓</span>
+                <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12.03,18.75q-1.35,0-2.58-0.51T7.26,16.77T5.79,14.58T5.28,12q0-1.14 0.36-2.2T6.7,7.86Q6.98,7.53 7.41,7.63T8.03,8.16Q8.57,9.5 9.34,10.68t1.8,2.2t2.2,1.8t2.52,1.31q0.44,0.18 0.54,0.62t-0.24,0.71q-0.88,0.7-1.94,1.06t-2.2,0.36Zm5.55-4.48q-0.3-0.1-0.44-0.39t-0.07-0.61q0.35-1.33-0.01-2.66T15.71,8.29q-0.98-0.98-2.3-1.34T10.79,6.91q-0.31,0.07-0.59-0.07T9.8,6.42T9.83,5.85t0.43-0.36q1.73-0.47 3.48-0.02T16.8,7.22q1.29,1.29 1.75,3.04t-0.01,3.47q-0.08,0.32-0.36,0.47t-0.6,0.06ZM12,3.13q-0.32,0-0.53-0.22T11.25,2.38V1.19q0-0.32 0.22-0.53T12,0.44t0.53,0.22t0.22,0.53V2.38q0,0.32-0.22,0.53T12,3.13Zm0,20.42q-0.32,0-0.53-0.22t-0.22-0.53V21.62q0-0.32 0.22-0.53T12,20.87t0.53,0.22t0.22,0.53v1.19q0,0.32-0.22,0.53T12,23.56ZM18.28,5.74Q18.05,5.5 18.05,5.2t0.23-0.53l0.82-0.82q0.21-0.21 0.51-0.21t0.54,0.21q0.23,0.23 0.23,0.53T20.15,4.92L19.33,5.74q-0.22,0.22-0.52,0.23T18.28,5.74ZM3.85,20.15q-0.23-0.23-0.23-0.53t0.23-0.53l0.82-0.82q0.22-0.22 0.52-0.23t0.53,0.23T5.95,18.8T5.72,19.33L4.91,20.15Q4.7,20.36 4.39,20.36T3.85,20.15Zm17.76-7.4q-0.32,0-0.53-0.22T20.87,12t0.22-0.53t0.53-0.22h1.19q0.32,0 0.53,0.22T23.56,12t-0.22,0.53t-0.53,0.22H21.62Zm-20.42,0q-0.32,0-0.53-0.22T0.44,12t0.22-0.53t0.53-0.22H2.38q0.32,0 0.53,0.22T3.13,12T2.92,12.53T2.38,12.75H1.19Zm18.96,7.4q-0.23,0.23-0.53,0.23t-0.53-0.23l-0.82-0.82q-0.22-0.22-0.23-0.52t0.23-0.53t0.53-0.23t0.53,0.23l0.82,0.82q0.21,0.21 0.21,0.51t-0.21,0.54ZM5.74,5.72Q5.5,5.95 5.2,5.95T4.67,5.72L3.85,4.91Q3.64,4.7 3.64,4.39T3.85,3.85Q4.08,3.62 4.39,3.62T4.92,3.85L5.74,4.67Q5.96,4.89 5.96,5.19T5.74,5.72Z"/></svg></span>
                 <span>Theme</span>
               </div>
               <span id="theme-label">Dark</span>
@@ -968,7 +1160,7 @@
             <div id="color-section" style="display:none;">
               <div class="settings-item" style="cursor:default;">
                 <div class="left">
-                  <span>🎨</span>
+                  <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M11.98,21.5q-1.94,0-3.67-0.75T5.29,18.71T3.25,15.69T2.5,12q0-1.98 0.77-3.71T5.36,5.27T8.45,3.24T12.22,2.5q1.87,0 3.55,0.64t2.95,1.77T20.75,7.6t0.75,3.38q0,2.6-1.54,4.06T16,16.5H14.19q-0.43,0-0.68,0.28t-0.26,0.66q0,0.46 0.38,0.96T14,19.55q0,0.99-0.55,1.47T11.98,21.5ZM7.39,12.39q0.36-0.36 0.36-0.89T7.39,10.61T6.5,10.25T5.61,10.61T5.25,11.5t0.36,0.89T6.5,12.75t0.89-0.36Zm3-4q0.36-0.36 0.36-0.89T10.39,6.61T9.5,6.25T8.61,6.61T8.25,7.5T8.61,8.39T9.5,8.75t0.89-0.36Zm5,0q0.36-0.36 0.36-0.89T15.39,6.61T14.5,6.25T13.61,6.61T13.25,7.5t0.36,0.89T14.5,8.75t0.89-0.36Zm3,4q0.36-0.36 0.36-0.89t-0.36-0.89T17.5,10.25t-0.89,0.36T16.25,11.5t0.36,0.89t0.89,0.36t0.89-0.36Z"/></svg></span>
                   <span>Main Color</span>
                 </div>
               </div>
@@ -976,60 +1168,70 @@
             </div>
           </div>
 
+          <h3>Pages</h3>
           <div class="settings-section">
-            <h3>Pages</h3>
             <div class="settings-item" data-page="terms">
-              <div class="left"><span>📄</span><span>Terms & Conditions</span></div>
+              <div class="left"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M11.68,21.35q-0.15-0.02-0.29-0.07q-3.16-1.13-5.03-3.99T4.5,11.1V6.6q0-0.57 0.33-1.02T5.68,4.91l5.69-2.12Q11.69,2.67 12,2.67t0.63,0.12l5.69,2.12q0.52,0.21 0.85,0.66T19.5,6.6v4.5q0,1.54-0.42,2.97t-1.16,2.76l-2.95-2.95q0.26-0.43 0.39-0.9T15.5,12q0-1.45-1.03-2.47T12,8.5T9.53,9.53T8.5,12t1.03,2.47T12,15.5q0.51,0 0.99-0.14t0.9-0.43l3.15,3.13q-0.93,1.1-2.01,1.91t-2.43,1.3q-0.14,0.05-0.29,0.07T12,21.37t-0.32-0.02Zm-1.1-7.93Q10,12.83 10,12t0.59-1.41T12,10t1.41,0.59Q14,11.18 14,12t-0.59,1.41T12,14t-1.41-0.59Z"/></svg></span><span>Terms & Conditions</span></div>
               <span class="arrow">›</span>
             </div>
             <div class="settings-item" data-page="privacy">
-              <div class="left"><span>🔒</span><span>Privacy Policy</span></div>
+              <div class="left"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12.53,16.4q0.22-0.22 0.22-0.53V11.54q0-0.32-0.22-0.53T12,10.79T11.47,11t-0.22,0.53v4.33q0,0.32 0.22,0.53T12,16.62t0.53-0.22Zm0.04-7.63q0.23-0.23 0.23-0.57T12.57,7.62T12,7.38T11.43,7.62T11.19,8.19t0.23,0.57T12,9t0.57-0.23ZM11.69,21.35q-0.15-0.02-0.29-0.07q-3.16-1.13-5.03-3.99T4.5,11.1V6.6q0-0.57 0.33-1.02T5.68,4.91l5.69-2.12Q11.69,2.67 12,2.67t0.63,0.12l5.69,2.12q0.52,0.21 0.85,0.66T19.5,6.6v4.5q0,3.32-1.87,6.18T12.6,21.27q-0.14,0.05-0.29,0.07T12,21.37t-0.31-0.02Z"/></svg></span><span>Privacy Policy</span></div>
               <span class="arrow">›</span>
             </div>
             <div class="settings-item" data-page="new-entry">
-              <div class="left"><span>📝</span><span>New Entry Form</span></div>
+              <div class="left"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M18.13,10.75H15.87q-0.32,0-0.53-0.22T15.13,10t0.22-0.53t0.53-0.22h2.25V7q0-0.32 0.22-0.53t0.53-0.22t0.53,0.22T19.62,7V9.25h2.25q0.32,0 0.53,0.22T22.62,10t-0.22,0.53t-0.53,0.22H19.62V13q0,0.32-0.22,0.53t-0.53,0.22t-0.53-0.22T18.13,13V10.75ZM6.53,10.67Q5.5,9.64 5.5,8.19T6.53,5.72T9,4.69t2.47,1.03T12.5,8.19t-1.03,2.47T9,11.69T6.53,10.67ZM1.5,17.79v-0.7q0-0.73 0.4-1.36t1.07-0.96q1.48-0.73 2.99-1.09T9,13.31t3.04,0.36t2.99,1.09q0.67,0.34 1.07,0.96t0.4,1.36v0.7q0,0.63-0.44,1.08t-1.08,0.44H3.02q-0.63,0-1.08-0.44T1.5,17.79Z"/></svg></span><span>New Entry Form</span></div>
               <span class="arrow">›</span>
             </div>
             <div class="settings-item" data-page="im-late">
-              <div class="left"><span>⏰</span><span>I'm Late</span></div>
+              <div class="left"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M5.31,21.5q-0.76,0-1.28-0.52T3.5,19.69V6.31q0-0.76 0.52-1.28T5.31,4.5H6.69V3.15q0-0.33 0.22-0.55T7.46,2.38T8.01,2.6T8.23,3.15V4.5h7.58V3.13q0-0.32 0.22-0.53t0.53-0.22T17.09,2.6t0.22,0.53V4.5h1.38q0.76,0 1.28,0.52T20.5,6.31v4.71q0,0.32-0.22,0.53t-0.53,0.22t-0.53-0.22T19,11.02V10.31H5v9.38q0,0.12 0.1,0.21T5.31,20h6.12q0.32,0 0.53,0.22t0.22,0.53t-0.22,0.53T11.43,21.5H5.31Zm9.7-0.31Q13.69,19.87 13.69,18t1.31-3.19t3.19-1.31t3.19,1.31T22.69,18t-1.31,3.19T18.19,22.5t-3.19-1.31Zm3.63-3.37V15.5q0-0.18-0.13-0.31t-0.31-0.13t-0.31,0.13T17.75,15.5v2.3q0,0.18 0.07,0.34t0.21,0.3l1.52,1.52q0.13,0.13 0.31,0.14t0.32-0.14t0.14-0.31t-0.14-0.31l-1.53-1.53Z"/></svg></span><span>I'm Late</span></div>
               <span class="arrow">›</span>
             </div>
             <div class="settings-item" data-page="helper">
-              <div class="left"><span>💬</span><span>Helper</span></div>
+              <div class="left"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12.71,17.32q0.3-0.3 0.3-0.72t-0.3-0.72t-0.72-0.3t-0.72,0.3t-0.3,0.72t0.3,0.72t0.72,0.3t0.72-0.3ZM12,21.5q-1.97,0-3.71-0.75T5.28,18.72T3.25,15.71T2.5,12T3.25,8.3T5.28,5.28T8.29,3.25T12,2.5T15.7,3.25t3.02,2.03t2.03,3.02T21.5,12T20.75,15.7t-2.03,3.02t-3.02,2.03T12,21.5ZM12.08,7.72q0.69,0 1.2,0.44t0.51,1.09q0,0.55-0.32,0.98t-0.74,0.81q-0.54,0.48-0.96,1.06t-0.44,1.29q-0.01,0.27 0.19,0.46t0.47,0.18q0.29,0 0.49-0.19t0.26-0.47q0.1-0.52 0.43-0.92t0.71-0.77q0.55-0.53 0.95-1.16t0.41-1.4q0-1.19-0.94-1.95T12.1,6.4q-0.89,0-1.68,0.4T9.19,7.95Q9.05,8.18 9.1,8.44T9.36,8.83Q9.64,8.98 9.93,8.92t0.49-0.33q0.3-0.39 0.74-0.63t0.93-0.24Z"/></svg></span><span>Helper</span></div>
               <span class="arrow">›</span>
             </div>
           </div>
 
+          <h3>Account</h3>
           <div class="settings-section">
-            <h3>Account</h3>
             <div class="settings-item" id="logout-btn">
-              <div class="left"><span>🚪</span><span>Logout</span></div>
+              <div class="left"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M5.31,20.5q-0.76,0-1.28-0.52T3.5,18.69V5.31q0-0.76 0.52-1.28T5.31,3.5h5.95q0.32,0 0.53,0.22t0.22,0.53T11.79,4.78T11.26,5H5.31Q5.19,5 5.1,5.1T5,5.31V18.69q0,0.12 0.1,0.21T5.31,19h5.95q0.32,0 0.53,0.22t0.22,0.53t-0.22,0.53T11.26,20.5H5.31Zm12.31-7.75H9.85q-0.32,0-0.53-0.22T9.1,12t0.22-0.53t0.53-0.22h7.77L15.69,9.33q-0.21-0.21-0.21-0.51t0.21-0.53t0.53-0.24t0.54,0.22l3.09,3.09q0.27,0.27 0.27,0.63t-0.27,0.63l-3.09,3.09q-0.22,0.22-0.53,0.22t-0.54-0.24q-0.22-0.23-0.21-0.53t0.22-0.52l1.91-1.91Z"/></svg></span><span>Logout</span></div>
             </div>
           </div>
         </div>
       </div>
     </main>
 
-    <nav class="bottom-nav" id="bottom-nav">
+   <div style="width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient( 0deg, var(--bg), transparent);
+    align-items: end;
+    position: fixed;
+    bottom: 0;
+    padding: 15px;">
+     <nav class="bottom-nav" id="bottom-nav">
       <button data-view="amounts" class="active">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.55-.63-4.23-1.63-4.23-3.66 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.22 1.39 4.22 3.91c-.01 1.83-1.38 2.83-3.16 3.16z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12,21.5q-1.97,0-3.71-0.75T5.28,18.72T3.25,15.71T2.5,12T3.25,8.3T5.28,5.28T8.29,3.25T12,2.5T15.7,3.25t3.02,2.03t2.03,3.02T21.5,12T20.75,15.7t-2.03,3.02t-3.02,2.03T12,21.5Zm0.45-2.9q0.2-0.2 0.2-0.48V17.6q1.16-0.16 2.11-0.87t0.94-2.17q0-1.05-0.62-1.86t-2.42-1.46q-1.58-0.54-2.09-0.93T10.06,9.2t0.53-1.15t1.46-0.44q0.56,0 0.98,0.21t0.71,0.56q0.18,0.22 0.42,0.31t0.46-0.01q0.29-0.12 0.4-0.39T14.96,7.77q-0.4-0.57-0.99-0.94T12.71,6.4V5.88q0-0.27-0.2-0.48t-0.48-0.2T11.55,5.4t-0.2,0.48V6.4Q10.06,6.65 9.38,7.44T8.69,9.2q0,1.13 0.68,1.81t2.23,1.24q1.59,0.58 2.18,1.05t0.58,1.25q0,0.94-0.68,1.37t-1.53,0.43q-0.71,0-1.29-0.36T9.9,14.96Q9.75,14.69 9.49,14.6t-0.5,0.01q-0.27,0.1-0.39,0.37t-0,0.52q0.42,0.84 1.09,1.34t1.61,0.7v0.58q0,0.27 0.2,0.48t0.48,0.2t0.48-0.2Z"/></svg>
         Amounts
       </button>
       <button data-view="borrow">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-        Borrow
+        <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M10.69,21.05q-0.55-0.52-0.6-1.28H13.9q-0.05,0.76-0.6,1.28T12,21.58t-1.31-0.52ZM9,18.38q-0.32,0-0.53-0.22T8.25,17.63T8.47,17.1T9,16.88h6q0.32,0 0.53,0.22t0.22,0.53t-0.22,0.53T15,18.38H9ZM8.4,15.5q-1.57-0.98-2.49-2.55T5,9.5Q5,6.58 7.04,4.54T12,2.5t4.96,2.04T19,9.5q0,1.87-0.92,3.45T15.6,15.5H8.4Z"/></svg>
+        Solutions
       </button>
       <button data-view="settings">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M10.89,21.5q-0.51,0-0.88-0.34T9.56,20.32L9.31,18.45q-0.4-0.13-0.82-0.38T7.73,17.56L6,18.29Q5.53,18.5 5.05,18.33T4.31,17.73L3.19,15.77q-0.26-0.44-0.15-0.93t0.51-0.81l1.5-1.13Q5.01,12.68 5,12.46T4.98,12.01q0-0.21 0.01-0.43t0.05-0.48L3.55,9.97Q3.15,9.65 3.04,9.15T3.2,8.22L4.31,6.29q0.26-0.43 0.74-0.6T6,5.73L7.72,6.45Q8.08,6.17 8.5,5.93T9.3,5.55L9.56,3.68q0.08-0.5 0.45-0.84T10.89,2.5h2.22q0.51,0 0.88,0.34t0.45,0.84l0.24,1.88q0.45,0.16 0.81,0.38t0.74,0.51l1.77-0.73q0.47-0.21 0.95-0.04t0.74,0.6l1.12,1.93q0.26,0.44 0.15,0.93T20.45,9.97l-1.54,1.15q0.05,0.24 0.06,0.45t0,0.42q0,0.2-0.01,0.41T18.9,12.9l1.51,1.13q0.4,0.32 0.52,0.81t-0.15,0.93l-1.13,1.94q-0.26,0.44-0.74,0.61t-0.95-0.04l-1.71-0.74q-0.37,0.3-0.76,0.52t-0.79,0.37l-0.24,1.88q-0.08,0.5-0.45,0.84T13.11,21.5H10.89ZM12.01,15q1.25,0 2.12-0.88T15.01,12T14.14,9.88T12.01,9Q10.75,9 9.88,9.88T9.01,12t0.87,2.12T12.01,15Z"/></svg>
         Settings
       </button>
     </nav>
+   </div>
   </div>
 
   <!-- PAGE OVERLAYS -->
   <div class="page-overlay" id="page-overlay">
     <header>
-      <button class="back-btn" id="page-back">←</button>
+      <button class="back-btn" id="page-back"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M9.18,12l7.53,7.53q0.3,0.3 0.29,0.7t-0.31,0.7T16,21.23t-0.7-0.3L7.63,13.28q-0.27-0.27-0.4-0.61T7.09,12t0.13-0.67t0.4-0.61L15.3,3.05q0.3-0.3 0.71-0.29t0.71,0.31t0.3,0.7t-0.3,0.7L9.18,12Z"/></svg></button>
       <div class="title" id="page-title">Page</div>
     </header>
     <div class="page-content" id="page-content"></div>
@@ -1047,7 +1249,9 @@
         fixedInterest: 0,
         customui: "yes",
         showBottomNav: "yes",
-        bottomNavItems: ["amounts","settings"],
+        // Only these sections appear in this user's bottom navigation.
+        // Example: ["amounts", "borrow"] or ["amounts", "settings"]
+        bottomNavItems: ["amounts", "borrow", "settings"],
         showCustomContent: "no",
         customContent: {
           type: "image",
@@ -1073,7 +1277,7 @@
         }
       },
       "Tony Montana 3": {
-        password: "9291",
+        password: "92129",
         displayName: "Tony Montana 2",
         premiumType: "Premium+",
         fixedInterest: 20,
@@ -1342,6 +1546,52 @@
     }
 
     // ===================== CHAT =====================
+    // Solution promotions are selected only from services enabled for this account.
+    // Users with customui: "yes" never see these promotional cards.
+    const CHAT_PROMOTED_SOLUTIONS = [
+      { key: "Delay It", icon: "⏳", desc: "Extend your due date · 6% fee", url: "https://your-site.com/delay-it" },
+      { key: "Split Pay", icon: "✂️", desc: "Pay in installments · 6.5% fee", url: "https://your-site.com/split-pay" },
+      { key: "Buy Limit", icon: "📈", desc: "Increase your limit · 7% fee", url: "https://your-site.com/buy-limit" },
+      { key: "Pre-Saver", icon: "💰", desc: "Save before your due date", url: "https://your-site.com/pre-saver" },
+      { key: "Lendlink-Mid", icon: "🔗", desc: "Explore mid-term lending", url: "https://your-site.com/lendlink-mid" },
+      { key: "Mining bot", icon: "🤖", desc: "Explore automated mining", url: "https://your-site.com/mining-bot" },
+      { key: "BotPay", icon: "💳", desc: "Explore the payment service", url: "https://your-site.com/botpay" },
+      { key: "Tomar Juntos", icon: "🤝", desc: "Explore group financing", url: "https://your-site.com/tomar-juntos" },
+      { key: "BsRora-Atdo", icon: "🛡️", desc: "Explore the protection plan", url: "https://your-site.com/bsrora-atdo" },
+      { key: "STL", icon: "⚡", desc: "Explore short-term lending", url: "https://your-site.com/stl" }
+    ];
+
+    function renderChatSolutionAd() {
+      const wrap = document.getElementById("chat-solution-ad-wrap");
+      if (!wrap) return;
+      wrap.innerHTML = "";
+      wrap.style.display = "none";
+
+      if (!currentUser || currentUser.customui !== "no") return;
+
+      const available = CHAT_PROMOTED_SOLUTIONS.filter(solution =>
+        currentUser.access && currentUser.access[solution.key] === true
+      );
+      if (!available.length) return;
+
+      // Pick one enabled solution at random each time a loan chat is opened.
+      const solution = available[Math.floor(Math.random() * available.length)];
+      const ad = document.createElement("button");
+      ad.type = "button";
+      ad.className = "chat-solution-ad";
+      ad.innerHTML = `
+        <span class="chat-solution-ad-icon" aria-hidden="true">${solution.icon}</span>
+        <span class="chat-solution-ad-copy">
+          <small>Suggested solution</small>
+          <strong>${solution.key}</strong>
+          <span>${solution.desc}</span>
+        </span>
+        <span class="chat-solution-ad-arrow" aria-hidden="true">›</span>`;
+      ad.addEventListener("click", () => { window.location.href = solution.url; });
+      wrap.appendChild(ad);
+      wrap.style.display = "block";
+    }
+
     function openChat(index) {
       currentLoanIndex = index;
       const loan = currentUser.loans[index];
@@ -1350,6 +1600,7 @@
       document.getElementById("back-btn").style.display = "block";
       document.getElementById("bottom-nav").style.display = "none";
       document.getElementById("header-menu").classList.remove("open");
+      renderChatSolutionAd();
 
       const msgs = document.getElementById("chat-messages");
       msgs.innerHTML = "";
