@@ -32,15 +32,12 @@ function getInterestHistory() {
 function getEffectiveInterest() {
   if (currentUser && users[currentUser]) {
     const fixed = users[currentUser].fixedInterest;
-    // Only use fixed rate if it exists AND is greater than 0
     if (fixed != null && fixed > 0) {
       return fixed;
     }
   }
   return todayInterest;
 }
-
-// ========== Date helpers (DD-MM-YYYY) ==========
 function parseDate(str) {
   const parts = str.split('-');
   return new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
@@ -57,9 +54,6 @@ function getTodayDate() {
   const now = new Date();
   return new Date(now.getFullYear(), now.getMonth(), now.getDate());
 }
-
-// ========== Status calculation ==========
-// Overdue fee increases by 25 for every day past the return date.
 function computeLoanStatus(loan) {
   const today = getTodayDate();
   const returnDate = parseDate(loan.return);
@@ -71,7 +65,6 @@ function computeLoanStatus(loan) {
   let daysInfo = '';
 
   if (diff > 0) {
-    // Add 25 for every overdue day
     overdueFee = diff * 25;
 
     status = 'Overdue';
@@ -113,7 +106,6 @@ if (customSec) {
   document.getElementById('theme-modal').classList.add('show');
 }
 function selectCustomColor(hex) {
-  // Custom colors completely disabled (no localStorage touch)
   return;
 }
 function closeThemeModal() {
@@ -121,21 +113,17 @@ function closeThemeModal() {
 }
 
 function selectTheme(themeName) {
-  // Keep any existing custom accent color when switching base themes
   applyTheme(themeName);
   closeThemeModal();
 }
 const MAIN_COLORS = [
-  "#0800f0", // Blue
-  "#e53935", // Red
-  "#16a34a", // Green
-  "#9333ea"  // Purple
+  "#0800f0",
+  "#e53935",
+  "#16a34a",
+  "#9333ea"
 ];
 
-// Change this value in each version
 const COLOR_STORAGE_KEY = 'jh_main_version_color';
-// Lite version: 'jh_lite_version_color'
-
 function getSavedMainColor() {
   const saved = localStorage.getItem(COLOR_STORAGE_KEY);
 
@@ -271,7 +259,6 @@ function openServiceForm(serviceName) {
 function applyProduct(name) {
   openServiceForm(name);
 
-  // No popup for direct bot/service pages
   const noPopup = ["BotPay", "BsRora-Atdo", "Mining bot"];
   if (noPopup.includes(name)) {
     return;
@@ -561,7 +548,6 @@ function showLoanDetails() {
   document.getElementById('current-user').textContent = user.displayName;
   document.getElementById('account-status').textContent = 'Logged in';
 
-  // ===== Custom Content (image) =====
   const customBox = document.getElementById('custom-content-box');
   if (user.showCustomContent === "yes" && user.customContent) {
     if (user.customContent.type === "image") {
@@ -576,7 +562,6 @@ function showLoanDetails() {
     customBox.classList.add('hidden');
   }
 
-  // ===== Special Notice =====
   const specialBox = document.getElementById('special-banner');
   if (user.showSpecialNotice === "yes" && user.specialNoticeText) {
     document.getElementById('special-message').innerHTML = user.specialNoticeText;
@@ -585,11 +570,9 @@ function showLoanDetails() {
     specialBox.classList.add('hidden');
   }
 
-  // Summary
   document.getElementById('sum-username').textContent = user.displayName;
   document.getElementById('sum-premium').textContent = user.premiumType;
 
-  // Total Amount (amount + interest only)
   const totalAmount = user.loans.reduce((sum, l) => sum + l.amount, 0);
   const totalInterest = user.loans.reduce((sum, l) => sum + l.interest, 0);
   const grandTotal = totalAmount + totalInterest;
@@ -606,14 +589,12 @@ function showLoanDetails() {
     openTotalPopup(totalAmount, totalInterest, grandTotal);
   };
 
-  // Interest rate display
   if (user.fixedInterest != null && user.fixedInterest > 0) {
     document.getElementById('sum-interest').textContent = user.fixedInterest + '% (Fixed)';
   } else {
     document.getElementById('sum-interest').textContent = todayInterest + '% (Today)';
   }
 
-  // ===== Amount tabs + detail view (Amount 1, Amount 2, ...) =====
   window._loanList = user.loans;
   window._activeLoanIndex = 0;
   renderAmountSwitcher(user.loans, 0);
@@ -650,7 +631,6 @@ function showLoanDetails() {
   updateInterestDisplay();
 }
 
-/* ===== Amount switcher UI ===== */
 function renderAmountSwitcher(loans, activeIndex) {
   const tabsEl = document.getElementById('amount-tabs');
   const detailEl = document.getElementById('amount-detail-container');
@@ -698,8 +678,6 @@ function openTotalPopup() {
   if (!modal) return;
 
   const loans = users[currentUser].loans || [];
-
-  // Calculate latest totals every time popup opens
   const amount = loans.reduce(
     (sum, loan) => sum + Number(loan.amount || 0), 0
   );
@@ -714,8 +692,6 @@ function openTotalPopup() {
   }, 0);
 
   const total = amount + interest + overdue;
-
-  // Update popup values
   document.getElementById('tp-amount').textContent =
     amount.toLocaleString();
 
@@ -727,8 +703,6 @@ function openTotalPopup() {
 
   document.getElementById('tp-total').textContent =
     total.toLocaleString();
-
-  // Show updated popup
   modal.classList.add('show');
 }
 
@@ -753,7 +727,6 @@ function logout() {
   
 }
 
-// ==================== iOS-style Notification System ====================
 function showIOSNotification(title, message, type = 'info', duration = 2100) {
   const container = document.getElementById('ios-toast-container');
   if (!container) return;
@@ -776,15 +749,11 @@ function showIOSNotification(title, message, type = 'info', duration = 2100) {
   `;
 
   container.appendChild(toast);
-
-  // Trigger show animation
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       toast.classList.add('show');
     });
   });
-
-  // Auto hide
   setTimeout(() => {
     toast.classList.remove('show');
     toast.classList.add('hide');
@@ -794,14 +763,11 @@ function showIOSNotification(title, message, type = 'info', duration = 2100) {
   }, duration);
 }
 
-// ==================== Patch existing functions for notifications ====================
 window.addEventListener('load', function() {
-  // --- LOGIN ---
   if (typeof window.doLogin === 'function') {
     const originalDoLogin = window.doLogin;
     window.doLogin = function() {
       const result = originalDoLogin.apply(this, arguments);
-      // Show notification after a short delay so UI updates first
       setTimeout(() => {
         const userEl = document.getElementById('current-user');
         const loanSection = document.getElementById('loan-section');
@@ -809,7 +775,6 @@ window.addEventListener('load', function() {
           const name = userEl ? userEl.textContent.trim() : 'User';
           showIOSNotification('Logged in', `Welcome back, ${name}!`, 'success');
         } else {
-          // If still on login screen, might be wrong password
           showIOSNotification('Login failed', 'Incorrect password. Try again.', 'error');
         }
       }, 180);
@@ -817,7 +782,6 @@ window.addEventListener('load', function() {
     };
   }
 
-  // --- LOGOUT ---
   if (typeof window.logout === 'function') {
     const originalLogout = window.logout;
     window.logout = function() {
@@ -829,7 +793,6 @@ window.addEventListener('load', function() {
     };
   }
 
-  // --- THEME SELECT ---
   if (typeof window.selectTheme === 'function') {
     const originalSelectTheme = window.selectTheme;
     window.selectTheme = function(theme) {
@@ -848,7 +811,6 @@ window.addEventListener('load', function() {
     };
   }
 
-  // --- CUSTOM COLOR ---
   if (typeof window.selectCustomColor === 'function') {
     const originalSelectCustomColor = window.selectCustomColor;
     window.selectCustomColor = function(color) {
@@ -862,55 +824,40 @@ window.addEventListener('load', function() {
 });
 
 window.showIOSNotification = showIOSNotification;
-
-// ========== HTML/CSS Bar Graph (replaces canvas) ==========
 function drawBarGraph() {
   const container = document.getElementById('bars-container');
   const labelsEl = document.getElementById('graph-labels');
   if (!container || !labelsEl) return;
-
-  const rates = getInterestHistory(); // last 7 rates (oldest → newest)
+  const rates = getInterestHistory();
   const minR = 29;
   const maxR = 36;
   const range = maxR - minR;
-
-  // Day labels
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const history = JSON.parse(localStorage.getItem('jh_interest_history') || '[]');
   let labels = history.map(h => {
     const d = new Date(h.date);
     return dayNames[d.getDay()];
   });
-
-  // Ensure we always show 7 slots
   while (rates.length < 7) {
     rates.unshift(rates[0] || todayInterest);
     labels.unshift('–');
   }
-
   container.innerHTML = '';
   labelsEl.innerHTML = '';
-
   rates.forEach((rate, i) => {
     const isToday = i === rates.length - 1;
     const heightPct = Math.max(8, ((rate - minR) / range) * 100);
-
     const wrapper = document.createElement('div');
     wrapper.className = 'bar-wrapper';
-
     const bar = document.createElement('div');
     bar.className = 'bar' + (isToday ? ' today' : '');
     bar.style.height = heightPct + '%';
-
     const value = document.createElement('div');
     value.className = 'bar-value';
     value.textContent = rate.toFixed(1) + '%';
-
     bar.appendChild(value);
     wrapper.appendChild(bar);
     container.appendChild(wrapper);
-
-    // label
     const lab = document.createElement('span');
     lab.textContent = isToday ? 'Today' : labels[i];
     labelsEl.appendChild(lab);
@@ -941,12 +888,9 @@ window.onload = function() {
   renderProducts();
   updateInterestDisplay();
 };
-
-/* ===== ACTIVE NAVBAR HIGHLIGHT (Scroll Spy) ===== */
 (function() {
-  // Map section ID → data-section value
   const sectionMap = {
-    graph: 'interest',   // #graph → data-section="interest"
+    graph: 'interest',
     turbo: 'turbo',
     takemoney: 'takemoney',
     products: 'products',
@@ -983,18 +927,14 @@ window.onload = function() {
     const el = document.getElementById(id);
     if (el) observer.observe(el);
   });
-
-  // Instant highlight on click
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
       const key = link.getAttribute('data-section');
-      // Find the real section id from the map
       const realId = Object.keys(sectionMap).find(k => sectionMap[k] === key) || key;
       setActive(realId);
     });
   });
 
-  // Initial check on page load
   window.addEventListener('load', () => {
     let current = null;
     sections.forEach(id => {
@@ -1018,7 +958,6 @@ btn.addEventListener('click', (e) => {
   dropdown.classList.toggle('show');
 });
 
-// Close when clicking outside
 document.addEventListener('click', () => {
   dropdown.classList.remove('show');
 });
