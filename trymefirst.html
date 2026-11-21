@@ -92,7 +92,11 @@ a {
       font-weight: 600;
       margin-bottom: 6px;
     }
-
+.header-heading {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
     .login-sub {
           text-align: center;
     color: var(--text-secondary);
@@ -270,12 +274,14 @@ input#password-input {
     width: 100%;
     padding-bottom: env(safe-area-inset-bottom, 0px);
     }
-
+svg{
+  fill: var(--text);
+}
     nav.bottom-nav button {
       flex: 1;
       background: none;
       border: none;
-      color: var(--text-secondary);
+      color: var(--text);;
       font-size: 11px;
       display: flex;
       flex-direction: column;
@@ -689,7 +695,7 @@ input#password-input {
     /* Theme light override */
     body.light {
       --bg: #ffffff;
-      --bg-secondary: #f0f2f5;
+      --bg-secondary: #ffffffb5;
       --bg-tertiary: #e4e6eb;
       --text: #050505;
       --text-secondary: #65676b;
@@ -728,6 +734,9 @@ input#password-input {
     box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
     filter: drop-shadow(0px 0px 6px #0000002b);
     background: var(--bg-secondary);
+    }
+    .header-more svg{
+      fill: var(--text);
     }
     .header-more:active { background: var(--bg-tertiary); }
 
@@ -933,14 +942,14 @@ color-mix(in srgb, var(--primary) 18%, transparent);
     }
     .toast { bottom: calc(var(--nav-height) + 16px + env(safe-area-inset-bottom, 0px)); }
     body.light {
-      --bg: #f5f5f7;
-      --bg-secondary: #ffffff;
-      --bg-tertiary: #e9e9ed;
-      --text: #171719;
-      --text-secondary: #6e6e73;
-      --bubble-bot: #e9e9ed;
-      --bubble-user: #2481cc;
-      --border: #d2d2d7;
+      --bg: #ffffff;
+    --bg-secondary: #ffffffb5;
+    --bg-tertiary: #e9e9ed;
+    --text: #171719;
+    --text-secondary: #6e6e73;
+    --bubble-bot: #e9e9ed;
+    --bubble-user: #2481cc;
+    --border: #d2d2d7;
     }
     body.light nav.bottom-nav, body.light header {
       background: var(--bg-secondary);
@@ -1060,10 +1069,11 @@ color-mix(in srgb, var(--primary) 18%, transparent);
       transition: background .2s ease, color .2s ease, transform .2s ease;
     }
     nav.bottom-nav button.active {
-          border-radius: 999px;
+         border-radius: 999px;
     background: 
 color-mix(in srgb, var(--primary) 19%, transparent);
     color: var(--primary);
+    fill: var(--primary);
     }
     nav.bottom-nav button:active { transform: scale(.94); }
     nav.bottom-nav button svg { width: 21px; height: 21px; }
@@ -1078,18 +1088,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
       backdrop-filter: var(--float-blur);
       box-shadow: var(--float-shadow);
     }
-    .page-overlay .page-content { padding-top: 4px; }
-    body.light #app-header,
-    body.light nav.bottom-nav,
-    body.light .page-overlay > header {
-      background: rgba(255,255,255,.78);
-      border-color: rgba(60,60,67,.12);
-      box-shadow: 0 8px 28px rgba(0,0,0,.10);
-    }
-    body.light .header-menu {
-      background: rgba(255,255,255,.92);
-      border-color: rgba(60,60,67,.12);
-    }
+   
 
   </style>
 </head>
@@ -1269,7 +1268,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
   <div class="toast" id="toast"></div>
 
   <script>
-    document.addEventListener('contextmenu', e => e.preventDefault());
+    //document.addEventListener('contextmenu', e => e.preventDefault());
     const users = {
       "Tony Montana": {
         password: "929",
