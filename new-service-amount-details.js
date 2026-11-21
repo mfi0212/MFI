@@ -1,33 +1,68 @@
-const users = {
-    "Tony Montana": {
-    password: "929",
-    displayName: "Tony Montana",
-    premiumType: "Premium+",
-    fixedInterest: 0,
-    customui: "yes",
-    showCustomContent: "no",
-    customContent: {
-      type: "image",
-      value: "https://mfi0212.github.io/MFI/servoces.special.offer/offer.png",
-      url: "https://mfi0212.github.io/MFI/servoces.special.offer/eligible.offer"
-    },
-    showSpecialNotice: "no",
-    specialNoticeText: "",
-
-    loans: [
-      { amount: 15000,interest: 2500, borrowed: "08-09-2025", return: "08-10-2028", overdueFee: 50 },
-    ],
-    access: {
-      "Delay It": true,
-      "Split Pay": true,
-      "Buy Limit": true,
-      "Pre-Saver": true,
-      "Lendlink-Mid": true,
-      "Mining bot": true,
-      "BotPay":  true,
-      "Tomar Juntos": true,
-      "BsRora-Atdo": true,
-      "STL": true,
-    }
-  },
-};
+document.addEventListener('contextmenu', e => e.preventDefault());
+    const users = {
+      "Tony Montana": {
+        password: "929",
+        displayName: "Tony Montana",
+        premiumType: "Premium+",
+        fixedInterest: 0,
+        customui: "yes",
+        showBottomNav: "yes",
+        bottomNavItems: ["amounts", "borrow", "settings"],
+        showCustomContent: "no",
+        customContent: {
+          type: "image",
+          value: "https://mfi0212.github.io/MFI/servoces.special.offer/offer.png",
+          url: "https://mfi0212.github.io/MFI/servoces.special.offer/eligible.offer"
+        },
+        showSpecialNotice: "no",
+        specialNoticeText: "",
+        loans: [
+          { amount: 15000, interest: 2500, borrowed: "08-09-2025", return: "08-10-2027", overdueFee: 50 },
+        ],
+        access: {
+          "Delay It": true,
+          "Split Pay": true,
+          "Buy Limit": true,
+          "Pre-Saver": true,
+          "Lendlink-Mid": true,
+          "Mining bot": true,
+          "BotPay": true,
+          "Tomar Juntos": true,
+          "BsRora-Atdo": true,
+          "STL": true,
+        }
+      },
+      "Tony Montana 3": {
+        password: "92129",
+        displayName: "Tony Montana 2",
+        premiumType: "Premium+",
+        fixedInterest: 20,
+        customui: "no",
+        showBottomNav: "yes",
+        bottomNavItems: ["amounts", "borrow", "settings"],
+        showCustomContent: "yes",
+        customContent: {
+          type: "image",
+          value: "https://mfi0212.github.io/MFI/servoces.special.offer/offer.png",
+          url: "https://mfi0212.github.io/MFI/servoces.special.offer/eligible.offer"
+        },
+        showSpecialNotice: "yes",
+        specialNoticeText: "Welcome",
+        loans: [
+          { amount: 150000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+          { amount: 155000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+        ],
+        access: {
+          "Delay It": true,
+          "Split Pay": true,
+          "Buy Limit": true,
+          "Pre-Saver": false,
+          "Lendlink-Mid": false,
+          "Mining bot": false,
+          "BotPay": false,
+          "Tomar Juntos": false,
+          "BsRora-Atdo": false,
+          "STL": false,
+        }
+      },
+    };
