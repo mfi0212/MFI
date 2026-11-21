@@ -12,7 +12,7 @@
     <style>
 * {
 	font-family: 'Inter', system-ui, -apple-system, sans-serif;
-	margin:0; padding:0;
+	margin:0; padding:0;box-sizing: border-box;
 	letter-spacing: 0.4px;
 }
     :root {
@@ -92,11 +92,11 @@ a {
       font-weight: 600;
       margin-bottom: 6px;
     }
-.header-heading {
+/* .header-heading {
     position: relative;
     left: 50%;
     transform: translate(-50%, 0);
-}
+} */
     .login-sub {
           text-align: center;
     color: var(--text-secondary);
@@ -215,7 +215,7 @@ input#password-input {
       background: var(--bg-secondary);
       display: flex;
       align-items: center;
-      padding: 0 16px;
+      padding: 0 16px;    gap: 10px;
       border-bottom: 1px solid rgba(255,255,255,0.05);
       flex-shrink: 0;
       z-index: 10;
@@ -236,7 +236,6 @@ input#password-input {
     align-items: center;
     border-radius: 50%;
     background: var(--bg-secondary);
-    padding: 5px 0 0 0;
     }
 
     header .title {
@@ -274,8 +273,9 @@ input#password-input {
     width: 100%;
     padding-bottom: env(safe-area-inset-bottom, 0px);
     }
-svg{
-  fill: var(--text);
+button#back-btn svg,
+header .back-btn svg {
+    fill: var(--text);
 }
     nav.bottom-nav button {
       flex: 1;
@@ -293,15 +293,7 @@ svg{
       transition: color 0.2s;
     }
 
-    nav.bottom-nav button.active {
-      color: var(--primary);
-      background: color-mix(in srgb, var(--primary) 16%, transparent);
-      font-weight: 700;
-    }
-
-    nav.bottom-nav button.active svg {
-      transform: translateY(-1px);
-    }
+   
 
     nav.bottom-nav button svg {
       transition: transform 0.18s ease;
@@ -713,14 +705,6 @@ svg{
       background: #d8dadf;
     }
 
-    body.light nav.bottom-nav,
-    body.light header {
-      border-color: #ced0d4;
-    }
-
-
-
-    /* Header menu and loan sharing */
     header { position: relative; }
     .header-heading { flex: 1; min-width: 0; }
     .header-more {
@@ -951,10 +935,7 @@ color-mix(in srgb, var(--primary) 18%, transparent);
     --bubble-user: #2481cc;
     --border: #d2d2d7;
     }
-    body.light nav.bottom-nav, body.light header {
-      background: var(--bg-secondary);
-      border-color: var(--border);
-    }
+ 
    
     :root {
       --float-shadow: 0 10px 34px rgba(0,0,0,.22);
@@ -1077,19 +1058,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
     }
     nav.bottom-nav button:active { transform: scale(.94); }
     nav.bottom-nav button svg { width: 21px; height: 21px; }
-    .page-overlay > header {
-      margin: calc(10px + env(safe-area-inset-top, 0px)) 14px 10px;
-      min-height: 56px;
-      height: auto;
-      border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
-      border-radius: 20px;
-      background: color-mix(in srgb, var(--bg-secondary) 84%, transparent);
-      -webkit-backdrop-filter: var(--float-blur);
-      backdrop-filter: var(--float-blur);
-      box-shadow: var(--float-shadow);
-    }
-   
-
+  
   </style>
 </head>
 <body>
@@ -1138,7 +1107,6 @@ color-mix(in srgb, var(--primary) 19%, transparent);
         </div>
       </div>
 
-      <!-- BORROW VIEW -->
       <div class="view" id="view-borrow">
         <div class="borrow-tools" style="position: sticky;
     top: 55px;">
