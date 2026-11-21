@@ -4,10 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>BS & MFI Lite</title>
-  <style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+* {
+  font-family: "Roboto", system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  letter-spacing: 0.1px;
+}
     :root {
-      --primary: #2481cc;
-      --primary-dark: #1a6bb0;
+      --primary: blue;
+      --primary-dark: blue;
       --bg: #000000;
       --bg-secondary: #111111;
       --bg-tertiary: #1c1c1e;
@@ -32,7 +41,6 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
       height: 100vh;
@@ -55,10 +63,8 @@
     .login-card {
       width: 100%;
       max-width: 360px;
-      background: var(--bg-secondary);
       border-radius: 16px;
       padding: 32px 24px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     }
 a{
   text-decoration: none;
@@ -88,7 +94,7 @@ a{
       text-align: center;
       color: var(--text-secondary);
       font-size: 14px;
-      margin-bottom: 28px;
+      margin-bottom: 15px;
     }
 
     .input-group {
@@ -202,13 +208,16 @@ a{
     }
 
     header .back-btn {
-      background: none;
-      border: none;
-      color: var(--primary);
-      font-size: 22px;
-      cursor: pointer;
-      padding: 4px 8px 4px 0;
-      margin-right: 15px;
+         background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 22px;
+    cursor: pointer;
+    padding: 4px;
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     }
 
     header .title {
@@ -407,8 +416,8 @@ a{
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      padding: 8px 12px 16px;
-      background: var(--bg);
+      padding: 8px;
+     background: var(--bg-secondary);
       border-top: 1px solid rgba(255,255,255,0.04);
     }
 
@@ -684,7 +693,8 @@ a{
 
 
 
-    /* Header menu and loan sharing */
+    /* Header menu and
+     loan sharing */
     header { position: relative; }
     .header-heading { flex: 1; min-width: 0; }
     .header-more {
@@ -733,7 +743,7 @@ a{
     .borrow-tools { width: 100%; max-width: 900px; margin: 0 auto; padding: 16px 16px 0; }
     .borrow-apply-card {
       grid-column: 1 / -1;
-      width: 100%; min-height: 124px; display: flex; align-items: center; gap: 14px;
+      width: 100%;display: flex; align-items: center; gap: 14px;
       padding: 18px; margin-bottom: 12px; text-align: left; cursor: pointer;
       color: var(--text); background: var(--bg-secondary); border: 1px solid var(--border);
       border-radius: 16px;border-radius: var(--radius);
@@ -741,7 +751,8 @@ a{
     .borrow-apply-card > span:nth-child(2) { display:flex; flex-direction:column; gap:5px; flex:1; min-width:0; }
     .borrow-apply-card strong { font-size: 16px; }
     .borrow-apply-card small { color: var(--text-secondary); font-size: 13px; }
-    .borrow-apply-icon { width: 48px; height: 48px; flex:0 0 48px; display:grid; place-items:center; border-radius:14px; background: color-mix(in srgb, var(--primary) 18%, transparent); color:var(--primary); font-size:28px; }
+    .borrow-apply-icon,.fee-calculator-launch > span:first-child {     color: var(--primary);
+    font-size: 28px; }
     .borrow-apply-arrow { color:var(--text-secondary); font-size:25px; }
     #borrow-search { margin-bottom: 4px; }
     .fee-calculator-launch {
@@ -749,11 +760,7 @@ a{
       padding:13px 15px; margin:8px 0 4px; border:1px solid var(--border);
       border-radius: var(--radius); background:var(--bg-secondary); color:var(--text); cursor:pointer;
     }
-    .fee-calculator-launch > span:first-child {
-      width:40px; height:40px; flex:0 0 40px; display:grid; place-items:center;
-      border-radius:12px; background:color-mix(in srgb,var(--primary) 16%,transparent);
-      color:var(--primary); font-size:22px; font-weight:700;
-    }
+  
     .fee-calculator-launch > span:nth-child(2) { display:flex; flex-direction:column; gap:4px; flex:1; min-width:0; }
     .fee-calculator-launch strong { font-size:14px; }
     .fee-calculator-launch small { color:var(--text-secondary); font-size:12px; line-height:1.4; }
@@ -762,14 +769,13 @@ a{
     .fee-result-row { display:flex; justify-content:space-between; gap:12px; padding:7px 0; font-size:14px; }
     .fee-result-row.total { border-top:1px solid var(--border); margin-top:6px; padding-top:13px; font-weight:700; font-size:16px; }
     .fee-rate-note { color:var(--text-secondary); font-size:12px; margin-top:8px; line-height:1.5; }
-    .chat-share-row { padding: 8px 12px max(12px, env(safe-area-inset-bottom, 0px)); background:var(--bg); }
+    .chat-share-row { padding: 8px 12px max(12px, env(safe-area-inset-bottom, 0px));     background: var(--bg-secondary);}
     .chat-share-btn { z-index: 1;
     position: relative;width:100%; padding:12px 16px; border:1px solid var(--primary); border-radius:12px; background:transparent; color:var(--primary); font-size:14px; font-weight:600; cursor:pointer; }
     .chat-share-btn:active { background:color-mix(in srgb, var(--primary) 15%, transparent); }
     body.light .header-menu { box-shadow:0 12px 32px rgba(0,0,0,.14); }
     @media (max-width: 420px) {
       .borrow-tools { padding:12px 12px 0; }
-      .borrow-apply-card { min-height:116px; padding:15px; }
     }
 
     /* Responsive layout and reliable scrolling */
@@ -827,9 +833,9 @@ a{
       width: 100%;
     }
     .services-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      align-content: start;
-      padding-bottom: 24px;
+     grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: start;
+    padding-bottom: 70px;
     }
     .settings-list { padding-bottom: 60px; }
     nav.bottom-nav {
@@ -861,7 +867,7 @@ a{
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
     }
-    .options-row { flex: 0 0 auto; padding-bottom: max(16px, env(safe-area-inset-bottom, 0px)); }
+    .options-row { flex: 0 0 auto;}
     .page-overlay { height: 100vh; height: 100dvh; }
     .page-content {
       min-height: 0;
@@ -876,7 +882,7 @@ a{
       --text: #171719;
       --text-secondary: #6e6e73;
       --bubble-bot: #e9e9ed;
-      --bubble-user: #2481cc;
+      --bubble-user: blue;
       --border: #d2d2d7;
     }
     body.light nav.bottom-nav, body.light header {
@@ -900,7 +906,6 @@ a{
         margin-right: auto;
       }
       .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .login-card { max-width: 400px; }
     }
 
     /* BS & MFI Lite: flatter, simpler interface */
@@ -910,7 +915,6 @@ a{
     .modal, .header-menu {
       box-shadow: none !important;
     }
-    .login-card { border: 1px solid var(--border); }
     .loan-item, .service-card, .settings-section,
     .borrow-apply-card, .fee-calculator-launch, .fee-result {
       border: 1px solid var(--border);
@@ -1113,7 +1117,7 @@ a{
   <!-- PAGE OVERLAYS -->
   <div class="page-overlay" id="page-overlay">
     <header>
-      <button class="back-btn" id="page-back"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M9.18,12l7.53,7.53q0.3,0.3 0.29,0.7t-0.31,0.7T16,21.23t-0.7-0.3L7.63,13.28q-0.27-0.27-0.4-0.61T7.09,12t0.13-0.67t0.4-0.61L15.3,3.05q0.3-0.3 0.71-0.29t0.71,0.31t0.3,0.7t-0.3,0.7L9.18,12Z"/></svg></button>
+      <button class="back-btn" id="page-back"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M7.37,12.75l5.17,5.17q0.22,0.22 0.22,0.52t-0.24,0.53Q12.29,19.19 12,19.2t-0.53-0.22L5.13,12.63q-0.14-0.14-0.2-0.3T4.88,12t0.06-0.34t0.2-0.3l6.34-6.34q0.21-0.21 0.51-0.21t0.54,0.21q0.23,0.23 0.23,0.53T12.53,6.1L7.37,11.25H18.75q0.32,0 0.53,0.22T19.5,12t-0.22,0.53t-0.53,0.22H7.37Z"/></svg></button>
       <div class="title" id="page-title">Page</div>
     </header>
     <div class="page-content" id="page-content"></div>
