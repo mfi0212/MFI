@@ -1248,7 +1248,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
         showSpecialNotice: "no",
         specialNoticeText: "",
         loans: [
-          { amount: 15000, interest: 2500, borrowed: "08-09-2025", return: "08-10-2026", overdueFee: 50 },
+          { amount: 15000, interest: 2500, borrowed: "08-09-2025", return: "08-10-2027", overdueFee: 50 },
         ],
         access: {
           "Delay It": true,
@@ -1600,6 +1600,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
         { id: "return", label: "Return on" },
         { id: "days", label: "Days left" },
         { id: "overdue", label: "Overdue fee" },
+        { id: "total", label: "Total amount" },
       ];
 
       const row = document.getElementById("options-row");
@@ -1665,7 +1666,8 @@ color-mix(in srgb, var(--primary) 19%, transparent);
         taken: "Taken on",
         return: "Return on",
         days: "Days left",
-        overdue: "Overdue fee"
+        overdue: "Overdue fee",
+        total: "Total to return"
       };
       addUserMsg(labels[opt]);
 
@@ -1684,6 +1686,23 @@ color-mix(in srgb, var(--primary) 19%, transparent);
           case "return":
             reply = `Return date: <b>${formatDate(loan.return)}</b>`;
             break;
+            case "total": {
+  const totalFine = getOverdueFine(loan);
+  const totalAmount =
+    Number(loan.amount || 0) +
+    Number(loan.interest || 0) +
+    totalFine;
+
+  reply = `
+    <div>
+      <p>Loan amount: <b>${formatMoney(loan.amount)}</b></p>
+      <p>Interest: <b>${formatMoney(loan.interest)}</b></p>
+      <p>Overdue fine: <b>${formatMoney(totalFine)}</b></p><br>
+      <p>Total amount to return: <b>${formatMoney(totalAmount)}</b></p>
+    </div>
+  `;
+  break;
+}
           case "days": {
             const d = daysLeft(loan.return);
             if (d < 0) reply = `⚠️ This loan is <b>overdue by ${Math.abs(d)} day(s)</b>.`;
@@ -1696,10 +1715,11 @@ color-mix(in srgb, var(--primary) 19%, transparent);
             const dailyFine = Math.max(0, Number(loan.overdueFee) || 0);
             const totalFine = getOverdueFine(loan);
             reply = overdueDays > 0
-              ? `Overdue by <b>${overdueDays} day(s)</b>.<br>Daily overdue fine: <b>${formatMoney(dailyFine)}</b><br>Total overdue fine until today: <b>${formatMoney(totalFine)}</b>`
-              : `No overdue fine yet. The daily fine is <b>${formatMoney(dailyFine)}</b> and starts after the return date.`;
+              ? `Overdue by <b>${overdueDays} day(s)</b><br><br>Total overdue fine until today: <b>${formatMoney(totalFine)}</b>`
+              : `You have no overdued, The daily fine is <b>${formatMoney(dailyFine)}</b> and starts after the return date.`;
             break;
           }
+          
         }
         addBotMsg(reply);
       }, 300);
