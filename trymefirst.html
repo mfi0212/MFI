@@ -900,11 +900,11 @@ color-mix(in srgb, var(--primary) 18%, transparent);
       flex: 1;
     }
     .chat-messages {
-     min-height: 160px;
+         min-height: 160px;
     max-height: none;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    padding-top: 100px;
+    padding-top: 5px;
     }
     .options-row { display: flex;
     gap: 8px;
@@ -1224,12 +1224,11 @@ color-mix(in srgb, var(--primary) 19%, transparent);
     text-align: center;
     display: flex;
     justify-content: center;
-    background: linear-gradient( 0deg, var(--bg), transparent);
     align-items: end;
     position: fixed;
     bottom: 0;
     padding: 15px;">
-     <nav class="bottom-nav" id="bottom-nav">
+     <nav class="bottom-nav" id="bottom-nav" style="background: linear-gradient( 0deg, var(--bg), transparent);">
       <button data-view="amounts" class="active">
         <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12,21.5q-1.97,0-3.71-0.75T5.28,18.72T3.25,15.71T2.5,12T3.25,8.3T5.28,5.28T8.29,3.25T12,2.5T15.7,3.25t3.02,2.03t2.03,3.02T21.5,12T20.75,15.7t-2.03,3.02t-3.02,2.03T12,21.5Zm0.45-2.9q0.2-0.2 0.2-0.48V17.6q1.16-0.16 2.11-0.87t0.94-2.17q0-1.05-0.62-1.86t-2.42-1.46q-1.58-0.54-2.09-0.93T10.06,9.2t0.53-1.15t1.46-0.44q0.56,0 0.98,0.21t0.71,0.56q0.18,0.22 0.42,0.31t0.46-0.01q0.29-0.12 0.4-0.39T14.96,7.77q-0.4-0.57-0.99-0.94T12.71,6.4V5.88q0-0.27-0.2-0.48t-0.48-0.2T11.55,5.4t-0.2,0.48V6.4Q10.06,6.65 9.38,7.44T8.69,9.2q0,1.13 0.68,1.81t2.23,1.24q1.59,0.58 2.18,1.05t0.58,1.25q0,0.94-0.68,1.37t-1.53,0.43q-0.71,0-1.29-0.36T9.9,14.96Q9.75,14.69 9.49,14.6t-0.5,0.01q-0.27,0.1-0.39,0.37t-0,0.52q0.42,0.84 1.09,1.34t1.61,0.7v0.58q0,0.27 0.2,0.48t0.48,0.2t0.48-0.2Z"/></svg>
         Amounts
