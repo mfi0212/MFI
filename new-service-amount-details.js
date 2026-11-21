@@ -1,4 +1,4 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('contextmenu', e => e.preventDefault());
     const users = {
       "Tony Montana": {
         password: "929",
@@ -33,7 +33,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
         }
       },
       "Tony Montana 3": {
-        password: "92129",
+        password: "1",
         displayName: "Tony Montana 2",
         premiumType: "Premium+",
         fixedInterest: 20,
@@ -47,10 +47,34 @@ document.addEventListener('contextmenu', e => e.preventDefault());
           url: "https://mfi0212.github.io/MFI/servoces.special.offer/eligible.offer"
         },
         showSpecialNotice: "yes",
-        specialNoticeText: "Welcome",
+        specialNoticeText: "WelcomeRoyal Heritage Haveli, a boutique hotel in Jaipur. Once a royal hunting lodge, this meticulously restored 18th-century mansion invites you",
         loans: [
-          { amount: 150000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+         
+           { amount: 150000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
           { amount: 155000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+           { amount: 150000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+          { amount: 155000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+           { amount: 150000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+          { amount: 155000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+           { amount: 150000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+          { amount: 155000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+           { amount: 150000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+          { amount: 155000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+           { amount: 150000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+          { amount: 155000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+           { amount: 150000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+          { amount: 155000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+           { amount: 150000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+          { amount: 155000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+           { amount: 150000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+          { amount: 155000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+           { amount: 150000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+          { amount: 155000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+           { amount: 150000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+          { amount: 155000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+           { amount: 150000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+          { amount: 155000, interest: 4500, borrowed: "08-09-2024", return: "08-10-2026", overdueFee: 50 },
+
         ],
         access: {
           "Delay It": true,
