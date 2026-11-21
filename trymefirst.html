@@ -3,29 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-   <title>BS&MFI Services | My account</title>
-    <link rel="icon" href="mfi.logo.png" />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Della+Respira&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Balthazar&family=Della+Respira&family=Gantari:ital,wght@0,100..900;1,100..900&family=Hahmlet:wght@100..900&family=Niconne&family=Stalemate&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-* {
-	font-family: 'Inter', system-ui, -apple-system, sans-serif;
-	margin:0; padding:0;box-sizing: border-box;
-	letter-spacing: 0.4px;
-}
+  <title>BS & MFI Lite</title>
+  <style>
     :root {
-         --primary: blue;
-    --primary-dark: blue;
-    --bg: white;
+      --primary: #2481cc;
+      --primary-dark: #1a6bb0;
       --bg: #000000;
-      --bg-secondary: #1f1f1fba;
+      --bg-secondary: #111111;
       --bg-tertiary: #1c1c1e;
       --text: #f5f5f7;
       --text-secondary: #a1a1a6;
       --bubble-bot: #1c1c1e;
-      --bubble-user: blue;
+      --bubble-user: #263b59;
       --border: #2c2c2e;
       --success: #4caf50;
       --danger: #e53935;
@@ -34,25 +23,14 @@
       --nav-height: 56px;
       --header-height: 56px;
     }
-* {
-            -webkit-tap-highlight-color: transparent;
-        }
-        body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
     }
-a {
-    text-decoration: none;
-    color: var(--text);
-}
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       background: var(--bg);
@@ -75,16 +53,28 @@ a {
     }
 
     .login-card {
-     width: 100%;
-    max-width: 360px;
+      width: 100%;
+      max-width: 360px;
+      background: var(--bg-secondary);
+      border-radius: 16px;
+      padding: 32px 24px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     }
-
+a{
+  text-decoration: none;
+}
     .login-logo {
-     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 15px auto;
-    color: white;
+      width: 72px;
+      height: 72px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 28px;
+      font-weight: 700;
+      color: white;
     }
 
     .login-title {
@@ -95,10 +85,10 @@ a {
     }
 
     .login-sub {
-          text-align: center;
-    color: var(--text-secondary);
-    font-size: 14px;
-    margin-bottom: 15px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin-bottom: 28px;
     }
 
     .input-group {
@@ -112,24 +102,12 @@ a {
       margin-bottom: 6px;
     }
 
-input#password-input {
-    width: 100%;
-    height: 48px;
-    padding: 0 15px;
-    border: none;
-    border-radius: 999px;
-    outline: none;
-    font-size: 18px;
-    box-sizing: border-box;
-    text-align: center;
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    background: var(--bg-secondary);
-}
     input[type="password"],
     input[type="text"],
     input[type="number"],
     input[type="date"],
     input[type="color"],
+    .borrow-tools input,
     select,
     textarea {
       width: 100%;
@@ -147,39 +125,37 @@ input#password-input {
       border-color: var(--primary);
     }
 
-   input[type="color"] {
-    padding: 0;
-    height: 44px;
-    cursor: pointer;
-    width: 40px;
-    background: transparent;
-}
-
- input[type="color"]::-webkit-color-swatch {
-    border: none;
-    border-radius: 50%;
-}
-
- input[type="color"]::-moz-color-swatch {
-    border: none;
-    border-radius: 50%;
+    input[type="color"] {
+      padding: 4px;
+      height: 44px;
+      cursor: pointer;
+    }
+.left svg {
+    display: none;
 }
     .btn {
-         width: 100%;
-    height: 48px;
-    margin-top: 15px;
-    border: none;
-    border-radius: 9999px;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-    color: #ffffff;
-    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
       background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      width: 100%;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
     }
 
     .btn-outline {
@@ -199,11 +175,11 @@ input#password-input {
     }
 
     .error-msg {
-     color: red;
-    font-size: 13px;
-    text-align: center;
-    margin-top: 12px;
-    min-height: 18px;
+      color: var(--danger);
+      font-size: 13px;
+      text-align: center;
+      margin-top: 12px;
+      min-height: 18px;
     }
 
     /* ========== APP SHELL ========== */
@@ -214,36 +190,26 @@ input#password-input {
     }
 
     header {
-    display: flex;
-    align-items: center;
-    padding: 15px 10px;
-    gap: 10px;
-    flex-shrink: 0;
-    z-index: 10;
+      position: relative;
+      height: var(--header-height);
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      flex-shrink: 0;
+      z-index: 10;
     }
 
     header .back-btn {
       background: none;
-    border: none;
-    color: var(--primary);
-    cursor: pointer;
-    backdrop-filter: blur(2px);
-    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-    filter: drop-shadow(0px 0px 6px #0000002b);
-    width: 45px;
-height: 45px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background: var(--bg-secondary);
+      border: none;
+      color: var(--primary);
+      font-size: 22px;
+      cursor: pointer;
+      padding: 4px 8px 4px 0;
+      margin-right: 15px;
     }
-button{
-  transition: all 0.1s ease-in-out;
-}
-    button:active {
-    transform: scale(0.90);
-}
 
     header .title {
       flex: 1;
@@ -253,9 +219,7 @@ button{
       overflow: hidden;
       text-overflow: ellipsis;
     }
-span.menu-option-icon {
-    display: inline-flex;
-}
+
     header .subtitle {
       font-size: 12px;
       color: var(--text-secondary);
@@ -272,26 +236,24 @@ span.menu-option-icon {
 
     /* Bottom Nav */
     nav.bottom-nav {
-          height: var(--nav-height);
-    background: var(--bg-secondary);
-    display: flex;
-    flex-shrink: 0;
-    z-index: 10;
     position: relative;
-    bottom: auto;
+    inset: auto;
+    flex: 0 0 auto;
+    min-height: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px));
+    height: auto;
+    padding: 5px;
     width: 100%;
-    padding-bottom: env(safe-area-inset-bottom, 0px);
+    z-index: 20;
     }
-button#back-btn svg,
-header .back-btn svg,
-.settings-item svg {
-    fill: var(--text);
+.settings-list h3 {
+    margin: 10px 0;
+    opacity: 60%;
 }
     nav.bottom-nav button {
       flex: 1;
       background: none;
       border: none;
-      color: var(--text);;
+      color: var(--text-secondary);
       font-size: 11px;
       display: flex;
       flex-direction: column;
@@ -299,12 +261,14 @@ header .back-btn svg,
       justify-content: center;
       gap: 3px;
       cursor: pointer;
-      border-radius: 999px;
       transition: color 0.2s;
     }
 
-   
-
+    nav.bottom-nav button.active {
+      color: var(--primary);
+      border-radius: 14px;
+      font-weight: 700;
+    }
     nav.bottom-nav button svg {
       transition: transform 0.18s ease;
       width: 24px;
@@ -326,33 +290,34 @@ header .back-btn svg,
       display: flex;
     }
 
-    /* Amounts List */
-    .loan-list {
-      padding: 5px;
+    .loan-item {
+      background: var(--bg-secondary);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: background 0.15s;
     }
 
-    .loan-item {
-    border-radius: 25px;
-    padding: 15px 10px;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    cursor: pointer;
-        transition: all 0.35s ease-in-out;
+    .loan-item:active {
+      background: var(--bg-tertiary);
     }
 
     .loan-avatar {
       width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 20px;
-    color: var(--text);
+      height: 48px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 16px;
+      color: white;
+      flex-shrink: 0;
     }
 
     .loan-info {
@@ -411,12 +376,12 @@ header .back-btn svg,
 
     .msg {
       max-width: 85%;
-    padding: 10px 12px;
-    border-radius: 15px;
-    font-size: 15px;
-    line-height: 1.4;
-    position: relative;
-    word-wrap: break-word;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 15px;
+      line-height: 1.4;
+      position: relative;
+      word-wrap: break-word;
     }
 
     .msg.bot {
@@ -426,31 +391,37 @@ header .back-btn svg,
     }
 
     .msg.user {
-         background: var(--primary);
-    align-self: flex-end;
-    border-bottom-right-radius: 4px;
+      background: var(--bubble-user);
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
     }
 
     .msg .time {
       font-size: 11px;
-    margin-top: 4px;
-    text-align: right;
-    opacity: 60%;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      text-align: right;
+    }
+
+    .options-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 8px 12px 16px;
+      background: var(--bg);
+      border-top: 1px solid rgba(255,255,255,0.04);
     }
 
     .option-btn {
-     background: var(--bg-secondary);
-    border: none;
+      background: var(--bg-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     color: var(--text);
-    padding: 10px 15px;
-    border-radius: 99px;
-    font-size: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
     cursor: pointer;
     transition: background 0.15s, border-color 0.15s;
-    white-space: nowrap;
-    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-    filter: drop-shadow(0px 0px 6px #0000002b);
-    backdrop-filter: blur(2px);
+      transition: background 0.15s, border-color 0.15s;
     }
 
     .option-btn:active,
@@ -470,13 +441,13 @@ header .back-btn svg,
     }
 
     .service-card {
-     background: var(--bg-secondary);
-    border-radius: 20px;
-    padding: 20px 15px;
-    text-align: center;
-    cursor: pointer;
-    transition: background 0.15s;
-    border: 1px solid transparent;
+      background: var(--bg-secondary);
+      border-radius: var(--radius);
+      padding: 18px 14px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.15s;
+      border: 1px solid transparent;
     }
 
     .service-card:active {
@@ -492,14 +463,11 @@ header .back-btn svg,
       font-size: 28px;
       margin-bottom: 8px;
     }
-span.menu-option-icon svg {
-    fill: var(--text);
-}
+
     .service-card h4 {
-      font-size: 15px;
-    font-weight: 800;
-    margin-bottom: 4px;
-    color: var(--primary);
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 4px;
     }
 
     .service-card p {
@@ -513,8 +481,6 @@ span.menu-option-icon svg {
     }
     .settings-section {
       margin-bottom: 20px;
-    background: var(--bg-secondary);
-    border-radius: 25px;
     }
 
     .settings-section h3 {
@@ -526,15 +492,18 @@ span.menu-option-icon svg {
     }
 
     .settings-item {
-      padding: 14px 16px;
+      background: var(--bg-secondary);
+      padding: 14px 14px 14px 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       cursor: pointer;
       border-bottom: 1px solid rgba(255,255,255,0.03);
     }
-
-
+    .settings-item:last-of-type {
+      border-radius: 0 0 var(--radius) var(--radius);
+      border-bottom: none;
+    }
     .settings-item .left {
       display: flex;
       align-items: center;
@@ -545,17 +514,12 @@ span.menu-option-icon svg {
       color: var(--text-secondary);
       font-size: 18px;
     }
-.settings-list h3 {
-    text-transform: uppercase;
-    opacity: 55%;
-    font-size: 13px;
-    font-weight: 400;
-    padding: 5px 15px;
-}
+
     .color-picker-row {
       display: flex;
       gap: 10px;
       padding: 12px 16px;
+      background: var(--bg-secondary);
       flex-wrap: wrap;
       align-items: center;
     }
@@ -600,29 +564,24 @@ span.menu-option-icon svg {
     }
 
     .page-content {
-          flex: 1;
-    overflow-y: auto;
-    padding: 0px 16px;
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--text-secondary);
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 16px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-secondary);
     }
 
     .page-content h2 {
-     font-size: 20px;
-    margin-bottom: 16px;
-    color: var(--primary);
-    position: sticky;
-    top: -21px;display: none;
-    background: linear-gradient(180deg, var(--bg), transparent);
-    text-align: center;
-    padding: 15px 0 0 0;
+      color: var(--text);
+      font-size: 20px;
+      margin-bottom: 16px;
     }
 
     .page-content h3 {
+      color: var(--text);
       font-size: 16px;
-    margin: 20px 0 8px;
-    color: var(--primary);
+      margin: 20px 0 8px;
     }
 
     .page-content p {
@@ -700,7 +659,7 @@ span.menu-option-icon svg {
     /* Theme light override */
     body.light {
       --bg: #ffffff;
-      --bg-secondary: #ffffffb5;
+      --bg-secondary: #f0f2f5;
       --bg-tertiary: #e4e6eb;
       --text: #050505;
       --text-secondary: #65676b;
@@ -718,78 +677,78 @@ span.menu-option-icon svg {
       background: #d8dadf;
     }
 
+    body.light nav.bottom-nav,
+    body.light header {
+      border-color: #ced0d4;
+    }
+
+
+
+    /* Header menu and loan sharing */
+    header { position: relative; }
     .header-heading { flex: 1; min-width: 0; }
     .header-more {
-      width: 45px;
-height: 45px;
+         width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    border: 0;
     border-radius: 50%;
-    align-items: center;
+    background: transparent;
+    color: var(--text);
+    font-size: 25px;
+    cursor: pointer;
+    display: flex;
     justify-content: center;
-    font-size: 23px;
-    transition: transform .18s ease, background .18s ease;
-    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-    filter: drop-shadow(0px 0px 6px #0000002b);
-    background: var(--bg-secondary);
-    }
-    .header-more svg{
-      fill: var(--text);
+    align-items: center;
     }
     .header-more:active { background: var(--bg-tertiary); }
-
-    .borrow-tools {width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 10px 10px 0 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;}
-    .borrow-apply-card,
-    .fee-calculator-launch  {
-        grid-column: 1 / -1;
+    .header-menu {
+    display: none;
+    position: absolute;
+    z-index: 50;
+    right: 5px;
+    top: 5px;
+    width: min(140px, calc(100vw - 24px));
+    padding: 0;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .35);
+}
+    .header-menu.open { display: block; }
+    .header-menu button,.header-menu a {
+          display: block;
     width: 100%;
-    min-height: 75px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 12px;
+    padding: 12px;
     text-align: left;
-    cursor: pointer;
+    border: 0;
+    background: transparent;
     color: var(--text);
-    background: var(--bg-secondary);
-    border: none;
-    border-radius: 20px;
-    padding: 0 15px;
-    gap: 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 8px;
+    }
+    .header-menu button:active, .header-menu button:hover,
+    .header-menu a:active, .header-menu a:hover { background: var(--bg-secondary); }
+    .borrow-tools { width: 100%; max-width: 900px; margin: 0 auto; padding: 16px 16px 0; }
+    .borrow-apply-card {
+      grid-column: 1 / -1;
+      width: 100%; min-height: 124px; display: flex; align-items: center; gap: 14px;
+      padding: 18px; margin-bottom: 12px; text-align: left; cursor: pointer;
+      color: var(--text); background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: 16px;border-radius: var(--radius);
     }
     .borrow-apply-card > span:nth-child(2) { display:flex; flex-direction:column; gap:5px; flex:1; min-width:0; }
     .borrow-apply-card strong { font-size: 16px; }
     .borrow-apply-card small { color: var(--text-secondary); font-size: 13px; }
-    .borrow-apply-icon { width: 48px;
-    height: 48px;
-    display: grid;
-    place-items: center;
-    border-radius: 14px;
-    background: 
-color-mix(in srgb, var(--primary) 18%, transparent);
-    color: var(--primary);
-    font-size: 34px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    line-height: 0;}
+    .borrow-apply-icon { width: 48px; height: 48px; flex:0 0 48px; display:grid; place-items:center; border-radius:14px; background: color-mix(in srgb, var(--primary) 18%, transparent); color:var(--primary); font-size:28px; }
     .borrow-apply-arrow { color:var(--text-secondary); font-size:25px; }
-    #borrow-search { margin-bottom: 4px;
-    background: var(--bg-secondary);
-    border: none;
-    padding: 12px 20px;
-    width: 100%;
-    font-size: 17px;color: var(--text);
-    backdrop-filter: blur(2px);    outline: none;
-    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-    filter: drop-shadow(0px 0px 6px #0000002b);
-    border-radius: 999px;}
-   
+    #borrow-search { margin-bottom: 4px; }
+    .fee-calculator-launch {
+      width:100%; display:flex; align-items:center; gap:12px; text-align:left;
+      padding:13px 15px; margin:8px 0 4px; border:1px solid var(--border);
+      border-radius: var(--radius); background:var(--bg-secondary); color:var(--text); cursor:pointer;
+    }
     .fee-calculator-launch > span:first-child {
       width:40px; height:40px; flex:0 0 40px; display:grid; place-items:center;
       border-radius:12px; background:color-mix(in srgb,var(--primary) 16%,transparent);
@@ -803,34 +762,17 @@ color-mix(in srgb, var(--primary) 18%, transparent);
     .fee-result-row { display:flex; justify-content:space-between; gap:12px; padding:7px 0; font-size:14px; }
     .fee-result-row.total { border-top:1px solid var(--border); margin-top:6px; padding-top:13px; font-weight:700; font-size:16px; }
     .fee-rate-note { color:var(--text-secondary); font-size:12px; margin-top:8px; line-height:1.5; }
-    .chat-solution-ad-wrap { padding: 10px 12px 0; background: var(--bg); }
-    .chat-solution-ad {
-      width: 100%; display: flex; align-items: center; gap: 12px; padding: 12px 14px;
-      border: 1px solid var(--border); border-radius: 15px; text-align: left;
-      color: var(--text); background: var(--bg-secondary); cursor: pointer;
-      box-shadow: 0 3px 12px rgba(0,0,0,.08); transition: transform .15s ease, border-color .15s ease;
+    .chat-share-row { padding: 8px 12px max(12px, env(safe-area-inset-bottom, 0px)); background:var(--bg); }
+    .chat-share-btn { z-index: 1;
+    position: relative;width:100%; padding:12px 16px; border:1px solid var(--primary); border-radius:12px; background:transparent; color:var(--primary); font-size:14px; font-weight:600; cursor:pointer; }
+    .chat-share-btn:active { background:color-mix(in srgb, var(--primary) 15%, transparent); }
+    body.light .header-menu { box-shadow:0 12px 32px rgba(0,0,0,.14); }
+    @media (max-width: 420px) {
+      .borrow-tools { padding:12px 12px 0; }
+      .borrow-apply-card { min-height:116px; padding:15px; }
     }
-    .chat-solution-ad:active { border-color: var(--primary); }
-    .chat-solution-ad-icon { width: 42px; height: 42px; flex: 0 0 42px; display:grid; place-items:center; border-radius:12px; background:color-mix(in srgb,var(--primary) 15%,transparent); font-size:23px; }
-    .chat-solution-ad-copy { display:flex; flex-direction:column; gap:3px; flex:1; min-width:0; }
-    .chat-solution-ad-copy small { color:var(--text-secondary); font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
-    .chat-solution-ad-copy strong { font-size:14px; }
-    .chat-solution-ad-copy span { color:var(--text-secondary); font-size:12px; line-height:1.35; }
-    .chat-solution-ad-arrow { color:var(--primary); font-size:22px; }
-    .chat-share-row { padding: 0 12px max(12px, env(safe-area-inset-bottom, 0px));z-index: 1;;
-    background: var(--bg);}
-    .chat-share-btn { 
-      width: 100%;
-    padding: 12px 16px;
-    border: none;
-    border-radius: 22px;
-    background: var(--primary);
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    color: var(--text);
-    max-width: 535px;
-    }
+
+    /* Responsive layout and reliable scrolling */
     html, body {
       width: 100%;
       min-height: 100%;
@@ -859,6 +801,7 @@ color-mix(in srgb, var(--primary) 18%, transparent);
     header {
       min-height: var(--header-height);
       height: auto;
+      padding-top: env(safe-area-inset-top, 0px);
     }
     main {
       min-height: 0;
@@ -867,39 +810,38 @@ color-mix(in srgb, var(--primary) 18%, transparent);
       overflow-y: auto;
       overscroll-behavior: contain;
       -webkit-overflow-scrolling: touch;
-      padding-bottom: 0;scrollbar-width: none;
+      padding-bottom: 0;
     }
     .view {
       height: auto;
       min-height: 100%;
       min-width: 0;
       flex: 1 0 auto;
-          padding-top: 65px;
     }
     .view.active { display: flex; }
     #view-amounts, #view-borrow, #view-settings { overflow: visible; }
     .loan-list, .services-grid, .settings-list {
-     height: auto;
-    min-height: 0;
-    overflow: visible;
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 75px;
+      height: auto;
+      min-height: 0;
+      overflow: visible;
+      width: 100%;
     }
     .services-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-content: start;
-    padding: 10px 10px 100px 10px;
+      align-content: start;
+      padding-bottom: 24px;
     }
+    .settings-list { padding-bottom: 60px; }
     nav.bottom-nav {
-      position: relative;
-      inset: auto;
-      flex: 0 0 auto;
-      min-height: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px));
-      height: auto;
-      padding: 4px 4px env(safe-area-inset-bottom, 0px);
-      width: 100%;
-      z-index: 20;
+         position: relative;
+    inset: auto;
+    flex: 0 0 auto;
+    min-height: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px));
+    height: auto;
+    width: 100%;
+    z-index: 20;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 5px;
     }
     nav.bottom-nav button {
       min-width: 0;
@@ -914,20 +856,12 @@ color-mix(in srgb, var(--primary) 18%, transparent);
       flex: 1;
     }
     .chat-messages {
-         min-height: 160px;
-    max-height: none;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-top: 5px;
+      min-height: 160px;
+      max-height: none;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
-    .options-row { display: flex;
-    gap: 8px;
-    padding: 15px 10px;
-    position: sticky;
-    bottom: 0px;
-    overflow: scroll;
-    scrollbar-width: none;
-    background: linear-gradient( 0deg, var(--bg), transparent);}
+    .options-row { flex: 0 0 auto; padding-bottom: max(16px, env(safe-area-inset-bottom, 0px)); }
     .page-overlay { height: 100vh; height: 100dvh; }
     .page-content {
       min-height: 0;
@@ -936,166 +870,89 @@ color-mix(in srgb, var(--primary) 18%, transparent);
     }
     .toast { bottom: calc(var(--nav-height) + 16px + env(safe-area-inset-bottom, 0px)); }
     body.light {
-      --bg: #ffffff;
-    --bg-secondary: #ffffffb5;
-    --bg-tertiary: #e9e9ed;
-    --text: #171719;
-    --text-secondary: #6e6e73;
-    --bubble-bot: #e9e9ed;
-    --bubble-user: blue;
-    --border: #d2d2d7;
+      --bg: #f5f5f7;
+      --bg-secondary: #ffffff;
+      --bg-tertiary: #e9e9ed;
+      --text: #171719;
+      --text-secondary: #6e6e73;
+      --bubble-bot: #e9e9ed;
+      --bubble-user: #2481cc;
+      --border: #d2d2d7;
     }
- 
-   
-    :root {
-      --float-shadow: 0 10px 34px rgba(0,0,0,.22);
-      --float-blur: saturate(180%) blur(22px);
+    body.light nav.bottom-nav, body.light header {
+      background: var(--bg-secondary);
+      border-color: var(--border);
     }
-    #app {
-      position: relative;
-      isolation: isolate;
+    @media (max-width: 380px) {
+      :root { --header-height: 52px; --nav-height: 54px; }
+      header { padding-left: 12px; padding-right: 12px; }
+      .services-grid { gap: 9px; padding: 12px; }
+      .service-card { padding: 15px 9px; }
+      .service-card h4 { font-size: 13px; overflow-wrap: anywhere; }
+      .service-card p { font-size: 11px; }
+      nav.bottom-nav button { font-size: 10px; }
     }
-    #app-header {
-     flex: 0 0 auto;
-    min-height: 58px;
-    height: auto;
-    z-index: 30;
-    position: fixed;
-    width: 100%;
-    background: linear-gradient( 180deg, var(--bg), transparent);
-    left: 0;
-    top: 0;
-    text-align: center;
-    padding: 15px 10px;
-    border: none;
+    @media (min-width: 760px) {
+      .loan-list, .services-grid, .settings-list, .page-content {
+        width: 100%;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .login-card { max-width: 400px; }
     }
-     #app-header::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0px;
-    z-index: -1;
-    pointer-events: none;
-    backdrop-filter: blur(10px);
-    -webkit-mask-image: linear-gradient( to bottom, black 0%, black 40%, rgb(0 0 0 / 94%) 65%, transparent 100% );
-}
-    #app-header .title { font-size: 16px; letter-spacing: -.2px; }
-    #app-header .subtitle { margin-top: 2px; }
-    .header-more {
-     width: 45px;
-height: 45px;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    font-size: 23px;
-    transition: transform .18s ease, background .18s ease;
-    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-    filter: drop-shadow(0px 0px 6px #0000002b);
-    border: none;
-    color: var(--text);
-    backdrop-filter: blur(2px);
+
+    /* BS & MFI Lite: flatter, simpler interface */
+    :root { --radius:0px; }
+    .login-card, .loan-item, .service-card, .settings-section,
+    .borrow-apply-card, .fee-calculator-launch, .fee-result,
+    .modal, .header-menu {
+      box-shadow: none !important;
     }
-    .header-menu {
-     position: absolute;
-    z-index: 50;
-    width: min(220px, calc(100vw - 24px));
-    display: none;
-    right: 7px;
-    padding: 6px;
-    border-radius: 30px;
-    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-    filter: drop-shadow(0px 0px 6px #0000002b);
-    backdrop-filter: blur(7px);
-    background: var(--bg-secondary);
-    top: 14px;
+    .login-card { border: 1px solid var(--border); }
+    .loan-item, .service-card, .settings-section,
+    .borrow-apply-card, .fee-calculator-launch, .fee-result {
+      border: 1px solid var(--border);
     }
-   
-    .header-menu.open { display: block; }
-    .header-menu button {
-     display: block;
-    width: 100%;
-    text-align: left;
-    border: 0;
-    background: transparent;
-    color: var(--text);
-    font-size: 16px;
-    cursor: pointer;
-    min-height: 44px;
-    border-radius: 999px;
-    padding: 10px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
+    .loan-item, .service-card, .settings-item,
+    nav.bottom-nav button, .btn, .color-swatch {
+      transition: none !important;
+      animation: none !important;
     }
-    .header-menu a {
-    display: block;
-    width: 100%;
-    text-align: left;
-    border: 0;
-    background: transparent;
-    color: var(--text);
-    font-size: 16px;
-    cursor: pointer;
-    min-height: 44px;
-    border-radius: 999px;
-    padding: 10px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
-}
-    .header-menu button:active, .header-menu button:hover {     background: var(--bg);}
-    .header-menu a:active, .header-menu a:hover {     background: var(--bg);}
-    main {
-      background: transparent;
-      flex: 1 1 0;
-    }
-    nav.bottom-nav {
-      align-self: center;
-    flex: 0 0 auto;
-    min-height: 60px;
-    height: auto;
-    padding: 5px;
-    gap: 0;
-    overflow: hidden;
-    position: fixed;
-    bottom: 15px;
-    backdrop-filter: blur(2px);
-    box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
-    filter: drop-shadow(0px 0px 6px #0000002b);
-    border-radius: 999px;
-    width: 85%;
-    max-width: 400px;
-    }
-    nav.bottom-nav button {
-      flex: 1 1 92px;
-      min-width: 78px;
-      min-height: 50px;
-      padding: 6px 13px;
-      gap: 3px;
-      font-size: 10px;
-      font-weight: 600;
-      transition: background .2s ease, color .2s ease, transform .2s ease;
-    }
+    .color-picker-row { gap: 14px; }
+    .color-swatch { width: 30px; height: 30px; }
+    .color-custom-wrap, input[type="color"] { display: none !important; }
     nav.bottom-nav button.active {
-         border-radius: 999px;
-    background: 
-color-mix(in srgb, var(--primary) 19%, transparent);
-    color: var(--primary);
-    fill: var(--primary);
+        border-radius: 9px;
     }
-    nav.bottom-nav button svg { width: 21px; height: 21px; }
-  
+    body:not(.light) {
+      --bg: #000000;
+      --bg-secondary: #101010;
+      --bg-tertiary: #1a1a1a;
+      --text: #f5f5f5;
+      --text-secondary: #a5a5a5;
+      --border: #292929;
+    }
+    body.light {
+      --bg: #f5f5f5;
+      --bg-secondary: #ffffff;
+      --bg-tertiary: #eeeeee;
+      --text: #171717;
+      --text-secondary: #666666;
+      --border: #dddddd;
+    }
+    @media (max-width: 520px) {
+      .login-card { padding: 24px 18px; }
+      .loan-item { padding: 13px; gap: 10px; }
+    }
   </style>
 </head>
+
 <body>
-  <!-- LOGIN -->
   <div id="login-view">
     <div class="login-card">
-      <div class="login-logo"><img style="    width: 140px;
+      <div class="login-logo"><img style="    width: 90px;
     border-radius: 50%;" src="https://mfi0212.github.io/MFI/mfi.gif" alt=""></div>
       <div class="login-title">Password Required</div>
       <div class="login-sub">Enter password to continue</div>
@@ -1110,7 +967,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
   <!-- APP -->
   <div id="app">
     <header id="app-header">
-      <button class="back-btn" id="back-btn" style="display:none;padding: 2px 0 0 0;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M9.18,12l7.53,7.53q0.3,0.3 0.29,0.7t-0.31,0.7T16,21.23t-0.7-0.3L7.63,13.28q-0.27-0.27-0.4-0.61T7.09,12t0.13-0.67t0.4-0.61L15.3,3.05q0.3-0.3 0.71-0.29t0.71,0.31t0.3,0.7t-0.3,0.7L9.18,12Z"/></svg></button>
+      <button class="back-btn" id="back-btn" style="display:none;padding: 2px 0 0 0;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M7.37,12.75l5.17,5.17q0.22,0.22 0.22,0.52t-0.24,0.53Q12.29,19.19 12,19.2t-0.53-0.22L5.13,12.63q-0.14-0.14-0.2-0.3T4.88,12t0.06-0.34t0.2-0.3l6.34-6.34q0.21-0.21 0.51-0.21t0.54,0.21q0.23,0.23 0.23,0.53T12.53,6.1L7.37,11.25H18.75q0.32,0 0.53,0.22T19.5,12t-0.22,0.53t-0.53,0.22H7.37Z"/></svg></button>
       <div class="header-heading">
         <div class="title" id="header-title">Amounts</div>
         <div class="subtitle" id="header-sub"></div>
@@ -1138,8 +995,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
       </div>
 
       <div class="view" id="view-borrow">
-        <div class="borrow-tools" style="position: sticky;
-    top: 55px;">
+        <div class="borrow-tools" style="">
           <input type="search" id="borrow-search" placeholder="Search borrowing solutions..." aria-label="Search borrowing solutions" />
         </div>
         <div class="borrow-tools">
@@ -1235,8 +1091,8 @@ color-mix(in srgb, var(--primary) 19%, transparent);
     align-items: end;
     position: fixed;
     bottom: 0;
-    background: linear-gradient( 0deg, var(--bg), transparent);
-    padding: 15px;">
+    background: var(--bg-secondary);
+    padding: 0px;">
      <nav class="bottom-nav" id="bottom-nav">
       <button data-view="amounts" class="active">
         <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12,21.5q-1.97,0-3.71-0.75T5.28,18.72T3.25,15.71T2.5,12T3.25,8.3T5.28,5.28T8.29,3.25T12,2.5T15.7,3.25t3.02,2.03t2.03,3.02T21.5,12T20.75,15.7t-2.03,3.02t-3.02,2.03T12,21.5Zm0.45-2.9q0.2-0.2 0.2-0.48V17.6q1.16-0.16 2.11-0.87t0.94-2.17q0-1.05-0.62-1.86t-2.42-1.46q-1.58-0.54-2.09-0.93T10.06,9.2t0.53-1.15t1.46-0.44q0.56,0 0.98,0.21t0.71,0.56q0.18,0.22 0.42,0.31t0.46-0.01q0.29-0.12 0.4-0.39T14.96,7.77q-0.4-0.57-0.99-0.94T12.71,6.4V5.88q0-0.27-0.2-0.48t-0.48-0.2T11.55,5.4t-0.2,0.48V6.4Q10.06,6.65 9.38,7.44T8.69,9.2q0,1.13 0.68,1.81t2.23,1.24q1.59,0.58 2.18,1.05t0.58,1.25q0,0.94-0.68,1.37t-1.53,0.43q-0.71,0-1.29-0.36T9.9,14.96Q9.75,14.69 9.49,14.6t-0.5,0.01q-0.27,0.1-0.39,0.37t-0,0.52q0.42,0.84 1.09,1.34t1.61,0.7v0.58q0,0.27 0.2,0.48t0.48,0.2t0.48-0.2Z"/></svg>
@@ -1340,10 +1196,12 @@ color-mix(in srgb, var(--primary) 19%, transparent);
     let currentView = "amounts";
     let loanSortOrder = "default";
 
-    const COLORS = [
-      "blue", "#4caf50", "#e53935", "#ff9800",
-      "#9c27b0", "#00bcd4", "#ff5722", "#607d8b"
-    ];
+const COLORS = [
+  "blue",
+  "purple",
+  "green",
+  "red"
+];
 
     function parseDate(str) {
       const [d, m, y] = str.split("-").map(Number);
@@ -1393,7 +1251,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
       const g = Math.max(0, parseInt(c.substr(2, 2), 16) - 30);
       const b = Math.max(0, parseInt(c.substr(4, 2), 16) - 30);
       document.documentElement.style.setProperty("--primary-dark", `rgb(${r},${g},${b})`);
-      localStorage.setItem("bsmfi_primary", color);
+      localStorage.setItem("bsmfi_primary_full", color);
     }
 
     document.getElementById("login-btn").addEventListener("click", tryLogin);
@@ -1454,7 +1312,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
       if (currentUser.customui === "yes") {
         colorSection.style.display = "block";
 
-        const savedColor = localStorage.getItem("bsmfi_primary") || "blue";
+        const savedColor = localStorage.getItem("bsmfi_primary_full") || "blue";
         setPrimaryColor(savedColor);
 
         const picker = document.getElementById("color-picker");
@@ -1490,7 +1348,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
       } else {
         colorSection.style.display = "none";
         setPrimaryColor("blue");
-        localStorage.removeItem("bsmfi_primary");
+        localStorage.removeItem("bsmfi_primary_full");
       }
 
       const notice = document.getElementById("special-notice");
@@ -1848,12 +1706,10 @@ function configureHeaderMenu() {
     amounts: [
       {
         label: "Report an issue",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12,16.71q0.34,0 0.58-0.23t0.23-0.57t-0.23-0.57T12,15.1t-0.58,0.23T11.19,15.9t0.23,0.57T12,16.71Zm0.53-3.7q0.22-0.22 0.22-0.53V7.94q0-0.32-0.22-0.53T12,7.19T11.47,7.41T11.25,7.94v4.54q0,0.32 0.22,0.53T12,13.23t0.53-0.22ZM9.21,20.5q-0.37,0-0.7-0.14T7.93,19.97L4.03,16.07q-0.25-0.25-0.39-0.58T3.5,14.79V9.21q0-0.37 0.14-0.7T4.03,7.93L7.93,4.03Q8.18,3.78 8.51,3.64T9.21,3.5h5.58q0.37 0 0.7 0.14t0.58 0.39l3.91,3.91q0.25 0.25 0.39 0.58t0.14 0.7v5.58q0 0.37-0.14 0.7t-0.39 0.58l-3.91,3.91q-0.25 0.25-0.58 0.39t-0.7 0.14H9.21ZM9.1,19h5.8L19,14.9V9.1L14.9,5H9.1L5,9.1v5.8L9.1,19ZM12,12Z"/></svg>`,
         action: () => openPage("issue")
       },
       {
         label: "High to low",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M3.03,17.26q-0.23-0.23-0.22-0.53t0.22-0.51l5.04-5.11q0.52-0.53 1.28-0.53t1.29,0.53l2.5,2.51q0.09,0.09 0.21,0.09t0.22-0.09l5.39-5.33H16.75q-0.32,0-0.53-0.22T16,7.54T16.22,7t0.53-0.22H20.6q0.39 0 0.65 0.26T21.5,7.69v3.85q0,0.32-0.22,0.53t-0.53,0.22t-0.53-0.21T20,11.55V9.34l-5.37,5.37q-0.52,0.52-1.28,0.52t-1.28-0.52l-2.5-2.5q-0.09-0.09-0.22-0.09T9.13,12.21L4.08,17.26q-0.22,0.22-0.53,0.22T3.03,17.26Z"/></svg>`,
         action: () => {
           loanSortOrder = "high";
           renderLoanList();
@@ -1862,7 +1718,6 @@ function configureHeaderMenu() {
       },
       {
         label: "Low to high",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M18.97,16.05l-5.39-5.33q-0.1-0.09-0.22-0.09t-0.21,0.09l-2.5,2.5q-0.53,0.53-1.29,0.53T8.07,13.21L3.03,8.13Q2.82,7.92 2.81,7.61T3.03,7.08Q3.24,6.86 3.55,6.86T4.08,7.08l5.05,5.05q0.09,0.09 0.22,0.09t0.22-0.09l2.5-2.5q0.52-0.52 1.28-0.52t1.28,0.52L20,14.99V12.8q0-0.32 0.22-0.53t0.53-0.22t0.53,0.22T21.5,12.8v3.85q0,0.39-0.26,0.65T20.6,17.55H16.75q-0.32,0-0.53-0.22T16,16.8t0.22-0.53t0.53-0.22h2.22Z"/></svg>`,
         action: () => {
           loanSortOrder = "low";
           renderLoanList();
@@ -1871,7 +1726,6 @@ function configureHeaderMenu() {
       },
       {
         label: "Amount",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M11.47,20.28q-0.22-0.22-0.22-0.53v-7h-7q-0.32,0-0.53-0.22T3.5,12t0.22-0.53t0.53-0.22h7v-7q0-0.32 0.22-0.53T12,3.5t0.53,0.22t0.22,0.53v7h7q0.32,0 0.53,0.22T20.5,12t-0.22,0.53t-0.53,0.22h-7v7q0,0.32-0.22,0.53T12,20.5t-0.53-0.22Z"/></svg>`,
         href: "https://docs.google.com/forms/d/e/1FAIpQLSezI77FKZVj_eC7fv4-8V7hIgzrg3nZedZ_avBXG5xiPbcXNA/viewform"
       }
     ],
@@ -1879,12 +1733,10 @@ function configureHeaderMenu() {
     borrow: [
       {
         label: "Report an issue",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12,16.71q0.34,0 0.58-0.23t0.23-0.57t-0.23-0.57T12,15.1t-0.58,0.23T11.19,15.9t0.23,0.57T12,16.71Zm0.53-3.7q0.22-0.22 0.22-0.53V7.94q0-0.32-0.22-0.53T12,7.19T11.47,7.41T11.25,7.94v4.54q0,0.32 0.22,0.53T12,13.23t0.53-0.22ZM9.21,20.5q-0.37,0-0.7-0.14T7.93,19.97L4.03,16.07q-0.25-0.25-0.39-0.58T3.5,14.79V9.21q0-0.37 0.14-0.7T4.03,7.93L7.93,4.03Q8.18,3.78 8.51,3.64T9.21,3.5h5.58q0.37 0 0.7 0.14t0.58 0.39l3.91,3.91q0.25 0.25 0.39 0.58t0.14 0.7v5.58q0 0.37-0.14 0.7t-0.39 0.58l-3.91,3.91q-0.25 0.25-0.58 0.39t-0.7 0.14H9.21ZM9.1,19h5.8L19,14.9V9.1L14.9,5H9.1L5,9.1v5.8L9.1,19ZM12,12Z"/></svg>`,
         action: () => openPage("issue")
       },
       {
         label: "All solutions",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M15.84,11.85L12.17,8.18q-0.14-0.14-0.2-0.3T11.92,7.54t0.06-0.34t0.2-0.3l3.67-3.67q0.14-0.14 0.3-0.2t0.34-0.06t0.34,0.06t0.3,0.2l3.67,3.67q0.14,0.14 0.2,0.3t0.06,0.34T20.98,7.88t-0.2,0.3l-3.67,3.67q-0.14,0.14-0.3,0.2T16.48,12.1t-0.34-0.06t-0.3-0.2ZM3.81,9.9V4.71q0-0.38 0.26-0.64T4.71,3.81H9.9q0.38 0 0.64 0.26t0.26,0.64V9.9q0 0.38-0.26,0.64T9.9,10.81H4.71q-0.38 0-0.64-0.26T3.81,9.9Zm9.38,9.38V14.1q0-0.38 0.26-0.64t0.64-0.26h5.19q0.38 0 0.64,0.26t0.26,0.64v5.19q0 0.38-0.26,0.64t-0.64,0.26H14.1q-0.38 0-0.64-0.26t-0.26-0.64Zm-9.38,0V14.1q0-0.38 0.26-0.64t0.64-0.26H9.9q0.38 0 0.64,0.26t0.26,0.64v5.19q0 0.38-0.26,0.64T9.9,20.19H4.71q-0.38 0-0.64-0.26T3.81,19.29Zm1.5-9.98h4v-4h-4v4ZM16.5,10.39l2.83-2.82L16.5,4.74L13.68,7.57l2.82,2.82Zm-1.81,8.3h4v-4h-4v4Zm-9.38,0h4v-4h-4v4Zm4-9.38Zm4.37-1.74ZM9.31,14.69Zm5.38,0Z"/></svg>`,
         href: "https://mfi0212.github.io/MFI/service.solutions/all.solution"
       }
     ],
@@ -1892,12 +1744,10 @@ function configureHeaderMenu() {
     chat: [
       {
         label: "Report an issue",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12,16.71q0.34 0 0.58-0.23t0.23-0.57t-0.23-0.57T12,15.1t-0.58,0.23T11.19,15.9t0.23,0.57T12,16.71Zm0.53-3.7q0.22-0.22 0.22-0.53V7.94q0-0.32-0.22-0.53T12,7.19T11.47,7.41T11.25,7.94v4.54q0,0.32 0.22,0.53T12,13.23t0.53-0.22ZM9.21,20.5q-0.37 0-0.7-0.14T7.93,19.97L4.03,16.07q-0.25-0.25-0.39-0.58T3.5,14.79V9.21q0-0.37 0.14-0.7T4.03,7.93L7.93,4.03Q8.18,3.78 8.51,3.64T9.21,3.5h5.58q0.37 0 0.7 0.14t0.58 0.39l3.91,3.91q0.25 0.25 0.39 0.58t0.14 0.7v5.58q0 0.37-0.14 0.7t-0.39 0.58l-3.91,3.91q-0.25 0.25-0.58 0.39t-0.7 0.14H9.21ZM9.1,19h5.8L19,14.9V9.1L14.9,5H9.1L5,9.1v5.8L9.1,19Z"/></svg>`,
         action: () => openPage("issue")
       },
       {
         label: "Share loan",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M6.31,21.5q-0.76,0-1.28-0.52T4.5,19.69V10.31q0-0.76 0.52-1.28T6.31,8.5H8.12q0.32 0 0.53 0.22T8.87,9.25T8.65,9.78T8.12,10H6.31Q6.19,10 6.1,10.1T6,10.31v9.38q0 0.12 0.1 0.21T6.31,20H17.69q0.12 0 0.21-0.1T18,19.69V10.31q0-0.12-0.1-0.21T17.69,10H15.88q-0.32 0-0.53-0.22T15.13,9.25t0.22-0.53T15.88,8.5h1.81q0.76 0 1.28 0.52t0.52 1.28v9.38q0.76 0 1.28 0t0.52 0H6.31Zm5.16-5.97Q11.25,15.32 11.25,15V4.72L9.93,6.04Q9.7,6.27 9.4,6.26T8.87,6.03Q8.66,5.79 8.65,5.5T8.87,4.97l2.49-2.49q0.14-0.14 0.3-0.2T12,2.22t0.34,0.06t0.3,0.2l2.49,2.49q0.21,0.21 0.21,0.51T15.13,6.03q-0.23,0.23-0.53,0.23T14.06,6.03L12.75,4.72V15q0 0.32-0.22,0.53T12,15.75t-0.53-0.22Z"/></svg>`,
         action: () => {
           if (currentLoanIndex !== null) {
             shareLoanDetails(
@@ -1912,12 +1762,10 @@ function configureHeaderMenu() {
     settings: [
       {
         label: "Logout",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M5.31,20.5q-0.76,0-1.28-0.52T3.5,18.69V5.31q0-0.76 0.52-1.28T5.31,3.5h5.95q0.32 0 0.53 0.22t0.22 0.53T11.79,4.78T11.26,5H5.31Q5.19,5 5.1,5.1T5,5.31V18.69q0 0.12 0.1 0.21T5.31,19h5.95q0.32 0 0.53 0.22t0.22 0.53t-0.22 0.53T11.26,20.5H5.31Zm12.31-7.75H9.85q-0.32 0-0.53-0.22T9.1,12t0.22-0.53t0.53-0.22h7.77L15.69,9.33q-0.21-0.21-0.21-0.51t0.21-0.53t0.53-0.24t0.54,0.22l3.09,3.09q0.27,0.27 0.27,0.63t-0.27,0.63l-3.09,3.09q-0.22,0.22-0.53,0.22t-0.54-0.24q-0.22-0.23-0.21-0.53t0.22-0.52l1.91-1.91Z"/></svg>`,
         action: () => logout()
       },
-       {
+      {
         label: "New entry",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M18.13,10.75H15.87q-0.32,0-0.53-0.22T15.13,10t0.22-0.53t0.53-0.22h2.25V7q0-0.32 0.22-0.53t0.53-0.22t0.53,0.22T19.62,7V9.25h2.25q0.32,0 0.53,0.22T22.62,10t-0.22,0.53t-0.53,0.22H19.62V13q0,0.32-0.22,0.53t-0.53,0.22t-0.53-0.22T18.13,13V10.75ZM6.53,10.67Q5.5,9.64 5.5,8.19T6.53,5.72T9,4.69t2.47,1.03T12.5,8.19t-1.03,2.47T9,11.69T6.53,10.67ZM1.5,17.79v-0.7q0-0.73 0.4-1.36t1.07-0.96q1.48-0.73 2.99-1.09T9,13.31t3.04,0.36t2.99,1.09q0.67,0.34 1.07,0.96t0.4,1.36v0.7q0,0.63-0.44,1.08t-1.08,0.44H3.02q-0.63,0-1.08-0.44T1.5,17.79ZM3,17.81H15V17.08q0-0.3-0.18-0.56T14.35,16.1q-1.29-0.64-2.64-0.96T9,14.81T6.29,15.14T3.65,16.1q-0.3,0.16-0.48,0.42T3,17.08v0.72Zm7.41-8.2Q11,9.02 11,8.19T10.41,6.78T9,6.19q-0.82,0-1.41,0.59T7,8.19T7.59,9.6T9,10.19q0.83,0 1.41-0.59ZM9,8.19Zm0,9.62Z"/></svg>`,
         action: () => openApplyAmount()
       }
     ]
@@ -1926,17 +1774,12 @@ function configureHeaderMenu() {
   const items = actions[currentView] || [];
 
   headerMenu.innerHTML = items.map((item, index) => {
-    const content = `
-      <span class="menu-option-icon">${item.icon}</span>
-      <span>${item.label}</span>
-    `;
-
     if (item.href) {
       return `
         <a href="${item.href}"
            role="menuitem"
            data-menu-index="${index}">
-          ${content}
+          <span>${item.label}</span>
         </a>
       `;
     }
@@ -1945,7 +1788,7 @@ function configureHeaderMenu() {
       <button type="button"
         role="menuitem"
         data-menu-index="${index}">
-        ${content}
+        <span>${item.label}</span>
       </button>
     `;
   }).join("");
