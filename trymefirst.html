@@ -16,15 +16,16 @@
 	letter-spacing: 0.4px;
 }
     :root {
-      --primary: #2481cc;
-      --primary-dark: #1a6bb0;
+         --primary: blue;
+    --primary-dark: blue;
+    --bg: white;
       --bg: #000000;
       --bg-secondary: #1f1f1fba;
       --bg-tertiary: #1c1c1e;
       --text: #f5f5f7;
       --text-secondary: #a1a1a6;
       --bubble-bot: #1c1c1e;
-      --bubble-user: #263b59;
+      --bubble-user: blue;
       --border: #2c2c2e;
       --success: #4caf50;
       --danger: #e53935;
@@ -928,7 +929,7 @@ color-mix(in srgb, var(--primary) 18%, transparent);
     --text: #171719;
     --text-secondary: #6e6e73;
     --bubble-bot: #e9e9ed;
-    --bubble-user: #2481cc;
+    --bubble-user: blue;
     --border: #d2d2d7;
     }
  
@@ -1310,7 +1311,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
     let loanSortOrder = "default";
 
     const COLORS = [
-      "#2481cc", "#4caf50", "#e53935", "#ff9800",
+      "blue", "#4caf50", "#e53935", "#ff9800",
       "#9c27b0", "#00bcd4", "#ff5722", "#607d8b"
     ];
 
@@ -1382,7 +1383,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
       err.textContent = "";
 
       if (!pass) {
-        err.textContent = "Please enter a password";
+        err.textContent = "Enter a password";
         return;
       }
 
@@ -1434,7 +1435,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
         colorSection.style.display = "block";
 
         // Restore previously saved color (or default)
-        const savedColor = localStorage.getItem("bsmfi_primary") || "#2481cc";
+        const savedColor = localStorage.getItem("bsmfi_primary") || "blue";
         setPrimaryColor(savedColor);
 
         const picker = document.getElementById("color-picker");
@@ -1475,7 +1476,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
         // User does NOT have main color permission → hide the section completely
         colorSection.style.display = "none";
         // Reset to default blue so they cannot keep a previous custom color
-        setPrimaryColor("#2481cc");
+        setPrimaryColor("blue");
         localStorage.removeItem("bsmfi_primary");
       }
 
@@ -2040,11 +2041,12 @@ color-mix(in srgb, var(--primary) 19%, transparent);
             <label>Notes</label>
             <textarea id="ne-notes" placeholder="Any additional details..."></textarea>
           </div>
-          <button class="btn" id="ne-submit">Submit Request</button>`;
+          <button class="btn" id="ne-submit">Submit Request</button>
+          <a href="https://mfi0212.github.io/MFI/entrysheet"><button class="btn">Boost fast entry</button></a>`;
         setTimeout(() => {
           document.getElementById("ne-submit")?.addEventListener("click", () => {
             const amt = document.getElementById("ne-amount").value;
-            if (!amt) { showToast("Please enter amount"); return; }
+            if (!amt) { showToast("Enter amount"); return; }
             showToast("Request submitted successfully");
             document.getElementById("page-overlay").classList.remove("active");
           });
@@ -2052,22 +2054,25 @@ color-mix(in srgb, var(--primary) 19%, transparent);
       } else if (page === "im-late") {
         content.innerHTML = `
           <h2>I'm Late</h2>
-          <p>If you are unable to repay on time, please inform us as early as possible.</p>
-          <div class="form-group" style="margin-top:20px;">
-            <label>Select Loan</label>
-            <select id="late-loan">
-              ${(currentUser.loans || []).map((l, i) => `<option value="${i}">${formatMoney(l.amount)}</option>`).join("")}
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Reason</label>
-            <textarea id="late-reason" placeholder="Briefly explain the situation..."></textarea>
-          </div>
-          <div class="form-group">
-            <label>Expected new payment date</label>
-            <input type="date" id="late-date" />
-          </div>
-          <button class="btn" id="late-submit">Notify Team</button>`;
+          <p>
+      If you are <span class="highlight">late in returning the amount</span>,
+      the interest will <span class="highlight">keep adding to the amount</span>.
+    </p>
+
+    <p>
+      To avoid complications, keep the following in mind:
+    </p>
+
+    <ul>
+      <li>You must pay before the return date to avoid additional charges.</li>
+      <li>You may get the amount on the borrowed date, but the return must be completed before return date or on return date before 10 AM; otherwise, it will be considered late.</li>
+      <li>Late payments can quickly increase.</li>
+      <li>Contact us if you think you'll be late so we can help you.</li>
+    </ul>
+
+    <p class="verify">
+      Verify your total return amount in your account details before returning the amount.
+    </p>`;
         setTimeout(() => {
           document.getElementById("late-submit")?.addEventListener("click", () => {
             showToast("Notification sent. Our team will contact you.");
@@ -2079,9 +2084,12 @@ color-mix(in srgb, var(--primary) 19%, transparent);
           <h2>Report an issue</h2>
           <p>Tell us what is not working. Include the page or loan amount if relevant.</p>
           ${currentLoanIndex !== null && currentUser?.loans?.[currentLoanIndex] ? `<p style="color:var(--text-secondary);font-size:13px;margin-top:8px;">Related loan: ${formatMoney(currentUser.loans[currentLoanIndex].amount)}</p>` : ""}
-          <div class="form-group" style="margin-top:18px;"><label>Issue</label><textarea id="issue-description" placeholder="Describe the issue..."></textarea></div>
+          <div class="form-group" style="margin-top:18px;"><label>Enter you issue</label><textarea id="issue-description" placeholder="Describe the issue..."></textarea></div>
           <button class="btn" id="issue-submit">Continue</button>
-          <p style="font-size:12px;color:var(--text-secondary);margin-top:10px;">This form prepares your report; it does not send it to a server.</p>`;
+          <p style="font-size:12px;color:var(--text-secondary);margin-top:10px;">NOTE : Write your password first, then enter the issue you are facing.</p>
+          <a style="    color: var(--primary);
+    font-weight: 900;
+    text-decoration: underline;" href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform">Or fill the form.</a>`;
         setTimeout(() => document.getElementById("issue-submit")?.addEventListener("click", () => {
           const issue = document.getElementById("issue-description").value.trim();
           if (!issue) { showToast("Describe the issue first"); return; }
@@ -2101,7 +2109,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
           <p>Split the outstanding amount into smaller installments if the feature is enabled for your account.</p>
           <h3>Need more help?</h3>
           <p>Contact support through your relationship manager or official channels.</p>
-          <button class="btn btn-outline" style="margin-top:20px;" onclick="showToast('Support chat coming soon')">Contact Support</button>`;
+          <a href="https://mfi0212.github.io/MFI/abt.hlp"><button class="btn btn-outline" style="margin-top:20px;" onclick="showToast('Diverting')">Read more</button></a>`;
       }
 
       document.getElementById("page-overlay").classList.add("active");
