@@ -1754,7 +1754,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
             const totalFine = getOverdueFine(loan);
             reply = overdueDays > 0
               ? `Overdue by <b>${overdueDays} day(s)</b><br><br>Total overdue fine until today: <b>${formatMoney(totalFine)}</b>`
-              : `You have no overdued, The daily fine is <b>${formatMoney(dailyFine)}</b> and starts after the return date.`;
+              : `You have not overdued`;
             break;
           }
           
