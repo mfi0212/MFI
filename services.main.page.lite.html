@@ -1,394 +1,864 @@
-<!DOCTYPE html> <html lang="en" data-theme="telegram"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <title>BS&MFI Services | Lite Version</title> <script src="new.service.account.lite.version.js"></script> <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans"> <link rel="icon" href="mfi.logo.png" /> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"> <style> * { font-family: "Roboto", system-ui, -apple-system, sans-serif; margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; letter-spacing: 0.1px; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; font-size: 15px; background: var(--bg-body); color: var(--text-main); line-height: 1.45; transition: background 0.3s ease, color 0.3s ease; } /* ===== TELEGRAM ANDROID THEME (default) ===== */ :root, [data-theme="telegram"] { --black-swan: #028fdb; --dark-blue: #2aabee; --accent: #64b5ef; --bg-body: #0e1621; --bg-card: #182533; --bg-topbar: #17212b; --bg-nav: #2aabee; --bg-banner: linear-gradient(120deg, #0e1621, #1e3a5f, #2aabee); --bg-footer: #0e1621; --bg-soft: #1c2a3a; --bg-calc: #1c2733; --bg-table-head: #1c2733; --bg-table-even: #18222d; --text-main: #f5f5f5; --text-muted: #8b9aab; --text-light: #f5f5f5; --text-footer: #6d7f8f; --text-title: #64b5ef; --border: #2b3a4a; --border-strong: #2aabee; --input-border: #2b3a4a; --scrollbar: #52677a; } /* Keep other themes available if needed */ [data-theme="light"] { --black-swan: #0023d1; --dark-blue: #002aff; --accent: white; --bg-body: #eef1f6; --bg-card: #ffffffcf; --bg-topbar: #0b0f17; --bg-nav: #002aff; --bg-banner: linear-gradient(120deg, #0b0f17, #002aff, #0040ff); --bg-footer: #0b0f17; --bg-soft: #f0f4f8c7; --bg-calc: #f0f5fa; --bg-table-head: #e8eef5; --bg-table-even: #f7fafc; --text-main: #1a1a1a; --text-muted: #555555; --text-light: #e0e6ed; --text-footer: #a0aec0; --text-title: #002aff; --border: #d0d8e4; --border-strong: #002aff; --input-border: #c5d0de; --scrollbar: #8e8e93; } [data-theme="dark"] { --black-swan: #0023d1; --dark-blue: #002aff; --accent: white; --bg-body: #000000; --bg-card: #161616; --bg-topbar: #000000; --bg-nav: #001a99; --bg-banner: linear-gradient(120deg, #000000, #001a99, #002aff); --bg-footer: #000000; --bg-soft: #1f1f1fba; --bg-calc: #1f1f1fba; --bg-table-head: #201c1c0a; --bg-table-even: #0d0d0d; --text-main: #e8e8e8; --text-muted: #999999; --text-light: #e8e8e8; --text-footer: #777777; --text-title: #4d7aff; --border: black; --border-strong: #002aff; --input-border: #333333; --scrollbar: #636366; } @keyframes fadeSlideleft { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } } @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(30px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } } .serlogo { display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 15px; } .servicelogo { font-size: 220px; font-weight: 100; font-family: "Six Caps", sans-serif; text-transform: uppercase; color: var(--dark-blue); transform: scaleY(1.5); } a { text-decoration: none; color: var(--text-main); } .servicenmae { font-size: 18px; color: #ffffff8f; text-align: center; font-weight: 500; } body.site-locked > *:not(#bsmfi-loader):not(#servicePasswordPopup) { visibility: hidden; } .audio-controls { margin: 0; display: none; flex-direction: column; align-items: center; gap: 10px; } .audio-progress-bar { height: 2px; background: rgba(255, 255, 255, 0); border-radius: 0px; overflow: hidden; } svg { fill: var(--text-main); } .audio-progress-fill { height: 100%; width: 0%; background: rgba(255, 255, 255, 0); border-radius: 6px; transition: width 0.45s ease-out; } div#mainContent { display: flex; justify-content: center; align-items: center; } .audio-progress-container { line-height: 0; text-align: center; width: 100%; margin-bottom: 10px; } .bottomloadingopt { display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 30px; width: 100%; margin-top: 180px; } img.audioloadgif { width: 280px; margin-bottom: -5px; height: 100px; object-fit: cover; } div#audioStatus { font-size: 10px; color: #ffffff87; } button#muteToggle { border-radius: 50%; border: none; width: 50px; height: 50px; padding: 15px; font-size: 17px; display: flex; align-items: center; justify-content: center; color: white; transition: all 0.25s ease; background: var(--bg-soft); } button#muteToggle:active { transform: scale(0.9); } .loadintroopt { display: flex; justify-content: space-between; width: 100%; max-width: 500px; align-items: center; padding: 0 20px; gap: 10px; } button#startAudioBtn { border: none; border-radius: 100px; padding: 20px; font-size: 18px; transition: all 0.25s ease; color: white; display: flex; justify-content: center; align-items: center; gap: 6px; height: 50px; font-weight: 400; background: var(--bg-soft); } button#startAudioBtn:active { transform: scale(0.92); } h3 { font-weight: 500; font-size: 16px; color: var(--text-main); } div#sectionsContainer strong { position: relative; } /* ===== HEADER (Telegram style) ===== */ .header { position: fixed; top: 0; width: 100%; max-width: 600px; z-index: 1500; padding: 11px 0 0; display: flex; align-items: center; justify-content: center; flex-direction: column; background: var(--bg-card); gap: 8px; backdrop-filter: blur(100px); border: solid 0.5px var(--bg-card); } strong { font-size: 18px; font-weight: 600; display: flex; align-items: center; justify-content: center; color: var(--text-main); gap: 2px; } .logo { display: flex; align-items: center; justify-content: space-between; width: 100%;padding: 0 10px; } .mficolblogo { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #2aabee, #64b5ef); padding: 3px; } /* Search - Telegram style */ #searchInput { padding: 15px; font-size: 18px; transition: all 0.25s ease; border-radius: 0; outline: none; text-align: left; width: 100%; border: none; background: var(--bg-card); color: var(--text-main); margin-top: 4px; } #searchInput::placeholder { color: var(--text-muted); } #searchInput:focus{ background: var(--bg-body); } .clear-btn { position: absolute; right: 10px; top: 15px; width: 22px; height: 22px; border-radius: 50%; background: transparent; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 3; opacity: 0; pointer-events: none; transition: all 0.25s ease; } .clear-btn.visible { opacity: 1; pointer-events: auto; } .clear-btn:active { transform: translateY(-50%) scale(0.85); } .clear-btn svg { width: 20px; height: 20px; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; } img.closesymbol { width: 32px; border-radius: 50%; margin: -4px 0; height: 32px; } #sectionsContainer { padding-top: 110px; max-width: 600px; padding-bottom: 55px; width: 100%; } .section h2 { font-size: 13px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; display: block; display: none; } .site-list { overflow: hidden; width: 100%; position: relative; } .fullnamewidth { max-width: 600px; } /* List items - Telegram chat style */ .site-item { display: flex; align-items: center; padding: 12px 10px; color: var(--text-main); text-decoration: none; position: relative; overflow: hidden; border-radius: 0; margin: 0; background: transparent; transition: background 0.2s ease; border-bottom: 1px solid rgba(255,255,255,0.04); } .site-item.pinned { background: var(--bg-card); } .site-info { display: flex; align-items: center; justify-content: space-between; width: 100%; } .togglestyle { background: transparent; width: 44px; height: 44px; display: flex; justify-content: center; align-items: center; } .togglestyletwo { width: 220px; } /* Pin toggle - Telegram switch style */ .pin-toggle { width: 36px; height: 20px; background: #7272727a; border-radius: 20px; position: relative; cursor: pointer; flex-shrink: 0; transition: background 0.25s ease; } .pin-toggle.on { background: var(--dark-blue); } .pin-toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; background: #ffffff; border-radius: 50%; transform: translateX(0); transition: transform 0.25s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.3); } .pin-toggle.on::after { transform: translateX(16px); } .helper-button { z-index: 1000; text-decoration: none; border-radius: 50%; height: 40px; width: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; background: transparent; } .helper-button a { display: contents; } .letter-icon { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; margin-right: 14px; flex-shrink: 0; font-size: 20px; color: #ffffff; background: var(--dark-blue) !important; filter: none !important; } /* Bottom navigation - Telegram style */ .bottomnavbar { position: fixed; bottom: 0; gap: 8px; text-align: center; padding: 0px; display: flex; justify-content: center; align-items: center; width: 100%; left: 0; } .bottom-nav { max-width: 600px; display: flex; padding: 0; color: #fff; justify-content: space-between; gap: 0; align-items: center; width: 100%; background: var(--bg-card); backdrop-filter: blur(10px); border: solid 0.5px var(--bg-card); } .nav-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; padding: 7px; width: 100%; transition: all 0.2s ease; } .nav-item svg { width: 25px; height: 25px; } .nav-item, .nav-item svg { color: var(--text-muted); fill: var(--text-muted); } .nav-item:hover, .nav-item:hover{ color: var(--dark-blue); fill: var(--dark-blue); background: var(--bg-body); } .nav-item:hover svg{ color: var(--dark-blue); fill: var(--dark-blue); } .nav-item span { font-size: 11px; font-weight: 500; } /* Floating button */ .fiftopt { background: var(--dark-blue); border-radius: 50%; height: 52px; width: 52px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 12px rgba(42, 171, 238, 0.35); } .fiftopt button { height: 52px; width: 52px; background-color: transparent; border: none; display: flex; justify-content: center; align-items: center; } .fiftopt svg { fill: white !important; color: white !important; } /* ===== MODALS ===== */ #redirectModal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); display: none; align-items: end; z-index: 999999999; opacity: 0; transition: opacity 0.3s ease; } #redirectModal.active { display: flex; opacity: 1; } .modal-content { width: 100%; max-width: 420px; border-radius: 0; padding: 20px; text-align: center; display: flex; justify-content: center; align-items: center; flex-direction: column; position: relative; left: 50%; background: var(--bg-card); opacity: 0; transition: all 0s ease-in; color: var(--text-main); top: -50%; border-radius: 15px; } #redirectModal.active .modal-content { transform:translate(-50%, 50%); opacity: 1; } .modal-content h3 { letter-spacing: 0; font-weight: 600; font-size: 18px; } .modal-content p { font-size: 15px; line-height: 1.5; margin-bottom: 16px; font-weight: 400; width: 85%; color: var(--text-muted); } strong#modalPageName { color: var(--dark-blue); font-size: 15px; font-weight: 500; text-transform: none; display: contents; } .acuntpopup { width: 100%; margin: 0; padding: 10px 0px; background: transparent; } .modal-actions { display: flex; gap: 10px; width: 100%; flex-direction: row-reverse; justify-content: space-between; align-items: center; } .modal-btn { flex: 1; padding: 12px; border: none; border-radius: 9999px; font-size: 18px; font-weight: 500; cursor: pointer; display: flex; justify-content: center; align-items: center; height: 44px; gap: 6px; } .modal-btn.cancel { background: red; color: white; } .modal-btn.proceed { background-color: var(--dark-blue); color: white; } #modalTitle { color: var(--text-main); } .close-modal { position: absolute; top: 12px; right: 12px; font-size: 24px; color: var(--text-muted); cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; } .botmmainopt { width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 10px; } /* Device Popup */ .device-popup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 100000000; align-items: end; justify-content: center; opacity: 0; transition: opacity 0.3s ease; } .device-popup.active { display: flex; opacity: 1; } .popup-content { padding: 20px 16px; text-align: center; position: relative; bottom: 12px; width: 94%; max-width: 400px; border-radius: 16px; line-height: 1.5; background: var(--bg-card); transform: translateY(30px) scale(0.96); opacity: 0; transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.1); border: 1px solid var(--border); } .device-popup.active .popup-content { transform: translateY(0) scale(1); opacity: 1; } .buttons { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 12px 0 16px; } .buttons .modal-btn { display: flex; justify-content: center; align-items: center; gap: 6px; } /* Password Popup - Telegram style */ .password-popup-overlay { position: fixed; inset: 0; z-index: 9999999999999999999999; display: none; align-items: center; justify-content: center; padding: 20px; } .password-popup { text-align: center; width: min(340px, 100%); padding: 28px 24px; } .password-popup-title { font-size: 20px; font-weight: 600; margin: 12px 0 6px; color: var(--text-main); } .password-popup-text { font-size: 14px; opacity: 0.7; margin-bottom: 20px; color: var(--text-muted); } #servicePasswordInput { width: 100%; height: 45px; color: var(--text-main); border: none; border-radius: 0; outline: none; font-size: 18px; box-sizing: border-box; text-align: center; border-bottom: solid 3px var(--bg-soft); background: transparent; opacity: 80%; } #servicePasswordInput:focus{ opacity: 100%; } #servicePasswordError { min-height: 20px; margin-top: 8px; font-size: 13px; color: #ff6b6b; display: block; } .password-popup button { width: 100%; height: 48px; margin-top: 20px; border: none; border-radius: 999px; font-size: 16px; font-weight: 500; cursor: pointer; background: var(--dark-blue); color: #ffffff; transition: all 0.2s ease; } /* Toast - Telegram style */ .toast-container { position: fixed; bottom: 67px; left: 50%; transform: translateX(-50%); z-index: 9999999999; display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 355px; pointer-events: none; } .toast { border-radius: 10px; padding: 11px; display: flex; align-items: center; gap: 10px; transform: translateY(-20px) scale(0.95); opacity: 0; transition: all 0.3s ease; background: var(--bg-card); } .toast.show { transform: translateY(0) scale(1); opacity: 1; } .toast.hide { transform: translateY(-16px) scale(0.95); opacity: 0; } .toast-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 29px; font-weight: 100; flex-shrink: 0; color: white; background: var(--dark-blue) !important; } .toast-title { font-size: 14px; font-weight: 600; margin-bottom: 1px; } .toast-message { font-size: 13px; color: var(--text-muted); } .toast-icon-img { width: 36px; height: 36px; object-fit: contain; } /* Loader */ html:has(#bsmfi-loader:not(.hidden)), body:has(#bsmfi-loader:not(.hidden)) { overflow: hidden !important; height: 100% !important; touch-action: none; } .loading-overlay { position: fixed; inset: 0; background-color: #0e1621; display: flex; flex-direction: column; justify-content: space-between; align-items: center; z-index: 2000; opacity: 1; transition: opacity 0.5s ease; padding: 30px 0; } .viewnotice { display: block; position: fixed; left: 50%; background-color: transparent; transform: translate(-50%, -50%); top: 50%; backdrop-filter: blur(30px); z-index: 10000000000; white-space: nowrap; height: 100vh; width: 100%; } .contentmsg { display: flex; justify-content: center; align-items: center; gap: 5px; height: 100vh; } .explorealternatesite { text-align: center; position: fixed; left: 50%; top: 50%; transform: translate(-50%, 0); margin-top: 40px; } @media (max-width: 800px) { .viewnotice { display: none; } .modal-content{ top: 0; border-radius: 0; } #redirectModal.active .modal-content{ transform: translate(-50%, 0%) scale(1); } } </style> </head> <body class="site-locked"> <!-- <div class="viewnotice"> <div class="contentmsg"> This site is for mobile <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M299.62-48q-38.85 0-64.74-25.88Q209-99.77 209-138.62v-682.76q0-38.35 26.14-64.48Q261.27-912 299.62-912h361.84q38.85 0 64.73 25.88 25.89 25.89 25.89 64.74v118.61q16.92 3.62 28.42 17.39 11.5 13.76 11.5 30.92v68.77q0 17.15-11.5 30.92Q769-541 752.08-537.38v398.76q0 38.85-25.89 64.74Q700.31-48 661.46-48H299.62Zm-1-65h363.84q10.77 0 17.69-6.92 6.93-6.93 6.93-17.7v-684.76q0-10.77-6.93-17.7-6.92-6.92-17.69-6.92H298.62q-10.77 0-17.7 6.92-6.92 6.93-6.92 17.7v684.76q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92ZM274-113v-734 734Zm237.5-588.5q12.81-12.81 12.81-30.96 0-18.16-12.81-30.96-12.81-12.81-30.96-12.81-18.16 0-30.96 12.81-12.81 12.8-12.81 30.96 0 18.15 12.81 30.96 12.8 12.81 30.96 12.81 18.15 0 30.96-12.81Z"/></svg> use only. </div> <div class="explorealternatesite"> <span style="display: flex; cursor: pointer; justify-content: center; align-items: center; gap: 5px; padding: 10px; border-radius: 9999pc; height: 45px; border: solid 1.5px var(--text-main);" onclick="window.open('https://mfi0212.github.io/MFI/desktop.main', '_parent')"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M75.77-137.54q-13.54 0-23.27-9.73t-9.73-23.27q0-13.54 9.73-23.27t23.27-9.73h808.46q13.54 0 23.27 9.73t9.73 23.27q0 13.54-9.73 23.27t-23.27 9.73H75.77Zm102.85-106q-38.35 0-64.48-26.14Q88-295.81 88-334.15v-398.77q0-38.34 26.14-64.48 26.13-26.14 64.48-26.14h602.76q38.35 0 64.48 26.14Q872-771.26 872-732.92v398.77q0 38.34-26.14 64.47-26.13 26.14-64.48 26.14H178.62Zm0-66h602.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.92v-398.77q0-9.23-7.69-16.93-7.69-7.69-16.93-7.69H178.62q-9.24 0-16.93 7.69-7.69 7.7-7.69 16.93v398.77q0 9.23 7.69 16.92 7.69 7.69 16.93 7.69Zm-24.62 0v-448 448Z"/></svg> System view </span> </div> --> </div> <div data-popup id="bsmfi-loader" style=" position: fixed; inset: 0; background: rgb(0, 0, 72); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 99999; overflow: hidden; "> <img id="loader-image" src="enterencemfilogo.png" alt="BS&MFI" style=" width: 150px; object-fit: cover; opacity: 1; transform: scale(1); transition: opacity 0.8s ease, transform 0.8s ease; " > <div id="welcome-text" style=" position: absolute; color: #f5f5f7; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.2px; text-align: center; opacity: 0; transform: translateY(16px) scale(0.97); transition: opacity 0.9s ease, transform 0.9s ease; padding: 0 24px; " > <h5 style="color: rgba(255,255,255,0.6); font-size: 14px; font-weight: 400;"> Powered by </h5> <span style="color:white;"> BS&MFI House </span> </div> </div> <div id="servicePasswordPopup" class="password-popup-overlay"> <div class="password-popup"> <img style="width: 48%; border-radius: 50%;" src="mfi.gif" alt=""> <div class="password-popup-title"> Password Required </div> <div class="password-popup-text"> Enter your password to continue. </div> <input type="text" id="servicePasswordInput" placeholder="Password" autocomplete="off" > <button type="button" onclick="checkServicePassword()"> Continue </button><div id="servicePasswordError"></div> </div> </div> <div id="mainContent"> <div class="header"> <div class="logo"> <strong class="fullnamewidth"> <img style="width: 38px; border-radius: 50%; margin-right: 6px;" src="mfi.gif" alt=""> BS&MFI Lite </strong> <div style=" display: flex; justify-content: center; align-items: center; background: var(--bg-card); backdrop-filter: blur(10px); border-radius: 999px; gap: 0px;"> <div class="helper-button"> <a href="https://mfi0212.github.io/MFI/starpre"> <svg style="height: 26px; opacity: 85%; width: 26px;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8b9aab"><path d="m418.38-217.15 225.54-272.08H480.69l30.16-235.46-202.08 292.92h140.54l-30.93 214.62ZM399.15-388H277.77q-16.62 0-24.31-14.38-7.69-14.39 2.23-29.54l263.39-382.39q3.92-5.38 12.3-8.34 8.39-2.97 15.77.11 7.39 3.08 12.2 10.73 4.8 7.66 4.57 15.27L530.62-533h145.92q18.38 0 26.08 16.38 7.69 16.39-4.23 30.54L408.92-136.61q-5.92 6.15-13.8 8.5-7.89 2.34-15.66-1.74-7.77-4.07-10.69-10.46-2.92-6.38-2.46-15.77L399.15-388zm77.08-82.69Z"/></svg> </a> </div> <div class="helper-button" style="display: none;"> <p id="triggerIcon" style="position: relative; top: 1px;"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8b9aab"><path d="M475.54-540.69Zm-32 372.69H120q-13.6 0-22.8-9.76-9.2-9.76-9.2-23.34t9.75-22.74Q107.5-233 121-233h322.54q13.6 0 22.8 9.19 9.2 9.19 9.2 22.77t-9.2 23.31q-9.2 9.73-22.8 9.73ZM215.62-288.38q-38.35 0-64.48-26.14Q125-340.66 125-379v-322.38q0-38.35 26.14-64.48Q177.27-792 215.62-792h581.23q13.6 0 22.8 9.19 9.2 9.18 9.2 22.77 0 13.58-9.2 23.31-9.2 9.73-22.8 9.73H214.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93V-378q0 9.23 7.69 16.92 7.69 7.7 16.93 7.7h228.92q13.6 0 22.8 9.18 9.2 9.19 9.2 22.77t-9.2 23.31q-9.2 9.74-22.8 9.74H215.62zm598.07 41.3v-290.07q0-5.39-3.84-9.23-3.85-3.85-9.23-3.85H665.38q-5.38 0-9.23 3.85-3.84 3.84-3.84 9.23v290.07q0 5.39 3.84 9.23Q660-234 665.38-234h135.24q5.38 0 9.23-3.85 3.84-3.84 3.84-9.23ZM654.77-168q-27.19 0-47.83-20.63-20.63-20.64-20.63-47.83v-312.31q0-28.11 20.63-47.78 20.64-19.68 47.83-19.68h157.46q28.11 0 47.79 19.68 19.67 19.67 19.67 47.78v312.31q0 27.19-19.67 47.83Q840.34-168 812.23-168H654.77zm78.09-253q15.93 0 26.5-10.53 10.56-10.54 10.56-26.25 0-15.94-10.55-26.5-10.56-10.57-26.7-10.57-15.9 0-26.25 10.56-10.34 10.55-10.34 26.7 0 15.9 10.53 26.24Q717.14-421 732.86-421zm.14 28.38Z"/></svg> </p> </div> <div class="helper-button"> <a href="https://mfi0212.github.io/MFI/services.main.page"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M4.19,17.5q-1.12,0-1.91-0.79T1.5,14.81V9.19q0-1.12 0.79-1.91T4.19,6.5H17.5q1.12,0 1.91,0.79t0.79,1.91v5.62q0,1.12-0.79,1.91T17.5,17.5H4.19Zm0-1.5H17.5q0.51,0 0.85-0.34t0.34-0.85V9.19q0-0.51-0.34-0.85T17.5,8H4.19Q3.69,8 3.34,8.34T3,9.19v5.62q0,0.51 0.34,0.85T4.19,16Zm17-1.69V9.7h0.4q0.38,0 0.64,0.26t0.26,0.64v2.8q0,0.38-0.26,0.64T21.6,14.31h-0.4Zm-17,0.5V9.19H17.5v5.62H4.19Z"/></svg> </a> </div> </div> </div> <div class="search-container" style="width:100%; position:relative;"> <div class="liquid-search-wrapper" id="searchWrapper" style="position:relative; width:100%;"> <input type="text" id="searchInput" placeholder="Enter something to search" autocomplete="off"/> <button class="clear-btn" id="clearBtn"> <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12"/></svg> </button> </div> </div> </div> <div id="sectionsContainer"></div> <div class="device-popup" id="devicePopup"> <div class="popup-content"> <h3 style="margin-bottom: 10px; font-size: 18px; margin-top: 0;">What would you like to visit?</h3> <div class="buttons"> <button onclick="window.open('https://mfi0212.github.io/MFI/desktop.acc','_parent')" class="modal-btn proceed"> <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px" fill="#ffffff"><path d="M75.77-137.54q-13.54 0-23.27-9.73t-9.73-23.27q0-13.54 9.73-23.27t23.27-9.73h808.46q13.54 0 23.27 9.73t9.73 23.27q0 13.54-9.73 23.27t-23.27 9.73H75.77Zm102.85-106q-38.35 0-64.48-26.14Q88-295.81 88-334.15v-398.77q0-38.34 26.14-64.48 26.13-26.14 64.48-26.14h602.76q38.35 0 64.48 26.14Q872-771.26 872-732.92v398.77q0 38.34-26.14 64.47-26.13 26.14-64.48 26.14H178.62Zm0-66h602.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.92v-398.77q0-9.23-7.69-16.93-7.69-7.69-16.93-7.69H178.62q-9.24 0-16.93 7.69-7.69 7.7-7.69 16.93v398.77q0 9.23 7.69 16.92 7.69 7.69 16.93 7.69Zm-24.62 0v-448 448Z"/></svg> System </button> <button onclick="window.open('https://mfi0212.github.io/MFI/accverify','_parent')" class="modal-btn proceed"> <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px" fill="#ffffff"><path d="M299.62-48q-38.85 0-64.74-25.88Q209-99.77 209-138.62v-682.76q0-38.35 26.14-64.48Q261.27-912 299.62-912h361.84q38.85 0 64.73 25.88 25.89 25.89 25.89 64.74v118.61q16.92 3.62 28.42 17.39 11.5 13.76 11.5 30.92v68.77q0 17.15-11.5 30.92Q769-541 752.08-537.38v398.76q0 38.85-25.89 64.74Q700.31-48 661.46-48H299.62Zm-1-65h363.84q10.77 0 17.69-6.92 6.93-6.93 6.93-17.7v-684.76q0-10.77-6.93-17.7-6.92-6.92-17.69-6.92H298.62q-10.77 0-17.7 6.92-6.92 6.93-6.92 17.7v684.76q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92ZM274-113v-734 734Zm237.5-588.5q12.81-12.81 12.81-30.96 0-18.16-12.81-30.96-12.81-12.81-30.96-12.81-18.16 0-30.96 12.81-12.81 12.8-12.81 30.96 0 18.15 12.81 30.96 12.8 12.81 30.96 12.81 18.15 0 30.96-12.81Z"/></svg> Mobile </button> </div> <button id="closePopup" class="modal-btn cancel" style="width: 100%;"> Close Now </button> </div> </div> <div class="bottomnavbar"> <div class="bottom-nav"> <div class="nav-item active" id="nav-all" onclick="showAll()"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M160-88q-13.64 0-22.82-9.73T128-121.07q0-13.61 9.73-22.77T161-153h398.62q13.63 0 22.81 9.16 9.19 9.16 9.19 22.77t-9.19 23.34Q573.25-88 559.62-88H160Zm0-160.38q-13.64 0-22.82-9.74-9.18-9.73-9.18-23.33 0-13.61 9.73-22.77t23.27-9.16h639q13.64 0 22.82 9.16t9.18 22.77q0 13.6-9.18 23.33-9.18 9.74-22.82 9.74H160Zm58.62-160.39q-38.35 0-64.48-26.14Q128-461.04 128-499.38v-282q0-38.35 26.14-64.48Q180.27-872 218.62-872h522.76q38.35 0 64.48 26.14Q832-819.73 832-781.38v282q0 38.34-26.14 64.47-26.13 26.14-64.48 26.14H218.62Zm-1-65h524.76q10.77 0 17.7-6.92 6.92-6.93 6.92-17.69v-284q0-10.77-6.92-17.7-6.93-6.92-17.7-6.92H217.62q-10.77 0-17.7 6.92-6.92 6.93-6.92 17.7v284q0 10.76 6.92 17.69 6.93 6.92 17.7 6.92Zm-24.62 0V-807v333.23Z"/></svg> <span>All</span> </div> <div onclick="window.open('https://mfi0212.github.io/MFI/new.service.account.lite.version#takemoney','_parent')" class="nav-item"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m615.85-676.08 204.61-203.61q9.62-9.62 22.27-9.35 12.65.27 22.5 10.12 9.62 9.61 9.62 22.77 0 13.15-9.62 22.77L648.46-615.62q-13.69 13.7-32.61 13.7-18.93 0-32.62-13.7L479.46-720.38q-9.84-9.85-10.61-23.16-.77-13.31 9.84-23.15 9.85-10.62 23.66-9.85 13.8.77 23.65 10.62l89.85 89.84Zm-32.16 542.23q3.85 1.54 6.93 1.54 3.07 0 6.92-1.54l238.61-73.69q-1.15-18.23-5.53-22.27-4.39-4.04-21.39-4.04H609.54q-27.46 0-50.08-2-22.61-2-44.23-9.53l-62.54-21.08q-13.31-5.69-18.84-17.27-5.54-11.58-.85-24.89 4.69-12.53 16.77-18.19 12.08-5.65 25.38-.96l53 19.46q19.31 6.54 37.73 7.89 18.43 1.34 61.12.57h-.77 13q0-18.69-7.38-27.23-7.39-8.54-20.23-13.07l-235.16-86.47q-2.31-.76-4.23-1.15-1.92-.38-4.23-.38h-67v214.3l282.69 80Zm-13.23 65.54L301-145.85q-4.69 26.7-30.69 42.27Q244.31-88 211.38-88h-32.76q-38.85 0-64.74-25.88Q88-139.77 88-178.62v-224.92q0-38.85 25.88-64.73 25.89-25.88 64.74-25.88h189.61q7.46 0 15.81 1.61 8.34 1.62 16.58 4.62l234.15 86.69q33.46 13.15 49.96 33.31 16.5 20.15 16.5 68.07h108q46.15 0 70.39 29.62 24.23 29.61 24.23 70.38 0 21-13 35.77-13 14.77-29.47 19.93L622-68.54q-12.69 3.46-25.38 3.85-12.7.38-26.16-3.62ZM155-178.62q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92h30.76q10.77 0 17.7-5.77 6.92-5.77 6.92-18.85v-250.53h-55.38q-10.77 0-17.7 6.92-6.92 6.92-6.92 17.69v225.92Z"/></svg> <span>Borrow</span> </div> <div class="nav-item" onclick="showRedirectPopup('Account', 'https://mfi0212.github.io/MFI/new.service.account.lite.version')"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240.92-268.31q51-37.84 111.12-59.77Q412.15-350 480-350t127.96 21.92q60.12 21.93 111.12 59.77 37.3-41 59.11-94.92Q800-417.15 800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 62.85 21.81 116.77 21.81 53.92 59.11 94.92Zm146.7-219.31Q350-525.23 350-580q0-54.77 37.62-92.38Q425.23-710 480-710q54.77 0 92.38 37.62Q610-634.77 610-580q0 54.77-37.62 92.38Q534.77-450 480-450q-54.77 0-92.38-37.62ZM480-100q-79.15 0-148.5-29.77t-120.65-81.08q-51.31-51.3-81.08-120.65Q100-400.85 100-480t29.77-148.5q29.77-69.35 81.08-120.65 51.3-51.31 120.65-81.08Q400.85-860 480-860t148.5 29.77q69.35 29.77 120.65 81.08 51.31 51.3 81.08 120.65Q860-559.15 860-480t-29.77 148.5q-29.77 69.35-81.08 120.65-51.3 51.31-120.65 81.08Q559.15-100 480-100Zm104.42-77.42q50.27-17.43 89.27-48.73-39-30.16-88.11-47Q536.46-290 480-290t-105.77 16.65q-49.31 16.66-87.92 47.2 39 31.3 89.27 48.73Q425.85-160 480-160t104.42-17.42Zm-54.5-352.66Q550-550.15 550-580t-20.08-49.92Q509.85-650 480-650t-49.92 20.08Q410-609.85 410-580t20.08 49.92Q450.15-510 480-510t49.92-20.08ZM480-580Zm0 355Z"/></svg> <span>Account</span> </div> <div class="nav-item" onclick="window.open('https://mfi0212.github.io/MFI/bsmfi_search','_parent')"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M380.77-335.39q-102.46 0-173.54-71.07-71.07-71.03-71.07-173.54t71.07-173.54q71.03-71.07 173.54-71.07t173.54 71.07q71.07 71.03 71.07 173.54 0 42.85-14.38 81.85-14.39 39-38.39 67.84l230.16 230.16q8.31 8.3 8.5 20.88.19 12.58-8.5 21.27t-21.03 8.69q-12.38 0-21.07-8.69L530.46-388.16q-30 24.77-69 38.77-39 14-80.69 14Zm0-59.99q77.31 0 130.96-53.66 53.66-53.65 53.66-130.96t-53.66-130.96q-53.65-53.66-130.96-53.66t-130.96 53.66Q196.15-657.31 196.15-580t53.66 130.96q53.65 53.66 130.96 53.66Z"></path></svg> <span>Search</span> </div> </div> </div> </div> <div id="redirectModal"> <div class="modal-content"> <div class="acuntpopup"> <h3 id="modalTitle">Visit My Account ?</h3> </div> <p id="modalMessage">We are redirecting you to visit your account<strong style="display: none;" id="modalPageName"></strong>...!</p> <div class="modal-actions"> <button class="modal-btn cancel" onclick="closeModal()"> Cancel </button> <button class="modal-btn proceed" onclick="proceedToLink()"> Continue </button> </div> </div> </div> <div class="toast-container" id="toastContainer"></div> <script src="new-service-amount-details.js"></script>
-<script>
-const siteGroups = [
-  { heading: "Return Management", sites: [
-    { name: "BsRora", desc: "Let the bot do", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
-    { name: "BS&MFI House", desc: "BS&MFI home page", url: "https://mfi0212.github.io/MFI/new.service" },
-    { name: "BS&MFI Solutions", desc: "Return date extender", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
-    { name: "Interest", desc: "Check interest", url: "https://mfi0212.github.io/MFI/new.service.account#graph" },
-    { name: "My Solutions", desc: "Your active services", url: "https://mfi0212.github.io/MFI/new.service.account.lite.version#products" },
-    { name: "I'm late", desc: "Important Note", url: "https://mfi0212.github.io/MFI/imlate" },
-    { name: "BsPsgenerater", desc: "Password generator", url: "https://blackswan19.github.io/Educate/password" },
-    { name: "VSL", desc: "Business loans", url: "https://mfi0212.github.io/MFI/service.solutions/VSL/vsl.lender.account" },
-    { name: "BsReminder", desc: "Date wise notes", url: "https://blackswan19.github.io/bscrop/reminder" },
-    { name: "BsBookpad", desc: "Download the notes", url: "https://blackswan19.github.io/Educate/bookpad" },
-    { name: "BsAdstoper", desc: "Ad blocker", url: "https://blackswan19.github.io/Educate/stoper" },
-    { name: "BsFilestore", desc: "Store privacy files in folders", url: "https://blackswan19.github.io/Educate/hider" },
-    { name: "BsMediastorage", desc: "Store files with privacy", url: "https://blackswan19.github.io/Educate/hider" },
-  ]}
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> <title>BS&MFI Lite</title> <link rel="icon" href="mfi.logo.png" /> <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"> <style> * { font-family: "Roboto", system-ui, -apple-system, sans-serif; margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; letter-spacing: 0.1px; } a { text-decoration: none; color: var(--text); } :root { --primary: blue; --primary-dark: blue; --bg: #000000; --bg-secondary: #111111; --bg-tertiary: #1c1c1e; --text: #f5f5f7; --text-secondary: #a1a1a6; --bubble-bot: #1c1c1e; --bubble-user: #263b59; --border: #2c2c2e; --success: #4caf50; --danger: #e53935; --warning: #ff9800; --radius: 12px; --nav-height: 56px; --header-height: 56px; } * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; } body { background: var(--bg); color: var(--text); height: 100vh; overflow: hidden; display: flex; flex-direction: column; } /* ========== LOGIN ========== */ #login-view { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; padding: 24px; background: var(--bg); } .login-card { width: 100%; max-width: 360px; border-radius: 16px; padding: 32px 24px; } a{ text-decoration: none; } .login-logo { width: 72px; height: 72px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 28px; font-weight: 700; color: white; } .login-title { text-align: center; font-size: 22px; font-weight: 600; margin-bottom: 6px; } .login-sub { text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 15px; } .input-group { margin-bottom: 16px; } .input-group label { display: block; font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; } input[type="password"], input[type="text"], input[type="number"], input[type="date"], input[type="color"], .borrow-tools input, select, textarea { width: 100%; padding: 12px 14px; background: var(--bg-tertiary); border: 1px solid transparent; border-radius: 10px; color: var(--text); font-size: 15px; outline: none; transition: border 0.2s; } input:focus, select:focus, textarea:focus { border-color: var(--primary); } input[type="color"] { padding: 4px; height: 44px; cursor: pointer; } .left svg { display: none; } .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 20px; background: var(--primary); color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 500; cursor: pointer; transition: background 0.2s, transform 0.1s; width: 100%; } .btn:active { transform: scale(0.98); } .btn:hover { background: var(--primary-dark); } .btn-outline { background: transparent; border: 1px solid var(--primary); color: var(--primary); } .btn-outline:hover { background: rgba(36, 129, 204, 0.1); } .btn-sm { padding: 8px 14px; font-size: 13px; width: auto; } .error-msg { color: var(--danger); font-size: 13px; text-align: center; margin-top: 12px; min-height: 18px; } /* ========== APP SHELL ========== */ #app { display: none; flex-direction: column; height: 100vh; } header { position: relative; height: var(--header-height); background: var(--bg-secondary); display: flex; align-items: center; padding: 0 16px; border-bottom: 1px solid rgba(255,255,255,0.05); flex-shrink: 0; z-index: 10; } header .back-btn { background: none; border: none; color: var(--primary); font-size: 22px; cursor: pointer; padding: 4px; margin-right: 15px; display: flex; justify-content: center; align-items: center; } header .title { flex: 1; font-size: 17px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } header .subtitle { font-size: 12px; color: var(--text-secondary); font-weight: 400; } main { flex: 1; overflow-y: auto; overflow-x: hidden; background: var(--bg); position: relative; } /* Bottom Nav */ nav.bottom-nav { position: relative; inset: auto; flex: 0 0 auto; min-height: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px)); height: auto; padding: 5px; width: 100%; z-index: 20; } .settings-list h3 { margin: 10px 0; opacity: 60%; } nav.bottom-nav button { flex: 1; background: none; border: none; color: var(--text-secondary); font-size: 11px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; cursor: pointer; transition: color 0.2s; } nav.bottom-nav button.active { color: var(--primary); border-radius: 14px; font-weight: 700; } nav.bottom-nav button svg { transition: transform 0.18s ease; width: 24px; height: 24px; } @supports not (background: color-mix(in srgb, #000 10%, transparent)) { nav.bottom-nav button.active { background: rgba(36, 129, 204, 0.18); } } /* ========== VIEWS ========== */ .view { display: none; height: 100%; flex-direction: column; } .view.active { display: flex; } .loan-item { background: var(--bg-secondary); border-radius: var(--radius); padding: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: background 0.15s; } .loan-item:active { background: var(--bg-tertiary); } .loan-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; color: white; flex-shrink: 0; } .loan-info { flex: 1; min-width: 0; } .loan-info h3 { font-size: 16px; font-weight: 500; margin-bottom: 3px; } .loan-info p { font-size: 13px; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .loan-amount { font-size: 15px; font-weight: 600; color: var(--primary); } .empty-state { text-align: center; padding: 60px 24px; color: var(--text-secondary); } .empty-state svg { width: 64px; height: 64px; margin-bottom: 16px; opacity: 0.4; } /* ========== CHAT VIEW ========== */ .chat-container { display: flex; flex-direction: column; height: 100%; } .chat-messages { flex: 1; overflow-y: auto; padding: 16px 12px; display: flex; flex-direction: column; gap: 8px; } .msg { max-width: 85%; padding: 10px 14px; border-radius: 14px; font-size: 15px; line-height: 1.4; position: relative; word-wrap: break-word; } .msg.bot { background: var(--bubble-bot); align-self: flex-start; border-bottom-left-radius: 4px; } .msg.user { background: var(--bubble-user); align-self: flex-end; border-bottom-right-radius: 4px; } .msg .time { font-size: 11px; color: var(--text-secondary); margin-top: 4px; text-align: right; } .options-row { display: flex; flex-wrap: wrap; gap: 8px; padding: 8px; background: var(--bg-secondary); border-top: 1px solid rgba(255,255,255,0.04); } .option-btn { background: var(--bg-secondary); border: 1px solid rgba(255, 255, 255, 0.08); color: var(--text); padding: 10px; border-radius: 10px; font-size: 14px; cursor: pointer; transition: background 0.15s, border-color 0.15s; transition: background 0.15s, border-color 0.15s; } .option-btn:active, .option-btn.active { background: var(--primary); border-color: var(--primary); color: white; } .services-grid { padding: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; overflow: scroll; height: 83vh; } .service-card { background: var(--bg-secondary); border-radius: var(--radius); padding: 18px 14px; text-align: center; cursor: pointer; transition: background 0.15s; border: 1px solid transparent; } .service-card:active { background: var(--bg-tertiary); } .service-card.disabled { opacity: 0.4; pointer-events: none; } .service-card .icon { font-size: 28px; margin-bottom: 8px; } .service-card h4 { font-size: 14px; font-weight: 500; margin-bottom: 4px; } .service-card p { font-size: 12px; color: var(--text-secondary); } .settings-list { padding: 12px; overflow: scroll; height: 83vh; } .settings-section { margin-bottom: 20px; } .settings-section h3 { font-size: 13px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; padding: 0 8px 8px; } .settings-item { background: var(--bg-secondary); padding: 14px 14px 14px 10px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.03); } .settings-item:last-of-type { border-radius: 0 0 var(--radius) var(--radius); border-bottom: none; } .settings-item .left { display: flex; align-items: center; gap: 12px; } .settings-item .arrow { color: var(--text-secondary); font-size: 18px; } .color-picker-row { display: flex; gap: 10px; padding: 12px 16px; background: var(--bg-secondary); flex-wrap: wrap; align-items: center; } .color-swatch { width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; transition: border 0.15s; } .color-swatch.active { border-color: white; } .color-custom-wrap { display: flex; align-items: center; gap: 8px; margin-left: 4px; } .color-custom-wrap label { font-size: 13px; color: var(--text-secondary); } /* ========== MODAL / FULL PAGES ========== */ .page-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 100; display: none; flex-direction: column; } .page-overlay.active { display: flex; } .page-content { flex: 1; overflow-y: auto; padding: 20px 16px; font-size: 15px; line-height: 1.6; color: var(--text-secondary); } .page-content h2 { color: var(--text); font-size: 20px; margin-bottom: 16px; } .page-content h3 { color: var(--text); font-size: 16px; margin: 20px 0 8px; } .page-content p { margin-bottom: 12px; } .page-content ul { padding-left: 20px; margin-bottom: 12px; } /* Notice & Custom Content */ .special-notice { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 12px 16px; margin: 12px; border-radius: var(--radius); font-size: 14px; display: none; } .custom-content { margin: 12px; border-radius: var(--radius); overflow: hidden; display: none; } .custom-content img { width: 100%; display: block; cursor: pointer; } /* Form styles */ .form-group { margin-bottom: 16px; } .form-group label { display: block; font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; } textarea { min-height: 100px; resize: vertical; } /* Toast */ .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--bg-tertiary); color: var(--text); padding: 12px 20px; border-radius: 10px; font-size: 14px; z-index: 200; opacity: 0; transition: all 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.4); } .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; } /* Theme light override */ body.light { --bg: #ffffff; --bg-secondary: #f0f2f5; --bg-tertiary: #e4e6eb; --text: #050505; --text-secondary: #65676b; --bubble-bot: #e4e6eb; --bubble-user: #0084ff; --border: #ced0d4; } body.light .msg.user { color: white; } body.light .loan-item:active, body.light .service-card:active { background: #d8dadf; } body.light nav.bottom-nav, body.light header { border-color: #ced0d4; } /* Header menu and loan sharing */ header { position: relative; } .header-heading { flex: 1; min-width: 0; } .header-more { width: 40px; height: 40px; flex: 0 0 40px; border: 0; border-radius: 50%; background: transparent; color: var(--text); font-size: 25px; cursor: pointer; display: flex; justify-content: center; align-items: center; } .header-more:active { background: var(--bg-tertiary); } .header-menu { display: none; position: absolute; z-index: 50; right: 5px; top: 5px; width: min(140px, calc(100vw - 24px)); padding: 0; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 12px 32px rgba(0, 0, 0, .35); } .header-menu.open { display: block; } .header-menu button,.header-menu a { display: block; width: 100%; padding: 12px; text-align: left; border: 0; background: transparent; color: var(--text); font-size: 14px; cursor: pointer; border-radius: 8px; } .header-menu button:active, .header-menu button:hover, .header-menu a:active, .header-menu a:hover { background: var(--bg-secondary); } .borrow-tools { width: 100%; max-width: 900px; margin: 0 auto; padding: 16px 16px 0; } .borrow-apply-card { grid-column: 1 / -1; width: 100%;display: flex; align-items: center; gap: 14px; padding: 18px; margin-bottom: 12px; text-align: left; cursor: pointer; color: var(--text); background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px;border-radius: var(--radius); } .borrow-apply-card > span:nth-child(2) { display:flex; flex-direction:column; gap:5px; flex:1; min-width:0; } .borrow-apply-card strong { font-size: 16px; } .borrow-apply-card small { color: var(--text-secondary); font-size: 13px; } .borrow-apply-icon,.fee-calculator-launch > span:first-child { color: var(--primary); font-size: 28px; } .borrow-apply-arrow { color:var(--text-secondary); font-size:25px; } #borrow-search { margin-bottom: 4px; } .fee-calculator-launch { width:100%; display:flex; align-items:center; gap:12px; text-align:left; padding:13px 15px; margin:8px 0 4px; border:1px solid var(--border); border-radius: var(--radius); background:var(--bg-secondary); color:var(--text); cursor:pointer; } .fee-calculator-launch > span:nth-child(2) { display:flex; flex-direction:column; gap:4px; flex:1; min-width:0; } .fee-calculator-launch strong { font-size:14px; } .fee-calculator-launch small { color:var(--text-secondary); font-size:12px; line-height:1.4; } .fee-calculator-launch b { color:var(--text-secondary); font-size:22px; font-weight:400; } .fee-result { margin-top:16px; padding:16px; border:1px solid var(--border); border-radius:14px; background:var(--bg-secondary); } .fee-result-row { display:flex; justify-content:space-between; gap:12px; padding:7px 0; font-size:14px; } .fee-result-row.total { border-top:1px solid var(--border); margin-top:6px; padding-top:13px; font-weight:700; font-size:16px; } .fee-rate-note { color:var(--text-secondary); font-size:12px; margin-top:8px; line-height:1.5; } .chat-share-row { padding: 8px 12px max(12px, env(safe-area-inset-bottom, 0px)); background: var(--bg-secondary);} .chat-share-btn { z-index: 1; position: relative;width:100%; padding:12px 16px; border:1px solid var(--primary); border-radius:12px; background:transparent; color:var(--primary); font-size:14px; font-weight:600; cursor:pointer; } .chat-share-btn:active { background:color-mix(in srgb, var(--primary) 15%, transparent); } body.light .header-menu { box-shadow:0 12px 32px rgba(0,0,0,.14); } @media (max-width: 420px) { .borrow-tools { padding:12px 12px 0; } } /* Responsive layout and reliable scrolling */ html, body { width: 100%; min-height: 100%; overscroll-behavior: none; } body { min-height: 100vh; min-height: 100dvh; height: 100vh; height: 100dvh; } #login-view { min-height: 100vh; min-height: 100dvh; height: auto; flex: 1; overflow-y: auto; } #app { height: 100vh; height: 100dvh; min-height: 0; min-width: 0; overflow: hidden; } header { min-height: var(--header-height); height: auto; padding-top: env(safe-area-inset-top, 0px); } main { min-height: 0; min-width: 0; flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding-bottom: 0; } .view { height: auto; min-height: 100%; min-width: 0; flex: 1 0 auto; } .view.active { display: flex; } #view-amounts, #view-borrow, #view-settings { overflow: visible; } .loan-list, .services-grid, .settings-list { height: auto; min-height: 0; overflow: visible; width: 100%; } .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; padding-bottom: 70px; } .settings-list { padding-bottom: 60px; } nav.bottom-nav { position: relative; inset: auto; flex: 0 0 auto; min-height: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px)); height: auto; width: 100%; z-index: 20; border-top: 1px solid rgba(255, 255, 255, 0.05); padding: 5px; } nav.bottom-nav button { min-width: 0; min-height: 48px; padding: 5px 2px; font-size: 11px; } nav.bottom-nav button svg { width: 22px; height: 22px; } .chat-container { min-height: 0; height: auto; flex: 1; } .chat-messages { min-height: 160px; max-height: none; overflow-y: auto; -webkit-overflow-scrolling: touch; } .options-row { flex: 0 0 auto;} .page-overlay { height: 100vh; height: 100dvh; } .page-content { min-height: 0; padding-bottom: max(24px, env(safe-area-inset-bottom, 0px)); -webkit-overflow-scrolling: touch; } .toast { bottom: calc(var(--nav-height) + 16px + env(safe-area-inset-bottom, 0px)); } body.light { --bg: #f5f5f7; --bg-secondary: #ffffff; --bg-tertiary: #e9e9ed; --text: #171719; --text-secondary: #6e6e73; --bubble-bot: #e9e9ed; --bubble-user: blue; --border: #d2d2d7; } body.light nav.bottom-nav, body.light header { background: var(--bg-secondary); border-color: var(--border); } @media (max-width: 380px) { :root { --header-height: 52px; --nav-height: 54px; } header { padding-left: 12px; padding-right: 12px; } .services-grid { gap: 9px; padding: 12px; } .service-card { padding: 15px 9px; } .service-card h4 { font-size: 13px; overflow-wrap: anywhere; } .service-card p { font-size: 11px; } nav.bottom-nav button { font-size: 10px; } } @media (min-width: 760px) { .loan-list, .services-grid, .settings-list, .page-content { width: 100%; max-width: 900px; margin-left: auto; margin-right: auto; } .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } } /* BS & MFI Lite: flatter, simpler interface */ :root { --radius:0px; } .login-card, .loan-item, .service-card, .settings-section, .borrow-apply-card, .fee-calculator-launch, .fee-result, .modal, .header-menu { box-shadow: none !important; } .loan-item, .service-card, .settings-section, .borrow-apply-card, .fee-calculator-launch, .fee-result { border: 1px solid var(--border); } .loan-item, .service-card, .settings-item, nav.bottom-nav button, .btn, .color-swatch { transition: none !important; animation: none !important; } .color-picker-row { gap: 14px; } .color-swatch { width: 30px; height: 30px; } .color-custom-wrap, input[type="color"] { display: none !important; } nav.bottom-nav button.active { border-radius: 9px; } body:not(.light) { --bg: #000000; --bg-secondary: #101010; --bg-tertiary: #1a1a1a; --text: #f5f5f5; --text-secondary: #a5a5a5; --border: #292929; } body.light { --bg: #f5f5f5; --bg-secondary: #ffffff; --bg-tertiary: #eeeeee; --text: #171717; --text-secondary: #666666; --border: #dddddd; } @media (max-width: 520px) { .login-card { padding: 24px 18px; } .loan-item { padding: 13px; gap: 10px; } } </style> </head> <body> <div id="login-view"> <div class="login-card"> <div class="login-logo"><img style=" width: 90px; border-radius: 50%;" src="https://mfi0212.github.io/MFI/mfi.gif" alt=""></div> <div class="login-title">Password Required</div> <div class="login-sub">Enter password to continue</div> <div class="input-group"> <input type="password" id="password-input" placeholder="Enter password" autocomplete="current-password" /> </div> <button class="btn" id="login-btn">Login</button> <div class="error-msg" id="login-error"></div> </div> </div> <!-- APP --> <div id="app"> <header id="app-header"> <button class="back-btn" id="back-btn" style="display:none;padding: 2px 0 0 0;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M7.37,12.75l5.17,5.17q0.22,0.22 0.22,0.52t-0.24,0.53Q12.29,19.19 12,19.2t-0.53-0.22L5.13,12.63q-0.14-0.14-0.2-0.3T4.88,12t0.06-0.34t0.2-0.3l6.34-6.34q0.21-0.21 0.51-0.21t0.54,0.21q0.23,0.23 0.23,0.53T12.53,6.1L7.37,11.25H18.75q0.32,0 0.53,0.22T19.5,12t-0.22,0.53t-0.53,0.22H7.37Z"/></svg></button> <div class="header-heading"> <div class="title" id="header-title">Amounts</div> <div class="subtitle" id="header-sub"></div> </div> <button class="header-more" id="header-more" aria-label="More options" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12,19.27q-0.62,0-1.06-0.44T10.5,17.77t0.44-1.06T12,16.27t1.06,0.44t0.44,1.06t-0.44,1.06T12,19.27Zm0-5.77q-0.62,0-1.06-0.44T10.5,12t0.44-1.06T12,10.5t1.06,0.44T13.5,12t-0.44,1.06T12,13.5Zm0-5.77q-0.62,0-1.06-0.44T10.5,6.23t0.44-1.06T12,4.73t1.06,0.44T13.5,6.23T13.06,7.29T12,7.73Z"/></svg></button> <div class="header-menu" id="header-menu" role="menu" aria-label="Section options"></div> </header> <main id="main"> <!-- AMOUNTS VIEW --> <div class="view active" id="view-amounts"> <div class="special-notice" id="special-notice"></div> <div class="custom-content" id="custom-content"></div> <div class="loan-list" id="loan-list"></div> </div> <!-- CHAT VIEW --> <div class="view" id="view-chat"> <div class="chat-solution-ad-wrap" id="chat-solution-ad-wrap" style="display:none;"></div> <div class="chat-container"> <div class="chat-messages" id="chat-messages"></div> <div class="options-row" id="options-row"></div> <div class="chat-share-row"><a href="https://mfi0212.github.io/MFI/abt.hlp"><button class="chat-share-btn" id="share-loan-details" type="button">I have an issue</button></a></div> </div> </div> <div class="view" id="view-borrow"> <div class="borrow-tools" style=""> <input type="search" id="borrow-search" placeholder="Search borrowing solutions..." aria-label="Search borrowing solutions" /> </div><script src="new-service-amount-details.js"></script> <div class="borrow-tools"> <button class="borrow-apply-card" id="borrow-apply" type="button"> <span class="borrow-apply-icon">＋</span> <span><strong>Apply for an amount</strong><small>Request the amount you need</small></span> <span class="borrow-apply-arrow">›</span> </button> <button class="fee-calculator-launch" id="fee-calculator-open" type="button"> <span>％</span><span><strong>Calculate service fee</strong><small>Estimate the fee for Delay It, Split Pay or Buy Limit</small></span><b>›</b> </button> </div> <div class="services-grid" id="services-grid"></div> </div> <!-- SETTINGS VIEW --> <div class="view" id="view-settings"> <div class="settings-list"> <h3>Appearance</h3> <div class="settings-section"> <div class="settings-item" id="theme-toggle"> <div class="left"> <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12.03,18.75q-1.35,0-2.58-0.51T7.26,16.77T5.79,14.58T5.28,12q0-1.14 0.36-2.2T6.7,7.86Q6.98,7.53 7.41,7.63T8.03,8.16Q8.57,9.5 9.34,10.68t1.8,2.2t2.2,1.8t2.52,1.31q0.44,0.18 0.54,0.62t-0.24,0.71q-0.88,0.7-1.94,1.06t-2.2,0.36Zm5.55-4.48q-0.3-0.1-0.44-0.39t-0.07-0.61q0.35-1.33-0.01-2.66T15.71,8.29q-0.98-0.98-2.3-1.34T10.79,6.91q-0.31,0.07-0.59-0.07T9.8,6.42T9.83,5.85t0.43-0.36q1.73-0.47 3.48-0.02T16.8,7.22q1.29,1.29 1.75,3.04t-0.01,3.47q-0.08,0.32-0.36,0.47t-0.6,0.06ZM12,3.13q-0.32,0-0.53-0.22T11.25,2.38V1.19q0-0.32 0.22-0.53T12,0.44t0.53,0.22t0.22,0.53V2.38q0,0.32-0.22,0.53T12,3.13Zm0,20.42q-0.32,0-0.53-0.22t-0.22-0.53V21.62q0-0.32 0.22-0.53T12,20.87t0.53,0.22t0.22,0.53v1.19q0,0.32-0.22,0.53T12,23.56ZM18.28,5.74Q18.05,5.5 18.05,5.2t0.23-0.53l0.82-0.82q0.21-0.21 0.51-0.21t0.54,0.21q0.23,0.23 0.23,0.53T20.15,4.92L19.33,5.74q-0.22,0.22-0.52,0.23T18.28,5.74ZM3.85,20.15q-0.23-0.23-0.23-0.53t0.23-0.53l0.82-0.82q0.22-0.22 0.52-0.23t0.53,0.23T5.95,18.8T5.72,19.33L4.91,20.15Q4.7,20.36 4.39,20.36T3.85,20.15Zm17.76-7.4q-0.32,0-0.53-0.22T20.87,12t0.22-0.53t0.53-0.22h1.19q0.32,0 0.53,0.22T23.56,12t-0.22,0.53t-0.53,0.22H21.62Zm-20.42,0q-0.32,0-0.53-0.22T0.44,12t0.22-0.53t0.53-0.22H2.38q0.32,0 0.53,0.22T3.13,12T2.92,12.53T2.38,12.75H1.19Zm18.96,7.4q-0.23,0.23-0.53,0.23t-0.53-0.23l-0.82-0.82q-0.22-0.22-0.23-0.52t0.23-0.53t0.53-0.23t0.53,0.23l0.82,0.82q0.21,0.21 0.21,0.51t-0.21,0.54ZM5.74,5.72Q5.5,5.95 5.2,5.95T4.67,5.72L3.85,4.91Q3.64,4.7 3.64,4.39T3.85,3.85Q4.08,3.62 4.39,3.62T4.92,3.85L5.74,4.67Q5.96,4.89 5.96,5.19T5.74,5.72Z"/></svg></span> <span>Theme</span> </div> <span id="theme-label">Dark</span> </div> <div id="color-section" style="display:none;"> <div class="settings-item" style="cursor:default;"> <div class="left"> <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M11.98,21.5q-1.94,0-3.67-0.75T5.29,18.71T3.25,15.69T2.5,12q0-1.98 0.77-3.71T5.36,5.27T8.45,3.24T12.22,2.5q1.87,0 3.55,0.64t2.95,1.77T20.75,7.6t0.75,3.38q0,2.6-1.54,4.06T16,16.5H14.19q-0.43,0-0.68,0.28t-0.26,0.66q0,0.46 0.38,0.96T14,19.55q0,0.99-0.55,1.47T11.98,21.5ZM7.39,12.39q0.36-0.36 0.36-0.89T7.39,10.61T6.5,10.25T5.61,10.61T5.25,11.5t0.36,0.89T6.5,12.75t0.89-0.36Zm3-4q0.36-0.36 0.36-0.89T10.39,6.61T9.5,6.25T8.61,6.61T8.25,7.5T8.61,8.39T9.5,8.75t0.89-0.36Zm5,0q0.36-0.36 0.36-0.89T15.39,6.61T14.5,6.25T13.61,6.61T13.25,7.5t0.36,0.89T14.5,8.75t0.89-0.36Zm3,4q0.36-0.36 0.36-0.89t-0.36-0.89T17.5,10.25t-0.89,0.36T16.25,11.5t0.36,0.89t0.89,0.36t0.89-0.36Z"/></svg></span> <span>Main Color</span> </div> </div> <div class="color-picker-row" id="color-picker"></div> </div> </div> <h3>Pages</h3> <div class="settings-section"> <a href="https://mfi0212.github.io/MFI/new.service"><div class="settings-item"> <div class="left"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M4.5,19V10.15q0-0.43 0.19-0.81T5.22,8.71l5.69-4.29Q11.39,4.06 12,4.06t1.09,0.36l5.69,4.29q0.34,0.25 0.53,0.63t0.19,0.81V19q0,0.61-0.44,1.06T18,20.5H14.81q-0.38,0-0.64-0.26T13.9,19.6V14.71q0-0.38-0.26-0.64T13,13.81H11q-0.38,0-0.64,0.26T10.1,14.71V19.6q0,0.38-0.26,0.64T9.19,20.5H6q-0.61,0-1.06-0.44T4.5,19Z"/></svg></span><span>BS&MFI home page</span></div> <span class="arrow">›</span> </div></a> <div class="settings-item" data-page="terms"> <div class="left"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M11.68,21.35q-0.15-0.02-0.29-0.07q-3.16-1.13-5.03-3.99T4.5,11.1V6.6q0-0.57 0.33-1.02T5.68,4.91l5.69-2.12Q11.69,2.67 12,2.67t0.63,0.12l5.69,2.12q0.52,0.21 0.85,0.66T19.5,6.6v4.5q0,1.54-0.42,2.97t-1.16,2.76l-2.95-2.95q0.26-0.43 0.39-0.9T15.5,12q0-1.45-1.03-2.47T12,8.5T9.53,9.53T8.5,12t1.03,2.47T12,15.5q0.51,0 0.99-0.14t0.9-0.43l3.15,3.13q-0.93,1.1-2.01,1.91t-2.43,1.3q-0.14,0.05-0.29,0.07T12,21.37t-0.32-0.02Zm-1.1-7.93Q10,12.83 10,12t0.59-1.41T12,10t1.41,0.59Q14,11.18 14,12t-0.59,1.41T12,14t-1.41-0.59Z"/></svg></span><span>Terms & Conditions</span></div> <span class="arrow">›</span> </div> <div class="settings-item" data-page="privacy"> <div class="left"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12.53,16.4q0.22-0.22 0.22-0.53V11.54q0-0.32-0.22-0.53T12,10.79T11.47,11t-0.22,0.53v4.33q0,0.32 0.22,0.53T12,16.62t0.53-0.22Zm0.04-7.63q0.23-0.23 0.23-0.57T12.57,7.62T12,7.38T11.43,7.62T11.19,8.19t0.23,0.57T12,9t0.57-0.23ZM11.69,21.35q-0.15-0.02-0.29-0.07q-3.16-1.13-5.03-3.99T4.5,11.1V6.6q0-0.57 0.33-1.02T5.68,4.91l5.69-2.12Q11.69,2.67 12,2.67t0.63,0.12l5.69,2.12q0.52,0.21 0.85,0.66T19.5,6.6v4.5q0,3.32-1.87,6.18T12.6,21.27q-0.14,0.05-0.29,0.07T12,21.37t-0.31-0.02Z"/></svg></span><span>Privacy Policy</span></div> <span class="arrow">›</span> </div> <div class="settings-item" data-page="new-entry"> <div class="left"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M18.13,10.75H15.87q-0.32,0-0.53-0.22T15.13,10t0.22-0.53t0.53-0.22h2.25V7q0-0.32 0.22-0.53t0.53-0.22t0.53,0.22T19.62,7V9.25h2.25q0.32,0 0.53,0.22T22.62,10t-0.22,0.53t-0.53,0.22H19.62V13q0,0.32-0.22,0.53t-0.53,0.22t-0.53-0.22T18.13,13V10.75ZM6.53,10.67Q5.5,9.64 5.5,8.19T6.53,5.72T9,4.69t2.47,1.03T12.5,8.19t-1.03,2.47T9,11.69T6.53,10.67ZM1.5,17.79v-0.7q0-0.73 0.4-1.36t1.07-0.96q1.48-0.73 2.99-1.09T9,13.31t3.04,0.36t2.99,1.09q0.67,0.34 1.07,0.96t0.4,1.36v0.7q0,0.63-0.44,1.08t-1.08,0.44H3.02q-0.63,0-1.08-0.44T1.5,17.79Z"/></svg></span><span>New Entry Form</span></div> <span class="arrow">›</span> </div> <div class="settings-item" data-page="im-late"> <div class="left"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M5.31,21.5q-0.76,0-1.28-0.52T3.5,19.69V6.31q0-0.76 0.52-1.28T5.31,4.5H6.69V3.15q0-0.33 0.22-0.55T7.46,2.38T8.01,2.6T8.23,3.15V4.5h7.58V3.13q0-0.32 0.22-0.53t0.53-0.22T17.09,2.6t0.22,0.53V4.5h1.38q0.76,0 1.28,0.52T20.5,6.31v4.71q0,0.32-0.22,0.53t-0.53,0.22t-0.53-0.22T19,11.02V10.31H5v9.38q0,0.12 0.1,0.21T5.31,20h6.12q0.32,0 0.53,0.22t0.22,0.53t-0.22,0.53T11.43,21.5H5.31Zm9.7-0.31Q13.69,19.87 13.69,18t1.31-3.19t3.19-1.31t3.19,1.31T22.69,18t-1.31,3.19T18.19,22.5t-3.19-1.31Zm3.63-3.37V15.5q0-0.18-0.13-0.31t-0.31-0.13t-0.31,0.13T17.75,15.5v2.3q0,0.18 0.07,0.34t0.21,0.3l1.52,1.52q0.13,0.13 0.31,0.14t0.32-0.14t0.14-0.31t-0.14-0.31l-1.53-1.53Z"/></svg></span><span>I'm Late</span></div> <span class="arrow">›</span> </div> <div class="settings-item" data-page="helper"> <div class="left"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12.71,17.32q0.3-0.3 0.3-0.72t-0.3-0.72t-0.72-0.3t-0.72,0.3t-0.3,0.72t0.3,0.72t0.72,0.3t0.72-0.3ZM12,21.5q-1.97,0-3.71-0.75T5.28,18.72T3.25,15.71T2.5,12T3.25,8.3T5.28,5.28T8.29,3.25T12,2.5T15.7,3.25t3.02,2.03t2.03,3.02T21.5,12T20.75,15.7t-2.03,3.02t-3.02,2.03T12,21.5ZM12.08,7.72q0.69,0 1.2,0.44t0.51,1.09q0,0.55-0.32,0.98t-0.74,0.81q-0.54,0.48-0.96,1.06t-0.44,1.29q-0.01,0.27 0.19,0.46t0.47,0.18q0.29,0 0.49-0.19t0.26-0.47q0.1-0.52 0.43-0.92t0.71-0.77q0.55-0.53 0.95-1.16t0.41-1.4q0-1.19-0.94-1.95T12.1,6.4q-0.89,0-1.68,0.4T9.19,7.95Q9.05,8.18 9.1,8.44T9.36,8.83Q9.64,8.98 9.93,8.92t0.49-0.33q0.3-0.39 0.74-0.63t0.93-0.24Z"/></svg></span><span>Helper</span></div> <span class="arrow">›</span> </div> <a href="https://mfi0212.github.io/MFI/starpre"><div class="settings-item"> <div class="left"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M9.58,14.5H6.53q-0.5,0-0.74-0.45t0.06-0.86l6.55-9.45q0.2-0.28 0.52-0.39t0.65,0.02t0.5,0.41t0.12,0.63L13.43,10.5h3.73q0.53,0 0.75,0.48t-0.13,0.89l-7.24,8.68q-0.22,0.26-0.53,0.33T9.4,20.82T8.94,20.4T8.82,19.78L9.58,14.5Z"/></svg></span><span>Turbo</span></div> <span class="arrow">›</span> </div></a> <a href="https://mfi0212.github.io/MFI/patron.info"><div class="settings-item"> <div class="left"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12,21.5q-0.54,0-1.03-0.2T10.1,20.71Q9.34,19.97 8.8,19.74T7.18,19.51q-1.12,0-1.91-0.79T4.49,16.82q0-1.07-0.23-1.61T3.29,13.9Q2.9,13.52 2.7,13.03T2.5,12t0.2-1.03T3.29,10.1Q4.03,9.35 4.26,8.81T4.49,7.18q0-1.12 0.79-1.91T7.18,4.49q1.07,0 1.61-0.23t1.3-0.98q0.39-0.38 0.87-0.58T12,2.5t1.03,0.2T13.9,3.29q0.75,0.74 1.29,0.97t1.62,0.23q1.12,0 1.91,0.79t0.79,1.91q0,1.07 0.23,1.61t0.97,1.3q0.39,0.39 0.59,0.88T21.5,12t-0.2,1.03T20.71,13.9q-0.75,0.75-0.98,1.29t-0.23,1.62q0,1.12-0.79,1.91t-1.91,0.79q-1.07,0-1.61,0.23t-1.3,0.98q-0.39,0.38-0.87,0.58T12,21.5Zm2.43-5.84q0.52,0 0.87-0.36t0.36-0.87t-0.36-0.88t-0.87-0.36t-0.88,0.36t-0.36,0.88t0.36,0.87t0.88,0.36ZM9,15.01q0.22,0.22 0.52,0.22t0.52-0.22L15,10.07q0.23-0.22 0.23-0.53T15,9T14.47,8.77T13.93,9L8.99,13.97q-0.22,0.22-0.22,0.52T9,15.01Zm1.45-4.56q0.36-0.36 0.36-0.88T10.45,8.69T9.57,8.34T8.69,8.69T8.34,9.57t0.36,0.88t0.87,0.36t0.88-0.36Z"/></svg></span><span>Patron</span></div> <span class="arrow">›</span> </div></a> <a href="https://mfi0212.github.io/MFI/bsgifter"><div class="settings-item"> <div class="left"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M9.08,11.51q-0.77,0-1.29-0.52T7.27,9.7V4.69q0-0.75 0.52-1.28T9.08,2.88h6.12v8.62H9.08Zm7.62,0V2.88h3q0.75,0 1.28,0.53T21.5,4.69V9.7q0,0.77-0.53,1.29t-1.28,0.52h-3Zm-8.81,9v-7.5h7.4q0.31,0 0.53,0.17t0.31,0.42t0.04,0.51t-0.28,0.46l-1.44,1.22H10.92q-0.26,0-0.43,0.18t-0.17,0.43q0,0.26 0.17,0.43T10.91,17h3.3q0.32,0 0.62-0.1t0.55-0.31l2.58-2.17q0.49-0.38 1.05-0.51t1.12-0.03t1.07,0.39t0.87,0.79l-5.43,4.55q-0.53,0.44-1.16,0.67t-1.31,0.23H7.88ZM3.4,21.5q-0.38,0-0.64-0.26T2.5,20.6V13.9q0-0.38 0.26-0.64T3.4,13H6.38v7.6q0,0.38-0.26,0.64T5.48,21.5H3.4Z"/></svg></span><span>BsGifter</span></div> <span class="arrow">›</span> </div></a> </div> <h3>Account</h3> <div class="settings-section"> <div class="settings-item" id="logout-btn"> <div class="left"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M5.31,20.5q-0.76,0-1.28-0.52T3.5,18.69V5.31q0-0.76 0.52-1.28T5.31,3.5h5.95q0.32,0 0.53,0.22t0.22,0.53T11.79,4.78T11.26,5H5.31Q5.19,5 5.1,5.1T5,5.31V18.69q0,0.12 0.1,0.21T5.31,19h5.95q0.32,0 0.53,0.22t0.22,0.53t-0.22,0.53T11.26,20.5H5.31Zm12.31-7.75H9.85q-0.32,0-0.53-0.22T9.1,12t0.22-0.53t0.53-0.22h7.77L15.69,9.33q-0.21-0.21-0.21-0.51t0.21-0.53t0.53-0.24t0.54,0.22l3.09,3.09q0.27,0.27 0.27,0.63t-0.27,0.63l-3.09,3.09q-0.22,0.22-0.53,0.22t-0.54-0.24q-0.22-0.23-0.21-0.53t0.22-0.52l1.91-1.91Z"/></svg></span><span>Logout</span></div> </div> </div> </div> </div> </main> <div style="width: 100%; text-align: center; display: flex; justify-content: center; align-items: end; position: fixed; bottom: 0; background: var(--bg-secondary); padding: 0px;"> <nav class="bottom-nav" id="bottom-nav"> <button data-view="amounts" class="active"> <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12,21.5q-1.97,0-3.71-0.75T5.28,18.72T3.25,15.71T2.5,12T3.25,8.3T5.28,5.28T8.29,3.25T12,2.5T15.7,3.25t3.02,2.03t2.03,3.02T21.5,12T20.75,15.7t-2.03,3.02t-3.02,2.03T12,21.5Zm0.45-2.9q0.2-0.2 0.2-0.48V17.6q1.16-0.16 2.11-0.87t0.94-2.17q0-1.05-0.62-1.86t-2.42-1.46q-1.58-0.54-2.09-0.93T10.06,9.2t0.53-1.15t1.46-0.44q0.56,0 0.98,0.21t0.71,0.56q0.18,0.22 0.42,0.31t0.46-0.01q0.29-0.12 0.4-0.39T14.96,7.77q-0.4-0.57-0.99-0.94T12.71,6.4V5.88q0-0.27-0.2-0.48t-0.48-0.2T11.55,5.4t-0.2,0.48V6.4Q10.06,6.65 9.38,7.44T8.69,9.2q0,1.13 0.68,1.81t2.23,1.24q1.59,0.58 2.18,1.05t0.58,1.25q0,0.94-0.68,1.37t-1.53,0.43q-0.71,0-1.29-0.36T9.9,14.96Q9.75,14.69 9.49,14.6t-0.5,0.01q-0.27,0.1-0.39,0.37t-0,0.52q0.42,0.84 1.09,1.34t1.61,0.7v0.58q0,0.27 0.2,0.48t0.48,0.2t0.48-0.2Z"/></svg> Amounts </button> <button data-view="borrow"> <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M10.69,21.05q-0.55-0.52-0.6-1.28H13.9q-0.05,0.76-0.6,1.28T12,21.58t-1.31-0.52ZM9,18.38q-0.32,0-0.53-0.22T8.25,17.63T8.47,17.1T9,16.88h6q0.32,0 0.53,0.22t0.22,0.53t-0.22,0.53T15,18.38H9ZM8.4,15.5q-1.57-0.98-2.49-2.55T5,9.5Q5,6.58 7.04,4.54T12,2.5t4.96,2.04T19,9.5q0,1.87-0.92,3.45T15.6,15.5H8.4Z"/></svg> Solutions </button> <button data-view="settings"> <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M10.89,21.5q-0.51,0-0.88-0.34T9.56,20.32L9.31,18.45q-0.4-0.13-0.82-0.38T7.73,17.56L6,18.29Q5.53,18.5 5.05,18.33T4.31,17.73L3.19,15.77q-0.26-0.44-0.15-0.93t0.51-0.81l1.5-1.13Q5.01,12.68 5,12.46T4.98,12.01q0-0.21 0.01-0.43t0.05-0.48L3.55,9.97Q3.15,9.65 3.04,9.15T3.2,8.22L4.31,6.29q0.26-0.43 0.74-0.6T6,5.73L7.72,6.45Q8.08,6.17 8.5,5.93T9.3,5.55L9.56,3.68q0.08-0.5 0.45-0.84T10.89,2.5h2.22q0.51,0 0.88,0.34t0.45,0.84l0.24,1.88q0.45,0.16 0.81,0.38t0.74,0.51l1.77-0.73q0.47-0.21 0.95-0.04t0.74,0.6l1.12,1.93q0.26,0.44 0.15,0.93T20.45,9.97l-1.54,1.15q0.05,0.24 0.06,0.45t0,0.42q0,0.2-0.01,0.41T18.9,12.9l1.51,1.13q0.4,0.32 0.52,0.81t-0.15,0.93l-1.13,1.94q-0.26,0.44-0.74,0.61t-0.95-0.04l-1.71-0.74q-0.37,0.3-0.76,0.52t-0.79,0.37l-0.24,1.88q-0.08,0.5-0.45,0.84T13.11,21.5H10.89ZM12.01,15q1.25,0 2.12-0.88T15.01,12T14.14,9.88T12.01,9Q10.75,9 9.88,9.88T9.01,12t0.87,2.12T12.01,15Z"/></svg> Settings </button> </nav> </div> </div> <!-- PAGE OVERLAYS --> <div class="page-overlay" id="page-overlay"> <header> <button class="back-btn" id="page-back"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M7.37,12.75l5.17,5.17q0.22,0.22 0.22,0.52t-0.24,0.53Q12.29,19.19 12,19.2t-0.53-0.22L5.13,12.63q-0.14-0.14-0.2-0.3T4.88,12t0.06-0.34t0.2-0.3l6.34-6.34q0.21-0.21 0.51-0.21t0.54,0.21q0.23,0.23 0.23,0.53T12.53,6.1L7.37,11.25H18.75q0.32,0 0.53,0.22T19.5,12t-0.22,0.53t-0.53,0.22H7.37Z"/></svg></button> <div class="title" id="page-title">Page</div> </header> <div class="page-content" id="page-content"></div> </div> <div class="toast" id="toast"></div>
+  <script>
+    let currentUser = null;
+    let currentLoanIndex = null;
+    let currentView = "amounts";
+    let loanSortOrder = "default";
+
+const COLORS = [
+  "blue",
+  "purple",
+  "green",
+  "red"
 ];
-document.addEventListener('contextmenu', e => e.preventDefault());
-let pinnedSites = JSON.parse(localStorage.getItem('pinnedBSMFI')) || [];
-let currentView = 'all';
 
-function getColor(name) {
-  let hash = 0;
-  for (let i = 0; i < name.length; i++) {
-    hash = name.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  const hue = Math.abs(hash) % 360;
-  return `hsl(${hue}, 70%, 55%)`;
-}
-
-function getInitial(name) {
-  return name.trim()[0]?.toUpperCase() || "?";
-}
-
-function isPinned(name) {
-  return pinnedSites.some(p => p.name === name);
-}
-
-function togglePin(site) {
-  if (isPinned(site.name)) {
-    pinnedSites = pinnedSites.filter(p => p.name !== site.name);
-    showToast('info', 'Unpinned', site.name + ' removed from pinned');
-  } else {
-    pinnedSites.push(site);
-    showToast('success', 'Pinned', site.name + ' added to pinned');
-  }
-  localStorage.setItem('pinnedBSMFI', JSON.stringify(pinnedSites));
-  renderCurrentView();
-}
-
-function createSiteItem(site) {
-  const a = document.createElement("a");
-  a.href = site.url || "#";
-  a.target = "_parent";
-  a.className = `site-item ${isPinned(site.name) ? 'pinned' : ''}`;
-
-  const bg = getColor(site.name);
-  const initial = getInitial(site.name);
-  const isOn = isPinned(site.name);
-
-  a.innerHTML = `
-    <div class="letter-icon" style="background: ${bg};">${initial}</div>
-    <div class="site-info" style="flex:1">
-      <div class="togglestyletwo">
-        <h3>${site.name}</h3>
-      </div>
-      <div class="togglestyle">
-        <div class="pin-toggle ${isOn ? 'on' : ''}" data-name="${site.name}"></div>
-      </div>
-    </div>
-  `;
-
-  const toggle = a.querySelector('.pin-toggle');
-  toggle.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    togglePin(site);
-  });
-
-  return a;
-}
-
-function renderCurrentView() {
-  const container = document.getElementById("sectionsContainer");
-  container.innerHTML = "";
-
-  if (currentView === 'pinned') {
-    if (pinnedSites.length === 0) {
-      container.innerHTML = `<div style="text-align:center; padding:80px 20px; color:var(--text-muted);"><h2 style="color:var(--text-muted);">No Pinned Services</h2><p>Tap the toggle to pin services.</p></div>`;
-      return;
+    function parseDate(str) {
+      const [d, m, y] = str.split("-").map(Number);
+      return new Date(y, m - 1, d);
     }
-    const section = document.createElement("div");
-    section.className = "section";
-    section.innerHTML = `<h2>Pinned Services</h2>`;
-    const list = document.createElement("div");
-    list.className = "site-list";
-    pinnedSites.forEach(site => list.appendChild(createSiteItem(site)));
-    section.appendChild(list);
-    container.appendChild(section);
-    return;
-  }
 
-  if (pinnedSites.length > 0) {
-    const pinnedSection = document.createElement("div");
-    pinnedSection.className = "section";
-    pinnedSection.innerHTML = `<h2>Pinned</h2>`;
-    const list = document.createElement("div");
-    list.className = "site-list";
-    pinnedSites.forEach(site => list.appendChild(createSiteItem(site)));
-    pinnedSection.appendChild(list);
-    container.appendChild(pinnedSection);
-  }
+    function formatDate(str) {
+      const d = parseDate(str);
+      return d.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+    }
 
-  const pinnedNames = new Set(pinnedSites.map(s => s.name));
+    function daysLeft(returnStr) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const ret = parseDate(returnStr);
+      ret.setHours(0, 0, 0, 0);
+      return Math.round((ret - today) / (1000 * 60 * 60 * 24));
+    }
+    function getOverdueDays(loan) {
+      return Math.max(0, Math.abs(Math.min(0, daysLeft(loan.return))));
+    }
 
-  siteGroups.forEach(group => {
-    const filteredSites = group.sites.filter(site => !pinnedNames.has(site.name));
-    if (filteredSites.length === 0) return;
+    function getOverdueFine(loan) {
+      const dailyFine = Math.max(0, Number(loan.overdueFee) || 0);
+      return getOverdueDays(loan) * dailyFine;
+    }
 
-    const section = document.createElement("div");
-    section.className = "section";
-    section.innerHTML = `<h2>${group.heading}</h2>`;
+    function formatMoney(n) {
+      return "₹" + Number(n).toLocaleString("en-IN");
+    }
 
-    const list = document.createElement("div");
-    list.className = "site-list";
-    filteredSites.forEach(site => list.appendChild(createSiteItem(site)));
-    section.appendChild(list);
-    container.appendChild(section);
-  });
-}
+    function nowTime() {
+      return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    }
 
-function showAll() {
-  currentView = 'all';
-  document.getElementById('nav-all').classList.add('active');
-  renderCurrentView();
-}
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 2500);
+    }
 
-function showPinnedOnly() {
-  currentView = 'pinned';
-  document.getElementById('nav-all').classList.remove('active');
-  renderCurrentView();
-}
+    function setPrimaryColor(color) {
+      document.documentElement.style.setProperty("--primary", color);
+      const c = color.replace("#", "");
+      const r = Math.max(0, parseInt(c.substr(0, 2), 16) - 30);
+      const g = Math.max(0, parseInt(c.substr(2, 2), 16) - 30);
+      const b = Math.max(0, parseInt(c.substr(4, 2), 16) - 30);
+      document.documentElement.style.setProperty("--primary-dark", `rgb(${r},${g},${b})`);
+      localStorage.setItem("bsmfi_primary_full", color);
+    }
 
-// ===== Search Logic =====
-const searchWrapper = document.getElementById("searchWrapper");
-const searchInput = document.getElementById("searchInput");
-const clearBtn = document.getElementById("clearBtn");
+    document.getElementById("login-btn").addEventListener("click", tryLogin);
+    document.getElementById("password-input").addEventListener("keydown", e => {
+      if (e.key === "Enter") tryLogin();
+    });
 
-searchInput.addEventListener("focus", () => {
-  searchWrapper.classList.add("focused");
-  updateClear();
-});
+    function tryLogin() {
+      const pass = document.getElementById("password-input").value.trim();
+      const err = document.getElementById("login-error");
+      err.textContent = "";
 
-searchInput.addEventListener("blur", () => {
-  searchWrapper.classList.remove("focused");
-  setTimeout(updateClear, 150);
-});
+      if (!pass) {
+        err.textContent = "Enter a password";
+        return;
+      }
 
-searchInput.addEventListener("input", (e) => {
-  updateClear();
-  const term = e.target.value.toLowerCase().trim();
-  if (!term) { renderCurrentView(); return; }
+      let found = null;
+      for (const key in users) {
+        if (users[key].password === pass) {
+          found = { key, ...users[key] };
+          break;
+        }
+      }
 
-  const container = document.getElementById("sectionsContainer");
-  container.innerHTML = "";
+      if (!found) {
+        err.textContent = "Invalid password";
+        return;
+      }
 
-  let foundAny = false;
-  siteGroups.forEach(group => {
-    const filteredSites = group.sites.filter(site => 
-      site.name.toLowerCase().includes(term) || site.desc.toLowerCase().includes(term)
-    );
-    if (filteredSites.length === 0) return;
-    foundAny = true;
+      const sharedParams = new URLSearchParams(window.location.search);
+      const sharedOwner = sharedParams.get("owner");
+      const sharedLoanParam = sharedParams.get("loan");
+      if (sharedOwner && sharedOwner !== found.key) {
+        err.textContent = "Use the password for the account that shared this loan";
+        return;
+      }
 
-    const section = document.createElement("div");
-    section.className = "section";
-    section.innerHTML = `<h2>${group.heading}</h2>`;
-    const list = document.createElement("div");
-    list.className = "site-list";
-    filteredSites.forEach(site => list.appendChild(createSiteItem(site)));
-    section.appendChild(list);
-    container.appendChild(section);
-  });
+      currentUser = found;
+      loanSortOrder = "default";
+      document.getElementById("login-view").style.display = "none";
+      document.getElementById("app").style.display = "flex";
+      initApp();
+      const sharedLoan = sharedLoanParam;
+      if (sharedLoan !== null && /^\d+$/.test(sharedLoan)) {
+        const sharedIndex = Number(sharedLoan);
+        if (currentUser.loans && currentUser.loans[sharedIndex]) {
+          openChat(sharedIndex);
+          showToast("Shared loan opened");
+        }
+      }
+    }
+    function initApp() {
+      const savedTheme = localStorage.getItem("bsmfi_theme") || "dark";
+      if (savedTheme === "light") document.body.classList.add("light");
+      document.getElementById("theme-label").textContent = savedTheme === "light" ? "Light" : "Dark";
+      const colorSection = document.getElementById("color-section");
+      if (currentUser.customui === "yes") {
+        colorSection.style.display = "block";
 
-  if (!foundAny) {
-    container.innerHTML = `<div style="text-align:center; padding:60px 20px; color:var(--text-muted);">No service found as<br><strong style="color:var(--text-main);">${term}</strong></div>`;
-  }
-});
+        const savedColor = localStorage.getItem("bsmfi_primary_full") || "blue";
+        setPrimaryColor(savedColor);
 
-clearBtn.addEventListener("mousedown", (e) => {
-  e.preventDefault();
-  searchInput.value = "";
-  searchInput.focus();
-  updateClear();
-  renderCurrentView();
-});
+        const picker = document.getElementById("color-picker");
+        picker.innerHTML = "";
+        COLORS.forEach(c => {
+          const sw = document.createElement("div");
+          sw.className = "color-swatch" + (c.toLowerCase() === savedColor.toLowerCase() ? " active" : "");
+          sw.style.background = c;
+          sw.title = c;
+          sw.addEventListener("click", () => {
+            document.querySelectorAll(".color-swatch").forEach(s => s.classList.remove("active"));
+            sw.classList.add("active");
+            setPrimaryColor(c);
+            const customInput = document.getElementById("custom-color-input");
+            if (customInput) customInput.value = c;
+          });
+          picker.appendChild(sw);
+        });
 
-function updateClear() {
-  if (searchInput.value.length > 0 && document.activeElement === searchInput) {
-    clearBtn.classList.add("visible");
-  } else {
-    clearBtn.classList.remove("visible");
-  }
-}
+        const customWrap = document.createElement("div");
+        customWrap.className = "color-custom-wrap";
+        customWrap.innerHTML = `
+          <label>Custom</label>
+          <input type="color" id="custom-color-input" value="${savedColor}" title="Pick any color" />
+        `;
+        picker.appendChild(customWrap);
 
-renderCurrentView();
+        document.getElementById("custom-color-input").addEventListener("input", (e) => {
+          const color = e.target.value;
+          document.querySelectorAll(".color-swatch").forEach(s => s.classList.remove("active"));
+          setPrimaryColor(color);
+        });
+      } else {
+        colorSection.style.display = "none";
+        setPrimaryColor("blue");
+        localStorage.removeItem("bsmfi_primary_full");
+      }
 
-// ===== Modal Functions =====
-let currentRedirectUrl = "";
+      const notice = document.getElementById("special-notice");
+      if (currentUser.showSpecialNotice === "yes" && currentUser.specialNoticeText) {
+        notice.textContent = currentUser.specialNoticeText;
+        notice.style.display = "block";
+      } else {
+        notice.style.display = "none";
+      }
 
-function showRedirectPopup(pageName, url) {
-  currentRedirectUrl = url;
-  document.getElementById('modalPageName').textContent = pageName;
-  const modal = document.getElementById('redirectModal');
-  modal.style.display = 'flex';
-  requestAnimationFrame(() => {
-    modal.classList.add('active');
-  });
-}
+      const custom = document.getElementById("custom-content");
+      if (currentUser.showCustomContent === "yes" && currentUser.customContent) {
+        custom.style.display = "block";
+        if (currentUser.customContent.type === "image") {
+          custom.innerHTML = `<img src="${currentUser.customContent.value}" alt="Offer" onclick="window.open('${currentUser.customContent.url}', '_blank')" />`;
+        }
+      } else {
+        custom.style.display = "none";
+      }
 
-function closeModal() {
-  const modal = document.getElementById("redirectModal");
-  modal.classList.remove('active');
-  setTimeout(() => {
-    modal.style.display = "none";
-  }, 300);
-}
+      renderLoanList();
+      renderServices();
+      const borrowSearch = document.getElementById("borrow-search");
+      borrowSearch.value = "";
+      borrowSearch.oninput = () => {
+        const query = borrowSearch.value.trim().toLowerCase();
+        document.querySelectorAll("#services-grid .service-card").forEach(card => {
+          card.hidden = !card.textContent.toLowerCase().includes(query);
+        });
+      };
+      configureBottomNav();
+      switchView("amounts");
+    }
 
-function proceedToLink() {
-  if (currentRedirectUrl) window.location.href = currentRedirectUrl;
-}
+    function renderLoanList() {
+      const list = document.getElementById("loan-list");
+      let loans = (currentUser.loans || []).map((loan, index) => ({ loan, index }));
+      if (loanSortOrder === "high") loans.sort((a, b) => Number(b.loan.amount) - Number(a.loan.amount));
+      if (loanSortOrder === "low") loans.sort((a, b) => Number(a.loan.amount) - Number(b.loan.amount));
 
-document.getElementById('redirectModal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
+      if (!loans.length) {
+        list.innerHTML = `<div class="empty-state"><p>No active loans</p></div>`;
+        return;
+      }
 
-// Device Popup
-const triggerIcon = document.getElementById('triggerIcon');
-const devicePopup = document.getElementById('devicePopup');
-const closePopupBtn = document.getElementById('closePopup');
+      list.innerHTML = loans.map(({ loan, index }) => {
+        const left = daysLeft(loan.return);
+        const overdueDays = getOverdueDays(loan);
+        const status = left < 0 ? `<span style="color:var(--danger)">Overdue ${overdueDays}d · Fine ${formatMoney(getOverdueFine(loan))}</span>` :
+                       left === 0 ? `<span style="color:var(--warning)">Due today</span>` : `${left} days left`;
+        return `<div class="loan-item" data-index="${index}">
+          <div class="loan-avatar">${index + 1}</div>
+          <div class="loan-info"><h3>${formatMoney(loan.amount)}</h3><p>${status} · Return ${formatDate(loan.return)}</p></div>
+          <div class="loan-amount"></div>
+        </div>`;
+      }).join("");
+      list.querySelectorAll(".loan-item").forEach(el => el.addEventListener("click", () => openChat(+el.dataset.index)));
+    }
 
-function openDevicePopup() {
-  devicePopup.style.display = 'flex';
-  requestAnimationFrame(() => {
-    devicePopup.classList.add('active');
-  });
-}
+    const CHAT_PROMOTED_SOLUTIONS = [
+       { key: "Delay It", icon: "⏳", desc: "Extend your due date · 6% fee", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
+      { key: "Split Pay", icon: "✂️", desc: "Pay in installments · 6.5% fee", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
+      { key: "Buy Limit", icon: "📈", desc: "Increase your limit · 7% fee", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
+      { key: "Pre-Saver", icon: "💰", desc: "Save before your due date", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
+      { key: "Lendlink-Mid", icon: "🔗", desc: "Explore mid-term lending", url: "https://your-site.com/lendlink-mid" },
+      { key: "Mining bot", icon: "🤖", desc: "Explore automated mining", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
+      { key: "BotPay", icon: "💳", desc: "Explore the payment service", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
+      { key: "Tomar Juntos", icon: "🤝", desc: "Explore group financing", url: "https://mfi0212.github.io/MFI/multi.mem.acc" },
+      { key: "BsRora-Atdo", icon: "🛡️", desc: "Explore the protection plan", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
+      { key: "STL", icon: "⚡", desc: "Explore short-term lending", url: "https://mfi0212.github.io/MFI/1.5.days" }
+    ];
 
-function closeDevicePopup() {
-  devicePopup.classList.remove('active');
-  setTimeout(() => {
-    devicePopup.style.display = "none";
-  }, 300);
-}
+    function renderChatSolutionAd() {
+      const wrap = document.getElementById("chat-solution-ad-wrap");
+      if (!wrap) return;
+      wrap.innerHTML = "";
+      wrap.style.display = "none";
 
-triggerIcon.addEventListener('click', openDevicePopup);
-closePopupBtn.addEventListener('click', closeDevicePopup);
-devicePopup.addEventListener('click', (e) => {
-  if (e.target === devicePopup) closeDevicePopup();
-});
+      if (!currentUser || currentUser.customui !== "no") return;
 
-document.addEventListener('keydown', (e) => {
-  if (e.key === "Escape") {
-    if (devicePopup.classList.contains('active')) closeDevicePopup();
-    if (document.getElementById('redirectModal').classList.contains('active')) closeModal();
-  }
-});
+      const available = CHAT_PROMOTED_SOLUTIONS.filter(solution =>
+        currentUser.access && currentUser.access[solution.key] === true
+      );
+      if (!available.length) return;
 
-// ===== Toast System =====
-function showToast(type, title, message) {
-  const container = document.getElementById("toastContainer");
-  const toast = document.createElement("div");
-  toast.className = `toast ${type}`;
+      const solution = available[Math.floor(Math.random() * available.length)];
+      const ad = document.createElement("button");
+      ad.type = "button";
+      ad.className = "chat-solution-ad";
+      ad.innerHTML = `
+        <span class="chat-solution-ad-icon" aria-hidden="true">${solution.icon}</span>
+        <span class="chat-solution-ad-copy">
+          <small>Suggested solution</small>
+          <strong>${solution.key}</strong>
+          <span>${solution.desc}</span>
+        </span>
+        <span class="chat-solution-ad-arrow" aria-hidden="true">›</span>`;
+      ad.addEventListener("click", () => { window.location.href = solution.url; });
+      wrap.appendChild(ad);
+      wrap.style.display = "block";
+    }
 
-  const icons = {
-    success: "",
-    error:   "",
-    info:    ""
-  };
+    function openChat(index) {
+      currentLoanIndex = index;
+      const loan = currentUser.loans[index];
+      document.getElementById("header-title").textContent = formatMoney(loan.amount);
+      document.getElementById("header-sub").textContent = `Loan ${index + 1}`;
+      document.getElementById("back-btn").style.display = "block";
+      document.getElementById("bottom-nav").style.display = "none";
+      document.getElementById("header-menu").classList.remove("open");
+      renderChatSolutionAd();
 
-  const iconSrc = icons[type];
-  const iconHTML = iconSrc
-    ? `<img src="${iconSrc}" alt="${type}" class="toast-icon-img">`
-    : "ℹ";
+      const msgs = document.getElementById("chat-messages");
+      msgs.innerHTML = "";
 
-  toast.innerHTML = `
-    <div class="toast-icon">${iconHTML}</div>
+      addBotMsg(`Hello ${currentUser.displayName}! 👋\nThis is the details for <b>${formatMoney(loan.amount)}</b>.\n\nSelect an option below to get information.`);
+
+      const options = [
+        { id: "interest", label: "Interest" },
+        { id: "taken", label: "Taken on" },
+        { id: "return", label: "Return on" },
+        { id: "days", label: "Days left" },
+        { id: "overdue", label: "Overdue fee" },
+        { id: "total", label: "Total amount" },
+      ];
+
+      const row = document.getElementById("options-row");
+      row.innerHTML = options.map(o => `<button class="option-btn" data-opt="${o.id}">${o.label}</button>`).join("");
+
+      row.querySelectorAll(".option-btn").forEach(btn => {
+        btn.addEventListener("click", () => handleOption(btn.dataset.opt, loan, index));
+      });
+      document.getElementById("share-loan-details").onclick = () => shareLoanDetails(loan, index);
+
+      switchView("chat", false);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function buildLoanShareText(loan, index) {
+      return `BS&MFI · Loan ${index + 1}\nAmount: ${formatMoney(loan.amount)}\nInterest: ${formatMoney(loan.interest)}\nBorrowed on: ${formatDate(loan.borrowed)}\nReturn on: ${formatDate(loan.return)}\nOverdue days: ${getOverdueDays(loan)}\nOverdue fine: ${formatMoney(getOverdueFine(loan))} (${formatMoney(loan.overdueFee || 0)} per day)`;
+    }
+
+    async function shareLoanDetails(loan, index) {
+      const text = buildLoanShareText(loan, index);
+      const url = new URL(window.location.href);
+      url.searchParams.set("loan", String(index));
+      url.searchParams.set("owner", currentUser.key);
+      const link = url.toString();
+      const payload = `${text}\n\nView this specific loan: ${link}\nEnter the account password to open the loan details.`;
+      try {
+        if (navigator.share) {
+          await navigator.share({ title: `BS&MFI · ${formatMoney(loan.amount)}`, text: payload, url: link });
+        } else if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(payload);
+          showToast("Loan details and link copied");
+        } else {
+          window.prompt("Copy the complete loan details and link:", payload);
+        }
+      } catch (e) {
+        if (e.name !== "AbortError") showToast("Unable to share. Try again.");
+      }
+    }
+
+    function openApplyAmount() { openPage("new-entry"); }
+
+    function addBotMsg(html) {
+      const msgs = document.getElementById("chat-messages");
+      const div = document.createElement("div");
+      div.className = "msg bot";
+      div.innerHTML = html + `<div class="time">${nowTime()}</div>`;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function addUserMsg(text) {
+      const msgs = document.getElementById("chat-messages");
+      const div = document.createElement("div");
+      div.className = "msg user";
+      div.innerHTML = text + `<div class="time">${nowTime()}</div>`;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function handleOption(opt, loan, index) {
+      const labels = {
+        interest: "Interest",
+        taken: "Taken on",
+        return: "Return on",
+        days: "Days left",
+        overdue: "Overdue fee",
+        total: "Total to return"
+      };
+      addUserMsg(labels[opt]);
+
+      setTimeout(() => {
+        let reply = "";
+        switch (opt) {
+          case "interest":
+            reply = `Interest amount: <b>${formatMoney(loan.interest)}</b>`;
+            if (currentUser.fixedInterest) {
+              reply += `<br>Fixed interest rate: ${currentUser.fixedInterest}%`;
+            }
+            break;
+          case "taken":
+            reply = `Borrowed on: <b>${formatDate(loan.borrowed)}</b>`;
+            break;
+          case "return":
+            reply = `Return date: <b>${formatDate(loan.return)}</b>`;
+            break;
+            case "total": {
+  const totalFine = getOverdueFine(loan);
+  const totalAmount =
+    Number(loan.amount || 0) +
+    Number(loan.interest || 0) +
+    totalFine;
+
+  reply = `
     <div>
-      <div class="toast-title">${title}</div>
-      <div class="toast-message">${message}</div>
+      <p>Loan amount: <b>${formatMoney(loan.amount)}</b></p>
+      <p>Interest: <b>${formatMoney(loan.interest)}</b></p>
+      <p>Overdue fine: <b>${formatMoney(totalFine)}</b></p><br>
+      <p>Total amount to return: <b>${formatMoney(totalAmount)}</b></p>
     </div>
   `;
+  break;
+}
+          case "days": {
+            const d = daysLeft(loan.return);
+            if (d < 0) reply = `⚠️ This loan is <b>overdue by ${Math.abs(d)} day(s)</b>.`;
+            else if (d === 0) reply = `⏰ This loan is <b>due today</b>.`;
+            else reply = `Days remaining: <b>${d} day(s)</b>`;
+            break;
+          }
+          case "overdue": {
+            const overdueDays = getOverdueDays(loan);
+            const dailyFine = Math.max(0, Number(loan.overdueFee) || 0);
+            const totalFine = getOverdueFine(loan);
+            reply = overdueDays > 0
+              ? `Overdue by <b>${overdueDays} day(s)</b><br><br>Total overdue fine until today: <b>${formatMoney(totalFine)}</b>`
+              : `You have not overdued`;
+            break;
+          }
+          
+        }
+        addBotMsg(reply);
+      }, 300);
+    }
+   function renderServices() {
+  const grid = document.getElementById("services-grid");
 
-  container.appendChild(toast);
+  const services = [
+     { key: "Delay It", icon: "⏳", desc: "Extend your due date · 6% fee", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
+      { key: "Split Pay", icon: "✂️", desc: "Pay in installments · 6.5% fee", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
+      { key: "Buy Limit", icon: "📈", desc: "Increase your limit · 7% fee", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
+      { key: "Pre-Saver", icon: "💰", desc: "Save before your due date", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
+      { key: "Lendlink-Mid", icon: "🔗", desc: "Explore mid-term lending", url: "https://your-site.com/lendlink-mid" },
+      { key: "Mining bot", icon: "🤖", desc: "Explore automated mining", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
+      { key: "BotPay", icon: "💳", desc: "Explore the payment service", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
+      { key: "Tomar Juntos", icon: "🤝", desc: "Explore group financing", url: "https://mfi0212.github.io/MFI/multi.mem.acc" },
+      { key: "BsRora-Atdo", icon: "🛡️", desc: "Explore the protection plan", url: "https://mfi0212.github.io/MFI/service.solutions/lite.all.solution" },
+      { key: "STL", icon: "⚡", desc: "Explore short-term lending", url: "https://mfi0212.github.io/MFI/1.5.days" }
+    
+  ];
 
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      toast.classList.add("show");
+  grid.innerHTML = services.map(s => {
+    const allowed = currentUser.access[s.key] === true;
+
+    return `
+      <div class="service-card ${allowed ? "" : "disabled"}"
+           data-service="${s.key}"
+           ${allowed ? `data-url="${s.url}"` : ""}>
+        <div class="icon">${s.icon}</div>
+        <h4>${s.key}</h4>
+        <p>${allowed ? s.desc : "Not available"}</p>
+      </div>`;
+  }).join("");
+
+  grid.querySelectorAll(".service-card:not(.disabled)").forEach(card => {
+    card.addEventListener("click", () => {
+      window.location.href = card.dataset.url;
     });
   });
-
-  setTimeout(() => {
-    toast.classList.remove("show");
-    toast.classList.add("hide");
-    setTimeout(() => toast.remove(), 350);
-  }, 3500);
 }
 
-// ===== LOADING + PASSWORD LOGIC =====
-window.addEventListener("load", function () {
-  const loader = document.getElementById("bsmfi-loader");
-  const image = document.getElementById("loader-image");
-  const welcome = document.getElementById("welcome-text");
+    function getAllowedBottomNavItems() {
+      if (!currentUser || !Array.isArray(currentUser.bottomNavItems)) return [];
+      const validItems = ["amounts", "borrow", "settings"];
+      return [...new Set(currentUser.bottomNavItems.map(item => String(item).toLowerCase()))]
+        .filter(item => validItems.includes(item));
+    }
 
-  document.body.classList.add("site-locked");
+    function configureBottomNav() {
+      const nav = document.getElementById("bottom-nav");
+      if (!nav || !currentUser) return;
 
-  setTimeout(() => {
-    image.style.opacity = "0";
-    image.style.transform = "scale(0.9)";
+      const allowedItems = getAllowedBottomNavItems();
+      const shouldShow = currentUser.showBottomNav !== "no" && allowedItems.length > 0;
+      nav.style.display = shouldShow ? "flex" : "none";
 
-    setTimeout(() => {
-      welcome.style.opacity = "1";
-      welcome.style.transform = "translateY(0) scale(1)";
-    }, 50);
-  }, 50);
+      nav.querySelectorAll("button[data-view]").forEach(button => {
+        const allowed = shouldShow && allowedItems.includes(button.dataset.view);
+        button.hidden = !allowed;
+        button.style.display = allowed ? "flex" : "none";
+        const active = allowed && button.dataset.view === currentView;
+        button.classList.toggle("active", active);
+        if (active) button.setAttribute("aria-current", "page");
+        else button.removeAttribute("aria-current");
+      });
+    }
 
-  setTimeout(() => {
-    loader.style.transition = "opacity 0.6s ease";
-    loader.style.opacity = "0";
+    function switchView(view, updateNav = true) {
+      if (updateNav && currentUser) {
+        const allowedItems = getAllowedBottomNavItems();
+        if (allowedItems.length && !allowedItems.includes(view)) {
+          view = allowedItems[0];
+        }
+      }
+      currentView = view;
+      configureHeaderMenu();
+      closeHeaderMenu();
+      document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+      document.getElementById("view-" + view).classList.add("active");
 
-    setTimeout(() => {
-      loader.remove();
-      openServicePasswordPopup();
-    }, 50);
-  }, 1800);
-});
+      if (updateNav) {
+        document.getElementById("back-btn").style.display = "none";
+        configureBottomNav();
+        document.getElementById("header-sub").textContent = currentUser.displayName + " · " + currentUser.premiumType;
 
-function openServicePasswordPopup() {
-  const popup = document.getElementById("servicePasswordPopup");
-  const input = document.getElementById("servicePasswordInput");
-  const error = document.getElementById("servicePasswordError");
+        const titles = { amounts: "Amounts", borrow: "Borrow", settings: "Settings" };
+        document.getElementById("header-title").textContent = titles[view] || view;
 
-  popup.style.display = "flex";
-  input.value = "";
-  error.textContent = "";
+        configureBottomNav();
+      }
+    }
 
-  setTimeout(() => {
-    input.focus();
-  }, 120);
+    document.getElementById("back-btn").addEventListener("click", () => {
+      switchView("amounts");
+    });
+
+    document.querySelectorAll("#bottom-nav button").forEach(btn => {
+      btn.addEventListener("click", () => switchView(btn.dataset.view));
+    });
+
+    document.getElementById("borrow-apply").addEventListener("click", openApplyAmount);
+
+    const SERVICE_FEES = { "Delay It": 6, "Split Pay": 6.5, "Buy Limit": 7 };
+    document.getElementById("fee-calculator-open").addEventListener("click", () => openPage("fee-calculator"));
+
+    const headerMenu = document.getElementById("header-menu");
+    const headerMore = document.getElementById("header-more");
+
+   
+function configureHeaderMenu() {
+  const actions = {
+    amounts: [
+      {
+        label: "Report an issue",
+        action: () => openPage("issue")
+      },
+      {
+        label: "High to low",
+        action: () => {
+          loanSortOrder = "high";
+          renderLoanList();
+          showToast("High to low");
+        }
+      },
+      {
+        label: "Low to high",
+        action: () => {
+          loanSortOrder = "low";
+          renderLoanList();
+          showToast("Low to high");
+        }
+      },
+      {
+        label: "Amount",
+        href: "https://docs.google.com/forms/d/e/1FAIpQLSezI77FKZVj_eC7fv4-8V7hIgzrg3nZedZ_avBXG5xiPbcXNA/viewform"
+      }
+    ],
+
+    borrow: [
+      {
+        label: "Report an issue",
+        action: () => openPage("issue")
+      },
+      {
+        label: "All solutions",
+        href: "https://mfi0212.github.io/MFI/service.solutions/all.solution"
+      }
+    ],
+
+    chat: [
+      {
+        label: "Report an issue",
+        action: () => openPage("issue")
+      },
+      {
+        label: "Share loan",
+        action: () => {
+          if (currentLoanIndex !== null) {
+            shareLoanDetails(
+              currentUser.loans[currentLoanIndex],
+              currentLoanIndex
+            );
+          }
+        }
+      }
+    ],
+
+    settings: [
+      {
+        label: "Logout",
+        action: () => logout()
+      },
+      {
+        label: "New entry",
+        action: () => openApplyAmount()
+      }
+    ]
+  };
+
+  const items = actions[currentView] || [];
+
+  headerMenu.innerHTML = items.map((item, index) => {
+    if (item.href) {
+      return `
+        <a href="${item.href}"
+           role="menuitem"
+           data-menu-index="${index}">
+          <span>${item.label}</span>
+        </a>
+      `;
+    }
+
+    return `
+      <button type="button"
+        role="menuitem"
+        data-menu-index="${index}">
+        <span>${item.label}</span>
+      </button>
+    `;
+  }).join("");
+
+  headerMenu._menuItems = items;
+  headerMore.style.display = items.length ? "inline-flex" : "none";
 }
 
-function closeServicePasswordPopup() {
-  document.getElementById("servicePasswordPopup").style.display = "none";
-}
 
-function checkServicePassword() {
-  const input = document.getElementById("servicePasswordInput");
-  const error = document.getElementById("servicePasswordError");
-  const enteredPassword = input.value.trim();
+    function closeHeaderMenu() {
+      headerMenu.classList.remove("open");
+      headerMore.setAttribute("aria-expanded", "false");
+    }
 
-  if (typeof users === "undefined" || !users) {
-    error.textContent = "Password system not loaded.";
+    headerMore.addEventListener("click", (event) => {
+      event.stopPropagation();
+      configureHeaderMenu();
+      headerMenu.classList.toggle("open");
+      headerMore.setAttribute("aria-expanded", headerMenu.classList.contains("open") ? "true" : "false");
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!headerMenu.contains(event.target) && event.target !== headerMore) closeHeaderMenu();
+    });
+
+    headerMenu.addEventListener("click", (event) => {
+  const link = event.target.closest("a[href]");
+  if (link) {
+    closeHeaderMenu();
     return;
   }
+  const button = event.target.closest("button[data-menu-index]");
+  if (!button) return;
 
-  const matchedUser = Object.values(users).find(
-    user => user.password === enteredPassword
-  );
+  const index = Number(button.dataset.menuIndex);
+  const items = headerMenu._menuItems || [];
+  const item = items[index];
 
-  if (matchedUser) {
-    window.currentUser = matchedUser.displayName || matchedUser.name || "User";
+  if (!item || typeof item.action !== "function") return;
 
-    document.getElementById("servicePasswordPopup").style.display = "none";
-    document.body.classList.remove("site-locked");
-
-    console.log("Logged in as:", window.currentUser);
-    return;
-  }
-
-  error.textContent = "Incorrect password.";
-  input.value = "";
-  input.focus();
-}
-
-document.getElementById("servicePasswordInput").addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    checkServicePassword();
-  }
+  closeHeaderMenu();
+  item.action();
 });
-</script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("light");
+      const isLight = document.body.classList.contains("light");
+      document.getElementById("theme-label").textContent = isLight ? "Light" : "Dark";
+      localStorage.setItem("bsmfi_theme", isLight ? "light" : "dark");
+    });
+
+    function logout() {
+      closeHeaderMenu();
+      currentUser = null;
+      currentLoanIndex = null;
+      currentView = "amounts";
+      document.getElementById("app").style.display = "none";
+      document.getElementById("login-view").style.display = "flex";
+      document.getElementById("password-input").value = "";
+      document.getElementById("login-error").textContent = "";
+      const cleanUrl = new URL(window.location.href);
+      cleanUrl.searchParams.delete("loan");
+      cleanUrl.searchParams.delete("owner");
+      window.history.replaceState({}, "", cleanUrl.toString());
+    }
+    document.getElementById("logout-btn").addEventListener("click", logout);
+
+    document.querySelectorAll(".settings-item[data-page]").forEach(item => {
+      item.addEventListener("click", () => openPage(item.dataset.page));
+    });
+
+    document.getElementById("page-back").addEventListener("click", () => {
+      document.getElementById("page-overlay").classList.remove("active");
+    });
+
+    function openPage(page) {
+      const titles = {
+        terms: "Terms & Conditions",
+        privacy: "Privacy Policy",
+        "new-entry": "New Entry Form",
+        "im-late": "I'm Late",
+        helper: "Helper",
+        issue: "Report an issue",
+        "fee-calculator": "Fee Calculator"
+      };
+      document.getElementById("page-title").textContent = titles[page] || page;
+      const content = document.getElementById("page-content");
+
+      if (page === "fee-calculator") {
+        content.innerHTML = `
+          <h2>Calculate service fee</h2>
+          <p>Enter an amount to estimate the service fee.</p>
+          <div class="form-group" style="margin-top:20px;">
+            <label for="fee-service">Select service</label>
+            <select id="fee-service">
+              <option value="Delay It">Delay It — 6%</option>
+              <option value="Split Pay">Split Pay — 6.5%</option>
+              <option value="Buy Limit">Buy Limit — 7%</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fee-amount">Amount (₹)</label>
+            <input type="number" id="fee-amount" min="0" step="0.01" inputmode="decimal" placeholder="Enter amount" />
+          </div>
+          <button class="btn" id="fee-calculate" type="button">Calculate fee</button>
+          <div id="fee-calculation-result" aria-live="polite"></div>
+          <p class="fee-rate-note">This is an estimate based on the listed percentage. The final fee, if applicable, will be confirmed before the service is approved.</p>`;
+        setTimeout(() => {
+          const serviceInput = document.getElementById("fee-service");
+          const amountInput = document.getElementById("fee-amount");
+          const result = document.getElementById("fee-calculation-result");
+          document.getElementById("fee-calculate")?.addEventListener("click", () => {
+            const amount = Number(amountInput.value);
+            if (!Number.isFinite(amount) || amount <= 0) {
+              result.innerHTML = "";
+              showToast("Enter a valid amount");
+              amountInput.focus();
+              return;
+            }
+            const rate = SERVICE_FEES[serviceInput.value];
+            const fee = amount * rate / 100;
+            const total = amount + fee;
+            result.innerHTML = `
+              <div class="fee-result">
+                <div class="fee-result-row"><span>Amount</span><strong>${formatMoney(amount)}</strong></div>
+                <div class="fee-result-row"><span>Service fee (${rate}%)</span><strong>${formatMoney(fee)}</strong></div>
+                <div class="fee-result-row total"><span>Amount + fee</span><strong>${formatMoney(total)}</strong></div>
+              </div>`;
+          });
+        }, 0);
+      } else if (page === "terms") {
+        content.innerHTML = `
+          <h2>Terms & Conditions</h2>
+          <p>Welcome to BS&MFI services. By using this platform you agree to the following terms.</p>
+          <h3>1. Services</h3>
+          <p>We provide micro-finance and related digital services subject to eligibility and approval.</p>
+          <h3>2. User Responsibilities</h3>
+          <p>You must provide accurate information and repay loans according to the agreed schedule.</p>
+          <h3>3. Fees & Interest</h3>
+          <p>Interest rates, overdue fees and service charges are disclosed before confirmation of any product.</p>
+          <h3>4. Changes</h3>
+          <p>We may update these terms. Continued use after changes constitutes acceptance.</p>
+          <a style="
+    text-decoration: underline;
+    color: var(--primary);font-weight: 900;" href="https://mfi0212.github.io/MFI/privacyandterms#terms">Read more</a>`;
+      } else if (page === "privacy") {
+        content.innerHTML = `
+          <h2>Privacy Policy</h2>
+          <p>Your privacy is important to us.</p>
+          <h3>Information We Collect</h3>
+          <p>We collect account details, loan history and usage data necessary to provide the service.</p>
+          <h3>How We Use It</h3>
+          <p>Data is used for account management, risk assessment, customer support and service improvement.</p>
+          <h3>Sharing</h3>
+          <p>We do not sell personal data. Information may be shared with partners only as required to deliver the service or comply with law.</p>
+          <h3>Security</h3>
+          <p>We apply reasonable technical and organisational measures to protect your data.</p>
+          <a style="
+    text-decoration: underline;
+    color: var(--primary);font-weight: 900;" href="https://mfi0212.github.io/MFI/privacyandterms#privacy">Read more</a>`;
+      } else if (page === "new-entry") {
+        content.innerHTML = `
+          <h2>New Entry Form</h2>
+          <p style="margin-bottom:20px;">Submit a request for a new loan or service.</p>
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="ne-name" placeholder="Your name" value="${currentUser.displayName}" />
+          </div>
+          <div class="form-group">
+            <label>Requested Amount (₹)</label>
+            <input type="number" id="ne-amount" placeholder="e.g. 25000" />
+          </div>
+          <div class="form-group">
+            <label>Purpose</label>
+            <select id="ne-purpose">
+              <option value="">Select purpose</option>
+              <option>Personal</option>
+              <option>Business</option>
+              <option>Education</option>
+              <option>Medical</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Notes</label>
+            <textarea id="ne-notes" placeholder="Any additional details..."></textarea>
+          </div>
+          <button class="btn" id="ne-submit">Submit Request</button>
+          <a href="https://mfi0212.github.io/MFI/entrysheet"><button class="btn">Boost fast entry</button></a>`;
+        setTimeout(() => {
+          document.getElementById("ne-submit")?.addEventListener("click", () => {
+            const amt = document.getElementById("ne-amount").value;
+            if (!amt) { showToast("Enter amount"); return; }
+            showToast("Request submitted successfully");
+            document.getElementById("page-overlay").classList.remove("active");
+          });
+        }, 50);
+      } else if (page === "im-late") {
+        content.innerHTML = `
+          <h2>I'm Late</h2>
+          <p>
+      If you are <span class="highlight">late in returning the amount</span>,
+      the interest will <span class="highlight">keep adding to the amount</span>.
+    </p>
+
+    <p>
+      To avoid complications, keep the following in mind:
+    </p>
+
+    <ul>
+      <li>You must pay before the return date to avoid additional charges.</li>
+      <li>You may get the amount on the borrowed date, but the return must be completed before return date or on return date before 10 AM; otherwise, it will be considered late.</li>
+      <li>Late payments can quickly increase.</li>
+      <li>Contact us if you think you'll be late so we can help you.</li>
+    </ul>
+
+    <p class="verify">
+      Verify your total return amount in your account details before returning the amount.
+    </p>`;
+        setTimeout(() => {
+          document.getElementById("late-submit")?.addEventListener("click", () => {
+            showToast("Notification sent. Our team will contact you.");
+            document.getElementById("page-overlay").classList.remove("active");
+          });
+        }, 50);
+      } else if (page === "issue") {
+        content.innerHTML = `
+          <h2>Report an issue</h2>
+          <p>Tell us what is not working. Include the page or loan amount if relevant.</p>
+          ${currentLoanIndex !== null && currentUser?.loans?.[currentLoanIndex] ? `<p style="color:var(--text-secondary);font-size:13px;margin-top:8px;">Related loan: ${formatMoney(currentUser.loans[currentLoanIndex].amount)}</p>` : ""}
+          <div class="form-group" style="margin-top:18px;"><label>Enter you issue</label><textarea id="issue-description" placeholder="Describe the issue..."></textarea></div>
+          <button class="btn" id="issue-submit">Continue</button>
+          <p style="font-size:12px;color:var(--text-secondary);margin-top:10px;">NOTE : Write your password first, then enter the issue you are facing.</p>
+          <a style="    color: var(--primary);
+    font-weight: 900;
+    text-decoration: underline;" href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform">Or fill the form.</a>`;
+        setTimeout(() => document.getElementById("issue-submit")?.addEventListener("click", () => {
+          const issue = document.getElementById("issue-description").value.trim();
+          if (!issue) { showToast("Describe the issue first"); return; }
+          const subject = encodeURIComponent("BS&MFI issue report");
+          const body = encodeURIComponent(`Account: ${currentUser.displayName}\nIssue: ${issue}`);
+          window.location.href = `mailto:?subject=${subject}&body=${body}`;
+        }), 30);
+      } else if (page === "helper") {
+        content.innerHTML = `
+          <h2>Helper</h2>
+          <p>Quick answers to common questions.</p>
+          <h3>How do I check my loan details?</h3>
+          <p>Go to the Amounts tab and tap any Amount card. A chat-style view will open with options.</p>
+          <h3>What is "Delay It"?</h3>
+          <p>It allows eligible users to request an extension of the due date (subject to approval and fees).</p>
+          <h3>What is Split Pay?</h3>
+          <p>Split the outstanding amount into smaller installments if the feature is enabled for your account.</p>
+          <h3>Need more help?</h3>
+          <p>Contact support through your relationship manager or official channels.</p>
+          <a href="https://mfi0212.github.io/MFI/abt.hlp"><button class="btn btn-outline" style="margin-top:20px;" onclick="showToast('Diverting')">Read more</button></a>`;
+      }
+
+      document.getElementById("page-overlay").classList.add("active");
+    }
+
+    document.addEventListener("gesturestart", e => e.preventDefault());
+  </script>
 </body>
 </html>
