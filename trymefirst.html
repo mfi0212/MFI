@@ -1275,8 +1275,6 @@ color-mix(in srgb, var(--primary) 19%, transparent);
         fixedInterest: 0,
         customui: "yes",
         showBottomNav: "yes",
-        // Only these sections appear in this user's bottom navigation.
-        // Example: ["amounts", "borrow"] or ["amounts", "settings"]
         bottomNavItems: ["amounts", "borrow", "settings"],
         showCustomContent: "no",
         customContent: {
@@ -1337,7 +1335,6 @@ color-mix(in srgb, var(--primary) 19%, transparent);
       },
     };
 
-    // ===================== STATE =====================
     let currentUser = null;
     let currentLoanIndex = null;
     let currentView = "amounts";
@@ -1348,9 +1345,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
       "#9c27b0", "#00bcd4", "#ff5722", "#607d8b"
     ];
 
-    // ===================== HELPERS =====================
     function parseDate(str) {
-      // DD-MM-YYYY
       const [d, m, y] = str.split("-").map(Number);
       return new Date(y, m - 1, d);
     }
@@ -1367,9 +1362,6 @@ color-mix(in srgb, var(--primary) 19%, transparent);
       ret.setHours(0, 0, 0, 0);
       return Math.round((ret - today) / (1000 * 60 * 60 * 24));
     }
-
-    // Overdue fine accrues once per day after the return date, through today.
-    // Example: return date was yesterday = 1 overdue day.
     function getOverdueDays(loan) {
       return Math.max(0, Math.abs(Math.min(0, daysLeft(loan.return))));
     }
@@ -1404,7 +1396,6 @@ color-mix(in srgb, var(--primary) 19%, transparent);
       localStorage.setItem("bsmfi_primary", color);
     }
 
-    // ===================== LOGIN =====================
     document.getElementById("login-btn").addEventListener("click", tryLogin);
     document.getElementById("password-input").addEventListener("keydown", e => {
       if (e.key === "Enter") tryLogin();
@@ -1455,26 +1446,19 @@ color-mix(in srgb, var(--primary) 19%, transparent);
         }
       }
     }
-
-    // ===================== INIT APP =====================
     function initApp() {
       const savedTheme = localStorage.getItem("bsmfi_theme") || "dark";
       if (savedTheme === "light") document.body.classList.add("light");
       document.getElementById("theme-label").textContent = savedTheme === "light" ? "Light" : "Dark";
-
-      // Color picker is ONLY available if user has customui === "yes"
       const colorSection = document.getElementById("color-section");
       if (currentUser.customui === "yes") {
         colorSection.style.display = "block";
 
-        // Restore previously saved color (or default)
         const savedColor = localStorage.getItem("bsmfi_primary") || "blue";
         setPrimaryColor(savedColor);
 
         const picker = document.getElementById("color-picker");
         picker.innerHTML = "";
-
-        // Preset swatches
         COLORS.forEach(c => {
           const sw = document.createElement("div");
           sw.className = "color-swatch" + (c.toLowerCase() === savedColor.toLowerCase() ? " active" : "");
@@ -1484,14 +1468,12 @@ color-mix(in srgb, var(--primary) 19%, transparent);
             document.querySelectorAll(".color-swatch").forEach(s => s.classList.remove("active"));
             sw.classList.add("active");
             setPrimaryColor(c);
-            // sync custom picker
             const customInput = document.getElementById("custom-color-input");
             if (customInput) customInput.value = c;
           });
           picker.appendChild(sw);
         });
 
-        // Free color picker so user can choose ANY color
         const customWrap = document.createElement("div");
         customWrap.className = "color-custom-wrap";
         customWrap.innerHTML = `
@@ -1506,9 +1488,7 @@ color-mix(in srgb, var(--primary) 19%, transparent);
           setPrimaryColor(color);
         });
       } else {
-        // User does NOT have main color permission → hide the section completely
         colorSection.style.display = "none";
-        // Reset to default blue so they cannot keep a previous custom color
         setPrimaryColor("blue");
         localStorage.removeItem("bsmfi_primary");
       }
@@ -1545,7 +1525,6 @@ color-mix(in srgb, var(--primary) 19%, transparent);
       switchView("amounts");
     }
 
-    // ===================== LOAN LIST =====================
     function renderLoanList() {
       const list = document.getElementById("loan-list");
       let loans = (currentUser.loans || []).map((loan, index) => ({ loan, index }));
@@ -1571,9 +1550,6 @@ color-mix(in srgb, var(--primary) 19%, transparent);
       list.querySelectorAll(".loan-item").forEach(el => el.addEventListener("click", () => openChat(+el.dataset.index)));
     }
 
-    // ===================== CHAT =====================
-    // Solution promotions are selected only from services enabled for this account.
-    // Users with customui: "yes" never see these promotional cards.
     const CHAT_PROMOTED_SOLUTIONS = [
       { key: "Delay It", icon: "⏳", desc: "Extend your due date · 6% fee", url: "https://mfi0212.github.io/MFI/service.solutions/delay-it" },
       { key: "Split Pay", icon: "✂️", desc: "Pay in installments · 6.5% fee", url: "https://mfi0212.github.io/MFI/service.solutions/split-pay" },
@@ -1600,7 +1576,6 @@ color-mix(in srgb, var(--primary) 19%, transparent);
       );
       if (!available.length) return;
 
-      // Pick one enabled solution at random each time a loan chat is opened.
       const solution = available[Math.floor(Math.random() * available.length)];
       const ad = document.createElement("button");
       ad.type = "button";
@@ -1763,8 +1738,6 @@ color-mix(in srgb, var(--primary) 19%, transparent);
         addBotMsg(reply);
       }, 300);
     }
-
-    // ===================== SERVICES =====================
    function renderServices() {
   const grid = document.getElementById("services-grid");
 
@@ -1801,7 +1774,6 @@ color-mix(in srgb, var(--primary) 19%, transparent);
   });
 }
 
-    // ===================== BOTTOM NAV VISIBILITY =====================
     function getAllowedBottomNavItems() {
       if (!currentUser || !Array.isArray(currentUser.bottomNavItems)) return [];
       const validItems = ["amounts", "borrow", "settings"];
@@ -1813,8 +1785,6 @@ color-mix(in srgb, var(--primary) 19%, transparent);
       const nav = document.getElementById("bottom-nav");
       if (!nav || !currentUser) return;
 
-      // A user can see ONLY the tabs explicitly listed in their own
-      // bottomNavItems array. Missing permission means hidden, not allowed.
       const allowedItems = getAllowedBottomNavItems();
       const shouldShow = currentUser.showBottomNav !== "no" && allowedItems.length > 0;
       nav.style.display = shouldShow ? "flex" : "none";
@@ -1830,7 +1800,6 @@ color-mix(in srgb, var(--primary) 19%, transparent);
       });
     }
 
-    // ===================== NAVIGATION =====================
     function switchView(view, updateNav = true) {
       if (updateNav && currentUser) {
         const allowedItems = getAllowedBottomNavItems();
@@ -1961,7 +1930,6 @@ function configureHeaderMenu() {
       <span>${item.label}</span>
     `;
 
-    // Only All solutions is rendered as a link.
     if (item.href) {
       return `
         <a href="${item.href}"
@@ -1972,7 +1940,6 @@ function configureHeaderMenu() {
       `;
     }
 
-    // All other options remain buttons.
     return `
       <button type="button"
         role="menuitem"
@@ -2004,14 +1971,11 @@ function configureHeaderMenu() {
     });
 
     headerMenu.addEventListener("click", (event) => {
-  // Handle All solutions link
   const link = event.target.closest("a[href]");
   if (link) {
     closeHeaderMenu();
-    return; // Allow normal link navigation
+    return;
   }
-
-  // Handle function buttons
   const button = event.target.closest("button[data-menu-index]");
   if (!button) return;
 
@@ -2024,7 +1988,6 @@ function configureHeaderMenu() {
   closeHeaderMenu();
   item.action();
 });
-    // Theme toggle
     document.getElementById("theme-toggle").addEventListener("click", () => {
       document.body.classList.toggle("light");
       const isLight = document.body.classList.contains("light");
@@ -2032,7 +1995,6 @@ function configureHeaderMenu() {
       localStorage.setItem("bsmfi_theme", isLight ? "light" : "dark");
     });
 
-    // Logout
     function logout() {
       closeHeaderMenu();
       currentUser = null;
@@ -2042,7 +2004,6 @@ function configureHeaderMenu() {
       document.getElementById("login-view").style.display = "flex";
       document.getElementById("password-input").value = "";
       document.getElementById("login-error").textContent = "";
-      // Do not keep a shared-loan URL active after logout.
       const cleanUrl = new URL(window.location.href);
       cleanUrl.searchParams.delete("loan");
       cleanUrl.searchParams.delete("owner");
@@ -2050,7 +2011,6 @@ function configureHeaderMenu() {
     }
     document.getElementById("logout-btn").addEventListener("click", logout);
 
-    // Settings pages
     document.querySelectorAll(".settings-item[data-page]").forEach(item => {
       item.addEventListener("click", () => openPage(item.dataset.page));
     });
@@ -2245,7 +2205,6 @@ function configureHeaderMenu() {
       document.getElementById("page-overlay").classList.add("active");
     }
 
-    // Prevent zoom on double tap (mobile)
     document.addEventListener("gesturestart", e => e.preventDefault());
   </script>
 </body>
