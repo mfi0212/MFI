@@ -171,10 +171,6 @@ input#password-input {
       background: var(--primary);
     }
 
-    .btn:active {
-      transform: scale(0.98);
-    }
-
     .btn-outline {
       background: transparent;
       border: 1px solid var(--primary);
@@ -223,14 +219,20 @@ input#password-input {
     backdrop-filter: blur(2px);
     box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
     filter: drop-shadow(0px 0px 6px #0000002b);
-    width: 40px;
-    height: 40px;
+    width: 45px;
+height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
     background: var(--bg-secondary);
     }
+button{
+  transition: all 0.1s ease-in-out;
+}
+    button:active {
+    transform: scale(0.90);
+}
 
     header .title {
       flex: 1;
@@ -328,11 +330,6 @@ header .back-btn svg,
     cursor: pointer;
         transition: all 0.35s ease-in-out;
     }
-
-    .loan-item:active {
-    transform: scale(0.98);
-    background: var(--bg-secondary);
-}
 
     .loan-avatar {
       width: 48px;
@@ -709,8 +706,8 @@ header .back-btn svg,
 
     .header-heading { flex: 1; min-width: 0; }
     .header-more {
-      width: 40px;
-    height: 40px;
+      width: 45px;
+height: 45px;
     border-radius: 50%;
     align-items: center;
     justify-content: center;
@@ -799,7 +796,7 @@ color-mix(in srgb, var(--primary) 18%, transparent);
       color: var(--text); background: var(--bg-secondary); cursor: pointer;
       box-shadow: 0 3px 12px rgba(0,0,0,.08); transition: transform .15s ease, border-color .15s ease;
     }
-    .chat-solution-ad:active { transform: scale(.985); border-color: var(--primary); }
+    .chat-solution-ad:active { border-color: var(--primary); }
     .chat-solution-ad-icon { width: 42px; height: 42px; flex: 0 0 42px; display:grid; place-items:center; border-radius:12px; background:color-mix(in srgb,var(--primary) 15%,transparent); font-size:23px; }
     .chat-solution-ad-copy { display:flex; flex-direction:column; gap:3px; flex:1; min-width:0; }
     .chat-solution-ad-copy small { color:var(--text-secondary); font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
@@ -973,8 +970,8 @@ color-mix(in srgb, var(--primary) 18%, transparent);
     #app-header .title { font-size: 16px; letter-spacing: -.2px; }
     #app-header .subtitle { margin-top: 2px; }
     .header-more {
-     width: 40px;
-    height: 40px;
+     width: 45px;
+height: 45px;
     border-radius: 50%;
     align-items: center;
     justify-content: center;
@@ -986,20 +983,19 @@ color-mix(in srgb, var(--primary) 18%, transparent);
     color: var(--text);
     backdrop-filter: blur(2px);
     }
-    .header-more:active { transform: scale(.92); }
     .header-menu {
-      position: absolute;
+     position: absolute;
     z-index: 50;
     width: min(220px, calc(100vw - 24px));
     display: none;
-    right: 3px;
+    right: 7px;
     padding: 6px;
     border-radius: 30px;
     box-shadow: inset 0.9px 0.9px 0px 0px #ffffff17, inset -0.9px -0.9px 0px 0px #ffffff17;
     filter: drop-shadow(0px 0px 6px #0000002b);
     backdrop-filter: blur(7px);
     background: var(--bg-secondary);
-    top: 10px;
+    top: 14px;
     }
    
     .header-menu.open { display: block; }
@@ -1020,6 +1016,23 @@ color-mix(in srgb, var(--primary) 18%, transparent);
     align-items: center;
     gap: 10px;
     }
+    .header-menu a {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    font-size: 16px;
+    cursor: pointer;
+    min-height: 44px;
+    border-radius: 999px;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
     .header-menu button:active, .header-menu button:hover {     background: var(--bg);}
     main {
       background: transparent;
@@ -1059,7 +1072,6 @@ color-mix(in srgb, var(--primary) 19%, transparent);
     color: var(--primary);
     fill: var(--primary);
     }
-    nav.bottom-nav button:active { transform: scale(.94); }
     nav.bottom-nav button svg { width: 21px; height: 21px; }
   
   </style>
@@ -1845,17 +1857,18 @@ color-mix(in srgb, var(--primary) 19%, transparent);
     const headerMenu = document.getElementById("header-menu");
     const headerMore = document.getElementById("header-more");
 
-   function configureHeaderMenu() {
+   
+function configureHeaderMenu() {
   const actions = {
     amounts: [
       {
         label: "Report an issue",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12,16.71q0.34,0 0.58-0.23t0.23-0.57t-0.23-0.57T12,15.1t-0.58,0.23T11.19,15.9t0.23,0.57T12,16.71Zm0.53-3.7q0.22-0.22 0.22-0.53V7.94q0-0.32-0.22-0.53T12,7.19T11.47,7.41T11.25,7.94v4.54q0,0.32 0.22,0.53T12,13.23t0.53-0.22ZM9.21,20.5q-0.37,0-0.7-0.14T7.93,19.97L4.03,16.07q-0.25-0.25-0.39-0.58T3.5,14.79V9.21q0-0.37 0.14-0.7T4.03,7.93L7.93,4.03Q8.18,3.78 8.51,3.64T9.21,3.5h5.58q0.37,0 0.7,0.14t0.58,0.39l3.91,3.91q0.25,0.25 0.39,0.58t0.14,0.7v5.58q0,0.37-0.14,0.7t-0.39,0.58l-3.91,3.91q-0.25,0.25-0.58,0.39t-0.7,0.14H9.21ZM9.1,19h5.8L19,14.9V9.1L14.9,5H9.1L5,9.1v5.8L9.1,19ZM12,12Z"/></svg>`,
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12,16.71q0.34,0 0.58-0.23t0.23-0.57t-0.23-0.57T12,15.1t-0.58,0.23T11.19,15.9t0.23,0.57T12,16.71Zm0.53-3.7q0.22-0.22 0.22-0.53V7.94q0-0.32-0.22-0.53T12,7.19T11.47,7.41T11.25,7.94v4.54q0,0.32 0.22,0.53T12,13.23t0.53-0.22ZM9.21,20.5q-0.37,0-0.7-0.14T7.93,19.97L4.03,16.07q-0.25-0.25-0.39-0.58T3.5,14.79V9.21q0-0.37 0.14-0.7T4.03,7.93L7.93,4.03Q8.18,3.78 8.51,3.64T9.21,3.5h5.58q0.37 0 0.7 0.14t0.58 0.39l3.91,3.91q0.25 0.25 0.39 0.58t0.14 0.7v5.58q0 0.37-0.14 0.7t-0.39 0.58l-3.91,3.91q-0.25 0.25-0.58 0.39t-0.7 0.14H9.21ZM9.1,19h5.8L19,14.9V9.1L14.9,5H9.1L5,9.1v5.8L9.1,19ZM12,12Z"/></svg>`,
         action: () => openPage("issue")
       },
       {
         label: "High to low",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M3.03,17.26q-0.23-0.23-0.22-0.53t0.22-0.51l5.04-5.11q0.52-0.53 1.28-0.53t1.29,0.53l2.5,2.51q0.09,0.09 0.21,0.09t0.22-0.09l5.39-5.33H16.75q-0.32,0-0.53-0.22T16,7.54T16.22,7t0.53-0.22H20.6q0.39,0 0.65,0.26T21.5,7.69v3.85q0,0.32-0.22,0.53t-0.53,0.22t-0.53-0.21T20,11.55V9.34l-5.37,5.37q-0.52,0.52-1.28,0.52t-1.28-0.52l-2.5-2.5q-0.09-0.09-0.22-0.09T9.13,12.21L4.08,17.26q-0.22,0.22-0.53,0.22T3.03,17.26Z"/></svg>`,
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M3.03,17.26q-0.23-0.23-0.22-0.53t0.22-0.51l5.04-5.11q0.52-0.53 1.28-0.53t1.29,0.53l2.5,2.51q0.09,0.09 0.21,0.09t0.22-0.09l5.39-5.33H16.75q-0.32,0-0.53-0.22T16,7.54T16.22,7t0.53-0.22H20.6q0.39 0 0.65 0.26T21.5,7.69v3.85q0,0.32-0.22,0.53t-0.53,0.22t-0.53-0.21T20,11.55V9.34l-5.37,5.37q-0.52,0.52-1.28,0.52t-1.28-0.52l-2.5-2.5q-0.09-0.09-0.22-0.09T9.13,12.21L4.08,17.26q-0.22,0.22-0.53,0.22T3.03,17.26Z"/></svg>`,
         action: () => {
           loanSortOrder = "high";
           renderLoanList();
@@ -1873,40 +1886,33 @@ color-mix(in srgb, var(--primary) 19%, transparent);
       },
       {
         label: "Amount",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M11.25,12.75h-5q-0.32,0-0.53-0.22T5.5,12t0.22-0.53t0.53-0.22h5v-5q0-0.32 0.22-0.53T12,5.5t0.53,0.22t0.22,0.53v5h5q0.32,0 0.53,0.22T18.5,12t-0.22,0.53t-0.53,0.22h-5v5q0,0.32-0.22,0.53T12,18.5t-0.53-0.22t-0.22-0.53v-5Z"/></svg>`,
-        action: () => openApplyAmount()
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M11.47,20.28q-0.22-0.22-0.22-0.53v-7h-7q-0.32,0-0.53-0.22T3.5,12t0.22-0.53t0.53-0.22h7v-7q0-0.32 0.22-0.53T12,3.5t0.53,0.22t0.22,0.53v7h7q0.32,0 0.53,0.22T20.5,12t-0.22,0.53t-0.53,0.22h-7v7q0,0.32-0.22,0.53T12,20.5t-0.53-0.22Z"/></svg>`,
+        href: "https://docs.google.com/forms/d/e/1FAIpQLSezI77FKZVj_eC7fv4-8V7hIgzrg3nZedZ_avBXG5xiPbcXNA/viewform"
       }
     ],
 
     borrow: [
       {
         label: "Report an issue",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12,16.71q0.34,0 0.58-0.23t0.23-0.57t-0.23-0.57T12,15.1t-0.58,0.23T11.19,15.9t0.23,0.57T12,16.71Zm0.53-3.7q0.22-0.22 0.22-0.53V7.94q0-0.32-0.22-0.53T12,7.19T11.47,7.41T11.25,7.94v4.54q0,0.32 0.22,0.53T12,13.23t0.53-0.22ZM9.21,20.5q-0.37,0-0.7-0.14T7.93,19.97L4.03,16.07q-0.25-0.25-0.39-0.58T3.5,14.79V9.21q0-0.37 0.14-0.7T4.03,7.93L7.93,4.03Q8.18,3.78 8.51,3.64T9.21,3.5h5.58q0.37,0 0.7,0.14t0.58,0.39l3.91,3.91q0.25,0.25 0.39,0.58t0.14,0.7v5.58q0,0.37-0.14,0.7t-0.39,0.58l-3.91,3.91q-0.25,0.25-0.58,0.39t-0.7,0.14H9.21ZM9.1,19h5.8L19,14.9V9.1L14.9,5H9.1L5,9.1v5.8L9.1,19ZM12,12Z"/></svg>`,
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12,16.71q0.34,0 0.58-0.23t0.23-0.57t-0.23-0.57T12,15.1t-0.58,0.23T11.19,15.9t0.23,0.57T12,16.71Zm0.53-3.7q0.22-0.22 0.22-0.53V7.94q0-0.32-0.22-0.53T12,7.19T11.47,7.41T11.25,7.94v4.54q0,0.32 0.22,0.53T12,13.23t0.53-0.22ZM9.21,20.5q-0.37,0-0.7-0.14T7.93,19.97L4.03,16.07q-0.25-0.25-0.39-0.58T3.5,14.79V9.21q0-0.37 0.14-0.7T4.03,7.93L7.93,4.03Q8.18,3.78 8.51,3.64T9.21,3.5h5.58q0.37 0 0.7 0.14t0.58 0.39l3.91,3.91q0.25 0.25 0.39 0.58t0.14 0.7v5.58q0 0.37-0.14 0.7t-0.39 0.58l-3.91,3.91q-0.25 0.25-0.58 0.39t-0.7 0.14H9.21ZM9.1,19h5.8L19,14.9V9.1L14.9,5H9.1L5,9.1v5.8L9.1,19ZM12,12Z"/></svg>`,
         action: () => openPage("issue")
       },
       {
         label: "All solutions",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M15.84,11.85L12.17,8.18q-0.14-0.14-0.2-0.3T11.92,7.54t0.06-0.34t0.2-0.3l3.67-3.67q0.14-0.14 0.3-0.2t0.34-0.06t0.34,0.06t0.3,0.2l3.67,3.67q0.14,0.14 0.2,0.3t0.06,0.34T20.98,7.88t-0.2,0.3l-3.67,3.67q-0.14,0.14-0.3,0.2T16.48,12.1t-0.34-0.06t-0.3-0.2ZM3.81,9.9V4.71q0-0.38 0.26-0.64T4.71,3.81H9.9q0.38,0 0.64,0.26t0.26,0.64V9.9q0,0.38-0.26,0.64T9.9,10.81H4.71q-0.38,0-0.64-0.26T3.81,9.9Zm9.38,9.38V14.1q0-0.38 0.26-0.64t0.64-0.26h5.19q0.38,0 0.64,0.26t0.26,0.64v5.19q0,0.38-0.26,0.64t-0.64,0.26H14.1q-0.38,0-0.64-0.26t-0.26-0.64Zm-9.38,0V14.1q0-0.38 0.26-0.64t0.64-0.26H9.9q0.38,0 0.64,0.26t0.26,0.64v5.19q0,0.38-0.26,0.64T9.9,20.19H4.71q-0.38,0-0.64-0.26T3.81,19.29Zm1.5-9.98h4v-4h-4v4ZM16.5,10.39l2.83-2.82L16.5,4.74L13.68,7.57l2.82,2.82Zm-1.81,8.3h4v-4h-4v4Zm-9.38,0h4v-4h-4v4Zm4-9.38Zm4.37-1.74ZM9.31,14.69Zm5.38,0Z"/></svg>`,
-        action: () => {
-          const search = document.getElementById("borrow-search");
-          if (search) {
-            search.value = "";
-            search.dispatchEvent(new Event("input"));
-          }
-          showToast("Showing all solutions");
-        }
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M15.84,11.85L12.17,8.18q-0.14-0.14-0.2-0.3T11.92,7.54t0.06-0.34t0.2-0.3l3.67-3.67q0.14-0.14 0.3-0.2t0.34-0.06t0.34,0.06t0.3,0.2l3.67,3.67q0.14,0.14 0.2,0.3t0.06,0.34T20.98,7.88t-0.2,0.3l-3.67,3.67q-0.14,0.14-0.3,0.2T16.48,12.1t-0.34-0.06t-0.3-0.2ZM3.81,9.9V4.71q0-0.38 0.26-0.64T4.71,3.81H9.9q0.38 0 0.64 0.26t0.26,0.64V9.9q0 0.38-0.26,0.64T9.9,10.81H4.71q-0.38 0-0.64-0.26T3.81,9.9Zm9.38,9.38V14.1q0-0.38 0.26-0.64t0.64-0.26h5.19q0.38 0 0.64,0.26t0.26,0.64v5.19q0 0.38-0.26,0.64t-0.64,0.26H14.1q-0.38 0-0.64-0.26t-0.26-0.64Zm-9.38,0V14.1q0-0.38 0.26-0.64t0.64-0.26H9.9q0.38 0 0.64,0.26t0.26,0.64v5.19q0 0.38-0.26,0.64T9.9,20.19H4.71q-0.38 0-0.64-0.26T3.81,19.29Zm1.5-9.98h4v-4h-4v4ZM16.5,10.39l2.83-2.82L16.5,4.74L13.68,7.57l2.82,2.82Zm-1.81,8.3h4v-4h-4v4Zm-9.38,0h4v-4h-4v4Zm4-9.38Zm4.37-1.74ZM9.31,14.69Zm5.38,0Z"/></svg>`,
+        href: "https://mfi0212.github.io/MFI/service.solutions/all.solution"
       }
     ],
 
     chat: [
       {
         label: "Report an issue",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12,16.71q0.34,0 0.58-0.23t0.23-0.57t-0.23-0.57T12,15.1t-0.58,0.23T11.19,15.9t0.23,0.57T12,16.71Zm0.53-3.7q0.22-0.22 0.22-0.53V7.94q0-0.32-0.22-0.53T12,7.19T11.47,7.41T11.25,7.94v4.54q0,0.32 0.22,0.53T12,13.23t0.53-0.22ZM9.21,20.5q-0.37,0-0.7-0.14T7.93,19.97L4.03,16.07q-0.25-0.25-0.39-0.58T3.5,14.79V9.21q0-0.37 0.14-0.7T4.03,7.93L7.93,4.03Q8.18,3.78 8.51,3.64T9.21,3.5h5.58q0.37,0 0.7,0.14t0.58,0.39l3.91,3.91q0.25,0.25 0.39,0.58t0.14,0.7v5.58q0,0.37-0.14,0.7t-0.39,0.58l-3.91,3.91q-0.25,0.25-0.58,0.39t-0.7,0.14H9.21ZM9.1,19h5.8L19,14.9V9.1L14.9,5H9.1L5,9.1v5.8L9.1,19ZM12,12Z"/></svg>`,
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12,16.71q0.34 0 0.58-0.23t0.23-0.57t-0.23-0.57T12,15.1t-0.58,0.23T11.19,15.9t0.23,0.57T12,16.71Zm0.53-3.7q0.22-0.22 0.22-0.53V7.94q0-0.32-0.22-0.53T12,7.19T11.47,7.41T11.25,7.94v4.54q0,0.32 0.22,0.53T12,13.23t0.53-0.22ZM9.21,20.5q-0.37 0-0.7-0.14T7.93,19.97L4.03,16.07q-0.25-0.25-0.39-0.58T3.5,14.79V9.21q0-0.37 0.14-0.7T4.03,7.93L7.93,4.03Q8.18,3.78 8.51,3.64T9.21,3.5h5.58q0.37 0 0.7 0.14t0.58 0.39l3.91,3.91q0.25 0.25 0.39 0.58t0.14 0.7v5.58q0 0.37-0.14 0.7t-0.39 0.58l-3.91,3.91q-0.25 0.25-0.58 0.39t-0.7 0.14H9.21ZM9.1,19h5.8L19,14.9V9.1L14.9,5H9.1L5,9.1v5.8L9.1,19Z"/></svg>`,
         action: () => openPage("issue")
       },
       {
         label: "Share loan",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M6.31,21.5q-0.76,0-1.28-0.52T4.5,19.69V10.31q0-0.76 0.52-1.28T6.31,8.5H8.12q0.32,0 0.53,0.22T8.87,9.25T8.65,9.78T8.12,10H6.31Q6.19,10 6.1,10.1T6,10.31v9.38q0,0.12 0.1,0.21T6.31,20H17.69q0.12,0 0.21-0.1T18,19.69V10.31q0-0.12-0.1-0.21T17.69,10H15.88q-0.32,0-0.53-0.22T15.13,9.25t0.22-0.53T15.88,8.5h1.81q0.76,0 1.28,0.52t0.52,1.28v9.38q0,0.76-0.52,1.28T17.69,21.5H6.31Zm5.16-5.97Q11.25,15.32 11.25,15V4.72L9.93,6.04Q9.7,6.27 9.4,6.26T8.87,6.03Q8.66,5.79 8.65,5.5T8.87,4.97l2.49-2.49q0.14-0.14 0.3-0.2T12,2.22t0.34,0.06t0.3,0.2l2.49,2.49q0.21,0.21 0.21,0.51T15.13,6.03q-0.23,0.23-0.53,0.23T14.06,6.03L12.75,4.72V15q0,0.32-0.22,0.53T12,15.75t-0.53-0.22Z"/></svg>`,
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M6.31,21.5q-0.76,0-1.28-0.52T4.5,19.69V10.31q0-0.76 0.52-1.28T6.31,8.5H8.12q0.32 0 0.53 0.22T8.87,9.25T8.65,9.78T8.12,10H6.31Q6.19,10 6.1,10.1T6,10.31v9.38q0 0.12 0.1 0.21T6.31,20H17.69q0.12 0 0.21-0.1T18,19.69V10.31q0-0.12-0.1-0.21T17.69,10H15.88q-0.32 0-0.53-0.22T15.13,9.25t0.22-0.53T15.88,8.5h1.81q0.76 0 1.28 0.52t0.52 1.28v9.38q0.76 0 1.28 0t0.52 0H6.31Zm5.16-5.97Q11.25,15.32 11.25,15V4.72L9.93,6.04Q9.7,6.27 9.4,6.26T8.87,6.03Q8.66,5.79 8.65,5.5T8.87,4.97l2.49-2.49q0.14-0.14 0.3-0.2T12,2.22t0.34,0.06t0.3,0.2l2.49,2.49q0.21,0.21 0.21,0.51T15.13,6.03q-0.23,0.23-0.53,0.23T14.06,6.03L12.75,4.72V15q0 0.32-0.22,0.53T12,15.75t-0.53-0.22Z"/></svg>`,
         action: () => {
           if (currentLoanIndex !== null) {
             shareLoanDetails(
@@ -1921,26 +1927,50 @@ color-mix(in srgb, var(--primary) 19%, transparent);
     settings: [
       {
         label: "Logout",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M5.31,20.5q-0.76,0-1.28-0.52T3.5,18.69V5.31q0-0.76 0.52-1.28T5.31,3.5h5.95q0.32,0 0.53,0.22t0.22,0.53T11.79,4.78T11.26,5H5.31Q5.19,5 5.1,5.1T5,5.31V18.69q0,0.12 0.1,0.21T5.31,19h5.95q0.32,0 0.53,0.22t0.22,0.53t-0.22,0.53T11.26,20.5H5.31Zm12.31-7.75H9.85q-0.32,0-0.53-0.22T9.1,12t0.22-0.53t0.53-0.22h7.77L15.69,9.33q-0.21-0.21-0.21-0.51t0.21-0.53t0.53-0.24t0.54,0.22l3.09,3.09q0.27,0.27 0.27,0.63t-0.27,0.63l-3.09,3.09q-0.22,0.22-0.53,0.22t-0.54-0.24q-0.22-0.23-0.21-0.53t0.22-0.52l1.91-1.91Z"/></svg>`,
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M5.31,20.5q-0.76,0-1.28-0.52T3.5,18.69V5.31q0-0.76 0.52-1.28T5.31,3.5h5.95q0.32 0 0.53 0.22t0.22 0.53T11.79,4.78T11.26,5H5.31Q5.19,5 5.1,5.1T5,5.31V18.69q0 0.12 0.1 0.21T5.31,19h5.95q0.32 0 0.53 0.22t0.22 0.53t-0.22 0.53T11.26,20.5H5.31Zm12.31-7.75H9.85q-0.32 0-0.53-0.22T9.1,12t0.22-0.53t0.53-0.22h7.77L15.69,9.33q-0.21-0.21-0.21-0.51t0.21-0.53t0.53-0.24t0.54,0.22l3.09,3.09q0.27,0.27 0.27,0.63t-0.27,0.63l-3.09,3.09q-0.22,0.22-0.53,0.22t-0.54-0.24q-0.22-0.23-0.21-0.53t0.22-0.52l1.91-1.91Z"/></svg>`,
         action: () => logout()
+      },
+       {
+        label: "New entry",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M18.13,10.75H15.87q-0.32,0-0.53-0.22T15.13,10t0.22-0.53t0.53-0.22h2.25V7q0-0.32 0.22-0.53t0.53-0.22t0.53,0.22T19.62,7V9.25h2.25q0.32,0 0.53,0.22T22.62,10t-0.22,0.53t-0.53,0.22H19.62V13q0,0.32-0.22,0.53t-0.53,0.22t-0.53-0.22T18.13,13V10.75ZM6.53,10.67Q5.5,9.64 5.5,8.19T6.53,5.72T9,4.69t2.47,1.03T12.5,8.19t-1.03,2.47T9,11.69T6.53,10.67ZM1.5,17.79v-0.7q0-0.73 0.4-1.36t1.07-0.96q1.48-0.73 2.99-1.09T9,13.31t3.04,0.36t2.99,1.09q0.67,0.34 1.07,0.96t0.4,1.36v0.7q0,0.63-0.44,1.08t-1.08,0.44H3.02q-0.63,0-1.08-0.44T1.5,17.79ZM3,17.81H15V17.08q0-0.3-0.18-0.56T14.35,16.1q-1.29-0.64-2.64-0.96T9,14.81T6.29,15.14T3.65,16.1q-0.3,0.16-0.48,0.42T3,17.08v0.72Zm7.41-8.2Q11,9.02 11,8.19T10.41,6.78T9,6.19q-0.82,0-1.41,0.59T7,8.19T7.59,9.6T9,10.19q0.83,0 1.41-0.59ZM9,8.19Zm0,9.62Z"/></svg>`,
+        action: () => openApplyAmount()
       }
     ]
   };
 
   const items = actions[currentView] || [];
 
-  headerMenu.innerHTML = items.map((item, index) => `
-    <button type="button"
-      role="menuitem"
-      data-menu-index="${index}">
+  headerMenu.innerHTML = items.map((item, index) => {
+    const content = `
       <span class="menu-option-icon">${item.icon}</span>
       <span>${item.label}</span>
-    </button>
-  `).join("");
+    `;
+
+    // Only All solutions is rendered as a link.
+    if (item.href) {
+      return `
+        <a href="${item.href}"
+           role="menuitem"
+           data-menu-index="${index}">
+          ${content}
+        </a>
+      `;
+    }
+
+    // All other options remain buttons.
+    return `
+      <button type="button"
+        role="menuitem"
+        data-menu-index="${index}">
+        ${content}
+      </button>
+    `;
+  }).join("");
 
   headerMenu._menuItems = items;
   headerMore.style.display = items.length ? "inline-flex" : "none";
 }
+
 
     function closeHeaderMenu() {
       headerMenu.classList.remove("open");
@@ -1959,34 +1989,26 @@ color-mix(in srgb, var(--primary) 19%, transparent);
     });
 
     headerMenu.addEventListener("click", (event) => {
-      const button = event.target.closest("button[data-header-action]");
-      if (!button) return;
-      const action = button.dataset.headerAction;
-      closeHeaderMenu();
-      if (action === "issue") {
-        openPage("issue");
-      } else if (action === "high" || action === "low") {
-        loanSortOrder = action;
-        renderLoanList();
-        showToast(action === "high" ? "Amounts: high to low" : "Amounts: low to high");
-      } else if (action === "add") {
-        openApplyAmount();
-      } else if (action === "logout") {
-        logout();
-      }
-      else if (action === "all-solutions") {
-  switchView("borrow");
-
-  const search = document.getElementById("borrow-search");
-  if (search) {
-    search.value = "";
-    search.dispatchEvent(new Event("input"));
+  // Handle All solutions link
+  const link = event.target.closest("a[href]");
+  if (link) {
+    closeHeaderMenu();
+    return; // Allow normal link navigation
   }
 
-  showToast("Showing all solutions");
-}
-    });
+  // Handle function buttons
+  const button = event.target.closest("button[data-menu-index]");
+  if (!button) return;
 
+  const index = Number(button.dataset.menuIndex);
+  const items = headerMenu._menuItems || [];
+  const item = items[index];
+
+  if (!item || typeof item.action !== "function") return;
+
+  closeHeaderMenu();
+  item.action();
+});
     // Theme toggle
     document.getElementById("theme-toggle").addEventListener("click", () => {
       document.body.classList.toggle("light");
