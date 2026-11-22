@@ -16,7 +16,7 @@
  color-scheme:light;
  --bg:#f5f5f7;
  --text:#17171a;
- --surface:rgba(255,255,255,.68);
+ --surface:rgb(255 255 255 / 15%);
  --border:rgba(255,255,255,.75);
  --muted:#777780;
  --field:rgba(255,255,255,.72);
@@ -40,16 +40,21 @@ body{
  letter-spacing:.2px;color:var(--text);background:var(--bg);
  transition:background .25s,color .25s;min-height:100vh;
 }
-button,input,textarea{font:inherit;color:inherit}
+.container {
+    padding: 10px;
+}
 button{cursor:pointer}
-a{color:inherit}
+button, a {
+    -webkit-tap-highlight-color: transparent;
+    color: var(--accent);
+}
 button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 button,a{-webkit-tap-highlight-color:transparent}
 
 /* Glass surfaces */
 .glass{
  background:var(--surface);
- border:1px solid var(--border);
+ border:none;
  backdrop-filter:var(--glass-blur);
  -webkit-backdrop-filter:var(--glass-blur);
  box-shadow:var(--glass-shadow);
@@ -62,14 +67,18 @@ button,a{-webkit-tap-highlight-color:transparent}
 .lock-body{display:flex;flex-direction:column;gap:14px}
 .lock-label{text-align:center;margin:5px 0}
 .lock-input,.note-input{
- width:100%;border:1px solid var(--border);border-radius:22px;
+ width:100%;border:none;border-radius:22px;
  background:var(--field);backdrop-filter:var(--glass-blur);
  padding:13px 16px;text-align:center;color:var(--text);
 }
 .lock-btn,.save-btn{
- border:1px solid rgba(255,255,255,.25);border-radius:999px;
- background:var(--accent);color:#fff;padding:12px 18px;
- width:100%;font-weight:600;box-shadow:0 5px 18px color-mix(in srgb,var(--accent) 25%,transparent);
+ border: 1px solid var(--accent);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--accent);
+    padding: 12px 18px;
+    width: 100%;
+    font-weight: 600;
 }
 .top.mian.opt {
 position: fixed;
@@ -87,11 +96,11 @@ position: fixed;
 .lock-error{color:#e22;text-align:center}
 .lock-hint{text-align:center;color:var(--muted);font-size:13px;margin-top:10px}
 .lock-hint a{color:#e22;font-weight:bold}
-.login-faq{border-top:1px solid var(--border);margin-top:25px;padding-top:18px}
+.login-faq{border-top:none;margin-top:25px;padding-top:18px}
 .login-faq-title{color:var(--accent);margin-bottom:8px}
 .faq-question{
  width:100%;display:flex;justify-content:space-between;align-items:center;
- text-align:left;border:1px solid var(--border);border-radius:18px;
+ text-align:left;border:none;border-radius:18px;
  background:var(--surface);backdrop-filter:var(--glass-blur);
  padding:11px 16px;margin:8px 0;
 }
@@ -121,7 +130,7 @@ position: sticky;
   top: 0;
   left: 0;
   right: 0;
-  bottom: -145px;
+  bottom: -200px;
 
   z-index: -1;
   pointer-events: none;
@@ -135,14 +144,33 @@ position: sticky;
     transparent 100%
   );
 }
-.logout-btn{background:#e5484d;color:white;border:0;border-radius:999px;padding:8px 15px}
+.logout-btn{    color: white;
+    border: 0;
+    border-radius: 999px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(3px);
+    background: linear-gradient( 175deg, #00000000, #ffffff2b);
+    box-shadow: inset -0.5px 0px 0px #0000001c, inset 0px 0.5px 0px #ffffff36, inset 0.5px 0px 0px #0000001c, inset 0px -0.5px 0px #ffffff36;
+    border: solid 0.2px #0000000d;}
 .font-btn-options{display: flex;
     align-items: center;
-    padding: 4px;
+    padding: 10px;
     border-radius: 999px;
-    background: var(--field);
-    border: 1px solid var(--border);}
-.font-btn{width:32px;height:32px;border:0;border-radius:50%;background:var(--surface)}
+    backdrop-filter: blur(3px);
+    background: linear-gradient( 175deg, #00000000, #ffffff2b);
+    box-shadow: inset -0.5px 0px 0px #0000001c, inset 0px 0.5px 0px #ffffff36, inset 0.5px 0px 0px #0000001c, inset 0px -0.5px 0px #ffffff36;
+    border: solid 0.2px #0000000d;
+    color: white;
+    gap: 8px;
+    height: 45px;}
+.font-btn{    border: 0;
+    border-radius: 50%;
+    font-size: 17px;
+    background: transparent;}
 .header{text-align:center;padding:12px 0 16px}
 .profile-wrap{display:flex;flex-direction:column;align-items:center;gap:7px}
 .profile-stage{height:104px;width:100%;position:relative;display:flex;justify-content:center;align-items:center}
@@ -180,11 +208,6 @@ body.premium-profile #mainApp #loggedInAs{top:calc(100dvh - 105px);font-size:25p
 body.premium-profile #mainApp #todayDate{top:calc(100dvh - 70px);font-size:13px;color:#f1f1f1}
 body.premium-profile #mainApp .font-controls{position:relative;z-index:51}
 body.premium-profile #mainApp .account-bar{z-index:52}
-body.premium-profile #mainApp .top-banner,
-body.premium-profile #mainApp .notes-box,
-body.premium-profile #mainApp .navigation,
-body.premium-profile #mainApp #interestSection,
-body.premium-profile #mainApp footer{position:relative;z-index:1}
 
 /* Floating glass controls */
 .font-controls{display: flex;
@@ -194,69 +217,98 @@ body.premium-profile #mainApp footer{position:relative;z-index:1}
     flex-wrap: wrap;
     margin-top: 82px;}
 .font-controls button{
- border:1px solid var(--border);border-radius:999px;
+ border:none;border-radius:999px;
  background:var(--surface);backdrop-filter:var(--glass-blur);
  padding:8px 14px;box-shadow:var(--glass-shadow);
 }
 .accent-control{
- display:flex;align-items:center;gap:5px;padding:5px 10px;
- border:1px solid var(--border);border-radius:999px;
- background:var(--surface);backdrop-filter:var(--glass-blur);
+display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--accent);
 }
 .accent-control input{width:28px;height:28px;border:0;background:transparent}
 .top-banner{
  display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
- padding:13px 15px;background:var(--surface);border:1px solid var(--border);
+ padding:13px 15px;background:var(--surface);border:none;
  backdrop-filter:var(--glass-blur);border-radius:22px;margin:8px 0;
  box-shadow:var(--glass-shadow);
 }
 .top-banner a{text-decoration:none;color:var(--accent);font-weight:600}
 .notes-box{
- background:var(--surface);border:1px solid var(--border);
+ background:var(--surface);border:none;
  backdrop-filter:var(--glass-blur);border-radius:24px;
  padding:14px;margin:12px 0 18px;box-shadow:var(--glass-shadow);
 }
 .notes-heading{font-size:14px;color:var(--muted);margin:0 0 8px 4px}
-.note-input{display:block;text-align:left;min-height:90px;resize:vertical;background:var(--field)}
+.note-input{display:block;text-align:left;min-height:90px;resize:vertical;background:transparent}
 .save-btn{margin-top:8px}
-.note{padding:12px 4px;border-bottom:1px solid var(--border);overflow-wrap:anywhere}
+.note{padding:12px 4px;border-bottom:none;overflow-wrap:anywhere}
 .note-text{white-space:pre-wrap}
 .note-date{font-size:12px;color:var(--muted)}
 .delete-note{float:right;border:0;background:transparent;color:#e22;padding:2px 8px}
 
 /* Floating pill navigation */
 .navigation{
- width:max-content;max-width:100%;margin:18px auto;
- position:sticky;top:72px;z-index:40;overflow-x:auto;
- border:1px solid var(--border);background:var(--surface);
- backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
- box-shadow:var(--glass-shadow);
+width: max-content;
+    max-width: 100%;
+    margin: 18px auto;
+    position: sticky;
+    top: 172px;
+    z-index: 400000;
+    background: var(--surface);
+    border-radius: 999px;
+    display: flex;
+    overflow: scroll;
+    scrollbar-width: none;
+    padding: 5px;
+    backdrop-filter: blur(3px);
+    background: linear-gradient( 175deg, #00000000, #ffffff2b);
+    box-shadow: inset -0.5px 0px 0px #0000001c, inset 0px 0.5px 0px #ffffff36, inset 0.5px 0px 0px #0000001c, inset 0px -0.5px 0px #ffffff36;
+    border: solid 0.2px #0000000d;
 }
 .amount-nav-btn{border:0;border-radius:999px;background:transparent;padding:8px 15px;white-space:nowrap}
-.amount-nav-btn.active{background:var(--accent);color:white;box-shadow:0 3px 12px color-mix(in srgb,var(--accent) 30%,transparent)}
-.section-title{font-size:14px;font-weight:400;color:var(--muted);margin:5px 8px 12px}
+.amount-nav-btn.active{    color: var(--accent);
+    border: solid 1.5px var(--accent);}
+.section-title{font-size: 14px;
+    font-weight: 400;
+    color: var(--muted);
+    margin: 5px 8px 12px;
+    display: none;}
 .entry{
- background:var(--surface);border:1px solid var(--border);
+ background:var(--surface);border:none;
  backdrop-filter:var(--glass-blur);border-radius:23px;
  padding:8px 15px;margin-bottom:12px;box-shadow:var(--glass-shadow);
 }
 .entry-row,.remaining,.paid-row,.entry-total{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0}
-.label,.paid-label{flex:1;min-width:0;color:var(--muted);overflow-wrap:anywhere}
-.value{font-weight:700;text-align:right;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.label,.paid-label{    flex: 1;
+    min-width: 0;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+    color: var(--accent);
+    opacity: 50%;}
+.value{font-weight: 700;
+    text-align: right;
+    overflow-wrap: anywhere;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);}
 .entry-total{background:var(--accent);color:white;border-radius:999px;padding:11px 15px;margin-top:5px}
-.paid-input{width:110px;max-width:45%;text-align:right;border:1px solid var(--border);border-radius:10px;padding:5px;background:var(--field);font-weight:bold}
+.paid-input{width:110px;max-width:45%;text-align:right;border:none;border-radius:10px;padding:5px;background:var(--field);font-weight:bold}
 .detail-row{cursor:pointer}
 .detail-row:active{opacity:.7}
 .premium-locked{cursor:pointer}
 .empty-notes,.empty-amounts{text-align:center;padding:25px;color:var(--muted)}
 footer{padding:10px 0 25px;text-align:center}
-.footer-links{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--border);padding:18px 5px;color:var(--muted);text-align:left}
+.footer-links{display:flex;justify-content:space-between;gap:20px;border-top:none;padding:18px 5px;color:var(--muted);text-align:left}
 .footer-links div{display:grid;gap:10px}
 .footer-links a{text-decoration:none}
 .footer-links a:hover{color:var(--accent);text-decoration:underline}
 .back-top{
  position:fixed;right:15px;bottom:15px;background:var(--surface);
- color:var(--accent);border:1px solid var(--border);
+ color:var(--accent);border:none;
  backdrop-filter:var(--glass-blur);border-radius:50%;
  width:45px;height:45px;display:grid;place-items:center;
  text-decoration:none;z-index:60;box-shadow:var(--glass-shadow);
@@ -266,10 +318,10 @@ footer{padding:10px 0 25px;text-align:center}
 .modal-overlay{position:fixed;inset:0;z-index:1000;background:#0008;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:15px}
 .modal{
  width:100%;max-width:420px;max-height:85vh;overflow:auto;
- background:var(--bg);color:var(--text);border:1px solid var(--border);
+ background:var(--bg);color:var(--text);border:none;
  border-radius:27px;padding:16px;box-shadow:0 20px 70px #0003;
 }
-.modal-header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);padding-bottom:10px;margin-bottom:12px;color:var(--accent)}
+.modal-header{display:flex;align-items:center;justify-content:space-between;border-bottom:none;padding-bottom:10px;margin-bottom:12px;color:var(--accent)}
 .modal-close{border:0;background:transparent;color:#e22;padding:5px 10px}
 .modal-summary .row{display:flex;justify-content:space-between;gap:15px;padding:8px 0}
 .premium-copy{line-height:1.6}
@@ -330,7 +382,7 @@ footer{padding:10px 0 25px;text-align:center}
   <header class="header">
    <div class="profile-wrap">
     <div class="top mian opt">
-        <button class="logout-btn" onclick="logout()">Logout</button>
+        <button class="logout-btn" onclick="logout()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M9.18,12l7.53,7.53q0.3,0.3 0.29,0.7t-0.31,0.7T16,21.23t-0.7-0.3L7.63,13.28q-0.27-0.27-0.4-0.61T7.09,12t0.13-0.67t0.4-0.61L15.3,3.05q0.3-0.3 0.71-0.29t0.71,0.31t0.3,0.7t-0.3,0.7L9.18,12Z"/></svg></button>
             <div class="font-btn-options">
             <button class="font-btn" onclick="changeFontSize(-1)">−</button>
             <span id="fontSizeLabel">16</span>
