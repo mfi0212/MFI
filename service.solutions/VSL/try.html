@@ -30,9 +30,7 @@ body{
  letter-spacing:.2px;color:var(--text);background:var(--bg);
  transition:background .25s,color .25s;min-height:100vh;
 }
-/* .container {
-    padding: 10px;
-} */
+input
 button{cursor:pointer}
 button, a {
     -webkit-tap-highlight-color: transparent;
@@ -214,20 +212,43 @@ body.premium-profile #mainApp .account-bar{z-index:52}
     margin: 150px 10px 0;
 }
 .font-controls button{
- border:none;border-radius:999px;
- background:var(--surface);
- padding:8px 14px;
- font-size:0.95em;
-}
-.accent-control{
-display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 5px 10px;
+ border: none;
     border-radius: 999px;
     background: var(--surface);
-    color: var(--accent);
-    font-size:0.95em;
+    font-size: 16px;
+    width: 60px;
+    height: 60px;
+    backdrop-filter: blur(3px);
+    background: linear-gradient( 175deg, #00000000, #ffffff2b);
+    box-shadow: inset -0.5px 0px 0px #0000001c, inset 0px 0.5px 0px #ffffff36, inset 0.5px 0px 0px #0000001c, inset 0px -0.5px 0px #ffffff36;
+    border: solid 0.2px #0000000d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.accent-control{
+border: none;
+    border-radius: 999px;
+    background: var(--surface);
+    font-size: 16px;
+    width: 60px;
+    height: 60px;
+    backdrop-filter: blur(3px);
+    background: linear-gradient( 175deg, #00000000, #ffffff2b);
+    box-shadow: inset -0.5px 0px 0px #0000001c, inset 0px 0.5px 0px #ffffff36, inset 0.5px 0px 0px #0000001c, inset 0px -0.5px 0px #ffffff36;
+    border: solid 0.2px #0000000d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input::-webkit-color-swatch {
+    border: none;
+}
+
+input::-moz-color-swatch {
+    border: none;
+    border-radius: 50%;
 }
 .accent-control input{width:28px;height:28px;border:0;background:transparent}
 .top-banner{
@@ -276,8 +297,9 @@ display: flex;
     border: solid 0.2px #0000000d;
 }
 .amount-nav-btn{border:0;border-radius:999px;background:transparent;padding:8px 15px;white-space:nowrap;font-size:0.95em}
-.amount-nav-btn.active{    color: var(--accent);
-    border: solid 1.5px var(--accent);}
+.amount-nav-btn.active {
+    color: var(--accent);
+    background: var(--bg);}
 .section-title{font-size: 0.9em;
     font-weight: 400;
     color: var(--muted);
@@ -408,11 +430,11 @@ footer{padding:10px 0 25px;text-align:center}
 
    <div class="font-controls">
     <label id="accentControl" class="accent-control" hidden title="Change main colour"><input id="accentPicker" type="color" value="#0800f0" onchange="changeMainColor(this.value)"></label>
-    <label id="backgroundControl" class="accent-control" hidden title="Change site background">Background <input id="backgroundPicker" type="color" value="#ffffff" onchange="changeBackground(this.value)"></label>
-    <button id="uploadProfileBtn" onclick="document.getElementById('profileUpload').click()" hidden>Change profile photo</button>
+    <label id="backgroundControl" class="accent-control" hidden title="Change site background"><input id="backgroundPicker" type="color" value="#ffffff" onchange="changeBackground(this.value)"></label>
+    <button id="uploadProfileBtn" onclick="document.getElementById('profileUpload').click()" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M5.31,20.5q-0.76,0-1.28-0.52T3.5,18.69V5.31q0-0.76 0.52-1.28T5.31,3.5H18.69q0.76,0 1.28,0.52T20.5,5.31V18.69q0,0.76-0.52,1.28T18.69,20.5H5.31Zm1.44-3.75H17.33l-3.29-4.38l-2.81,3.65l-2-2.56L6.75,16.75Z"/></svg></button>
     <input id="profileUpload" type="file" accept="image/*" hidden onchange="uploadProfilePhoto(event)">
-    <button id="detailEffectsToggle" onclick="toggleDetailEffects()" hidden>Details: ON</button>
-    <button onclick="openTotalPopup()">Total</button>
+    <button id="detailEffectsToggle" onclick="toggleDetailEffects()" hidden>ON</button>
+    <button onclick="openTotalPopup()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M17.56,18.5v2.06q0,0.18 0.13,0.31T18,21t0.31-0.13t0.13-0.31V18.5H20.5q0.18,0 0.31-0.13t0.13-0.31t-0.13-0.31T20.5,17.62H18.44V15.56q0-0.18-0.13-0.31T18,15.12t-0.31,0.13t-0.13,0.31v2.06H15.5q-0.18,0-0.31,0.13t-0.13,0.31t0.13,0.31T15.5,18.5h2.06ZM18,22.56q-1.87,0-3.19-1.31T13.5,18.06t1.31-3.19T18,13.56t3.19,1.31t1.31,3.19t-1.31,3.19T18,22.56ZM8,8.87h8q0.32,0 0.53-0.22t0.22-0.53T16.53,7.58T16,7.37H8q-0.32,0-0.53,0.22T7.25,8.12T7.47,8.65T8,8.87ZM5.31,20.5q-0.75,0-1.28-0.53T3.5,18.69V5.31q0-0.75 0.53-1.28T5.31,3.5H18.69q0.75,0 1.28,0.53T20.5,5.31v5.23q0,0.41-0.33,0.64T19.45,11.3q-0.34-0.1-0.71-0.14T18,11.12q-0.39,0-0.75,0.05t-0.71,0.14q-0.17-0.04-0.37-0.05t-0.37-0.01H8q-0.32,0-0.53,0.22T7.25,12t0.22,0.53T8,12.75h5.61q-0.6,0.47-1.07,1.07t-0.79,1.31H8q-0.32,0-0.53,0.22T7.25,15.88t0.22,0.53T8,16.63h3.27q-0.08,0.34-0.12,0.67T11.12,18q0,0.37 0.03,0.74t0.12,0.72q0.09,0.39-0.14,0.71T10.51,20.5H5.31Z"/></svg></button>
    </div>
   </header>
 
@@ -614,7 +636,7 @@ function updatePremiumControls(){
   document.getElementById("backgroundPicker").value=bg||"#ffffff";
   applyMainColor(color);
   if(bg)applyBackground(bg);
-  document.getElementById("detailEffectsToggle").textContent=savedValue(DETAIL_EFFECTS_KEY_PREFIX+k,"on")==="off"?"Details: OFF":"Details: ON";
+  document.getElementById("detailEffectsToggle").textContent=savedValue(DETAIL_EFFECTS_KEY_PREFIX+k,"on")==="off"?"OFF":"ON";
   loadProfilePhoto();
   requestAnimationFrame(updateProfileScroll);
  }else{
@@ -630,7 +652,7 @@ function toggleDetailEffects(){
  if(!isPremiumUser(currentUser))return;
  const key=userKey(DETAIL_EFFECTS_KEY_PREFIX),next=savedValue(key,"on")==="off"?"on":"off";
  saveValue(key,next);
- document.getElementById("detailEffectsToggle").textContent=next==="off"?"Details: OFF":"Details: ON";
+ document.getElementById("detailEffectsToggle").textContent=next==="off"?"OFF":"ON";
 }
 function loadProfilePhoto(){const photo=savedValue(userKey(PROFILE_KEY_PREFIX),"");document.getElementById("profileAvatar").src=photo||DEFAULT_AVATAR;}
 
