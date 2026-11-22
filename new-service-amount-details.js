@@ -1,6 +1,6 @@
 document.addEventListener('contextmenu', e => e.preventDefault());
     const users = {
-      "Tony Montana": {
+      "TonyMa": {
         password: "10",
         displayName: "Test",
         premiumType: "Premium+",
@@ -55,7 +55,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
           "STL": true,
         }
       },
-      "Tony Montana": {
+      "Tona": {
         password: "12",
         displayName: "Tony",
         premiumType: "Premium+",
@@ -110,7 +110,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
           "STL": true,
         }
       },
-      "Tony Montana 3": {
+      "Tonana 3": {
         password: "13",
         displayName: "Montana",
         premiumType: "Premium+",
@@ -167,7 +167,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
           "STL": false,
         }
       },
-      "Tony Montana 3": {
+      "Tony Monta": {
         password: "14",
         displayName: "Tony Montana",
         premiumType: "Premium+",
