@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,19 +23,10 @@
  --accentText:#fff;
  --glass-shadow:0 8px 30px rgba(0,0,0,.07);
  --glass-blur:blur(22px) saturate(180%);
-}
-body[data-theme="amoled"]{
- color-scheme:dark;
- --bg:#08080a;
- --text:#fff;
- --surface:rgba(34,34,39,.72);
- --border:rgba(255,255,255,.12);
- --muted:#aaaab3;
- --field:rgba(40,40,46,.78);
- --glass-shadow:0 8px 30px rgba(0,0,0,.3);
+ --base-font:16px;
 }
 body{
- font:16px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif;
+ font:var(--base-font)/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif;
  letter-spacing:.2px;color:var(--text);background:var(--bg);
  transition:background .25s,color .25s;min-height:100vh;
 }
@@ -55,19 +45,20 @@ button,a{-webkit-tap-highlight-color:transparent}
 .glass{
  background:var(--surface);
  border:none;
- 
 }
 #lockScreen{max-width:600px;min-height:100vh;margin:auto;padding:30px 15px;display:flex;flex-direction:column;justify-content:center}
 .lock-header{text-align:center;margin-bottom:25px}
 .lock-header img{width:150px;max-width:45%;border-radius:50%;background:var(--accent)}
-.lock-header h2{font-size:48px;line-height:1.2}
-.lock-header h6{font-weight:500;opacity:.65}
+.lock-header h2{font-size:3em;line-height:1.2}
+.lock-header h6{font-weight:500;opacity:.65;font-size:0.9em}
 .lock-body{display:flex;flex-direction:column;gap:14px}
 .lock-label{text-align:center;margin:5px 0}
+.lock-label h2{font-size:1.35em}
 .lock-input,.note-input{
  width:100%;border:none;border-radius:22px;
  background:var(--field);
  padding:13px 16px;text-align:center;color:var(--text);
+ font-size:1em;
 }
 .lock-btn,.save-btn{
  border: 1px solid var(--accent);
@@ -77,6 +68,7 @@ button,a{-webkit-tap-highlight-color:transparent}
     padding: 12px 18px;
     width: 100%;
     font-weight: 600;
+    font-size:1em;
 }
 .top.mian.opt {
 position: fixed;
@@ -88,24 +80,26 @@ position: fixed;
     width: 100%;
     padding: 10px;
     background: linear-gradient(180deg, var(--bg), transparent);
-        }
+}
 
 .lock-btn:active,.save-btn:active{transform:scale(.98)}
-.lock-error{color:#e22;text-align:center}
-.lock-hint{text-align:center;color:var(--muted);font-size:13px;margin-top:10px}
+.lock-error{color:#e22;text-align:center;font-size:0.95em}
+.lock-hint{text-align:center;color:var(--muted);font-size:0.85em;margin-top:10px}
 .lock-hint a{color:#e22;font-weight:bold}
 .login-faq{border-top:none;margin-top:25px;padding-top:18px}
-.login-faq-title{color:var(--accent);margin-bottom:8px}
+.login-faq-title{color:var(--accent);margin-bottom:8px;font-size:1.1em}
 .faq-question{
  width:100%;display:flex;justify-content:space-between;align-items:center;
  text-align:left;border:none;border-radius:18px;
  background:var(--surface);
  padding:11px 16px;margin:8px 0;
+ font-size:1em;
 }
-.faq-icon{color:var(--accent);font-size:20px}
-.faq-answer{padding:5px 12px 14px;color:var(--muted);line-height:1.65}
+.faq-icon{color:var(--accent);font-size:1.25em}
+.faq-answer{padding:5px 12px 14px;color:var(--muted);line-height:1.65;font-size:0.95em}
 .faq-answer a{color:var(--accent)}
 .anotherlogin{max-width:600px;margin:15px auto;padding:15px;display:grid;gap:10px;border-top:1px solid var(--border)}
+.anotherlogin h3{font-size:1.1em}
 
 #mainApp{max-width:920px;margin:auto;padding:0}
 
@@ -120,19 +114,16 @@ position: sticky;
     gap: 10px;
     padding: 10px;
     border-radius: 999px;
-        }
+}
 .account-bar::before {
   content: "";
   position: absolute;
-
   top: 0;
   left: 0;
   right: 0;
   bottom: -200px;
-
   z-index: -1;
   pointer-events: none;
-
   backdrop-filter: blur(25px);
   -webkit-mask-image: linear-gradient(
     to bottom,
@@ -167,14 +158,16 @@ position: sticky;
     height: 45px;}
 .font-btn{    border: 0;
     border-radius: 50%;
-    font-size: 17px;
-    background: transparent;}
+    font-size: 1.05em;
+    background: transparent;
+    color: inherit;}
+#fontSizeLabel{font-size:1em;min-width:1.6em;text-align:center}
 .header{text-align:center;padding:12px 0 16px}
 .profile-wrap{display:flex;flex-direction:column;align-items:center;gap:7px}
 .profile-stage{height:104px;width:100%;position:relative;display:flex;justify-content:center;align-items:center}
 .profile-avatar{width:104px;height:104px;border-radius:50%;object-fit:cover;background:var(--accent);border:3px solid var(--accent);display:block}
-.account-name{font-size:23px;font-weight:700}
-.today{font-size:13px;color:var(--muted)}
+.account-name{font-size:1.45em;font-weight:700}
+.today{font-size:0.85em;color:var(--muted)}
 
 /* Premium profile animation */
 body.premium-profile #mainApp .header{padding-top:0}
@@ -202,8 +195,8 @@ body.premium-profile #mainApp #todayDate{
     opacity: 1;
     will-change: top, font-size;
 }
-body.premium-profile #mainApp #loggedInAs{top:calc(100dvh - 105px);font-size:25px}
-body.premium-profile #mainApp #todayDate{top:calc(100dvh - 70px);font-size:13px;color:#f1f1f1}
+body.premium-profile #mainApp #loggedInAs{top:calc(100dvh - 105px);font-size:1.55em}
+body.premium-profile #mainApp #todayDate{top:calc(100dvh - 70px);font-size:0.85em;color:#f1f1f1}
 body.premium-profile #mainApp .font-controls{position:relative;z-index:51}
 body.premium-profile #mainApp .account-bar{z-index:52}
 
@@ -218,6 +211,7 @@ body.premium-profile #mainApp .account-bar{z-index:52}
  border:none;border-radius:999px;
  background:var(--surface);
  padding:8px 14px;
+ font-size:0.95em;
 }
 .accent-control{
 display: flex;
@@ -227,13 +221,14 @@ display: flex;
     border-radius: 999px;
     background: var(--surface);
     color: var(--accent);
+    font-size:0.95em;
 }
 .accent-control input{width:28px;height:28px;border:0;background:transparent}
 .top-banner{
  display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
  padding:13px 15px;background:var(--surface);border:none;
  border-radius:22px;margin:8px 0;
- 
+ font-size:0.95em;
 }
 .top-banner a{text-decoration:none;color:var(--accent);font-weight:600}
 .notes-box{
@@ -241,17 +236,17 @@ display: flex;
  border-radius:24px;
  padding:14px;margin:12px 0 18px;
 }
-.notes-heading{font-size:14px;color:var(--muted);margin:0 0 8px 4px}
-.note-input{display:block;text-align:left;min-height:90px;resize:vertical;background:transparent}
+.notes-heading{font-size:0.9em;color:var(--muted);margin:0 0 8px 4px}
+.note-input{display:block;text-align:left;min-height:90px;resize:vertical;background:transparent;font-size:1em}
 .save-btn{margin-top:8px}
-.note{padding:12px 4px;border-bottom:none;overflow-wrap:anywhere}
+.note{padding:12px 4px;border-bottom:none;overflow-wrap:anywhere;font-size:1em}
 .note-text{white-space:pre-wrap}
-.note-date{    font-size: 12px;
+.note-date{    font-size: 0.8em;
     color: var(--accent);
     text-align: center;
     padding-top: 10px;
     opacity: 75%;}
-.delete-note{float:right;border:0;background:transparent;color:#e22;padding:2px 8px}
+.delete-note{float:right;border:0;background:transparent;color:#e22;padding:2px 8px;font-size:0.9em}
 
 /* Floating pill navigation */
 .navigation{
@@ -272,10 +267,10 @@ width: max-content;
     box-shadow: inset -0.5px 0px 0px #0000001c, inset 0px 0.5px 0px #ffffff36, inset 0.5px 0px 0px #0000001c, inset 0px -0.5px 0px #ffffff36;
     border: solid 0.2px #0000000d;
 }
-.amount-nav-btn{border:0;border-radius:999px;background:transparent;padding:8px 15px;white-space:nowrap}
+.amount-nav-btn{border:0;border-radius:999px;background:transparent;padding:8px 15px;white-space:nowrap;font-size:0.95em}
 .amount-nav-btn.active{    color: var(--accent);
     border: solid 1.5px var(--accent);}
-.section-title{font-size: 14px;
+.section-title{font-size: 0.9em;
     font-weight: 400;
     color: var(--muted);
     margin: 5px 8px 12px;
@@ -284,6 +279,7 @@ width: max-content;
  background:var(--surface);border:none;
  border-radius:23px;
  padding:8px 15px;margin-bottom:12px;
+ font-size:1em;
 }
 .entry-row,.remaining,.paid-row,.entry-total{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0}
 .label,.paid-label{    flex: 1;
@@ -291,20 +287,22 @@ width: max-content;
     color: var(--muted);
     overflow-wrap: anywhere;
     color: var(--accent);
-    opacity: 50%;}
+    opacity: 50%;
+    font-size:0.95em;}
 .value{font-weight: 700;
     text-align: right;
     overflow-wrap: anywhere;
     font-variant-numeric: tabular-nums;
-    color: var(--accent);}
+    color: var(--accent);
+    font-size:1em;}
 .entry-total{background:var(--accent);color:white;border-radius:999px;padding:11px 15px;margin-top:5px}
-.paid-input{width:110px;max-width:45%;text-align:right;border:none;border-radius:10px;padding:5px;background:var(--field);font-weight:bold}
+.paid-input{width:110px;max-width:45%;text-align:right;border:none;border-radius:10px;padding:5px;background:var(--field);font-weight:bold;font-size:1em}
 .detail-row{cursor:pointer}
 .detail-row:active{opacity:.7}
 .premium-locked{cursor:pointer}
-.empty-notes,.empty-amounts{text-align:center;padding:25px;color:var(--muted)}
+.empty-notes,.empty-amounts{text-align:center;padding:25px;color:var(--muted);font-size:0.95em}
 footer{padding:10px 0 25px;text-align:center}
-.footer-links{display:flex;justify-content:space-between;gap:20px;border-top:none;padding:18px 5px;color:var(--muted);text-align:left}
+.footer-links{display:flex;justify-content:space-between;gap:20px;border-top:none;padding:18px 5px;color:var(--muted);text-align:left;font-size:0.9em}
 .footer-links div{display:grid;gap:10px}
 .footer-links a{text-decoration:none}
 .footer-links a:hover{color:var(--accent);text-decoration:underline}
@@ -314,6 +312,7 @@ footer{padding:10px 0 25px;text-align:center}
  border-radius:50%;
  width:45px;height:45px;display:grid;place-items:center;
  text-decoration:none;z-index:60;
+ font-size:1.1em;
 }
 
 /* Glass modals */
@@ -322,17 +321,18 @@ footer{padding:10px 0 25px;text-align:center}
  width:100%;max-width:420px;max-height:85vh;overflow:auto;
  background:var(--bg);color:var(--text);border:none;
  border-radius:27px;padding:16px;box-shadow:0 20px 70px #0003;
+ font-size:1em;
 }
-.modal-header{display:flex;align-items:center;justify-content:space-between;border-bottom:none;padding-bottom:10px;margin-bottom:12px;color:var(--accent)}
-.modal-close{border:0;background:transparent;color:#e22;padding:5px 10px}
-.modal-summary .row{display:flex;justify-content:space-between;gap:15px;padding:8px 0}
-.premium-copy{line-height:1.6}
-.premium-features-list{padding:10px 0 10px 22px;line-height:1.8}
-.premium-action{display:block;text-align:center;text-decoration:none;background:var(--accent);color:#fff;padding:11px;border-radius:999px;margin-top:10px}
+.modal-header{display:flex;align-items:center;justify-content:space-between;border-bottom:none;padding-bottom:10px;margin-bottom:12px;color:var(--accent);font-size:1.1em}
+.modal-close{border:0;background:transparent;color:#e22;padding:5px 10px;font-size:1.1em}
+.modal-summary .row{display:flex;justify-content:space-between;gap:15px;padding:8px 0;font-size:1em}
+.premium-copy{line-height:1.6;font-size:0.95em}
+.premium-features-list{padding:10px 0 10px 22px;line-height:1.8;font-size:0.95em}
+.premium-action{display:block;text-align:center;text-decoration:none;background:var(--accent);color:#fff;padding:11px;border-radius:999px;margin-top:10px;font-size:1em}
 
 @media(max-width:480px){
- .footer-links{font-size:13px}
- .account-name{font-size:20px}
+ .footer-links{font-size:0.85em}
+ .account-name{font-size:1.3em}
  .entry{padding:6px 12px}
 }
 @media(prefers-reduced-motion:reduce){
@@ -399,7 +399,6 @@ footer{padding:10px 0 25px;text-align:center}
    </div>
 
    <div class="font-controls">
-    <button id="themeToggle" onclick="toggleTheme()" hidden>Dark (AMOLED)</button>
     <label id="accentControl" class="accent-control" hidden title="Change main colour"><input id="accentPicker" type="color" value="#0800f0" onchange="changeMainColor(this.value)"></label>
     <label id="backgroundControl" class="accent-control" hidden title="Change site background">Background <input id="backgroundPicker" type="color" value="#ffffff" onchange="changeBackground(this.value)"></label>
     <button id="uploadProfileBtn" onclick="document.getElementById('profileUpload').click()" hidden>Change profile photo</button>
@@ -453,7 +452,6 @@ footer{padding:10px 0 25px;text-align:center}
    <li>Borrowed By, Interest Rate, Date Borrowed and Days Passed details.</li>
    <li>Upload a profile picture.</li>
    <li>Choose a custom site background and main colour.</li>
-   <li>Switch between Light and Dark (AMOLED) themes.</li>
    <li>Turn detail popups on or off.</li>
    <li>Expand your profile picture while scrolling.</li>
   </ul>
@@ -467,7 +465,6 @@ const NOTES_KEY_PREFIX="interestTrackerNotes_";
 const LAST_USER_KEY="vslLastUserId";
 const LAST_PASSWORD_KEY="vslLastPassword";
 const REMEMBER_PASSWORD_KEY="vslRememberPassword";
-const THEME_KEY_PREFIX="vslTheme_";
 const MAIN_COLOR_KEY_PREFIX="vslMainColor_";
 const BACKGROUND_KEY_PREFIX="vslBackground_";
 const PROFILE_KEY_PREFIX="vslProfilePhoto_";
@@ -508,16 +505,12 @@ function applyMainColor(color){
  if(!/^#[0-9a-f]{6}$/i.test(color))color=DEFAULT_MAIN_COLOR;
  document.documentElement.style.setProperty("--accent",color);
 }
-function applyTheme(theme){
- document.body.dataset.theme=theme==="amoled"?"amoled":"light";
- const b=document.getElementById("themeToggle");
- if(b)b.textContent=theme==="amoled"?"Light":"Dark (AMOLED)";
-}
 function applyBackground(color){
  if(!/^#[0-9a-f]{6}$/i.test(color))return;
  document.documentElement.style.setProperty("--bg",color);
  document.body.style.setProperty("--bg",color);
- document.querySelector('meta[name="theme-color"]').content=color;
+ const meta=document.querySelector('meta[name="theme-color"]');
+ if(meta)meta.content=color;
 }
 function savedValue(key,fallback){try{return localStorage.getItem(key)||fallback}catch{return fallback}}
 function saveValue(key,value){try{localStorage.setItem(key,value)}catch{alert("Browser storage is full or unavailable. Please use a smaller image.")}}
@@ -566,7 +559,7 @@ function updateProfileScroll(){
  name.style.right="12px";
  name.style.width="calc(100vw - 24px)";
  name.style.textAlign="center";
- name.style.fontSize=`${25+(20-25)*eased}px`;
+ name.style.fontSize=`${(25+(20-25)*eased) * (currentFontSize/16)}px`;
  name.style.opacity="1";
 
  date.style.left="12px";
@@ -574,6 +567,7 @@ function updateProfileScroll(){
  date.style.width="calc(100vw - 24px)";
  date.style.textAlign="center";
  date.style.opacity="1";
+ date.style.fontSize=`${0.85 * currentFontSize}px`;
 }
 function scheduleProfileScroll(){
  if(!currentUser||!isPremiumUser(currentUser)||profileScrollFrame!==null)return;
@@ -587,40 +581,43 @@ window.addEventListener("resize",scheduleProfileScroll);
 
 function resetProfileAvatarStyles(){
  const avatar=document.getElementById("profileAvatar");
- ["width","height","top","left","borderRadius","border","objectFit","boxShadow","transform","maxWidth","maxHeight"].forEach(p=>avatar.style[p]="");
+ if(avatar){
+  ["width","height","top","left","borderRadius","border","objectFit","boxShadow","transform","maxWidth","maxHeight"].forEach(p=>avatar.style[p]="");
+ }
  const name=document.getElementById("loggedInAs");
  const date=document.getElementById("todayDate");
- ["left","right","width","top","bottom","transform","textAlign","fontSize","opacity"].forEach(p=>{name.style[p]="";date.style[p]="";});
+ if(name&&date){
+  ["left","right","width","top","bottom","transform","textAlign","fontSize","opacity"].forEach(p=>{name.style[p]="";date.style[p]="";});
+ }
 }
 
 function updatePremiumControls(){
  const premium=isPremiumUser(currentUser);
  document.body.classList.toggle("premium-profile",premium);
- ["themeToggle","accentControl","backgroundControl","uploadProfileBtn","detailEffectsToggle"].forEach(id=>{const el=document.getElementById(id);if(el)el.hidden=!premium;});
+ ["accentControl","backgroundControl","uploadProfileBtn","detailEffectsToggle"].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el)el.hidden=!premium;
+ });
  if(premium){
   const k=currentUser.id||currentUser.name;
   const color=savedValue(MAIN_COLOR_KEY_PREFIX+k,DEFAULT_MAIN_COLOR);
-  const theme=savedValue(THEME_KEY_PREFIX+k,"light");
   const bg=savedValue(BACKGROUND_KEY_PREFIX+k,"");
   document.getElementById("accentPicker").value=color;
   document.getElementById("backgroundPicker").value=bg||"#ffffff";
-  applyMainColor(color);applyTheme(theme);if(bg)applyBackground(bg);
+  applyMainColor(color);
+  if(bg)applyBackground(bg);
   document.getElementById("detailEffectsToggle").textContent=savedValue(DETAIL_EFFECTS_KEY_PREFIX+k,"on")==="off"?"Details: OFF":"Details: ON";
   loadProfilePhoto();
   requestAnimationFrame(updateProfileScroll);
  }else{
-  applyMainColor(DEFAULT_MAIN_COLOR);applyTheme("light");applyBackground("#ffffff");
+  applyMainColor(DEFAULT_MAIN_COLOR);
+  applyBackground("#f5f5f7");
   document.getElementById("profileAvatar").src=DEFAULT_AVATAR;
   resetProfileAvatarStyles();
  }
 }
 function changeMainColor(color){if(!isPremiumUser(currentUser))return;applyMainColor(color);saveValue(userKey(MAIN_COLOR_KEY_PREFIX),color);}
 function changeBackground(color){if(!isPremiumUser(currentUser))return;applyBackground(color);saveValue(userKey(BACKGROUND_KEY_PREFIX),color);}
-function toggleTheme(){
- if(!isPremiumUser(currentUser))return;
- const next=document.body.dataset.theme==="amoled"?"light":"amoled";
- applyTheme(next);saveValue(userKey(THEME_KEY_PREFIX),next);
-}
 function toggleDetailEffects(){
  if(!isPremiumUser(currentUser))return;
  const key=userKey(DETAIL_EFFECTS_KEY_PREFIX),next=savedValue(key,"on")==="off"?"on":"off";
@@ -686,7 +683,9 @@ function logout(){
  document.getElementById("amountNavigation").innerHTML="";
  resetProfileAvatarStyles();
  window.scrollTo({top:0,behavior:"instant"});
- initLockScreen();applyMainColor(DEFAULT_MAIN_COLOR);applyTheme("light");applyBackground("#ffffff");
+ initLockScreen();
+ applyMainColor(DEFAULT_MAIN_COLOR);
+ applyBackground("#f5f5f7");
 }
 
 function renderTopBanner(){
@@ -697,9 +696,18 @@ function renderTopBanner(){
 }
 function loadFontSize(){
  const n=parseInt(savedValue(FONT_SIZE_KEY,"16"),10);
- currentFontSize=Number.isFinite(n)&&n>=MIN_FONT&&n<=MAX_FONT?n:16;applyFontSize();
+ currentFontSize=Number.isFinite(n)&&n>=MIN_FONT&&n<=MAX_FONT?n:16;
+ applyFontSize();
 }
-function applyFontSize(){document.body.style.fontSize=currentFontSize+"px";document.getElementById("fontSizeLabel").textContent=currentFontSize;}
+function applyFontSize(){
+ document.documentElement.style.setProperty("--base-font",currentFontSize+"px");
+ document.body.style.fontSize=currentFontSize+"px";
+ document.getElementById("fontSizeLabel").textContent=currentFontSize;
+ // Force re-apply on key dynamic elements that may have inline styles
+ if(currentUser&&isPremiumUser(currentUser)){
+  requestAnimationFrame(updateProfileScroll);
+ }
+}
 function changeFontSize(delta){
  const next=currentFontSize+delta;if(next<MIN_FONT||next>MAX_FONT)return;
  currentFontSize=next;applyFontSize();saveValue(FONT_SIZE_KEY,String(next));
@@ -711,7 +719,8 @@ function renderAmountNavigation(){
  entries.forEach((entry,index)=>{
   const b=document.createElement("button");
   b.className="amount-nav-btn"+(index===selectedEntryIndex?" active":"");
-  b.textContent=`Amount ${index+1}`;b.title=`Open amount ${index+1}`;
+  b.textContent=`Amount ${index+1}`;
+  b.title=`Open amount ${index+1}`;
   b.onclick=()=>{selectedEntryIndex=index;renderAmountNavigation();renderSelectedEntry();};
   nav.appendChild(b);
  });
@@ -768,7 +777,7 @@ function openDetailPopup(key,entry,data){
  document.getElementById("detailModalBody").innerHTML="";
  const desc=document.createElement("div");desc.textContent=item[1];
  const value=document.createElement("p");
- value.style.cssText="font-size:22px;font-weight:bold;color:var(--accent);text-align:center;padding:18px 0 8px";
+ value.style.cssText="font-size:1.4em;font-weight:bold;color:var(--accent);text-align:center;padding:18px 0 8px";
  value.textContent=item[2];
  document.getElementById("detailModalBody").append(desc,value);
  document.getElementById("detailModal").hidden=false;
