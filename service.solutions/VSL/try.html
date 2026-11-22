@@ -68,6 +68,9 @@ border: none;
     font-weight: 500;
     font-size: 17px;
 }
+svg{
+    fill: var(--accent);
+}
 .top.mian.opt {
 position: fixed;
     top: 0;
@@ -154,7 +157,7 @@ position: sticky;
     background: linear-gradient( 175deg, #00000000, #ffffff2b);
     box-shadow: inset -0.5px 0px 0px #0000001c, inset 0px 0.5px 0px #ffffff36, inset 0.5px 0px 0px #0000001c, inset 0px -0.5px 0px #ffffff36;
     border: solid 0.2px #0000000d;
-    color: white;
+    color: var(--accent);
     gap: 8px;
     height: 45px;}
 .font-btn{    border: 0;
@@ -190,7 +193,7 @@ body.premium-profile #mainApp #todayDate{
     right: 12px;
     width: calc(100vw - 24px);
     text-align: center;
-    color: #fff;
+    color: var(--accent);
     pointer-events: none;
     opacity: 1;
     will-change: top, font-size;
