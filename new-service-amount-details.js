@@ -17,7 +17,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
         showSpecialNotice: "no",
         specialNoticeText: "",
         loans: [
-          { amount: 6000, interest: 2500, borrowed: "22-11-2026", return: "22-12-2026", overdueFee: 50 },
+          { amount: 6000, interest: 1800, borrowed: "22-11-2026", return: "22-12-2027", overdueFee: 50 },
         ],
         access: {
           "Delay It": true,
