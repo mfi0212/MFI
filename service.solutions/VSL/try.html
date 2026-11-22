@@ -30,9 +30,9 @@ body{
  letter-spacing:.2px;color:var(--text);background:var(--bg);
  transition:background .25s,color .25s;min-height:100vh;
 }
-.container {
+/* .container {
     padding: 10px;
-}
+} */
 button{cursor:pointer}
 button, a {
     -webkit-tap-highlight-color: transparent;
@@ -114,6 +114,9 @@ position: sticky;
     gap: 10px;
     padding: 10px;
     border-radius: 999px;
+}
+.header,.navigation,section#interestSection{
+    padding: 10px;
 }
 .account-bar::before {
   content: "";
@@ -201,12 +204,15 @@ body.premium-profile #mainApp .font-controls{position:relative;z-index:51}
 body.premium-profile #mainApp .account-bar{z-index:52}
 
 /* Floating glass controls */
-.font-controls{display: flex;
+.font-controls{
+    display: flex;
     justify-content: center;
     align-items: center;
     gap: 9px;
     flex-wrap: wrap;
-    margin-top: 150px;}
+    margin-top: 150px;
+    margin: 150px 10px 0;
+}
 .font-controls button{
  border:none;border-radius:999px;
  background:var(--surface);
@@ -227,14 +233,16 @@ display: flex;
 .top-banner{
  display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
  padding:13px 15px;background:var(--surface);border:none;
- border-radius:22px;margin:8px 0;
+ border-radius:22px;    margin: 10px;
  font-size:0.95em;
 }
 .top-banner a{text-decoration:none;color:var(--accent);font-weight:600}
 .notes-box{
- background:var(--surface);border:none;
- border-radius:24px;
- padding:14px;margin:12px 0 18px;
+ background: var(--surface);
+    border: none;
+    border-radius: 24px;
+    padding: 14px;
+    margin: 10px;
 }
 .notes-heading{font-size:0.9em;color:var(--muted);margin:0 0 8px 4px}
 .note-input{display:block;text-align:left;min-height:90px;resize:vertical;background:transparent;font-size:1em}
@@ -250,7 +258,7 @@ display: flex;
 
 /* Floating pill navigation */
 .navigation{
-width: max-content;
+width: 90%;
     max-width: 100%;
     margin: 18px auto;
     position: sticky;
