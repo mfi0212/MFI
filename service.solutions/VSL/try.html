@@ -55,9 +55,7 @@ button,a{-webkit-tap-highlight-color:transparent}
 .glass{
  background:var(--surface);
  border:none;
- backdrop-filter:var(--glass-blur);
- -webkit-backdrop-filter:var(--glass-blur);
- box-shadow:var(--glass-shadow);
+ 
 }
 #lockScreen{max-width:600px;min-height:100vh;margin:auto;padding:30px 15px;display:flex;flex-direction:column;justify-content:center}
 .lock-header{text-align:center;margin-bottom:25px}
@@ -68,7 +66,7 @@ button,a{-webkit-tap-highlight-color:transparent}
 .lock-label{text-align:center;margin:5px 0}
 .lock-input,.note-input{
  width:100%;border:none;border-radius:22px;
- background:var(--field);backdrop-filter:var(--glass-blur);
+ background:var(--field);
  padding:13px 16px;text-align:center;color:var(--text);
 }
 .lock-btn,.save-btn{
@@ -101,7 +99,7 @@ position: fixed;
 .faq-question{
  width:100%;display:flex;justify-content:space-between;align-items:center;
  text-align:left;border:none;border-radius:18px;
- background:var(--surface);backdrop-filter:var(--glass-blur);
+ background:var(--surface);
  padding:11px 16px;margin:8px 0;
 }
 .faq-icon{color:var(--accent);font-size:20px}
@@ -218,8 +216,8 @@ body.premium-profile #mainApp .account-bar{z-index:52}
     margin-top: 82px;}
 .font-controls button{
  border:none;border-radius:999px;
- background:var(--surface);backdrop-filter:var(--glass-blur);
- padding:8px 14px;box-shadow:var(--glass-shadow);
+ background:var(--surface);
+ padding:8px 14px;
 }
 .accent-control{
 display: flex;
@@ -234,21 +232,25 @@ display: flex;
 .top-banner{
  display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
  padding:13px 15px;background:var(--surface);border:none;
- backdrop-filter:var(--glass-blur);border-radius:22px;margin:8px 0;
- box-shadow:var(--glass-shadow);
+ border-radius:22px;margin:8px 0;
+ 
 }
 .top-banner a{text-decoration:none;color:var(--accent);font-weight:600}
 .notes-box{
  background:var(--surface);border:none;
- backdrop-filter:var(--glass-blur);border-radius:24px;
- padding:14px;margin:12px 0 18px;box-shadow:var(--glass-shadow);
+ border-radius:24px;
+ padding:14px;margin:12px 0 18px;
 }
 .notes-heading{font-size:14px;color:var(--muted);margin:0 0 8px 4px}
 .note-input{display:block;text-align:left;min-height:90px;resize:vertical;background:transparent}
 .save-btn{margin-top:8px}
 .note{padding:12px 4px;border-bottom:none;overflow-wrap:anywhere}
 .note-text{white-space:pre-wrap}
-.note-date{font-size:12px;color:var(--muted)}
+.note-date{    font-size: 12px;
+    color: var(--accent);
+    text-align: center;
+    padding-top: 10px;
+    opacity: 75%;}
 .delete-note{float:right;border:0;background:transparent;color:#e22;padding:2px 8px}
 
 /* Floating pill navigation */
@@ -280,8 +282,8 @@ width: max-content;
     display: none;}
 .entry{
  background:var(--surface);border:none;
- backdrop-filter:var(--glass-blur);border-radius:23px;
- padding:8px 15px;margin-bottom:12px;box-shadow:var(--glass-shadow);
+ border-radius:23px;
+ padding:8px 15px;margin-bottom:12px;
 }
 .entry-row,.remaining,.paid-row,.entry-total{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0}
 .label,.paid-label{    flex: 1;
@@ -309,9 +311,9 @@ footer{padding:10px 0 25px;text-align:center}
 .back-top{
  position:fixed;right:15px;bottom:15px;background:var(--surface);
  color:var(--accent);border:none;
- backdrop-filter:var(--glass-blur);border-radius:50%;
+ border-radius:50%;
  width:45px;height:45px;display:grid;place-items:center;
- text-decoration:none;z-index:60;box-shadow:var(--glass-shadow);
+ text-decoration:none;z-index:60;
 }
 
 /* Glass modals */
