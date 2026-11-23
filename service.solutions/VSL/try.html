@@ -1,1 +1,2504 @@
-no test...
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<title>VSL</title>
+
+<script src="vsl.lednder.account.js"></script>
+<link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png">
+
+<style>
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    scrollbar-width: thin;
+    scrollbar-color: gray transparent;
+}
+[hidden]{display:none!important}
+
+:root{
+  color-scheme:light;
+  --highlight-total:white;
+  --highlight-light-total:black;
+  --bg:#fff;
+  --text:#000;
+  --surface:#fff;
+  --border:#0000003d;
+  --muted:#555;
+  --field-bg:#fff;
+  --field-text:#000;
+  --strong-bg:#000;
+  --strong-text:#fff;
+  --accent:#0800f0;
+}
+
+body[data-theme="amoled"]{
+  color-scheme:dark;
+  --highlight-total:white;
+  --highlight-light-total:white;
+  --bg:#0e0e10;
+  --text:#fff;
+  --surface:#000;
+  --border:#ffffff45;
+  --muted:#bdbdbd;
+  --field-bg:#000;
+  --field-text:#fff;
+  --strong-bg:#fff;
+  --strong-text:#000;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  color:var(--text);
+  background:var(--bg);
+  user-select:none;    letter-spacing: 0.3px;
+  transition:background .15s,color .15s;
+}
+
+button,input,textarea{
+  font:inherit;
+  text-align:center;
+  border: transparent;
+  border-radius:0;
+  background:transparent;
+  color:var(--field-text);
+}
+button{cursor:pointer}
+a{color:inherit}
+
+#lockScreen{
+ width: 100%;
+    max-width: 600px;
+    min-height: 100vh;
+    margin: auto;
+    padding: 30px 10px 0px 10px;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.lock-box{width:100%}
+h2#title{font-size:25px}
+.faq-issue-opt{
+  color: red;
+}
+
+h3#detailModalTitle,h3#modalTitle,h3#premiumModalTitle{
+  color:var(--accent);
+}
+
+#detailModalBody p{
+ text-align: center;
+    font-size: 20px;
+    padding: 0px 0 5px;
+    border-radius: 999px;
+    color: var(--accent);
+}
+
+#detailModalBody{text-decoration:none}
+
+.lock-header{
+  text-align:center;
+  margin-bottom:24px;
+}
+
+.lock-header h2{
+  font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+svg{
+ fill: var(--text);
+}
+.entry-total.detail-row{
+   background: transparent;
+    padding: 10px 0;
+    color: var(--highlight-light-total);
+    position: unset;
+    width: 100%;
+    text-align: left;
+    left: 0;
+    transform: translate(0%);
+}
+
+.entry-total.detail-row .label{opacity:55%}
+
+button.lock-btn{
+ margin-top: 8px;
+    width: 100%;
+    background: var(--accent);
+    padding: 10px;
+    font-size: 18px;
+    color: white;
+    border-radius: 999px;
+}
+
+.lock-header h6{
+ margin: -12px;
+    opacity: 65%;
+    font-weight: 500;
+}
+h5 {
+    font-weight: 500;
+}
+
+.lock-body{
+  display:flex;
+  flex-direction:column;
+  gap: 20px;
+}
+
+.lock-label{
+       text-align: center;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.lock-input,.note-input{
+      width: 100%;
+    outline: none;
+    border-radius: 25px;
+    background: #6c6c6c29;
+    padding: 12px;
+}
+.lock-input:focus{
+  outline:2px solid ;
+  outline-offset:2px;
+}
+.lock-error{
+  color:red;
+  text-align:center;
+  cursor:not-allowed;
+}
+
+.lock-btn,.save-btn,#totalBtn{
+  border:0;
+}
+
+
+
+.lock-hint{
+ opacity: 85%;
+    margin-top: 0;
+    line-height: 20px;
+    font-weight: 300;
+}
+
+
+
+/* FAQ SECTION */
+
+.login-faq{
+ border-top: 1px solid var(--border);
+    margin-top: 20px;
+    padding-top: 15px;
+}
+
+.login-faq-title{
+      text-align: left;
+    color: var(--accent);
+    padding: 0 5px;
+}
+
+.login-faq-subtitle{
+  text-align:center;
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:12px;
+}
+
+/* .faq-item{
+  border-bottom:1px solid var(--border);
+} */
+
+.faq-question{
+padding: 8px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    background: #6c6c6c29;
+    color: var(--text);
+    border: 0;
+    text-align: left;
+    cursor: pointer;
+    transition: color .15s;
+    margin: 15px 0;
+    border-radius: 999px;
+}
+
+
+
+.faq-icon{
+  color:var(--accent);
+  font-size:19px;
+  flex-shrink:0;
+}
+.anotherlogin {
+display: flex;
+    margin: 10px 0;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 10px 0 25px 0;
+    border-top: 1px solid var(--border);
+}
+.faq-answer{
+  padding:0 5px 13px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.faq-answer a{
+  color:var(--accent);
+  font-weight:bold;
+}
+
+/* MAIN APP */
+
+#mainApp{
+  width:100%;
+  max-width:920px;
+  margin:0 auto;
+}
+
+.container{
+  width:100%;
+  padding:16px 0 5px;
+}
+.faq-item {
+    margin-top: 15px;
+}
+.top-banner{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 25px;
+    background: #6c6c6c29;
+}
+
+.top-banner a{
+  text-decoration: none;
+    text-transform: capitalize;
+}
+
+.top-banner a:hover{
+  color:var(--accent);
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 0 0 20px 0;
+    flex-direction: column;
+    margin-top: -15px;
+}
+
+.today{font-size:14px}
+
+.font-controls{
+   display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    padding-top: 15px;
+}
+
+.font-size-label{
+text-align: center;
+    font-size: 15px;
+}
+.font-btn-options {
+border-radius: 99px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 8px;
+    gap: 5px;
+    background: linear-gradient(#ffffff2b, #00000000, #ffffff2b);
+    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
+    border: solid 0.2px #0000000d;
+    backdrop-filter:blur(2px);
+    height: 40px;
+    font-size: 20px;
+}
+.font-btn,.lang-btn,.theme-btn{
+min-height: 34px;
+    background: transparent;
+    border: 0;
+}
+
+.theme-btn{white-space:nowrap}
+
+.accent-control{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accent-control[hidden]{display:none!important}
+
+.accent-control input{
+  width:40px;
+  height:40px;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  border-radius: 50%;
+}
+.font-controls button {
+border-radius: 15px;
+    background: #6c6c6c29;
+    border: solid 0.2px #0000000d;
+    backdrop-filter:blur(2px);
+    height: 55px;
+    transition: all 0.1s ease-in-out;
+    padding: 0px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.amount-btn:disabled{
+  background:var(--accent);
+  color:#fff;
+}
+
+
+.amount-nav{
+display: flex;
+    padding: 3px;
+    width: fit-content;
+    max-width: 100%;
+    background: linear-gradient(#ffffff2b, #00000000, #ffffff2b);
+    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
+    border: solid 0.2px #0000000d;
+    border-radius: 999px;
+    margin: 15px 0;
+    position: sticky;
+    top: 70px;
+    backdrop-filter:blur(3px);
+    z-index: 10000;
+    gap: 4px;
+    justify-content: flex-start;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+.amount-btn{
+background: transparent;
+    transition: background .18s, color .18s, border-color .18s, box-shadow .18s;
+    border-radius: 999px;
+    border: none;
+    width: fit-content;
+    padding: 5px 13px;
+    box-shadow: none;
+    white-space: nowrap;
+}
+
+.amount-btn.is-active,.amount-btn[aria-current="page"]{
+  background:var(--accent);
+  color:#fff;
+  border-color:var(--accent);
+  opacity:1;
+}
+
+.note-saver-box{
+ margin: 10px 0 20px;
+    padding: 0;
+}
+
+.note-saver-box .note-input{
+  min-height: 100px;
+}
+
+.section-title{
+  margin: 5px;
+    font-size: 14px;
+    padding: 0 10px;
+    font-weight: 400;
+    opacity: 60%;
+}
+
+.user{margin-bottom:15px}
+.user-name{padding:0;text-align:center}
+
+.entry{
+     margin-bottom: 10px;
+    border-radius: 25px;
+    background: #6c6c6c29;
+    padding: 5px 15px 5px 15px;
+}
+
+.entry-row,.remaining,.borrowed-by-row,.paid-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:10px 0;
+}
+
+.entry-row .label,.remaining .label,.entry-total .label,
+.borrowed-by-row .label,.paid-label{
+  flex:1;
+  min-width:0;
+  overflow-wrap:anywhere;
+  opacity:55%;
+}
+
+.entry-row .value,.remaining .value,.entry-total .value,
+.borrowed-by-row .value{
+  text-align:right;
+  overflow-wrap:anywhere;
+  font-variant-numeric:tabular-nums;
+  font-weight:700;
+}
+
+.entry-total{
+    background: var(--accent);
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    color: var(--highlight-total);
+    border-radius: 999px;
+    position: sticky;
+    bottom: 15px;
+    width: 50%;
+    text-align: left;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.paid-input-wrap{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.paid-input{
+  min-width:0;
+  padding:0;
+  border:0;
+  background:transparent;
+  text-align:right;
+  font-size:16px;
+  font-variant-numeric:tabular-nums;
+  font-weight:700;
+  max-width:100px;
+  outline: none;
+}
+
+.paid-input:focus{
+  background:rgba(133,133,133,.65);
+  border-radius:9999px;
+  padding:0 10px;
+}
+.note-input {
+    text-align: left;
+    display: block;
+    min-height: 170px;
+    resize: vertical;
+    border-radius: 25px;
+    background: #6c6c6c29;
+    padding: 20px;
+  }
+
+.save-btn{
+  margin-top: 8px;
+    width: 100%;
+    background: var(--accent);
+    padding: 10px;
+    font-size: 18px;
+    color: white;
+    border-radius: 999px;
+}
+
+.note{
+  padding: 10px 20px 0;
+    overflow-wrap: anywhere;
+}
+
+.entry-total .label{opacity:100%}
+.mainreflogo{text-decoration:none}
+
+
+.note-text{
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+
+.note-date{
+  font-size:12px;
+  opacity:50%;
+}
+#accentPicker {
+appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+}
+
+
+#accentPicker::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+#accentPicker::-webkit-color-swatch {
+    border: none;
+    /* border-radius: 50%; */
+}
+
+#accentPicker::-moz-color-swatch {
+    border: none;
+    border-radius: 50%;
+}
+.delete-note{
+  float: right;
+    background: transparent;
+    color: red;
+    font-size: 16px;
+    border: 0;
+    padding: 0 10px;
+    font-weight: 500;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-notes{
+  padding:20px 0;
+  text-align:center;
+  cursor:not-allowed;
+  border-bottom:1px solid var(--border);
+}
+
+.account-bar{
+display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0 0 0;
+    position: sticky;
+    top: 0;
+    z-index: 100000000000;
+    background: linear-gradient(180deg, var(--bg), transparent);
+}
+
+.account-name{
+     font-weight: bold;
+    font-size: 25px;
+}
+
+.logout-btn{
+flex-shrink: 0;
+    color: #fff;
+    border-radius: 99px;
+    background: linear-gradient(#ffffff2b, #00000000, #ffffff2b);
+    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
+    border: solid 0.2px #0000000d;
+    backdrop-filter:blur(2px);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+ul.premium-features-list h3{
+  color:var(--accent);
+  width:fit-content;
+}
+
+ul.premium-features-list h3:hover{
+  text-decoration:underline;
+  cursor:pointer;
+}
+
+ul.premium-features-list h3:active{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+  border-radius:3px;
+}
+
+.modal-overlay{
+    position: fixed;
+    inset: 0;
+    z-index: 1000000000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    overflow-y: auto;
+    background: #000000b0;
+}
+
+.row span {
+        font-weight: 400;
+    opacity: 75%;
+}
+.modal{
+    width: 100%;
+    max-width: 400px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: var(--bg);
+    color: var(--text);
+    padding: 15px 15px 5px 15px;
+    border-radius: 25px;
+    border: 1px solid var(--border);
+    scrollbar-width: none;
+}
+
+.modal-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  color:var(--accent);
+  border-bottom:1px solid var(--border);
+  padding:0 0 10px;
+  margin-bottom:5px;
+}
+
+.modal-close{
+  background:transparent;
+  color:red;
+  font-size:16px;
+  border:0;
+  padding:0 10px;
+  font-weight:500;
+  width:30px;
+  height:30px;
+}
+
+
+.modal-summary{line-height:35px}
+
+.modal-summary .row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+}
+
+footer{
+  text-align:center;
+  color:var(--text);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 15px 0;
+    gap: 10px;
+    border-top: 1px solid var(--border);
+}
+
+.footer-links a{
+  text-decoration:none;
+  color:var(--muted);
+}
+.footer-links a:focus{
+   border-radius:2px;
+  outline:2px solid;
+  outline-offset:2px;
+}
+.footer-links a:hover{
+  text-decoration:underline;
+  color:var(--accent);
+}
+
+/* DETAILS POPUP SETTINGS */
+
+.premium-detail-control{
+ width: 100%;
+    display: contents;
+}
+
+.detail-row{
+  cursor:pointer;
+  transition:background .15s,opacity .15s;
+}
+
+.detail-row:hover{text-decoration:underline}
+
+
+.premium-locked .value{
+  filter:none;
+  user-select:none;
+  font-weight:600;
+}
+
+.premium-locked{cursor:not-allowed}
+
+
+.premium-features-list{
+  padding:12px 0 12px 20px;
+  line-height:1.8;
+}
+
+.premium-copy{
+  padding:0;
+  line-height:1.6;
+}
+
+.premium-action{
+  display:block;
+  width:100%;
+  padding:11px;
+  background:var(--accent);
+  color:#fff;
+  border:0;
+  text-decoration:none;
+  text-align:center;
+  margin-top:8px;
+}
+
+@media(max-width:480px){
+  .container{padding:5px 10px;}
+  .font-controls{width:100%}
+}
+</style>
+</head>
+
+<body>
+  <div id="scrollup"></div>
+<div id="lockScreen">
+  <div class="lock-box">
+   
+    <div title="VSL is a service from BS&MFI Services" class="lock-header">
+      <h2>
+        <img style="width:50%;border-radius:50%;max-width:180px;background:var(--accent)"
+        src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="">
+        VSL
+      </h2>
+      <h6>Powered by BS&amp;MFI</h6>
+    </div>
+
+    <div class="lock-body">
+
+      <label class="lock-label">
+        <h2>Login with your officially verified account password</h2>
+      </label>
+
+      <div style="    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-direction: column;">
+        <input type="text" id="passwordInput" class="lock-input"
+        placeholder="Enter password" autocomplete="current-password"
+        onkeydown="if(event.key==='Enter') checkPassword()">
+
+        <button class="lock-btn" onclick="checkPassword()"
+        title="Go to borrows or lends details section">
+          Login
+        </button>
+      </div>
+
+      <p id="lockError" class="lock-error" hidden>
+        Wrong password. Try again.
+      </p>
+
+      <div class="lock-hint" style="text-align:center">
+       <h5> If you can't log in, it means you don't have any active borrows or lends.
+        If you do have an active borrows or lends and still face issues,
+        fill out the
+        <a title="Fill this whenever you think you are facing issues from our side"
+        style="color:red;font-weight:800"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form">Issue form</a>.</h5>
+      </div>
+
+    </div>
+
+    <!-- LOGIN FAQ -->
+
+    <div class="login-faq">
+
+      <h3 class="login-faq-title">Frequently Asked Questions</h3>
+      <div id="faqList">
+
+         <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            What is VSL?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            VSL is a service from BS&MFI that helps verified account holders
+            view their borrowing and lending records, track interest and
+            maintain personal notes.
+          </div>
+        </div>
+
+        
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            Why can't I log in?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            Make sure you enter the correct account password.
+            You can log in only when you have an active borrowing or lending
+            record registered in VSL. If you believe your record is active,
+            contact your coordinator.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            How can I become a lender on VSL?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            To become a lender, your account must first be officially verified
+            by a representative from VSL. Contact your coordinator or a VSL
+            representative for verification and further steps.
+            You cannot become an official lender simply by creating an account.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            How can I become a borrower on VSL?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            To become a borrower, your account must be officially verified
+            by a representative from VSL. Contact your coordinator or a VSL
+            representative to discuss the process and verification.
+            Borrowing access is subject to approval.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            Why does my account need verification?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            Verification helps VSL confirm that the lender or borrower is
+            officially registered. Only accounts verified by an authorised
+            VSL representative can be recognised as official lender or
+            borrower accounts.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            What is VSL Premium+?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            VSL Premium+ provides additional display and customisation
+            features. It unlocks Borrowed By, Interest Rate, Date Borrowed
+            and Days Passed details, allows you to control detail popups,
+            switch between Light and Dark (AMOLED) themes and choose
+            your own main colour.
+          </div>
+        </div>
+
+        
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            How can I activate Premium+?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            Contact your coordinator and request Premium+ activation.
+            Once your Premium+ status is activated on your VSL account,
+            the additional features will become available.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            Why can't I see some account details?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            Some account details are exclusive to Premium+ members.
+            Upgrade to Premium+ to unlock Borrowed By, Interest Rate,
+            Date Borrowed and Days Passed information.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            Who should I contact if my account details are incorrect?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            Contact your coordinator or submit the
+            <a class="faq-issue-opt" style="color: red;" href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form">VSL Issue Form</a> so the issue can be reviewed.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">
+            Who can I contact for support?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" hidden>
+            Contact your VSL coordinator or use the Issue Form
+            if you need help with login, account records or other
+            VSL-related problems.
+          </div>
+        </div>
+        <a style="text-decoration: none;" href="all.faqs.html"><button class="lock-btn" style="    width: 100%;position: sticky;bottom: 10px;
+    margin: 0 0 10px 0;">View More FAQ's</button></a>
+      </div> 
+    </div>
+    
+  </div>
+<div class="anotherlogin">
+  <label class="lock-label" style="    text-align: start;">
+       <h2> Ready to login? Enter your verified account password.</h2>
+      </label>
+
+      <div style="    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 100%;">
+      <a href="#lockScreen" for="passwordInput" class="lock-input" style="    text-align: center;
+    text-decoration: none;
+    color: var(--muted);" >Enter password</a>
+      <button style="    margin: 0;
+    width: auto;
+    padding: 10px 20px;" class="lock-btn" onclick="checkPassword()"
+        title="Go to borrows or lends details section">
+          Login
+        </button>
+      </div>
+
+      <p id="lockError" class="lock-error" hidden>
+        Wrong password. Try again.
+      </p>
+      <div class="lock-hint">
+        <h5>If you can't log in, it means you don't have any active borrows or lends.
+        If you do have an active borrows or lends and still face issues,
+        fill out the
+        <a title="Fill this whenever you think you are facing issues from our side"
+        style="color:red;font-weight:800"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form">Issue form</a>.</h5>
+      </div>
+</div>
+<footer>
+      <div class="footer-links">
+
+        <div style="display:flex;flex-direction:column;align-items:baseline;gap: 15px;">
+          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#terms">Terms and Conditions</a></h5>
+          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#privacy">Privacy</a></h5>
+          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#services">Lending Services</a></h5>
+          <h5><a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a></h5>
+        </div>
+
+       <div style="display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    gap: 30px;">
+         <div>
+          <h5>VSL, All rights reserved.<br>
+          Version (v.04.12.20)</h5>
+        </div>
+<a style="    background: var(--accent);
+    padding: 10px;
+    display: flex;
+    position: relative;
+    color: white;
+    position: fixed;
+    bottom: 10px;
+    right: 15px;z-index: 1000000;
+    border-radius: 50%;" href="#scrollup"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M11,20V7.82l-5.6,5.6L4,12l8-8l8,8l-1.4,1.42L13,7.82V20H11Z"/></svg></a>
+      </div>
+       </div>
+    </footer>
+
+</div>
+
+<!-- MAIN APP -->
+
+<div id="mainApp" hidden>
+
+  <div class="container">
+    
+    <div class="account-bar">
+        <button class="logout-btn" 
+        title="Logout" 
+        aria-label="Logout"
+        onclick="logout()">
+  <svg xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 24 24"
+       width="24"
+       height="24"
+       fill="currentColor">
+    <path d="M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h5v-2H5V5h5V3z"/>
+    <path d="M16 17l5-5-5-5v3H9v4h7v3z"/>
+  </svg>
+</button><div class="font-btn-options"> 
+            <button class="font-btn" onclick="changeFontSize(-1)" title="To decrease font size">−</button>
+            <span class="font-size-label" id="fontSizeLabel">16</span>
+            <button class="font-btn" onclick="changeFontSize(1)" title="To increase font size">+</button>
+        </div>
+    </div>
+
+    <div class="header">
+
+      <a class="mainreflogo" href="">
+        <div style="display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-direction: column;">
+          <img style="    width: 100px;;border-radius:50%;background:var(--accent)"
+          src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="">
+          <h2 id="title" style="display: none;" >VSL</h2>
+          <span id="loggedInAs" class="account-name"></span>
+        </div>
+      </a>
+
+      <div class="today" id="todayDate"></div>
+
+      <div class="font-controls">
+        <button class="theme-btn" id="themeToggle" onclick="toggleTheme()" type="button" title="To change theme">
+          Dark (AMOLED)
+        </button>
+
+        <button id="accentControl" class="accent-control" hidden>
+          <input id="accentPicker" type="color" value="#0800f0"
+          title="To change main color of VSL"
+          aria-label="Choose main color"
+          onchange="changeMainColor(this.value)">
+        </button>
+
+        <div class="premium-detail-control" id="premiumDetailControl" hidden>
+          <button class="detail-setting-btn" id="detailEffectsToggle"
+          type="button" title="To turn on or off the detail popups"
+          onclick="toggleDetailEffects()">
+            On
+          </button>
+        </div>
+<button class="total-btn" id="totalBtn"
+      onclick="openTotalPopup()">=</button>
+      </div>
+    </div>
+      <div>
+        <div class="top-banner" id="topBanner"></div>
+        <div style="display:none" class="top-banner2" id="topBanner2"></div>
+    </div>
+
+    <!-- Note saver right after top banner -->
+    <div class="note-saver-box" id="noteSaverBox">
+      <h3 class="section-title" id="notesTitle">Notes</h3>
+      <textarea id="noteInput" class="note-input"
+        placeholder="Write something here..."></textarea>
+      <button class="save-btn" id="saveButton" onclick="saveNote()">Save note</button>
+      <div id="notesList"></div>
+    </div>
+
+    <!-- Amount selectors (replaces old Details / Notes nav) -->
+    <div class="amount-nav" id="amountNav"></div>
+
+    <section id="interestSection">
+      <h3 class="section-title" id="interestTitle">Borrows or Lends details</h3>
+      <div id="app" title="Amount details of your account"></div>
+    </section>
+
+    <footer>
+      <div class="footer-links">
+
+        <div style="display:flex;flex-direction:column;align-items:baseline;gap: 15px;">
+          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#terms">Terms and Conditions</a></h5>
+          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#privacy">Privacy</a></h5>
+          <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#services">Lending Services</a></h5>
+          <h5><a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a></h5>
+        </div>
+
+       <div style="display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    gap: 30px;">
+         <div>
+          <h5>VSL, All rights reserved.<br>
+          Version (v.04.12.20)</h5>
+        </div>
+<a style="background: var(--accent);
+    padding: 10px;
+    display: flex;
+    position: relative;
+    color: white;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    border-radius: 50%;" href="#scrollup"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#e3e3e3"><path d="M11,20V7.82l-5.6,5.6L4,12l8-8l8,8l-1.4,1.42L13,7.82V20H11Z"/></svg></a>
+      </div>
+       </div>
+    </footer>
+
+  </div>
+
+  <!-- TOTAL POPUP -->
+
+  <div class="modal-overlay" id="totalModal" hidden>
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modalTitle">Total Summary</h3>
+        <button class="modal-close" title="To close pop up"
+        onclick="closeTotalPopup()">X</button>
+      </div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- DETAIL POPUP -->
+
+  <div class="modal-overlay" id="detailModal" hidden
+  role="dialog" aria-modal="true" aria-labelledby="detailModalTitle">
+
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="detailModalTitle">Detail</h3>
+        <button class="modal-close" title="To close pop up"
+        onclick="closeDetailPopup()" aria-label="Close details">X</button>
+      </div>
+      <div id="detailModalBody" class="premium-copy"></div>
+    </div>
+
+  </div>
+
+  <!-- PREMIUM POPUP -->
+
+  <div class="modal-overlay" id="premiumModal" hidden
+  role="dialog" aria-modal="true" aria-labelledby="premiumModalTitle">
+
+    <div class="modal">
+
+      <div class="modal-header">
+        <div>
+          <h3 id="premiumModalTitle">VSL Premium+</h3>
+          <h5 style="    color: black;">Powered by BS&MFI Turbo</h5>
+        </div>
+        <button class="modal-close" title="To close premium popup"
+        onclick="closePremiumPopup()" aria-label="Close premium popup">X</button>
+      </div>
+
+      <div class="premium-copy">
+        Premium+ gives you more control over how VSL looks and how
+        account details are displayed.
+      </div>
+
+      <ul class="premium-features-list">
+        <li>Unlock Borrowed By, Interest Rate, Date Borrowed and Days Passed.</li>
+        <li>Turn detail popups and hover effects on or off.</li>
+        <li>Use dark and light themes.</li>
+        <li>Choose your own main colour.</li>
+      </ul>
+
+      <ul class="premium-features-list">
+        <li>Premium+ Cost</li>
+        <h3 onclick="alert('You have to pay 160/month to get Premium+ features')">
+          Monthly - 160
+        </h3>
+        <h3 onclick="alert('You have to pay 1500/year which means 125/month to get Premium+ features')">
+          Annual - 1500
+        </h3>
+      </ul>
+
+      <div class="premium-copy">
+        Contact your coordinator to activate your Premium+.
+        The fee will be added to your active amount or interest automatically.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // document.addEventListener('contextmenu', e => e.preventDefault());
+const FONT_SIZE_KEY="interestTrackerFontSize";
+const NOTES_KEY_PREFIX="interestTrackerNotes_";
+const LAST_USER_KEY="vslLastUserId";
+const LAST_PASSWORD_KEY="vslLastPassword";
+const REMEMBER_PASSWORD_KEY="vslRememberPassword";
+
+const MIN_FONT=12;
+const MAX_FONT=28;
+
+let currentFontSize=16;
+let currentUser=null;
+let selectedAmountIndex=0;
+
+const TEXT={
+  today:"Today",
+  interestTitle:"Borrows or Lends details",
+  notesTitle:"Notes",
+  amount:"Principal Amount",
+  borrowedBy:"Borrowed By",
+  interest:"Interest Rate",
+  takenDate:"Date Borrowed",
+  days:"Days Passed",
+  interestPaid:"Interest Paid",
+  remaining:"Remaining Interest",
+  entryTotal:"Total",
+  interestNav:"Details",
+  notesNav:"Notes",
+  totalBtn:"Total",
+  modalTitle:"Total Summary",
+  sumPrincipal:"Total Principal",
+  sumInterest:"Total Remaining Interest",
+  grandTotal:"Grand Total",
+  placeholder:"Write something here...",
+  save:"Save",
+  emptyNotes:"No notes saved yet.",
+  delete:"Delete",
+  loggedInAs:"",
+  logout:"Logout"
+};
+
+const monthNames=[
+  "January","February","March","April","May","June",
+  "July","August","September","October","November","December"
+];
+
+function toggleFAQ(button){
+
+  const answer=button.nextElementSibling;
+  const icon=button.querySelector(".faq-icon");
+
+  if(!answer || !icon)return;
+
+  const opening=answer.hidden;
+
+  answer.hidden=!opening;
+  button.setAttribute("aria-expanded",String(opening));
+  icon.textContent=opening?"−":"+";
+
+}
+
+function userStorageKey(prefix){
+  return currentUser?prefix+currentUser.id:"";
+}
+
+const THEME_KEY_PREFIX="vsl_v041220_theme_";
+const MAIN_COLOR_KEY_PREFIX="vsl_v041220_mainColor_";
+const DEFAULT_MAIN_COLOR="#0800f0";
+
+function isPremiumUser(user){
+  return !!(
+    user &&
+    (
+      user.premium===true ||
+      String(user.premium).toLowerCase()==="yes"
+    )
+  );
+}
+const DETAIL_EFFECTS_KEY_PREFIX="vslDetailEffects_";
+
+function detailEffectsStorageKey(){
+  return currentUser
+    ?DETAIL_EFFECTS_KEY_PREFIX+(currentUser.id||currentUser.name)
+    :"";
+}
+
+function detailEffectsEnabled(){
+
+  if(!isPremiumUser(currentUser))return false;
+
+  try{
+    return localStorage.getItem(detailEffectsStorageKey())!=="off";
+  }catch{
+    return true;
+  }
+
+}
+
+function applyDetailEffects(){
+
+  const premium=isPremiumUser(currentUser);
+  const enabled=detailEffectsEnabled();
+
+  document.body.dataset.premium=premium?"yes":"no";
+  document.body.dataset.detailEffects=enabled?"on":"off";
+
+  const control=document.getElementById("premiumDetailControl");
+  const button=document.getElementById("detailEffectsToggle");
+
+  if(control)control.hidden=!premium;
+
+  if(button){
+    button.textContent=enabled?"ON":"OFF";
+    button.setAttribute("aria-pressed",String(enabled));
+  }
+
+}
+
+function toggleDetailEffects(){
+
+  if(!isPremiumUser(currentUser))return;
+
+  const next=detailEffectsEnabled()?"off":"on";
+
+  try{
+    localStorage.setItem(detailEffectsStorageKey(),next);
+  }catch{}
+
+  applyDetailEffects();
+
+  render();
+
+}
+
+function openPremiumPopup(){
+  document.getElementById("premiumModal").hidden=false;
+}
+
+function closePremiumPopup(){
+  document.getElementById("premiumModal").hidden=true;
+}
+
+function openDetailPopup(key,entry,data){
+
+  if(!currentUser)return;
+  if(isPremiumUser(currentUser)&&!detailEffectsEnabled())return;
+
+  const descriptions={
+
+    borrowedBy:[
+      "Borrowed By",
+      "Name of the amount borrower.",
+      entry.borrowedBy||"Not specified"
+    ],
+
+    amount:[
+      "Principal Amount",
+      "The original amount before adding interest.",
+      ""+(Number(entry.amount)||0).toLocaleString("en-IN")
+    ],
+
+    interest:[
+      "Interest Rate",
+      "Monthly interest rate for the borrowed amount.",
+      String(entry.interest)+"% per month"
+    ],
+
+    takenDate:[
+      "Date Borrowed",
+      "Amount borrowed date. Interest starts counting from this date.",
+      formatDateWithMonth(entry.takenDate)
+    ],
+
+    days:[
+      "Days Passed",
+      "Number of days counted from the borrowing date until today.",
+      String(data.days)+" days"
+    ],
+
+    interestPaid:[
+      "Interest Paid",
+      "The amount entered as already paid interest.",
+      ""+(Number(entry.interestPaid)||0).toLocaleString("en-IN")
+    ],
+
+    remaining:[
+      "Remaining Interest",
+      "Calculated interest minus the interest already paid.",
+      ""+data.remaining.toLocaleString("en-IN")
+    ],
+
+    total:[
+      "Total Amount",
+      "Total principal amount plus remaining interest.",
+      ""+data.total.toLocaleString("en-IN")
+    ]
+
+  };
+
+  const detail=descriptions[key];
+  if(!detail)return;
+
+  document.getElementById("detailModalTitle").textContent=detail[0];
+
+  const body=document.getElementById("detailModalBody");
+  body.textContent="";
+
+  const description=document.createElement("span");
+  description.textContent=detail[1];
+
+  const value=document.createElement("p");
+  value.style.fontWeight="700";
+  value.style.marginTop="10px";
+  value.textContent=detail[2];
+
+  body.append(description,value);
+
+  document.getElementById("detailModal").hidden=false;
+
+}
+
+function closeDetailPopup(){
+  document.getElementById("detailModal").hidden=true;
+}
+
+
+
+function updatePremiumControls(){
+
+  const control=document.getElementById("accentControl");
+  const picker=document.getElementById("accentPicker");
+  const themeButton=document.getElementById("themeToggle");
+
+  const allowed=isPremiumUser(currentUser);
+
+  if(control)control.hidden=!allowed;
+  if(themeButton)themeButton.hidden=!allowed;
+
+  applyDetailEffects();
+
+  if(allowed){
+
+    let savedColor=DEFAULT_MAIN_COLOR;
+    let savedTheme="light";
+
+    const userKey=currentUser.id||currentUser.name;
+
+    try{
+      savedColor=localStorage.getItem(MAIN_COLOR_KEY_PREFIX+userKey)||DEFAULT_MAIN_COLOR;
+      savedTheme=localStorage.getItem(THEME_KEY_PREFIX+userKey)||"light";
+    }catch{}
+
+    if(picker)picker.value=savedColor;
+
+    applyMainColor(savedColor);
+    applyTheme(savedTheme);
+
+  }else{
+
+    applyMainColor(DEFAULT_MAIN_COLOR);
+    applyTheme("light");
+
+  }
+
+}
+
+
+
+function applyLockScreenAppearance(){
+
+  let rememberedUser=null;
+
+  try{
+    const rememberedId=localStorage.getItem(LAST_USER_KEY);
+    rememberedUser=USERS.find(user=>user.id===rememberedId)||null;
+  }catch{}
+
+  if(isPremiumUser(rememberedUser)){
+
+    const userKey=rememberedUser.id||rememberedUser.name;
+
+    let savedColor=DEFAULT_MAIN_COLOR;
+    let savedTheme="light";
+
+    try{
+      savedColor=localStorage.getItem(MAIN_COLOR_KEY_PREFIX+userKey)||DEFAULT_MAIN_COLOR;
+      savedTheme=localStorage.getItem(THEME_KEY_PREFIX+userKey)||"light";
+    }catch{}
+
+    applyMainColor(savedColor);
+    applyTheme(savedTheme);
+
+    document.body.dataset.premium="yes";
+
+  }else{
+
+    applyMainColor(DEFAULT_MAIN_COLOR);
+    applyTheme("light");
+
+    document.body.dataset.premium="no";
+
+  }
+
+}
+
+
+function applyMainColor(color){
+
+  if(!/^#[0-9a-fA-F]{6}$/.test(color)){
+    color=DEFAULT_MAIN_COLOR;
+  }
+
+  document.documentElement.style.setProperty("--accent",color);
+
+}
+
+function changeMainColor(color){
+
+  if(!isPremiumUser(currentUser)){
+    applyMainColor(DEFAULT_MAIN_COLOR);
+    return;
+  }
+
+  applyMainColor(color);
+
+  try{
+    localStorage.setItem(
+      MAIN_COLOR_KEY_PREFIX+(currentUser.id||currentUser.name),
+      color
+    );
+  }catch{}
+
+}
+
+function applyTheme(theme){
+
+  const selected=theme==="amoled"?"amoled":"light";
+
+  document.body.dataset.theme=selected;
+
+  const button=document.getElementById("themeToggle");
+
+  if(button){
+
+    button.textContent=selected==="amoled"?"Light":"Dark";
+
+    button.setAttribute(
+      "aria-label",
+      selected==="amoled"
+        ?"Switch to light theme"
+        :"Switch to dark AMOLED theme"
+    );
+
+  }
+
+}
+
+function toggleTheme(){
+
+  if(!isPremiumUser(currentUser)){
+    applyTheme("light");
+    return;
+  }
+
+  const next=document.body.dataset.theme==="amoled"
+    ?"light"
+    :"amoled";
+
+  applyTheme(next);
+
+  try{
+    localStorage.setItem(
+      THEME_KEY_PREFIX+(currentUser.id||currentUser.name),
+      next
+    );
+  }catch{}
+
+}
+
+function initLockScreen(){
+
+  const input=document.getElementById("passwordInput","password2Input");
+  const error=document.getElementById("lockError");
+
+  let rememberedPassword="";
+
+  try{
+    if(localStorage.getItem(REMEMBER_PASSWORD_KEY)==="yes"){
+      rememberedPassword=localStorage.getItem(LAST_PASSWORD_KEY)||"";
+    }
+  }catch{}
+
+  input.value=rememberedPassword;
+  error.hidden=true;
+
+  if(rememberedPassword){
+    input.focus();
+    input.setSelectionRange(input.value.length,input.value.length);
+  }else{
+    setTimeout(()=>input.focus(),100);
+  }
+
+  let rememberedUserId=null;
+
+  try{
+    rememberedUserId=localStorage.getItem(LAST_USER_KEY);
+  }catch{}
+
+  if(rememberedUserId){
+
+    const rememberedUser=USERS.find(user=>user.id===rememberedUserId);
+
+    if(
+      rememberedUser &&
+      rememberedPassword &&
+      rememberedUser.password===rememberedPassword
+    ){
+      input.value=rememberedPassword;
+    }
+
+  }
+
+}
+
+
+function checkPassword(){
+
+  const input=document.getElementById("passwordInput");
+  const error=document.getElementById("lockError");
+
+  const enteredPassword=input.value.trim();
+
+  const matchedUser=USERS.find(
+    user=>user.password===enteredPassword
+  );
+
+  if(!matchedUser){
+
+    error.hidden=false;
+    input.select();
+    return;
+
+  }
+
+  error.hidden=true;
+
+  try{
+    localStorage.setItem(LAST_USER_KEY,matchedUser.id);
+    localStorage.setItem(LAST_PASSWORD_KEY,enteredPassword);
+    localStorage.setItem(REMEMBER_PASSWORD_KEY,"yes");
+  }catch{}
+
+  loginUser(matchedUser);
+
+}
+
+
+function loginUser(user){
+
+  currentUser=user;
+  selectedAmountIndex=0;
+
+  updatePremiumControls();
+
+  document.getElementById("lockScreen").hidden=true;
+  document.getElementById("mainApp").hidden=false;
+
+  document.getElementById("loggedInAs").textContent=
+    `${TEXT.loggedInAs}: ${user.name}`;
+
+  renderTopBanners();
+
+  loadFontSize();
+  updateLanguage();
+
+  renderAmountNav();
+  render();
+  renderNotes();
+
+}
+
+
+function logout(){
+
+  currentUser=null;
+  selectedAmountIndex=0;
+
+  updatePremiumControls();
+
+  document.getElementById("mainApp").hidden=true;
+  document.getElementById("lockScreen").hidden=false;
+
+  document.getElementById("totalModal").hidden=true;
+  document.getElementById("detailModal").hidden=true;
+  document.getElementById("premiumModal").hidden=true;
+
+  document.getElementById("app").innerHTML="";
+  document.getElementById("notesList").innerHTML="";
+  document.getElementById("noteInput").value="";
+  const amountNav=document.getElementById("amountNav");
+  if(amountNav) amountNav.innerHTML="";
+
+  document.getElementById("topBanner").innerHTML="";
+  document.getElementById("topBanner2").innerHTML="";
+
+  initLockScreen();
+  applyLockScreenAppearance();
+
+}
+
+
+
+function renderTopBanners(){
+
+  const banner1=document.getElementById("topBanner");
+  const banner2=document.getElementById("topBanner2");
+
+  banner1.innerHTML="";
+  banner2.innerHTML="";
+
+  if(!currentUser)return;
+
+  [
+    [currentUser.topBanner,banner1],
+    [currentUser.topBanner2,banner2]
+  ].forEach(([links,container])=>{
+
+    if(!Array.isArray(links))return;
+
+    links.forEach(link=>{
+
+      const a=document.createElement("a");
+
+      a.href=link.href||"#";
+      a.textContent=link.text||"";
+
+      container.appendChild(a);
+
+    });
+
+  });
+
+}
+
+
+function loadFontSize(){
+
+  const saved=parseInt(localStorage.getItem(FONT_SIZE_KEY),10);
+
+  if(!isNaN(saved)&&saved>=MIN_FONT&&saved<=MAX_FONT){
+    currentFontSize=saved;
+  }
+
+  applyFontSize();
+
+}
+
+function applyFontSize(){
+
+  document.body.style.fontSize=currentFontSize+"px";
+
+  document.getElementById("fontSizeLabel").textContent=currentFontSize;
+
+}
+
+function changeFontSize(delta){
+
+  const size=currentFontSize+delta;
+
+  if(size<MIN_FONT||size>MAX_FONT)return;
+
+  currentFontSize=size;
+
+  applyFontSize();
+
+  try{
+    localStorage.setItem(FONT_SIZE_KEY,currentFontSize);
+  }catch{}
+
+}
+
+
+function selectAmount(index){
+  if(!currentUser || !currentUser.entries || index < 0 || index >= currentUser.entries.length) return;
+  selectedAmountIndex = index;
+  renderAmountNav();
+  render();
+}
+
+function renderAmountNav(){
+  const nav = document.getElementById("amountNav");
+  if(!nav) return;
+  nav.innerHTML = "";
+
+  if(!currentUser || !Array.isArray(currentUser.entries) || currentUser.entries.length === 0){
+    const empty = document.createElement("span");
+    empty.style.padding = "6px 16px";
+    empty.style.opacity = "0.6";
+    empty.textContent = "No amounts";
+    nav.appendChild(empty);
+    return;
+  }
+
+  currentUser.entries.forEach((_, i) => {
+    const btn = document.createElement("button");
+    btn.className = "amount-btn" + (i === selectedAmountIndex ? " is-active" : "");
+    btn.type = "button";
+    btn.textContent = "Amount " + (i + 1);
+    btn.title = "View details of amount " + (i + 1);
+    if(i === selectedAmountIndex){
+      btn.setAttribute("aria-current", "page");
+    }
+    btn.onclick = () => selectAmount(i);
+    nav.appendChild(btn);
+  });
+}
+
+
+
+function parseDate(dateString){
+
+  const [year,month,day]=dateString.split("-").map(Number);
+
+  return new Date(year,month-1,day);
+
+}
+
+function formatDateWithMonth(dateString){
+
+  const date=parseDate(dateString);
+
+  return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+
+}
+
+function getDays(takenDate){
+
+  const start = parseDate(takenDate);
+  const today = new Date();
+
+  start.setHours(0,0,0,0);
+  today.setHours(0,0,0,0);
+
+  return Math.max(
+    0,
+    Math.floor((today - start) / 86400000)
+  );
+
+}
+
+function showToday(){
+
+  const date=new Date();
+
+  document.getElementById("todayDate").textContent=
+    `${TEXT.today}: ${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+
+}
+
+
+function updateLanguage(){
+
+  document.documentElement.lang="en";
+  document.title="VSL";
+
+  document.getElementById("title").textContent="VSL";
+  document.getElementById("interestTitle").textContent=TEXT.interestTitle;
+  document.getElementById("notesTitle").textContent=TEXT.notesTitle;
+
+  document.getElementById("totalBtn").textContent=TEXT.totalBtn;
+
+  document.getElementById("modalTitle").textContent=TEXT.modalTitle;
+
+  document.getElementById("noteInput").placeholder=TEXT.placeholder;
+  document.getElementById("saveButton").textContent=TEXT.save;
+
+  document.querySelector(".logout-btn").innerHTML = `
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 24 24"
+     width="24"
+     height="24"
+     fill="currentColor">
+  <path d="M7.37,12.75l5.17,5.17q0.22,0.22 0.22,0.52t-0.24,0.53Q12.29,19.19 12,19.2t-0.53-.22L5.13,12.63q-.14-.14-.2-.3T4.88,12t.06-.34t.2-.3l6.34-6.34q.21-.21.51-.21t.54.21q.23.23.23.53t-.23.53L7.37,11.25H18.75q.32,0 .53.22t.22.53t-.22.53t-.53.22H7.37Z"/>
+</svg>`;
+
+  if(currentUser){
+    document.getElementById("loggedInAs").textContent=
+      `${TEXT.loggedInAs} ${currentUser.name}`;
+  }
+
+  showToday();
+
+}
+
+
+function getEntryData(entry){
+
+  const days=getDays(entry.takenDate);
+
+  const totalInterest=Math.round(
+    entry.amount*entry.interest*days/3000
+  );
+
+  const remaining=Math.max(
+    0,
+    totalInterest-entry.interestPaid
+  );
+
+  return {
+    days,
+    totalInterest,
+    remaining,
+    total:entry.amount+remaining
+  };
+
+}
+
+
+function createRow(
+  label,
+  value,
+  className="entry-row",
+  detailKey=null,
+  entry=null,
+  data=null
+){
+
+  const row=document.createElement("div");
+  row.className=className;
+
+  const labelElement=document.createElement("span");
+  labelElement.className="label";
+  labelElement.textContent=label;
+
+  const valueElement=document.createElement("span");
+  valueElement.className="value";
+
+  const premium=isPremiumUser(currentUser);
+
+  const premiumOnlyFields=[
+    "borrowedBy",
+    "interest",
+    "days"
+  ];
+
+  const isProtected=
+    !premium&&premiumOnlyFields.includes(detailKey);
+
+
+  valueElement.textContent=
+    isProtected
+      ?"Premium+ required"
+      :value;
+
+  row.append(labelElement,valueElement);
+
+  if(detailKey){
+
+    if(isProtected){
+
+      row.classList.add(
+        "premium-locked",
+        "detail-row",
+        "detail-clickable"
+      );
+
+      row.tabIndex=0;
+      row.setAttribute("role","button");
+
+      row.setAttribute(
+        "aria-label",
+        "Premium+ required to view "+label
+      );
+
+      row.addEventListener("click",openPremiumPopup);
+
+      row.addEventListener("keydown",event=>{
+
+        if(event.key==="Enter"||event.key===" "){
+          event.preventDefault();
+          openPremiumPopup();
+        }
+
+      });
+
+    }else{
+
+      const popupAllowed=
+        !premium||detailEffectsEnabled();
+
+      if(popupAllowed){
+
+        row.classList.add("detail-row");
+
+        row.tabIndex=0;
+        row.setAttribute("role","button");
+
+        row.setAttribute(
+          "aria-label",
+          "View "+label+" details"
+        );
+
+        row.addEventListener("click",()=>{
+
+          openDetailPopup(detailKey,entry,data);
+
+        });
+
+        row.addEventListener("keydown",event=>{
+
+          if(event.key==="Enter"||event.key===" "){
+            event.preventDefault();
+            openDetailPopup(detailKey,entry,data);
+          }
+
+        });
+
+      }
+
+    }
+
+  }
+
+  return row;
+
+}
+
+
+function render(){
+
+  const app=document.getElementById("app");
+
+  app.innerHTML="";
+
+  if(!currentUser)return;
+
+  const userBlock=document.createElement("div");
+  userBlock.className="user";
+
+  const entries = currentUser.entries || [];
+
+  if(entries.length === 0){
+    const empty=document.createElement("p");
+    empty.textContent="No lending amounts available.";
+    userBlock.appendChild(empty);
+    app.appendChild(userBlock);
+    return;
+  }
+
+  // Clamp selected index
+  if(selectedAmountIndex < 0 || selectedAmountIndex >= entries.length){
+    selectedAmountIndex = 0;
+  }
+
+  const entry = entries[selectedAmountIndex];
+
+  if(typeof entry.interestPaid!=="number"){
+    entry.interestPaid=0;
+  }
+
+  const data=getEntryData(entry);
+
+  const block=document.createElement("div");
+  block.className="entry";
+
+  // Small header showing which amount is active
+  const amountHeader = document.createElement("div");
+  amountHeader.style.textAlign = "center";
+  amountHeader.style.padding = "8px 0 4px";
+  amountHeader.style.opacity = "0.7";
+  amountHeader.style.display = "none";
+  block.appendChild(amountHeader);
+
+  block.append(
+
+    createRow(
+      TEXT.borrowedBy,
+      entry.borrowedBy,
+      "borrowed-by-row",
+      "borrowedBy",
+      entry,
+      data
+    ),
+
+    createRow(
+      TEXT.amount,
+      Number(entry.amount).toLocaleString("en-IN"),
+      "entry-row",
+      "amount",
+      entry,
+      data
+    ),
+
+    createRow(
+      TEXT.interest,
+      `${entry.interest}%`,
+      "entry-row",
+      "interest",
+      entry,
+      data
+    ),
+
+    createRow(
+      TEXT.takenDate,
+      formatDateWithMonth(entry.takenDate),
+      "entry-row",
+      "takenDate",
+      entry,
+      data
+    ),
+
+    createRow(
+      TEXT.days,
+      String(data.days),
+      "entry-row",
+      "days",
+      entry,
+      data
+    )
+
+  );
+
+  if(isPremiumUser(currentUser)){
+
+    const paidRow=document.createElement("div");
+    paidRow.className="paid-row";
+
+    const paidLabel=document.createElement("label");
+    paidLabel.className="paid-label";
+    paidLabel.textContent=TEXT.interestPaid;
+
+    const inputWrap=document.createElement("div");
+    inputWrap.className="paid-input-wrap";
+
+    const paidInput=document.createElement("input");
+
+    paidInput.className="paid-input";
+    paidInput.title="Enter an amount here to know how much remaining interest is left.";
+    paidInput.type="number";
+    paidInput.min="0";
+    paidInput.step="1";
+    paidInput.inputMode="decimal";
+    paidInput.value=entry.interestPaid;
+    paidInput.setAttribute("aria-label",TEXT.interestPaid);
+
+    paidInput.addEventListener("change",()=>{
+
+      entry.interestPaid=Math.max(
+        0,
+        Number(paidInput.value)||0
+      );
+
+      render();
+
+    });
+
+    paidInput.addEventListener("keydown",event=>{
+
+      if(event.key==="Enter"){
+        paidInput.blur();
+      }
+
+    });
+
+    inputWrap.appendChild(paidInput);
+
+    paidRow.append(paidLabel,inputWrap);
+
+    block.appendChild(paidRow);
+
+  }
+
+  block.appendChild(
+    createRow(
+      TEXT.remaining,
+      `${data.remaining.toLocaleString("en-IN")}`,
+      "remaining",
+      "remaining",
+      entry,
+      data
+    )
+  );
+
+  block.appendChild(
+    createRow(
+      TEXT.entryTotal,
+      `${data.total.toLocaleString("en-IN")}`,
+      "entry-total",
+      "total",
+      entry,
+      data
+    )
+  );
+
+  userBlock.appendChild(block);
+
+  app.appendChild(userBlock);
+
+}
+
+
+
+function openTotalPopup(){
+
+  if(!currentUser)return;
+
+  const body=document.getElementById("modalBody");
+
+  let principal=0;
+  let remainingInterest=0;
+
+  currentUser.entries.forEach(entry=>{
+
+    principal+=Number(entry.amount)||0;
+
+    remainingInterest+=getEntryData(entry).remaining;
+
+  });
+
+  body.innerHTML="";
+
+  const summary=document.createElement("div");
+  summary.className="modal-summary";
+
+  [
+    [TEXT.sumPrincipal,principal],
+    [TEXT.sumInterest,remainingInterest],
+    [TEXT.grandTotal,principal+remainingInterest]
+  ].forEach((item,index)=>{
+
+    const row=document.createElement("div");
+    row.className="row";
+
+    const label=document.createElement(index===2?"strong":"span");
+    const value=document.createElement(index===2?"strong":"span");
+
+    label.textContent=item[0];
+
+    value.textContent=
+      `${item[1].toLocaleString("en-IN")}`;
+
+    row.append(label,value);
+
+    summary.appendChild(row);
+
+  });
+
+  body.appendChild(summary);
+
+  document.getElementById("totalModal").hidden=false;
+
+}
+
+function closeTotalPopup(){
+
+  document.getElementById("totalModal").hidden=true;
+
+}
+
+function getNotes(){
+
+  if(!currentUser)return [];
+
+  try{
+
+    const notes=JSON.parse(
+      localStorage.getItem(userStorageKey(NOTES_KEY_PREFIX))
+    );
+
+    return Array.isArray(notes)?notes:[];
+
+  }catch{
+
+    return [];
+
+  }
+
+}
+
+function saveNote(){
+
+  if(!currentUser)return;
+
+  const input=document.getElementById("noteInput");
+  const noteText=input.value.trim();
+
+  if(!noteText){
+    input.focus();
+    return;
+  }
+
+  const notes=getNotes();
+
+  notes.unshift({
+
+    id:`${Date.now()}-${Math.random().toString(36).slice(2)}`,
+
+    text:noteText,
+
+    date:new Date().toISOString()
+
+  });
+
+  try{
+
+    localStorage.setItem(
+      userStorageKey(NOTES_KEY_PREFIX),
+      JSON.stringify(notes)
+    );
+
+  }catch{
+
+    alert("Unable to save your note. Your browser storage may be full or unavailable.");
+    return;
+
+  }
+
+  input.value="";
+
+  renderNotes();
+
+}
+
+
+function deleteNote(id){
+
+  if(!currentUser)return;
+
+  const notes=getNotes().filter(note=>note.id!==id);
+
+  try{
+
+    localStorage.setItem(
+      userStorageKey(NOTES_KEY_PREFIX),
+      JSON.stringify(notes)
+    );
+
+  }catch{
+
+    alert("Unable to update your notes.");
+    return;
+
+  }
+
+  renderNotes();
+
+}
+
+
+function formatNoteDate(dateString){
+
+  const date=new Date(dateString);
+
+  if(Number.isNaN(date.getTime()))return "";
+
+  const hours=String(date.getHours()).padStart(2,"0");
+  const minutes=String(date.getMinutes()).padStart(2,"0");
+
+  return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}, ${hours}:${minutes}`;
+
+}
+
+
+function renderNotes(){
+
+  const list=document.getElementById("notesList");
+
+  const notes=getNotes();
+
+  list.innerHTML="";
+
+  if(!currentUser||notes.length===0){
+
+    const empty=document.createElement("p");
+
+    empty.className="empty-notes";
+    empty.textContent=TEXT.emptyNotes;
+
+    list.appendChild(empty);
+
+    return;
+
+  }
+
+  notes.forEach(note=>{
+
+    const item=document.createElement("div");
+    item.className="note";
+
+    const deleteButton=document.createElement("button");
+
+    deleteButton.className="delete-note";
+    deleteButton.textContent="X";
+    deleteButton.title=TEXT.delete;
+    deleteButton.setAttribute("aria-label",TEXT.delete);
+
+    deleteButton.onclick=()=>deleteNote(note.id);
+
+    const text=document.createElement("div");
+    text.className="note-text";
+    text.textContent=note.text;
+
+    const date=document.createElement("div");
+    date.className="note-date";
+    date.textContent=formatNoteDate(note.date);
+
+    item.append(deleteButton,text,date);
+
+    list.appendChild(item);
+
+  });
+
+}
+
+
+document.getElementById("premiumModal").addEventListener("click",event=>{
+
+  if(event.target.id==="premiumModal"){
+    closePremiumPopup();
+  }
+
+});
+
+document.getElementById("detailModal").addEventListener("click",event=>{
+
+  if(event.target.id==="detailModal"){
+    closeDetailPopup();
+  }
+
+});
+
+document.getElementById("totalModal").addEventListener("click",event=>{
+
+  if(event.target.id==="totalModal"){
+    closeTotalPopup();
+  }
+
+});
+
+document.addEventListener("keydown",event=>{
+
+  if(event.key==="Escape"){
+
+    closeTotalPopup();
+    closeDetailPopup();
+    closePremiumPopup();
+
+  }
+
+});
+
+
+applyLockScreenAppearance();
+
+applyDetailEffects();
+
+initLockScreen();
+
+</script>
+
+</body>
+</html>
