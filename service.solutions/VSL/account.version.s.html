@@ -626,16 +626,15 @@ function formatDateWithMonth(dateString){
 
 function getDays(takenDate){
 
-  const start=parseDate(takenDate);
-  const today=new Date();
+  const start = parseDate(takenDate);
+  const today = new Date();
 
   start.setHours(0,0,0,0);
   today.setHours(0,0,0,0);
 
-
   return Math.max(
     0,
-    Math.floor((today-start)/86400000)+1
+    Math.floor((today - start) / 86400000)
   );
 
 }
