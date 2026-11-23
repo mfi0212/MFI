@@ -331,7 +331,7 @@ border-radius: 99px;
     align-items: center;
     padding: 0px 8px;
     gap: 5px;
-    background: linear-gradient(#ffffff2b, #00000000, #ffffff2b);
+    background: #a3a3a31a;
     box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
     border: solid 0.2px #0000000d;
     backdrop-filter:blur(2px);
@@ -387,7 +387,7 @@ display: flex;
     padding: 3px;
     width: fit-content;
     max-width: 100%;
-    background: linear-gradient(#ffffff2b, #00000000, #ffffff2b);
+    background: #a3a3a31a;
     box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
     border: solid 0.2px #0000000d;
     border-radius: 999px;
@@ -617,7 +617,7 @@ display: flex;
 flex-shrink: 0;
     color: #fff;
     border-radius: 99px;
-    background: linear-gradient(#ffffff2b, #00000000, #ffffff2b);
+    background: #a3a3a31a;
     box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
     border: solid 0.2px #0000000d;
     backdrop-filter:blur(2px);
@@ -1917,13 +1917,7 @@ function updateLanguage(){
   document.getElementById("saveButton").textContent=TEXT.save;
 
   document.querySelector(".logout-btn").innerHTML = `
-<svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 24 24"
-     width="24"
-     height="24"
-     fill="currentColor">
-  <path d="M7.37,12.75l5.17,5.17q0.22,0.22 0.22,0.52t-0.24,0.53Q12.29,19.19 12,19.2t-0.53-.22L5.13,12.63q-.14-.14-.2-.3T4.88,12t.06-.34t.2-.3l6.34-6.34q.21-.21.51-.21t.54.21q.23.23.23.53t-.23.53L7.37,11.25H18.75q.32,0 .53.22t.22.53t-.22.53t-.53.22H7.37Z"/>
-</svg>`;
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M9.18,12l7.53,7.53q0.3,0.3 0.29,0.7t-0.31,0.7T16,21.23t-0.7-0.3L7.63,13.28q-0.27-0.27-0.4-0.61T7.09,12t0.13-0.67t0.4-0.61L15.3,3.05q0.3-0.3 0.71-0.29t0.71,0.31t0.3,0.7t-0.3,0.7L9.18,12Z"/></svg>`;
 
   if(currentUser){
     document.getElementById("loggedInAs").textContent=
