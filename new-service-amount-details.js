@@ -14,8 +14,8 @@ document.addEventListener('contextmenu', e => e.preventDefault());
           value: "https://mfi0212.github.io/mfi.f/special.offer/offer.png",
           url: "https://mfi0212.github.io/mfi.f/special.offer/program.x"
         },
-        showSpecialNotice: "no",
-        specialNoticeText: "",
+        showSpecialNotice: "yes",
+        specialNoticeText: "Mr. Deepak Tallapudi, The special offer available to you will be active from today, 23rd November, at 11:30 AM until 25th November at 12:00 PM. Click the offer banner to view and apply for your eligible offer before it expires.",
         loans: [
           { amount: 6000, interest: 2500, borrowed: "22-11-2026", return: "22-12-2027", overdueFee: 50 },
         ],
