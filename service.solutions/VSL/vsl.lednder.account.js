@@ -21,8 +21,15 @@ const USERS = [
       {
         borrowedBy: "China Yerra",
         amount: 100000,
-        interest: 2.5,
+        interest: 2.2,
         takenDate: "2026-10-23",
+        interestPaid: 2000
+      },
+      {
+        borrowedBy: "China Yerra",
+        amount: 245,
+        interest: 2.2,
+        takenDate: "2026-11-23",
         interestPaid: 0
       }
     ]
@@ -90,29 +97,6 @@ const USERS = [
         amount: 20000,
         interest: 2,
         takenDate: "2026-06-23",
-        interestPaid: 0
-      }
-    ]
-  },
-  {
-    id: "Test account",
-    name: "Tony Montana",
-    password: "9919",
-    premium: true,
-
-    topBanner: [
-      {
-        text: "STL",
-        href: "https://mfi0212.github.io/MFI/1.5.days"
-      }
-    ],
-
-    entries: [
-      {
-        borrowedBy: "Tony Montana",
-        amount: 10000,
-        interest: 3,
-        takenDate: "2026-08-02",
         interestPaid: 0
       }
     ]
