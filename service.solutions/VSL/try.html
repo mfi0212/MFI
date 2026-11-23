@@ -189,8 +189,10 @@ body.premium-profile #mainApp #profileAvatar{
  object-fit:cover;background:#111;transform:none;box-shadow:none;
  will-change:width,height,top,left,border-radius;
 }
-
-/* Name and date stay centered below the avatar */
+div#detailModalBody div {
+    color: var(--accent);
+    opacity: 50%;
+}
 body.premium-profile #mainApp #loggedInAs,
 body.premium-profile #mainApp #todayDate{
  position: fixed;
@@ -407,7 +409,12 @@ footer{    text-align: center;
  border-radius:27px;padding:16px;box-shadow:0 20px 70px #0003;
  font-size:1em;
 }
-.modal-header{display:flex;align-items:center;justify-content:space-between;border-bottom:none;padding-bottom:10px;margin-bottom:12px;color:var(--accent);font-size:1.1em}
+.modal-header{display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: none;
+    color: var(--accent);
+    font-size: 1.1em;margin-bottom: 10px;}
 .modal-close{border:0;background:transparent;color:#e22;padding:5px 10px;font-size:1.1em}
 .modal-summary .row{display:flex;justify-content:space-between;gap:15px;padding:8px 0;font-size:1em;    color: var(--accent);}
 .premium-copy{line-height:1.6;font-size:0.95em}
@@ -860,7 +867,7 @@ function openDetailPopup(key,entry,data){
  document.getElementById("detailModalBody").innerHTML="";
  const desc=document.createElement("div");desc.textContent=item[1];
  const value=document.createElement("p");
- value.style.cssText="font-size:1.4em;font-weight:bold;color:var(--accent);text-align:center;padding:18px 0 8px";
+ value.style.cssText="font-size: 21px;font-weight: 600;color: var(--accent);text-align: center;padding: 7px;background: var(--surface);border-radius: 999px;margin-top: 10px;";
  value.textContent=item[2];
  document.getElementById("detailModalBody").append(desc,value);
  document.getElementById("detailModal").hidden=false;
