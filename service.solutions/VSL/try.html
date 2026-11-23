@@ -118,7 +118,9 @@ h3#detailModalTitle,h3#modalTitle,h3#premiumModalTitle{
     flex-direction: column;
     gap: 10px;
 }
-
+svg{
+ fill: var(--text);
+}
 .entry-total.detail-row{
    background: transparent;
     padding: 10px 0;
@@ -319,16 +321,16 @@ display: flex;
 }
 
 .font-size-label{
-  min-width:20px;display: none;
-  text-align:center;
+text-align: center;
+    font-size: 15px;
 }
 .font-btn-options {
 border-radius: 99px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 10px;
-    gap: 15px;
+    padding: 0px 8px;
+    gap: 5px;
     background: linear-gradient( 175deg, #00000000, #ffffff2b);
     box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff36, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff36;
     border: solid 0.2px #0000000d;
