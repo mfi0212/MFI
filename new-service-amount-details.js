@@ -8,16 +8,16 @@ document.addEventListener('contextmenu', e => e.preventDefault());
         customui: "no",
         showBottomNav: "yes",
         bottomNavItems: ["amounts", "borrow", "settings"],
-        showCustomContent: "no",
+        showCustomContent: "yes",
         customContent: {
           type: "image",
-          value: "https://mfi0212.github.io/MFI/servoces.special.offer/offer.png",
-          url: "https://mfi0212.github.io/MFI/servoces.special.offer/eligible.offer"
+          value: "https://mfi0212.github.io/mfi.f/special.offer/offer.png",
+          url: "https://mfi0212.github.io/mfi.f/special.offer/program.x"
         },
         showSpecialNotice: "no",
         specialNoticeText: "",
         loans: [
-          { amount: 6000, interest: 1800, borrowed: "22-11-2026", return: "22-12-2026", overdueFee: 50 },
+          { amount: 6000, interest: 2500, borrowed: "22-11-2026", return: "22-12-2027", overdueFee: 50 },
         ],
         access: {
           "Delay It": true,
