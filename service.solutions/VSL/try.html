@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f5f5f7">
-<title>VSL</title>
-<script src="vsl.lednder.account.js"></script>
-<link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png">
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta name="theme-color" content="#f5f5f7"> <title>VSL</title> <script src="vsl.lednder.account.js"></script> <link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png">
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;scrollbar-width:thin;scrollbar-color:gray transparent}
@@ -14,7 +6,7 @@
 :root{
  color-scheme:light;
  --bg:#f5f5f7;
- --text:#17171a;
+ --accent:#17171a;
  --surface:rgb(137 137 137 / 31%);
  --border:rgba(255,255,255,.75);
  --muted:#777780;
@@ -27,7 +19,7 @@
 }
 body{
  font:var(--base-font)/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif;
- letter-spacing:.2px;color:var(--text);background:var(--bg);
+ letter-spacing:.2px;color:var(--accent);background:var(--bg);
  transition:background .25s,color .25s;min-height:100vh;
 }
 input
@@ -44,37 +36,34 @@ button,a{-webkit-tap-highlight-color:transparent}
  background:var(--surface);
  border:none;
 }
-#lockScreen{max-width:600px;min-height:100vh;margin:auto;padding:30px 15px;display:flex;flex-direction:column;justify-content:center;color: var(--accent);}
+#lockScreen{max-width:600px;min-height:100vh;margin:auto;padding:30px 15px;display:flex;flex-direction:column;justify-content:center}
 .lock-header{text-align:center;margin-bottom:25px}
 .lock-header img{width:150px;max-width:45%;border-radius:50%;background:var(--accent)}
-.lock-header h2{font-size: 3em;
-    line-height: 1.2;
-    color: var(--accent);}
+.lock-header h2{font-size:3em;line-height:1.2}
 .lock-header h6{font-weight:500;opacity:.65;font-size:0.9em}
 .lock-body{display:flex;flex-direction:column;gap:14px}
 .lock-label{text-align:center;margin:5px 0}
-.lock-label h2{font-size: 1.35em;
-    color: var(--accent);}
+.lock-label h2{font-size:1.35em}
 .lock-input,.note-input{
-border: none;
-    border-radius: 999px;
-    padding: 12px;
-    width: 100%;
-    font-weight: 500;
-    font-size: 17px;
+ width: 100%;
+    border: none;
+    border-radius: 22px;
     background: var(--surface);
+    padding: 13px 16px;
     text-align: center;
+    font-size: 1em;
     color: var(--accent);
 }
 .lock-btn,.save-btn{
-    border: none;
+border: none;
     border-radius: 999px;
-    color: var(--text);
-    padding: 12px;
     width: 100%;
     font-weight: 500;
     font-size: 17px;
+    background: var(--field);
+    padding: 13px 16px;
     text-align: center;
+    color: var(--accent);
 }
 svg{
     fill: var(--accent);
@@ -95,29 +84,31 @@ position: fixed;
 .lock-error{color:#e22;text-align:center;font-size:0.95em}
 .lock-hint{text-align: center;
     font-size: 0.85em;
-    margin-top: 10px;
-    color: var(--accent);}
+    margin-top: 10px;}
 .lock-hint a{color:#e22;font-weight:bold}
-.login-faq{border-top: none;
-    padding-top: 25px;}
+.login-faq{border-top:none;margin-top:25px;padding-top:18px}
 .login-faq-title{color:var(--accent);margin-bottom:8px;font-size:1.1em}
-.faq-question{
-display: flex;
+.faq-question {
+    display: flex;
     justify-content: space-between;
     align-items: center;
     text-align: left;
     border: none;
-    border-radius: 999pc;
+    border-radius: 99999px;
     background: var(--surface);
     padding: 11px 16px;
     margin: 8px 0;
     font-size: 1em;
+    gap: 10px;
 }
 .faq-icon{color:var(--accent);font-size:1.25em}
-.faq-answer{padding:5px 12px 14px;color:var(--muted);line-height:1.65;font-size:0.95em}
+.faq-answer{    padding: 5px 12px 14px;
+    line-height: 1.65;
+    font-size: 0.95em;
+    color: var(--accent);}
 .faq-answer a{color:var(--accent)}
-.anotherlogin{max-width:600px;margin:15px auto;padding:15px;display:grid;gap:10px;border-top:1px solid var(--border)}
-.anotherlogin h3{font-size:1.1em;color: var(--accent);}
+.anotherlogin{max-width:600px;margin:15px auto;padding:15px;display:grid;gap:10px;display: none;}
+.anotherlogin h3{font-size:1.1em}
 
 #mainApp{max-width:920px;margin:auto;padding:0}
 
@@ -377,8 +368,8 @@ display: flex;
 .detail-row:active{opacity:.7}
 .premium-locked{cursor:pointer}
 .empty-notes,.empty-amounts{text-align:center;padding:25px;color:var(--muted);font-size:0.95em}
-footer{ text-align: center;
-    border-top: 1px solid var(--border);}
+footer{    text-align: center;
+    border-top:1px solid var(--border)}
     h5 {
    font-weight: 500;
     color: white;
@@ -422,7 +413,7 @@ footer{ text-align: center;
 .modal-overlay{position:fixed;inset:0;z-index:10000000;background:#0008;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:15px}
 .modal{
  width:100%;max-width:420px;max-height:85vh;overflow:auto;
- background:var(--bg);color:var(--text);border:none;
+ background:var(--bg);color:var(--accent);border:none;
  border-radius:27px;padding:16px;box-shadow:0 20px 70px #0003;
  font-size:1em;
 }
@@ -456,7 +447,7 @@ footer{ text-align: center;
 <div id="lockScreen">
  <div class="lock-header">
   <img src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="VSL logo">
-  <h2>VSL</h2><h6>Powered by BS&amp;MFI</h6>
+  <h2>VSL</h2><h6>Powered by BS&MFI</h6>
  </div>
  <div class="lock-body">
   <label class="lock-label"><h2>Login with your officially verified account password</h2></label>
@@ -468,7 +459,7 @@ footer{ text-align: center;
  <div class="login-faq">
   <h3 class="login-faq-title">Frequently Asked Questions</h3>
   <div id="faqList">
-   <div><button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">What is VSL?<span class="faq-icon">+</span></button><div class="faq-answer" hidden>VSL is a BS&amp;MFI service that helps verified account holders view borrowing and lending records, track interest and maintain personal notes.</div></div>
+   <div><button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">What is VSL?<span class="faq-icon">+</span></button><div class="faq-answer" hidden>VSL is a BS&MFI service that helps verified account holders view borrowing and lending records, track interest and maintain personal notes.</div></div>
    <div><button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">Why can't I log in?<span class="faq-icon">+</span></button><div class="faq-answer" hidden>Enter the correct verified account password. Login is available for accounts with an active VSL record.</div></div>
    <div><button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">How can I become a lender or borrower?<span class="faq-icon">+</span></button><div class="faq-answer" hidden>Your account must be verified by a VSL representative. Contact your coordinator to discuss registration and approval.</div></div>
    <div><button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">What is VSL Premium+?<span class="faq-icon">+</span></button><div class="faq-answer" hidden>Premium+ unlocks additional account details, profile photo upload, custom site background, theme controls and main-colour customisation.</div></div>
@@ -579,14 +570,14 @@ footer{ text-align: center;
 
 <script>
 const FONT_SIZE_KEY="interestTrackerFontSize";
-const NOTES_KEY_PREFIX="interestTrackerNotes_";
+const NOTES_KEY_PREFIX="interestTrackerNotes\_";
 const LAST_USER_KEY="vslLastUserId";
 const LAST_PASSWORD_KEY="vslLastPassword";
 const REMEMBER_PASSWORD_KEY="vslRememberPassword";
-const MAIN_COLOR_KEY_PREFIX="vslMainColor_";
-const BACKGROUND_KEY_PREFIX="vslBackground_";
-const PROFILE_KEY_PREFIX="vslProfilePhoto_";
-const DETAIL_EFFECTS_KEY_PREFIX="vslDetailEffects_";
+const MAIN_COLOR_KEY_PREFIX="vslMainColor\_";
+const BACKGROUND_KEY_PREFIX="vslBackground\_";
+const PROFILE_KEY_PREFIX="vslProfilePhoto\_";
+const DETAIL_EFFECTS_KEY_PREFIX="vslDetailEffects\_";
 const DEFAULT_MAIN_COLOR="#0800f0";
 const DEFAULT_AVATAR="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png";
 const MIN_FONT=12,MAX_FONT=28;
@@ -629,21 +620,6 @@ function applyBackground(color){
  document.body.style.setProperty("--bg",color);
  const meta=document.querySelector('meta[name="theme-color"]');
  if(meta)meta.content=color;
-}
-function applyLockScreenBackground(user){
-    const defaultBg = "#f5f5f7";
-
-    if(!user){
-        applyBackground(defaultBg);
-        return;
-    }
-
-    const key = BACKGROUND_KEY_PREFIX + (user.id || user.name);
-    const savedBg = savedValue(key, "");
-
-    applyBackground(
-        /^#[0-9a-f]{6}$/i.test(savedBg) ? savedBg : defaultBg
-    );
 }
 function savedValue(key,fallback){try{return localStorage.getItem(key)||fallback}catch{return fallback}}
 function saveValue(key,value){try{localStorage.setItem(key,value)}catch{alert("Browser storage is full or unavailable. Please use a smaller image.")}}
@@ -778,30 +754,39 @@ function uploadProfilePhoto(event){
  reader.readAsDataURL(file);event.target.value="";
 }
 
+function applyLockScreenAppearance(user){
+ const defaultBackground="#f5f5f7";
+
+ // The Details text uses --accent, which is saved per premium account
+ // with MAIN_COLOR_KEY_PREFIX. Use that same account colour on the lock screen.
+ if(user && isPremiumUser(user)){
+  const key=user.id||user.name;
+  const background=savedValue(BACKGROUND_KEY_PREFIX+key,defaultBackground);
+  const mainColor=savedValue(MAIN_COLOR_KEY_PREFIX+key,DEFAULT_MAIN_COLOR);
+
+  applyBackground(/^#[0-9a-f]{6}$/i.test(background)?background:defaultBackground);
+  applyMainColor(/^#[0-9a-f]{6}$/i.test(mainColor)?mainColor:DEFAULT_MAIN_COLOR);
+ }else{
+  applyBackground(defaultBackground);
+  applyMainColor(DEFAULT_MAIN_COLOR);
+ }
+}
+
+function getLastLoggedInUser(){
+ const list=Array.isArray(window.USERS)?window.USERS:(typeof USERS!=="undefined"?USERS:[]);
+ const lastUserId=savedValue(LAST_USER_KEY,"");
+ return list.find(user=>String(user.id)===String(lastUserId))||null;
+}
+
 function initLockScreen(){
-    const input = document.getElementById("passwordInput");
+ const input=document.getElementById("passwordInput");
+ let remembered="";
+ if(savedValue(REMEMBER_PASSWORD_KEY,"")==="yes")remembered=savedValue(LAST_PASSWORD_KEY,"");
+ input.value=remembered;
+ document.getElementById("lockError").hidden=true;
 
-    let remembered = "";
-
-    if(savedValue(REMEMBER_PASSWORD_KEY, "") === "yes"){
-        remembered = savedValue(LAST_PASSWORD_KEY, "");
-    }
-
-    input.value = remembered;
-    document.getElementById("lockError").hidden = true;
-
-    // Restore the last logged-in account's background
-    const list = Array.isArray(window.USERS)
-        ? window.USERS
-        : (typeof USERS !== "undefined" ? USERS : []);
-
-    const lastUserId = savedValue(LAST_USER_KEY, "");
-
-    const lastUser = list.find(
-        user => String(user.id) === String(lastUserId)
-    );
-
-    applyLockScreenBackground(lastUser);
+ // Restore the last account's background and Details text/main colour.
+ applyLockScreenAppearance(getLastLoggedInUser());
 }
 function checkPassword(){
  const input=document.getElementById("passwordInput"),entered=input.value.trim();
@@ -824,33 +809,19 @@ function loginUser(user){
  requestAnimationFrame(updateProfileScroll);
 }
 function logout(){
-
-    // Keep the current account's background on the login screen
-    applyLockScreenBackground(currentUser);
-
-    currentUser = null;
-
-    document.body.classList.remove("premium-profile");
-
-    document.getElementById("mainApp").hidden = true;
-    document.getElementById("lockScreen").hidden = false;
-    document.getElementById("loginFooter").hidden = false;
-
-    ["totalModal","detailModal","premiumModal"].forEach(id => {
-        document.getElementById(id).hidden = true;
-    });
-
-    document.getElementById("app").innerHTML = "";
-    document.getElementById("amountNavigation").innerHTML = "";
-
-    resetProfileAvatarStyles();
-
-    window.scrollTo({
-        top: 0,
-        behavior: "instant"
-    });
-
-    initLockScreen();
+ // Keep the logged-in account's appearance while returning to the lock screen.
+ applyLockScreenAppearance(currentUser);
+ currentUser=null;
+ document.body.classList.remove("premium-profile");
+ document.getElementById("mainApp").hidden=true;
+ document.getElementById("lockScreen").hidden=false;
+ document.getElementById("loginFooter").hidden=false;
+ ["totalModal","detailModal","premiumModal"].forEach(id=>document.getElementById(id).hidden=true);
+ document.getElementById("app").innerHTML="";
+ document.getElementById("amountNavigation").innerHTML="";
+ resetProfileAvatarStyles();
+ window.scrollTo({top:0,behavior:"instant"});
+ initLockScreen();
 }
 
 function renderTopBanner(){
