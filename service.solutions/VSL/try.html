@@ -1,1 +1,993 @@
-no test...
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta name="theme-color" content="#f5f5f7"> <title>VSL</title> <script src="vsl.lednder.account.js"></script> <link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;scrollbar-width:thin;scrollbar-color:gray transparent}
+[hidden]{display:none!important}
+:root{
+ color-scheme:light;
+ --bg:#f5f5f7;
+ --accent:#17171a;
+ --surface:rgb(137 137 137 / 18%);
+ --border:rgba(255,255,255,.75);
+ --muted:#777780;
+ --field:rgba(255,255,255,.72);
+ --accent:#0800f0;
+ --accentText:#fff;
+ --glass-shadow:0 8px 30px rgba(0,0,0,.07);
+ --glass-blur:blur(22px) saturate(180%);
+ --base-font:16px;
+}
+* {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+body{
+ font:var(--base-font)/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif;
+ letter-spacing:.2px;color:var(--accent);background:var(--bg);
+ transition:background .25s,color .25s;min-height:100vh;
+}
+input
+button{cursor:pointer}
+button, a {
+    -webkit-tap-highlight-color: transparent;
+    color: var(--accent);
+}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button,a{-webkit-tap-highlight-color:transparent}
+
+/* Glass surfaces */
+.glass{
+ background:var(--surface);
+ border:none;
+}
+#lockScreen{max-width: 600px;
+    min-height: 100vh;
+    margin: auto;
+    padding:30px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;}
+.lock-header{text-align:center;margin-bottom:25px}
+.lock-header img{width:150px;max-width:45%;border-radius:50%;background:var(--accent)}
+.lock-header h2{font-size:3em;line-height:1.2}
+.lock-header h6{font-weight:500;opacity:.65;font-size:0.9em}
+.lock-body{display:flex;flex-direction:column;gap:14px}
+.lock-label{text-align:center;margin:5px 0}
+.lock-label h2{font-size:1.35em}
+.lock-input,.note-input{
+ width: 100%;
+    border: none;
+    border-radius: 22px;
+    background: var(--surface);
+    padding: 13px 16px;
+    text-align: center;
+    font-size: 1em;
+    color: var(--accent);
+}
+.lock-btn,.save-btn{
+border: none;
+    border-radius: 999px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 17px;
+    background: var(--field);
+    padding: 13px 16px;
+    text-align: center;
+    color: var(--accent);
+}
+svg{
+    fill: var(--accent);
+}
+.top.mian.opt {
+position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 10px;
+    background: linear-gradient(180deg, var(--bg), transparent);
+}
+
+.lock-btn:active,.save-btn:active{transform:scale(.98)}
+.lock-error{color:#e22;text-align:center;font-size:0.95em}
+.lock-hint{text-align: center;
+    font-size: 0.85em;
+    margin-top: 10px;}
+.lock-hint a{color:#e22;font-weight:bold}
+.login-faq{border-top:none;margin-top:25px;padding-top:18px}
+.login-faq-title{color:var(--accent);margin-bottom:8px;font-size:1.1em}
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    border: none;
+    border-radius: 99999px;
+    background: var(--surface);
+    padding: 11px 16px;
+    margin: 8px 0;
+    font-size: 1em;
+    gap: 10px;
+}
+.faq-icon{color:var(--accent);font-size:1.25em}
+.faq-answer{    padding: 5px 12px 14px;
+    line-height: 1.65;
+    font-size: 0.95em;
+    color: var(--accent);}
+.faq-answer a{color:var(--accent)}
+.anotherlogin{max-width:600px;margin:15px auto;padding:15px;display:grid;gap:10px;display: none;}
+.anotherlogin h3{font-size:1.1em}
+
+#mainApp{max-width:920px;margin:auto;padding:0}
+
+/* Floating account bar */
+.account-bar{
+position: sticky;
+    top: 0;
+    z-index: 52;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 999px;
+}
+.header,.navigation,section#interestSection{
+    padding: 10px;
+}
+.account-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -200px;
+  z-index: -1;
+  pointer-events: none;
+  backdrop-filter: blur(25px);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 40%,
+    rgba(0,0,0,.8) 65%,
+    transparent 100%
+  );
+}
+.logout-btn{  color: white;
+    border: 0;
+    border-radius: 999px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff29;
+    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
+    border: solid 0.2px #0000000d;
+    backdrop-filter: blur(2px);
+}
+.font-btn-options{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 999px;
+    color: var(--accent);
+    gap: 8px;
+    height: 45px;
+    background: #ffffff29;
+    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
+    border: solid 0.2px #0000000d;
+    backdrop-filter: blur(2px);
+}
+.font-btn{    border: 0;
+    border-radius: 50%;
+    font-size: 1.05em;
+    background: transparent;
+    color: inherit;}
+#fontSizeLabel{font-size:1em;min-width:1.6em;text-align:center}
+.header{text-align:center;padding:10px}
+.profile-wrap{ display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    margin: 50px 0 -235px 0;
+    z-index: 1000000000000000;
+    position: relative;}
+.profile-stage{height:104px;width:100%;position:relative;display:flex;justify-content:center;align-items:center}
+.profile-avatar{width:104px;height:104px;border-radius:50%;object-fit:cover;background:var(--accent);border:3px solid var(--accent);display:block}
+.account-name{font-size:1.45em;font-weight:700}
+.today{font-size:0.85em;color:var(--muted)}
+
+/* Premium profile animation */
+body.premium-profile #mainApp .header{padding-top:0}
+body.premium-profile #mainApp .profile-stage{height:100svh;height:100dvh;min-height:420px;    margin-bottom: 100px;}
+body.premium-profile #mainApp #profileAvatar{
+ position:fixed;z-index:350;top:0;left:0;
+ width:100vw;height:100svh;height:100dvh;
+ max-width:none;max-height:none;border:0;border-radius:0;
+ object-fit:cover;background:var(--bg);transform:none;box-shadow:none;
+ will-change:width,height,top,left,border-radius;
+}
+div#detailModalBody div {
+    color: var(--accent);
+    opacity: 50%;
+}
+body.premium-profile #mainApp #loggedInAs,
+body.premium-profile #mainApp #todayDate{
+ position: fixed;
+    z-index: 360;
+    left: 12px;
+    right: 12px;
+    width: calc(100vw - 24px);
+    text-align: center;
+    color: var(--accent);
+    pointer-events: none;
+    opacity: 1;
+    will-change: top, font-size;
+}
+body.premium-profile #mainApp #loggedInAs{top:calc(100dvh - 105px);font-size:1.55em}
+body.premium-profile #mainApp #todayDate{top:calc(100dvh - 70px);font-size:0.85em;}
+body.premium-profile #mainApp .font-controls{position:relative;z-index:51}
+body.premium-profile #mainApp .account-bar{z-index:52}
+
+/* Floating glass controls */
+.font-controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 250px 10px 0;
+}
+.font-controls button,
+.accent-control{
+border: none;
+    border-radius: 999px;
+    background: var(--surface);
+    font-size: 16px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    transition: all 0.1s ease-in-out;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff29;
+    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
+    border: solid 0.2px #0000000d;
+    backdrop-filter: blur(2px);
+}
+.font-controls button:active,
+.accent-control:active{
+      transform: scaleY(1.2);
+          filter: contrast(0.5);
+}
+
+input::-webkit-color-swatch {
+    border: none;
+}
+textarea#noteInput {
+    background: var(--bg);
+    border: none;
+    outline: none;
+    color: white;
+}
+input::-moz-color-swatch {
+    border: none;
+    border-radius: 50%;
+}
+.accent-control input{width:28px;height:28px;border:0;background:transparent}
+.top-banner{
+display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px;
+    background: var(--surface);
+    border: none;
+    border-radius: 25px;
+    margin: 10px;
+    font-size: 0.95em;
+}
+.top-banner a{text-decoration:none;color:var(--accent);font-weight:600}
+.notes-box{
+ background: var(--surface);
+    border: none;
+    border-radius: 24px;
+    padding: 14px;
+    margin: 25px 10px;
+}
+.notes-heading{font-size: 0.9em;
+    margin: 0 0 8px 4px;
+    text-align: center;
+    color: var(--accent);}
+.note-input{display:block;text-align:left;min-height:90px;resize:vertical;background:transparent;font-size:1em}
+.save-btn{margin-top:10px}
+.note{padding: 10px 20px;
+    border-bottom: none;
+    overflow-wrap: anywhere;}
+.note-text{white-space:pre-wrap}
+.note-date{    font-size: 0.8em;
+    color: var(--accent);
+    text-align: center;
+    padding-top: 10px;
+    opacity: 75%;}
+.delete-note{float:right;border:0;background:transparent;color:#e22;padding:2px 8px;font-size:0.9em}
+
+/* Floating pill navigation */
+.navigation{
+width: 90%;
+    max-width: fit-content;
+    margin: 18px auto;
+    position: sticky;
+    top: 172px;
+    z-index: 400000;
+    background: var(--surface);
+    border-radius: 999px;
+    display: flex;
+    overflow: scroll;
+    scrollbar-width: none;
+    padding: 3px 2px;
+    background: #ffffff29;
+    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
+    border: solid 0.2px #0000000d;
+    backdrop-filter: blur(2px);
+}
+.amount-nav-btn{border: 0;
+    border-radius: 999px;
+    background: transparent;
+    padding: 7px 10px;
+    white-space: nowrap;
+    font-size: 0.95em;}
+.amount-nav-btn.active {
+    color: var(--accent);
+    background: var(--bg);}
+.section-title{font-size: 0.9em;
+    font-weight: 400;
+    color: var(--muted);
+    margin: 5px 8px 12px;
+    display: none;}
+.entry{
+ background:var(--surface);border:none;
+ border-radius:23px;
+ padding:8px 15px;margin-bottom:12px;
+ font-size:1em;
+}
+.entry-row,.remaining,.paid-row,.entry-total{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0}
+.label,.paid-label{    flex: 1;
+    min-width: 0;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+    color: var(--accent);
+    opacity: 50%;
+    font-size:0.95em;}
+.value{font-weight: 700;
+    text-align: right;
+    overflow-wrap: anywhere;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+    font-size:1em;}
+.entry-total{background:var(--accent);color:white;border-radius:999px;padding:11px 15px;margin-top:5px}
+.paid-input{width:110px;max-width:45%;text-align:right;border:none;border-radius:10px;padding:5px;background:var(--field);font-weight:bold;font-size:1em}
+.detail-row{cursor:pointer}
+.detail-row:active{opacity:.7}
+.premium-locked{cursor:pointer}
+.empty-notes,.empty-amounts{text-align:center;padding:25px;color:var(--muted);font-size:0.95em}
+footer{    text-align: center;
+    border-top:1px solid var(--border)}
+    h5 {
+   font-weight: 500;
+    color: white;
+    font-size: 12px;
+}
+.footer-links{display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    border-top: none;
+    padding: 20px;
+    color: var(--muted);
+    text-align: left;
+    font-size: 0.9em;}
+.footer-links div{display: grid;
+    gap: 20px;}
+.footer-links a{text-decoration: none;
+    font-weight: 500;    opacity: 50%;}
+.footer-links a:hover{color:var(--accent);text-decoration:underline;opacity: 100%;}
+.footer-links a:focus{
+     border-radius:2px; outline:2px solid;outline-offset:2px
+}
+.back-top{
+ position: fixed;
+    right: 15px;
+    bottom: 15px;
+    background: var(--surface);
+    color: var(--accent);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+    z-index: 600000;
+    font-size: 1.1em;
+    backdrop-filter: blur(100px);
+}
+
+/* Glass modals */
+.modal-overlay{position:fixed;inset:0;z-index:10000000;background:#0008;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:15px}
+.modal{
+ width:100%;max-width:420px;max-height:85vh;overflow:auto;
+ background:var(--bg);color:var(--accent);border:none;
+ border-radius:27px;padding:16px;box-shadow:0 20px 70px #0003;
+ font-size:1em;
+}
+.modal-header{display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: none;
+    color: var(--accent);
+    font-size: 1.1em;margin-bottom: 10px;}
+.modal-close{border:0;background:transparent;color:#e22;padding:5px 10px;font-size:1.1em}
+.modal-summary .row{display:flex;justify-content:space-between;gap:15px;padding:8px 0;font-size:1em;    color: var(--accent);}
+.premium-copy{line-height:1.6;font-size:0.95em}
+.premium-features-list{padding:10px 0 10px 22px;line-height:1.8;font-size:0.95em}
+.premium-action{display:block;text-align:center;text-decoration:none;background:var(--accent);color:#fff;padding:11px;border-radius:999px;margin-top:10px;font-size:1em}
+
+@media(max-width:480px){
+ .footer-links{font-size:0.85em}
+ .account-name{font-size:1.3em}
+ .entry{padding:6px 12px}
+}
+@media(prefers-reduced-motion:reduce){
+ *{scroll-behavior:auto!important;transition:none!important}
+ body.premium-profile #mainApp #profileAvatar{will-change:auto}
+}
+marquee {
+    font-size: 11px;
+    padding: 20px;
+}
+</style>
+</head>
+
+<body>
+<div id="scrollup"></div>
+<div id="lockScreen">
+<div class="lock-header">
+  <img src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="VSL logo">
+  <h2>VSL</h2><h6>Powered by BS&MFI</h6>
+ </div>
+ <div class="lock-body">
+  <label class="lock-label"><h2>Login with your officially verified account password</h2></label>
+  <input id="passwordInput" class="lock-input" type="password" placeholder="Enter password" autocomplete="current-password">
+  <button class="lock-btn" onclick="checkPassword()">Login</button>
+  <p id="lockError" class="lock-error" hidden>Wrong password. Try again.</p>
+  <p class="lock-hint">If you cannot log in, you may not have an active borrowing or lending record. If your record is active and you still face an issue, fill out the <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form">Issue form</a>.</p>
+ </div>
+ <div class="login-faq">
+  <h3 class="login-faq-title">Frequently Asked Questions</h3>
+  <div id="faqList">
+   <div><button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">What is VSL?<span class="faq-icon">+</span></button><div class="faq-answer" hidden>VSL is a BS&MFI service that helps verified account holders view borrowing and lending records, track interest and maintain personal notes.</div></div>
+   <div><button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">Why can't I log in?<span class="faq-icon">+</span></button><div class="faq-answer" hidden>Enter the correct verified account password. Login is available for accounts with an active VSL record.</div></div>
+   <div><button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">How can I become a lender or borrower?<span class="faq-icon">+</span></button><div class="faq-answer" hidden>Your account must be verified by a VSL representative. Contact your coordinator to discuss registration and approval.</div></div>
+   <div><button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">What is VSL Premium+?<span class="faq-icon">+</span></button><div class="faq-answer" hidden>Premium+ unlocks additional account details, profile photo upload, custom site background, theme controls and main-colour customisation.</div></div>
+   <div><button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">How can I activate Premium+?<span class="faq-icon">+</span></button><div class="faq-answer" hidden>Contact your coordinator and request Premium+ activation.</div></div>
+   <div><button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">Who can I contact for support?<span class="faq-icon">+</span></button><div class="faq-answer" hidden>Contact your VSL coordinator or submit the <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form">VSL Issue Form</a>.</div></div>
+  </div>
+  <a href="all.faqs.html"><button class="lock-btn" style="margin-top:10px">View More FAQs</button></a>
+ </div>
+</div>
+
+<div class="anotherlogin" id="loginFooter">
+ <h3>Ready to login? Enter your verified account password.</h3>
+ <button class="lock-btn" onclick="document.getElementById('passwordInput').focus();window.scrollTo({top:0,behavior:'smooth'})">Enter password</button>
+</div>
+
+<div id="mainApp" hidden>
+ <div class="container">
+  <div class="account-bar">
+  </div>
+
+  <header class="header">
+   <div class="profile-wrap">
+    <div class="top mian opt">
+        <button class="logout-btn" onclick="logout()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M9.18,12l7.53,7.53q0.3,0.3 0.29,0.7t-0.31,0.7T16,21.23t-0.7-0.3L7.63,13.28q-0.27-0.27-0.4-0.61T7.09,12t0.13-0.67t0.4-0.61L15.3,3.05q0.3-0.3 0.71-0.29t0.71,0.31t0.3,0.7t-0.3,0.7L9.18,12Z"/></svg></button>
+            <div class="font-btn-options">
+            <button class="font-btn" onclick="changeFontSize(-1)">−</button>
+            <span id="fontSizeLabel">16</span>
+            <button class="font-btn" onclick="changeFontSize(1)">+</button>
+        </div>
+   </div>
+    <div class="profile-stage">
+     <img id="profileAvatar" class="profile-avatar" src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="Profile picture">
+    </div>
+    <div id="loggedInAs" class="account-name"></div>
+    <div id="todayDate" class="today"></div>
+   </div>
+
+   <div class="font-controls">
+    <label id="accentControl" class="accent-control" hidden title="Change main colour"><input id="accentPicker" type="color" value="#0800f0" onchange="changeMainColor(this.value)"></label>
+    <label id="backgroundControl" class="accent-control" hidden title="Change site background"><input id="backgroundPicker" type="color" value="#ffffff" onchange="changeBackground(this.value)"></label>
+    <button id="uploadProfileBtn" onclick="document.getElementById('profileUpload').click()" hidden><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M5.31,20.5q-0.76,0-1.28-0.52T3.5,18.69V5.31q0-0.76 0.52-1.28T5.31,3.5H18.69q0.76,0 1.28,0.52T20.5,5.31V18.69q0,0.76-0.52,1.28T18.69,20.5H5.31Zm1.44-3.75H17.33l-3.29-4.38l-2.81,3.65l-2-2.56L6.75,16.75Z"/></svg></button>
+    <input id="profileUpload" type="file" accept="image/*" hidden onchange="uploadProfilePhoto(event)">
+    <button id="detailEffectsToggle" onclick="toggleDetailEffects()" hidden>ON</button>
+    <button onclick="openTotalPopup()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M17.56,18.5v2.06q0,0.18 0.13,0.31T18,21t0.31-0.13t0.13-0.31V18.5H20.5q0.18,0 0.31-0.13t0.13-0.31t-0.13-0.31T20.5,17.62H18.44V15.56q0-0.18-0.13-0.31T18,15.12t-0.31,0.13t-0.13,0.31v2.06H15.5q-0.18,0-0.31,0.13t-0.13,0.31t0.13,0.31T15.5,18.5h2.06ZM18,22.56q-1.87,0-3.19-1.31T13.5,18.06t1.31-3.19T18,13.56t3.19,1.31t1.31,3.19t-1.31,3.19T18,22.56ZM8,8.87h8q0.32,0 0.53-0.22t0.22-0.53T16.53,7.58T16,7.37H8q-0.32,0-0.53,0.22T7.25,8.12T7.47,8.65T8,8.87ZM5.31,20.5q-0.75,0-1.28-0.53T3.5,18.69V5.31q0-0.75 0.53-1.28T5.31,3.5H18.69q0.75,0 1.28,0.53T20.5,5.31v5.23q0,0.41-0.33,0.64T19.45,11.3q-0.34-0.1-0.71-0.14T18,11.12q-0.39,0-0.75,0.05t-0.71,0.14q-0.17-0.04-0.37-0.05t-0.37-0.01H8q-0.32,0-0.53,0.22T7.25,12t0.22,0.53T8,12.75h5.61q-0.6,0.47-1.07,1.07t-0.79,1.31H8q-0.32,0-0.53,0.22T7.25,15.88t0.22,0.53T8,16.63h3.27q-0.08,0.34-0.12,0.67T11.12,18q0,0.37 0.03,0.74t0.12,0.72q0.09,0.39-0.14,0.71T10.51,20.5H5.31Z"/></svg></button>
+   </div>
+  </header>
+
+  <div class="top-banner" id="topBanner"></div>
+
+  <section class="notes-box">
+   <h3 class="notes-heading">Quick note</h3>
+   <textarea id="noteInput" class="note-input" placeholder="Write something here..."></textarea>
+   <button class="save-btn" onclick="saveNote()">Save note</button>
+   <div id="notesList"></div>
+  </section>
+
+  <div class="navigation" id="amountNavigation" aria-label="Your amounts"></div>
+  <section id="interestSection">
+   <h3 class="section-title" id="interestTitle">Select an amount to view its details</h3>
+   <div id="app"></div>
+  </section>
+
+  <footer>
+   <div class="footer-links">
+    <div>
+     <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#terms">Terms and Conditions</a></h5>
+     <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#privacy">Privacy</a></h5>
+     <h5><a href="https://mfi0212.github.io/MFI/privacyandterms#services">Lending Services</a></h5>
+     <h5><a href="https://mfi0212.github.io/MFI/patron.info">Patron Information</a></h5>
+    </div>
+    <div style="    text-align: center;"><h5>VSL, All rights reserved.<br>Version (v.04.12.21)</h5></div>
+   </div>
+  </footer>
+ </div>
+ <a class="back-top" href="#scrollup" aria-label="Back to top"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M12,10.45L7.93,14.53Q7.72,14.73 7.4,14.74T6.87,14.53T6.66,14t0.22-0.53l4.49-4.49Q11.64,8.71 12,8.71t0.63,0.27l4.49,4.49q0.21,0.21 0.21,0.52t-0.21,0.53T16.6,14.74t-0.53-0.22L12,10.45Z"/></svg></a>
+</div>
+
+<div class="modal-overlay" id="totalModal" hidden onclick="if(event.target===this)closeTotalPopup()">
+ <div class="modal"><div class="modal-header"><h3>Total Summary</h3><button class="modal-close" onclick="closeTotalPopup()">✕</button></div><div id="modalBody"></div></div>
+</div>
+<div class="modal-overlay" id="detailModal" hidden onclick="if(event.target===this)closeDetailPopup()">
+ <div class="modal"><div class="modal-header"><h3 id="detailModalTitle">Detail</h3><button class="modal-close" onclick="closeDetailPopup()">✕</button></div><div id="detailModalBody"></div></div>
+</div>
+<div class="modal-overlay" id="premiumModal" hidden onclick="if(event.target===this)closePremiumPopup()">
+ <div class="modal">
+  <div class="modal-header"><h3>VSL Premium+</h3><button class="modal-close" onclick="closePremiumPopup()">✕</button></div>
+  <p class="premium-copy">Premium+ gives you more control over your VSL account appearance and details.</p>
+  <ul class="premium-features-list">
+   <li>Borrowed By, Interest Rate, Date Borrowed and Days Passed details.</li>
+   <li>Upload a profile picture.</li>
+   <li>Choose a custom site background and main colour.</li>
+   <li>Turn detail popups on or off.</li>
+   <li>Expand your profile picture while scrolling.</li>
+  </ul>
+  <p>Contact your coordinator to activate Premium+.</p>
+ </div>
+</div>
+
+<script>
+const FONT_SIZE_KEY="interestTrackerFontSize";
+const NOTES_KEY_PREFIX="interestTrackerNotes\_";
+const LAST_USER_KEY="vslLastUserId";
+const LAST_PASSWORD_KEY="vslLastPassword";
+const REMEMBER_PASSWORD_KEY="vslRememberPassword";
+const MAIN_COLOR_KEY_PREFIX="vslMainColor\_";
+const BACKGROUND_KEY_PREFIX="vslBackground\_";
+const PROFILE_KEY_PREFIX="vslProfilePhoto\_";
+const DETAIL_EFFECTS_KEY_PREFIX="vslDetailEffects\_";
+const DEFAULT_MAIN_COLOR="#0800f0";
+const DEFAULT_AVATAR="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png";
+const MIN_FONT=12,MAX_FONT=28;
+
+/* Profile animation settings */
+const PROFILE_SMALL_SIZE=76;
+const PROFILE_SMALL_TOP=30;
+const PROFILE_COLLAPSE_DISTANCE=()=>Math.max(420,window.innerHeight);
+
+let currentFontSize=16,currentUser=null,selectedEntryIndex=0,profileScrollFrame=null;
+const monthNames=["January","February","March","April","May","June","July","August","September","October","November","December"];
+const TEXT={borrowedBy:"Borrowed By",amount:"Principal Amount",interest:"Interest Rate",takenDate:"Date Borrowed",days:"Days Passed",interestPaid:"Interest Paid",remaining:"Remaining Interest",entryTotal:"Total"};
+
+function toggleFAQ(button){
+ const answer=button.nextElementSibling,icon=button.querySelector(".faq-icon");
+ if(!answer||!icon)return;
+ answer.hidden=!answer.hidden;
+ button.setAttribute("aria-expanded",String(!answer.hidden));
+ icon.textContent=answer.hidden?"+":"−";
+}
+function isPremiumUser(user){return !!(user&&(user.premium===true||String(user.premium).toLowerCase()==="yes"));}
+function userKey(prefix){return currentUser?prefix+(currentUser.id||currentUser.name):"";}
+function money(value){return (Number(value)||0).toLocaleString("en-IN");}
+function parseDate(s){const [y,m,d]=String(s||"").split("-").map(Number);return new Date(y,(m||1)-1,d||1);}
+function formatDate(s){const d=parseDate(s);return `${d.getDate()} ${monthNames[d.getMonth()]} ${d.getFullYear()}`;}
+function getDays(takenDate){
+
+  const start = parseDate(takenDate);
+  const today = new Date();
+
+  start.setHours(0,0,0,0);
+  today.setHours(0,0,0,0);
+
+  return Math.max(
+    0,
+    Math.floor((today - start) / 86400000)
+  );
+
+}
+function getEntryData(entry){
+ const days=getDays(entry.takenDate);
+ const totalInterest=Math.round((Number(entry.amount)||0)*(Number(entry.interest)||0)*days/3000);
+ const remaining=Math.max(0,totalInterest-(Number(entry.interestPaid)||0));
+ return {days,totalInterest,remaining,total:(Number(entry.amount)||0)+remaining};
+}
+function applyMainColor(color){
+ if(!/^#[0-9a-f]{6}$/i.test(color))color=DEFAULT_MAIN_COLOR;
+ document.documentElement.style.setProperty("--accent",color);
+}
+function applyBackground(color){
+ if(!/^#[0-9a-f]{6}$/i.test(color))return;
+ document.documentElement.style.setProperty("--bg",color);
+ document.body.style.setProperty("--bg",color);
+ const meta=document.querySelector('meta[name="theme-color"]');
+ if(meta)meta.content=color;
+}
+function savedValue(key,fallback){try{return localStorage.getItem(key)||fallback}catch{return fallback}}
+function saveValue(key,value){try{localStorage.setItem(key,value)}catch{alert("Browser storage is full or unavailable. Please use a smaller image.")}}
+
+/* Premium profile: centered avatar and centered details */
+function updateProfileScroll(){
+ if(!currentUser||!isPremiumUser(currentUser))return;
+
+ const avatar=document.getElementById("profileAvatar");
+ const name=document.getElementById("loggedInAs");
+ const date=document.getElementById("todayDate");
+ if(!avatar||!name||!date)return;
+
+ const w=window.innerWidth;
+ const h=window.innerHeight;
+ const small=PROFILE_SMALL_SIZE;
+ const progress=Math.max(0,Math.min(1,window.scrollY/PROFILE_COLLAPSE_DISTANCE()));
+ const eased=progress*progress*(3-2*progress);
+
+ /* Center the small avatar horizontally */
+ const smallLeft=(w-small)/2;
+ const width=w+(small-w)*eased;
+ const height=h+(small-h)*eased;
+ const left=smallLeft*eased;
+ const top=PROFILE_SMALL_TOP*eased;
+
+ avatar.style.width=`${width}px`;
+ avatar.style.height=`${height}px`;
+ avatar.style.left=`${left}px`;
+ avatar.style.top=`${top}px`;
+ avatar.style.borderRadius=`${50*eased}%`;
+ avatar.style.objectFit="cover";
+ avatar.style.boxShadow=eased>.9?"0 5px 20px #0004":"none";
+
+ /* Expanded: text near bottom. Compact: text immediately below avatar. */
+ const expandedNameTop=h-105;
+ const compactNameTop=PROFILE_SMALL_TOP+small+7;
+ const expandedDateTop=h-70;
+ const compactDateTop=PROFILE_SMALL_TOP+small+34;
+
+ name.style.top=`${expandedNameTop+(compactNameTop-expandedNameTop)*eased}px`;
+ date.style.top=`${expandedDateTop+(compactDateTop-expandedDateTop)*eased}px`;
+
+ name.style.left="12px";
+ name.style.right="12px";
+ name.style.width="calc(100vw - 24px)";
+ name.style.textAlign="center";
+ name.style.fontSize=`${(25+(20-25)*eased) * (currentFontSize/16)}px`;
+ name.style.opacity="1";
+
+ date.style.left="12px";
+ date.style.right="12px";
+ date.style.width="calc(100vw - 24px)";
+ date.style.textAlign="center";
+ date.style.opacity="1";
+ date.style.fontSize=`${0.85 * currentFontSize}px`;
+}
+function scheduleProfileScroll(){
+ if(!currentUser||!isPremiumUser(currentUser)||profileScrollFrame!==null)return;
+ profileScrollFrame=requestAnimationFrame(()=>{
+  profileScrollFrame=null;
+  updateProfileScroll();
+ });
+}
+window.addEventListener("scroll",scheduleProfileScroll,{passive:true});
+window.addEventListener("resize",scheduleProfileScroll);
+
+function resetProfileAvatarStyles(){
+ const avatar=document.getElementById("profileAvatar");
+ if(avatar){
+  ["width","height","top","left","borderRadius","objectFit","boxShadow","transform","maxWidth","maxHeight"].forEach(p=>avatar.style[p]="");
+ }
+ const name=document.getElementById("loggedInAs");
+ const date=document.getElementById("todayDate");
+ if(name&&date){
+  ["left","right","width","top","bottom","transform","textAlign","fontSize","opacity"].forEach(p=>{name.style[p]="";date.style[p]="";});
+ }
+}
+
+function updatePremiumControls(){
+ const premium=isPremiumUser(currentUser);
+ document.body.classList.toggle("premium-profile",premium);
+ ["accentControl","backgroundControl","uploadProfileBtn","detailEffectsToggle"].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el)el.hidden=!premium;
+ });
+ if(premium){
+  const k=currentUser.id||currentUser.name;
+  const color=savedValue(MAIN_COLOR_KEY_PREFIX+k,DEFAULT_MAIN_COLOR);
+  const bg=savedValue(BACKGROUND_KEY_PREFIX+k,"");
+  document.getElementById("accentPicker").value=color;
+  document.getElementById("backgroundPicker").value=bg||"#ffffff";
+  applyMainColor(color);
+  if(bg)applyBackground(bg);
+  document.getElementById("detailEffectsToggle").textContent=savedValue(DETAIL_EFFECTS_KEY_PREFIX+k,"on")==="off"?"OFF":"ON";
+  loadProfilePhoto();
+  requestAnimationFrame(updateProfileScroll);
+ }else{
+  applyMainColor(DEFAULT_MAIN_COLOR);
+  applyBackground("#f5f5f7");
+  document.getElementById("profileAvatar").src=DEFAULT_AVATAR;
+  resetProfileAvatarStyles();
+ }
+}
+function changeMainColor(color){if(!isPremiumUser(currentUser))return;applyMainColor(color);saveValue(userKey(MAIN_COLOR_KEY_PREFIX),color);}
+function changeBackground(color){if(!isPremiumUser(currentUser))return;applyBackground(color);saveValue(userKey(BACKGROUND_KEY_PREFIX),color);}
+function toggleDetailEffects(){
+ if(!isPremiumUser(currentUser))return;
+ const key=userKey(DETAIL_EFFECTS_KEY_PREFIX),next=savedValue(key,"on")==="off"?"on":"off";
+ saveValue(key,next);
+ document.getElementById("detailEffectsToggle").textContent=next==="off"?"OFF":"ON";
+}
+function loadProfilePhoto(){const photo=savedValue(userKey(PROFILE_KEY_PREFIX),"");document.getElementById("profileAvatar").src=photo||DEFAULT_AVATAR;}
+
+function uploadProfilePhoto(event){
+ if(!isPremiumUser(currentUser))return;
+ const file=event.target.files&&event.target.files[0];if(!file)return;
+ if(!file.type.startsWith("image/")){alert("Choose an image file.");return;}
+ const reader=new FileReader();
+ reader.onload=()=>{
+  const img=new Image();
+  img.onload=()=>{
+   const canvas=document.createElement("canvas"),size=700;canvas.width=size;canvas.height=size;
+   const ctx=canvas.getContext("2d"),scale=Math.max(size/img.width,size/img.height),w=img.width*scale,h=img.height*scale;
+   ctx.drawImage(img,(size-w)/2,(size-h)/2,w,h);
+   const data=canvas.toDataURL("image/jpeg",.84);
+   try{localStorage.setItem(userKey(PROFILE_KEY_PREFIX),data);document.getElementById("profileAvatar").src=data;updateProfileScroll();}
+   catch{alert("This image is too large for browser storage. Try a smaller image.");}
+  };
+  img.src=reader.result;
+ };
+ reader.readAsDataURL(file);event.target.value="";
+}
+
+function applyLockScreenAppearance(user){
+ const defaultBackground="#f5f5f7";
+
+ // The Details text uses --accent, which is saved per premium account
+ // with MAIN_COLOR_KEY_PREFIX. Use that same account colour on the lock screen.
+ if(user && isPremiumUser(user)){
+  const key=user.id||user.name;
+  const background=savedValue(BACKGROUND_KEY_PREFIX+key,defaultBackground);
+  const mainColor=savedValue(MAIN_COLOR_KEY_PREFIX+key,DEFAULT_MAIN_COLOR);
+
+  applyBackground(/^#[0-9a-f]{6}$/i.test(background)?background:defaultBackground);
+  applyMainColor(/^#[0-9a-f]{6}$/i.test(mainColor)?mainColor:DEFAULT_MAIN_COLOR);
+ }else{
+  applyBackground(defaultBackground);
+  applyMainColor(DEFAULT_MAIN_COLOR);
+ }
+}
+
+function getLastLoggedInUser(){
+ const list=Array.isArray(window.USERS)?window.USERS:(typeof USERS!=="undefined"?USERS:[]);
+ const lastUserId=savedValue(LAST_USER_KEY,"");
+ return list.find(user=>String(user.id)===String(lastUserId))||null;
+}
+
+function initLockScreen(){
+ const input=document.getElementById("passwordInput");
+ let remembered="";
+ if(savedValue(REMEMBER_PASSWORD_KEY,"")==="yes")remembered=savedValue(LAST_PASSWORD_KEY,"");
+ input.value=remembered;
+ document.getElementById("lockError").hidden=true;
+
+ // Restore the last account's background and Details text/main colour.
+ applyLockScreenAppearance(getLastLoggedInUser());
+}
+function checkPassword(){
+ const input=document.getElementById("passwordInput"),entered=input.value.trim();
+ const list=Array.isArray(window.USERS)?window.USERS:(typeof USERS!=="undefined"?USERS:[]);
+ const user=list.find(u=>String(u.password)===entered);
+ if(!user){document.getElementById("lockError").hidden=false;input.select();return;}
+ saveValue(LAST_USER_KEY,user.id);saveValue(LAST_PASSWORD_KEY,entered);saveValue(REMEMBER_PASSWORD_KEY,"yes");
+ loginUser(user);
+}
+function loginUser(user){
+ currentUser=user;selectedEntryIndex=0;
+ document.getElementById("lockScreen").hidden=true;
+ document.getElementById("loginFooter").hidden=true;
+ document.getElementById("mainApp").hidden=false;
+ document.getElementById("loggedInAs").textContent=user.name||"VSL Account";
+ const d=new Date();
+ document.getElementById("todayDate").textContent=`Today: ${d.getDate()} ${monthNames[d.getMonth()]} ${d.getFullYear()}`;
+ window.scrollTo(0,0);
+ updatePremiumControls();loadFontSize();renderTopBanner();renderAmountNavigation();renderSelectedEntry();renderNotes();
+ requestAnimationFrame(updateProfileScroll);
+}
+function logout(){
+ // Keep the logged-in account's appearance while returning to the lock screen.
+ applyLockScreenAppearance(currentUser);
+ currentUser=null;
+ document.body.classList.remove("premium-profile");
+ document.getElementById("mainApp").hidden=true;
+ document.getElementById("lockScreen").hidden=false;
+ document.getElementById("loginFooter").hidden=false;
+ ["totalModal","detailModal","premiumModal"].forEach(id=>document.getElementById(id).hidden=true);
+ document.getElementById("app").innerHTML="";
+ document.getElementById("amountNavigation").innerHTML="";
+ resetProfileAvatarStyles();
+ window.scrollTo({top:0,behavior:"instant"});
+ initLockScreen();
+}
+
+function renderTopBanner(){
+ const box=document.getElementById("topBanner");box.innerHTML="";
+ if(Array.isArray(currentUser.topBanner))currentUser.topBanner.forEach(link=>{
+  const a=document.createElement("a");a.href=link.href||"#";a.textContent=link.text||"";box.appendChild(a);
+ });
+}
+function loadFontSize(){
+ const n=parseInt(savedValue(FONT_SIZE_KEY,"16"),10);
+ currentFontSize=Number.isFinite(n)&&n>=MIN_FONT&&n<=MAX_FONT?n:16;
+ applyFontSize();
+}
+function applyFontSize(){
+ document.documentElement.style.setProperty("--base-font",currentFontSize+"px");
+ document.body.style.fontSize=currentFontSize+"px";
+ document.getElementById("fontSizeLabel").textContent=currentFontSize;
+ // Force re-apply on key dynamic elements that may have inline styles
+ if(currentUser&&isPremiumUser(currentUser)){
+  requestAnimationFrame(updateProfileScroll);
+ }
+}
+function changeFontSize(delta){
+ const next=currentFontSize+delta;if(next<MIN_FONT||next>MAX_FONT)return;
+ currentFontSize=next;applyFontSize();saveValue(FONT_SIZE_KEY,String(next));
+}
+
+function renderAmountNavigation(){
+ const nav=document.getElementById("amountNavigation");nav.innerHTML="";
+ const entries=Array.isArray(currentUser.entries)?currentUser.entries:[];
+ entries.forEach((entry,index)=>{
+  const b=document.createElement("button");
+  b.className="amount-nav-btn"+(index===selectedEntryIndex?" active":"");
+  b.textContent=`Amount ${index+1}`;
+  b.title=`Open amount ${index+1}`;
+  b.onclick=()=>{selectedEntryIndex=index;renderAmountNavigation();renderSelectedEntry();};
+  nav.appendChild(b);
+ });
+ if(!entries.length)nav.innerHTML='<span class="empty-amounts">No amounts</span>';
+}
+function makeRow(label,value,key,entry,data,index){
+ const row=document.createElement("div");row.className="entry-row";
+ const l=document.createElement("span");l.className="label";l.textContent=label;
+ const v=document.createElement("span");v.className="value";
+ const premium=isPremiumUser(currentUser),protectedField=["borrowedBy","interest","days"].includes(key);
+ if(protectedField&&!premium){v.textContent="Premium+ required";row.classList.add("premium-locked");row.onclick=openPremiumPopup;}
+ else{v.textContent=value;row.classList.add("detail-row");row.onclick=()=>openDetailPopup(key,entry,data,index);}
+ row.append(l,v);return row;
+}
+function renderSelectedEntry(){
+ const app=document.getElementById("app");app.innerHTML="";
+ const entries=Array.isArray(currentUser.entries)?currentUser.entries:[];
+ if(!entries.length){app.innerHTML='<p class="empty-amounts">No lending amounts available.</p>';return;}
+ const index=Math.min(selectedEntryIndex,entries.length-1),entry=entries[index];selectedEntryIndex=index;
+ if(typeof entry.interestPaid!=="number")entry.interestPaid=Number(entry.interestPaid)||0;
+ const data=getEntryData(entry),block=document.createElement("div");block.className="entry";
+ block.append(
+  makeRow(TEXT.borrowedBy,entry.borrowedBy||"Not specified","borrowedBy",entry,data,index),
+  makeRow(TEXT.amount,money(entry.amount),"amount",entry,data,index),
+  makeRow(TEXT.interest,`${entry.interest}%`,"interest",entry,data,index),
+  makeRow(TEXT.takenDate,formatDate(entry.takenDate),"takenDate",entry,data,index),
+  makeRow(TEXT.days,String(data.days),"days",entry,data,index)
+ );
+ if(isPremiumUser(currentUser)){
+  const paid=document.createElement("div");paid.className="paid-row";
+  const label=document.createElement("label");label.className="paid-label";label.textContent=TEXT.interestPaid;
+  const input=document.createElement("input");input.className="paid-input";input.type="number";input.min="0";input.step="1";input.value=entry.interestPaid;input.setAttribute("aria-label",TEXT.interestPaid);
+  input.onchange=()=>{entry.interestPaid=Math.max(0,Number(input.value)||0);renderSelectedEntry();};
+  input.onkeydown=e=>{if(e.key==="Enter")input.blur();};
+  paid.append(label,input);block.appendChild(paid);
+ }
+ block.append(makeRow(TEXT.remaining,money(data.remaining),"remaining",entry,data,index),makeRow(TEXT.entryTotal,money(data.total),"total",entry,data,index));
+ app.appendChild(block);
+ document.getElementById("interestTitle").textContent=`Amount ${index+1} of ${entries.length} · Details`;
+}
+function openDetailPopup(key,entry,data){
+ if(isPremiumUser(currentUser)&&savedValue(userKey(DETAIL_EFFECTS_KEY_PREFIX),"on")==="off")return;
+ const info={
+  borrowedBy:["Borrowed By","Name of the person associated with this amount.",entry.borrowedBy||"Not specified"],
+  amount:["Principal Amount","Original amount before interest.",money(entry.amount)],
+  interest:["Interest Rate","Monthly interest rate.",`${entry.interest}% per month`],
+  takenDate:["Date Borrowed","Interest is counted from this date.",formatDate(entry.takenDate)],
+  days:["Days Passed","Days counted from the borrowing date until today.",`${data.days} days`],
+  remaining:["Remaining Interest","Calculated interest minus interest already paid.",money(data.remaining)],
+  total:["Total Amount","Principal plus remaining interest.",money(data.total)]
+ };
+ const item=info[key];if(!item)return;
+ document.getElementById("detailModalTitle").textContent=item[0];
+ document.getElementById("detailModalBody").innerHTML="";
+ const desc=document.createElement("div");desc.textContent=item[1];
+ const value=document.createElement("p");
+ value.style.cssText="font-size: 21px;font-weight: 600;color: var(--accent);text-align: center;padding: 7px;background: var(--surface);border-radius: 999px;margin-top: 10px;";
+ value.textContent=item[2];
+ document.getElementById("detailModalBody").append(desc,value);
+ document.getElementById("detailModal").hidden=false;
+}
+function openPremiumPopup(){document.getElementById("premiumModal").hidden=false;}
+function closePremiumPopup(){document.getElementById("premiumModal").hidden=true;}
+function closeDetailPopup(){document.getElementById("detailModal").hidden=true;}
+
+function openTotalPopup(){
+ if(!currentUser)return;
+ let principal=0,interest=0;
+ (currentUser.entries||[]).forEach(e=>{principal+=Number(e.amount)||0;interest+=getEntryData(e).remaining;});
+ const body=document.getElementById("modalBody");body.innerHTML="";
+ const summary=document.createElement("div");summary.className="modal-summary";
+ [["Total Principal",principal],["Total Remaining Interest",interest],["Grand Total",principal+interest]].forEach(([label,value],i)=>{
+  const row=document.createElement("div");row.className="row";
+  const a=document.createElement(i===2?"strong":"span"),b=document.createElement(i===2?"strong":"span");
+  a.textContent=label;b.textContent=money(value);row.append(a,b);summary.appendChild(row);
+ });
+ body.appendChild(summary);document.getElementById("totalModal").hidden=false;
+}
+function closeTotalPopup(){document.getElementById("totalModal").hidden=true;}
+
+function getNotes(){
+ try{const data=JSON.parse(localStorage.getItem(userKey(NOTES_KEY_PREFIX))||"[]");return Array.isArray(data)?data:[];}
+ catch{return [];}
+}
+function saveNote(){
+ const input=document.getElementById("noteInput"),value=input.value.trim();
+ if(!currentUser||!value){input.focus();return;}
+ const notes=getNotes();notes.unshift({id:String(Date.now()),text:value,date:new Date().toISOString()});
+ try{localStorage.setItem(userKey(NOTES_KEY_PREFIX),JSON.stringify(notes));input.value="";renderNotes();}
+ catch{alert("Unable to save note. Browser storage may be full.");}
+}
+function deleteNote(id){
+ const notes=getNotes().filter(n=>n.id!==id);
+ try{localStorage.setItem(userKey(NOTES_KEY_PREFIX),JSON.stringify(notes));renderNotes();}
+ catch{alert("Unable to update notes.");}
+}
+function renderNotes(){
+ const list=document.getElementById("notesList");list.innerHTML="";
+ const notes=getNotes();
+ if(!notes.length){const p=document.createElement("p");p.className="note-date";p.textContent="No saved notes yet.";list.appendChild(p);return;}
+ notes.forEach(note=>{
+  const item=document.createElement("div");item.className="note";
+  const del=document.createElement("button");del.className="delete-note";del.textContent="Delete";del.onclick=()=>deleteNote(note.id);
+  const txt=document.createElement("div");txt.className="note-text";txt.textContent=note.text;
+  const date=document.createElement("div");date.className="note-date";
+  const d=new Date(note.date);date.textContent=Number.isNaN(d.getTime())?"":d.toLocaleString();
+  item.append(del,txt,date);list.appendChild(item);
+ });
+}
+
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape"){closeTotalPopup();closeDetailPopup();closePremiumPopup();}
+});
+document.getElementById("passwordInput").addEventListener("keydown",e=>{if(e.key==="Enter")checkPassword();});
+initLockScreen();
+</script>
+</body>
+</html>
