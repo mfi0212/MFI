@@ -28,7 +28,7 @@ const USERS = [
       {
         borrowedBy: "China Yerra",
         amount: 245,
-        interest: 2.2,
+        interest: 5,
         takenDate: "2026-11-23",
         interestPaid: 0
       }
