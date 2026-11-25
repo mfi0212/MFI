@@ -38,7 +38,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
         displayName: "Tony Montana",
         premiumType: "Premium+",
         fixedInterest: 20,
-        customui: "no",
+        customui: "yes",
         showBottomNav: "yes",
         bottomNavItems: ["amounts", "borrow", "settings", "search"],
         showCustomContent: "yes",
