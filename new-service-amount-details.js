@@ -8,17 +8,17 @@ document.addEventListener('contextmenu', e => e.preventDefault());
         customui: "no",
         showBottomNav: "yes",
         bottomNavItems: ["amounts", "borrow", "settings"],
-        showCustomContent: "no",
+        showCustomContent: "yes",
         customContent: {
           type: "image",
-          value: "https://mfi0212.github.io/mfi.f/special.offer/offer.png",
-          url: "https://mfi0212.github.io/mfi.f/special.offer/program.x"
+          value: "https://mfi0212.github.io/mfi.f/you.receive.gift.png",
+          url: "https://mfi0212.github.io/mfi.f/mygifts"
         },
-        showSpecialNotice: "no",
-        specialNoticeText: "Mr. Deepak Tallapudi, The special offer available to you will be active from today, 23rd November, at 11:30 AM until 25th November at 12:00 PM. Click the offer banner to view and apply for your eligible offer before it expires.",
+        showSpecialNotice: "yes",
+        specialNoticeText: "Mr. Deepak Tallapudi, you've received a special gift from your friend! 🎁 Click the button below to open and view your gift.",
         loans: [
           { amount: 6000, interest: 2000, borrowed: "22-11-2026", return: "22-12-2026", overdueFee: 50 },
-{ amount: 2000, interest: 600, borrowed: "25-11-2026", return: "25-12-2026", overdueFee: 50 },
+          { amount: 2000, interest: 600, borrowed: "25-11-2026", return: "25-12-2026", overdueFee: 50 },
         ],
         access: {
           "Delay It": true,
