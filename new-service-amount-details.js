@@ -18,6 +18,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
         specialNoticeText: "Mr. Deepak Tallapudi, The special offer available to you will be active from today, 23rd November, at 11:30 AM until 25th November at 12:00 PM. Click the offer banner to view and apply for your eligible offer before it expires.",
         loans: [
           { amount: 6000, interest: 2000, borrowed: "22-11-2026", return: "22-12-2026", overdueFee: 50 },
+{ amount: 2000, interest: 600, borrowed: "25-11-2026", return: "25-12-2026", overdueFee: 50 },
         ],
         access: {
           "Delay It": true,
