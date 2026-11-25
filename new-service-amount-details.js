@@ -15,7 +15,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
           url: "https://mfi0212.github.io/mfi.f/mygifts"
         },
         showSpecialNotice: "yes",
-        specialNoticeText: "Mr. Deepak Tallapudi, you've received a special gift from your friend! 🎁 Click the button below to open and view your gift.",
+        specialNoticeText: "Mr. Deepak Tallapudi, you've received a gift from your friend! 🎁 Click the banner below to open and view your gift.",
         loans: [
           { amount: 6000, interest: 2000, borrowed: "22-11-2026", return: "22-12-2026", overdueFee: 50 },
           { amount: 2000, interest: 600, borrowed: "25-11-2026", return: "25-12-2026", overdueFee: 50 },
