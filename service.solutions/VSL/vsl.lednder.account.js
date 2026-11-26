@@ -4,7 +4,7 @@ const USERS = [
     id: "psvkry",
     name: "Psvkry(@BS Owner)",
     password: "17891",
-    premium: true,
+    premium: false,
 
     topBanner: [
       {
