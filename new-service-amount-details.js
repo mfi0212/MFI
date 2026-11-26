@@ -19,6 +19,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
         loans: [
           { amount: 6000, interest: 2000, borrowed: "22-11-2026", return: "22-12-2026", overdueFee: 50 },
           { amount: 2000, interest: 600, borrowed: "25-11-2026", return: "25-12-2026", overdueFee: 50 },
+          { amount: 3000, interest: 700, borrowed: "26-11-2026", return: "26-12-2026", overdueFee: 50 },
         ],
         access: {
           "Delay It": true,
@@ -38,7 +39,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
         displayName: "Tony Montana",
         premiumType: "Premium+",
         fixedInterest: 20,
-        customui: "yes",
+        customui: "no",
         showBottomNav: "yes",
         bottomNavItems: ["amounts", "borrow", "settings", "search"],
         showCustomContent: "yes",
