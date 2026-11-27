@@ -68,17 +68,17 @@
     resize: none;
     box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
     backdrop-filter: blur(2px);
-    padding: 0px 10px;
-    height: 35px;
-    border-radius: 99px;
+    padding: 0px 20px;
+    height: 40px;
+    border-radius: 999px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 button.back {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     border-radius: 99px;
     background: var(--bar);
     fill: var(--primary-text);
@@ -101,7 +101,7 @@ button.back {
     width: 100%;
     }
     .menu-btn{
-        height: 35px;
+        height: 40px;
     font-size: 15px;
     display: flex;
     align-items: center;
@@ -119,8 +119,8 @@ button.back {
     .brand strong{display:block;font-size:.9rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .brand span{font-size:.7rem;color:var(--muted)}
     .report-btn{font-size:.75rem;padding:5px 10px;border:1px solid var(--border);border-radius:6px;color:var(--muted)}
-.topbar img{width: 35px;
-    height: 35px;
+.topbar img{width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: var(--primary);
     flex-shrink: 0;
@@ -134,13 +134,19 @@ button.back {
       background:var(--bg);
       background-size:cover;background-position:center;background-repeat:no-repeat;
     }
-    .msg{max-width:85%;padding:8px 12px;border-radius:10px;word-break:break-word}
+    .msg{max-width: 85%;
+    padding: 8px;
+    border-radius: 10px;
+    word-break: break-word;}
     .msg.bot{align-self:flex-start;background:var(--bot);border:1px solid var(--border)}
     .msg.user{align-self:flex-end;background:var(--primary);color:var(--primary-text)}
     .msg .meta{font-size:.65rem;opacity:.5;margin-top:3px}
     .msg.user .meta{text-align:right}
     .msg .card{margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
-    .msg .row{display:flex;justify-content:space-between;gap:8px;padding:2px 0;font-size:.88rem}
+    .msg .row{display: flex;
+    justify-content: space-between;
+    gap: 45px;
+    padding: 5px 0;}
     .msg .row .l{color:var(--muted)}
     .msg .row .v{font-weight:500;text-align:right}
     .msg .total{margin-top:6px;padding-top:6px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-weight:600;font-size:.9rem}
@@ -174,12 +180,12 @@ button.back {
     resize: none;
     box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
     backdrop-filter: blur(2px);
-    height: 35px;
+    height: 40px;
     width: 100%;
     }
     .send-btn{  
-        width: 35px;
-    height: 35px;
+        width: 40px;
+    height: 40px;
     border-radius: 99px;
     background: var(--bar);
     fill: var(--primary-text);
@@ -287,7 +293,7 @@ button.send-btn svg {
 
   <div class="bottombar">
     <button class="menu-btn" onclick="openSheet()" aria-label="Menu">☰ Menu</button>
-    <textarea id="chatInput" rows="1" placeholder="Message" onkeydown="onKey(event)"></textarea>
+    <input type="text" id="chatInput" rows="1" placeholder="Message" onkeydown="onKey(event)">
     <button class="send-btn" onclick="send()" aria-label="Send"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M11.25,7.37L6.08,12.54q-0.22,0.22-0.52,0.22T5.03,12.53Q4.81,12.29 4.8,12t0.22-0.53l6.34-6.34q0.14-0.14 0.3-0.2T12,4.88t0.34,0.06t0.3,0.2l6.34,6.34q0.21,0.21 0.21,0.51t-0.21,0.54q-0.23,0.23-0.53,0.23T17.9,12.53L12.75,7.37V18.75q0,0.32-0.22,0.53T12,19.5t-0.53-0.22t-0.22-0.53V7.37Z"/></svg></button>
   </div>
 
@@ -758,7 +764,7 @@ function sendText(t){ bubble(t); handle(t.trim().toLowerCase(), t.trim()); }
 function send(){
   const inp = $("chatInput"), t = inp.value.trim();
   if(!t) return;
-  inp.value = ""; inp.style.height = "auto";
+  inp.value = "";
   sendText(t);
 }
 function handle(low, orig){
