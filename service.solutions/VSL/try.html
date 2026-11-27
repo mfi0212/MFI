@@ -99,7 +99,7 @@ button.back {
     align-items: center;
     padding: 10px;
     justify-content: space-between;
-    width: 100%;
+    width: 100%;background: linear-gradient(180deg, #000000, transparent);
     }
     .menu-btn{
         height: 40px;
@@ -165,20 +165,24 @@ button.back {
       background:var(--bg);font-size:.88rem;text-decoration:none;
     }
     .msg .site-link:active{opacity:.7}
-
-    .bottombar{
-         position: absolute;
+.lin-bg-adder {
+    background: linear-gradient(0deg, #000000, transparent);
+    width: 100%;
+    position: fixed;
     bottom: 0;
-    z-index: 20;
-    padding: 8px 10px;
-    padding-bottom: max(8px, env(safe-area-inset-bottom));
+    transform: translate(-50%, 0);
+    left: 50%;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+    .bottombar{
+         display: flex;
     align-items: center;
     gap: 8px;
     width: 85%;
-    transform: translate(-50%, 0);
-    left: 50%;
-    justify-content: center;
+    justify-content: space-between;
     }
     #chatInput{
       padding: 5px 10px;
@@ -298,10 +302,12 @@ button.send-btn svg {
 
   <div id="messages"></div>
 
-  <div class="bottombar">
+  <div class="lin-bg-adder">
+    <div class="bottombar">
     <button class="menu-btn" onclick="openSheet()" aria-label="Menu">☰ Menu</button>
     <input type="text" id="chatInput" rows="1" placeholder="Message" onkeydown="onKey(event)">
     <button class="send-btn" onclick="send()" aria-label="Send"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M11.25,7.37L6.08,12.54q-0.22,0.22-0.52,0.22T5.03,12.53Q4.81,12.29 4.8,12t0.22-0.53l6.34-6.34q0.14-0.14 0.3-0.2T12,4.88t0.34,0.06t0.3,0.2l6.34,6.34q0.21,0.21 0.21,0.51t-0.21,0.54q-0.23,0.23-0.53,0.23T17.9,12.53L12.75,7.37V18.75q0,0.32-0.22,0.53T12,19.5t-0.53-0.22t-0.22-0.53V7.37Z"/></svg></button>
+  </div>
   </div>
 
   <div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
