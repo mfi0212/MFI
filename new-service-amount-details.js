@@ -1,4 +1,4 @@
-// document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('contextmenu', e => e.preventDefault());
     const users = {
       "Deepak Tallapudi": {
         password: "Deepak@1",
