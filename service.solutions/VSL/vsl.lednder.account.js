@@ -1,4 +1,4 @@
-document.addEventListener("contextmenu", event => event.preventDefault());
+// document.addEventListener("contextmenu", event => event.preventDefault());
 const USERS = [
   {
     id: "psvkry",
@@ -23,25 +23,48 @@ const USERS = [
         amount: 100000,
         interest: 2.2,
         takenDate: "2026-10-23",
-        interestPaid: 2000
+        interestPaid: 2245
       },
-      {
-        borrowedBy: "China Yerra",
-        amount: 245,
-        interest: 5,
-        takenDate: "2026-11-23",
-        interestPaid: 0
-      }
     ]
   },
-  {
-    id: "BS Owner",
-    name: "Phanindra Yerra",
-    password: "040212",
-    premium: true,
+    {
+    id: "Kiran Tummala",
+    name: "Kiran Tummala",
+    password: "1234",
+    premium: false,
 
     topBanner: [
+{
+        text: "lend money",
+        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/lender.lending.clients"
+      },
+       {
+        text: "calculator",
+        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/interest.checker"
+      },
+    ],
+
+    entries: [
       {
+        borrowedBy: "Kiran Tummala",
+        amount: 0,
+        interest: 0,
+        takenDate: "",
+        interestPaid: 0
+      },
+    ]
+  },
+   {
+    id: "Tony Montana",
+    name: "Tony Montana",
+    password: "9",
+    premium: true,
+sites: [
+      {
+        text: "New Entry",
+        href: "https://forms.gle/XntQLZXgpZAD8Quw7"
+      },
+{
         text: "STL",
         href: "https://mfi0212.github.io/MFI/1.5.days"
       }, {
@@ -72,33 +95,26 @@ const USERS = [
 
     entries: [
       {
-        borrowedBy: "Psvkry",
-        amount: 35000,
-        interest: 1.5,
-        takenDate: "2026-10-01",
-        interestPaid: 0
-      },
-      {
-        borrowedBy: "Psvkry",
-        amount: 50000,
-        interest: 2.5,
-        takenDate: "2026-10-23",
-        interestPaid: 0
-      },
-      {
-        borrowedBy: "Psvkry",
-        amount: 45000,
-        interest: 2.5,
-        takenDate: "2026-03-23",
-        interestPaid: 0
-      },
-      {
-        borrowedBy: "Psvkry",
-        amount: 20000,
-        interest: 2,
-        takenDate: "2026-06-23",
-        interestPaid: 0
-      }
+            amount: 40000,
+            interest: 2,
+            takenDate: "2026-05-30",
+            borrowedBy: "Pawan naidu",
+            interestPaid: 2800
+          },
+          {
+            amount: 47800,
+            interest: 2,
+            takenDate: "2026-09-12",
+            borrowedBy: "Pawan naidu",
+            interestPaid: 0
+          },
+          {
+            amount: 12200,
+            interest: 2,
+            takenDate: "2026-09-12",
+            borrowedBy: "Pawan naidu",
+            interestPaid: 0
+          }
     ]
-  }
+  },
 ];
