@@ -18,6 +18,8 @@
       --user:#222;
       --user-text:#fff;
       --bar:#fff;
+      --primary:#222;          /* main accent / buttons */
+      --primary-text:#fff;
     }
     body[data-theme="dark"]{
       --bg:#121212;
@@ -25,8 +27,8 @@
       --muted:#999;
       --border:#333;
       --bot:#1e1e1e;
-      --user:#e8e8e8;
-      --user-text:#111;
+      --user:var(--primary);
+      --user-text:var(--primary-text);
       --bar:#1a1a1a;
     }
     html,body{height:100%;font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.45;color:var(--text);background:var(--bg);overflow:hidden}
@@ -47,7 +49,7 @@
     .lock-card h2{font-size:.95rem;text-align:center;margin-bottom:12px;font-weight:500}
     .lock-row{display:flex;gap:8px}
     .lock-input{flex:1;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg)}
-    .lock-btn{padding:10px 16px;background:var(--user);color:var(--user-text);border-radius:8px;font-weight:500}
+    .lock-btn{padding:10px 16px;background:var(--primary);color:var(--primary-text);border-radius:8px;font-weight:500}
     .lock-error{color:#c00;text-align:center;margin-top:8px;font-size:.85rem}
     .lock-hint{text-align:center;font-size:.8rem;color:var(--muted);margin-top:10px;line-height:1.4}
     .faq-q{width:100%;text-align:left;padding:10px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;font-size:.9rem}
@@ -65,7 +67,7 @@
     }
     .menu-btn{width:36px;height:36px;font-size:1.2rem;display:flex;align-items:center;justify-content:center}
     .brand{flex:1;display:flex;align-items:center;gap:8px;min-width:0}
-    .brand img{width:32px;height:32px;border-radius:50%;background:#ccc;flex-shrink:0}
+    .brand img{width:32px;height:32px;border-radius:50%;background:#ccc;flex-shrink:0;object-fit:cover}
     .brand strong{display:block;font-size:.9rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .brand span{font-size:.7rem;color:var(--muted)}
     .report-btn{font-size:.75rem;padding:5px 10px;border:1px solid var(--border);border-radius:6px;color:var(--muted)}
@@ -78,7 +80,7 @@
     }
     .msg{max-width:85%;padding:8px 12px;border-radius:10px;word-break:break-word}
     .msg.bot{align-self:flex-start;background:var(--bot);border:1px solid var(--border)}
-    .msg.user{align-self:flex-end;background:var(--user);color:var(--user-text)}
+    .msg.user{align-self:flex-end;background:var(--primary);color:var(--primary-text)}
     .msg .meta{font-size:.65rem;opacity:.5;margin-top:3px}
     .msg.user .meta{text-align:right}
     .msg .card{margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
@@ -106,7 +108,7 @@
       border-radius:8px;background:var(--bg);border:1px solid var(--border);
       resize:none;line-height:1.3;
     }
-    .send-btn{width:38px;height:38px;border-radius:8px;background:var(--user);color:var(--user-text);font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .send-btn{width:38px;height:38px;border-radius:8px;background:var(--primary);color:var(--primary-text);font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 
     /* Simple menu sheet */
     .sheet-overlay{position:absolute;inset:0;z-index:30;background:rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:opacity .15s}
@@ -131,10 +133,22 @@
     .modal p,.modal li{font-size:.88rem;color:var(--muted);line-height:1.5}
     .modal ul{padding-left:18px;margin:8px 0}
     .modal .close{float:right;font-size:1.1rem;color:var(--muted);padding:2px 6px}
-    .modal .btn{display:block;width:100%;margin-top:12px;padding:10px;background:var(--user);color:var(--user-text);border-radius:8px;text-align:center;font-weight:500}
+    .modal .btn{display:block;width:100%;margin-top:12px;padding:10px;background:var(--primary);color:var(--primary-text);border-radius:8px;text-align:center;font-weight:500}
     .modal .font-row{display:flex;align-items:center;justify-content:center;gap:16px;margin:12px 0}
     .modal .font-row button{width:36px;height:36px;border:1px solid var(--border);border-radius:8px;font-size:1.1rem}
     .modal input[type=file]{width:100%;margin:10px 0;font-size:.85rem}
+
+    /* Color picker */
+    .color-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0}
+    .color-swatch{
+      width:100%;aspect-ratio:1;border-radius:50%;border:2px solid transparent;
+      cursor:pointer;position:relative;
+    }
+    .color-swatch.active{border-color:var(--text);box-shadow:0 0 0 2px var(--bg)}
+    .color-swatch.active::after{
+      content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      color:#fff;font-size:.9rem;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.5);
+    }
   </style>
 </head>
 <body>
@@ -142,7 +156,7 @@
 <!-- LOGIN -->
 <div id="lockScreen">
   <div class="lock-logo">
-    <img src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="VSL">
+    <img src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="VSL" id="lockLogo">
     <h1>VSL</h1>
     <p>Very Specific Lending</p>
   </div>
@@ -164,7 +178,7 @@
     <button class="faq-q" onclick="toggleFAQ(this)">Why can't I log in? <span>+</span></button>
     <div class="faq-a" hidden>You need an active registered record and the correct password. Contact your coordinator if needed.</div>
     <button class="faq-q" onclick="toggleFAQ(this)">What is Premium+? <span>+</span></button>
-    <div class="faq-a" hidden>Unlocks full details, dark theme, and custom chat background image. Contact coordinator · ₹160/mo or ₹1500/yr.</div>
+    <div class="faq-a" hidden>Unlocks full details, dark theme, custom chat background, main color and profile picture. Contact coordinator · ₹160/mo or ₹1500/yr.</div>
   </div>
   <div class="lock-footer">
     <a href="#" onclick="openModal('termsModal');return false">Terms</a> ·
@@ -178,7 +192,7 @@
   <header class="topbar">
     <button class="menu-btn" onclick="openSheet()" aria-label="Menu">☰</button>
     <div class="brand">
-      <img src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="">
+      <img src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="" id="brandAvatar">
       <div>
         <strong>Very Specific Lending</strong>
         <span id="accountLabel">VSL</span>
@@ -207,6 +221,8 @@
     <button class="sheet-item" onclick="doAction('font')">Font size</button>
     <button class="sheet-item" id="themeItem" onclick="doAction('theme')" hidden>Theme <span class="badge">Premium+</span></button>
     <button class="sheet-item" id="bgItem" onclick="doAction('bg')" hidden>Background image <span class="badge">Premium+</span></button>
+    <button class="sheet-item" id="colorItem" onclick="doAction('color')" hidden>Main color <span class="badge">Premium+</span></button>
+    <button class="sheet-item" id="avatarItem" onclick="doAction('avatar')" hidden>Profile picture <span class="badge">Premium+</span></button>
     <button class="sheet-item" onclick="doAction('premium')">Premium+</button>
     <button class="sheet-item" onclick="doAction('logout')">Logout</button>
   </div>
@@ -217,11 +233,13 @@
   <div class="modal">
     <button class="close" onclick="closeModal('premiumModal')">✕</button>
     <h3>Premium+</h3>
-    <p>Unlocks full account details, dark theme, and custom chat background image.</p>
+    <p>Unlocks full account details, dark theme, custom background, main color and profile picture.</p>
     <ul>
       <li>Borrowed By, Interest Rate, Days Passed</li>
       <li>Dark / Light theme</li>
-      <li>Upload your own background image</li>
+      <li>Custom chat background image</li>
+      <li>Change main color (buttons & bubbles)</li>
+      <li>Custom profile picture</li>
     </ul>
     <p>Monthly ₹160 · Annual ₹1500<br>Contact your coordinator.</p>
     <button class="btn" onclick="closeModal('premiumModal')">OK</button>
@@ -250,6 +268,26 @@
   </div>
 </div>
 
+<div class="modal-bg" id="colorModal">
+  <div class="modal">
+    <button class="close" onclick="closeModal('colorModal')">✕</button>
+    <h3>Main color</h3>
+    <p>Choose the accent color for buttons and your messages.</p>
+    <div class="color-grid" id="colorGrid"></div>
+    <button class="btn" style="background:var(--muted);margin-top:4px" onclick="resetColor()">Reset to default</button>
+  </div>
+</div>
+
+<div class="modal-bg" id="avatarModal">
+  <div class="modal">
+    <button class="close" onclick="closeModal('avatarModal')">✕</button>
+    <h3>Profile picture</h3>
+    <p>Choose an image from your device. Stored only on this browser.</p>
+    <input type="file" id="avatarFile" accept="image/*" onchange="uploadAvatar(this)">
+    <button class="btn" style="background:var(--muted);margin-top:8px" onclick="resetAvatar()">Remove</button>
+  </div>
+</div>
+
 <div class="modal-bg" id="termsModal">
   <div class="modal">
     <button class="close" onclick="closeModal('termsModal')">✕</button>
@@ -263,13 +301,13 @@
   <div class="modal">
     <button class="close" onclick="closeModal('privacyModal')">✕</button>
     <h3>Privacy</h3>
-    <p>Notes, preferences and background image are stored locally in your browser. Nothing is sent to external servers by this page.</p>
+    <p>Notes, preferences, background image, color and profile picture are stored locally in your browser. Nothing is sent to external servers by this page.</p>
     <p style="margin-top:8px"><a href="https://mfi0212.github.io/MFI/privacyandterms#privacy" target="_blank" rel="noopener">Full privacy policy</a></p>
   </div>
 </div>
 
 <script>
-/* Demo users – each user can have different allocated sites */
+/* Demo users */
 const USERS = [
   {
     id: "demo1",
@@ -284,14 +322,8 @@ const USERS = [
       interestPaid: 1200
     }],
     sites: [
-      {
-        text: "lend money",
-        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/lender.lending.clients"
-      },
-      {
-        text: "calculator",
-        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/interest.checker"
-      }
+      { text: "lend money", href: "https://mfi0212.github.io/MFI/service.solutions/VSL/lender.lending.clients" },
+      { text: "calculator", href: "https://mfi0212.github.io/MFI/service.solutions/VSL/interest.checker" }
     ]
   },
   {
@@ -316,25 +348,28 @@ const USERS = [
       }
     ],
     sites: [
-      {
-        text: "lend money",
-        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/lender.lending.clients"
-      },
-      {
-        text: "calculator",
-        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/interest.checker"
-      },
-      {
-        text: "My dashboard",
-        href: "https://mfi0212.github.io/MFI/"
-      }
+      { text: "lend money", href: "https://mfi0212.github.io/MFI/service.solutions/VSL/lender.lending.clients" },
+      { text: "calculator", href: "https://mfi0212.github.io/MFI/service.solutions/VSL/interest.checker" },
+      { text: "My dashboard", href: "https://mfi0212.github.io/MFI/" }
     ]
   }
 ];
 
-const FONT_KEY = "vslChatFont";
-const THEME_KEY = "vslChatTheme_";
-const BG_KEY = "vslChatBg_";
+const FONT_KEY   = "vslChatFont";
+const THEME_KEY  = "vslChatTheme_";
+const BG_KEY     = "vslChatBg_";
+const COLOR_KEY  = "vslChatColor_";
+const AVATAR_KEY = "vslChatAvatar_";
+
+const DEFAULT_AVATAR = "https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png";
+const DEFAULT_COLOR  = "#222222";
+
+const COLOR_PRESETS = [
+  "#222222", "#1a73e8", "#0d9488", "#7c3aed",
+  "#db2777", "#ea580c", "#16a34a", "#b45309",
+  "#dc2626", "#0891b2"
+];
+
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 let user = null;
 let fontSize = 15;
@@ -360,8 +395,29 @@ function toggleFAQ(btn){
   sp.textContent = a.hidden ? "+" : "−";
 }
 
-/* Theme + background image only */
-function applyTheme(t){ document.body.dataset.theme = t === "dark" ? "dark" : "light"; }
+/* ---------- Appearance helpers ---------- */
+function getContrastText(hex){
+  const c = hex.replace("#","");
+  const r = parseInt(c.substr(0,2),16);
+  const g = parseInt(c.substr(2,2),16);
+  const b = parseInt(c.substr(4,2),16);
+  const yiq = (r*299 + g*587 + b*114) / 1000;
+  return yiq >= 140 ? "#111111" : "#ffffff";
+}
+
+function applyPrimaryColor(hex){
+  const color = hex || DEFAULT_COLOR;
+  const text  = getContrastText(color);
+  document.documentElement.style.setProperty("--primary", color);
+  document.documentElement.style.setProperty("--primary-text", text);
+  document.documentElement.style.setProperty("--user", color);
+  document.documentElement.style.setProperty("--user-text", text);
+}
+
+function applyTheme(t){
+  document.body.dataset.theme = t === "dark" ? "dark" : "light";
+}
+
 function toggleTheme(){
   if(!isPrem(user)) return;
   const next = document.body.dataset.theme === "dark" ? "light" : "dark";
@@ -369,6 +425,7 @@ function toggleTheme(){
   try{ localStorage.setItem(THEME_KEY + user.id, next); }catch{}
   reply("Theme: <b>" + (next === "dark" ? "Dark" : "Light") + "</b>");
 }
+
 function uploadBg(input){
   if(!isPrem(user) || !input.files || !input.files[0]) return;
   const f = input.files[0];
@@ -390,15 +447,85 @@ function resetBg(){
   reply("Background removed.");
   closeModal("bgModal");
 }
+
+/* Color */
+function setColor(hex){
+  if(!isPrem(user)) return;
+  applyPrimaryColor(hex);
+  try{ localStorage.setItem(COLOR_KEY + user.id, hex); }catch{}
+  // update active swatch
+  document.querySelectorAll(".color-swatch").forEach(el => {
+    el.classList.toggle("active", el.dataset.color === hex);
+  });
+  reply("Main color updated.");
+  closeModal("colorModal");
+}
+function resetColor(){
+  if(!user) return;
+  applyPrimaryColor(DEFAULT_COLOR);
+  try{ localStorage.removeItem(COLOR_KEY + user.id); }catch{}
+  document.querySelectorAll(".color-swatch").forEach(el => {
+    el.classList.toggle("active", el.dataset.color === DEFAULT_COLOR);
+  });
+  reply("Color reset to default.");
+  closeModal("colorModal");
+}
+function buildColorGrid(){
+  const grid = $("colorGrid");
+  grid.innerHTML = "";
+  COLOR_PRESETS.forEach(c => {
+    const btn = document.createElement("button");
+    btn.className = "color-swatch";
+    btn.dataset.color = c;
+    btn.style.background = c;
+    btn.onclick = () => setColor(c);
+    grid.appendChild(btn);
+  });
+}
+
+/* Avatar / Profile picture */
+function applyAvatar(src){
+  const url = src || DEFAULT_AVATAR;
+  $("brandAvatar").src = url;
+  // also update lock screen logo if desired (optional)
+  // $("lockLogo").src = url;
+}
+function uploadAvatar(input){
+  if(!isPrem(user) || !input.files || !input.files[0]) return;
+  const f = input.files[0];
+  if(f.size > 2 * 1024 * 1024){ reply("Image too large (max 2 MB)."); return; }
+  const r = new FileReader();
+  r.onload = () => {
+    const data = r.result;
+    applyAvatar(data);
+    try{ localStorage.setItem(AVATAR_KEY + user.id, data); }catch{ reply("Could not save (storage full)."); }
+    reply("Profile picture updated.");
+    closeModal("avatarModal");
+  };
+  r.readAsDataURL(f);
+}
+function resetAvatar(){
+  if(!user) return;
+  applyAvatar(DEFAULT_AVATAR);
+  try{ localStorage.removeItem(AVATAR_KEY + user.id); }catch{}
+  reply("Profile picture removed.");
+  closeModal("avatarModal");
+}
+
+/* Load all appearance settings for current user */
 function loadAppearance(){
   if(!user) return;
-  let t = "light", bg = null;
+  let t = "light", bg = null, color = DEFAULT_COLOR, avatar = null;
   try{
-    t = localStorage.getItem(THEME_KEY + user.id) || "light";
-    bg = localStorage.getItem(BG_KEY + user.id);
+    t      = localStorage.getItem(THEME_KEY  + user.id) || "light";
+    bg     = localStorage.getItem(BG_KEY     + user.id);
+    color  = localStorage.getItem(COLOR_KEY  + user.id) || DEFAULT_COLOR;
+    avatar = localStorage.getItem(AVATAR_KEY + user.id);
   }catch{}
   applyTheme(t);
+  applyPrimaryColor(color);
   $("messages").style.backgroundImage = bg ? "url(" + bg + ")" : "";
+  applyAvatar(avatar);
 }
 
 /* Font */
@@ -424,13 +551,19 @@ function login(u){
   $("lockScreen").hidden = true;
   $("chatApp").hidden = false;
   $("accountLabel").textContent = u.name;
+
   const p = isPrem(u);
-  $("themeItem").hidden = !p;
-  $("bgItem").hidden = !p;
+  $("themeItem").hidden  = !p;
+  $("bgItem").hidden     = !p;
+  $("colorItem").hidden  = !p;
+  $("avatarItem").hidden = !p;
+
   const fs = parseInt(localStorage.getItem(FONT_KEY), 10);
   if(fs >= 13 && fs <= 20) fontSize = fs;
   applyFont();
   loadAppearance();
+  buildColorGrid();
+
   $("messages").innerHTML = "";
   reply("Hi <b>" + esc(u.name) + "</b>." + (p ? " Premium+ active." : "") + "<br>Type <b>details</b>, <b>total</b> or <b>sites</b>, or open the menu.", [
     {t:"Details", fn: showDetails},
@@ -446,10 +579,12 @@ function logout(){
   $("messages").innerHTML = "";
   $("messages").style.backgroundImage = "";
   applyTheme("light");
+  applyPrimaryColor(DEFAULT_COLOR);
+  applyAvatar(DEFAULT_AVATAR);
   closeSheet();
 }
 
-/* Chat */
+/* Chat helpers */
 function add(html, who){
   const d = document.createElement("div");
   d.className = "msg " + who;
@@ -541,10 +676,8 @@ function showFAQ(){
   reply("<b>FAQ</b><br><br>" +
     "<b>What is VSL?</b><br>Service from BS&amp;MFI for verified accounts to view borrows/lends and notes.<br><br>" +
     "<b>Login issues?</b><br>Need active record + correct password. Contact coordinator.<br><br>" +
-    "<b>Premium+?</b><br>Full details, theme, background image. ₹160/mo or ₹1500/yr.");
+    "<b>Premium+?</b><br>Full details, theme, background, main color & profile picture. ₹160/mo or ₹1500/yr.");
 }
-
-/* Allocated sites – per user */
 function showSites(){
   if(!user) return;
   const sites = Array.isArray(user.sites) ? user.sites : [];
@@ -561,6 +694,7 @@ function showSites(){
   reply(h);
 }
 
+/* UI controls */
 function openSheet(){ $("sheet").classList.add("open"); $("sheetOverlay").classList.add("open"); }
 function closeSheet(){ $("sheet").classList.remove("open"); $("sheetOverlay").classList.remove("open"); }
 function openModal(id){ $(id).classList.add("open"); }
@@ -579,6 +713,8 @@ function doAction(a){
   else if(a === "font") openModal("fontModal");
   else if(a === "theme"){ if(isPrem(user)) toggleTheme(); else openModal("premiumModal"); }
   else if(a === "bg"){ if(isPrem(user)) openModal("bgModal"); else openModal("premiumModal"); }
+  else if(a === "color"){ if(isPrem(user)) openModal("colorModal"); else openModal("premiumModal"); }
+  else if(a === "avatar"){ if(isPrem(user)) openModal("avatarModal"); else openModal("premiumModal"); }
   else if(a === "premium") openModal("premiumModal");
   else if(a === "logout") logout();
 }
@@ -600,6 +736,8 @@ function handle(low, orig){
   else if(low === "faq" || low === "help") showFAQ();
   else if(low === "premium" || low.includes("upgrade")) openModal("premiumModal");
   else if(low === "theme"){ if(isPrem(user)) toggleTheme(); else openModal("premiumModal"); }
+  else if(low === "color" || low === "main color"){ if(isPrem(user)) openModal("colorModal"); else openModal("premiumModal"); }
+  else if(low === "avatar" || low === "profile" || low === "profile picture"){ if(isPrem(user)) openModal("avatarModal"); else openModal("premiumModal"); }
   else if(low === "report") openReport();
   else if(low === "logout") logout();
   else reply("Try <b>details</b>, <b>total</b>, <b>sites</b>, <b>notes</b>, <b>faq</b> or the menu.", [
@@ -614,17 +752,18 @@ $("chatInput").addEventListener("input", function(){
   this.style.height = Math.min(this.scrollHeight, 90) + "px";
 });
 
-["premiumModal","fontModal","bgModal","termsModal","privacyModal"].forEach(id => {
+["premiumModal","fontModal","bgModal","colorModal","avatarModal","termsModal","privacyModal"].forEach(id => {
   $(id).addEventListener("click", e => { if(e.target.id === id) closeModal(id); });
 });
 document.addEventListener("keydown", e => {
   if(e.key === "Escape"){
     closeSheet();
-    ["premiumModal","fontModal","bgModal","termsModal","privacyModal"].forEach(closeModal);
+    ["premiumModal","fontModal","bgModal","colorModal","avatarModal","termsModal","privacyModal"].forEach(closeModal);
   }
 });
 
 applyTheme("light");
+applyPrimaryColor(DEFAULT_COLOR);
 </script>
 </body>
 </html>
