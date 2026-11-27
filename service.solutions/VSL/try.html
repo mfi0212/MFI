@@ -2,1102 +2,586 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#0800f0">
-  <title>VSL Chat – Very Specific Lending</title>
+  <title>VSL Chat</title>
   <link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png">
   <style>
     *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
     [hidden]{display:none!important}
     :root{
-      color-scheme:light;
-      --bg:#f4f6fb;
-      --chat-bg:#ffffff;
+      --bg:#e8ecf4;
       --text:#111;
-      --muted:#666;
-      --border:#00000022;
+      --muted:#6b7280;
+      --border:rgba(0,0,0,.08);
       --accent:#0800f0;
-      --bot-bubble:#f0f2ff;
-      --user-bubble:var(--accent);
+      --bot:#fff;
+      --user:var(--accent);
       --user-text:#fff;
-      --header-bg:#fff;
-      --input-bg:#fff;
-      --menu-bg:#fff;
-      --shadow:0 4px 20px rgba(0,0,0,.08);
+      --bar:#ffffffee;
+      --shadow:0 2px 12px rgba(0,0,0,.1);
     }
     body[data-theme="amoled"]{
-      color-scheme:dark;
-      --bg:#0a0a0c;
-      --chat-bg:#121214;
-      --text:#f2f2f2;
-      --muted:#aaa;
-      --border:#ffffff22;
-      --bot-bubble:#1c1c22;
-      --user-bubble:var(--accent);
+      --bg:#0c0c0e;
+      --text:#eee;
+      --muted:#999;
+      --border:rgba(255,255,255,.1);
+      --bot:#1a1a1e;
+      --user:var(--accent);
       --user-text:#fff;
-      --header-bg:#0e0e12;
-      --input-bg:#16161a;
-      --menu-bg:#16161a;
-      --shadow:0 4px 24px rgba(0,0,0,.45);
+      --bar:#141416ee;
+      --shadow:0 2px 16px rgba(0,0,0,.4);
     }
-    html,body{height:100%;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.45;color:var(--text);background:var(--bg);transition:background .2s,color .2s}
-    button,input,textarea{font:inherit;border:none;outline:none}
+    html,body{height:100%;font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.4;color:var(--text);background:var(--bg);overflow:hidden}
+    button,input,textarea{font:inherit;border:none;outline:none;background:none;color:inherit}
     button{cursor:pointer}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
+    a{color:var(--accent)}
 
-    /* ===== LOCK / LOGIN SCREEN ===== */
+    /* ===== LOGIN ===== */
     #lockScreen{
-      min-height:100%;
-      max-width:480px;
-      margin:0 auto;
-      padding:28px 18px 40px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      gap:18px;
+      height:100%;max-width:420px;margin:0 auto;padding:24px 16px;
+      display:flex;flex-direction:column;justify-content:center;gap:16px;overflow-y:auto;
     }
-    .lock-logo{
-      text-align:center;
-      margin-bottom:8px;
-    }
-    .lock-logo img{
-      width:110px;height:110px;border-radius:50%;
-      background:var(--accent);object-fit:cover;
-      box-shadow:0 8px 28px color-mix(in srgb,var(--accent) 35%,transparent);
-    }
-    .lock-logo h1{font-size:1.9rem;margin-top:12px;letter-spacing:-.02em}
-    .lock-logo p{opacity:.7;font-size:.9rem;margin-top:2px}
-    .lock-card{
-      background:var(--chat-bg);
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:22px 18px;
-      box-shadow:var(--shadow);
-    }
-    .lock-card h2{font-size:1.15rem;margin-bottom:14px;text-align:center}
+    .lock-logo{text-align:center}
+    .lock-logo img{width:88px;height:88px;border-radius:50%;background:var(--accent);object-fit:cover}
+    .lock-logo h1{font-size:1.6rem;margin-top:10px}
+    .lock-logo p{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .lock-card{background:var(--bot);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+    .lock-card h2{font-size:1rem;text-align:center;margin-bottom:12px;font-weight:600}
     .lock-row{display:flex;gap:8px}
-    .lock-input{
-      flex:1;padding:12px 14px;border:1.5px solid var(--accent);
-      border-radius:12px;background:var(--input-bg);color:var(--text);
-    }
-    .lock-btn{
-      padding:12px 18px;background:var(--accent);color:#fff;
-      border-radius:12px;font-weight:600;white-space:nowrap;
-    }
-    .lock-error{color:#e11;text-align:center;margin-top:10px;font-size:.9rem}
-    .lock-hint{text-align:center;font-size:.85rem;color:var(--muted);margin-top:12px;line-height:1.5}
-    .lock-hint a{color:#e11;font-weight:700}
+    .lock-input{flex:1;padding:11px 12px;border:1.5px solid var(--accent);border-radius:12px;background:var(--bg)}
+    .lock-btn{padding:11px 16px;background:var(--accent);color:#fff;border-radius:12px;font-weight:600}
+    .lock-error{color:#e11;text-align:center;margin-top:8px;font-size:.85rem}
+    .lock-hint{text-align:center;font-size:.8rem;color:var(--muted);margin-top:10px;line-height:1.45}
+    .lock-hint a{color:#e11;font-weight:600}
+    .faq-q{width:100%;text-align:left;padding:10px 12px;background:rgba(8,0,240,.06);border-radius:10px;margin-top:8px;display:flex;justify-content:space-between;font-weight:500;font-size:.9rem}
+    .faq-a{padding:8px 4px 2px;font-size:.85rem;color:var(--muted);line-height:1.5}
+    .lock-footer{text-align:center;font-size:.75rem;color:var(--muted)}
 
-    /* FAQ accordion on login */
-    .login-faq{margin-top:8px}
-    .login-faq-title{font-size:1rem;color:var(--accent);margin-bottom:10px}
-    .faq-item{margin-bottom:8px}
-    .faq-question{
-      width:100%;text-align:left;padding:11px 14px;
-      background:color-mix(in srgb,var(--accent) 8%,transparent);
-      border-radius:10px;display:flex;justify-content:space-between;align-items:center;
-      color:var(--text);font-weight:500;
-    }
-    .faq-icon{color:var(--accent);font-size:1.2rem;font-weight:700}
-    .faq-answer{padding:10px 12px 4px;color:var(--muted);font-size:.9rem;line-height:1.55}
+    /* ===== CHAT ===== */
+    #chatApp{height:100%;max-width:720px;margin:0 auto;position:relative;display:flex;flex-direction:column}
 
-    /* ===== CHAT APP ===== */
-    #chatApp{height:100%;display:flex;flex-direction:column;max-width:720px;margin:0 auto;background:var(--chat-bg);box-shadow:var(--shadow)}
-
-    /* Top bar */
+    /* Floating top bar */
     .topbar{
+      position:absolute;top:0;left:0;right:0;z-index:20;
       display:flex;align-items:center;gap:10px;
-      padding:10px 12px;background:var(--header-bg);
-      border-bottom:1px solid var(--border);position:relative;z-index:40;
+      padding:10px 12px;padding-top:max(10px,env(safe-area-inset-top));
+      background:var(--bar);backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);box-shadow:var(--shadow);
     }
-    .menu-btn{
-      width:40px;height:40px;border-radius:10px;background:transparent;
-      display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--text);
-    }
-    .menu-btn:hover{background:color-mix(in srgb,var(--accent) 12%,transparent)}
-    .brand{
-      flex:1;display:flex;align-items:center;gap:10px;min-width:0;
-    }
-    .brand img{width:36px;height:36px;border-radius:50%;background:var(--accent);flex-shrink:0}
-    .brand-text{min-width:0}
-    .brand-text strong{display:block;font-size:.95rem;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .brand-text span{font-size:.75rem;opacity:.7}
-    .report-btn{
-      padding:8px 12px;background:transparent;color:#e11;border:1px solid #e11;
-      border-radius:10px;font-size:.8rem;font-weight:600;white-space:nowrap;
-    }
-    .report-btn:hover{background:#e11;color:#fff}
+    .menu-btn{width:38px;height:38px;border-radius:50%;font-size:1.25rem;display:flex;align-items:center;justify-content:center;color:var(--text)}
+    .menu-btn:active{background:rgba(0,0,0,.06)}
+    .brand{flex:1;display:flex;align-items:center;gap:8px;min-width:0}
+    .brand img{width:34px;height:34px;border-radius:50%;background:var(--accent);flex-shrink:0}
+    .brand strong{display:block;font-size:.92rem;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brand span{font-size:.72rem;color:var(--muted)}
+    .report-btn{font-size:.78rem;font-weight:600;color:#e11;padding:6px 10px;border:1px solid #e11;border-radius:20px;white-space:nowrap}
+    .report-btn:active{background:#e11;color:#fff}
 
-    /* Slide-out menu */
-    .menu-overlay{
-      position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:50;
-      opacity:0;pointer-events:none;transition:opacity .2s;
-    }
-    .menu-overlay.open{opacity:1;pointer-events:auto}
-    .side-menu{
-      position:fixed;top:0;left:0;bottom:0;width:min(300px,86vw);
-      background:var(--menu-bg);z-index:60;transform:translateX(-105%);
-      transition:transform .25s ease;display:flex;flex-direction:column;
-      border-right:1px solid var(--border);box-shadow:var(--shadow);
-    }
-    .side-menu.open{transform:translateX(0)}
-    .menu-header{
-      padding:16px;display:flex;align-items:center;justify-content:space-between;
-      border-bottom:1px solid var(--border);
-    }
-    .menu-header h3{font-size:1.05rem}
-    .menu-close{width:36px;height:36px;border-radius:8px;background:transparent;color:#e11;font-size:1.2rem}
-    .menu-list{flex:1;overflow-y:auto;padding:10px 0}
-    .menu-item{
-      width:100%;text-align:left;padding:13px 18px;background:transparent;
-      color:var(--text);display:flex;align-items:center;gap:12px;font-size:.95rem;
-    }
-    .menu-item:hover,.menu-item:focus{background:color-mix(in srgb,var(--accent) 10%,transparent)}
-    .menu-item .icon{width:22px;text-align:center;opacity:.85}
-    .menu-divider{height:1px;background:var(--border);margin:8px 14px}
-    .menu-footer{padding:12px 16px;border-top:1px solid var(--border);font-size:.8rem;color:var(--muted)}
-    .premium-badge{
-      font-size:.7rem;background:var(--accent);color:#fff;padding:2px 7px;
-      border-radius:20px;margin-left:auto;
-    }
-
-    /* Account strip */
-    .account-strip{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:8px 14px;background:color-mix(in srgb,var(--accent) 8%,transparent);
-      border-bottom:1px solid var(--border);font-size:.85rem;
-    }
-    .account-strip strong{font-weight:600}
-    .logout-btn{padding:5px 10px;background:#e11;color:#fff;border-radius:8px;font-size:.8rem}
-
-    /* Chat messages area */
+    /* Messages */
     #messages{
-      flex:1;overflow-y:auto;padding:16px 14px 20px;
-      display:flex;flex-direction:column;gap:12px;
+      flex:1;overflow-y:auto;padding:72px 12px 90px;
+      display:flex;flex-direction:column;gap:8px;
       background:var(--bg);
-      /* premium custom background applied via inline style */
+      background-size:cover;background-position:center;
     }
-    .msg{
-      max-width:88%;padding:11px 14px;border-radius:16px;line-height:1.45;
-      word-break:break-word;position:relative;animation:fadeIn .25s ease;
-    }
-    @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-    .msg.bot{
-      align-self:flex-start;background:var(--bot-bubble);color:var(--text);
-      border-bottom-left-radius:5px;
-    }
-    .msg.user{
-      align-self:flex-end;background:var(--user-bubble);color:var(--user-text);
-      border-bottom-right-radius:5px;
-    }
-    .msg .meta{font-size:.72rem;opacity:.65;margin-top:5px}
-    .msg.bot .meta{text-align:left}
+    .msg{max-width:82%;padding:9px 12px;border-radius:14px;word-break:break-word;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+    .msg.bot{align-self:flex-start;background:var(--bot);border-bottom-left-radius:4px}
+    .msg.user{align-self:flex-end;background:var(--user);color:var(--user-text);border-bottom-right-radius:4px}
+    .msg .meta{font-size:.68rem;opacity:.55;margin-top:3px}
     .msg.user .meta{text-align:right}
-    .msg table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.9rem}
-    .msg th,.msg td{padding:6px 8px;border:1px solid var(--border);text-align:left}
-    .msg th{background:color-mix(in srgb,var(--accent) 12%,transparent)}
-    .msg .detail-card{
-      background:color-mix(in srgb,var(--accent) 6%,transparent);
-      border:1px solid var(--border);border-radius:12px;padding:12px;margin:6px 0;
-    }
-    .msg .detail-row{display:flex;justify-content:space-between;gap:10px;padding:5px 0;font-size:.9rem}
-    .msg .detail-row .label{opacity:.7}
-    .msg .detail-row .value{font-weight:600;text-align:right}
-    .msg .total-highlight{
-      background:var(--accent);color:#fff;padding:10px 12px;border-radius:10px;
-      display:flex;justify-content:space-between;font-weight:700;margin-top:8px;
-    }
-    .msg .quick-replies{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-    .msg .quick-replies button{
-      padding:7px 12px;border-radius:20px;background:var(--chat-bg);
-      border:1px solid var(--accent);color:var(--accent);font-size:.82rem;
-    }
-    .msg .quick-replies button:hover{background:var(--accent);color:#fff}
-    .msg a.btn-link{
-      display:inline-block;margin-top:8px;padding:8px 14px;background:var(--accent);
-      color:#fff;border-radius:10px;font-size:.85rem;font-weight:600;
-    }
-    .system-msg{
-      align-self:center;font-size:.8rem;color:var(--muted);padding:4px 12px;
-      background:color-mix(in srgb,var(--muted) 12%,transparent);border-radius:20px;
-    }
+    .msg .card{background:rgba(0,0,0,.04);border-radius:10px;padding:10px;margin-top:6px}
+    body[data-theme="amoled"] .msg .card{background:rgba(255,255,255,.06)}
+    .msg .row{display:flex;justify-content:space-between;gap:8px;padding:3px 0;font-size:.88rem}
+    .msg .row .l{opacity:.65}
+    .msg .row .v{font-weight:600;text-align:right}
+    .msg .total{background:var(--accent);color:#fff;padding:8px 10px;border-radius:8px;display:flex;justify-content:space-between;font-weight:700;margin-top:6px;font-size:.9rem}
+    .msg .qs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .msg .qs button{padding:6px 11px;border-radius:16px;border:1px solid var(--accent);color:var(--accent);font-size:.8rem;background:var(--bot)}
+    .msg .qs button:active{background:var(--accent);color:#fff}
+    .sys{align-self:center;font-size:.75rem;color:var(--muted);padding:3px 10px;background:rgba(0,0,0,.05);border-radius:12px}
 
-    /* Input area */
-    .input-area{
-      padding:10px 12px 14px;background:var(--header-bg);
-      border-top:1px solid var(--border);display:flex;gap:8px;align-items:flex-end;
+    /* Floating bottom bar */
+    .bottombar{
+      position:absolute;bottom:0;left:0;right:0;z-index:20;
+      padding:8px 10px;padding-bottom:max(8px,env(safe-area-inset-bottom));
+      background:var(--bar);backdrop-filter:blur(12px);
+      border-top:1px solid var(--border);box-shadow:0 -2px 12px rgba(0,0,0,.06);
+      display:flex;align-items:flex-end;gap:8px;
     }
-    .input-wrap{flex:1;position:relative}
+    .attach-btn{width:40px;height:40px;border-radius:50%;font-size:1.3rem;display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0}
+    .attach-btn:active{background:rgba(8,0,240,.1)}
+    .input-wrap{flex:1;min-width:0}
     #chatInput{
-      width:100%;min-height:44px;max-height:120px;padding:12px 14px;
-      border:1.5px solid var(--border);border-radius:14px;
-      background:var(--input-bg);color:var(--text);resize:none;
+      width:100%;min-height:40px;max-height:100px;padding:10px 14px;
+      border-radius:20px;background:var(--bg);border:1px solid var(--border);
+      resize:none;line-height:1.3;
     }
     #chatInput:focus{border-color:var(--accent)}
-    .send-btn{
-      width:48px;height:48px;border-radius:14px;background:var(--accent);
-      color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0;
-    }
-    .send-btn:disabled{opacity:.45;cursor:not-allowed}
+    .send-btn{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;font-size:1.1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .send-btn:disabled{opacity:.4}
 
-    /* Modals (premium, terms, etc.) */
-    .modal-overlay{
-      position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.55);
-      display:flex;align-items:center;justify-content:center;padding:16px;
+    /* Bottom sheet menu (Telegram style) */
+    .sheet-overlay{
+      position:absolute;inset:0;z-index:30;background:rgba(0,0,0,.35);
       opacity:0;pointer-events:none;transition:opacity .2s;
     }
-    .modal-overlay.open{opacity:1;pointer-events:auto}
-    .modal{
-      width:100%;max-width:400px;max-height:85vh;overflow-y:auto;
-      background:var(--chat-bg);color:var(--text);border-radius:16px;
-      border:1px solid var(--border);padding:18px;box-shadow:var(--shadow);
+    .sheet-overlay.open{opacity:1;pointer-events:auto}
+    .sheet{
+      position:absolute;left:0;right:0;bottom:0;z-index:40;
+      background:var(--bot);border-radius:16px 16px 0 0;
+      transform:translateY(105%);transition:transform .25s ease;
+      max-height:70%;overflow-y:auto;padding-bottom:env(safe-area-inset-bottom);
+      box-shadow:0 -4px 24px rgba(0,0,0,.15);
     }
-    .modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-    .modal-header h3{color:var(--accent);font-size:1.15rem}
-    .modal-close{background:transparent;color:#e11;font-size:1.2rem;width:32px;height:32px}
-    .modal ul{padding-left:18px;line-height:1.7;margin:10px 0}
-    .modal .price-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer}
-    .modal .price-row:hover{color:var(--accent)}
-    .color-picker-row{display:flex;align-items:center;gap:12px;margin:12px 0}
-    .color-picker-row input[type=color]{width:48px;height:48px;border:none;background:none;cursor:pointer}
-
-    /* Font size controls inside menu */
-    .font-controls{display:flex;align-items:center;gap:8px;padding:4px 18px 12px}
-    .font-controls button{width:34px;height:34px;border-radius:8px;background:var(--accent);color:#fff}
-    .font-controls span{min-width:28px;text-align:center}
-
-    @media(max-width:480px){
-      .brand-text strong{font-size:.88rem}
-      .msg{max-width:92%}
+    .sheet.open{transform:translateY(0)}
+    .sheet-handle{width:36px;height:4px;background:var(--muted);border-radius:2px;margin:10px auto 6px;opacity:.4}
+    .sheet-title{text-align:center;font-weight:600;font-size:.95rem;padding:4px 16px 10px;border-bottom:1px solid var(--border)}
+    .sheet-item{
+      width:100%;text-align:left;padding:13px 18px;display:flex;align-items:center;gap:12px;
+      font-size:.93rem;border-bottom:1px solid var(--border);
     }
+    .sheet-item:active{background:rgba(0,0,0,.04)}
+    .sheet-item .ic{width:22px;text-align:center;opacity:.8}
+    .sheet-item .badge{margin-left:auto;font-size:.68rem;background:var(--accent);color:#fff;padding:2px 7px;border-radius:10px}
+    .sheet-section{padding:8px 18px 4px;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+
+    /* Simple modals */
+    .modal-bg{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+    .modal-bg.open{opacity:1;pointer-events:auto}
+    .modal{width:100%;max-width:420px;max-height:80vh;overflow-y:auto;background:var(--bot);border-radius:16px 16px 0 0;padding:16px;padding-bottom:max(16px,env(safe-area-inset-bottom))}
+    .modal h3{font-size:1.05rem;margin-bottom:10px;color:var(--accent)}
+    .modal p,.modal li{font-size:.88rem;line-height:1.5;color:var(--muted)}
+    .modal ul{padding-left:16px;margin:8px 0}
+    .modal .close{float:right;font-size:1.2rem;color:#e11;width:28px;height:28px}
+    .modal .btn{display:block;width:100%;padding:11px;background:var(--accent);color:#fff;border-radius:12px;text-align:center;font-weight:600;margin-top:12px}
+    .color-row{display:flex;align-items:center;gap:12px;margin:12px 0}
+    .color-row input[type=color]{width:44px;height:44px;border:none;background:none;cursor:pointer}
+    .upload-row{margin:12px 0}
+    .upload-row input[type=file]{font-size:.85rem}
+    .font-row{display:flex;align-items:center;gap:10px;margin:10px 0}
+    .font-row button{width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;font-size:1.1rem}
+    .font-row span{min-width:28px;text-align:center;font-weight:600}
   </style>
 </head>
 <body>
-  <!-- ========== LOGIN SCREEN ========== -->
-  <div id="lockScreen">
-    <div class="lock-logo">
-      <img src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="VSL Logo">
-      <h1>VSL</h1>
-      <p>Very Specific Lending · Powered by BS&amp;MFI</p>
-    </div>
 
-    <div class="lock-card">
-      <h2>Login with your verified account password</h2>
-      <div class="lock-row">
-        <input type="password" id="passwordInput" class="lock-input" placeholder="Enter password" autocomplete="current-password" onkeydown="if(event.key==='Enter')checkPassword()">
-        <button class="lock-btn" onclick="checkPassword()">Login</button>
-      </div>
-      <p id="lockError" class="lock-error" hidden>Wrong password. Try again.</p>
-      <div class="lock-hint">
-        If you can't log in, you don't have any active borrows or lends.
-        Facing issues? <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form" target="_blank" rel="noopener">Issue form</a>
-      </div>
-    </div>
-
-    <div class="login-faq">
-      <h3 class="login-faq-title">Frequently Asked Questions</h3>
-      <div id="faqList">
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">What is VSL? <span class="faq-icon">+</span></button>
-          <div class="faq-answer" hidden>VSL is a service from BS&amp;MFI that helps verified account holders view their borrowing and lending records, track interest and maintain personal notes.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">Why can't I log in? <span class="faq-icon">+</span></button>
-          <div class="faq-answer" hidden>Make sure you enter the correct account password. You can log in only when you have an active borrowing or lending record registered in VSL. If you believe your record is active, contact your coordinator.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">How can I become a lender / borrower? <span class="faq-icon">+</span></button>
-          <div class="faq-answer" hidden>Your account must be officially verified by a VSL representative. Contact your coordinator. You cannot become an official lender or borrower simply by creating an account.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">What is VSL Premium+? <span class="faq-icon">+</span></button>
-          <div class="faq-answer" hidden>Premium+ unlocks Borrowed By, Interest Rate, Date Borrowed, Days Passed, theme &amp; colour controls, detail popups, and the ability to change the chat background.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" onclick="toggleFAQ(this)">How do I activate Premium+? <span class="faq-icon">+</span></button>
-          <div class="faq-answer" hidden>Contact your coordinator. Monthly ₹160 · Annual ₹1500. Fee is added to your active amount or interest.</div>
-        </div>
-      </div>
-    </div>
-
-    <footer style="text-align:center;font-size:.8rem;color:var(--muted);margin-top:12px">
-      <a href="#" onclick="openTerms();return false">Terms</a> ·
-      <a href="#" onclick="openPrivacy();return false">Privacy</a> ·
-      <a href="https://mfi0212.github.io/MFI/patron.info" target="_blank" rel="noopener">Patron Info</a><br>
-      VSL · All rights reserved · v.03.05.11-chat
-    </footer>
+<!-- LOGIN -->
+<div id="lockScreen">
+  <div class="lock-logo">
+    <img src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="VSL">
+    <h1>VSL</h1>
+    <p>Very Specific Lending</p>
   </div>
-
-  <!-- ========== CHAT APP (hidden until login) ========== -->
-  <div id="chatApp" hidden>
-    <!-- Top bar -->
-    <header class="topbar">
-      <button class="menu-btn" id="menuToggle" title="Open menu" aria-label="Menu">☰</button>
-      <div class="brand">
-        <img src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="VSL">
-        <div class="brand-text">
-          <strong>Very Specific Lending</strong>
-          <span>VSL · BS&amp;MFI</span>
-        </div>
-      </div>
-      <button class="report-btn" onclick="openReport()" title="Report an issue">Report</button>
-    </header>
-
-    <!-- Account strip -->
-    <div class="account-strip">
-      <span>Account: <strong id="loggedInAs">—</strong></span>
-      <button class="logout-btn" onclick="logout()">Logout</button>
+  <div class="lock-card">
+    <h2>Login with verified password</h2>
+    <div class="lock-row">
+      <input type="password" id="passwordInput" class="lock-input" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')checkPassword()">
+      <button class="lock-btn" onclick="checkPassword()">Login</button>
     </div>
-
-    <!-- Messages -->
-    <div id="messages" role="log" aria-live="polite"></div>
-
-    <!-- Input -->
-    <div class="input-area">
-      <div class="input-wrap">
-        <textarea id="chatInput" rows="1" placeholder="Type a message or command…" onkeydown="handleInputKey(event)"></textarea>
-      </div>
-      <button class="send-btn" id="sendBtn" onclick="sendMessage()" title="Send">➤</button>
+    <p id="lockError" class="lock-error" hidden>Wrong password</p>
+    <div class="lock-hint">No active borrow/lend? You can't log in.<br>
+      Issues? <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form" target="_blank" rel="noopener">Report</a>
     </div>
   </div>
+  <div>
+    <button class="faq-q" onclick="toggleFAQ(this)">What is VSL? <span>+</span></button>
+    <div class="faq-a" hidden>VSL helps verified accounts view borrows, lends, interest and notes.</div>
+    <button class="faq-q" onclick="toggleFAQ(this)">Why can't I log in? <span>+</span></button>
+    <div class="faq-a" hidden>You need an active record and the correct password. Contact your coordinator.</div>
+    <button class="faq-q" onclick="toggleFAQ(this)">What is Premium+? <span>+</span></button>
+    <div class="faq-a" hidden>Unlocks full details, theme, colour and custom chat background image.</div>
+  </div>
+  <div class="lock-footer">
+    <a href="#" onclick="openModal('termsModal');return false">Terms</a> ·
+    <a href="#" onclick="openModal('privacyModal');return false">Privacy</a><br>
+    VSL · v.03.05.11
+  </div>
+</div>
 
-  <!-- Side Menu -->
-  <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
-  <nav class="side-menu" id="sideMenu" aria-label="Main menu">
-    <div class="menu-header">
-      <h3>Menu</h3>
-      <button class="menu-close" onclick="closeMenu()">✕</button>
-    </div>
-    <div class="menu-list">
-      <button class="menu-item" onclick="menuAction('details')"><span class="icon">📋</span> My Details</button>
-      <button class="menu-item" onclick="menuAction('total')"><span class="icon">∑</span> Total Summary</button>
-      <button class="menu-item" onclick="menuAction('notes')"><span class="icon">📝</span> Notes</button>
-      <div class="menu-divider"></div>
-      <button class="menu-item" onclick="menuAction('faq')"><span class="icon">❓</span> FAQs</button>
-      <button class="menu-item" onclick="menuAction('terms')"><span class="icon">📄</span> Terms &amp; Conditions</button>
-      <button class="menu-item" onclick="menuAction('privacy')"><span class="icon">🔒</span> Privacy</button>
-      <button class="menu-item" onclick="menuAction('report')"><span class="icon">🚩</span> Report Issue</button>
-      <div class="menu-divider"></div>
-      <button class="menu-item" onclick="menuAction('font')"><span class="icon">🔤</span> Font Size</button>
-      <div class="font-controls" id="fontControls" hidden>
-        <button onclick="changeFontSize(-1)">−</button>
-        <span id="fontSizeLabel">16</span>
-        <button onclick="changeFontSize(1)">+</button>
+<!-- CHAT -->
+<div id="chatApp" hidden>
+  <!-- Floating top -->
+  <header class="topbar">
+    <button class="menu-btn" onclick="openSheet()" title="Menu">☰</button>
+    <div class="brand">
+      <img src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="">
+      <div>
+        <strong>Very Specific Lending</strong>
+        <span id="accountLabel">VSL</span>
       </div>
-      <button class="menu-item" id="themeMenuItem" onclick="menuAction('theme')" hidden>
-        <span class="icon">🌓</span> Theme <span class="premium-badge">Premium+</span>
-      </button>
-      <button class="menu-item" id="colorMenuItem" onclick="menuAction('color')" hidden>
-        <span class="icon">🎨</span> Main Colour <span class="premium-badge">Premium+</span>
-      </button>
-      <button class="menu-item" id="bgMenuItem" onclick="menuAction('bg')" hidden>
-        <span class="icon">🖼️</span> Chat Background <span class="premium-badge">Premium+</span>
-      </button>
-      <button class="menu-item" onclick="menuAction('premium')"><span class="icon">⭐</span> Premium+</button>
-      <div class="menu-divider"></div>
-      <button class="menu-item" onclick="menuAction('logout')"><span class="icon">🚪</span> Logout</button>
     </div>
-    <div class="menu-footer">VSL Chat · v.03.05.11</div>
-  </nav>
+    <button class="report-btn" onclick="openReport()">Report</button>
+  </header>
 
-  <!-- Premium Modal -->
-  <div class="modal-overlay" id="premiumModal">
-    <div class="modal">
-      <div class="modal-header">
-        <h3>VSL Premium+</h3>
-        <button class="modal-close" onclick="closeModal('premiumModal')">✕</button>
-      </div>
-      <p style="margin-bottom:10px">Premium+ gives extra display options and full control over how VSL Chat looks.</p>
-      <ul>
-        <li>Unlock Borrowed By, Interest Rate, Date Borrowed &amp; Days Passed</li>
-        <li>Light / Dark (AMOLED) theme</li>
-        <li>Custom main colour</li>
-        <li><strong>Change chat background colour</strong> (new)</li>
-      </ul>
-      <div class="price-row" onclick="alert('Monthly Premium+ – ₹160. Contact your coordinator.')">
-        <span>Monthly</span><strong>₹160</strong>
-      </div>
-      <div class="price-row" onclick="alert('Annual Premium+ – ₹1500 (₹125/mo). Contact your coordinator.')">
-        <span>Annual</span><strong>₹1500</strong>
-      </div>
-      <p style="margin-top:12px;font-size:.9rem;color:var(--muted)">Contact your coordinator to activate. Fee is added to your active amount or interest.</p>
+  <!-- Messages -->
+  <div id="messages"></div>
+
+  <!-- Floating bottom -->
+  <div class="bottombar">
+    <button class="attach-btn" onclick="openSheet()" title="Menu">＋</button>
+    <div class="input-wrap">
+      <textarea id="chatInput" rows="1" placeholder="Message" onkeydown="onKey(event)"></textarea>
     </div>
+    <button class="send-btn" id="sendBtn" onclick="send()" title="Send">➤</button>
   </div>
 
-  <!-- Colour / Background picker modals -->
-  <div class="modal-overlay" id="colorModal">
-    <div class="modal">
-      <div class="modal-header">
-        <h3>Main Colour</h3>
-        <button class="modal-close" onclick="closeModal('colorModal')">✕</button>
-      </div>
-      <div class="color-picker-row">
-        <input type="color" id="accentPicker" value="#0800f0" onchange="changeMainColor(this.value)">
-        <span>Choose accent colour used for buttons &amp; highlights</span>
-      </div>
-    </div>
+  <!-- Bottom sheet -->
+  <div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
+  <div class="sheet" id="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">Menu</div>
+    <button class="sheet-item" onclick="doAction('details')"><span class="ic">📋</span> My Details</button>
+    <button class="sheet-item" onclick="doAction('total')"><span class="ic">∑</span> Total</button>
+    <button class="sheet-item" onclick="doAction('notes')"><span class="ic">📝</span> Notes</button>
+    <div class="sheet-section">Info</div>
+    <button class="sheet-item" onclick="doAction('faq')"><span class="ic">❓</span> FAQ</button>
+    <button class="sheet-item" onclick="doAction('terms')"><span class="ic">📄</span> Terms</button>
+    <button class="sheet-item" onclick="doAction('report')"><span class="ic">🚩</span> Report</button>
+    <div class="sheet-section">Settings</div>
+    <button class="sheet-item" onclick="doAction('font')"><span class="ic">🔤</span> Font size</button>
+    <button class="sheet-item" id="themeItem" onclick="doAction('theme')" hidden><span class="ic">🌓</span> Theme <span class="badge">Premium+</span></button>
+    <button class="sheet-item" id="colorItem" onclick="doAction('color')" hidden><span class="ic">🎨</span> Colour <span class="badge">Premium+</span></button>
+    <button class="sheet-item" id="bgItem" onclick="doAction('bg')" hidden><span class="ic">🖼️</span> Background image <span class="badge">Premium+</span></button>
+    <button class="sheet-item" onclick="doAction('premium')"><span class="ic">⭐</span> Premium+</button>
+    <button class="sheet-item" onclick="doAction('logout')"><span class="ic">🚪</span> Logout</button>
   </div>
+</div>
 
-  <div class="modal-overlay" id="bgModal">
-    <div class="modal">
-      <div class="modal-header">
-        <h3>Chat Background</h3>
-        <button class="modal-close" onclick="closeModal('bgModal')">✕</button>
-      </div>
-      <div class="color-picker-row">
-        <input type="color" id="bgPicker" value="#f4f6fb" onchange="changeChatBackground(this.value)">
-        <span>Choose background colour for the message area</span>
-      </div>
-      <button class="lock-btn" style="width:100%;margin-top:12px;border-radius:10px" onclick="resetChatBackground()">Reset to default</button>
-    </div>
+<!-- Modals -->
+<div class="modal-bg" id="premiumModal">
+  <div class="modal">
+    <button class="close" onclick="closeModal('premiumModal')">✕</button>
+    <h3>VSL Premium+</h3>
+    <p>Unlock full account details, theme, accent colour and custom chat background image.</p>
+    <ul>
+      <li>Borrowed By, Interest Rate, Days Passed</li>
+      <li>Light / Dark theme</li>
+      <li>Custom accent colour</li>
+      <li>Upload your own chat background</li>
+    </ul>
+    <p style="margin-top:8px">Monthly ₹160 · Annual ₹1500<br>Contact your coordinator to activate.</p>
+    <button class="btn" onclick="closeModal('premiumModal')">OK</button>
   </div>
+</div>
 
-  <!-- Terms / Privacy simple modals -->
-  <div class="modal-overlay" id="termsModal">
-    <div class="modal">
-      <div class="modal-header">
-        <h3>Terms &amp; Conditions</h3>
-        <button class="modal-close" onclick="closeModal('termsModal')">✕</button>
-      </div>
-      <p style="font-size:.9rem;line-height:1.6">
-        VSL (Very Specific Lending) is a service operated by BS&amp;MFI Services.
-        Access is restricted to officially verified account holders with active borrowing or lending records.
-        All information displayed is for personal reference only. Interest calculations follow the formula used by VSL coordinators.
-        Premium+ features are subject to activation and applicable fees.
-        By using this interface you agree to the full Terms available at the official MFI portal.
-      </p>
-      <p style="margin-top:10px"><a href="https://mfi0212.github.io/MFI/privacyandterms#terms" target="_blank" rel="noopener">View full Terms →</a></p>
+<div class="modal-bg" id="fontModal">
+  <div class="modal">
+    <button class="close" onclick="closeModal('fontModal')">✕</button>
+    <h3>Font size</h3>
+    <div class="font-row">
+      <button onclick="changeFont(-1)">−</button>
+      <span id="fontLabel">15</span>
+      <button onclick="changeFont(1)">+</button>
     </div>
   </div>
+</div>
 
-  <div class="modal-overlay" id="privacyModal">
-    <div class="modal">
-      <div class="modal-header">
-        <h3>Privacy</h3>
-        <button class="modal-close" onclick="closeModal('privacyModal')">✕</button>
-      </div>
-      <p style="font-size:.9rem;line-height:1.6">
-        Account data, notes and preferences are stored locally in your browser (localStorage).
-        Passwords are used only for authentication against the verified account list.
-        No personal data is sent to third-party servers by this chat interface.
-        For the complete privacy policy visit the official MFI page.
-      </p>
-      <p style="margin-top:10px"><a href="https://mfi0212.github.io/MFI/privacyandterms#privacy" target="_blank" rel="noopener">View full Privacy Policy →</a></p>
+<div class="modal-bg" id="colorModal">
+  <div class="modal">
+    <button class="close" onclick="closeModal('colorModal')">✕</button>
+    <h3>Accent colour</h3>
+    <div class="color-row">
+      <input type="color" id="accentPicker" value="#0800f0" onchange="setColor(this.value)">
+      <span>Main colour for buttons &amp; highlights</span>
     </div>
   </div>
+</div>
+
+<div class="modal-bg" id="bgModal">
+  <div class="modal">
+    <button class="close" onclick="closeModal('bgModal')">✕</button>
+    <h3>Chat background</h3>
+    <p>Upload an image (saved on this device only).</p>
+    <div class="upload-row">
+      <input type="file" id="bgFile" accept="image/*" onchange="uploadBg(this)">
+    </div>
+    <button class="btn" style="background:#666;margin-top:8px" onclick="resetBg()">Remove background</button>
+  </div>
+</div>
+
+<div class="modal-bg" id="termsModal">
+  <div class="modal">
+    <button class="close" onclick="closeModal('termsModal')">✕</button>
+    <h3>Terms</h3>
+    <p>VSL is operated by BS&amp;MFI. Access is limited to verified accounts with active records. Data shown is for personal reference. Premium+ is subject to activation and fees.</p>
+    <p style="margin-top:8px"><a href="https://mfi0212.github.io/MFI/privacyandterms#terms" target="_blank" rel="noopener">Full terms →</a></p>
+  </div>
+</div>
+
+<div class="modal-bg" id="privacyModal">
+  <div class="modal">
+    <button class="close" onclick="closeModal('privacyModal')">✕</button>
+    <h3>Privacy</h3>
+    <p>Notes, preferences and background image are stored only in your browser. No data is sent to external servers by this chat.</p>
+    <p style="margin-top:8px"><a href="https://mfi0212.github.io/MFI/privacyandterms#privacy" target="_blank" rel="noopener">Full policy →</a></p>
+  </div>
+</div>
 
 <script>
-/* =========================================================
-   SAMPLE USERS  (replace with real data / external JS later)
-   ========================================================= */
 const USERS = [
   {
-    id: "demo1",
-    name: "Demo User (Standard)",
-    password: "demo123",
-    premium: false,
-    topBanner: [{text:"Coordinator contact", href:"#"}],
-    entries: [
-      {
-        borrowedBy: "Ravi Kumar",
-        amount: 50000,
-        interest: 2.5,
-        takenDate: "2025-08-15",
-        interestPaid: 1200
-      }
-    ]
+    id: "demo1", name: "Demo User", password: "1", premium: false,
+    entries: [{ borrowedBy: "Ravi Kumar", amount: 50000, interest: 2.5, takenDate: "2025-08-15", interestPaid: 1200 }]
   },
   {
-    id: "demo2",
-    name: "Premium Member",
-    password: "premium123",
-    premium: true,
-    topBanner: [{text:"Premium support", href:"#"}],
+    id: "demo2", name: "Premium Member", password: "12", premium: true,
     entries: [
-      {
-        borrowedBy: "Anita Sharma",
-        amount: 120000,
-        interest: 2,
-        takenDate: "2025-06-01",
-        interestPaid: 4500
-      },
-      {
-        borrowedBy: "Self",
-        amount: 30000,
-        interest: 1.5,
-        takenDate: "2025-10-10",
-        interestPaid: 0
-      }
+      { borrowedBy: "Anita Sharma", amount: 120000, interest: 2, takenDate: "2025-06-01", interestPaid: 4500 },
+      { borrowedBy: "Self", amount: 30000, interest: 1.5, takenDate: "2025-10-10", interestPaid: 0 }
     ]
   }
 ];
 
-/* =========================================================
-   STATE & STORAGE KEYS
-   ========================================================= */
-const FONT_SIZE_KEY = "vslChatFontSize";
-const NOTES_KEY_PREFIX = "vslChatNotes_";
-const LAST_USER_KEY = "vslChatLastUserId";
-const LAST_PASSWORD_KEY = "vslChatLastPassword";
-const REMEMBER_PASSWORD_KEY = "vslChatRememberPassword";
-const THEME_KEY_PREFIX = "vslChatTheme_";
-const MAIN_COLOR_KEY_PREFIX = "vslChatMainColor_";
-const BG_COLOR_KEY_PREFIX = "vslChatBgColor_";
-const DEFAULT_MAIN_COLOR = "#0800f0";
-const DEFAULT_BG_LIGHT = "#f4f6fb";
-const DEFAULT_BG_AMOLED = "#0a0a0c";
+const FONT_KEY = "vslc_font", THEME_KEY = "vslc_theme_", COLOR_KEY = "vslc_color_", BG_KEY = "vslc_bg_";
+const NOTES_KEY = "vslc_notes_", DEFAULT_COLOR = "#0800f0";
+const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+let user = null, fontSize = 15;
 
-const MIN_FONT = 12, MAX_FONT = 28;
-let currentFontSize = 16;
-let currentUser = null;
-
-const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-
-/* =========================================================
-   HELPERS
-   ========================================================= */
-function isPremiumUser(user){
-  return !!(user && (user.premium === true || String(user.premium).toLowerCase() === "yes"));
-}
-function userStorageKey(prefix){
-  return currentUser ? prefix + currentUser.id : "";
-}
 function $(id){ return document.getElementById(id); }
+function isPrem(u){ return !!(u && (u.premium === true || String(u.premium).toLowerCase() === "yes")); }
+function parseDate(s){ const [y,m,d]=s.split("-").map(Number); return new Date(y,m-1,d); }
+function fmtDate(s){ const d=parseDate(s); return d.getDate()+" "+months[d.getMonth()]+" "+d.getFullYear(); }
+function daysSince(s){ const a=parseDate(s),b=new Date(); a.setHours(0,0,0,0); b.setHours(0,0,0,0); return Math.max(0,Math.floor((b-a)/864e5)); }
+function entryData(e){
+  const days=daysSince(e.takenDate);
+  const ti=Math.round(e.amount*e.interest*days/3000);
+  const rem=Math.max(0,ti-(e.interestPaid||0));
+  return {days,rem,total:e.amount+rem};
+}
+function inr(n){ return "₹"+Number(n).toLocaleString("en-IN"); }
+function esc(t){ return String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
 
-function parseDate(dateString){
-  const [y,m,d] = dateString.split("-").map(Number);
-  return new Date(y, m-1, d);
-}
-function formatDateWithMonth(dateString){
-  const d = parseDate(dateString);
-  return `${d.getDate()} ${monthNames[d.getMonth()]} ${d.getFullYear()}`;
-}
-function getDays(takenDate){
-  const start = parseDate(takenDate);
-  const today = new Date();
-  start.setHours(0,0,0,0); today.setHours(0,0,0,0);
-  return Math.max(0, Math.floor((today - start) / 86400000));
-}
-function getEntryData(entry){
-  const days = getDays(entry.takenDate);
-  const totalInterest = Math.round(entry.amount * entry.interest * days / 3000);
-  const remaining = Math.max(0, totalInterest - (entry.interestPaid || 0));
-  return { days, totalInterest, remaining, total: entry.amount + remaining };
-}
-function formatINR(n){
-  return "₹" + Number(n).toLocaleString("en-IN");
-}
-
-/* =========================================================
-   FAQ TOGGLE
-   ========================================================= */
+/* FAQ */
 function toggleFAQ(btn){
-  const answer = btn.nextElementSibling;
-  const icon = btn.querySelector(".faq-icon");
-  if(!answer || !icon) return;
-  const opening = answer.hidden;
-  answer.hidden = !opening;
-  btn.setAttribute("aria-expanded", String(opening));
-  icon.textContent = opening ? "−" : "+";
+  const a=btn.nextElementSibling, sp=btn.querySelector("span");
+  if(!a) return;
+  a.hidden=!a.hidden;
+  sp.textContent=a.hidden?"+":"−";
 }
 
-/* =========================================================
-   THEME / COLOUR / BACKGROUND
-   ========================================================= */
-function applyMainColor(color){
-  if(!/^#[0-9a-fA-F]{6}$/.test(color)) color = DEFAULT_MAIN_COLOR;
-  document.documentElement.style.setProperty("--accent", color);
-}
-function changeMainColor(color){
-  if(!isPremiumUser(currentUser)) return;
-  applyMainColor(color);
-  try{ localStorage.setItem(MAIN_COLOR_KEY_PREFIX + currentUser.id, color); }catch{}
-}
-function applyTheme(theme){
-  const selected = theme === "amoled" ? "amoled" : "light";
-  document.body.dataset.theme = selected;
-  // update bg picker default if needed
-  const bgKey = BG_COLOR_KEY_PREFIX + (currentUser ? currentUser.id : "");
-  let customBg = null;
-  try{ customBg = localStorage.getItem(bgKey); }catch{}
-  if(!customBg){
-    $("messages").style.background = selected === "amoled" ? DEFAULT_BG_AMOLED : DEFAULT_BG_LIGHT;
-  }
-}
+/* Theme / colour / bg */
+function applyColor(c){ if(!/^#[0-9a-fA-F]{6}$/.test(c)) c=DEFAULT_COLOR; document.documentElement.style.setProperty("--accent",c); }
+function setColor(c){ if(!isPrem(user)) return; applyColor(c); try{localStorage.setItem(COLOR_KEY+user.id,c)}catch{} }
+function applyTheme(t){ document.body.dataset.theme = t==="amoled"?"amoled":"light"; }
 function toggleTheme(){
-  if(!isPremiumUser(currentUser)) return;
-  const next = document.body.dataset.theme === "amoled" ? "light" : "amoled";
+  if(!isPrem(user)) return;
+  const next=document.body.dataset.theme==="amoled"?"light":"amoled";
   applyTheme(next);
-  try{ localStorage.setItem(THEME_KEY_PREFIX + currentUser.id, next); }catch{}
-  botReply(`Theme switched to <strong>${next === "amoled" ? "Dark (AMOLED)" : "Light"}</strong>.`);
+  try{localStorage.setItem(THEME_KEY+user.id,next)}catch{}
+  reply("Theme: <b>"+(next==="amoled"?"Dark":"Light")+"</b>");
 }
-function changeChatBackground(color){
-  if(!isPremiumUser(currentUser)) return;
-  $("messages").style.background = color;
-  try{ localStorage.setItem(BG_COLOR_KEY_PREFIX + currentUser.id, color); }catch{}
-  botReply("Chat background updated.");
+function uploadBg(input){
+  if(!isPrem(user)||!input.files||!input.files[0]) return;
+  const f=input.files[0];
+  if(f.size>4*1024*1024){ reply("Image too large (max 4 MB)."); return; }
+  const r=new FileReader();
+  r.onload=()=>{
+    const data=r.result;
+    $("messages").style.backgroundImage="url("+data+")";
+    try{localStorage.setItem(BG_KEY+user.id,data)}catch{reply("Could not save image (storage full).")}
+    reply("Background updated.");
+    closeModal("bgModal");
+  };
+  r.readAsDataURL(f);
 }
-function resetChatBackground(){
-  if(!isPremiumUser(currentUser)) return;
-  try{ localStorage.removeItem(BG_COLOR_KEY_PREFIX + currentUser.id); }catch{}
-  const theme = document.body.dataset.theme || "light";
-  $("messages").style.background = theme === "amoled" ? DEFAULT_BG_AMOLED : DEFAULT_BG_LIGHT;
-  $("bgPicker").value = theme === "amoled" ? DEFAULT_BG_AMOLED : DEFAULT_BG_LIGHT;
-  botReply("Chat background reset to default.");
+function resetBg(){
+  if(!user) return;
+  $("messages").style.backgroundImage="";
+  try{localStorage.removeItem(BG_KEY+user.id)}catch{}
+  reply("Background removed.");
   closeModal("bgModal");
 }
-
-function loadUserAppearance(){
-  if(!currentUser) return;
-  const uid = currentUser.id;
-  let color = DEFAULT_MAIN_COLOR;
-  let theme = "light";
-  let bg = null;
+function loadAppearance(){
+  if(!user) return;
+  let c=DEFAULT_COLOR, t="light", bg=null;
   try{
-    color = localStorage.getItem(MAIN_COLOR_KEY_PREFIX + uid) || DEFAULT_MAIN_COLOR;
-    theme = localStorage.getItem(THEME_KEY_PREFIX + uid) || "light";
-    bg = localStorage.getItem(BG_COLOR_KEY_PREFIX + uid);
+    c=localStorage.getItem(COLOR_KEY+user.id)||DEFAULT_COLOR;
+    t=localStorage.getItem(THEME_KEY+user.id)||"light";
+    bg=localStorage.getItem(BG_KEY+user.id);
   }catch{}
-  applyMainColor(color);
-  applyTheme(theme);
-  if(bg) $("messages").style.background = bg;
-  $("accentPicker").value = color;
-  $("bgPicker").value = bg || (theme === "amoled" ? DEFAULT_BG_AMOLED : DEFAULT_BG_LIGHT);
+  applyColor(c); applyTheme(t);
+  $("accentPicker").value=c;
+  if(bg) $("messages").style.backgroundImage="url("+bg+")";
+  else $("messages").style.backgroundImage="";
 }
 
-/* =========================================================
-   FONT SIZE
-   ========================================================= */
-function loadFontSize(){
-  const saved = parseInt(localStorage.getItem(FONT_SIZE_KEY), 10);
-  if(!isNaN(saved) && saved >= MIN_FONT && saved <= MAX_FONT) currentFontSize = saved;
-  applyFontSize();
-}
-function applyFontSize(){
-  document.body.style.fontSize = currentFontSize + "px";
-  $("fontSizeLabel").textContent = currentFontSize;
-}
-function changeFontSize(delta){
-  const size = currentFontSize + delta;
-  if(size < MIN_FONT || size > MAX_FONT) return;
-  currentFontSize = size;
-  applyFontSize();
-  try{ localStorage.setItem(FONT_SIZE_KEY, currentFontSize); }catch{}
+/* Font */
+function applyFont(){ document.body.style.fontSize=fontSize+"px"; $("fontLabel").textContent=fontSize; }
+function changeFont(d){
+  const n=fontSize+d;
+  if(n<12||n>22) return;
+  fontSize=n; applyFont();
+  try{localStorage.setItem(FONT_KEY,fontSize)}catch{}
 }
 
-/* =========================================================
-   LOGIN / LOGOUT
-   ========================================================= */
+/* Login */
 function checkPassword(){
-  const input = $("passwordInput");
-  const error = $("lockError");
-  const entered = input.value.trim();
-  const matched = USERS.find(u => u.password === entered);
-  if(!matched){
-    error.hidden = false;
-    input.select();
-    return;
-  }
-  error.hidden = true;
-  try{
-    localStorage.setItem(LAST_USER_KEY, matched.id);
-    localStorage.setItem(LAST_PASSWORD_KEY, entered);
-    localStorage.setItem(REMEMBER_PASSWORD_KEY, "yes");
-  }catch{}
-  loginUser(matched);
+  const v=$("passwordInput").value.trim();
+  const m=USERS.find(u=>u.password===v);
+  if(!m){ $("lockError").hidden=false; $("passwordInput").select(); return; }
+  $("lockError").hidden=true;
+  login(m);
 }
-function loginUser(user){
-  currentUser = user;
-  $("lockScreen").hidden = true;
-  $("chatApp").hidden = false;
-  $("loggedInAs").textContent = user.name;
-
-  // show/hide premium menu items
-  const premium = isPremiumUser(user);
-  $("themeMenuItem").hidden = !premium;
-  $("colorMenuItem").hidden = !premium;
-  $("bgMenuItem").hidden = !premium;
-
-  loadFontSize();
-  loadUserAppearance();
-  clearMessages();
-  welcomeMessage();
-}
-function logout(){
-  currentUser = null;
-  $("chatApp").hidden = true;
-  $("lockScreen").hidden = false;
-  $("passwordInput").value = "";
-  clearMessages();
-  closeMenu();
-  applyMainColor(DEFAULT_MAIN_COLOR);
-  applyTheme("light");
-  $("messages").style.background = "";
-  initLockScreen();
-}
-function initLockScreen(){
-  const input = $("passwordInput");
-  let remembered = "";
-  try{
-    if(localStorage.getItem(REMEMBER_PASSWORD_KEY) === "yes"){
-      remembered = localStorage.getItem(LAST_PASSWORD_KEY) || "";
-    }
-  }catch{}
-  input.value = remembered;
-  $("lockError").hidden = true;
-  setTimeout(() => input.focus(), 120);
-}
-
-/* =========================================================
-   CHAT UI
-   ========================================================= */
-function clearMessages(){
-  $("messages").innerHTML = "";
-}
-function addMessage(html, who = "bot", meta = null){
-  const div = document.createElement("div");
-  div.className = "msg " + who;
-  div.innerHTML = html;
-  if(meta){
-    const m = document.createElement("div");
-    m.className = "meta";
-    m.textContent = meta;
-    div.appendChild(m);
-  }
-  $("messages").appendChild(div);
-  $("messages").scrollTop = $("messages").scrollHeight;
-  return div;
-}
-function botReply(html, quickReplies = null){
-  const time = new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
-  const el = addMessage(html, "bot", time);
-  if(quickReplies && quickReplies.length){
-    const wrap = document.createElement("div");
-    wrap.className = "quick-replies";
-    quickReplies.forEach(q => {
-      const b = document.createElement("button");
-      b.textContent = q.label;
-      b.onclick = () => { if(q.action) q.action(); else sendUserText(q.label); };
-      wrap.appendChild(b);
-    });
-    el.appendChild(wrap);
-  }
-}
-function userBubble(text){
-  const time = new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
-  addMessage(escapeHtml(text), "user", time);
-}
-function systemNote(text){
-  const div = document.createElement("div");
-  div.className = "system-msg";
-  div.textContent = text;
-  $("messages").appendChild(div);
-  $("messages").scrollTop = $("messages").scrollHeight;
-}
-function escapeHtml(str){
-  return str.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
-}
-
-function welcomeMessage(){
-  const premium = isPremiumUser(currentUser);
-  botReply(
-    `Welcome back, <strong>${escapeHtml(currentUser.name)}</strong>!<br>
-     You are logged into <strong>VSL Chat</strong>.${premium ? " <span style='color:var(--accent)'>Premium+ active</span>." : ""}<br><br>
-     You can ask for your details, total, notes, FAQs, or use the menu (☰).`,
-    [
-      {label: "My Details", action: () => showDetails()},
-      {label: "Total", action: () => showTotal()},
-      {label: "Help", action: () => showHelp()}
-    ]
-  );
-}
-
-/* =========================================================
-   FEATURE COMMANDS
-   ========================================================= */
-function showDetails(){
-  if(!currentUser) return;
-  if(!currentUser.entries || currentUser.entries.length === 0){
-    botReply("No lending amounts available on this account.");
-    return;
-  }
-  const premium = isPremiumUser(currentUser);
-  let html = `<strong>Your Borrows / Lends</strong><br><br>`;
-  currentUser.entries.forEach((entry, idx) => {
-    if(typeof entry.interestPaid !== "number") entry.interestPaid = 0;
-    const data = getEntryData(entry);
-    html += `<div class="detail-card">`;
-    html += `<div class="detail-row"><span class="label">#${idx+1}</span><span class="value"></span></div>`;
-    if(premium){
-      html += `<div class="detail-row"><span class="label">Borrowed By</span><span class="value">${escapeHtml(entry.borrowedBy || "—")}</span></div>`;
-    } else {
-      html += `<div class="detail-row"><span class="label">Borrowed By</span><span class="value" style="opacity:.6">Premium+ required</span></div>`;
-    }
-    html += `<div class="detail-row"><span class="label">Principal Amount</span><span class="value">${formatINR(entry.amount)}</span></div>`;
-    if(premium){
-      html += `<div class="detail-row"><span class="label">Interest Rate</span><span class="value">${entry.interest}% / month</span></div>`;
-      html += `<div class="detail-row"><span class="label">Date Borrowed</span><span class="value">${formatDateWithMonth(entry.takenDate)}</span></div>`;
-      html += `<div class="detail-row"><span class="label">Days Passed</span><span class="value">${data.days} days</span></div>`;
-      html += `<div class="detail-row"><span class="label">Interest Paid</span><span class="value">${formatINR(entry.interestPaid)}</span></div>`;
-    } else {
-      html += `<div class="detail-row"><span class="label">Interest Rate</span><span class="value" style="opacity:.6">Premium+ required</span></div>`;
-      html += `<div class="detail-row"><span class="label">Date Borrowed</span><span class="value">${formatDateWithMonth(entry.takenDate)}</span></div>`;
-      html += `<div class="detail-row"><span class="label">Days Passed</span><span class="value" style="opacity:.6">Premium+ required</span></div>`;
-    }
-    html += `<div class="detail-row"><span class="label">Remaining Interest</span><span class="value">${formatINR(data.remaining)}</span></div>`;
-    html += `<div class="total-highlight"><span>Total (P + Interest)</span><span>${formatINR(data.total)}</span></div>`;
-    html += `</div>`;
-  });
-  if(!premium){
-    html += `<br><em>Upgrade to Premium+ to unlock all fields and customisation.</em>`;
-  }
-  botReply(html, [
-    {label: "Total Summary", action: () => showTotal()},
-    {label: premium ? "Premium features" : "Get Premium+", action: () => openPremium()}
+function login(u){
+  user=u;
+  $("lockScreen").hidden=true;
+  $("chatApp").hidden=false;
+  $("accountLabel").textContent=u.name;
+  const p=isPrem(u);
+  $("themeItem").hidden=!p;
+  $("colorItem").hidden=!p;
+  $("bgItem").hidden=!p;
+  const fs=parseInt(localStorage.getItem(FONT_KEY),10);
+  if(fs>=12&&fs<=22) fontSize=fs;
+  applyFont();
+  loadAppearance();
+  $("messages").innerHTML="";
+  reply("Hi <b>"+esc(u.name)+"</b>."+(p?" Premium+ active.":"")+"<br>Type <b>details</b>, <b>total</b> or open the menu.", [
+    {t:"Details",fn:showDetails},{t:"Total",fn:showTotal}
   ]);
 }
+function logout(){
+  user=null;
+  $("chatApp").hidden=true;
+  $("lockScreen").hidden=false;
+  $("passwordInput").value="";
+  $("messages").innerHTML="";
+  $("messages").style.backgroundImage="";
+  applyColor(DEFAULT_COLOR); applyTheme("light");
+  closeSheet();
+}
 
+/* Chat helpers */
+function add(html, who){
+  const d=document.createElement("div");
+  d.className="msg "+who;
+  d.innerHTML=html;
+  const m=document.createElement("div");
+  m.className="meta";
+  m.textContent=new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"});
+  d.appendChild(m);
+  $("messages").appendChild(d);
+  $("messages").scrollTop=$("messages").scrollHeight;
+  return d;
+}
+function reply(html, qs){
+  const el=add(html,"bot");
+  if(qs&&qs.length){
+    const w=document.createElement("div"); w.className="qs";
+    qs.forEach(q=>{
+      const b=document.createElement("button");
+      b.textContent=q.t;
+      b.onclick=()=>q.fn?q.fn():sendText(q.t);
+      w.appendChild(b);
+    });
+    el.appendChild(w);
+  }
+}
+function bubble(t){ add(esc(t),"user"); }
+
+/* Features */
+function showDetails(){
+  if(!user||!user.entries.length){ reply("No amounts on this account."); return; }
+  const p=isPrem(user);
+  let h="<b>Your details</b>";
+  user.entries.forEach((e,i)=>{
+    if(typeof e.interestPaid!=="number") e.interestPaid=0;
+    const d=entryData(e);
+    h+='<div class="card">';
+    h+='<div class="row"><span class="l">#'+(i+1)+'</span></div>';
+    h+='<div class="row"><span class="l">Borrowed By</span><span class="v">'+(p?esc(e.borrowedBy||"—"):'<span style="opacity:.5">Premium+</span>')+'</span></div>';
+    h+='<div class="row"><span class="l">Principal</span><span class="v">'+inr(e.amount)+'</span></div>';
+    h+='<div class="row"><span class="l">Interest</span><span class="v">'+(p?e.interest+"%":'<span style="opacity:.5">Premium+</span>')+'</span></div>';
+    h+='<div class="row"><span class="l">Date</span><span class="v">'+fmtDate(e.takenDate)+'</span></div>';
+    h+='<div class="row"><span class="l">Days</span><span class="v">'+(p?d.days:'<span style="opacity:.5">Premium+</span>')+'</span></div>';
+    if(p) h+='<div class="row"><span class="l">Interest paid</span><span class="v">'+inr(e.interestPaid)+'</span></div>';
+    h+='<div class="row"><span class="l">Remaining</span><span class="v">'+inr(d.rem)+'</span></div>';
+    h+='<div class="total"><span>Total</span><span>'+inr(d.total)+'</span></div></div>';
+  });
+  reply(h);
+}
 function showTotal(){
-  if(!currentUser) return;
-  let principal = 0, remainingInterest = 0;
-  (currentUser.entries || []).forEach(e => {
-    principal += Number(e.amount) || 0;
-    remainingInterest += getEntryData(e).remaining;
-  });
-  const grand = principal + remainingInterest;
-  botReply(`
-    <strong>Total Summary</strong>
-    <div class="detail-card" style="margin-top:8px">
-      <div class="detail-row"><span class="label">Total Principal</span><span class="value">${formatINR(principal)}</span></div>
-      <div class="detail-row"><span class="label">Total Remaining Interest</span><span class="value">${formatINR(remainingInterest)}</span></div>
-      <div class="total-highlight"><span>Grand Total</span><span>${formatINR(grand)}</span></div>
-    </div>
-  `);
+  let p=0,r=0;
+  (user.entries||[]).forEach(e=>{p+=Number(e.amount)||0;r+=entryData(e).rem});
+  reply('<b>Total</b><div class="card"><div class="row"><span class="l">Principal</span><span class="v">'+inr(p)+'</span></div><div class="row"><span class="l">Remaining interest</span><span class="v">'+inr(r)+'</span></div><div class="total"><span>Grand total</span><span>'+inr(p+r)+'</span></div></div>');
 }
-
+function getNotes(){ try{const n=JSON.parse(localStorage.getItem(NOTES_KEY+(user&&user.id)));return Array.isArray(n)?n:[]}catch{return[]} }
 function showNotes(){
-  constNotes();
-  const notes = getNotes();
-  if(notes.length === 0){
-    botReply("You have no notes yet. Type <code>note: your text here</code> to save one, or just write something and I can save it.");
-    return;
-  }
-  let html = `<strong>Your Notes</strong> (${notes.length})<br><br>`;
-  notes.slice(0, 8).forEach(n => {
-    html += `<div class="detail-card" style="margin-bottom:8px">
-      <div style="white-space:pre-wrap">${escapeHtml(n.text)}</div>
-      <div class="meta" style="margin-top:6px">${formatNoteDate(n.date)} · <a href="#" onclick="deleteNote('${n.id}');return false" style="color:#e11">Delete</a></div>
-    </div>`;
+  const n=getNotes();
+  if(!n.length){ reply('No notes. Type <code>note: your text</code> to save one.'); return; }
+  let h="<b>Notes</b> ("+n.length+")";
+  n.slice(0,6).forEach(x=>{
+    h+='<div class="card" style="margin-top:6px"><div style="white-space:pre-wrap">'+esc(x.text)+'</div><div class="meta">'+new Date(x.date).toLocaleString()+'</div></div>';
   });
-  if(notes.length > 8) html += `<em>…and ${notes.length-8} more</em>`;
-  botReply(html);
+  reply(h);
 }
-
-function showHelp(){
-  botReply(`
-    <strong>What you can do</strong><br>
-    • Type <strong>details</strong> or <strong>my details</strong> – view account entries<br>
-    • Type <strong>total</strong> – grand total summary<br>
-    • Type <strong>notes</strong> – list your notes<br>
-    • Type <strong>note: text</strong> – save a note<br>
-    • Type <strong>faq</strong> – frequently asked questions<br>
-    • Type <strong>premium</strong> – Premium+ info<br>
-    • Use the <strong>☰ menu</strong> for Font size, Theme, Colour, Background (Premium+), Report, Terms…
-  `);
+function saveNote(t){
+  if(!t.trim()) return;
+  const n=getNotes();
+  n.unshift({id:Date.now()+"",text:t.trim(),date:new Date().toISOString()});
+  try{localStorage.setItem(NOTES_KEY+user.id,JSON.stringify(n))}catch{reply("Could not save.");return}
+  reply("Note saved.");
 }
-
 function showFAQ(){
-  botReply(`
-    <strong>FAQs</strong><br><br>
-    <strong>What is VSL?</strong><br>
-    VSL is a service from BS&amp;MFI that helps verified account holders view borrowing &amp; lending records, track interest and keep notes.<br><br>
-    <strong>Why can't I log in?</strong><br>
-    You need an active registered borrow/lend and the correct password. Contact your coordinator if you believe this is wrong.<br><br>
-    <strong>How do I get Premium+?</strong><br>
-    Ask your coordinator. Monthly ₹160 · Annual ₹1500.<br><br>
-    <strong>What does Premium+ unlock?</strong><br>
-    Borrowed By, Interest Rate, Days Passed, theme, main colour, and chat background colour.
-  `);
+  reply("<b>FAQ</b><br><br><b>What is VSL?</b><br>Service for verified accounts to view borrows, lends and interest.<br><br><b>Login issues?</b><br>Need active record + correct password.<br><br><b>Premium+?</b><br>Full details, theme, colour, background image. ₹160/mo or ₹1500/yr.");
 }
+function openReport(){ window.open("https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form","_blank","noopener"); }
 
-function openPremium(){ $("premiumModal").classList.add("open"); }
-function openTerms(){ $("termsModal").classList.add("open"); }
-function openPrivacy(){ $("privacyModal").classList.add("open"); }
-function openReport(){
-  window.open("https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form", "_blank", "noopener");
-}
+/* Sheet & modals */
+function openSheet(){ $("sheet").classList.add("open"); $("sheetOverlay").classList.add("open"); }
+function closeSheet(){ $("sheet").classList.remove("open"); $("sheetOverlay").classList.remove("open"); }
+function openModal(id){ $(id).classList.add("open"); }
 function closeModal(id){ $(id).classList.remove("open"); }
-
-/* =========================================================
-   NOTES
-   ========================================================= */
-function getNotes(){
-  if(!currentUser) return [];
-  try{
-    const raw = localStorage.getItem(userStorageKey(NOTES_KEY_PREFIX));
-    const notes = JSON.parse(raw);
-    return Array.isArray(notes) ? notes : [];
-  }catch{ return []; }
-}
-function saveNoteText(text){
-  if(!currentUser || !text.trim()) return;
-  const notes = getNotes();
-  notes.unshift({
-    id: Date.now() + "-" + Math.random().toString(36).slice(2),
-    text: text.trim(),
-    date: new Date().toISOString()
-  });
-  try{
-    localStorage.setItem(userStorageKey(NOTES_KEY_PREFIX), JSON.stringify(notes));
-  }catch{
-    botReply("Unable to save note – browser storage may be full.");
-    return;
-  }
-  botReply("Note saved.");
-}
-function deleteNote(id){
-  if(!currentUser) return;
-  const notes = getNotes().filter(n => n.id !== id);
-  try{ localStorage.setItem(userStorageKey(NOTES_KEY_PREFIX), JSON.stringify(notes)); }catch{}
-  botReply("Note deleted.");
-  showNotes();
-}
-function formatNoteDate(iso){
-  const d = new Date(iso);
-  if(Number.isNaN(d.getTime())) return "";
-  return `${d.getDate()} ${monthNames[d.getMonth()]} ${d.getFullYear()}, ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;
+function doAction(a){
+  closeSheet();
+  if(a==="details") showDetails();
+  else if(a==="total") showTotal();
+  else if(a==="notes") showNotes();
+  else if(a==="faq") showFAQ();
+  else if(a==="terms") openModal("termsModal");
+  else if(a==="report") openReport();
+  else if(a==="font") openModal("fontModal");
+  else if(a==="theme"){ if(isPrem(user)) toggleTheme(); else openModal("premiumModal"); }
+  else if(a==="color"){ if(isPrem(user)) openModal("colorModal"); else openModal("premiumModal"); }
+  else if(a==="bg"){ if(isPrem(user)) openModal("bgModal"); else openModal("premiumModal"); }
+  else if(a==="premium") openModal("premiumModal");
+  else if(a==="logout") logout();
 }
 
-/* =========================================================
-   MENU
-   ========================================================= */
-function openMenu(){
-  $("sideMenu").classList.add("open");
-  $("menuOverlay").classList.add("open");
+/* Input */
+function onKey(e){ if(e.key==="Enter"&&!e.shiftKey){ e.preventDefault(); send(); } }
+function sendText(t){ bubble(t); handle(t.trim().toLowerCase(), t.trim()); }
+function send(){
+  const inp=$("chatInput"), t=inp.value.trim();
+  if(!t) return;
+  inp.value=""; inp.style.height="auto";
+  sendText(t);
 }
-function closeMenu(){
-  $("sideMenu").classList.remove("open");
-  $("menuOverlay").classList.remove("open");
-  $("fontControls").hidden = true;
-}
-function menuAction(action){
-  closeMenu();
-  switch(action){
-    case "details": showDetails(); break;
-    case "total": showTotal(); break;
-    case "notes": showNotes(); break;
-    case "faq": showFAQ(); break;
-    case "terms": openTerms(); break;
-    case "privacy": openPrivacy(); break;
-    case "report": openReport(); break;
-    case "font":
-      $("fontControls").hidden = false;
-      openMenu();
-      break;
-    case "theme":
-      if(isPremiumUser(currentUser)) toggleTheme();
-      else openPremium();
-      break;
-    case "color":
-      if(isPremiumUser(currentUser)) $("colorModal").classList.add("open");
-      else openPremium();
-      break;
-    case "bg":
-      if(isPremiumUser(currentUser)) $("bgModal").classList.add("open");
-      else openPremium();
-      break;
-    case "premium": openPremium(); break;
-    case "logout": logout(); break;
-  }
-}
-$("menuToggle").addEventListener("click", openMenu);
-
-/* =========================================================
-   INPUT HANDLING
-   ========================================================= */
-function handleInputKey(e){
-  if(e.key === "Enter" && !e.shiftKey){
-    e.preventDefault();
-    sendMessage();
-  }
-}
-function sendUserText(text){
-  userBubble(text);
-  processCommand(text.trim().toLowerCase(), text.trim());
-}
-function sendMessage(){
-  const input = $("chatInput");
-  const text = input.value.trim();
-  if(!text) return;
-  input.value = "";
-  input.style.height = "auto";
-  sendUserText(text);
-}
-function processCommand(lower, original){
-  if(lower === "details" || lower === "my details" || lower === "detail" || lower.startsWith("show detail")){
-    showDetails(); return;
-  }
-  if(lower === "total" || lower === "summary" || lower === "grand total"){
-    showTotal(); return;
-  }
-  if(lower === "notes" || lower === "my notes"){
-    showNotes(); return;
-  }
-  if(lower.startsWith("note:") || lower.startsWith("note ")){
-    const noteText = original.replace(/^note:\s*/i, "").replace(/^note\s+/i, "");
-    saveNoteText(noteText);
-    return;
-  }
-  if(lower === "faq" || lower === "faqs" || lower === "help"){
-    if(lower === "help") showHelp();
-    else showFAQ();
-    return;
-  }
-  if(lower === "premium" || lower === "premium+" || lower.includes("upgrade")){
-    openPremium(); return;
-  }
-  if(lower === "theme" || lower === "dark" || lower === "light"){
-    if(isPremiumUser(currentUser)) toggleTheme();
-    else { botReply("Theme switching is a Premium+ feature."); openPremium(); }
-    return;
-  }
-  if(lower === "report" || lower === "issue"){
-    openReport(); return;
-  }
-  if(lower === "logout" || lower === "log out"){
-    logout(); return;
-  }
-  // default: treat as possible note or unknown
-  botReply(
-    `I didn't recognise that command.<br>Try <strong>details</strong>, <strong>total</strong>, <strong>notes</strong>, <strong>faq</strong> or <strong>help</strong>. You can also use the ☰ menu.`,
-    [
-      {label: "My Details", action: () => showDetails()},
-      {label: "Help", action: () => showHelp()}
-    ]
-  );
+function handle(low, orig){
+  if(low==="details"||low==="my details"||low==="detail") showDetails();
+  else if(low==="total"||low==="summary") showTotal();
+  else if(low==="notes"||low==="my notes") showNotes();
+  else if(low.startsWith("note:")||low.startsWith("note ")) saveNote(orig.replace(/^note:\s*/i,"").replace(/^note\s+/i,""));
+  else if(low==="faq"||low==="help") showFAQ();
+  else if(low==="premium"||low.includes("upgrade")) openModal("premiumModal");
+  else if(low==="theme"){ if(isPrem(user)) toggleTheme(); else openModal("premiumModal"); }
+  else if(low==="report") openReport();
+  else if(low==="logout") logout();
+  else reply("Try <b>details</b>, <b>total</b>, <b>notes</b>, <b>faq</b> or use the menu.",[{t:"Details",fn:showDetails},{t:"Help",fn:showFAQ}]);
 }
 
-/* Auto-resize textarea */
-$("chatInput").addEventListener("input", function(){
-  this.style.height = "auto";
-  this.style.height = Math.min(this.scrollHeight, 120) + "px";
+/* Auto resize */
+$("chatInput").addEventListener("input",function(){ this.style.height="auto"; this.style.height=Math.min(this.scrollHeight,100)+"px"; });
+
+/* Close modals on backdrop */
+["premiumModal","fontModal","colorModal","bgModal","termsModal","privacyModal"].forEach(id=>{
+  $(id).addEventListener("click",e=>{ if(e.target.id===id) closeModal(id); });
 });
-
-/* Close modals on overlay click */
-["premiumModal","colorModal","bgModal","termsModal","privacyModal"].forEach(id => {
-  $(id).addEventListener("click", e => { if(e.target.id === id) closeModal(id); });
-});
-document.addEventListener("keydown", e => {
-  if(e.key === "Escape"){
-    closeMenu();
-    ["premiumModal","colorModal","bgModal","termsModal","privacyModal"].forEach(closeModal);
-  }
-});
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ closeSheet(); ["premiumModal","fontModal","colorModal","bgModal","termsModal","privacyModal"].forEach(closeModal); } });
 
 /* Init */
-initLockScreen();
-applyMainColor(DEFAULT_MAIN_COLOR);
+applyColor(DEFAULT_COLOR);
 applyTheme("light");
 </script>
 </body>
