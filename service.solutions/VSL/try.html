@@ -88,6 +88,12 @@
     .msg .total{margin-top:6px;padding-top:6px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-weight:600;font-size:.9rem}
     .msg .qs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
     .msg .qs button{padding:5px 10px;border:1px solid var(--border);border-radius:6px;font-size:.8rem;background:var(--bg)}
+    .msg .site-link{
+      display:block;padding:8px 10px;margin-top:6px;
+      border:1px solid var(--border);border-radius:8px;
+      background:var(--bg);font-size:.88rem;text-decoration:none;
+    }
+    .msg .site-link:active{opacity:.7}
 
     .bottombar{
       position:absolute;bottom:0;left:0;right:0;z-index:20;
@@ -194,6 +200,7 @@
     <button class="sheet-item" onclick="doAction('details')">My Details</button>
     <button class="sheet-item" onclick="doAction('total')">Total</button>
     <button class="sheet-item" onclick="doAction('notes')">Notes</button>
+    <button class="sheet-item" onclick="doAction('sites')">Allocated sites</button>
     <button class="sheet-item" onclick="doAction('faq')">FAQ</button>
     <button class="sheet-item" onclick="doAction('terms')">Terms</button>
     <button class="sheet-item" onclick="doAction('report')">Report</button>
@@ -262,7 +269,7 @@
 </div>
 
 <script>
-/* Demo users – replace with your real USERS data */
+/* Demo users – each user can have different allocated sites */
 const USERS = [
   {
     id: "demo1",
@@ -275,7 +282,17 @@ const USERS = [
       interest: 2.5,
       takenDate: "2025-08-15",
       interestPaid: 1200
-    }]
+    }],
+    sites: [
+      {
+        text: "lend money",
+        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/lender.lending.clients"
+      },
+      {
+        text: "calculator",
+        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/interest.checker"
+      }
+    ]
   },
   {
     id: "demo2",
@@ -296,6 +313,20 @@ const USERS = [
         interest: 1.5,
         takenDate: "2025-10-10",
         interestPaid: 0
+      }
+    ],
+    sites: [
+      {
+        text: "lend money",
+        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/lender.lending.clients"
+      },
+      {
+        text: "calculator",
+        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/interest.checker"
+      },
+      {
+        text: "My dashboard",
+        href: "https://mfi0212.github.io/MFI/"
       }
     ]
   }
@@ -401,9 +432,10 @@ function login(u){
   applyFont();
   loadAppearance();
   $("messages").innerHTML = "";
-  reply("Hi <b>" + esc(u.name) + "</b>." + (p ? " Premium+ active." : "") + "<br>Type <b>details</b> or <b>total</b>, or open the menu.", [
+  reply("Hi <b>" + esc(u.name) + "</b>." + (p ? " Premium+ active." : "") + "<br>Type <b>details</b>, <b>total</b> or <b>sites</b>, or open the menu.", [
     {t:"Details", fn: showDetails},
-    {t:"Total", fn: showTotal}
+    {t:"Total", fn: showTotal},
+    {t:"Allocated sites", fn: showSites}
   ]);
 }
 function logout(){
@@ -512,6 +544,23 @@ function showFAQ(){
     "<b>Premium+?</b><br>Full details, theme, background image. ₹160/mo or ₹1500/yr.");
 }
 
+/* Allocated sites – per user */
+function showSites(){
+  if(!user) return;
+  const sites = Array.isArray(user.sites) ? user.sites : [];
+  if(!sites.length){
+    reply("No allocated sites for this account.");
+    return;
+  }
+  let h = "<b>Allocated sites</b> (" + sites.length + ")";
+  sites.forEach(s => {
+    const text = esc(s.text || "Link");
+    const href = esc(s.href || "#");
+    h += "<a class='site-link' href='" + href + "' target='_blank' rel='noopener'>" + text + "</a>";
+  });
+  reply(h);
+}
+
 function openSheet(){ $("sheet").classList.add("open"); $("sheetOverlay").classList.add("open"); }
 function closeSheet(){ $("sheet").classList.remove("open"); $("sheetOverlay").classList.remove("open"); }
 function openModal(id){ $(id).classList.add("open"); }
@@ -523,6 +572,7 @@ function doAction(a){
   if(a === "details") showDetails();
   else if(a === "total") showTotal();
   else if(a === "notes") showNotes();
+  else if(a === "sites") showSites();
   else if(a === "faq") showFAQ();
   else if(a === "terms") openModal("termsModal");
   else if(a === "report") openReport();
@@ -545,14 +595,16 @@ function handle(low, orig){
   if(low === "details" || low === "my details" || low === "detail") showDetails();
   else if(low === "total" || low === "summary") showTotal();
   else if(low === "notes" || low === "my notes") showNotes();
+  else if(low === "sites" || low === "allocated sites" || low === "site") showSites();
   else if(low.startsWith("note:") || low.startsWith("note ")) saveNote(orig.replace(/^note:\s*/i, "").replace(/^note\s+/i, ""));
   else if(low === "faq" || low === "help") showFAQ();
   else if(low === "premium" || low.includes("upgrade")) openModal("premiumModal");
   else if(low === "theme"){ if(isPrem(user)) toggleTheme(); else openModal("premiumModal"); }
   else if(low === "report") openReport();
   else if(low === "logout") logout();
-  else reply("Try <b>details</b>, <b>total</b>, <b>notes</b>, <b>faq</b> or the menu.", [
+  else reply("Try <b>details</b>, <b>total</b>, <b>sites</b>, <b>notes</b>, <b>faq</b> or the menu.", [
     {t:"Details", fn: showDetails},
+    {t:"Allocated sites", fn: showSites},
     {t:"FAQ", fn: showFAQ}
   ]);
 }
