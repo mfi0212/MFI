@@ -1,325 +1,630 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#111">
-  <title>VSL Chat</title>
-  <link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png">
-  <script src="vsl.lednder.account.js"></script>
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;scrollbar-color: #838383bd transparent;
-    scrollbar-width: thin;}
-    [hidden]{display:none!important}
-    :root{
-      --bg:#ffffffb3;
-      --text:#222;
-      --muted:#777;
-      --border:#ddd;
-      --bot:#ebebeb;
-      --user:#222;
-      --user-text:#fff;
-      --bar:#ffffff7d;
-      --primary:#222;          /* main accent / buttons */
-      --primary-text:#fff;
-    }
-    body[data-theme="dark"]{
-      --bg: #000000d4;
-      --text:#e8e8e8;
-      --muted:#999;
-      --border:#333;
-      --bot:#1e1e1e;
-      --user:var(--primary);
-      --user-text:var(--primary-text);
-      --bar:#1f1f1fba;
-    }
-    svg {
-    fill: var(--text);
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#111">
+<title>VSL Chat</title>
+<script src="vsl.lednder.account.js"></script>
+<link rel="icon" href="https://mfi0212.github.io/MFI/mfi.aura.logo.png">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+
+:root{
+  --bg:#f0f0f0;
+  --text:#222;
+  --muted:#777;
+  --border:#ddd;
+  --bot:#fff;
+  --user:#222;
+  --user-text:#fff;
+  --bar:#fff;
+  --primary:#222;
+  --primary-text:#fff;
 }
-    html,body{height:100%;font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.45;color:var(--text);background:var(--bg);overflow:hidden}
-    button,input,textarea{font:inherit;border:none;outline:none;background:none;color:inherit}
-    button{cursor:pointer}
-    a{color:inherit;text-decoration:underline}
 
-    /* Login */
-    #lockScreen{
-      height:100%;max-width:400px;margin:0 auto;padding:32px 20px;
-      display:flex;flex-direction:column;justify-content:center;gap:20px;overflow-y:auto;
-    }
-    .lock-logo{text-align:center}
-    .lock-logo img{width:72px;height:72px;border-radius:50%;object-fit:cover;background:#ccc}
-    .lock-logo h1{font-size:1.4rem;margin-top:10px;font-weight:600}
-    .lock-logo p{font-size:.8rem;color:var(--muted);margin-top:2px}
-    .lock-card{padding: 10px;}
-    .lock-card h2{font-size:.95rem;text-align:center;    margin-bottom: 15px;font-weight:500}
-    .lock-row{display:flex;gap:8px}
-    .lock-input{flex:1;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg)}
-    .lock-btn{padding:10px 16px;background:var(--primary);color:var(--primary-text);border-radius:8px;font-weight:500}
-    .lock-error{color:#c00;text-align:center;margin-top:8px;font-size:.85rem}
-    .lock-hint{text-align:center;font-size:.8rem;color:var(--muted);    margin-top: 15px;line-height:1.4}
-    .faq-q{width:100%;text-align:left;padding:10px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;font-size:.9rem}
-    .faq-a{padding:8px 0;font-size:.85rem;color:var(--muted);line-height:1.5}
-    .lock-footer{text-align:center;font-size:.75rem;color:var(--muted)}
+body[data-theme="dark"]{
+  --bg:#121212;
+  --text:#e8e8e8;
+  --muted:#999;
+  --border:#333;
+  --bot:#1e1e1e;
+  --bar:#1a1a1a;
+}
 
-    /* Chat */
-    #chatApp{height:100%;margin:0 auto;position:relative;display:flex;flex-direction:column}
-.brand div {
-   text-align: center;
-    background: var(--bar);
-    resize: none;
-    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
-    backdrop-filter: blur(2px);
-    padding: 0px 20px;
-    height: 40px;
-    border-radius: 999px;
-    display: flex;
-    justify-content: center;
+html,body{
+  height:100%;
+  font-family:system-ui,-apple-system,sans-serif;
+  font-size:15px;
+  line-height:1.45;
+  color:var(--text);
+  background:var(--bg);
+  overflow:hidden;
+}
+
+button,input,textarea{
+  font:inherit;
+  border:none;
+  outline:none;
+  background:none;
+  color:inherit;
+}
+button{cursor:pointer}
+a{color:inherit;text-decoration:underline}
+
+/* LOGIN */
+
+#lockScreen{
+  height:100%;
+  max-width:400px;
+  margin:0 auto;
+  padding:32px 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:20px;
+  overflow-y:auto;
+}
+
+.lock-logo{text-align:center}
+.lock-logo img{
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#ccc;
+}
+.lock-logo h1{
+  font-size:1.4rem;
+  margin-top:10px;
+  font-weight:600;
+}
+.lock-logo p{
+  font-size:.8rem;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+.lock-card{
+  background:var(--bot);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px;
+}
+.lock-card h2{
+  font-size:.95rem;
+  text-align:center;
+  margin-bottom:12px;
+  font-weight:500;
+}
+.lock-row{display:flex;gap:8px}
+.lock-input{
+  flex:1;
+  min-width:0;
+  padding:10px 12px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:var(--bg);
+}
+.lock-btn{
+  padding:10px 16px;
+  background:var(--primary);
+  color:var(--primary-text);
+  border-radius:8px;
+  font-weight:500;
+}
+.lock-error{
+  color:#c00;
+  text-align:center;
+  margin-top:8px;
+  font-size:.85rem;
+}
+.lock-hint{
+  text-align:center;
+  font-size:.8rem;
+  color:var(--muted);
+  margin-top:10px;
+  line-height:1.4;
+}
+.faq-q{
+  width:100%;
+  text-align:left;
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  font-size:.9rem;
+}
+.faq-a{
+  padding:8px 0;
+  font-size:.85rem;
+  color:var(--muted);
+  line-height:1.5;
+}
+.lock-footer{
+  text-align:center;
+  font-size:.75rem;
+  color:var(--muted);
+}
+
+/* CHAT */
+
+#chatApp{
+  height:100%;
+  max-width:640px;
+  margin:0 auto;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+}
+
+.topbar{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  padding-top:max(10px,env(safe-area-inset-top));
+  background:var(--bar);
+  border-bottom:1px solid var(--border);
+}
+
+.menu-btn{
+  display: flex;
     align-items: center;
-    flex-direction: column;
-}
-button.back {
-    width: 40px;
-    height: 40px;
-    border-radius: 99px;
-    background: var(--bar);
-    fill: var(--primary-text);
+    justify-content: center;
+    text-align: left;
+    font-weight: 600;
     font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
-    backdrop-filter: blur(2px);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
 }
-    .topbar{
-     position: absolute;
-    top: 0;
-    z-index: 20;
-    display: flex;
-    align-items: center;
-    padding: 20px 10px 0 10px;
-    justify-content: space-between;
-    width: 100%;background: linear-gradient(180deg, var(--bg) 50%, transparent);
-    }
-    .menu-btn{
-        height: 40px;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
-    backdrop-filter: blur(2px);
-    padding: 0px 15px;color: white;
-    border-radius: 999px;
-    background: var(--primary);
-    font-weight: 400;
-    }
-    .brand{flex:1;display:flex;align-items:center;gap:8px;min-width:0;    justify-content: center;}
 
-    .brand strong{display:block;font-size:.9rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .brand span{font-size:.7rem;color:var(--muted)}
-    .report-btn{font-size:.75rem;padding:5px 10px;border:1px solid var(--border);border-radius:6px;color:var(--muted)}
-.topbar img{width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--primary);
-    flex-shrink: 0;
-    object-fit: cover;
-    resize: none;
-    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
-    backdrop-filter: blur(2px);}
-    #messages{
-         flex: 1;
-    overflow-y: auto;
-    padding: 70px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background: var(--bg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    }
-    .msg{max-width: 95%;
-    padding: 8px 8px 5px 8px;
-    border-radius: 10px;
-    word-break: break-word;}
-    .msg.bot{align-self: flex-start;
-    background: var(--bot);}
-    .msg.user{align-self:flex-end;background:var(--primary);color:var(--primary-text)}
-    .msg .meta{    font-size: .65rem;
-    opacity: .5;
-    margin-top: 5px;
-    text-align: end;}
-    .msg.user .meta{text-align:right}
-    .msg .card{margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
-    .msg .row{display: flex;
-    justify-content: space-between;
-    gap: 45px;
-    padding: 5px 0;}
-    .msg .row .l{color:var(--muted)}
-    .msg .row .v{font-weight:500;text-align:right}
-    .msg .total{margin-top:6px;padding-top:6px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-weight:600;font-size:.9rem}
-    .msg .qs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;display: none;}
-    .msg .qs button{padding:5px 10px;border:1px solid var(--border);border-radius:6px;font-size:.8rem;background:var(--bg)}
-    .msg .site-link{
-      display: block;
-    padding: 8px 10px;
-    margin-top: 6px;
-    border: none;
-    border-radius: 8px;
-    background: var(--bg);
-    font-size: .88rem;
-    text-decoration: none;
-    text-align: center;
-    }
-    .msg .site-link:active{opacity:.7}
-.lin-bg-adder {
-background: linear-gradient(0deg, var(--bg) 50%, transparent);
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    transform: translate(-50%, 0);
-    left: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 10px 20px 10px;
+.brand{
+  flex:1;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-width:0;
 }
-    .bottombar{
-         display: flex;
-    align-items: center;
-    gap: 8px;
-    width: 85%;max-width: 600px;
-    justify-content: space-between;
-    }
-    #chatInput{
-      padding: 5px 10px;
-    border-radius: 999px;
-    background: var(--bar);
-    resize: none;
-    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
-    backdrop-filter: blur(2px);
-    height: 40px;
-    width: 100%;
-    }
-    .send-btn{  
-        width: 40px;
-    height: 40px;
-    border-radius: 99px;
-    background: var(--bar);
-    fill: var(--primary-text);
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
-    backdrop-filter: blur(2px);
-    }
-    .sheet-overlay{position:absolute;inset:0;z-index:30;background:rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:opacity .15s}
-    .sheet-overlay.open{opacity:1;pointer-events:auto}
-    .sheet{
-      position:absolute;left:0;right:0;bottom:0;z-index:40;
-      background:var(--bot);border-top:1px solid var(--border);
-      transform:translateY(100%);transition:transform .2s ease;
-      max-height:65%;overflow-y:auto;padding-bottom:env(safe-area-inset-bottom);
-    }
-    .sheet.open{transform:translateY(0)}
-    .sheet-title{text-align:center;font-weight:600;font-size:.9rem;padding:14px 16px 8px;border-bottom:1px solid var(--border)}
-    .sheet-item{width:100%;text-align:left;padding:12px 18px;font-size:.9rem;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
-    .sheet-item:active{background:var(--bg)}
-    .sheet-item .badge{margin-left:auto;font-size:.7rem;color:var(--muted)}
+.brand img{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:#ccc;
+  flex-shrink:0;
+  object-fit:cover;
+}
+.brand strong{
+  display:block;
+  font-size:.9rem;
+  font-weight:600;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.brand span{
+  font-size:.7rem;
+  color:var(--muted);
+}
+.report-btn{
+  font-size:.75rem;
+  padding:5px 10px;
+  border:1px solid var(--border);
+  border-radius:6px;
+  color:var(--muted);
+}
 
-    /* Simple modal */
-    .modal-bg{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .15s}
-    .modal-bg.open{opacity:1;pointer-events:auto}
-    .modal{background:var(--bot);border:1px solid var(--border);border-radius:12px;padding:18px;width:100%;max-width:320px;max-height:80vh;overflow-y:auto}
-    .modal h3{font-size:1rem;margin-bottom:10px}
-    .modal p,.modal li{font-size:.88rem;color:var(--muted);line-height:1.5}
-    .modal ul{padding-left:18px;margin:8px 0}
-    .modal .close{float:right;font-size:1.1rem;color:var(--muted);padding:2px 6px}
-    .modal .btn{display:block;width:100%;margin-top:12px;padding:10px;background:var(--primary);color:var(--primary-text);border-radius:8px;text-align:center;font-weight:500}
-    .modal .font-row{display:flex;align-items:center;justify-content:center;gap:16px;margin:12px 0}
-    .modal .font-row button{width:36px;height:36px;border:1px solid var(--border);border-radius:8px;font-size:1.1rem}
-    .modal input[type=file]{width:100%;margin:10px 0;font-size:.85rem}
+#messages{
+  flex:1;
+  overflow-y:auto;
+  padding:68px 12px 80px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  background:var(--bg);
+}
 
-    /* Color picker */
-    .color-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0}
-    .color-swatch{
-      width:100%;aspect-ratio:1;border-radius:50%;border:2px solid transparent;
-      cursor:pointer;position:relative;
-    }
-    .color-swatch.active{border-color:var(--text);box-shadow:0 0 0 2px var(--bg)}
-    .color-swatch.active::after{
-      content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-      color:#fff;font-size:.9rem;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.5);
-    }
-  </style>
+.msg{
+  max-width:85%;
+  padding:8px 12px;
+  border-radius:10px;
+  word-break:break-word;
+}
+.msg.bot{
+  align-self:flex-start;
+  background:var(--bot);
+  border:1px solid var(--border);
+}
+.msg.user{
+  align-self:flex-end;
+  background:var(--primary);
+  color:var(--primary-text);
+}
+.msg .meta{
+  font-size:.65rem;
+  opacity:.5;
+  margin-top:3px;
+}
+.msg.user .meta{text-align:right}
+.msg .card{
+  margin-top:6px;
+  padding-top:6px;
+  border-top:1px solid var(--border);
+}
+.msg .row{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  padding:2px 0;
+  font-size:.88rem;
+}
+.msg .row .l{color:var(--muted)}
+.msg .row .v{
+  font-weight:500;
+  text-align:right;
+}
+.msg .total{
+  margin-top:6px;
+  padding-top:6px;
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  font-weight:600;
+  font-size:.9rem;
+}
+.msg .qs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:8px;
+}
+.msg .qs button{
+  padding:5px 10px;
+  border:1px solid var(--border);
+  border-radius:6px;
+  font-size:.8rem;
+  background:var(--bg);
+}
+.msg .site-link{
+  display:block;
+  padding:8px 10px;
+  margin-top:6px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:var(--bg);
+  font-size:.88rem;
+  text-decoration:none;
+}
+.msg .site-link:active{opacity:.7}
+
+.bottombar{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:20;
+  padding:8px 10px;
+  padding-bottom:max(8px,env(safe-area-inset-bottom));
+  background:var(--bar);
+  border-top:1px solid var(--border);
+  display:flex;
+  align-items:flex-end;
+  gap:8px;
+}
+
+#chatInput{
+  flex:1;
+  min-height:38px;
+  max-height:90px;
+  padding:9px 12px;
+  border-radius:8px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  resize:none;
+  line-height:1.3;
+}
+.send-btn{
+  width:38px;
+  height:38px;
+  border-radius:8px;
+  background:var(--primary);
+  color:var(--primary-text);
+  font-size:1rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+
+/* RIGHT SIDE MENU */
+
+.sheet-overlay{
+  position:absolute;
+  inset:0;
+  z-index:30;
+  background:rgba(0,0,0,.4);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .25s ease,visibility .25s;
+}
+
+.sheet-overlay.open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+.sheet{
+  position:absolute;
+  top:0;
+  bottom:0;
+   left:0;
+  right:auto;
+  z-index:40;
+  width:min(300px,85%);
+  background:var(--bot);
+  border-left:1px solid var(--border);
+  transform:translateX(1000%);
+  transition:transform .28s cubic-bezier(.2,.8,.2,1);
+  overflow-y:auto;
+  padding-bottom:env(safe-area-inset-bottom);
+  box-shadow:-8px 0 30px rgba(0,0,0,.08);
+}
+
+.sheet.open{transform:translateY(0)}
+
+.sheet-title{
+  text-align:left;
+  font-weight:600;
+  font-size:1rem;
+  padding:20px 18px;
+  padding-top:max(20px,env(safe-area-inset-top));
+  border-bottom:1px solid var(--border);
+}
+
+.sheet-item{
+  width:100%;
+  text-align:left;
+  padding:13px 18px;
+  font-size:.9rem;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border-bottom:1px solid var(--border);
+  transition:background .15s;
+}
+
+.sheet-item:active{background:var(--bg)}
+.sheet-item .badge{
+  margin-left:auto;
+  font-size:.7rem;
+  color:var(--muted);
+}
+
+/* MODALS */
+
+.modal-bg{
+  position:fixed;
+  inset:0;
+  z-index:50;
+  background:rgba(0,0,0,.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .15s;
+}
+.modal-bg.open{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.modal{
+  background:var(--bot);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:18px;
+  width:100%;
+  max-width:320px;
+  max-height:80vh;
+  overflow-y:auto;
+}
+.modal h3{
+  font-size:1rem;
+  margin-bottom:10px;
+}
+.modal p,.modal li{
+  font-size:.88rem;
+  color:var(--muted);
+  line-height:1.5;
+}
+.modal ul{
+  padding-left:18px;
+  margin:8px 0;
+}
+.modal .close{
+  float:right;
+  font-size:1.1rem;
+  color:var(--muted);
+  padding:2px 6px;
+}
+.modal .btn{
+  display:block;
+  width:100%;
+  margin-top:12px;
+  padding:10px;
+  background:var(--primary);
+  color:var(--primary-text);
+  border-radius:8px;
+  text-align:center;
+  font-weight:500;
+}
+.modal .font-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  margin:12px 0;
+}
+.modal .font-row button{
+  width:36px;
+  height:36px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  font-size:1.1rem;
+}
+
+/* FOUR MAIN COLORS */
+
+.color-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin:18px 0;
+}
+.color-swatch{
+  width:100%;
+  aspect-ratio:1;
+  border-radius:50%;
+  border:2px solid transparent;
+  cursor:pointer;
+  position:relative;
+  transition:transform .2s,border-color .2s;
+}
+.color-swatch:active{transform:scale(.9)}
+.color-swatch.active{
+  border-color:var(--text);
+  box-shadow:0 0 0 2px var(--bg);
+}
+.color-swatch.active::after{
+  content:"✓";
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:.9rem;
+  font-weight:700;
+  text-shadow:0 1px 2px rgba(0,0,0,.5);
+}
+</style>
 </head>
+
 <body>
 
 <!-- LOGIN -->
+
 <div id="lockScreen">
+
   <div class="lock-logo">
     <img src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="VSL" id="lockLogo">
     <h1>VSL</h1>
     <p>Very Specific Lending</p>
   </div>
+
   <div class="lock-card">
     <h2>Enter your account password</h2>
+
     <div class="lock-row">
-      <input type="text" id="passwordInput" class="lock-input" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')checkPassword()">
+      <input type="password" id="passwordInput" class="lock-input"
+        placeholder="Password"
+        autocomplete="current-password"
+        onkeydown="if(event.key==='Enter')checkPassword()">
+
       <button class="lock-btn" onclick="checkPassword()">Login</button>
     </div>
+
     <p id="lockError" class="lock-error" hidden>Wrong password.</p>
+
     <div class="lock-hint">
       No active borrow/lend? Contact your coordinator.<br>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form" target="_blank" rel="noopener">Issue form</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form"
+         target="_blank" rel="noopener">Issue form</a>
     </div>
   </div>
+
   <div>
-    <button class="faq-q" onclick="toggleFAQ(this)">What is VSL? <span>+</span></button>
-    <div class="faq-a" hidden>Service from BS&amp;MFI for verified accounts to view borrowing/lending records and notes.</div>
-    <button class="faq-q" onclick="toggleFAQ(this)">Why can't I log in? <span>+</span></button>
-    <div class="faq-a" hidden>You need an active registered record and the correct password. Contact your coordinator if needed.</div>
-    <button class="faq-q" onclick="toggleFAQ(this)">What is Premium+? <span>+</span></button>
-    <div class="faq-a" hidden>Unlocks full details, dark theme, custom chat background, main color and profile picture. Contact coordinator · ₹160/mo or ₹1500/yr.</div>
+    <button class="faq-q" onclick="toggleFAQ(this)">
+      What is VSL? <span>+</span>
+    </button>
+    <div class="faq-a" hidden>
+      Service from BS&amp;MFI for verified accounts to view borrowing/lending records and notes.
+    </div>
+
+    <button class="faq-q" onclick="toggleFAQ(this)">
+      Why can't I log in? <span>+</span>
+    </button>
+    <div class="faq-a" hidden>
+      You need an active registered record and the correct password. Contact your coordinator if needed.
+    </div>
+
+    <button class="faq-q" onclick="toggleFAQ(this)">
+      What is Premium+? <span>+</span>
+    </button>
+    <div class="faq-a" hidden>
+      Unlocks full details, dark theme, main color and profile picture.
+      Contact coordinator · ₹160/mo or ₹1500/yr.
+    </div>
   </div>
+
   <div class="lock-footer">
     <a href="#" onclick="openModal('termsModal');return false">Terms</a> ·
     <a href="#" onclick="openModal('privacyModal');return false">Privacy</a><br>
     VSL · v.03.05.11
   </div>
+
 </div>
 
 <!-- CHAT -->
+
 <div id="chatApp" hidden>
+
   <header class="topbar">
-    <button class="back" onclick="doAction('logout')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M9.18,12l7.53,7.53q0.3,0.3 0.29,0.7t-0.31,0.7T16,21.23t-0.7-0.3L7.63,13.28q-0.27-0.27-0.4-0.61T7.09,12t0.13-0.67t0.4-0.61L15.3,3.05q0.3-0.3 0.71-0.29t0.71,0.31t0.3,0.7t-0.3,0.7L9.18,12Z"/></svg></button>
+
+    <button class="menu-btn" onclick="openSheet()" aria-label="Menu">Menu</button>
+
     <div class="brand">
+      <img src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png"
+           alt="" id="brandAvatar">
       <div>
-        <strong id="accountLabel">Holder name</strong>
-        <span>VSL bot</span>
+        <strong>Very Specific Lending</strong>
+        <span id="accountLabel">VSL</span>
       </div>
     </div>
-    <img src="https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png" alt="" id="brandAvatar">
+
+    <button class="report-btn" onclick="openReport()">Report</button>
+
   </header>
 
   <div id="messages"></div>
 
-  <div class="lin-bg-adder">
-    <div class="bottombar">
-    <button class="menu-btn" onclick="openSheet()" aria-label="Menu">☰ Menu</button>
-    <input type="text" id="chatInput" rows="1" placeholder="Message" onkeydown="onKey(event)">
-    <button class="send-btn" onclick="send()" aria-label="Send"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M11.25,7.37L6.08,12.54q-0.22,0.22-0.52,0.22T5.03,12.53Q4.81,12.29 4.8,12t0.22-0.53l6.34-6.34q0.14-0.14 0.3-0.2T12,4.88t0.34,0.06t0.3,0.2l6.34,6.34q0.21,0.21 0.21,0.51t-0.21,0.54q-0.23,0.23-0.53,0.23T17.9,12.53L12.75,7.37V18.75q0,0.32-0.22,0.53T12,19.5t-0.53-0.22t-0.22-0.53V7.37Z"/></svg></button>
-  </div>
+  <div class="bottombar">
+    <textarea id="chatInput" rows="1" placeholder="Message"
+      onkeydown="onKey(event)"></textarea>
+
+    <button class="send-btn" onclick="send()" aria-label="Send"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M3.5,19.25V13.67L10.42,12L3.5,10.33V4.75L20.71,12L3.5,19.25Z"/></svg></button>
   </div>
 
+  <!-- RIGHT MENU -->
+
   <div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
+
   <div class="sheet" id="sheet">
+
     <div class="sheet-title">Menu</div>
+
     <button class="sheet-item" onclick="doAction('details')">My Details</button>
     <button class="sheet-item" onclick="doAction('total')">Total</button>
     <button class="sheet-item" onclick="doAction('notes')">Notes</button>
@@ -328,37 +633,57 @@ background: linear-gradient(0deg, var(--bg) 50%, transparent);
     <button class="sheet-item" onclick="doAction('terms')">Terms</button>
     <button class="sheet-item" onclick="doAction('report')">Report</button>
     <button class="sheet-item" onclick="doAction('font')">Font size</button>
-    <button class="sheet-item" id="themeItem" onclick="doAction('theme')" hidden>Theme <span class="badge">Premium+</span></button>
-    <button class="sheet-item" id="bgItem" onclick="doAction('bg')" hidden>Background image <span class="badge">Premium+</span></button>
-    <button class="sheet-item" id="colorItem" onclick="doAction('color')" hidden>Main color <span class="badge">Premium+</span></button>
-    <button class="sheet-item" id="avatarItem" onclick="doAction('avatar')" hidden>Profile picture <span class="badge">Premium+</span></button>
+
+    <button class="sheet-item" id="themeItem"
+      onclick="doAction('theme')" hidden>
+      Theme <span class="badge">Premium+</span>
+    </button>
+
+    <button class="sheet-item" id="colorItem"
+      onclick="doAction('color')" hidden>
+      Main color <span class="badge">Premium+</span>
+    </button>
+
+    <button class="sheet-item" id="avatarItem"
+      onclick="doAction('avatar')" hidden>
+      Profile picture <span class="badge">Premium+</span>
+    </button>
+
     <button class="sheet-item" onclick="doAction('premium')">Premium+</button>
     <button class="sheet-item" onclick="doAction('logout')">Logout</button>
+
   </div>
 </div>
 
-<!-- Modals -->
+<!-- PREMIUM MODAL -->
+
 <div class="modal-bg" id="premiumModal">
   <div class="modal">
     <button class="close" onclick="closeModal('premiumModal')">✕</button>
     <h3>Premium+</h3>
-    <p>Unlocks full account details, dark theme, custom background, main color and profile picture.</p>
+
+    <p>Unlocks full account details, dark theme, main color and profile picture.</p>
+
     <ul>
       <li>Borrowed By, Interest Rate, Days Passed</li>
       <li>Dark / Light theme</li>
-      <li>Custom chat background image</li>
-      <li>Change main color (buttons & bubbles)</li>
+      <li>Change main color (buttons &amp; bubbles)</li>
       <li>Custom profile picture</li>
     </ul>
+
     <p>Monthly ₹160 · Annual ₹1500<br>Contact your coordinator.</p>
+
     <button class="btn" onclick="closeModal('premiumModal')">OK</button>
   </div>
 </div>
+
+<!-- FONT MODAL -->
 
 <div class="modal-bg" id="fontModal">
   <div class="modal">
     <button class="close" onclick="closeModal('fontModal')">✕</button>
     <h3>Font size</h3>
+
     <div class="font-row">
       <button onclick="changeFont(-1)">−</button>
       <span id="fontLabel">15</span>
@@ -367,111 +692,186 @@ background: linear-gradient(0deg, var(--bg) 50%, transparent);
   </div>
 </div>
 
-<div class="modal-bg" id="bgModal">
-  <div class="modal">
-    <button class="close" onclick="closeModal('bgModal')">✕</button>
-    <h3>Background image</h3>
-    <p>Choose an image from your device. Stored only on this browser.</p>
-    <input type="file" id="bgFile" accept="image/*" onchange="uploadBg(this)">
-    <button class="btn" style="background:var(--muted);margin-top:8px" onclick="resetBg()">Remove</button>
-  </div>
-</div>
+<!-- COLOR MODAL -->
 
 <div class="modal-bg" id="colorModal">
   <div class="modal">
     <button class="close" onclick="closeModal('colorModal')">✕</button>
     <h3>Main color</h3>
-    <p>Choose the accent color for buttons and your messages.</p>
+    <p>Choose one of the four main colors for buttons and your messages.</p>
+
     <div class="color-grid" id="colorGrid"></div>
-    <button class="btn" style="background:var(--muted);margin-top:4px" onclick="resetColor()">Reset to default</button>
+
+    <button class="btn" style="background:var(--muted);margin-top:4px"
+      onclick="resetColor()">Reset to default</button>
   </div>
 </div>
+
+<!-- AVATAR MODAL -->
 
 <div class="modal-bg" id="avatarModal">
   <div class="modal">
     <button class="close" onclick="closeModal('avatarModal')">✕</button>
     <h3>Profile picture</h3>
     <p>Choose an image from your device. Stored only on this browser.</p>
+
     <input type="file" id="avatarFile" accept="image/*" onchange="uploadAvatar(this)">
-    <button class="btn" style="background:var(--muted);margin-top:8px" onclick="resetAvatar()">Remove</button>
+
+    <button class="btn" style="background:var(--muted);margin-top:8px"
+      onclick="resetAvatar()">Remove</button>
   </div>
 </div>
+
+<!-- TERMS MODAL -->
 
 <div class="modal-bg" id="termsModal">
   <div class="modal">
     <button class="close" onclick="closeModal('termsModal')">✕</button>
     <h3>Terms</h3>
+
     <p>VSL is operated by BS&amp;MFI. Access is limited to verified accounts with active records. Data is for personal reference. Premium+ requires activation and fees.</p>
-    <p style="margin-top:8px"><a href="https://mfi0212.github.io/MFI/privacyandterms#terms" target="_blank" rel="noopener">Full terms</a></p>
+
+    <p style="margin-top:8px">
+      <a href="https://mfi0212.github.io/MFI/privacyandterms#terms"
+         target="_blank" rel="noopener">Full terms</a>
+    </p>
   </div>
 </div>
+
+<!-- PRIVACY MODAL -->
 
 <div class="modal-bg" id="privacyModal">
   <div class="modal">
     <button class="close" onclick="closeModal('privacyModal')">✕</button>
     <h3>Privacy</h3>
-    <p>Notes, preferences, background image, color and profile picture are stored locally in your browser. Nothing is sent to external servers by this page.</p>
-    <p style="margin-top:8px"><a href="https://mfi0212.github.io/MFI/privacyandterms#privacy" target="_blank" rel="noopener">Full privacy policy</a></p>
+
+    <p>Notes, preferences, main color and profile picture are stored locally in your browser. Nothing is sent to external servers by this page.</p>
+
+    <p style="margin-top:8px">
+      <a href="https://mfi0212.github.io/MFI/privacyandterms#privacy"
+         target="_blank" rel="noopener">Full privacy policy</a>
+    </p>
   </div>
 </div>
+
 <script>
-const FONT_KEY   = "vslChatFont";
-const THEME_KEY  = "vslChatTheme_";
-const BG_KEY     = "vslChatBg_";
-const COLOR_KEY  = "vslChatColor_";
+
+const FONT_KEY = "vslChatFont";
+const THEME_KEY = "vslChatTheme_";
+const COLOR_KEY = "vslChatColor_";
 const AVATAR_KEY = "vslChatAvatar_";
 
 const DEFAULT_AVATAR = "https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png";
-const DEFAULT_COLOR  = "blue";
+const DEFAULT_COLOR = "#222222";
+
+/* ONLY FOUR COLORS */
 
 const COLOR_PRESETS = [
-  "blue", "#3c3c3c", "#0d9488", "#7c3aed",
-  "#006f16", "#ea580c", "#16a34a", "#b45309",
-  "#dc2626", "#0891b2"
+  "#222222",
+  "#1a73e8",
+  "#0d9488",
+  "#7c3aed"
 ];
 
-const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const months = [
+  "January","February","March","April","May","June",
+  "July","August","September","October","November","December"
+];
+
 let user = null;
 let fontSize = 15;
 
-function $(id){ return document.getElementById(id); }
-function isPrem(u){ return !!(u && (u.premium === true || String(u.premium).toLowerCase() === "yes")); }
-function parseDate(s){ const [y,m,d]=s.split("-").map(Number); return new Date(y,m-1,d); }
-function fmtDate(s){ const d=parseDate(s); return d.getDate()+" "+months[d.getMonth()]+" "+d.getFullYear(); }
-function daysSince(s){ const a=parseDate(s),b=new Date(); a.setHours(0,0,0,0); b.setHours(0,0,0,0); return Math.max(0,Math.floor((b-a)/864e5)); }
+function $(id){
+  return document.getElementById(id);
+}
+
+function isPrem(u){
+  return !!(u && (
+    u.premium === true ||
+    String(u.premium).toLowerCase() === "yes"
+  ));
+}
+
+function parseDate(s){
+  const [y,m,d] = s.split("-").map(Number);
+  return new Date(y,m-1,d);
+}
+
+function fmtDate(s){
+  const d = parseDate(s);
+  return d.getDate()+" "+months[d.getMonth()]+" "+d.getFullYear();
+}
+
+function daysSince(s){
+  const a = parseDate(s);
+  const b = new Date();
+
+  a.setHours(0,0,0,0);
+  b.setHours(0,0,0,0);
+
+  return Math.max(0,Math.floor((b-a)/864e5));
+}
+
 function entryData(e){
   const days = daysSince(e.takenDate);
   const ti = Math.round(e.amount * e.interest * days / 3000);
-  const rem = Math.max(0, ti - (e.interestPaid || 0));
-  return {days, rem, total: e.amount + rem};
+  const rem = Math.max(0,ti-(e.interestPaid || 0));
+
+  return {
+    days,
+    rem,
+    total:e.amount+rem
+  };
 }
-function inr(n){ return "₹" + Number(n).toLocaleString("en-IN"); }
-function esc(t){ return String(t).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
+
+function inr(n){
+  return "₹"+Number(n).toLocaleString("en-IN");
+}
+
+function esc(t){
+  return String(t).replace(/[&<>"']/g,c=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    "\"":"&quot;",
+    "'":"&#39;"
+  }[c]));
+}
+
+/* FAQ */
 
 function toggleFAQ(btn){
-  const a = btn.nextElementSibling, sp = btn.querySelector("span");
+  const a = btn.nextElementSibling;
+  const sp = btn.querySelector("span");
+
   if(!a) return;
+
   a.hidden = !a.hidden;
   sp.textContent = a.hidden ? "+" : "−";
 }
 
-/* ---------- Appearance helpers ---------- */
+/* APPEARANCE */
+
 function getContrastText(hex){
   const c = hex.replace("#","");
+
   const r = parseInt(c.substr(0,2),16);
   const g = parseInt(c.substr(2,2),16);
   const b = parseInt(c.substr(4,2),16);
-  const yiq = (r*299 + g*587 + b*114) / 1000;
+
+  const yiq = (r*299+g*587+b*114)/1000;
+
   return yiq >= 140 ? "#111111" : "#ffffff";
 }
 
 function applyPrimaryColor(hex){
   const color = hex || DEFAULT_COLOR;
-  const text  = getContrastText(color);
-  document.documentElement.style.setProperty("--primary", color);
-  document.documentElement.style.setProperty("--primary-text", text);
-  document.documentElement.style.setProperty("--user", color);
-  document.documentElement.style.setProperty("--user-text", text);
+  const text = getContrastText(color);
+
+  document.documentElement.style.setProperty("--primary",color);
+  document.documentElement.style.setProperty("--primary-text",text);
+  document.documentElement.style.setProperty("--user",color);
+  document.documentElement.style.setProperty("--user-text",text);
 }
 
 function applyTheme(t){
@@ -480,350 +880,673 @@ function applyTheme(t){
 
 function toggleTheme(){
   if(!isPrem(user)) return;
-  const next = document.body.dataset.theme === "dark" ? "light" : "dark";
+
+  const next = document.body.dataset.theme === "dark"
+    ? "light"
+    : "dark";
+
   applyTheme(next);
-  try{ localStorage.setItem(THEME_KEY + user.id, next); }catch{}
-  reply("Theme: <b>" + (next === "dark" ? "Dark" : "Light") + "</b>");
+
+  try{
+    localStorage.setItem(THEME_KEY+user.id,next);
+  }catch{}
+
+  reply("Theme: <b>"+(next==="dark"?"Dark":"Light")+"</b>");
 }
 
-function uploadBg(input){
-  if(!isPrem(user) || !input.files || !input.files[0]) return;
-  const f = input.files[0];
-  if(f.size > 3 * 1024 * 1024){ reply("Image too large (max 3 MB)."); return; }
-  const r = new FileReader();
-  r.onload = () => {
-    const data = r.result;
-    $("messages").style.backgroundImage = "url(" + data + ")";
-    try{ localStorage.setItem(BG_KEY + user.id, data); }catch{ reply("Could not save (storage full)."); }
-    reply("Background set.");
-    closeModal("bgModal");
-  };
-  r.readAsDataURL(f);
-}
-function resetBg(){
-  if(!user) return;
-  $("messages").style.backgroundImage = "";
-  try{ localStorage.removeItem(BG_KEY + user.id); }catch{}
-  reply("Background removed.");
-  closeModal("bgModal");
-}
+/* MAIN COLOR */
 
-/* Color */
 function setColor(hex){
   if(!isPrem(user)) return;
+
   applyPrimaryColor(hex);
-  try{ localStorage.setItem(COLOR_KEY + user.id, hex); }catch{}
-  // update active swatch
-  document.querySelectorAll(".color-swatch").forEach(el => {
-    el.classList.toggle("active", el.dataset.color === hex);
+
+  try{
+    localStorage.setItem(COLOR_KEY+user.id,hex);
+  }catch{}
+
+  document.querySelectorAll(".color-swatch").forEach(el=>{
+    el.classList.toggle("active",el.dataset.color===hex);
   });
+
   reply("Main color updated.");
   closeModal("colorModal");
 }
+
 function resetColor(){
   if(!user) return;
+
   applyPrimaryColor(DEFAULT_COLOR);
-  try{ localStorage.removeItem(COLOR_KEY + user.id); }catch{}
-  document.querySelectorAll(".color-swatch").forEach(el => {
-    el.classList.toggle("active", el.dataset.color === DEFAULT_COLOR);
+
+  try{
+    localStorage.removeItem(COLOR_KEY+user.id);
+  }catch{}
+
+  document.querySelectorAll(".color-swatch").forEach(el=>{
+    el.classList.toggle(
+      "active",
+      el.dataset.color===DEFAULT_COLOR
+    );
   });
+
   reply("Color reset to default.");
   closeModal("colorModal");
 }
+
 function buildColorGrid(){
   const grid = $("colorGrid");
   grid.innerHTML = "";
-  COLOR_PRESETS.forEach(c => {
+
+  let current = DEFAULT_COLOR;
+
+  try{
+    current = localStorage.getItem(COLOR_KEY+user.id) || DEFAULT_COLOR;
+  }catch{}
+
+  COLOR_PRESETS.forEach(c=>{
     const btn = document.createElement("button");
+
     btn.className = "color-swatch";
     btn.dataset.color = c;
     btn.style.background = c;
-    btn.onclick = () => setColor(c);
+
+    btn.classList.toggle("active",c===current);
+
+    btn.onclick = ()=>setColor(c);
+
     grid.appendChild(btn);
   });
 }
 
-/* Avatar / Profile picture */
+/* PROFILE PICTURE */
+
 function applyAvatar(src){
-  const url = src || DEFAULT_AVATAR;
-  $("brandAvatar").src = url;
-  // also update lock screen logo if desired (optional)
-  // $("lockLogo").src = url;
+  $("brandAvatar").src = src || DEFAULT_AVATAR;
 }
+
 function uploadAvatar(input){
   if(!isPrem(user) || !input.files || !input.files[0]) return;
+
   const f = input.files[0];
-  if(f.size > 2 * 1024 * 1024){ reply("Image too large (max 2 MB)."); return; }
+
+  if(f.size > 2*1024*1024){
+    reply("Image too large (max 2 MB).");
+    input.value = "";
+    return;
+  }
+
   const r = new FileReader();
-  r.onload = () => {
+
+  r.onload = ()=>{
     const data = r.result;
+
     applyAvatar(data);
-    try{ localStorage.setItem(AVATAR_KEY + user.id, data); }catch{ reply("Could not save (storage full)."); }
+
+    try{
+      localStorage.setItem(AVATAR_KEY+user.id,data);
+    }catch{
+      reply("Could not save (storage full).");
+      return;
+    }
+
     reply("Profile picture updated.");
     closeModal("avatarModal");
   };
+
   r.readAsDataURL(f);
 }
+
 function resetAvatar(){
   if(!user) return;
+
   applyAvatar(DEFAULT_AVATAR);
-  try{ localStorage.removeItem(AVATAR_KEY + user.id); }catch{}
+
+  try{
+    localStorage.removeItem(AVATAR_KEY+user.id);
+  }catch{}
+
   reply("Profile picture removed.");
   closeModal("avatarModal");
 }
 
-/* Load all appearance settings for current user */
+/* LOAD SETTINGS */
+
 function loadAppearance(){
   if(!user) return;
-  let t = "light", bg = null, color = DEFAULT_COLOR, avatar = null;
+
+  let t = "light";
+  let color = DEFAULT_COLOR;
+  let avatar = null;
+
   try{
-    t      = localStorage.getItem(THEME_KEY  + user.id) || "light";
-    bg     = localStorage.getItem(BG_KEY     + user.id);
-    color  = localStorage.getItem(COLOR_KEY  + user.id) || DEFAULT_COLOR;
-    avatar = localStorage.getItem(AVATAR_KEY + user.id);
+    t = localStorage.getItem(THEME_KEY+user.id) || "light";
+    color = localStorage.getItem(COLOR_KEY+user.id) || DEFAULT_COLOR;
+    avatar = localStorage.getItem(AVATAR_KEY+user.id);
   }catch{}
+
   applyTheme(t);
   applyPrimaryColor(color);
-  $("messages").style.backgroundImage = bg ? "url(" + bg + ")" : "";
   applyAvatar(avatar);
 }
 
-/* Font */
-function applyFont(){ document.body.style.fontSize = fontSize + "px"; $("fontLabel").textContent = fontSize; }
-function changeFont(d){
-  const n = fontSize + d;
-  if(n < 13 || n > 20) return;
-  fontSize = n;
-  applyFont();
-  try{ localStorage.setItem(FONT_KEY, fontSize); }catch{}
+/* FONT */
+
+function applyFont(){
+  document.body.style.fontSize = fontSize+"px";
+  $("fontLabel").textContent = fontSize;
 }
 
-/* Login */
+function changeFont(d){
+  const n = fontSize+d;
+
+  if(n<13 || n>20) return;
+
+  fontSize = n;
+  applyFont();
+
+  try{
+    localStorage.setItem(FONT_KEY,fontSize);
+  }catch{}
+}
+
+/* LOGIN */
+
 function checkPassword(){
   const v = $("passwordInput").value.trim();
-  const m = USERS.find(u => u.password === v);
-  if(!m){ $("lockError").hidden = false; $("passwordInput").select(); return; }
+
+  const m = USERS.find(u=>u.password===v);
+
+  if(!m){
+    $("lockError").hidden = false;
+    $("passwordInput").select();
+    return;
+  }
+
   $("lockError").hidden = true;
   login(m);
 }
+
 function login(u){
   user = u;
+
   $("lockScreen").hidden = true;
   $("chatApp").hidden = false;
+
   $("accountLabel").textContent = u.name;
 
   const p = isPrem(u);
-  $("themeItem").hidden  = !p;
-  $("bgItem").hidden     = !p;
-  $("colorItem").hidden  = !p;
+
+  $("themeItem").hidden = !p;
+  $("colorItem").hidden = !p;
   $("avatarItem").hidden = !p;
 
-  const fs = parseInt(localStorage.getItem(FONT_KEY), 10);
-  if(fs >= 13 && fs <= 20) fontSize = fs;
+  const fs = parseInt(localStorage.getItem(FONT_KEY),10);
+
+  if(fs>=13 && fs<=20) fontSize = fs;
+
   applyFont();
   loadAppearance();
   buildColorGrid();
 
   $("messages").innerHTML = "";
-  reply("Hi <b>" + esc(u.name) + "</b>." + (p ? " Premium+ active." : "") + "<br>Type <b>details</b>, <b>total</b> or <b>sites</b>, or open the menu.", [
-    {t:"Details", fn: showDetails},
-    {t:"Total", fn: showTotal},
-    {t:"Allocated sites", fn: showSites}
-  ]);
+
+  reply(
+    "Hi <b>"+esc(u.name)+"</b>."+
+    (p ? " Premium+ active." : "")+
+    "<br>Type <b>details</b>, <b>total</b> or <b>sites</b>, or open the menu.",
+    [
+      {t:"Details",fn:showDetails},
+      {t:"Total",fn:showTotal},
+      {t:"Allocated sites",fn:showSites}
+    ]
+  );
 }
+
 function logout(){
   user = null;
+
   $("chatApp").hidden = true;
   $("lockScreen").hidden = false;
   $("passwordInput").value = "";
   $("messages").innerHTML = "";
-  $("messages").style.backgroundImage = "";
+
   applyTheme("light");
   applyPrimaryColor(DEFAULT_COLOR);
   applyAvatar(DEFAULT_AVATAR);
+
   closeSheet();
+
+  ["premiumModal","fontModal","colorModal","avatarModal","termsModal","privacyModal"]
+    .forEach(closeModal);
 }
 
-/* Chat helpers */
-function add(html, who){
+/* CHAT HELPERS */
+
+function add(html,who){
   const d = document.createElement("div");
-  d.className = "msg " + who;
+
+  d.className = "msg "+who;
   d.innerHTML = html;
+
   const m = document.createElement("div");
+
   m.className = "meta";
-  m.textContent = new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
+  m.textContent = new Date().toLocaleTimeString([],{
+    hour:"2-digit",
+    minute:"2-digit"
+  });
+
   d.appendChild(m);
+
   $("messages").appendChild(d);
   $("messages").scrollTop = $("messages").scrollHeight;
+
   return d;
 }
-function reply(html, qs){
-  const el = add(html, "bot");
+
+function reply(html,qs){
+  const el = add(html,"bot");
+
   if(qs && qs.length){
     const w = document.createElement("div");
+
     w.className = "qs";
-    qs.forEach(q => {
+
+    qs.forEach(q=>{
       const b = document.createElement("button");
+
       b.textContent = q.t;
-      b.onclick = () => q.fn ? q.fn() : sendText(q.t);
+      b.onclick = ()=>q.fn ? q.fn() : sendText(q.t);
+
       w.appendChild(b);
     });
+
     el.appendChild(w);
   }
 }
-function bubble(t){ add(esc(t), "user"); }
 
-/* Features */
+function bubble(t){
+  add(esc(t),"user");
+}
+
+/* DETAILS */
+
 function showDetails(){
-  if(!user || !user.entries.length){ reply("No records."); return; }
+  if(!user || !user.entries.length){
+    reply("No records.");
+    return;
+  }
+
   const p = isPrem(user);
   let h = "<b>Your records</b>";
-  user.entries.forEach((e, i) => {
-    if(typeof e.interestPaid !== "number") e.interestPaid = 0;
+
+  user.entries.forEach((e,i)=>{
+    if(typeof e.interestPaid !== "number"){
+      e.interestPaid = 0;
+    }
+
     const d = entryData(e);
+
     h += "<div class='card'>";
-    h += "<div class='row'><span class='l'>#" + (i+1) + "</span><span class='v'></span></div>";
-    h += "<div class='row'><span class='l'>Borrowed By</span><span class='v'>" + (p ? esc(e.borrowedBy || "—") : "Premium+") + "</span></div>";
-    h += "<div class='row'><span class='l'>Principal</span><span class='v'>" + inr(e.amount) + "</span></div>";
-    h += "<div class='row'><span class='l'>Interest</span><span class='v'>" + (p ? e.interest + "% / mo" : "Premium+") + "</span></div>";
-    h += "<div class='row'><span class='l'>Date</span><span class='v'>" + fmtDate(e.takenDate) + "</span></div>";
-    h += "<div class='row'><span class='l'>Days</span><span class='v'>" + (p ? d.days : "Premium+") + "</span></div>";
-    if(p) h += "<div class='row'><span class='l'>Interest paid</span><span class='v'>" + inr(e.interestPaid) + "</span></div>";
-    h += "<div class='row'><span class='l'>Remaining interest</span><span class='v'>" + inr(d.rem) + "</span></div>";
-    h += "<div class='total'><span>Total</span><span>" + inr(d.total) + "</span></div>";
+
+    h += "<div class='row'><span class='l'>#"+(i+1)+"</span><span class='v'></span></div>";
+
+    h += "<div class='row'><span class='l'>Borrowed By</span><span class='v'>"+
+      (p ? esc(e.borrowedBy||"—") : "Premium+")+"</span></div>";
+
+    h += "<div class='row'><span class='l'>Principal</span><span class='v'>"+
+      inr(e.amount)+"</span></div>";
+
+    h += "<div class='row'><span class='l'>Interest</span><span class='v'>"+
+      (p ? e.interest+"% / mo" : "Premium+")+"</span></div>";
+
+    h += "<div class='row'><span class='l'>Date</span><span class='v'>"+
+      fmtDate(e.takenDate)+"</span></div>";
+
+    h += "<div class='row'><span class='l'>Days</span><span class='v'>"+
+      (p ? d.days : "Premium+")+"</span></div>";
+
+    if(p){
+      h += "<div class='row'><span class='l'>Interest paid</span><span class='v'>"+
+        inr(e.interestPaid)+"</span></div>";
+    }
+
+    h += "<div class='row'><span class='l'>Remaining interest</span><span class='v'>"+
+      inr(d.rem)+"</span></div>";
+
+    h += "<div class='total'><span>Total</span><span>"+
+      inr(d.total)+"</span></div>";
+
     h += "</div>";
   });
+
   reply(h);
 }
+
+/* TOTAL */
+
 function showTotal(){
   if(!user) return;
-  let prin = 0, rem = 0;
-  (user.entries || []).forEach(e => { prin += Number(e.amount)||0; rem += entryData(e).rem; });
-  reply("<b>Total</b><div class='card'>" +
-    "<div class='row'><span class='l'>Principal</span><span class='v'>" + inr(prin) + "</span></div>" +
-    "<div class='row'><span class='l'>Remaining interest</span><span class='v'>" + inr(rem) + "</span></div>" +
-    "<div class='total'><span>Grand total</span><span>" + inr(prin+rem) + "</span></div></div>");
+
+  let prin = 0;
+  let rem = 0;
+
+  (user.entries||[]).forEach(e=>{
+    prin += Number(e.amount)||0;
+    rem += entryData(e).rem;
+  });
+
+  reply(
+    "<b>Total</b><div class='card'>"+
+    "<div class='row'><span class='l'>Principal</span><span class='v'>"+
+    inr(prin)+"</span></div>"+
+    "<div class='row'><span class='l'>Remaining interest</span><span class='v'>"+
+    inr(rem)+"</span></div>"+
+    "<div class='total'><span>Grand total</span><span>"+
+    inr(prin+rem)+"</span></div></div>"
+  );
 }
+
+/* NOTES */
+
 function getNotes(){
   if(!user) return [];
-  try{ const n = JSON.parse(localStorage.getItem("vslNotes_" + user.id)); return Array.isArray(n) ? n : []; }catch{ return []; }
+
+  try{
+    const n = JSON.parse(localStorage.getItem("vslNotes_"+user.id));
+    return Array.isArray(n) ? n : [];
+  }catch{
+    return [];
+  }
 }
+
 function showNotes(){
   const notes = getNotes();
-  if(!notes.length){ reply("No notes. Type <b>note: your text</b> to add one."); return; }
-  let h = "<b>Notes</b> (" + notes.length + ")";
-  notes.slice(0,6).forEach(n => {
-    h += "<div class='card' style='margin-top:6px'><div style='white-space:pre-wrap'>" + esc(n.text) + "</div>" +
-      "<div class='meta' style='margin-top:4px'>" + new Date(n.date).toLocaleString() +
-      " · <a href='#' onclick=\"delNote('" + n.id + "');return false\">Delete</a></div></div>";
+
+  if(!notes.length){
+    reply("No notes. Type <b>note: your text</b> to add one.");
+    return;
+  }
+
+  let h = "<b>Notes</b> ("+notes.length+")";
+
+  notes.slice(0,6).forEach(n=>{
+    h += "<div class='card' style='margin-top:6px'>"+
+      "<div style='white-space:pre-wrap'>"+esc(n.text)+"</div>"+
+      "<div class='meta' style='margin-top:4px'>"+
+      new Date(n.date).toLocaleString()+
+      " · <a href='#' onclick=\"delNote('"+esc(n.id)+"');return false\">Delete</a>"+
+      "</div></div>";
   });
+
   reply(h);
 }
+
 function saveNote(text){
   if(!user || !text.trim()) return;
+
   const notes = getNotes();
-  notes.unshift({ id: Date.now() + "-" + Math.random().toString(36).slice(2), text: text.trim(), date: new Date().toISOString() });
-  try{ localStorage.setItem("vslNotes_" + user.id, JSON.stringify(notes)); }catch{ reply("Could not save."); return; }
+
+  notes.unshift({
+    id:Date.now()+"-"+Math.random().toString(36).slice(2),
+    text:text.trim(),
+    date:new Date().toISOString()
+  });
+
+  try{
+    localStorage.setItem("vslNotes_"+user.id,JSON.stringify(notes));
+  }catch{
+    reply("Could not save.");
+    return;
+  }
+
   reply("Note saved.");
 }
+
 function delNote(id){
   if(!user) return;
-  const notes = getNotes().filter(n => n.id !== id);
-  try{ localStorage.setItem("vslNotes_" + user.id, JSON.stringify(notes)); }catch{}
+
+  const notes = getNotes().filter(n=>n.id!==id);
+
+  try{
+    localStorage.setItem("vslNotes_"+user.id,JSON.stringify(notes));
+  }catch{}
+
   reply("Deleted.");
 }
+
+/* FAQ */
+
 function showFAQ(){
-  reply("<b>FAQ</b><br><br>" +
-    "<b>What is VSL?</b><br>Service from BS&amp;MFI for verified accounts to view borrows/lends and notes.<br><br>" +
-    "<b>Login issues?</b><br>Need active record + correct password. Contact coordinator.<br><br>" +
-    "<b>Premium+?</b><br>Full details, theme, background, main color & profile picture. ₹160/mo or ₹1500/yr.");
+  reply(
+    "<b>FAQ</b><br><br>"+
+    "<b>What is VSL?</b><br>Service from BS&amp;MFI for verified accounts to view borrows/lends and notes.<br><br>"+
+    "<b>Login issues?</b><br>Need active record + correct password. Contact coordinator.<br><br>"+
+    "<b>Premium+?</b><br>Full details, theme, main color &amp; profile picture. ₹160/mo or ₹1500/yr."
+  );
 }
+
+/* SITES */
+
 function showSites(){
   if(!user) return;
+
   const sites = Array.isArray(user.sites) ? user.sites : [];
+
   if(!sites.length){
     reply("No allocated sites for this account.");
     return;
   }
-  let h = "<b>Allocated sites</b> (" + sites.length + ")";
-  sites.forEach(s => {
-    const text = esc(s.text || "Link");
-    const href = esc(s.href || "#");
-    h += "<a class='site-link' href='" + href + "' target='_blank' rel='noopener'>" + text + "</a>";
+
+  let h = "<b>Allocated sites</b> ("+sites.length+")";
+
+  sites.forEach(s=>{
+    const text = esc(s.text||"Link");
+    const href = esc(s.href||"#");
+
+    h += "<a class='site-link' href='"+href+
+      "' target='_blank' rel='noopener'>"+text+"</a>";
   });
+
   reply(h);
 }
 
-/* UI controls */
-function openSheet(){ $("sheet").classList.add("open"); $("sheetOverlay").classList.add("open"); }
-function closeSheet(){ $("sheet").classList.remove("open"); $("sheetOverlay").classList.remove("open"); }
-function openModal(id){ $(id).classList.add("open"); }
-function closeModal(id){ $(id).classList.remove("open"); }
-function openReport(){ window.open("https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form", "_blank", "noopener"); }
+/* MENU */
+
+function openSheet(){
+  $("sheet").classList.add("open");
+  $("sheetOverlay").classList.add("open");
+}
+
+function closeSheet(){
+  $("sheet").classList.remove("open");
+  $("sheetOverlay").classList.remove("open");
+}
+
+function openModal(id){
+  $(id).classList.add("open");
+}
+
+function closeModal(id){
+  if($(id)) $(id).classList.remove("open");
+}
+
+function openReport(){
+  window.open(
+    "https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform?usp=send_form",
+    "_blank",
+    "noopener"
+  );
+}
 
 function doAction(a){
   closeSheet();
-  if(a === "details") showDetails();
-  else if(a === "total") showTotal();
-  else if(a === "notes") showNotes();
-  else if(a === "sites") showSites();
-  else if(a === "faq") showFAQ();
-  else if(a === "terms") openModal("termsModal");
-  else if(a === "report") openReport();
-  else if(a === "font") openModal("fontModal");
-  else if(a === "theme"){ if(isPrem(user)) toggleTheme(); else openModal("premiumModal"); }
-  else if(a === "bg"){ if(isPrem(user)) openModal("bgModal"); else openModal("premiumModal"); }
-  else if(a === "color"){ if(isPrem(user)) openModal("colorModal"); else openModal("premiumModal"); }
-  else if(a === "avatar"){ if(isPrem(user)) openModal("avatarModal"); else openModal("premiumModal"); }
-  else if(a === "premium") openModal("premiumModal");
-  else if(a === "logout") logout();
+
+  if(a==="details") showDetails();
+  else if(a==="total") showTotal();
+  else if(a==="notes") showNotes();
+  else if(a==="sites") showSites();
+  else if(a==="faq") showFAQ();
+  else if(a==="terms") openModal("termsModal");
+  else if(a==="report") openReport();
+  else if(a==="font") openModal("fontModal");
+
+  else if(a==="theme"){
+    if(isPrem(user)) toggleTheme();
+    else openModal("premiumModal");
+  }
+
+  else if(a==="color"){
+    if(isPrem(user)) openModal("colorModal");
+    else openModal("premiumModal");
+  }
+
+  else if(a==="avatar"){
+    if(isPrem(user)) openModal("avatarModal");
+    else openModal("premiumModal");
+  }
+
+  else if(a==="premium") openModal("premiumModal");
+  else if(a==="logout") logout();
 }
 
-function onKey(e){ if(e.key === "Enter" && !e.shiftKey){ e.preventDefault(); send(); } }
-function sendText(t){ bubble(t); handle(t.trim().toLowerCase(), t.trim()); }
+/* SEND MESSAGE */
+
+function onKey(e){
+  if(e.key==="Enter" && !e.shiftKey){
+    e.preventDefault();
+    send();
+  }
+}
+
+function sendText(t){
+  bubble(t);
+  handle(t.trim().toLowerCase(),t.trim());
+}
+
 function send(){
-  const inp = $("chatInput"), t = inp.value.trim();
+  const inp = $("chatInput");
+  const t = inp.value.trim();
+
   if(!t) return;
+
   inp.value = "";
+  inp.style.height = "auto";
+
   sendText(t);
 }
-function handle(low, orig){
-  if(low === "details" || low === "my details" || low === "detail") showDetails();
-  else if(low === "total" || low === "summary") showTotal();
-  else if(low === "notes" || low === "my notes") showNotes();
-  else if(low === "sites" || low === "allocated sites" || low === "site") showSites();
-  else if(low.startsWith("note:") || low.startsWith("note ")) saveNote(orig.replace(/^note:\s*/i, "").replace(/^note\s+/i, ""));
-  else if(low === "faq" || low === "help") showFAQ();
-  else if(low === "premium" || low.includes("upgrade")) openModal("premiumModal");
-  else if(low === "theme"){ if(isPrem(user)) toggleTheme(); else openModal("premiumModal"); }
-  else if(low === "color" || low === "main color"){ if(isPrem(user)) openModal("colorModal"); else openModal("premiumModal"); }
-  else if(low === "avatar" || low === "profile" || low === "profile picture"){ if(isPrem(user)) openModal("avatarModal"); else openModal("premiumModal"); }
-  else if(low === "report") openReport();
-  else if(low === "logout") logout();
-  else reply("Try <b>details</b>, <b>total</b>, <b>sites</b>, <b>notes</b>, <b>faq</b> or the menu.", [
-    {t:"Details", fn: showDetails},
-    {t:"Allocated sites", fn: showSites},
-    {t:"FAQ", fn: showFAQ}
-  ]);
+
+function handle(low,orig){
+
+  if(low==="details" || low==="my details" || low==="detail"){
+    showDetails();
+  }
+
+  else if(low==="total" || low==="summary"){
+    showTotal();
+  }
+
+  else if(low==="notes" || low==="my notes"){
+    showNotes();
+  }
+
+  else if(low==="sites" || low==="allocated sites" || low==="site"){
+    showSites();
+  }
+
+  else if(low.startsWith("note:") || low.startsWith("note ")){
+    saveNote(
+      orig.replace(/^note:\s*/i,"").replace(/^note\s+/i,"")
+    );
+  }
+
+  else if(low==="faq" || low==="help"){
+    showFAQ();
+  }
+
+  else if(low==="premium" || low.includes("upgrade")){
+    openModal("premiumModal");
+  }
+
+  else if(low==="theme"){
+    if(isPrem(user)) toggleTheme();
+    else openModal("premiumModal");
+  }
+
+  else if(low==="color" || low==="main color"){
+    if(isPrem(user)) openModal("colorModal");
+    else openModal("premiumModal");
+  }
+
+  else if(low==="avatar" || low==="profile" || low==="profile picture"){
+    if(isPrem(user)) openModal("avatarModal");
+    else openModal("premiumModal");
+  }
+
+  else if(low==="report"){
+    openReport();
+  }
+
+  else if(low==="logout"){
+    logout();
+  }
+
+  else{
+    reply(
+      "Try <b>details</b>, <b>total</b>, <b>sites</b>, <b>notes</b>, <b>faq</b> or the menu.",
+      [
+        {t:"Details",fn:showDetails},
+        {t:"Allocated sites",fn:showSites},
+        {t:"FAQ",fn:showFAQ}
+      ]
+    );
+  }
 }
 
-// $("chatInput").addEventListener("input", function(){
-//   this.style.height = "auto";
-//   this.style.height = Math.min(this.scrollHeight, 90) + "px";
-// });
+/* INPUT RESIZE */
 
-["premiumModal","fontModal","bgModal","colorModal","avatarModal","termsModal","privacyModal"].forEach(id => {
-  $(id).addEventListener("click", e => { if(e.target.id === id) closeModal(id); });
+$("chatInput").addEventListener("input",function(){
+  this.style.height = "auto";
+  this.style.height = Math.min(this.scrollHeight,90)+"px";
 });
-document.addEventListener("keydown", e => {
-  if(e.key === "Escape"){
+
+/* MODAL CLOSE */
+
+[
+  "premiumModal",
+  "fontModal",
+  "colorModal",
+  "avatarModal",
+  "termsModal",
+  "privacyModal"
+].forEach(id=>{
+  $(id).addEventListener("click",e=>{
+    if(e.target.id===id) closeModal(id);
+  });
+});
+
+/* ESCAPE KEY */
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){
     closeSheet();
-    ["premiumModal","fontModal","bgModal","colorModal","avatarModal","termsModal","privacyModal"].forEach(closeModal);
+
+    [
+      "premiumModal",
+      "fontModal",
+      "colorModal",
+      "avatarModal",
+      "termsModal",
+      "privacyModal"
+    ].forEach(closeModal);
   }
 });
 
+/* INITIAL SETTINGS */
+
 applyTheme("light");
 applyPrimaryColor(DEFAULT_COLOR);
+
 </script>
 </body>
 </html>
