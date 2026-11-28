@@ -36,14 +36,7 @@ const USERS = [
     premium: false,
 
     sites: [
-      {
-        text: "lend money",
-        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/lender.lending.clients"
-      },
-       {
-        text: "calculator",
-        href: "https://mfi0212.github.io/MFI/service.solutions/VSL/interest.checker"
-      },
+     
     ],
 
     entries: [
