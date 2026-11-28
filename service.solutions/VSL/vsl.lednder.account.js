@@ -2,7 +2,7 @@ document.addEventListener("contextmenu", event => event.preventDefault());
 const USERS = [
   {
     id: "psvkry",
-    name: "Psvkry(@BS Owner)",
+    name: "China Yerra",
     password: "17891",
     premium: false,
 
@@ -27,6 +27,8 @@ const USERS = [
       },
     ]
   },
+
+
     {
     id: "Kiran Tummala",
     name: "Kiran Tummala",
@@ -34,7 +36,7 @@ const USERS = [
     premium: false,
 
     sites: [
-{
+      {
         text: "lend money",
         href: "https://mfi0212.github.io/MFI/service.solutions/VSL/lender.lending.clients"
       },
@@ -54,17 +56,18 @@ const USERS = [
       },
     ]
   },
+
    {
     id: "Tony Montana",
     name: "Tony Montana",
     password: "9919",
     premium: true,
-sites: [
+    sites: [
       {
         text: "New Entry",
         href: "https://forms.gle/XntQLZXgpZAD8Quw7"
       },
-{
+      {
         text: "STL",
         href: "https://mfi0212.github.io/MFI/1.5.days"
       }, {
