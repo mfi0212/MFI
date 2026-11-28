@@ -110,7 +110,7 @@ button.back {
     white-space: nowrap;
     box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
     backdrop-filter: blur(2px);
-    padding: 0px 15px;
+    padding: 0px 15px;color: var(--text);
     border-radius: 999px;
     background: var(--primary);
     font-weight: 400;
@@ -218,9 +218,6 @@ background: linear-gradient(0deg, #000000d6 50%, transparent);
     box-shadow: inset -0.8px 0px 0px #0000001c, inset 0px 0.8px 0px #ffffff1f, inset 0.8px 0px 0px #0000001c, inset 0px -0.8px 0px #ffffff1f;
     backdrop-filter: blur(2px);
     }
-button.send-btn svg {
-    fill: var(--primary-text);
-}
     .sheet-overlay{position:absolute;inset:0;z-index:30;background:rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:opacity .15s}
     .sheet-overlay.open{opacity:1;pointer-events:auto}
     .sheet{
@@ -273,7 +270,7 @@ button.send-btn svg {
   <div class="lock-card">
     <h2>Enter your account password</h2>
     <div class="lock-row">
-      <input type="password" id="passwordInput" class="lock-input" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')checkPassword()">
+      <input type="text" id="passwordInput" class="lock-input" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')checkPassword()">
       <button class="lock-btn" onclick="checkPassword()">Login</button>
     </div>
     <p id="lockError" class="lock-error" hidden>Wrong password.</p>
@@ -425,10 +422,10 @@ const COLOR_KEY  = "vslChatColor_";
 const AVATAR_KEY = "vslChatAvatar_";
 
 const DEFAULT_AVATAR = "https://i.ibb.co/2YfCF9jv/vsl-patron-trans-logo.png";
-const DEFAULT_COLOR  = "#222222";
+const DEFAULT_COLOR  = "blue";
 
 const COLOR_PRESETS = [
-  "#222222", "#1a73e8", "#0d9488", "#7c3aed",
+  "blue", "#1a73e8", "#0d9488", "#7c3aed",
   "#db2777", "#ea580c", "#16a34a", "#b45309",
   "#dc2626", "#0891b2"
 ];
