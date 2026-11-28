@@ -239,9 +239,7 @@ a{color:inherit;text-decoration:underline}
   word-break:break-word;
 }
 .msg.bot{
-  align-self:flex-start;
-  background:var(--bot);
-  border:1px solid var(--border);
+     align-self: flex-start;
 }
 .msg.user{
   align-self:flex-end;
@@ -249,9 +247,10 @@ a{color:inherit;text-decoration:underline}
   color:var(--primary-text);
 }
 .msg .meta{
-  font-size:.65rem;
-  opacity:.5;
-  margin-top:3px;
+     font-size: .65rem;
+    opacity: .5;
+    margin-top: 10px;
+    text-align: end;
 }
 .msg.user .meta{text-align:right}
 .msg .card{
@@ -283,7 +282,7 @@ a{color:inherit;text-decoration:underline}
 .msg .qs{
   display:flex;
   flex-wrap:wrap;
-  gap:6px;
+  gap:6px;display: none;
   margin-top:8px;
 }
 .msg .qs button{
