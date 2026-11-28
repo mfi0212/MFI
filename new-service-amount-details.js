@@ -8,13 +8,13 @@ document.addEventListener('contextmenu', e => e.preventDefault());
         customui: "no",
         showBottomNav: "yes",
         bottomNavItems: ["amounts", "borrow", "settings"],
-        showCustomContent: "yes",
+        showCustomContent: "no",
         customContent: {
           type: "image",
           value: "https://mfi0212.github.io/mfi.f/you.receive.gift.png",
           url: "https://mfi0212.github.io/mfi.f/mygifts"
         },
-        showSpecialNotice: "yes",
+        showSpecialNotice: "no",
         specialNoticeText: "Mr. Deepak Tallapudi, you've received a gift from your friend! 🎁 Click the banner below to open and view your gift.",
         loans: [
           { amount: 6000, interest: 2000, borrowed: "22-11-2026", return: "22-12-2026", overdueFee: 50 },
