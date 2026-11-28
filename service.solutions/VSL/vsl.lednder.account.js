@@ -1,4 +1,4 @@
-// document.addEventListener("contextmenu", event => event.preventDefault());
+document.addEventListener("contextmenu", event => event.preventDefault());
 const USERS = [
   {
     id: "psvkry",
@@ -30,10 +30,10 @@ const USERS = [
     {
     id: "Kiran Tummala",
     name: "Kiran Tummala",
-    password: "1234",
+    password: "Kiran@2004",
     premium: false,
 
-    topBanner: [
+    sites: [
 {
         text: "lend money",
         href: "https://mfi0212.github.io/MFI/service.solutions/VSL/lender.lending.clients"
@@ -57,7 +57,7 @@ const USERS = [
    {
     id: "Tony Montana",
     name: "Tony Montana",
-    password: "9",
+    password: "9919",
     premium: true,
 sites: [
       {
