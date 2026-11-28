@@ -36,7 +36,7 @@ const USERS = [
     premium: false,
 
     sites: [
-     
+    
     ],
 
     entries: [
@@ -51,8 +51,8 @@ const USERS = [
   },
 
    {
-    id: "Tony Montana",
-    name: "Tony Montana",
+    id: "Phanindra Yerra",
+    name: "Psvkry",
     password: "9919",
     premium: true,
     sites: [
