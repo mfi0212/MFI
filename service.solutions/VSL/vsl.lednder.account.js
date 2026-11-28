@@ -51,8 +51,8 @@ const USERS = [
   },
 
    {
-    id: "Phanindra Yerra",
-    name: "Psvkry",
+    id: "Phani Yerra",
+    name: "Phani Yerra",
     password: "9919",
     premium: true,
     sites: [
